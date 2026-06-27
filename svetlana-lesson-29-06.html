@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Lesson · Svetlana · 29 June</title>
+<style>
+:root{
+  --bg:#FAF9F6;--surface:#FFFFFF;--surface-2:#F1EFE8;
+  --text:#2C2C2A;--muted:#5F5E5A;
+  --border:rgba(0,0,0,.12);--border-2:rgba(0,0,0,.22);
+  --blue:#185FA5;--blue-bg:#E6F1FB;
+  --green:#3B6D11;--green-bg:#EAF3DE;
+  --purple:#534AB7;--purple-bg:#EEEDFE;
+  --teal:#0F6E56;--teal-bg:#E1F5EE;
+  --amber:#854F0B;--amber-bg:#FAEEDA;
+  --red:#A32D2D;--red-bg:#FCEBEB;
+  --radius:10px;--radius-lg:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:1.5rem 1rem 4rem}
+.wrap{max-width:760px;margin:0 auto}
+.header{text-align:center;margin-bottom:1.75rem}
+.header h1{font-size:24px;font-weight:600;margin-bottom:.25rem}
+.header p{font-size:14px;color:var(--muted)}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem;justify-content:center}
+.nav-btn{padding:8px 15px;font-size:13px;border:1px solid var(--border-2);border-radius:var(--radius);background:var(--surface);color:var(--muted);cursor:pointer;transition:all .15s;font-family:inherit}
+.nav-btn:hover{background:var(--surface-2)}
+.nav-btn.active{background:var(--text);color:#fff;border-color:var(--text);font-weight:500}
+.section{display:none;animation:fade .25s ease}
+.section.visible{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem 1.75rem;margin-bottom:1rem}
+.tag{display:inline-block;font-size:11px;padding:4px 11px;border-radius:var(--radius);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.tag-warm{background:var(--amber-bg);color:var(--amber)}
+.tag-cool{background:var(--blue-bg);color:var(--blue)}
+.tag-teal{background:var(--teal-bg);color:var(--teal)}
+.tag-purple{background:var(--purple-bg);color:var(--purple)}
+.tag-green{background:var(--green-bg);color:var(--green)}
+h3{font-size:17px;font-weight:600;margin-bottom:.75rem}
+h4{font-size:14px;font-weight:600;margin-bottom:.5rem}
+p{font-size:15px;line-height:1.7}
+.muted{color:var(--muted);font-size:14px}
+.sentence{font-size:17px;font-weight:500;line-height:1.8;padding:1.1rem;background:var(--surface-2);border-radius:var(--radius);margin-bottom:1rem}
+.sentence em{font-style:normal;color:var(--blue);font-weight:600}
+.btn{font-size:13px;color:var(--text);background:var(--surface);border:1px solid var(--border-2);border-radius:var(--radius);padding:7px 16px;cursor:pointer;font-family:inherit;font-weight:500;transition:all .15s}
+.btn:hover{background:var(--surface-2)}
+.hint-btn{font-size:12px;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:var(--radius);padding:3px 11px;cursor:pointer;font-family:inherit;margin-left:4px;vertical-align:1px}
+.hint-btn:hover{background:var(--surface-2)}
+.discuss-q{font-size:16px;line-height:1.8;padding-left:1.2rem;margin-top:.5rem}
+.prose{font-size:16px;line-height:2.3}
+.pill{font-size:11px;color:var(--blue);background:var(--blue-bg);border:1px solid transparent;border-radius:20px;padding:2px 10px;cursor:pointer;font-family:inherit;font-weight:600;margin:0 3px;white-space:nowrap;vertical-align:1px}
+.pill:hover{background:#d4e6f7}
+.inline-en{display:none;color:var(--green);font-weight:500}
+.inline-en.show{display:inline}
+.inline-en.show::before{content:" → "}
+.reveal{display:none;font-size:14px;color:var(--blue);background:var(--blue-bg);padding:.4rem .7rem;border-radius:var(--radius);margin:.35rem 0;line-height:1.6}
+.reveal.show{display:block}
+.theory{font-size:15px;line-height:1.8;background:var(--purple-bg);color:#3a3470;padding:1.1rem 1.25rem;border-radius:var(--radius);margin-bottom:1.25rem}
+.theory b{color:var(--purple)}
+.formula{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1rem;margin:.75rem 0;font-size:15px;text-align:center;font-weight:500}
+.formula .if{color:var(--blue)}
+.formula .res{color:var(--green)}
+.reading{font-size:15px;line-height:1.85;background:var(--surface-2);padding:1.1rem 1.25rem;border-radius:var(--radius);margin-bottom:1.25rem}
+.reading p{margin-bottom:.6rem}
+.reading p:last-child{margin-bottom:0}
+.q-item{margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
+.q-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.q-text{font-size:15px;font-weight:500;margin-bottom:.6rem}
+.opt{display:block;padding:9px 13px;border:1px solid var(--border-2);border-radius:var(--radius);margin-bottom:7px;cursor:pointer;font-size:14px;transition:all .12s;background:var(--surface)}
+.opt:hover:not(.lock){background:var(--surface-2)}
+.opt.correct{border-color:var(--green);background:var(--green-bg);color:var(--green);font-weight:500}
+.opt.wrong{border-color:var(--red);background:var(--red-bg);color:var(--red)}
+.opt.lock{pointer-events:none}
+.opt.selected{border-color:var(--blue);background:var(--blue-bg)}
+/* match */
+.match-col{flex:1;display:flex;flex-direction:column;gap:7px}
+/* fix-mistake / complete */
+.fix-line{font-size:15px;line-height:2}
+.fix-line u{color:var(--red);text-decoration-style:wavy}
+.fix-input{border:none;border-bottom:2px solid var(--border-2);background:transparent;font-size:15px;color:var(--text);width:130px;padding:2px 4px;outline:none;font-family:inherit}
+.fix-input:focus{border-color:var(--blue)}
+.fix-input.ok{border-bottom-color:var(--green);color:var(--green);font-weight:600}
+.fix-input.bad{border-bottom-color:var(--red);color:var(--red);font-weight:600}
+.fix-ans{color:var(--green);font-size:13px;display:none;margin-top:.25rem;font-weight:500}
+.fix-ans.show{display:block}
+/* vocab */
+.vocab-word{margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid var(--border)}
+.vocab-word:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.word-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:.3rem}
+.word-title{font-size:19px;font-weight:600}
+.ipa{font-size:14px;color:var(--muted)}
+.word-def{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:.4rem}
+.vocab-ex{font-size:14px;color:var(--text);font-style:italic;margin-bottom:.4rem}
+.show-tr{font-size:12px;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:var(--radius);padding:4px 11px;cursor:pointer;font-family:inherit}
+.show-tr:hover{background:var(--surface-2)}
+.translation{display:none;font-size:14px;color:var(--blue);margin-top:.4rem;font-weight:500}
+.translation.show{display:block}
+.vocab-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.25rem}
+.vocab-bank span{padding:6px 12px;background:var(--green-bg);color:var(--green);border-radius:var(--radius);font-size:14px;font-weight:500}
+.gap-input{border:none;border-bottom:2px solid var(--border-2);background:transparent;font-size:15px;color:var(--text);width:160px;padding:2px 4px;outline:none;font-family:inherit}
+.gap-input:focus{border-color:var(--blue)}
+.gap-input.ok{border-bottom-color:var(--green);color:var(--green);font-weight:600}
+.gap-input.bad{border-bottom-color:var(--red);color:var(--red);font-weight:600}
+.gap-ans{color:var(--green);font-size:13px;display:none;margin-top:.25rem;font-weight:500}
+.gap-ans.show{display:block}
+.scorebar{font-size:13px;color:var(--muted);font-weight:500;margin-top:1rem}
+.audio-bar{display:flex;align-items:center;gap:.75rem;background:var(--surface-2);border-radius:var(--radius);padding:.75rem 1rem;margin-bottom:1.25rem}
+.play-btn{width:36px;height:36px;border-radius:50%;background:var(--blue);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.play-btn:hover{background:#134e8a}
+.play-btn svg{fill:#fff;width:13px;height:13px;margin-left:2px}
+.sent-input{width:100%;border:1px solid var(--border-2);border-radius:var(--radius);padding:10px 12px;font-size:15px;font-family:inherit;color:var(--text);background:var(--surface);outline:none;resize:none;line-height:1.6;transition:border-color .15s}
+.sent-input:focus{border-color:var(--blue)}
+.sent-row{margin-bottom:.75rem}
+.sent-num{font-size:12px;color:var(--muted);margin-bottom:.3rem}
+@media(max-width:520px){.card{padding:1.25rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <h1>English Lesson</h1>
+    <p>Svetlana · 29 June</p>
+  </div>
+
+  <div class="nav">
+    <button class="nav-btn active" data-sec="warm">1 · Warm-up</button>
+    <button class="nav-btn" data-sec="hw">2 · Homework</button>
+    <button class="nav-btn" data-sec="listening">3 · Listening</button>
+    <button class="nav-btn" data-sec="grammar">4 · Grammar</button>
+    <button class="nav-btn" data-sec="vocab">5 · Vocabulary</button>
+    <button class="nav-btn" data-sec="sentences">6 · Sentences</button>
+  </div>
+
+  <!-- WARM-UP -->
+  <div id="warm" class="section visible">
+    <div class="card">
+      <span class="tag tag-warm">Warm-up</span>
+      <h3>Read &amp; discuss</h3>
+      <div class="sentence">
+        "Preanalytical errors account for up to <em>70 % of all laboratory mistakes</em> — yet most of them are <em>entirely preventable</em> if staff receive the right <em>training</em> and follow clear <em>protocols</em>."
+      </div>
+      <p class="muted" style="margin-bottom:.4rem">Question for discussion:</p>
+      <p class="discuss-q">In your experience, which preanalytical errors are the most common — and the hardest to prevent? What has actually worked?</p>
+      <button class="hint-btn" onclick="toggle('warm-hint')">Vocabulary hints</button>
+      <div class="reveal" id="warm-hint" style="margin-top:.75rem">
+        <b>account for</b> — составлять, быть причиной &nbsp;·&nbsp;
+        <b>preventable</b> — предотвратимый &nbsp;·&nbsp;
+        <b>entirely</b> — полностью &nbsp;·&nbsp;
+        <b>protocol</b> — протокол, регламент &nbsp;·&nbsp;
+        <b>training</b> — обучение, подготовка
+      </div>
+    </div>
+  </div>
+
+  <!-- HOMEWORK -->
+  <div id="hw" class="section">
+    <div class="card">
+      <span class="tag tag-cool">Homework · Translation</span>
+      <h3>Translate the text into English</h3>
+      <p class="muted" style="margin-bottom:1rem">Tap the button after any sentence to see a model translation.</p>
+      <p class="prose" id="hw-prose"></p>
+      <div style="margin-top:1.25rem"><button class="btn" onclick="revealAll('hw')">Show all</button></div>
+    </div>
+  </div>
+
+  <!-- LISTENING -->
+  <div id="listening" class="section">
+    <div class="card">
+      <span class="tag tag-teal">Listening</span>
+      <h3>Listen &amp; fill in the gaps</h3>
+      <p class="muted" style="margin-bottom:1rem">Listen to the text, then type the missing words. Each answer is checked when you leave the box.</p>
+      <div class="audio-bar">
+        <button class="play-btn" onclick="playText()" id="playBtn" aria-label="Play">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </button>
+        <div>
+          <div style="font-size:14px;font-weight:600;color:var(--text)">Preanalytical Errors — a short text</div>
+          <div style="font-size:13px;color:var(--muted)">Click to listen</div>
+        </div>
+      </div>
+      <div class="reading" id="gap-text"></div>
+      <div class="scorebar" id="gap-score"></div>
+    </div>
+  </div>
+
+  <!-- GRAMMAR -->
+  <div id="grammar" class="section">
+    <div class="card">
+      <span class="tag tag-purple">Grammar · First Conditional</span>
+      <h3>Real situations in the future</h3>
+      <div class="theory">
+        We use the <b>First Conditional</b> for a real or likely situation in the future and its result.
+        <div class="formula"><span class="if">If + Present Simple</span>, &nbsp;<span class="res">will + verb</span></div>
+        ▸ The parts can swap places: <i>We will be late if the train is delayed.</i><br>
+        ▸ A comma is used only when the <b>if</b>-part comes first.<br>
+        ▸ After <b>if</b> we use the present, <b>not</b> "will". ✗ <i>If it will rain…</i> → ✓ <i>If it rains…</i>
+      </div>
+
+      <h4>Exercise 1. Match the halves</h4>
+      <p class="muted" style="margin-bottom:1rem">Tap an <b>if</b>-clause on the left, then tap the result on the right that goes with it.</p>
+      <div style="display:flex;gap:10px;margin-bottom:.5rem">
+        <div class="match-col" id="match-left"></div>
+        <div class="match-col" id="match-right"></div>
+      </div>
+      <div class="scorebar" id="match-score"></div>
+
+      <h4 style="margin-top:1.75rem">Exercise 2. Put the verb in the correct form</h4>
+      <p class="muted" style="margin-bottom:1rem">Type the correct form of the verb in brackets. Sometimes the gap is in the <b>if</b>-part, sometimes in the result. Checked when you leave the box.</p>
+      <div id="complete-items"></div>
+      <div class="scorebar" id="co-score"></div>
+    </div>
+  </div>
+
+  <!-- VOCABULARY -->
+  <div id="vocab" class="section">
+    <div class="card">
+      <span class="tag tag-green">Vocabulary · Words from last lesson</span>
+      <h3>Review &amp; practise</h3>
+      <div id="vocab-words"></div>
+      <div style="border-top:1px solid var(--border);padding-top:1.25rem;margin-top:1.4rem">
+        <h4>Exercise: choose the right word</h4>
+        <p class="muted" style="margin-bottom:.75rem">Type a word from the list. Each answer is checked when you leave the box.</p>
+        <div class="vocab-bank" id="vocab-bank"></div>
+        <div id="vocab-items"></div>
+        <div class="scorebar" id="v-score"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SENTENCES -->
+  <div id="sentences" class="section">
+    <div class="card">
+      <span class="tag tag-warm">Sentences · First Conditional</span>
+      <h3>Create your own sentences</h3>
+      <p class="muted" style="margin-bottom:.6rem">Write 6 sentences using the First Conditional. Use topics from your work or life — it's more interesting!</p>
+      <div class="reveal show" style="margin-bottom:1.25rem">
+        <b>Example:</b> If I double-check the samples, we will get more reliable results.
+      </div>
+      <div id="sent-inputs"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* navigation */
+document.querySelectorAll('.nav-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('visible'));
+    document.getElementById(b.dataset.sec).classList.add('visible');
+    document.querySelectorAll('.nav-btn').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+function toggle(id){document.getElementById(id).classList.toggle('show')}
+function norm(s){return s.trim().toLowerCase().replace(/\s+/g,' ').replace(/[.,!?;]/g,'')}
+
+/* prose builder */
+function buildProse(data,boxId,pref){
+  const box=document.getElementById(boxId);let html='';
+  data.forEach((d,i)=>{
+    html+=d.ru+'<button class="pill" onclick="toggleInline(\''+pref+i+'\')">RU→EN</button>'+
+          '<span class="inline-en" id="'+pref+i+'">'+d.en+'</span> ';
+  });
+  box.innerHTML=html;
+}
+function toggleInline(id){document.getElementById(id).classList.toggle('show')}
+function revealAll(pref){document.querySelectorAll('span.inline-en[id^="'+pref+'"]').forEach(e=>e.classList.add('show'))}
+
+/* homework */
+const hwData=[
+  {ru:"Несколько лет назад я была довольно нетерпеливым руководителем.",en:"A few years ago, I used to be a rather impatient manager."},
+  {ru:"Раньше я сразу искала виноватого, если в отчёте появлялась ошибка.",en:"I used to look for someone to blame straight away whenever an error appeared in a report."},
+  {ru:"Каждое утро я проверяла работу коллег и часто делала им замечания.",en:"Every morning I would check my colleagues' work and would often criticise them."},
+  {ru:"Со временем я поняла одну простую вещь: если ты винишь людей, они будут скрывать свои ошибки.",en:"Over time I understood one simple thing: if you blame people, they will hide their mistakes."},
+  {ru:"Если же ты создашь спокойную атмосферу, сотрудники начнут открыто говорить о проблемах.",en:"But if you establish a calm atmosphere, the staff will start talking openly about problems."},
+  {ru:"Теперь я очень благодарна команде за её терпение.",en:"Now I am very grateful to my team for their patience."}
+];
+buildProse(hwData,'hw-prose','hw');
+
+/* listening gap fill */
+const gapParas=[
+  "Most errors in laboratory diagnostics occur in the <b>preanalytical</b> phase — before the sample even reaches the analyser.",
+  "The way a sample is <input class='gap-input' id='g0' data-ans='collected' placeholder='...' onblur='ansGap(0)'> and transported directly affects the reliability of the result.<span class='gap-ans' id='ga0'>✓ collected</span>",
+  "For example, if a tube is <input class='gap-input' id='g1' data-ans='labelled' placeholder='...' onblur='ansGap(1)'> incorrectly, the result may be attributed to the wrong patient.<span class='gap-ans' id='ga1'>✓ labelled</span>",
+  "Temperature also matters: if a sample <input class='gap-input' id='g2' data-ans='freezes' placeholder='...' onblur='ansGap(2)'>, certain analytes will be destroyed.<span class='gap-ans' id='ga2'>✓ freezes</span>",
+  "That is why well-trained <input class='gap-input' id='g3' data-ans='staff' placeholder='...' onblur='ansGap(3)'> are the most important factor in reducing preanalytical errors.<span class='gap-ans' id='ga3'>✓ staff</span>",
+  "If a laboratory <input class='gap-input' id='g4' data-ans='establishes' placeholder='...' onblur='ansGap(4)'> clear protocols and trains its team regularly, the error rate will fall significantly.<span class='gap-ans' id='ga4'>✓ establishes</span>"
+];
+const gapBox=document.getElementById('gap-text');
+gapParas.forEach(p=>gapBox.innerHTML+='<p>'+p+'</p>');
+const gapTotal=5;let gapCorrect=0;
+const gapDone=new Array(gapTotal).fill(false),gapRight=new Array(gapTotal).fill(false);
+function updGap(){
+  const done=gapDone.filter(Boolean).length;
+  document.getElementById('gap-score').textContent=done+'/'+gapTotal+' answered · '+gapCorrect+' correct';
+}
+function ansGap(i){
+  const inp=document.getElementById('g'+i);const val=norm(inp.value);if(val==='')return;
+  const ok=norm(inp.dataset.ans)===val;
+  inp.classList.remove('ok','bad');inp.classList.add(ok?'ok':'bad');
+  document.getElementById('ga'+i).classList.toggle('show',!ok);
+  if(gapDone[i]&&gapRight[i])gapCorrect--;
+  gapDone[i]=true;gapRight[i]=ok;if(ok)gapCorrect++;updGap();
+}
+updGap();
+
+/* speech synthesis */
+const fullText="Most errors in laboratory diagnostics occur in the preanalytical phase, before the sample even reaches the analyser. The way a sample is collected and transported directly affects the reliability of the result. For example, if a tube is labelled incorrectly, the result may be attributed to the wrong patient. Temperature also matters: if a sample freezes, certain analytes will be destroyed. That is why well-trained staff are the most important factor in reducing preanalytical errors. If a laboratory establishes clear protocols and trains its team regularly, the error rate will fall significantly.";
+let speaking=false;
+function playText(){
+  if(speaking){speechSynthesis.cancel();speaking=false;resetPlayBtn();return;}
+  const u=new SpeechSynthesisUtterance(fullText);
+  u.lang='en-GB';u.rate=0.87;
+  u.onend=()=>{speaking=false;resetPlayBtn();};
+  speechSynthesis.speak(u);speaking=true;
+  document.getElementById('playBtn').innerHTML='<svg viewBox="0 0 24 24" fill="#fff" width="13" height="13"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+}
+function resetPlayBtn(){
+  document.getElementById('playBtn').innerHTML='<svg viewBox="0 0 24 24" fill="#fff" width="13" height="13"><polygon points="5,3 19,12 5,21"/></svg>';
+}
+
+/* === GRAMMAR EX 1: MATCH THE HALVES === */
+const matchData=[
+  {left:"If the sample is stored incorrectly,",       right:"the result will be unreliable.",          id:0},
+  {left:"If we train the staff regularly,",            right:"the number of errors will fall.",         id:1},
+  {left:"If a tube is labelled incorrectly,",          right:"it may be attributed to the wrong patient.", id:2},
+  {left:"If the laboratory establishes clear protocols,", right:"quality will improve significantly.",   id:3},
+  {left:"If you double-check every result,",           right:"you will avoid costly mistakes.",         id:4},
+  {left:"If my granddaughter calls me tonight,",       right:"I will be very happy.",                   id:5}
+];
+const shuffledRight=[...matchData].sort(()=>Math.random()-.5);
+let matchSelId=null, matchCorrect=0, matchDone=0;
+const mLeft=document.getElementById('match-left'), mRight=document.getElementById('match-right');
+matchData.forEach((m,i)=>{
+  const el=document.createElement('div');
+  el.className='opt';el.dataset.id=m.id;el.dataset.idx=i;el.dataset.side='left';
+  el.textContent=m.left;el.onclick=()=>pickSide('left',el);
+  mLeft.appendChild(el);
+});
+shuffledRight.forEach((m,i)=>{
+  const el=document.createElement('div');
+  el.className='opt';el.dataset.id=m.id;el.dataset.idx=i;el.dataset.side='right';
+  el.textContent=m.right;el.onclick=()=>pickSide('right',el);
+  mRight.appendChild(el);
+});
+let matchSelEl=null;
+function pickSide(side,el){
+  if(el.classList.contains('lock'))return;
+  if(matchSelEl===null){
+    if(side!=='left')return;
+    matchSelEl=el;el.classList.add('selected');
+  } else {
+    if(side!=='right'){
+      matchSelEl.classList.remove('selected');
+      matchSelEl=el;el.classList.add('selected');
+      return;
+    }
+    const ok=matchSelEl.dataset.id===el.dataset.id;
+    [matchSelEl,el].forEach(e=>{e.classList.remove('selected');e.classList.add('lock',ok?'correct':'wrong');});
+    if(ok){matchCorrect++;}
+    else{setTimeout(()=>{[matchSelEl,el].forEach(e=>e.classList.remove('lock','wrong'));},950);}
+    matchDone++;matchSelEl=null;updMatch();
+  }
+}
+function updMatch(){
+  document.getElementById('match-score').textContent=matchDone+'/'+matchData.length+' matched · '+matchCorrect+' correct';
+}
+updMatch();
+
+/* === GRAMMAR EX 2: PUT THE VERB IN THE CORRECT FORM === */
+const completeData=[
+  // if-part gap
+  {pre:"If the technician",verb:"follow",bracket:"(follow)",post:"the protocol, the results will be accurate.",ans:["follows"],hint:"follows — Present Simple after 'if'"},
+  // result gap
+  {pre:"If a sample is stored at the wrong temperature, the analytes",verb:"be destroyed",bracket:"(be destroyed)",post:".",ans:["will be destroyed"],hint:"will be destroyed — will + verb in the result"},
+  // if-part gap
+  {pre:"If the laboratory",verb:"establish",bracket:"(establish)",post:"clear protocols, error rates will fall.",ans:["establishes"],hint:"establishes — Present Simple after 'if'"},
+  // result gap
+  {pre:"If you double-check the label, you",verb:"avoid",bracket:"(avoid)",post:"costly mistakes.",ans:["will avoid"],hint:"will avoid — will + verb in the result"},
+  // if-part gap — personal topic
+  {pre:"If my granddaughter",verb:"call",bracket:"(call)",post:"me this evening, I will be very happy.",ans:["calls"],hint:"calls — Present Simple after 'if'"},
+  // result gap
+  {pre:"If the team puts up with poor labelling, errors",verb:"continue",bracket:"(continue)",post:".",ans:["will continue"],hint:"will continue — will + verb in the result"},
+  // if-part gap
+  {pre:"If we",verb:"train",bracket:"(train)",post:"the staff regularly, quality will improve.",ans:["train"],hint:"train — Present Simple after 'if' (same as base form here)"},
+  // result gap — personal topic
+  {pre:"If the weather is good on Sunday, we",verb:"go hiking",bracket:"(go hiking)",post:".",ans:["will go hiking"],hint:"will go hiking — will + verb in the result"}
+];
+let coCorrect=0;
+const coDone=new Array(completeData.length).fill(false),coRight=new Array(completeData.length).fill(false);
+function updCo(){
+  const done=coDone.filter(Boolean).length;
+  document.getElementById('co-score').textContent=done+'/'+completeData.length+' answered · '+coCorrect+' correct';
+}
+const coBox=document.getElementById('complete-items');
+completeData.forEach((c,i)=>{
+  coBox.innerHTML+=`
+  <div class="q-item">
+    <p class="fix-line">${i+1}. ${c.pre} <input class="fix-input" id="co${i}" placeholder="${c.bracket}" style="width:180px" onblur="ansCo(${i})"> ${c.post}</p>
+    <div class="fix-ans" id="coa${i}">✓ ${c.hint}</div>
+  </div>`;
+});
+function ansCo(i){
+  const inp=document.getElementById('co'+i);
+  const val=norm(inp.value);if(val==='')return;
+  const ok=completeData[i].ans.some(a=>norm(a)===val);
+  inp.classList.remove('ok','bad');inp.classList.add(ok?'ok':'bad');
+  document.getElementById('coa'+i).classList.toggle('show',!ok);
+  if(coDone[i]&&coRight[i])coCorrect--;
+  coDone[i]=true;coRight[i]=ok;if(ok)coCorrect++;updCo();
+}
+updCo();
+
+/* vocabulary */
+const vocabData=[
+  {w:"to put up with",ipa:"/pʊt ʌp wɪð/",pos:"phr. v.",def:"To tolerate something unpleasant without complaining.",ex:'"It is hard to put up with constant interruptions when you are trying to concentrate."',tr:"мириться с чем-то, терпеть"},
+  {w:"luxurious",ipa:"/lʌɡˈʒʊəriəs/",pos:"adj.",def:"Very comfortable and expensive; giving a feeling of great pleasure.",ex:'"The conference was held in a luxurious hotel with beautiful views of the lake."',tr:"роскошный, изысканный"},
+  {w:"to double-check",ipa:"/ˈdʌbl tʃek/",pos:"v.",def:"To check something a second time to make sure it is correct.",ex:'"Always double-check the patient\'s name before recording the result."',tr:"перепроверять"},
+  {w:"grateful to smb for smth",ipa:"/ˈɡreɪtfəl/",pos:"adj.",def:"Feeling or showing thanks to someone for something they have done.",ex:'"I am very grateful to my team for their patience during the audit."',tr:"благодарный кому-то за что-то"},
+  {w:"to appreciate smb for smth",ipa:"/əˈpriːʃieɪt/",pos:"v.",def:"To recognise and value the qualities or efforts of someone.",ex:'"She appreciated her colleagues for their dedication to quality."',tr:"ценить кого-то за что-то"}
+];
+const vBox=document.getElementById('vocab-words');
+vocabData.forEach((v,i)=>{
+  vBox.innerHTML+=`
+  <div class="vocab-word">
+    <div class="word-head">
+      <span class="word-title">${i+1}. ${v.w}</span>
+      <span class="ipa">${v.ipa}</span>
+      <span class="ipa">${v.pos}</span>
+    </div>
+    <div class="word-def">${v.def}</div>
+    <div class="vocab-ex">${v.ex}</div>
+    <button class="show-tr" onclick="toggle('vtr${i}')">Перевод</button>
+    <div class="translation" id="vtr${i}">${v.tr}</div>
+  </div>`;
+});
+const vocabBankWords=["put up with","luxurious","double-check","grateful","appreciate"];
+const vbBox=document.getElementById('vocab-bank');
+vocabBankWords.forEach(w=>vbBox.innerHTML+=`<span>${w}</span>`);
+const vocabEx=[
+  {pre:"It is difficult to",post:"constant errors in reports — something has to change.",ans:["put up with"]},
+  {pre:"The new laboratory equipment was expensive but",post:"— everyone was impressed.",ans:["luxurious"]},
+  {pre:"I always",post:"the labels before sending samples to the analyser.",ans:["double-check"]},
+  {pre:"She was very",post:"to her supervisor for pointing out the mistake early.",ans:["grateful"]},
+  {pre:"A good manager will",post:"the team for their hard work every day.",ans:["appreciate"]}
+];
+let vCorrect=0;
+const vDone=new Array(vocabEx.length).fill(false),vRight=new Array(vocabEx.length).fill(false);
+function updV(){
+  const done=vDone.filter(Boolean).length;
+  document.getElementById('v-score').textContent=done+'/'+vocabEx.length+' answered · '+vCorrect+' correct';
+}
+const veBox=document.getElementById('vocab-items');
+vocabEx.forEach((v,i)=>{
+  veBox.innerHTML+=`
+  <div class="q-item">
+    <p style="font-size:15px;line-height:1.9">${i+1}. ${v.pre} <input class="gap-input" id="v${i}" placeholder="..." onblur="ansVocab(${i})"> ${v.post}</p>
+    <div class="gap-ans" id="va${i}">✓ ${v.ans[0]}</div>
+  </div>`;
+});
+function ansVocab(i){
+  const inp=document.getElementById('v'+i);const val=norm(inp.value);if(val==='')return;
+  const ok=vocabEx[i].ans.some(a=>norm(a)===val);
+  inp.classList.remove('ok','bad');inp.classList.add(ok?'ok':'bad');
+  document.getElementById('va'+i).classList.toggle('show',!ok);
+  if(vDone[i]&&vRight[i])vCorrect--;
+  vDone[i]=true;vRight[i]=ok;if(ok)vCorrect++;updV();
+}
+updV();
+
+/* sentences */
+const sentBox=document.getElementById('sent-inputs');
+for(let i=1;i<=6;i++){
+  sentBox.innerHTML+=`
+  <div class="sent-row">
+    <div class="sent-num">Sentence ${i}</div>
+    <textarea class="sent-input" id="s${i}" rows="1" placeholder="If …, … will …" oninput="autoResize(this)"></textarea>
+  </div>`;
+}
+function autoResize(el){el.style.height='auto';el.style.height=el.scrollHeight+'px';}
+</script>
+</body>
+</html>
