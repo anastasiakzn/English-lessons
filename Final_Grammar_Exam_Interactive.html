@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Final Grammar Exam — Interactive</title>
+<style>
+  :root {
+    --blue: #2E75B6;
+    --dark: #1F4E79;
+    --green: #2e7d32;
+    --green-bg: #e8f5e9;
+    --red: #c62828;
+    --red-bg: #fdecea;
+    --gray: #666;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; max-width: 850px; margin: 0 auto; padding: 40px 20px 100px; color: #222; line-height: 1.5; background:#fafafa; }
+  h1 { text-align: center; color: var(--blue); font-size: 2.1em; margin-bottom: 4px; }
+  .subtitle { text-align: center; color: #555; font-style: italic; margin-bottom: 20px; }
+  .meta { text-align: center; margin-bottom: 6px; }
+  .meta-line { text-align: center; margin-bottom: 10px; color: #333; }
+  .instr-top { text-align:center; color:#777; font-size:0.92em; margin-bottom: 26px; }
+  h2 { color: var(--dark); border-bottom: 2px solid var(--blue); padding-bottom: 4px; margin-top: 44px; }
+  .instr { font-style: italic; color: #555; margin-bottom: 14px; }
+  .item { margin-bottom: 16px; padding: 10px 14px; border-radius: 8px; background:#fff; border:1px solid #e3e3e3; }
+  .item.correct { background: var(--green-bg); border-color:#a5d6a7; }
+  .item.incorrect { background: var(--red-bg); border-color:#ef9a9a; }
+  .item-text { margin-bottom: 6px; }
+  .num { color: var(--blue); font-weight:bold; margin-right:6px; }
+  .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  input[type=text] {
+    flex: 1 1 220px; min-width: 160px; padding: 7px 10px; border: 1.5px solid #ccc; border-radius: 6px; font-size: 1em; font-family: inherit;
+  }
+  .item.correct input { border-color: var(--green); }
+  .item.incorrect input { border-color: var(--red); }
+  .feedback { font-weight:bold; min-width: 90px; }
+  .feedback.ok { color: var(--green); }
+  .feedback.no { color: var(--red); }
+  .answer-reveal { font-size: 0.88em; color: var(--gray); margin-top: 8px; display:none; background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding: 8px 10px; }
+  .explain-text { margin-top: 4px; color: #7a5b00; }
+  .item.incorrect .answer-reveal { display:block; }
+  .scorebar {
+    position: sticky; top: 0; z-index: 10; background: var(--dark); color: #fff; padding: 10px 18px;
+    border-radius: 0 0 10px 10px; display:flex; justify-content: space-between; align-items:center; margin: 0 -20px 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .scorebar .score { font-weight: bold; font-size: 1.05em; }
+  .scorebar button { background: var(--blue); color:#fff; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; font-size:0.95em; }
+  .scorebar button:hover { background:#3a85cb; }
+  .scorebar .reset { background:#555; margin-left:8px; }
+  .scorebar .reset:hover { background:#777; }
+  .section-progress { font-size:0.8em; color:#cfe3f5; }
+  .note { font-size: 0.85em; color: var(--gray); }
+  footer { text-align:center; margin-top: 50px; color:#999; font-size:0.85em; }
+</style>
+</head>
+<body>
+
+<div class="scorebar">
+  <div>
+    <div class="score">Score: <span id="scoreVal">0</span> / <span id="scoreTotal">126</span></div>
+    <div class="section-progress" id="progressNote">Answer each item — checked instantly.</div>
+  </div>
+  <div>
+    <button onclick="checkAll()">Check all</button>
+    <button class="reset" onclick="resetAll()">Reset</button>
+  </div>
+</div>
+
+<h1>FINAL GRAMMAR EXAM</h1>
+<div class="subtitle">Comprehensive Review Test — 21 Grammar Topics</div>
+<div class="meta">Student name: _______________________&nbsp;&nbsp;&nbsp; Date: _______________</div>
+<div class="meta-line"><strong>Time: 60–90 minutes &nbsp;|&nbsp; Total items: 126</strong></div>
+<div class="instr-top">Type your answer in each box. Press <strong>Enter</strong> or click out of the box to check it instantly, or use "Check all" at any time. Minor punctuation/case differences are ignored; for open tasks, several correct variants are accepted.</div>
+
+<div id="exam"></div>
+
+<footer>Built for exam practice — good luck! 🍀</footer>
+
+<script>
+// ---------- DATA ----------
+// Each section: title, instr, items: [{ text, answers: [array of accepted normalized answers] }]
+// For fill-in-blank items, accepted answers are the missing word(s)/phrase(s) only.
+// For full-sentence rewrite items, accepted answers are full sentence variants.
+
+const sections = [
+{ title: "1. Present Tenses",
+  instr: "Open the brackets, choosing the correct present tense (Present Simple, Present Continuous, Present Perfect, Present Perfect Continuous).",
+  items: [
+    { text: "She usually __________ (work) from home on Fridays.", answers: ["works"], explain: "Repeated habit/routine ('usually') → Present Simple." },
+    { text: "Look! The children __________ (play) in the garden right now.", answers: ["are playing"], explain: "Action happening at the moment of speaking ('right now') → Present Continuous." },
+    { text: "I __________ (already / finish) my homework, so I can go out.", answers: ["have already finished","already have finished"], explain: "Past action with present result/relevance ('already', leads to consequence now) → Present Perfect." },
+    { text: "He __________ (study) English since 2019.", answers: ["has studied","has been studying"], explain: "Action started in the past and continues now, with 'since' + a point in time → Present Perfect (Continuous)." },
+    { text: "We __________ (not see) each other for ages — let's meet up!", answers: ["haven't seen","have not seen"], explain: "Duration up to now ('for ages') → Present Perfect, negative form." },
+    { text: "Water __________ (boil) at 100 degrees Celsius.", answers: ["boils"], explain: "General/scientific fact, always true → Present Simple." },
+  ]},
+{ title: '2. "To be / get used to (doing)"',
+  instr: "Complete the sentences with the correct form of be used to or get used to.",
+  items: [
+    { text: "I ___________ (be used to / get up) early because I've been doing it for years.", answers: ["am used to getting up","'m used to getting up"], explain: "'Be used to' + gerund = accustomed to something (a state). 'I've been doing it for years' signals an established habit, not a process of adapting." },
+    { text: "It took him months to ___________ (get used to / live) abroad.", answers: ["get used to living"], explain: "'Get used to' + gerund = the PROCESS of becoming accustomed. 'It took him months' shows a change over time, not a finished state." },
+    { text: "She isn't ___________ (used to / drive) on the left side of the road yet.", answers: ["used to driving"], explain: "'Used to' + gerund describes familiarity with a present situation; 'yet' confirms she hasn't reached that state." },
+    { text: "Are you ___________ (used to / the noise) in this neighbourhood?", answers: ["used to the noise"], explain: "'Used to' can be followed directly by a noun phrase (not just -ing) when asking about familiarity with a thing." },
+    { text: "We ___________ (get used to / the new schedule) after a couple of weeks.", answers: ["got used to the new schedule"], explain: "'Get used to' in the past (got) shows the process was completed 'after a couple of weeks'." },
+    { text: 'He used to ___________ (smoke), but he quit two years ago. Explain why this is different from "be/get used to".', answers: ["smoke","used to + infinitive describes a past habit, not be/get used to"], explain: "'Used to + bare infinitive' (no -ing) describes a past habit that no longer happens — totally different structure from 'be/get used to + -ing' (familiarity)." },
+  ]},
+{ title: "3. Past Tenses",
+  instr: "Put the verbs in brackets into the correct past tense (Past Simple, Past Continuous, Past Perfect, Past Perfect Continuous).",
+  items: [
+    { text: "While I __________ (cook) dinner, the phone rang.", answers: ["was cooking"], explain: "Longer action in progress ('while...') interrupted by a shorter action → Past Continuous." },
+    { text: "By the time we arrived, the film __________ (already / start).", answers: ["had already started"], explain: "Action completed before another past action/time ('by the time we arrived') → Past Perfect." },
+    { text: "She __________ (live) in Paris for five years before she moved to London.", answers: ["had lived","had been living"], explain: "Duration before another past event ('before she moved') → Past Perfect (Continuous)." },
+    { text: "I __________ (see) that movie last weekend.", answers: ["saw"], explain: "Finished action at a specific past time ('last weekend') → Past Simple." },
+    { text: "He was tired because he __________ (run) all morning.", answers: ["had been running"], explain: "Emphasis on the duration of an activity leading up to a past result (being tired) → Past Perfect Continuous." },
+    { text: "They __________ (not / finish) the project when the manager checked on them.", answers: ["hadn't finished","had not finished"], explain: "Action not completed before another past moment → Past Perfect, negative." },
+  ]},
+{ title: '4. "Do" / "does" / "did" for Emphasis',
+  instr: "Rewrite the sentences using do/does/did for emphasis.",
+  items: [
+    { text: "I like your new haircut. → I ___________ like your new haircut.", answers: ["do"], explain: "Present simple, subject 'I' → emphatic auxiliary 'do' + base verb." },
+    { text: "She finished the report on time. → She ___________ finish the report on time.", answers: ["did"], explain: "Past simple → emphatic auxiliary 'did' + base verb (the main verb loses its -ed ending)." },
+    { text: "He wants to help you. → He ___________ want to help you.", answers: ["does"], explain: "Present simple, 3rd person singular → emphatic auxiliary 'does' + base verb (main verb loses -s)." },
+    { text: "We enjoyed the concert. → We ___________ enjoy the concert.", answers: ["did"], explain: "Past simple → emphatic 'did' + base verb 'enjoy'." },
+    { text: "I told you to lock the door! → I ___________ tell you to lock the door!", answers: ["did"], explain: "Past simple, emphasizing that the statement is true/contrary to doubt → 'did' + base verb." },
+    { text: '"You look tired." → "I ___________ feel tired."', answers: ["do"], explain: "Present simple, 'I' → emphatic 'do' + base verb 'feel'." },
+  ]},
+{ title: "5. Structures to Refer to the Past",
+  instr: "Complete the sentences using structures such as used to, would, by the time, no sooner... than, etc.",
+  items: [
+    { text: "When I was a child, I __________ (used to / spend) summers at my grandparents' house.", answers: ["used to spend"], explain: "Past habit/state that no longer happens → 'used to' + base verb." },
+    { text: "Every evening after dinner, he __________ (would / tell) us stories.", answers: ["would tell"], explain: "Repeated past action (habit) → 'would' + base verb (note: 'would' is for repeated actions, not states)." },
+    { text: "No sooner __________ (he / arrive) than the phone started ringing.", answers: ["had he arrived"], explain: "After the negative adverbial 'No sooner', subject and auxiliary invert; the action before is in Past Perfect → 'had he arrived'." },
+    { text: "By the time she was twenty, she __________ (already / travel) to ten countries.", answers: ["had already travelled","had already traveled"], explain: "Action completed before a past time reference ('by the time...') → Past Perfect." },
+    { text: "I __________ (never / be) to Japan before last year.", answers: ["had never been"], explain: "Experience up to a point in the past ('before last year') → Past Perfect." },
+    { text: "It __________ (be) the first time I had eaten sushi.", answers: ["was"], explain: "Main clause describing a single past fact, paired with Past Perfect in the following clause → Past Simple 'was'." },
+  ]},
+{ title: "6. Softening Orders and Requests",
+  instr: "Rewrite these direct orders as polite, softened requests (Could you..., I was wondering if..., Would you mind..., etc.). Several correct versions are accepted — type a full polite request.",
+  items: [
+    { text: "Close the window!", answers: ["would you mind closing the window","could you close the window please","could you please close the window","would you close the window please"], explain: "'Would you mind + -ing' or 'Could you... please' turns a command into a polite request." },
+    { text: "Give me the report now.", answers: ["could you give me the report now please","could you please give me the report now","would you mind giving me the report now"], explain: "Adding 'could you... please' softens the imperative into a request." },
+    { text: "Help me with this box.", answers: ["would you mind helping me with this box","could you help me with this box please","could you please help me with this box"], explain: "'Would you mind' requires a gerund ('helping'); 'Could you... please' requires a base verb." },
+    { text: "Turn down the music.", answers: ["i was wondering if you could turn down the music","could you turn down the music please","would you mind turning down the music"], explain: "'I was wondering if you could...' is a very indirect, polite way to make a request." },
+    { text: "Send me the file today.", answers: ["could you possibly send me the file today","could you send me the file today please","would you mind sending me the file today"], explain: "Adding 'possibly' or 'please' to 'Could you...' increases politeness." },
+    { text: "Wait here.", answers: ["would you mind waiting here","could you wait here please","could you please wait here"], explain: "Softened with 'would you mind' (+ -ing) or 'could you... please' (+ base verb)." },
+  ]},
+{ title: "7. Future Tenses",
+  instr: "Choose the correct future form (will, going to, Present Continuous, Future Continuous, Future Perfect).",
+  items: [
+    { text: "Look at those clouds — it __________ (rain) soon.", answers: ["is going to rain"], explain: "Prediction based on present visible evidence (the clouds) → 'be going to'." },
+    { text: "I __________ (meet) Sarah at 6 pm tomorrow; it's already arranged.", answers: ["am meeting","'m meeting"], explain: "Fixed personal arrangement with a set time → Present Continuous for the future." },
+    { text: "By next June, they __________ (be married) for ten years.", answers: ["will have been married"], explain: "Completed duration by a future point in time → Future Perfect (Continuous)." },
+    { text: "This time next week, I __________ (lie) on a beach.", answers: ["will be lying"], explain: "Action in progress at a specific future moment → Future Continuous." },
+    { text: "I think I __________ (call) her later, I haven't decided yet.", answers: ["will call","'ll call"], explain: "Spontaneous decision/opinion made at the moment of speaking, no firm plan → 'will'." },
+    { text: "The train __________ (leave) at 9:15 tomorrow morning. (timetable)", answers: ["leaves"], explain: "Fixed schedule or timetable → Present Simple for the future." },
+  ]},
+{ title: "8. Phrases to Refer to the Future",
+  instr: "Fill the gaps with future-referring phrases (be about to, be on the verge of, be due to, be bound to, etc.).",
+  items: [
+    { text: "The plane __________ (be due to) land in twenty minutes.", answers: ["is due to"], explain: "'Be due to' = scheduled/expected to happen at a specific time." },
+    { text: "She __________ (be about to) leave when the doorbell rang.", answers: ["was about to"], explain: "'Be about to' = on the point of doing something, very near future (here interrupted)." },
+    { text: "Prices are __________ (be bound to) rise after the new tax.", answers: ["bound to"], explain: "'Be bound to' = certain/inevitable to happen." },
+    { text: "The company __________ (be on the verge of) signing a major deal.", answers: ["is on the verge of"], explain: "'Be on the verge of' + -ing = very close to doing something." },
+    { text: "We __________ (be set to) launch the new product next month.", answers: ["are set to"], explain: "'Be set to' = planned/expected to happen." },
+    { text: "He __________ (be likely to) get the promotion.", answers: ["is likely to"], explain: "'Be likely to' = probably will happen." },
+  ]},
+{ title: "9. Future Forms (mixed review)",
+  instr: "Name the most natural future form for each context.",
+  items: [
+    { text: "Decision made at the moment of speaking.", answers: ["will","future simple"], explain: "Spontaneous decisions use 'will', not 'going to' (which needs prior intention)." },
+    { text: "Prior plan or arrangement with a fixed time/place.", answers: ["present continuous","be going to","going to"], explain: "Fixed arrangements (especially with another person, time, place) typically use Present Continuous." },
+    { text: "Prediction based on present evidence.", answers: ["going to","be going to"], explain: "'Going to' is used when there's visible evidence now pointing to a future result." },
+    { text: "Prediction based on opinion/belief with no evidence.", answers: ["will","future simple"], explain: "'Will' is used for predictions based on opinion, not on current evidence." },
+    { text: "Scheduled, official timetable event.", answers: ["present simple"], explain: "Official schedules/timetables (trains, flights, classes) use Present Simple." },
+    { text: "An action in progress at a specific point in the future.", answers: ["future continuous"], explain: "Future Continuous describes an action that will be ongoing at a specific future moment." },
+  ]},
+{ title: "10. Word Formation: Suffixes",
+  instr: "Form the correct word from the word in capitals to complete each sentence.",
+  items: [
+    { text: "Her __________ (KIND) was appreciated by everyone.", answers: ["kindness"], explain: "Adjective 'kind' + suffix '-ness' forms the abstract noun 'kindness'." },
+    { text: "The meeting was extremely __________ (PRODUCE).", answers: ["productive"], explain: "Verb 'produce' + suffix '-tive' forms the adjective 'productive'." },
+    { text: "He showed great __________ (RESPONSIBLE) at work.", answers: ["responsibility"], explain: "Adjective 'responsible' + suffix '-ity' forms the noun 'responsibility'." },
+    { text: "This is a completely __________ (REASON) decision.", answers: ["unreasonable"], explain: "Noun 'reason' + suffix '-able' = 'reasonable'; prefix 'un-' adds the negative meaning needed here." },
+    { text: "The __________ (DEVELOP) of new technology is rapid.", answers: ["development"], explain: "Verb 'develop' + suffix '-ment' forms the noun 'development'." },
+    { text: "She gave a very __________ (CONVINCE) argument.", answers: ["convincing"], explain: "Verb 'convince' + suffix '-ing' forms the adjective 'convincing' (describing the effect the argument has)." },
+  ]},
+{ title: "11. Infinitive vs Gerund",
+  instr: "Choose the correct form: infinitive (to + verb) or gerund (verb + -ing).",
+  items: [
+    { text: "I enjoy __________ (read) before bed.", answers: ["reading"], explain: "'Enjoy' is always followed by a gerund." },
+    { text: "She decided __________ (study) abroad.", answers: ["to study"], explain: "'Decide' is always followed by a to-infinitive." },
+    { text: "He avoids __________ (eat) junk food.", answers: ["eating"], explain: "'Avoid' is always followed by a gerund." },
+    { text: "They agreed __________ (help) us with the move.", answers: ["to help"], explain: "'Agree' is always followed by a to-infinitive." },
+    { text: "Would you mind __________ (open) the window?", answers: ["opening"], explain: "'Would you mind' is always followed by a gerund." },
+    { text: "I'd like __________ (ask) you a question.", answers: ["to ask"], explain: "'Would like' is always followed by a to-infinitive." },
+  ]},
+{ title: "12. Infinitive and Gerund (verbs with different meanings)",
+  instr: "Complete with the infinitive or gerund, paying attention to the change in meaning (remember, stop, try, forget, regret).",
+  items: [
+    { text: "I remember __________ (lock) the door this morning — I clearly saw myself doing it.", answers: ["locking"], explain: "'Remember + -ing' = recall a past action you already did." },
+    { text: "Please remember __________ (buy) milk on your way home.", answers: ["to buy"], explain: "'Remember + to-infinitive' = not forget a future obligation." },
+    { text: "He stopped __________ (smoke) two years ago.", answers: ["smoking"], explain: "'Stop + -ing' = stop doing an activity (he no longer smokes)." },
+    { text: "We stopped __________ (ask) for directions because we were lost.", answers: ["to ask"], explain: "'Stop + to-infinitive' = stop one activity in order to do another (purpose)." },
+    { text: "I regret __________ (inform) you that your application was rejected.", answers: ["to inform"], explain: "'Regret + to-infinitive' is used for formally announcing unwelcome news." },
+    { text: "She tried __________ (open) the jar, but it was too difficult.", answers: ["to open"], explain: "'Try + to-infinitive' = make an effort/attempt to do something (which may fail)." },
+  ]},
+{ title: "13. Passive Voice",
+  instr: "Rewrite the sentences in the passive voice.",
+  items: [
+    { text: "They built this house in 1990.", answers: ["this house was built in 1990"], explain: "Active Past Simple → Passive: object becomes subject + was/were + past participle." },
+    { text: "Someone has stolen my bike.", answers: ["my bike has been stolen"], explain: "Active Present Perfect → Passive: has/have been + past participle." },
+    { text: "People speak Spanish in many countries.", answers: ["spanish is spoken in many countries"], explain: "Active Present Simple → Passive: is/are + past participle." },
+    { text: "The chef is preparing dinner right now.", answers: ["dinner is being prepared right now","dinner is being prepared by the chef right now"], explain: "Active Present Continuous → Passive: is/are being + past participle." },
+    { text: "They will announce the results tomorrow.", answers: ["the results will be announced tomorrow"], explain: "Active Future Simple → Passive: will be + past participle." },
+    { text: "Someone should clean this room.", answers: ["this room should be cleaned"], explain: "Modal verb in active → Passive: modal + be + past participle." },
+  ]},
+{ title: "14. Quantifiers and Determiners",
+  instr: "Fill in the gaps with an appropriate quantifier or determiner (much, many, a few, little, several, both, neither, each, etc.).",
+  items: [
+    { text: "There isn't __________ time left before the exam.", answers: ["much"], explain: "'Much' is used with uncountable nouns ('time') in negative sentences." },
+    { text: "__________ of the students passed the test.", answers: ["many","several"], explain: "'Many/Several' are used with countable plural nouns to mean 'a large/some number of'." },
+    { text: "I have __________ friends in this city — only two or three.", answers: ["a few"], explain: "'A few' = a small number of countable things (positive framing: 'some, though not many')." },
+    { text: "__________ of the two answers is correct.", answers: ["neither"], explain: "'Neither' = not one nor the other, used specifically with exactly two items." },
+    { text: "__________ student must bring their own laptop.", answers: ["each"], explain: "'Each' + singular noun emphasizes every individual member of a group separately." },
+    { text: "We need __________ more information before deciding.", answers: ["a little"], explain: "'A little' = a small amount of an uncountable noun ('information')." },
+  ]},
+{ title: '15. Causatives: "Have" and "Get"',
+  instr: "Rewrite the sentences using the causative structure (have/get something done).",
+  items: [
+    { text: "A mechanic is going to repair my car.", answers: ["i'm going to have my car repaired","i'm going to get my car repaired","i am going to have my car repaired","i am going to get my car repaired"], explain: "Causative: have/get + object + past participle = arrange for someone else to do something." },
+    { text: "Someone cut my hair yesterday.", answers: ["i had my hair cut yesterday","i got my hair cut yesterday"], explain: "Causative in the past: had/got + object + past participle." },
+    { text: "I want a technician to install the new software.", answers: ["i want to have the new software installed","i want to get the new software installed"], explain: "Causative after 'want to': have/get + object + past participle." },
+    { text: "She is having someone paint her house.", answers: ["she is having her house painted","she is getting her house painted"], explain: "Causative continuous: is having/getting + object + past participle." },
+    { text: "We need a plumber to fix the pipe.", answers: ["we need to have the pipe fixed","we need to get the pipe fixed"], explain: "Causative after 'need to': have/get + object + past participle." },
+    { text: "They had a company build their website.", answers: ["they had their website built","they got their website built"], explain: "Causative in the past: had/got + object + past participle ('built')." },
+  ]},
+{ title: "16. Present and Future Modals",
+  instr: "Choose the correct modal verb to express the meaning given in brackets.",
+  items: [
+    { text: "You __________ (obligation) wear a seatbelt in this car.", answers: ["must","have to"], explain: "'Must/have to' express strong obligation or necessity." },
+    { text: "She __________ (possibility) be at home now; her car is outside.", answers: ["may","might","could"], explain: "'May/might/could' express present possibility based on evidence." },
+    { text: "It __________ (strong probability) rain later — the sky is dark.", answers: ["is going to","will"], explain: "Strong probability based on visible evidence → 'is going to' (or 'will' for general confidence)." },
+    { text: "You __________ (prohibition) park here.", answers: ["mustn't","must not"], explain: "'Mustn't' expresses prohibition (it is forbidden)." },
+    { text: "__________ (permission) I borrow your pen?", answers: ["may","could"], explain: "'May/Could' are used to politely ask for permission." },
+    { text: "He __________ (ability) speak three languages.", answers: ["can"], explain: "'Can' expresses present ability." },
+  ]},
+{ title: "17. Past Modals",
+  instr: "Complete with the correct past modal (must have, might have, should have, needn't have, couldn't have).",
+  items: [
+    { text: "She __________ (deduction) left already; her coat isn't here.", answers: ["must have"], explain: "'Must have + past participle' = a confident logical deduction about the past." },
+    { text: "You __________ (criticism) told me earlier — I would have helped.", answers: ["should have"], explain: "'Should have + past participle' = criticism about something that wasn't done but should have been." },
+    { text: "He __________ (possibility) forgotten about the meeting.", answers: ["might have","may have","could have"], explain: "'Might/may/could have + past participle' = uncertain possibility about the past." },
+    { text: "We __________ (lack of necessity, but did it) bought so much food — half of it went to waste.", answers: ["needn't have"], explain: "'Needn't have + past participle' = an unnecessary action that was nevertheless done." },
+    { text: "They __________ (impossibility) finished by now; it's only been five minutes.", answers: ["can't have","couldn't have"], explain: "'Can't/couldn't have + past participle' = confident that something was impossible." },
+    { text: "I __________ (regret) studied harder for that exam.", answers: ["should have"], explain: "'Should have + past participle' expresses regret about a past action (or lack of one)." },
+  ]},
+{ title: "18. Clauses of Contrast, Concession and Purpose",
+  instr: "Join the sentences using the linking word given in brackets.",
+  items: [
+    { text: "It was raining. We went for a walk. (although)", answers: ["although it was raining, we went for a walk","we went for a walk although it was raining"], explain: "'Although' + clause (subject + verb) introduces a contrast." },
+    { text: "He failed the exam. He studied hard. (despite)", answers: ["despite studying hard, he failed the exam","he failed the exam despite studying hard"], explain: "'Despite' is followed by a noun or gerund (-ing), not a full clause." },
+    { text: "She left early. She wanted to catch the train. (in order to)", answers: ["she left early in order to catch the train"], explain: "'In order to' + base verb expresses purpose." },
+    { text: "I wrote down the address. I wouldn't forget it. (so that)", answers: ["i wrote down the address so that i wouldn't forget it","i wrote down the address so that i would not forget it"], explain: "'So that' + clause expresses purpose, often with 'would/could/can'." },
+    { text: "They continued playing. It was very cold. (in spite of)", answers: ["they continued playing in spite of the cold weather","in spite of the cold weather, they continued playing"], explain: "'In spite of' is followed by a noun or gerund, like 'despite'." },
+    { text: "He apologised. He wasn't really sorry. (even though)", answers: ["even though he apologised, he wasn't really sorry","he apologised even though he wasn't really sorry","even though he apologized, he wasn't really sorry"], explain: "'Even though' (stronger than 'although') + full clause introduces a contrast." },
+  ]},
+{ title: "19. Relative Clauses",
+  instr: "Combine the sentences using an appropriate relative pronoun (who, which, whose, where, when).",
+  items: [
+    { text: "This is the house. I grew up in it.", answers: ["this is the house where i grew up"], explain: "'Where' replaces a place + preposition ('in it') in the relative clause." },
+    { text: "She is the teacher. Her class won the prize.", answers: ["she is the teacher whose class won the prize"], explain: "'Whose' shows possession, replacing 'her' before a noun." },
+    { text: "I remember the day. We first met then.", answers: ["i remember the day when we first met"], explain: "'When' replaces a time expression ('then')." },
+    { text: "That's the man. He helped us yesterday.", answers: ["that's the man who helped us yesterday","that is the man who helped us yesterday"], explain: "'Who' refers to a person as the subject of the relative clause." },
+    { text: "This is the book. I told you about it.", answers: ["this is the book which i told you about","this is the book that i told you about"], explain: "'Which/that' refers to a thing, replacing 'it' as object of the preposition 'about'." },
+    { text: "We visited the town. My parents were born there.", answers: ["we visited the town where my parents were born"], explain: "'Where' replaces the place expression ('there')." },
+  ]},
+{ title: "20. Present Participle Clause",
+  instr: "Combine the sentences using a present participle clause (-ing).",
+  items: [
+    { text: "She sat by the window. She watched the rain.", answers: ["sitting by the window, she watched the rain"], explain: "The first action becomes an -ing clause when both actions share the same subject and happen simultaneously." },
+    { text: "He ran to the station. He hoped to catch the train.", answers: ["he ran to the station, hoping to catch the train"], explain: "The second action (the reason/purpose) is reduced to an -ing clause." },
+    { text: "They walked through the park. They talked about the project.", answers: ["walking through the park, they talked about the project"], explain: "Two simultaneous actions with the same subject; the background action becomes -ing." },
+    { text: "I opened the door. I saw a stranger standing there.", answers: ["opening the door, i saw a stranger standing there"], explain: "The first action (cause) is reduced to an -ing clause leading to the second (result)." },
+    { text: "She left the room. She slammed the door behind her.", answers: ["she left the room, slamming the door behind her"], explain: "The second, simultaneous/accompanying action is reduced to an -ing clause." },
+    { text: "He works as a translator. He uses three languages daily.", answers: ["working as a translator, he uses three languages daily"], explain: "A present participle clause can also express a general circumstance, not just a single event." },
+  ]},
+{ title: "21. Perfect Participle Clause",
+  instr: "Combine the sentences using a perfect participle clause (having + past participle).",
+  items: [
+    { text: "She finished her homework. Then she went out to play.", answers: ["having finished her homework, she went out to play"], explain: "'Having + past participle' shows the first action was completed before the second one started." },
+    { text: "He had read the contract carefully. Then he signed it.", answers: ["having read the contract carefully, he signed it"], explain: "Used to emphasize that one action was fully finished before the next began." },
+    { text: "They had travelled all day. They were exhausted by evening.", answers: ["having travelled all day, they were exhausted by evening","having traveled all day, they were exhausted by evening"], explain: "The perfect participle shows the cause (a completed prior action) of the later state." },
+    { text: "I had checked the weather forecast. I decided to bring an umbrella.", answers: ["having checked the weather forecast, i decided to bring an umbrella"], explain: "The completed first action (checking) leads logically to the second (decision)." },
+    { text: "She had lived in Italy for years. She spoke fluent Italian.", answers: ["having lived in italy for years, she spoke fluent italian"], explain: "A completed extended past action explains a present/past ability or state." },
+    { text: "He had lost his job. He decided to start his own business.", answers: ["having lost his job, he decided to start his own business"], explain: "The completed prior event (losing his job) is the cause/context for the following decision." },
+  ]},
+];
+
+// ---------- RENDER ----------
+const examEl = document.getElementById('exam');
+let totalItems = 0;
+sections.forEach(sections.forEach ? () => {} : null); // no-op guard
+sections.forEach((sec, si) => {
+  totalItems += sec.items.length;
+  const h2 = document.createElement('h2');
+  h2.textContent = sec.title;
+  examEl.appendChild(h2);
+  const p = document.createElement('p');
+  p.className = 'instr';
+  p.textContent = sec.instr;
+  examEl.appendChild(p);
+
+  sec.items.forEach((item, ii) => {
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.id = `item-${si}-${ii}`;
+    div.innerHTML = `
+      <div class="item-text"><span class="num">${ii+1}.</span>${item.text}</div>
+      <div class="row">
+        <input type="text" id="input-${si}-${ii}" autocomplete="off" placeholder="Your answer..." />
+        <span class="feedback" id="fb-${si}-${ii}"></span>
+      </div>
+      <div class="answer-reveal" id="rev-${si}-${ii}">
+        <div><strong>Expected:</strong> <em>${item.answers[0]}</em></div>
+        <div class="explain-text">💡 ${item.explain || ''}</div>
+      </div>
+    `;
+    examEl.appendChild(div);
+    const input = div.querySelector('input');
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') checkOne(si, ii); });
+    input.addEventListener('blur', () => { if (input.value.trim() !== '') checkOne(si, ii); });
+  });
+});
+
+document.getElementById('scoreTotal').textContent = totalItems;
+
+function normalize(str) {
+  return str
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u2018\u2019]/g, "'")
+    .replace(/[\u201C\u201D]/g, '"')
+    .replace(/[.,!?;:"]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+const results = {}; // key "si-ii" -> true/false/undefined
+
+function checkOne(si, ii) {
+  const item = sections[si].items[ii];
+  const input = document.getElementById(`input-${si}-${ii}`);
+  const div = document.getElementById(`item-${si}-${ii}`);
+  const fb = document.getElementById(`fb-${si}-${ii}`);
+  const userVal = normalize(input.value);
+  if (userVal === '') {
+    div.classList.remove('correct','incorrect');
+    fb.textContent = '';
+    delete results[`${si}-${ii}`];
+    updateScore();
+    return;
+  }
+  const accepted = item.answers.map(normalize);
+  const isCorrect = accepted.some(a => a === userVal || userVal.includes(a) || a.includes(userVal) && userVal.length > 3);
+  // stricter check: exact match preferred, fallback to "contains key phrase" for short blanks
+  const exact = accepted.includes(userVal);
+  const correct = exact || isCorrect;
+  div.classList.toggle('correct', correct);
+  div.classList.toggle('incorrect', !correct);
+  fb.textContent = correct ? '✓ Correct' : '✗ Try again';
+  fb.className = 'feedback ' + (correct ? 'ok' : 'no');
+  results[`${si}-${ii}`] = correct;
+  updateScore();
+}
+
+function checkAll() {
+  sections.forEach((sec, si) => {
+    sec.items.forEach((item, ii) => checkOne(si, ii));
+  });
+}
+
+function updateScore() {
+  const correctCount = Object.values(results).filter(v => v === true).length;
+  document.getElementById('scoreVal').textContent = correctCount;
+  const answered = Object.keys(results).length;
+  document.getElementById('progressNote').textContent = `${answered} / ${totalItems} answered`;
+}
+
+function resetAll() {
+  if (!confirm('Clear all your answers and start over?')) return;
+  document.querySelectorAll('input[type=text]').forEach(i => i.value = '');
+  document.querySelectorAll('.item').forEach(d => d.classList.remove('correct','incorrect'));
+  document.querySelectorAll('.feedback').forEach(f => f.textContent = '');
+  for (const k in results) delete results[k];
+  updateScore();
+}
+</script>
+
+</body>
+</html>
