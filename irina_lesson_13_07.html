@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRINA · LESSON 13.07</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-light: #a29bfe;
+            --background: #f1f2f6;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+            --text-secondary: #636e72;
+            --accent: #fd79a8;
+            --border: #e2e8f0;
+            --success: #00b894;
+            --nav-bg: #1e1e24;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        nav {
+            background-color: var(--nav-bg);
+            color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .logo {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        nav .logo strong {
+            color: var(--primary-light);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            background: #e4e7eb;
+        }
+
+        .tab-btn.active {
+            background: var(--nav-bg);
+            color: white;
+            border-color: var(--nav-bg);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            background: #eef2f7;
+            padding: 4px 12px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #1e1e24;
+        }
+
+        .instruction {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .inline-text-block {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text);
+            text-align: justify;
+        }
+
+        .btn-inline-ru {
+            background: #f1f2f6;
+            color: var(--text);
+            border: 1px solid #ced6e0;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 4px;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .btn-inline-ru:hover {
+            background: #e4e7eb;
+        }
+
+        .target-en {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-bottom: 2px solid var(--success);
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        @media(min-width: 600px) {
+            .vocab-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .vocab-card {
+            background: #f8f9fa;
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .vocab-card:hover {
+            background: #edf2f7;
+        }
+
+        .vocab-static-desc {
+            margin-top: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .vocab-translation-hidden {
+            display: none;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--accent);
+            color: #c92a2a;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .audio-player-box {
+            background: #f8f9fa;
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .audio-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        .audio-btn:hover {
+            opacity: 0.9;
+        }
+
+        .exercise-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .exercise-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .exercise-item p {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .btn-ans {
+            background: #b2bec3;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        .ans-block {
+            display: none;
+            margin-top: 10px;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-top: 5px;
+            transition: all 0.3s;
+        }
+
+        input[type="text"].correct-input {
+            border-color: var(--success);
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .quiz-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .quiz-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .quiz-option {
+            display: block;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .quiz-option.correct {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+            font-weight: bold;
+        }
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+        }
+        
+        .interactive-box {
+            background: #f1f2f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            cursor: pointer;
+            border: 1px dashed #ced6e0;
+        }
+        .hidden-content {
+            display: none;
+            background: #eef2f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid var(--success);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">IRINA · <strong>LESSON 13.07</strong></div>
+    </nav>
+
+    <div class="container">
+        
+        <!-- Tabs Nav -->
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="openTab(event, 'warmup')">1 Warm-up</button>
+            <button class="tab-btn" onclick="openTab(event, 'homework')">2 Homework</button>
+            <button class="tab-btn" onclick="openTab(event, 'listening')">3 Listening</button>
+            <button class="tab-btn" onclick="openTab(event, 'grammar')">4 Grammar</button>
+            <button class="tab-btn" onclick="openTab(event, 'vocabulary')">5 Vocabulary</button>
+            <button class="tab-btn" onclick="openTab(event, 'translation')">6 Translation</button>
+        </div>
+
+        <!-- 1. WARM-UP -->
+        <div id="warmup" class="tab-content active">
+            <div class="section-tag">Warm-up · Idiom</div>
+            <h2>React to the sentence</h2>
+            <p class="instruction">Tap the box to explore the meaning of the idiom.</p>
+            
+            <div class="interactive-box" onclick="toggleElement('w-meaning')">
+                "You will soon <strong>get the hang of it</strong>!"
+            </div>
+            
+            <div id="w-meaning" class="hidden-content">
+                <strong>to get the hang of something</strong> — to learn how to do something properly or understand how it works (разобраться в чём-то, набить руку).
+            </div>
+
+            <div style="margin-top: 25px; border-left: 4px solid var(--accent); padding-left: 15px;">
+                <p style="font-weight: 600;">Let's talk:</p>
+                <p>Can you recall a recent situation in your consulting work, hobby, or daily routine where it felt tough at first, but then you successfully got the hang of it?</p>
+            </div>
+        </div>
+
+        <!-- 2. HOMEWORK -->
+        <div id="homework" class="tab-content">
+            <div class="section-tag">Homework · Check</div>
+            <h2>Practice your sentences</h2>
+            <p class="instruction">Read the text aloud and click "RU→EN" to verify your translation phrase by phrase.</p>
+            
+            <div class="inline-text-block">
+                На прошлой неделе несколько товаров были удалены с маркетплейса без предупреждения. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">Last week, several products were removed from the marketplace without warning.</span>
+                
+                Наша команда ещё не получила объяснений от платформы. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">Our team hasn't received any explanations from the platform yet.</span>
+                
+                Новые карточки товаров уже созданы, но фотографии пока не загружены. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">New product listings have already been created, but the photos haven't been uploaded yet.</span>
+                
+                Я случайно отправила неверные данные клиенту. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">I accidentally sent the wrong data to the client.</span>
+                
+                К счастью, ошибка была исправлена вовремя, и контракт уже подписан. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">Fortunately, the mistake was fixed on time, and the contract has already been signed.</span>
+                
+                В следующий раз я обязательно проверю всё заранее. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">Next time I will definitely check everything in advance.</span>
+                
+                Кстати, ты когда-нибудь забывала предупредить кого-то об изменениях? 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">By the way, have you ever forgotten to warn someone about changes?</span>
+                
+                Нехватка общения в команде — это самая большая проблема, с которой я сталкивалась.
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">A lack of communication in the team is the biggest problem I have ever faced.</span>
+            </div>
+        </div>
+
+        <!-- 3. LISTENING -->
+        <div id="listening" class="tab-content">
+            <div class="section-tag">Listening · Practice</div>
+            <h2>A Weekend Plan Crisis</h2>
+            <p class="instruction">Click the button below to listen to the text, then choose the correct option for each question.</p>
+            
+            <div class="audio-player-box">
+                <button class="audio-btn" onclick="playTextSpeech()">🔊 Play Audio Track</button>
+                <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                    Click to hear the text directly through the browser.
+                </div>
+            </div>
+
+            <button class="btn-inline-ru" style="margin-bottom: 20px; padding: 5px 10px;" onclick="toggleElement('transcript')">Show Transcript</button>
+            <div id="transcript" class="hidden-content" style="background:#f8f9fa; margin-bottom: 20px;">
+                <p id="listening-source-text"><em>"Hi Irina! I need to tell you about my week. It was crazy! A huge deal with a UK client has just fallen through because of some silly mistakes. My colleague listed the wrong prices, and the client found it offensive. The whole situation was handled in a very chaotic manner. I am so tired! Thank goodness it's Friday. My 9-year-old son is staying with his grandparents, and even my rabbit is asleep. Let's go out and party tonight! Have any good clubs or bars been booked yet?"</em></p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-box">
+                    <div class="quiz-title">1. Why did the big deal with the UK client fall through?</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">a) The supplier refused to ship the items.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">b) A colleague listed incorrect prices.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">c) The client didn't submit the documents.</div>
+                </div>
+
+                <div class="quiz-box">
+                    <div class="quiz-title">2. How did the UK client feel about the price mistake?</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">a) They found it offensive.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">b) They completely ignored it.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">c) They were absolutely happy.</div>
+                </div>
+
+                <div class="quiz-box">
+                    <div class="quiz-title">3. In what manner was the crisis handled by the team?</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">a) In a professional and calm manner.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">b) It wasn't handled at all.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">c) In a very chaotic manner.</div>
+                </div>
+
+                <div class="quiz-box">
+                    <div class="quiz-title">4. Where is the speaker's 9-year-old son staying right now?</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">a) At a summer camp.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">b) With his grandparents.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">c) In his bedroom upstairs.</div>
+                </div>
+
+                <div class="quiz-box">
+                    <div class="quiz-title">5. What does the speaker want to check about tonight's party plans?</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">a) If any good clubs or bars have been booked yet.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">b) If the rabbit has been fed.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">c) If the client has called back.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. GRAMMAR -->
+        <div id="grammar" class="tab-content">
+            <div class="section-tag">Grammar · Review</div>
+            <h2>Present Perfect Passive Practice</h2>
+            <p class="instruction">Type your answers. The field will turn <span style="color:var(--success); font-weight:bold;">green</span> automatically. Punctuation at the end is ignored.</p>
+
+            <h3>Exercise 1: Open the brackets</h3>
+            
+            <ul class="exercise-list">
+                <li class="exercise-item">
+                    <p>1. Great news! A massive new contract with our top supplier <strong>(just / sign)</strong>.</p>
+                    <input type="text" oninput="liveCheck(this, 'has just been signed')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">has just been signed</div>
+                </li>
+                <li class="exercise-item">
+                    <p>2. The dynamic product prices on the marketplace platform <strong>(not / modify)</strong> yet.</p>
+                    <input type="text" oninput="liveCheck(this, 'haven\'t been modified')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">haven't been modified</div>
+                </li>
+                <li class="exercise-item">
+                    <p>3. Look! All the tables at our favorite Italian restaurant <strong>(already / book)</strong> for tonight's party.</p>
+                    <input type="text" oninput="liveCheck(this, 'have already been booked')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">have already been booked</div>
+                </li>
+                <li class="exercise-item">
+                    <p>4. I am so relieved! The missing luggage from our weekend flight <strong>(finally / find)</strong>.</p>
+                    <input type="text" oninput="liveCheck(this, 'has finally been found')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">has finally been found</div>
+                </li>
+                <li class="exercise-item">
+                    <p>5. <strong>(any decision / make)</strong> about our upcoming team relocation to Europe yet?</p>
+                    <input type="text" oninput="liveCheck(this, 'Has any decision been made')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">Has any decision been made</div>
+                </li>
+                <li class="exercise-item">
+                    <p>6. The dirty dishes in the kitchen <strong>(not / wash)</strong> yet. My son forgot to do it.</p>
+                    <input type="text" oninput="liveCheck(this, 'haven\'t been washed')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">haven't been washed</div>
+                </li>
+                <li class="exercise-item">
+                    <p>7. The cute white rabbit looks very happy because it <strong>(already / feed)</strong>.</p>
+                    <input type="text" oninput="liveCheck(this, 'has already been fed')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">has already been fed</div>
+                </li>
+            </ul>
+
+            <h3 style="margin-top:40px;">Exercise 2: Rewrite in Present Perfect Passive</h3>
+            
+            <ul class="exercise-list">
+                <li class="exercise-item">
+                    <p>1. Active: Someone has invited my friends to a massive weekend festival. <br>→ Passive: My friends...</p>
+                    <input type="text" oninput="liveCheck(this, 'have been invited to a massive weekend festival')" placeholder="Type full passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">have been invited to a massive weekend festival</div>
+                </li>
+                <li class="exercise-item">
+                    <p>2. Active: The manager hasn't sent the final email to the agency yet. <br>→ Passive: The final email...</p>
+                    <input type="text" oninput="liveCheck(this, 'hasn\'t been sent to the agency yet')" placeholder="Type full passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">hasn't been sent to the agency yet</div>
+                </li>
+                <li class="exercise-item">
+                    <p>3. Active: The tech team has resolved the major server problem. <br>→ Passive: The major server problem...</p>
+                    <input type="text" oninput="liveCheck(this, 'has been resolved by the tech team')" placeholder="Type full passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">has been resolved by the tech team</div>
+                </li>
+                <li class="exercise-item">
+                    <p>4. Active: Nobody has cleaned the rabbit's cage this morning. <br>→ Passive: The rabbit's cage...</p>
+                    <input type="text" oninput="liveCheck(this, 'hasn\'t been cleaned this morning')" placeholder="Type full passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">hasn't been cleaned this morning</div>
+                </li>
+                <li class="exercise-item">
+                    <p>5. Active: Have they cancelled our flight to London? <br>→ Passive: Has...</p>
+                    <input type="text" oninput="liveCheck(this, 'our flight to London been cancelled')" placeholder="Type full passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">our flight to London been cancelled</div>
+                </li>
+                <li class="exercise-item">
+                    <p>6. Active: The cinema has released some great new movies this week. <br>→ Passive: Some great new movies...</p>
+                    <input type="text" oninput="liveCheck(this, 'have been released by the cinema this week')" placeholder="Type full passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">have been released by the cinema this week</div>
+                </li>
+                <li class="exercise-item">
+                    <p>7. Active: They haven't updated the local bars guide since last year. <br>→ Passive: The local bars guide...</p>
+                    <input type="text" oninput="liveCheck(this, 'hasn\'t been updated since last year')" placeholder="Type full passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">hasn't been updated since last year</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 5. VOCABULARY -->
+        <div id="vocabulary" class="tab-content">
+            <div class="section-tag">Vocabulary · Review</div>
+            <h2>Words from last time</h2>
+            <p class="instruction">Review the definitions. **Tap any card to reveal its Russian translation.**</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card" onclick="toggleTranslation('vt1')">
+                    <strong>to fall through</strong>
+                    <div class="vocab-static-desc">when a plan or a deal fails to happen.<br><em>e.g. Our party plans fell through at the last minute.</em></div>
+                    <div id="vt1" class="vocab-translation-hidden">Перевод: сорваться, провалиться (о планах/сделках)</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('vt2')">
+                    <strong>deal</strong>
+                    <div class="vocab-static-desc">a business agreement or arrangement.<br><em>e.g. We closed a profitable deal yesterday.</em></div>
+                    <div id="vt2" class="vocab-translation-hidden">Перевод: сделка, соглашение</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('vt3')">
+                    <strong>to list</strong>
+                    <div class="vocab-static-desc">to put items on a marketplace platform for sale.<br><em>e.g. She needs to list new items today.</em></div>
+                    <div id="vt3" class="vocab-translation-hidden">Перевод: размещать товар на платформе</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('vt4')">
+                    <strong>to handle</strong>
+                    <div class="vocab-static-desc">to manage, control, or deal with a situation or person.<br><em>e.g. He knows how to handle complex tasks.</em></div>
+                    <div id="vt4" class="vocab-translation-hidden">Перевод: справляться, урегулировать, разруливать</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('vt5')">
+                    <strong>offensive</strong>
+                    <div class="vocab-static-desc">rude, insulting, causing someone to feel hurt or angry.<br><em>e.g. The customer's review was quite offensive.</em></div>
+                    <div id="vt5" class="vocab-translation-hidden">Перевод: оскорбительный, обидный</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('vt6')">
+                    <strong>manner</strong>
+                    <div class="vocab-static-desc">the way in which something is done or someone behaves.<br><em>e.g. Everything was done in a polite manner.</em></div>
+                    <div id="vt6" class="vocab-translation-hidden">Перевод: манера, способ поведения</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top:30px;">Vocabulary Practice</h3>
+            <p class="instruction">Fill in the blanks. Input checks automatically.</p>
+            
+            <ul class="exercise-list">
+                <li class="exercise-item">
+                    <p>1. Our plans to go out completely ____________________ last night because of the heavy rain.</p>
+                    <input type="text" oninput="liveCheck(this, 'fell through')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">fell through</div>
+                </li>
+                <li class="exercise-item">
+                    <p>2. My partner managed to sign a fantastic new ____________________ with a European clothing brand.</p>
+                    <input type="text" oninput="liveCheck(this, 'deal')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">deal</div>
+                </li>
+                <li class="exercise-item">
+                    <p>3. If you want to sell products online successfully, you must learn how to ____________________ them properly.</p>
+                    <input type="text" oninput="liveCheck(this, 'list')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">list</div>
+                </li>
+                <li class="exercise-item">
+                    <p>4. She is a true professional; she can ____________________ the most stressful customer complaints easily.</p>
+                    <input type="text" oninput="liveCheck(this, 'handle')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">handle</div>
+                </li>
+                <li class="exercise-item">
+                    <p>5. He spoke to the waiters in a loud and arrogant ____________________, which completely ruined our dinner.</p>
+                    <input type="text" oninput="liveCheck(this, 'manner')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">manner</div>
+                </li>
+                <li class="exercise-item">
+                    <p>6. I cannot tolerate ____________________ behavior when working in a modern, collaborative team.</p>
+                    <input type="text" oninput="liveCheck(this, 'offensive')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">offensive</div>
+                </li>
+                <li class="exercise-item">
+                    <p>7. I hope our relocation strategy never ____________________, as we really want to move this winter.</p>
+                    <input type="text" oninput="liveCheck(this, 'falls through')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">falls through</div>
+                </li>
+                <li class="exercise-item">
+                    <p>8. Could you please tell me who is going to ____________________ the organization of our next big summer party?</p>
+                    <input type="text" oninput="liveCheck(this, 'handle')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">handle</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 6. TRANSLATION -->
+        <div id="translation" class="tab-content">
+            <div class="section-tag">Translation · RU → EN</div>
+            <h2>Translate the text into English</h2>
+            <p class="instruction">Read the cohesive story (~520 chars). Tap "RU→EN" to reveal the model translation clause by clause.</p>
+            
+            <div class="inline-text-block">
+                Прошедшая неделя выдалась безумной, и в прошлый понедельник важная сделка сорвалась. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">The past week turned out to be crazy, and an important deal fell through last Monday.</span>
+                
+                Новые карточки товаров уже выставлены на маркетплейс, но этот сложный случай еще не урегулирован. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">New products have already been listed on the marketplace, but this difficult case hasn't been handled yet.</span>
+                
+                Менеджер вчера быстро удалил некоторые оскорбительные отзывы от клиентов. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">The manager quickly removed some offensive reviews from customers yesterday.</span>
+                
+                К счастью, вся информация была представлена им в исключительно вежливой манере. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">Fortunately, all information was presented to them in an exceptionally polite manner.</span>
+                
+                Кстати, сегодня пятница, и организация нашей грандиозной вечеринки в баре уже завершена! 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">By the way, today is Friday, and the organization of our grand party at a bar has already been completed!</span>
+                
+                Мой девятилетний сын уехал на выходные к бабушке, а домашний кролик сыт и спит. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">My nine-year-old son went to his grandmother for the weekend, and the pet rabbit is fed and asleep.</span>
+                
+                Пора отлично отдохнуть и повеселиться без лишних забот!
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">It's time to have a great rest and have fun without extra worries!</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openTab(evt, tabId) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            
+            // Stop any ongoing speech if changing tabs
+            window.speechSynthesis.cancel();
+        }
+
+        function toggleElement(id) {
+            var element = document.getElementById(id);
+            element.style.display = (element.style.display === "block") ? "none" : "block";
+        }
+
+        function toggleTranslation(id) {
+            var element = document.getElementById(id);
+            element.style.display = (element.style.display === "block") ? "none" : "block";
+        }
+
+        function toggleInline(button) {
+            var targetSpan = button.nextElementSibling;
+            if (targetSpan.style.display === "inline") {
+                targetSpan.style.display = "none";
+                button.style.background = "#f1f2f6";
+            } else {
+                targetSpan.style.display = "inline";
+                button.style.background = "#ced6e0";
+            }
+        }
+
+        function checkQuiz(element, isCorrect) {
+            var siblings = element.parentNode.getElementsByClassName('quiz-option');
+            for(var i=0; i<siblings.length; i++) {
+                siblings[i].classList.remove('correct', 'incorrect');
+            }
+            element.classList.add(isCorrect ? 'correct' : 'incorrect');
+        }
+
+        function liveCheck(inputElement, correctAnswer) {
+            let userAns = inputElement.value.trim().toLowerCase().replace(/[\.\?!,]/g, '').replace(/\s+/g, ' ');
+            let targetAns = correctAnswer.toLowerCase().replace(/\\/g, '').replace(/[\.\?!,]/g, '').replace(/\s+/g, ' ');
+
+            if (userAns === targetAns) {
+                inputElement.classList.add('correct-input');
+            } else {
+                inputElement.classList.remove('correct-input');
+            }
+        }
+
+        function showAns(btnElement) {
+            var ansBlock = btnElement.parentNode.querySelector('.ans-block');
+            ansBlock.style.display = (ansBlock.style.display === "block") ? "none" : "block";
+        }
+
+        // Native Web Speech synthesis for seamless playback without files
+        function playTextSpeech() {
+            window.speechSynthesis.cancel(); // Stop old speech
+            
+            let textToSpeak = document.getElementById("listening-source-text").innerText;
+            let utterance = new SpeechSynthesisUtterance(textToSpeak);
+            
+            utterance.lang = 'en-US';
+            utterance.rate = 0.95; // Slightly comfortable pace
+            
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+</body>
+</html>
