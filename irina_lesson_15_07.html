@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRINA · LESSON 15.07</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --primary-light: #a29bfe;
+            --background: #f1f2f6;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+            --text-secondary: #636e72;
+            --accent: #fd79a8;
+            --border: #e2e8f0;
+            --success: #00b894;
+            --nav-bg: #1e1e24;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        nav {
+            background-color: var(--nav-bg);
+            color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .logo {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        nav .logo strong {
+            color: var(--primary-light);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            background: #e4e7eb;
+        }
+
+        .tab-btn.active {
+            background: var(--nav-bg);
+            color: white;
+            border-color: var(--nav-bg);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary);
+            background: #eef2f7;
+            padding: 4px 12px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #1e1e24;
+        }
+
+        .instruction {
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .inline-text-block {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text);
+            text-align: justify;
+        }
+
+        .btn-inline-ru {
+            background: #f1f2f6;
+            color: var(--text);
+            border: 1px solid #ced6e0;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 4px;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .btn-inline-ru:hover {
+            background: #e4e7eb;
+        }
+
+        .target-en {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-bottom: 2px solid var(--success);
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        @media(min-width: 600px) {
+            .vocab-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .vocab-card {
+            background: #f8f9fa;
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .vocab-card:hover {
+            background: #edf2f7;
+        }
+
+        .vocab-static-desc {
+            margin-top: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .vocab-translation-hidden {
+            display: none;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--accent);
+            color: #c92a2a;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .exercise-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .exercise-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .exercise-item p {
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .btn-ans {
+            background: #b2bec3;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 8px;
+        }
+
+        .ans-block {
+            display: none;
+            margin-top: 10px;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            margin-top: 5px;
+            transition: all 0.3s;
+        }
+
+        input[type="text"].correct-input {
+            border-color: var(--success);
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .quiz-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .quiz-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .quiz-option {
+            display: block;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .quiz-option.correct {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+            font-weight: bold;
+        }
+        .quiz-option.incorrect {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f9fa;
+        }
+        
+        .interactive-box {
+            background: #f1f2f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            cursor: pointer;
+            border: 1px dashed #ced6e0;
+        }
+        .hidden-content {
+            display: none;
+            background: #eef2f7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid var(--success);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">IRINA · <strong>LESSON 15.07</strong></div>
+    </nav>
+
+    <div class="container">
+        
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="openTab(event, 'warmup')">1 Warm-up</button>
+            <button class="tab-btn" onclick="openTab(event, 'homework')">2 Homework</button>
+            <button class="tab-btn" onclick="openTab(event, 'reading')">3 Reading</button>
+            <button class="tab-btn" onclick="openTab(event, 'grammar')">4 Grammar</button>
+            <button class="tab-btn" onclick="openTab(event, 'vocabulary')">5 Vocabulary</button>
+            <button class="tab-btn" onclick="openTab(event, 'translation')">6 Translation</button>
+        </div>
+
+        <div id="warmup" class="tab-content active">
+            <div class="section-tag">Warm-up · Idiom</div>
+            <h2>React to the sentence</h2>
+            <p class="instruction">Tap the box to explore the meaning of the idiom.</p>
+            
+            <div class="interactive-box" onclick="toggleElement('w-meaning')">
+                "After that long week, let's go out and <strong>paint the town red</strong>!"
+            </div>
+            
+            <div id="w-meaning" class="hidden-content">
+                <strong>to paint the town red</strong> — to go out into town and have a fantastic, lively time visiting bars, clubs, or partying (уйти в отрыв, устроить весёлый загул/потусить).
+            </div>
+
+            <div style="margin-top: 25px; border-left: 4px solid var(--accent); padding-left: 15px;">
+                <p style="font-weight: 600;">Let's talk:</p>
+                <p>When was the last time you painted the town red with your friends? What is your favorite way to let loose on weekends?</p>
+            </div>
+        </div>
+
+        <div id="homework" class="tab-content">
+            <div class="section-tag">Homework · Check</div>
+            <h2>Practice your sentences</h2>
+            <p class="instruction">Read the story of our last translation task aloud and click "RU→EN" to verify clause by clause.</p>
+            
+            <div class="inline-text-block">
+                Прошедшая неделя выдалась безумной, и в прошлый понедельник важная сделка сорвалась. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">The past week turned out to be crazy, and an important deal fell through last Monday.</span>
+                
+                Новые карточки товаров уже выставлены на маркетплейс, но этот сложный случай еще не урегулирован. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">New products have already been listed on the marketplace, but this difficult case hasn't been handled yet.</span>
+                
+                Менеджер вчера быстро удалил некоторые оскорбительные отзывы от клиентов. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">The manager quickly removed some offensive reviews from customers yesterday.</span>
+                
+                К счастью, вся информация была представлена им в исключительно вежливой манере. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">Fortunately, all information was presented to them in an exceptionally polite manner.</span>
+                
+                Кстати, сегодня пятница, и организация нашей грандиозной вечеринки в баре уже завершена! 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">By the way, today is Friday, and the organization of our grand party at a bar has already been completed!</span>
+                
+                Мой девятилетний сын уехал на выходные к бабушке, а домашний кролик сыт и спит. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">My nine-year-old son went to his grandmother for the weekend, and the pet rabbit is fed and asleep.</span>
+                
+                Пора отлично отдохнуть и повеселиться без лишних забот!
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">It's time to have a great rest and have fun without extra worries!</span>
+            </div>
+        </div>
+
+        <div id="reading" class="tab-content">
+            <div class="section-tag">Reading · Practice</div>
+            <h2>Relocation Discoveries</h2>
+            <p class="instruction">Read the text carefully and answer the comprehension questions below.</p>
+            
+            <div style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 25px; text-align: justify; background: #faf9f6; padding: 20px; border-radius: 8px; border-left: 4px solid #0984e3;">
+                <p>Moving abroad is definitely a <strong>tough</strong> process, but once you start exploring your new home, you feel incredibly <strong>relieved</strong>. This week, our family decided to take a break from unpacking and explore the historic part of the city.</p>
+                <p>First, we visited a local <strong>mosque</strong>. It was built hundreds of years ago, but the ancient walls and the modern surroundings look very <strong>harmonious</strong> together. After that, we went to a vibrant <strong>pedestrian area</strong>. No cars are allowed there, so my 9-year-old son was happily running around while I took photos of the beautiful streets.</p>
+                <p>Later, we found a cozy, pet-friendly cafe. The waiter joked that if we wanted to bring our rabbit next time, we should <strong>definitely</strong> do it! It was our first time exploring the city, and we are already planning to go back <strong>for the second time</strong> next Sunday. I'm so glad we got the hang of the local transport system so quickly!</p>
+            </div>
+
+            <div class="quiz-container">
+                <div class="quiz-box">
+                    <div class="quiz-title">1. How does the speaker feel after exploring the new city?</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">a) Stressed and tired of moving.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">b) Incredibly relieved and happy.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">c) Worried about the future.</div>
+                </div>
+
+                <div class="quiz-box">
+                    <div class="quiz-title">2. What looked very harmonious together?</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">a) The ancient walls of the mosque and modern surroundings.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">b) The local transport and taxis.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">c) The cafes and marketplace listings.</div>
+                </div>
+
+                <div class="quiz-box">
+                    <div class="quiz-title">3. Why was the pedestrian area convenient for the speaker's son?</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">a) It had a massive playground.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">b) No cars are allowed there, making it safe.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">c) It was located inside a shopping mall.</div>
+                </div>
+
+                <div class="quiz-box">
+                    <div class="quiz-title">4. What did the waiter in the cafe suggest?</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">a) Leaving a massive tip.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">b) Ordering dynamic menu items.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">c) Bringing their pet rabbit next time.</div>
+                </div>
+
+                <div class="quiz-box">
+                    <div class="quiz-title">5. When does the family plan to return there for the second time?</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, true)">a) Next Sunday.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">b) This Friday night.</div>
+                    <div class="quiz-option" onclick="checkQuiz(this, false)">c) Sometime next month.</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="grammar" class="tab-content">
+            <div class="section-tag">Grammar · Review</div>
+            <h2>Present Perfect Passive Practice</h2>
+            <p class="instruction">Type your answers. The fields check automatically (green is correct). Punctuation at the end is ignored.</p>
+
+            <h3>Exercise 1: Open the brackets</h3>
+            <p class="instruction">Form correct Present Perfect Passive phrases.</p>
+            
+            <ul class="exercise-list">
+                <li class="exercise-item">
+                    <p>1. The dynamic listings on our Amazon store <strong>(already / modify)</strong> by the support team.</p>
+                    <input type="text" oninput="liveCheck(this, 'have already been modified')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">have already been modified</div>
+                </li>
+                <li class="exercise-item">
+                    <p>2. I'm so relieved! The missing details of the European contract <strong>(finally / find)</strong>.</p>
+                    <input type="text" oninput="liveCheck(this, 'have finally been found')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">have finally been found</div>
+                </li>
+                <li class="exercise-item">
+                    <p>3. <strong>(any decision / make)</strong> about the upcoming team party yet? We really want to go out!</p>
+                    <input type="text" oninput="liveCheck(this, 'Has any decision been made')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">Has any decision been made</div>
+                </li>
+                <li class="exercise-item">
+                    <p>4. Don't worry! All the clients <strong>(warn)</strong> about the upcoming price updates.</p>
+                    <input type="text" oninput="liveCheck(this, 'have been warned')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">have been warned</div>
+                </li>
+                <li class="exercise-item">
+                    <p>5. A massive dynamic campaign on Wildberries <strong>(just / launch)</strong> with great results.</p>
+                    <input type="text" oninput="liveCheck(this, 'has just been launched')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">has just been launched</div>
+                </li>
+                <li class="exercise-item">
+                    <p>6. Our cozy local mosque <strong>(recently / reconstruct)</strong> into a beautiful cultural center.</p>
+                    <input type="text" oninput="liveCheck(this, 'has recently been reconstructed')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">has recently been reconstructed</div>
+                </li>
+                <li class="exercise-item">
+                    <p>7. The rabbit's playground <strong>(not / build)</strong> yet. We are waiting for the wood delivery.</p>
+                    <input type="text" oninput="liveCheck(this, 'hasn\'t been built')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">hasn't been built</div>
+                </li>
+                <li class="exercise-item">
+                    <p>8. The dynamic prices <strong>(not / list)</strong> on the platform yet due to a technical error.</p>
+                    <input type="text" oninput="liveCheck(this, 'haven\'t been listed')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">haven't been listed</div>
+                </li>
+            </ul>
+
+            <h3 style="margin-top:40px;">Exercise 2: Rewrite in Present Perfect Passive</h3>
+            <p class="instruction">Focus on the result. Convert the Active sentences to Passive.</p>
+            
+            <ul class="exercise-list">
+                <li class="exercise-item">
+                    <p>1. Active: We have definitely modified all the incorrect listings. <br>→ Passive: All the incorrect listings...</p>
+                    <input type="text" oninput="liveCheck(this, 'have definitely been modified')" placeholder="Type passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">have definitely been modified</div>
+                </li>
+                <li class="exercise-item">
+                    <p>2. Active: The system has automatically sent the missing documents to the agency. <br>→ Passive: The missing documents...</p>
+                    <input type="text" oninput="liveCheck(this, 'have been automatically sent to the agency')" placeholder="Type passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">have been automatically sent to the agency</div>
+                </li>
+                <li class="exercise-item">
+                    <p>3. Active: Nobody has warned us about the massive traffic jams in the pedestrian area. <br>→ Passive: We...</p>
+                    <input type="text" oninput="liveCheck(this, 'haven\'t been warned about the massive traffic jams in the pedestrian area')" placeholder="Type passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">haven't been warned about the massive traffic jams in the pedestrian area</div>
+                </li>
+                <li class="exercise-item">
+                    <p>4. Active: The city has officially opened a beautiful new pedestrian area near the mosque. <br>→ Passive: A beautiful new pedestrian area...</p>
+                    <input type="text" oninput="liveCheck(this, 'has been officially opened near the mosque')" placeholder="Type passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">has been officially opened near the mosque</div>
+                </li>
+                <li class="exercise-item">
+                    <p>5. Active: Have they finally resolved the tough relocation problems? <br>→ Passive: Have...</p>
+                    <input type="text" oninput="liveCheck(this, 'the tough relocation problems finally been resolved')" placeholder="Type passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">the tough relocation problems finally been resolved</div>
+                </li>
+                <li class="exercise-item">
+                    <p>6. Active: Someone has fed the rabbit for the second time today. <br>→ Passive: The rabbit...</p>
+                    <input type="text" oninput="liveCheck(this, 'has been fed for the second time today')" placeholder="Type passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">has been fed for the second time today</div>
+                </li>
+                <li class="exercise-item">
+                    <p>7. Active: The manager hasn't modified our upcoming dynamic schedule yet. <br>→ Passive: Our upcoming dynamic schedule...</p>
+                    <input type="text" oninput="liveCheck(this, 'hasn\'t been modified yet')" placeholder="Type passive continuation...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">hasn't been modified yet</div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="vocabulary" class="tab-content">
+            <div class="section-tag">Vocabulary · Review</div>
+            <h2>Target Words</h2>
+            <p class="instruction">Tap any card to reveal its Russian translation.</p>
+            
+            <div class="vocab-grid">
+                <div class="vocab-card" onclick="toggleTranslation('v1')">
+                    <strong>to get the hang of something</strong>
+                    <div class="vocab-static-desc">to learn how to do or use something successfully.<br><em>e.g. I finally got the hang of dynamic pricing!</em></div>
+                    <div id="v1" class="vocab-translation-hidden">Перевод: разобраться, освоиться, набить руку</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v2')">
+                    <strong>tough</strong>
+                    <div class="vocab-static-desc">difficult, strong, or hard to deal with.<br><em>e.g. This relocation has been a tough challenge.</em></div>
+                    <div id="v2" class="vocab-translation-hidden">Перевод: сложный, трудный, тяжелый</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v3')">
+                    <strong>for the second time</strong>
+                    <div class="vocab-static-desc">happening again, repeating an action.<br><em>e.g. He asked me out for the second time this week.</em></div>
+                    <div id="v3" class="vocab-translation-hidden">Перевод: во второй раз</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v4')">
+                    <strong>mosque</strong>
+                    <div class="vocab-static-desc">a building where Muslims go to worship.<br><em>e.g. We took photos near the ancient mosque.</em></div>
+                    <div id="v4" class="vocab-translation-hidden">Перевод: мечеть</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v5')">
+                    <strong>harmonious</strong>
+                    <div class="vocab-static-desc">friendly, peaceful, or fitting together beautifully.<br><em>e.g. Our team has a very harmonious atmosphere.</em></div>
+                    <div id="v5" class="vocab-translation-hidden">Перевод: гармоничный, дружный</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v6')">
+                    <strong>pedestrian area</strong>
+                    <div class="vocab-static-desc">a special street or zone for walking, where cars are not allowed.<br><em>e.g. We love walking in this pedestrian area.</em></div>
+                    <div id="v6" class="vocab-translation-hidden">Перевод: пешеходная зона</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v7')">
+                    <strong>definitely</strong>
+                    <div class="vocab-static-desc">without any doubt; certainly.<br><em>e.g. We will definitely go to that party tonight!</em></div>
+                    <div id="v7" class="vocab-translation-hidden">Перевод: определенно, точно</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v8')">
+                    <strong>to warn</strong>
+                    <div class="vocab-static-desc">to make someone aware of a possible danger or problem beforehand.<br><em>e.g. Why didn't you warn me about the meeting?</em></div>
+                    <div id="v8" class="vocab-translation-hidden">Перевод: предупреждать</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v9')">
+                    <strong>massive</strong>
+                    <div class="vocab-static-desc">very large, heavy, or powerful.<br><em>e.g. Our team signed a massive contract.</em></div>
+                    <div id="v9" class="vocab-translation-hidden">Перевод: огромный, масштабный</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v10')">
+                    <strong>dynamic</strong>
+                    <div class="vocab-static-desc">constantly changing, active, or full of energy.<br><em>e.g. E-commerce is a highly dynamic market.</em></div>
+                    <div id="v10" class="vocab-translation-hidden">Перевод: динамичный, активный</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v11')">
+                    <strong>to modify</strong>
+                    <div class="vocab-static-desc">to make small changes to improve something.<br><em>e.g. We need to modify our product listings.</em></div>
+                    <div id="v11" class="vocab-translation-hidden">Перевод: изменять, модифицировать</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v12')">
+                    <strong>missing</strong>
+                    <div class="vocab-static-desc">lost, not in its place, or absent.<br><em>e.g. We finally uploaded the missing photos.</em></div>
+                    <div id="v12" class="vocab-translation-hidden">Перевод: недостающий, потерянный</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v13')">
+                    <strong>relieved</strong>
+                    <div class="vocab-static-desc">feeling happy because a worry or pain has gone away.<br><em>e.g. She felt relieved when the deal was closed.</em></div>
+                    <div id="v13" class="vocab-translation-hidden">Перевод: испытывающий облегчение</div>
+                </div>
+                <div class="vocab-card" onclick="toggleTranslation('v14')">
+                    <strong>upcoming</strong>
+                    <div class="vocab-static-desc">happening or appearing soon.<br><em>e.g. Are you ready for our upcoming trip?</em></div>
+                    <div id="v14" class="vocab-translation-hidden">Перевод: предстоящий, грядущий</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top:30px;">Vocabulary Practice</h3>
+            <p class="instruction">Fill in the blanks. Inputs check automatically. Click "Show Answer" if you get stuck.</p>
+            
+            <ul class="exercise-list">
+                <li class="exercise-item">
+                    <p>1. Our team relocation was quite ____________________, but we successfully handled it.</p>
+                    <input type="text" oninput="liveCheck(this, 'tough')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">tough</div>
+                </li>
+                <li class="exercise-item">
+                    <p>2. We will ____________________ paint the town red this Friday! It's going to be massive!</p>
+                    <input type="text" oninput="liveCheck(this, 'definitely')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">definitely</div>
+                </li>
+                <li class="exercise-item">
+                    <p>3. This is the first time we've visited the ancient mosque, but we want to return ____________________.</p>
+                    <input type="text" oninput="liveCheck(this, 'for the second time')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">for the second time</div>
+                </li>
+                <li class="exercise-item">
+                    <p>4. The company decided to ____________________ its dynamic pricing strategy to increase sales.</p>
+                    <input type="text" oninput="liveCheck(this, 'modify')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">modify</div>
+                </li>
+                <li class="exercise-item">
+                    <p>5. I felt so ____________________ when my son successfully got the hang of his new school schedule.</p>
+                    <input type="text" oninput="liveCheck(this, 'relieved')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">relieved</div>
+                </li>
+                <li class="exercise-item">
+                    <p>6. Please make sure that all the ____________________ photos are uploaded to the marketplace listing.</p>
+                    <input type="text" oninput="liveCheck(this, 'missing')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">missing</div>
+                </li>
+                <li class="exercise-item">
+                    <p>7. Nobody wanted to ____________________ us about the sudden and massive changes in the system regulations.</p>
+                    <input type="text" oninput="liveCheck(this, 'warn')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">warn</div>
+                </li>
+                <li class="exercise-item">
+                    <p>8. The client loved how ____________________ and peaceful our relationship was during the project.</p>
+                    <input type="text" oninput="liveCheck(this, 'harmonious')" placeholder="Type answer here...">
+                    <button class="btn-ans" onclick="showAns(this)">Show Answer</button>
+                    <div class="ans-block">harmonious</div>
+                </li>
+            </ul>
+        </div>
+
+        <div id="translation" class="tab-content">
+            <div class="section-tag">Translation · RU → EN</div>
+            <h2>Translate the story</h2>
+            <p class="instruction">Read this logical and coherent story (~510 chars). Tap "RU→EN" to reveal the natural model translation clause by clause.</p>
+            
+            <div class="inline-text-block">
+                Переезд за границу — это определенно сложный процесс, но наша семья уже освоилась. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">Relocation abroad is definitely a tough process, but our family has already got the hang of it.</span>
+                
+                Все недостающие документы были быстро изменены и отправлены во второй раз. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">All the missing documents have been quickly modified and sent for the second time.</span>
+                
+                Я почувствовала огромное облегчение, когда нас заранее предупредили обо всех деталях. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">I felt greatly relieved when we were warned about all the details in advance.</span>
+                
+                Вчера мы посетили старинную мечеть и прогулялись по гармоничной пешеходной зоне. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">Yesterday, we visited an ancient mosque and walked through a harmonious pedestrian area.</span>
+                
+                Мой девятилетний сын был в восторге, а кролик ждал нас дома. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">My nine-year-old son was thrilled, and the rabbit was waiting for us at home.</span>
+                
+                Кстати, организация нашей предстоящей масштабной вечеринки уже завершена. 
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">By the way, the organization of our upcoming massive party has already been completed.</span>
+                
+                Мы точно повеселимся и уйдём в отрыв без лишних забот!
+                <button class="btn-inline-ru" onclick="toggleInline(this)">RU→EN</button><span class="target-en">We will definitely have fun and paint the town red without extra worries!</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openTab(evt, tabId) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function toggleElement(id) {
+            var element = document.getElementById(id);
+            element.style.display = (element.style.display === "block") ? "none" : "block";
+        }
+
+        function toggleTranslation(id) {
+            var element = document.getElementById(id);
+            element.style.display = (element.style.display === "block") ? "none" : "block";
+        }
+
+        function toggleInline(button) {
+            var targetSpan = button.nextElementSibling;
+            if (targetSpan.style.display === "inline") {
+                targetSpan.style.display = "none";
+                button.style.background = "#f1f2f6";
+            } else {
+                targetSpan.style.display = "inline";
+                button.style.background = "#ced6e0";
+            }
+        }
+
+        function checkQuiz(element, isCorrect) {
+            var siblings = element.parentNode.getElementsByClassName('quiz-option');
+            for(var i=0; i<siblings.length; i++) {
+                siblings[i].classList.remove('correct', 'incorrect');
+            }
+            element.classList.add(isCorrect ? 'correct' : 'incorrect');
+        }
+
+        function liveCheck(inputElement, correctAnswer) {
+            let userAns = inputElement.value.trim().toLowerCase().replace(/[\.\?!,-]/g, '').replace(/\s+/g, ' ');
+            let targetAns = correctAnswer.toLowerCase().replace(/\\/g, '').replace(/[\.\?!,-]/g, '').replace(/\s+/g, ' ');
+
+            if (userAns === targetAns) {
+                inputElement.classList.add('correct-input');
+            } else {
+                inputElement.classList.remove('correct-input');
+            }
+        }
+
+        function showAns(btnElement) {
+            var ansBlock = btnElement.parentNode.querySelector('.ans-block');
+            ansBlock.style.display = (ansBlock.style.display === "block") ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
