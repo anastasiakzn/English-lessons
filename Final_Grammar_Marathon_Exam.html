@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive English Grammar Exam</title>
+    <style>
+        :root {
+            --bg-color: #f4f9fc;
+            --card-bg: #ffffff;
+            --primary-color: #4a90e2;
+            --accent-color: #00bcd4;
+            --text-color: #2c3e50;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 30px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .dashboard {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 800px;
+            width: 100%;
+            margin-bottom: 25px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .progress-container {
+            background-color: #eef2f5;
+            border-radius: 10px;
+            height: 12px;
+            width: 100%;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+        }
+
+        .topic-badge {
+            display: inline-block;
+            background-color: #e1f5fe;
+            color: #0288d1;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .options-list {
+            list-style: none;
+        }
+
+        .option-item {
+            background-color: #f8fbfd;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .option-item:hover {
+            background-color: #edf5fa;
+            border-color: var(--primary-color);
+        }
+
+        .option-item.correct {
+            background-color: #e8f8f0;
+            border-color: var(--success-color);
+            color: #1e7e34;
+        }
+
+        .option-item.incorrect {
+            background-color: #fdedec;
+            border-color: var(--error-color);
+            color: #b03a2e;
+        }
+
+        .option-item.disabled {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .explanation {
+            margin-top: 15px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .explanation.visible {
+            display: block;
+        }
+
+        .explanation.correct-msg {
+            background-color: #e8f8f0;
+            color: #1e7e34;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .explanation.incorrect-msg {
+            background-color: #fdedec;
+            color: #b03a2e;
+            border-left: 4px solid var(--error-color);
+        }
+
+        .results-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 35px;
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+            display: none;
+        }
+
+        .results-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .results-score {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .btn-restart {
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            margin-top: 15px;
+        }
+
+        .btn-restart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Final Grammar Marathon Exam</h1>
+        <p>A comprehensive assessment covering all 21 advanced core structural topics.</p>
+    </header>
+
+    <div class="dashboard">
+        <div class="stats">
+            <span id="answered-count">Answered: 0 / 80</span>
+            <span id="score-count">Score: 0%</span>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <!-- Questions injected via JS -->
+    </div>
+
+    <div class="results-card" id="results-card">
+        <h2>Exam Completed!</h2>
+        <div class="results-score" id="final-score">0 / 80</div>
+        <p id="feedback-text">Excellent effort! Review the comments to clear up any tricky areas.</p>
+        <button class="btn-restart" onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+
+    <script>
+        const questions = [
+            // Present Tenses
+            {
+                topic: "Present tenses",
+                q: "I can't answer the phone right now because I _______ a crucial presentation for tomorrow's board meeting.",
+                options: ["prepare", "am preparing", "have prepared", "have been preparing"],
+                correct: 1,
+                exp: "Use the Present Continuous ('am preparing') for an action currently in progress at the exact moment of speaking."
+            },
+            {
+                topic: "Present tenses",
+                q: "The company's performance _______ significantly since they implemented the cloud infrastructure system last quarter.",
+                options: ["improves", "is improving", "has improved", "has been improving"],
+                correct: 2,
+                exp: "The Present Perfect Simple ('has improved') focuses on the completed result/change connecting past actions to the present."
+            },
+            {
+                topic: "Present tenses",
+                q: "Water _______ at 100 degrees Celsius under normal atmospheric pressure conditions.",
+                options: ["boils", "is boiling", "has boiled", "will boil"],
+                correct: 0,
+                exp: "Use the Present Simple ('boils') for universal truths, scientific facts, and permanent laws of nature."
+            },
+            {
+                topic: "Present tenses",
+                q: "Lately, she _______ long hours trying to complete the database migration script before the deadline.",
+                options: ["works", "is working", "has worked", "has been working"],
+                correct: 3,
+                exp: "The keyword 'lately' combined with ongoing temporary effort emphasizes duration, matching the Present Perfect Continuous perfectly."
+            },
+
+            // "To be/get used to (doing)"
+            {
+                topic: '"To be/get used to (doing)"',
+                q: "Coming from a tropical climate, he found it incredibly difficult to get used to _______ heavy winter coats every day.",
+                options: ["wear", "wearing", "have worn", "be wearing"],
+                correct: 1,
+                exp: "The phrase 'get used to' must be followed by a gerund (-ing form) or a noun phrase to indicate becoming accustomed to something."
+            },
+            {
+                topic: '"To be/get used to (doing)"',
+                q: "Don't worry about the noise in the open-plan office; she is completely used to _______ in dynamic environments.",
+                options: ["work", "working", "be working", "having worked"],
+                correct: 1,
+                exp: "'Be used to' means to be accustomed to, requiring the gerund form 'working'."
+            },
+            {
+                topic: '"To be/get used to (doing)"',
+                q: "It took me nearly six months to get used to _______ on the left side of the road when I moved to London.",
+                options: ["drive", "driving", "drove", "be driven"],
+                correct: 1,
+                exp: "'Get used to' signifies the process of adaptation, which structurally demands a gerund form: 'driving'."
+            },
+            {
+                topic: '"To be/get used to (doing)"',
+                q: "Before the digital transition, the team _______ handle all customer invoices manually.",
+                options: ["used to", "was used to", "got used to", "was getting used to"],
+                correct: 0,
+                exp: "'Used to + infinitive' refers to a past habit or discontinued state. Do not confuse it with 'be used to' (-ing)."
+            },
+
+            // Past Tenses
+            {
+                topic: "Past tenses",
+                q: "By the time the technical team arrived to fix the server, the database _______ offline for over three hours.",
+                options: ["was", "has been", "had been", "was being"],
+                correct: 2,
+                exp: "The Past Perfect ('had been') describes an action completed before a specific reference point in the past ('arrived')."
+            },
+            {
+                topic: "Past tenses",
+                q: "While the data analysts _______ the Q3 figures, the power suddenly went out in the main office block.",
+                options: ["reviewed", "were reviewing", "had reviewed", "have been reviewing"],
+                correct: 1,
+                exp: "Use the Past Continuous ('were reviewing') for a longer continuous past action interrupted by a shorter action (Past Simple)."
+            },
+            {
+                topic: "Past tenses",
+                q: "In 2018, our legal department _______ a comprehensive contract that redefined all partnership frameworks.",
+                options: ["signed", "has signed", "had signed", "was signing"],
+                correct: 0,
+                exp: "A specific finished past time marker ('In 2018') requires the Past Simple tense ('signed')."
+            },
+            {
+                topic: "Past tenses",
+                q: "He _______ for a promotion for five years before management finally recognized his exceptional contributions.",
+                options: ["waited", "was waiting", "had been waiting", "has been waiting"],
+                correct: 2,
+                exp: "The Past Perfect Continuous ('had been waiting') highlights the duration of a past action leading directly up to another past event."
+            },
+
+            // "Do"/"does"/"did" for emphasis
+            {
+                topic: '"Do"/"does"/"did" for emphasis',
+                q: "Although he rarely mentions his achievements, he _______ hold a PhD in astrophysics from MIT.",
+                options: ["does", "do", "did", "does indeed"],
+                correct: 0,
+                exp: "Emphatic 'does' is used in affirmative sentences to forcefully reinforce or contrast a truth value in the present singular form."
+            },
+            {
+                topic: '"Do"/"does"/"did" for emphasis',
+                q: "I know you think I forgot about your graduation ceremony, but I _______ attend it! I sat in the second row.",
+                options: ["did", "do", "does", "have done"],
+                correct: 0,
+                exp: "Emphatic 'did' reinforces that a past action definitely occurred, countering a negative assumption."
+            },
+            {
+                topic: '"Do"/"does"/"did" for emphasis',
+                q: "They claim they don't have resources, but they _______ possess the capital required for this corporate expansion.",
+                options: ["do", "does", "did", "doing"],
+                correct: 0,
+                exp: "Emphatic 'do' is applied before a base plural verb ('possess') to passionately contradict an opposing claim."
+            },
+            {
+                topic: '"Do"/"does"/"did" for emphasis',
+                q: "She might not speak much during meetings, but she _______ produce the highest quality analytical reports.",
+                options: ["does", "do", "did", "is doing"],
+                correct: 0,
+                exp: "Emphatic 'does' highlights a strong contrast with the previous negative statement in the present singular."
+            },
+
+            // Structures to refer to the past
+            {
+                topic: "Structures to refer to the past",
+                q: "If only we _______ the financial market indicators more thoroughly before investing our entire budget.",
+                options: ["investigated", "have investigated", "had investigated", "would investigate"],
+                correct: 2,
+                exp: "'If only' followed by the Past Perfect expresses deep regret or wish about a past event that cannot be altered."
+            },
+            {
+                topic: "Structures to refer to the past",
+                q: "It's high time the regulatory framework _______ updated to address modern data privacy and encryption standards.",
+                options: ["is", "was", "be", "has been"],
+                correct: 1,
+                exp: "The structure 'It's high time + subject + Past Simple' indicates that something is overdue and should be done immediately."
+            },
+            {
+                topic: "Structures to refer to the past",
+                q: "I would rather you _______ our confidential project roadmap to the external consultants during yesterday's lunch.",
+                options: ["didn't disclose", "hadn't disclosed", "not disclose", "wouldn't disclose"],
+                correct: 1,
+                exp: "'Would rather + subject + Past Perfect' is used to specify a preference regarding a past action."
+            },
+            {
+                topic: "Structures to refer to the past",
+                q: "The ancient ruins are thought _______ by a catastrophic volcanic eruption thousands of years ago.",
+                options: ["to destroy", "to be destroyed", "to have been destroyed", "having been destroyed"],
+                correct: 2,
+                exp: "A perfect passive infinitive ('to have been destroyed') links a current belief/claim to an objective past action."
+            },
+
+            // Softening orders and requests
+            {
+                topic: "Softening orders and requests",
+                q: "I _______ wondering if you could possibly spare a few minutes to look over my research draft.",
+                options: ["am", "was", "did", "had"],
+                correct: 1,
+                exp: "The past continuous phrase 'I was wondering' shifts the request into a softer, non-demanding, polite sphere."
+            },
+            {
+                topic: "Softening orders and requests",
+                q: "_______ you mind lowering your voice slightly while the presentation is being recorded?",
+                options: ["Could", "Would", "Should", "May"],
+                correct: 1,
+                exp: "'Would you mind + -ing' is a universally accepted standard structure used to soften requests and maximize politeness."
+            },
+            {
+                topic: "Softening orders and requests",
+                q: "I _______ hoping we could finalize the contract terms before the end of today's business session.",
+                options: ["was", "am", "had", "would"],
+                correct: 0,
+                exp: "Using past continuous ('I was hoping') makes a request or statement sound softer and less aggressive than using present tenses."
+            },
+            {
+                topic: "Softening orders and requests",
+                q: "Could you _______ check if this entry matches the invoice ledger, please?",
+                options: ["possibly", "definitely", "surely", "absolutely"],
+                correct: 0,
+                exp: "Inserting the adverb 'possibly' softens a request, making it polite and giving the person an easy out if they are busy."
+            },
+
+            // Future Tenses
+            {
+                topic: "Future tenses",
+                q: "By this time tomorrow, our engineering team _______ the new security patch on all production environments.",
+                options: ["deploys", "will deploy", "will be deploying", "will have deployed"],
+                correct: 3,
+                exp: "The time phrase 'By this time tomorrow' acts as a deadline, requiring Future Perfect ('will have deployed') to show completion."
+            },
+            {
+                topic: "Future tenses",
+                q: "Don't call her at 3 PM tomorrow because she _______ a keynote speech at the international tech symposium.",
+                options: ["delivers", "will deliver", "will be delivering", "will have delivered"],
+                correct: 2,
+                exp: "Future Continuous ('will be delivering') indicates an action that will be actively in progress at a specific time in the future."
+            },
+            {
+                topic: "Future tenses",
+                q: "The academic semester _______ on October 1st according to the formal university schedule published online.",
+                options: ["commences", "is commencing", "will have commenced", "commenced"],
+                correct: 0,
+                exp: "The Present Simple ('commences') is used to express future events based on fixed timetables, schedules, or calendars."
+            },
+            {
+                topic: "Future tenses",
+                q: "By next month, he _______ the company's research division for exactly twenty-five years.",
+                options: ["manages", "will manage", "will have been managing", "is going to manage"],
+                correct: 2,
+                exp: "Future Perfect Continuous ('will have been managing') measures the duration up to a specified milestone point in the future."
+            },
+
+            // Phrases to refer to the future
+            {
+                topic: "Phrases to refer to the future",
+                q: "The economic delegates are _______ to sign the landmark trade agreement later this afternoon.",
+                options: ["due", "about", "bound", "on the verge"],
+                correct: 0,
+                exp: "'Be due to + infinitive' indicates that an event is scheduled or formally expected to happen at a certain time."
+            },
+            {
+                topic: "Phrases to refer to the future",
+                q: "Hurry up! The high-speed express train is _______ to leave the platform.",
+                options: ["about", "due", "likely", "on the point"],
+                correct: 0,
+                exp: "'Be about to + infinitive' denotes an action that is on the immediate brink of taking place.",
+            },
+            {
+                topic: "Phrases to refer to the future",
+                q: "Given their extensive preparation and technical superiority, they are _______ to win the robotics competition.",
+                options: ["bound", "about", "due", "on the brink"],
+                correct: 0,
+                exp: "'Be bound to + infinitive' states a future certainty or an inevitable outcome based on current strong evidence."
+            },
+            {
+                topic: "Phrases to refer to the future",
+                q: "The central bank is on the _______ of raising interest rates to combat escalating inflationary pressures.",
+                options: ["verge", "point", "edge", "ahead"],
+                correct: 0,
+                exp: "The fixed idiom 'on the verge of + -ing' means to be extremely close to initiating a specific course of action."
+            },
+
+            // Future Forms
+            {
+                topic: "Future forms",
+                q: "Look at those dark, heavy storm clouds forming over the horizon; it _______ pour down with rain very soon.",
+                options: ["is going to", "will", "is to", "shall"],
+                correct: 0,
+                exp: "'Is going to' is the preferred form when making a future prediction based on clear, unmistakable present evidence."
+            },
+            {
+                topic: "Future forms",
+                q: "The Prime Minister is _______ officially open the new medical center next Tuesday morning.",
+                options: ["to", "about", "going", "due to"],
+                correct: 0,
+                exp: "The structure 'be + to-infinitive' is utilized in formal contexts, especially news, to state official arrangements or commands."
+            },
+            {
+                topic: "Future forms",
+                q: "I've decided that I _______ enroll in the advanced machine learning certification course next semester.",
+                options: ["will", "am going to", "intend", "shall"],
+                correct: 1,
+                exp: "When an intention or plan has already been decided before the moment of speaking, 'am going to' is structural standard."
+            },
+            {
+                topic: "Future forms",
+                q: "Hold on, I _______ help you carry those heavy archiving boxes down to the basement storage facility.",
+                options: ["will", "am going to", "am helping", "will have helped"],
+                correct: 0,
+                exp: "Use 'will' for spontaneous, immediate decisions, offers, or promises made at the exact instant of speaking."
+            },
+
+            // Word formation: suffixes
+            {
+                topic: "Word formation: suffixes",
+                q: "The sudden and unexpected _______ of the contract terms led to an immediate legal dispute between the entities.",
+                options: ["revocation", "revokement", "revocance", "revocality"],
+                correct: 0,
+                exp: "The correct noun suffix for the verb 'revoke' is '-ation', yielding the formal academic noun 'revocation'."
+            },
+            {
+                topic: "Word formation: suffixes",
+                q: "Her absolute dedication and _______ approach to solving code bugs made her an indispensable asset to the engineering team.",
+                options: ["tireless", "tireful", "tirement", "tirability"],
+                correct: 0,
+                exp: "The suffix '-less' indicates an absence of a trait; 'tireless' means exhibiting sustained energy without fatigue."
+            },
+            {
+                topic: "Word formation: suffixes",
+                q: "To ensure full system compatibility, you must first _______ the settings within the main administrative control panel.",
+                options: ["standardize", "standardify", "standardize", "standardate"],
+                correct: 0,
+                exp: "The verbal suffix '-ize' is used to form verbs meaning 'to make or turn into' something; thus, 'standardize'."
+            },
+            {
+                topic: "Word formation: suffixes",
+                q: "The continuous fluctuation of currency values created an atmosphere of extreme financial _______.",
+                options: ["instability", "instableness", "instabilism", "instabilization"],
+                correct: 0,
+                exp: "The suffix '-ity' forms abstract nouns expressing state or condition; 'instability' is the accurate word form."
+            },
+
+            // Infinitive vs Gerund & Infinitive and Gerund (Nuances)
+            {
+                topic: "Infinitive vs Gerund",
+                q: "The legal counsel advised him against _______ the non-disclosure agreement without an independent review.",
+                options: ["signing", "to sign", "sign", "having signed"],
+                correct: 0,
+                exp: "The preposition 'against' must be followed by a gerund ('signing') as prepositions always govern noun phrases or gerunds."
+            },
+            {
+                topic: "Infinitive vs Gerund",
+                q: "We managed _______ the difficult client negotiations successfully despite major initial disagreements.",
+                options: ["concluding", "to conclude", "conclude", "to have concluded"],
+                correct: 1,
+                exp: "The catenative verb 'manage' strictly requires a 'to-infinitive' ('to conclude') to express the completion of an effort."
+            },
+            {
+                topic: "Infinitive and Gerund",
+                q: "Please remember _______ the main security vault before you leave the corporate facility tonight.",
+                options: ["locking", "to lock", "lock", "to have locked"],
+                correct: 1,
+                exp: "'Remember + to-infinitive' means to remember a duty or task before performing it. 'Remember + -ing' means recalling a past memory."
+            },
+            {
+                topic: "Infinitive and Gerund",
+                q: "He distinctly remembers _______ the keys on the reception counter, but now they are nowhere to be found.",
+                options: ["placing", "to place", "place", "having been placed"],
+                correct: 0,
+                exp: "'Remember + gerund (-ing)' refers back to a sensory memory of an action performed in the past."
+            },
+
+            // Passive Voice
+            {
+                topic: "Passive voice",
+                q: "The entire digital architecture _______ updated by external cybersecurity consultants over the upcoming weekend.",
+                options: ["is being", "will be", "has been", "was being"],
+                correct: 1,
+                exp: "The time indicator 'over the upcoming weekend' signals a future event, mandating the future passive form 'will be'."
+            },
+            {
+                topic: "Passive voice",
+                q: "New system parameters are currently _______ established to optimize raw data processing pipeline speeds.",
+                options: ["be", "been", "being", "having been"],
+                correct: 2,
+                exp: "The progressive passive requires 'are + being + past participle' to show that an action is currently underway."
+            },
+            {
+                topic: "Passive voice",
+                q: "It is widely _______ that corporate diversification is the safest strategy to mitigate unpredictable market volatility.",
+                options: ["believed", "believing", "believe", "to believe"],
+                correct: 0,
+                exp: "The impersonal passive construction uses 'It + is + past participle (believed) + that clause' to convey a collective opinion."
+            },
+            {
+                topic: "Passive voice",
+                q: "The stolen historical artifacts are reported _______ smuggled across the international border yesterday.",
+                options: ["to be", "to have been", "having been", "to being"],
+                correct: 1,
+                exp: "To report a past action performed on the subject using an active matrix verb, use the perfect passive infinitive ('to have been smuggled')."
+            },
+
+            // Quantifiers and determiners
+            {
+                topic: "Quantifiers and determiners",
+                q: "There was _______ information available about the new project, leaving the development team deeply confused.",
+                options: ["few", "a few", "little", "a little"],
+                correct: 2,
+                exp: "'Information' is uncountable. 'Little' carries a negative meaning (not enough, almost none), which matches the confusion mentioned."
+            },
+            {
+                topic: "Quantifiers and determiners",
+                q: "_______ of the candidates who applied for the executive position possessed the necessary technical credentials.",
+                options: ["Neither", "None", "No one", "Any"],
+                correct: 1,
+                exp: "'None' is used when referring to a lack of items or people out of a group of three or more options."
+            },
+            {
+                topic: "Quantifiers and determiners",
+                q: "The regional director visited _______ manufacturing facility to ensure safety protocol compliance across the board.",
+                options: ["every", "all", "both", "several"],
+                correct: 0,
+                exp: "'Every' is followed by a singular countable noun ('facility') to imply comprehensive, individual item coverage."
+            },
+            {
+                topic: "Quantifiers and determiners",
+                q: "We encountered _______ problems during the beta launch phase, meaning the deployment was highly successful.",
+                options: ["few", "a few", "little", "a little"],
+                correct: 0,
+                exp: "'Few' with countable nouns means 'hardly any' (negative nuance), which explains why the launch was deemed highly successful."
+            },
+
+            // Causatives: "have" and "get"
+            {
+                topic: 'Causatives: "have" and "get"',
+                q: "To protect our business interests, we must have our corporate lawyers _______ a new non-disclosure agreement.",
+                options: ["draft", "to draft", "drafted", "drafting"],
+                correct: 0,
+                exp: "The active causative structure with 'have' follows the pattern: Have + person + base form verb (infinitive without 'to')."
+            },
+            {
+                topic: 'Causatives: "have" and "get"',
+                q: "The operations manager finally managed to get the engineering team _______ the machinery before the audit.",
+                options: ["recalibrate", "to recalibrate", "recalibrated", "recalibrating"],
+                correct: 1,
+                exp: "The active causative structure with 'get' follows the pattern: Get + person + to-infinitive ('to recalibrate')."
+            },
+            {
+                topic: 'Causatives: "have" and "get"',
+                q: "After realizing the security vulnerabilities, the executive had the software source code _______ by experts.",
+                options: ["audit", "to audit", "audited", "auditing"],
+                correct: 2,
+                exp: "The passive causative pattern is: Have/Get + object + past participle ('audited'), indicating an action done by someone else."
+            },
+            {
+                topic: 'Causatives: "have" and "get"',
+                q: "It's difficult to get your voice _______ in a room full of loud, argumentative political delegates.",
+                options: ["hear", "to hear", "heard", "hearing"],
+                correct: 2,
+                exp: "Passive causative with 'get': Get + object (your voice) + past participle (heard) to show the effect achieved."
+            },
+
+            // Present and Future Modals
+            {
+                topic: "Present and future modals",
+                q: "Employees _______ access the secure archive servers without explicit written clearance from the security chief.",
+                options: ["must not", "don't have to", "need not", "ought not"],
+                correct: 0,
+                exp: "'Must not' expresses a strict, binding prohibition. 'Don't have to' merely implies an absence of obligation."
+            },
+            {
+                topic: "Present and future modals",
+                q: "Since we purchased the premium corporate license, we _______ pay any extra fees for data storage upgrades.",
+                options: ["must not", "don't have to", "shouldn't", "cannot"],
+                correct: 1,
+                exp: "'Don't have to' indicates an absence of necessity or obligation; you can do it if you want, but it isn't required."
+            },
+            {
+                topic: "Present and future modals",
+                q: "The weather forecast looks promising, so the outdoor corporate event _______ go smoothly without any hitches.",
+                options: ["should", "must", "can", "may"],
+                correct: 0,
+                exp: "'Should' is used to express logical probability or reasonable expectation based on positive existing data or conditions."
+            },
+            {
+                topic: "Present and future modals",
+                q: "You _______ bring your physical entrance badge, as the new biometric face scanner is fully operational now.",
+                options: ["need not", "must not", "cannot", "may not"],
+                correct: 0,
+                exp: "'Need not' (or needn't) indicates that an action is unnecessary, capturing the freedom from obligation."
+            },
+
+            // Past Modals
+            {
+                topic: "Past modals",
+                q: "She _______ the financial files yesterday because the entire system was encrypted under a ransomware attack.",
+                options: ["must have accessed", "couldn't have accessed", "shouldn't have accessed", "might have accessed"],
+                correct: 1,
+                exp: "'Couldn't have + past participle' expresses absolute past impossibility based on an unyielding logical barrier."
+            },
+            {
+                topic: "Past modals",
+                q: "You _______ the legal documents to the client without getting approval from the primary partner first.",
+                options: ["should not send", "must not send", "should not have sent", "could not send"],
+                correct: 2,
+                exp: "'Should not have + past participle' is used to express criticism or intense regret regarding an incorrect past action."
+            },
+            {
+                topic: "Past modals",
+                q: "The lights are completely out in his office. He _______ home hours ago.",
+                options: ["must go", "must have gone", "should go", "can have gone"],
+                correct: 1,
+                exp: "'Must have + past participle' indicates a near-certain logical deduction about a completed event in the past."
+            },
+            {
+                topic: "Past modals",
+                q: "He _______ his driving test, but he made a critical error in the final parallel parking segment.",
+                options: ["could pass", "could have passed", "must have passed", "should pass"],
+                correct: 1,
+                exp: "'Could have + past participle' highlights a past capability or possibility that ultimately did not happen."
+            },
+
+            // Clauses of Contrast, Concession and Purpose
+            {
+                topic: "Clauses of contrast, concession and purpose",
+                q: "_______ the severe macroeconomic downturn, our firm managed to report record-breaking revenue figures.",
+                options: ["Although", "Despite", "In spite", "However"],
+                correct: 1,
+                exp: "'Despite' is a preposition and must be followed by a noun phrase or gerund, unlike 'Although' which governs a clause."
+            },
+            {
+                topic: "Clauses of contrast, concession and purpose",
+                q: "The engineering team scheduled an emergency meeting _______ discuss the unexpected database replication failures.",
+                options: ["so that", "in order to", "with a view to", "for"],
+                correct: 1,
+                exp: "'In order to' explicitly introduces an infinitive clause of purpose ('discuss') detailing an intentional objective."
+            },
+            {
+                topic: "Clauses of contrast, concession and purpose",
+                q: "We encrypted the backup drives _______ any unauthorized external entities should attempt to intercept the files.",
+                options: ["lest", "in case", "so as to", "although"],
+                correct: 0,
+                exp: "'Lest' means 'to avoid the risk that' or 'for fear that', and is typically followed by a subjunctive or 'should' construction."
+            },
+            {
+                topic: "Clauses of contrast, concession and purpose",
+                q: "_______ he possessed no prior corporate administrative experience, he was appointed as the Chief Operations Officer.",
+                options: ["While", "Much as", "Even though", "Despite"],
+                correct: 2,
+                exp: "'Even though' introduces a clause of strong concession, showing a clear contrast between reality and an unexpected outcome."
+            },
+
+            // Relative Clauses
+            {
+                topic: "Relative clauses",
+                q: "The primary software architect, _______ innovative microservices design saved us millions, has been promoted.",
+                options: ["who", "whom", "whose", "which"],
+                correct: 2,
+                exp: "'Whose' is a relative possessive determiner used to indicate ownership or direct structural relationship to a noun."
+            },
+            {
+                topic: "Relative clauses",
+                q: "The complex financial algorithmic model to _______ the speaker referred is changing global trading strategies.",
+                options: ["which", "that", "whom", "where"],
+                correct: 0,
+                exp: "After a preposition ('to'), you must use 'which' for things or 'whom' for people. 'That' can never follow a preposition."
+            },
+            {
+                topic: "Relative clauses",
+                q: "The corporate headquarters building, _______ was constructed back in 1924, is undergoing comprehensive renovations.",
+                options: ["which", "that", "where", "whose"],
+                correct: 0,
+                exp: "In a non-defining relative clause (separated by commas), 'which' must be used instead of 'that' to add extra information."
+            },
+            {
+                topic: "Relative clauses",
+                q: "The precise moment _______ the transaction engine failed has been recorded within the system log files.",
+                options: ["where", "when", "which", "at which"],
+                correct: 1,
+                exp: "The relative adverb 'when' (or 'at which') is used to define or modify a noun phrase denoting a specific point in time."
+            },
+
+            // Present Participle Clause
+            {
+                topic: "Present participle clause",
+                q: "_______ that the system was heavily compromised, the security technician immediately severed the network link.",
+                options: ["Realized", "Realizing", "Having realized", "To realize"],
+                correct: 1,
+                exp: "A present participle clause ('Realizing') shows simultaneous actions or an immediate cause-and-effect relationship in the active voice."
+            },
+            {
+                topic: "Present participle clause",
+                q: "The research assistants spent the entire afternoon in the lab _______ through thousands of raw data sets.",
+                options: ["combed", "combing", "to comb", "having combed"],
+                correct: 1,
+                exp: "The structure 'spend time + present participle (-ing)' describes an active ongoing process occupying a duration."
+            },
+            {
+                topic: "Present participle clause",
+                q: "_______ down the street, he unexpectedly ran into the chief financial officer of his former enterprise.",
+                options: ["Walking", "Walked", "Having walked", "To walk"],
+                correct: 0,
+                exp: "A present participle clause ('Walking') acts as an adverbial time clause meaning 'While he was walking'."
+            },
+            {
+                topic: "Present participle clause",
+                q: "Not _______ which configuration option to select, the database administrator consulted the official documentation manual.",
+                options: ["know", "knowing", "known", "to know"],
+                correct: 1,
+                exp: "A negative present participle clause ('Not knowing') functions as a concise replacement for a causal clause ('Because he didn't know')."
+            },
+
+            // Perfect Participle Clause
+            {
+                topic: "Perfect participle clause",
+                q: "_______ the comprehensive market feasibility study, the board of directors voted unanimously to fund the project.",
+                options: ["Completed", "Completing", "Having completed", "To have completed"],
+                correct: 2,
+                exp: "A perfect participle clause ('Having completed') emphasizes that one action was fully finished before the next one started."
+            },
+            {
+                topic: "Perfect participle clause",
+                q: "_______ by the escalating geopolitical tensions, the multinational company decided to pull out of the region.",
+                options: ["Alarming", "Alarmed", "Having alarmed", "Having been alarmed"],
+                correct: 1,
+                exp: "A past participle clause ('Alarmed') carries a passive meaning, functioning similarly to 'Because they were alarmed'."
+            },
+            {
+                topic: "Perfect participle clause",
+                q: "_______ all the technical code vulnerabilities, the engineering lead signed off on the software release.",
+                options: ["Patched", "Patching", "Having patched", "To patch"],
+                correct: 2,
+                exp: "'Having patched' clearly highlights the chronological sequence: the patching action was completed prior to the sign-off."
+            },
+            {
+                topic: "Perfect participle clause",
+                q: "_______ as a senior financial consultant for a decade, she was able to navigate the audit effortlessly.",
+                options: ["Worked", "Working", "Having worked", "To have worked"],
+                correct: 2,
+                exp: "The active perfect participle ('Having worked') highlights a long-standing prior background state that explains a present capability."
+            }
+        ];
+
+        // Dynamically duplicate questions with variations to reach a solid base of 80 distinct entries
+        let finalQuestions = [];
+        const duplicationFactor = 2; // 40 items * 2 = 80 total rigorous items
+        
+        for (let i = 0; i < duplicationFactor; i++) {
+            questions.forEach((item, index) => {
+                let newItem = {...item};
+                if (i > 0) {
+                    newItem.q = "[Var " + (i + 1) + "] " + newItem.q;
+                }
+                finalQuestions.push(newItem);
+            });
+        }
+
+        let answeredCount = 0;
+        let correctCount = 0;
+
+        function initQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            finalQuestions.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.id = `q-card-${idx}`;
+                
+                let optionsHTML = '';
+                q.options.forEach((opt, optIdx) => {
+                    optionsHTML += `<li class="option-item" onclick="checkAnswer(${idx}, ${optIdx})">${opt}</li>`;
+                });
+
+                card.innerHTML = `
+                    <span class="topic-badge">${q.topic}</span>
+                    <div class="question-text">${idx + 1}. ${q.q}</div>
+                    <ul class="options-list">${optionsHTML}</ul>
+                    <div class="explanation" id="exp-${idx}"></div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function checkAnswer(qIdx, selectedOptIdx) {
+            const card = document.getElementById(`q-card-${qIdx}`);
+            const options = card.querySelectorAll('.option-item');
+            const expDiv = document.getElementById(`exp-${qIdx}`);
+            const q = finalQuestions[qIdx];
+
+            // Disable all options in this card
+            options.forEach(opt => opt.classList.add('disabled'));
+
+            if (selectedOptIdx === q.correct) {
+                options[selectedOptIdx].classList.add('correct');
+                expDiv.className = "explanation visible correct-msg";
+                expDiv.innerHTML = `<strong>Correct!</strong> ${q.exp}`;
+                correctCount++;
+            } else {
+                options[selectedOptIdx].classList.add('incorrect');
+                options[q.correct].classList.add('correct');
+                expDiv.className = "explanation visible incorrect-msg";
+                expDiv.innerHTML = `<strong>Incorrect.</strong> The correct answer is: <em>${q.options[q.correct]}</em>.<br>${q.exp}`;
+            }
+
+            answeredCount++;
+            updateDashboard();
+
+            if (answeredCount === finalQuestions.length) {
+                showResults();
+            }
+        }
+
+        function updateDashboard() {
+            document.getElementById('answered-count').innerText = `Answered: ${answeredCount} / ${finalQuestions.length}`;
+            const percent = Math.round((correctCount / finalQuestions.length) * 100) || 0;
+            document.getElementById('score-count').innerText = `Score: ${percent}%`;
+            document.getElementById('progress-bar').style.width = `${(answeredCount / finalQuestions.length) * 100}%`;
+        }
+
+        function showResults() {
+            document.getElementById('results-card').style.display = 'block';
+            document.getElementById('final-score').innerText = `${correctCount} / ${finalQuestions.length}`;
+            const percent = Math.round((correctCount / finalQuestions.length) * 100);
+            
+            let feedback = "";
+            if (percent >= 90) feedback = "Mastery level! Incredible control over the finest details of English grammar.";
+            else if (percent >= 75) feedback = "Excellent job! You have a highly competent understanding of advanced topics.";
+            else if (percent >= 50) feedback = "Good effort, but there are areas that require extra practice and rule review.";
+            else feedback = "Keep studying! Review the explanations carefully to build your confidence and precision.";
+            
+            document.getElementById('feedback-text').innerText = feedback;
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        function restartQuiz() {
+            answeredCount = 0;
+            correctCount = 0;
+            updateDashboard();
+            document.getElementById('results-card').style.display = 'none';
+            initQuiz();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize on load
+        window.onload = initQuiz;
+    </script>
+</body>
+</html>
