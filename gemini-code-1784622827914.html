@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>General English Grammar Exam (No Topic Hints)</title>
+  <style>
+    :root {
+      --bg-color: #f4f7f6;
+      --card-bg: #ffffff;
+      --text-color: #2c3e50;
+      --accent-color: #3498db;
+      --correct-color: #2ecc71;
+      --incorrect-color: #e74c3c;
+      --border-color: #e0e0e0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+    }
+
+    .progress-bar-container {
+      width: 100%;
+      background-color: #e0e0e0;
+      height: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: var(--accent-color);
+      transition: width 0.3s ease;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+    }
+
+    .topic-tag {
+      display: inline-block;
+      background-color: #e8f4fc;
+      color: var(--accent-color);
+      font-size: 0.8em;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 15px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .question {
+      font-size: 1.1em;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-option {
+      background-color: #f8f9fa;
+      border: 2px solid var(--border-color);
+      padding: 12px 18px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text-color);
+    }
+
+    .btn-option:hover:not([disabled]) {
+      border-color: var(--accent-color);
+      background-color: #f0f7fc;
+    }
+
+    .btn-option.correct {
+      background-color: #d4edda !important;
+      border-color: var(--correct-color) !important;
+      color: #155724;
+      font-weight: bold;
+    }
+
+    .btn-option.incorrect {
+      background-color: #f8d7da !important;
+      border-color: var(--incorrect-color) !important;
+      color: #721c24;
+    }
+
+    .explanation {
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: #fff3cd;
+      border-left: 5px solid #ffc107;
+      color: #856404;
+      font-size: 0.95em;
+      display: none;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .result-container {
+      text-align: center;
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      display: none;
+    }
+
+    .btn-restart {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .btn-restart:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="stats">
+      <span id="answered-count">Отвечено: 0 / 125</span>
+      <span id="score-percentage">Счет: 0%</span>
+    </div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+  </div>
+
+  <div id="quiz-container"></div>
+
+  <div class="result-container" id="result-container">
+    <h2>Тест завершен!</h2>
+    <p id="final-score" style="font-size: 1.5em; font-weight: bold;"></p>
+    <button class="btn-restart" onclick="restartQuiz()">Пройти заново</button>
+  </div>
+</div>
+
+<script>
+const quizData = [
+  // ==========================================
+  // БЛОК 1: 13 ПРОБЛЕМНЫХ ТЕМ x 8 ВОПРОСОВ = 104
+  // ==========================================
+
+  { tag: "Question 1", question: "1. _____ down the street, Tom unexpectedly ran into his old school friend.", options: ["Walking", "Walked", "Having walked", "To walk"], correct: 0, explanation: "Present Participle ('Walking') описывает параллельное действие." },
+  { tag: "Question 2", question: "2. _____ that he was late for class, the student started running.", options: ["Realized", "Realizing", "Having realized", "To realize"], correct: 1, explanation: "'Realizing' передает быструю реакцию-причину." },
+  { tag: "Question 3", question: "3. _____ to her favorite music, Anna spent the whole evening drawing.", options: ["Listening", "Listened", "Having listened", "To listen"], correct: 0, explanation: "Слушая музыку, параллельно рисовала." },
+  { tag: "Question 4", question: "4. _____ the open door, the cat quickly ran into the garden.", options: ["Noticed", "Noticing", "Having noticed", "To notice"], correct: 1, explanation: "Причастие настоящего времени для сопутствующей причины." },
+  { tag: "Question 5", question: "5. _____ through old photos, she felt a sudden wave of nostalgia.", options: ["Looking", "Looked", "Having looked", "To look"], correct: 0, explanation: "Процесс разглядывания снимков вызывал чувство." },
+  { tag: "Question 6", question: "6. _____ unable to reach his parents, the boy went straight home.", options: ["Being", "Been", "Having been", "To be"], correct: 0, explanation: "'Being' выступает причиной сопутствующего состояния." },
+  { tag: "Question 7", question: "7. _____ around the corner, he suddenly bumped into his neighbor.", options: ["Turning", "Turned", "Having turned", "To turn"], correct: 0, explanation: "Заворачивая за угол, столкнулся с человеком." },
+  { tag: "Question 8", question: "8. _____ the smell of fresh coffee, she smiled and woke up completely.", options: ["Smelling", "Smelled", "Having smelled", "To smell"], correct: 0, explanation: "Одновременность восприятия запаха и улыбки." },
+
+  { tag: "Question 9", question: "9. He _____ his driving test, but he made a silly mistake during parking.", options: ["could pass", "could have passed", "must have passed", "should pass"], correct: 1, explanation: "'Could have passed' обозначает упущенную возможность в прошлом." },
+  { tag: "Question 10", question: "10. We _____ the train, but we woke up thirty minutes too late.", options: ["could catch", "could have caught", "must catch", "should catch"], correct: 1, explanation: "'Could have caught' — шанс был, но им не воспользовались." },
+  { tag: "Question 11", question: "11. You _____ me for help! I was completely free all afternoon.", options: ["could ask", "could have asked", "must ask", "should ask"], correct: 1, explanation: "'Could have asked' — упрек о возможности в прошлом." },
+  { tag: "Question 12", question: "12. She _____ a new coat, but she decided to save her money.", options: ["could buy", "could have bought", "must buy", "should buy"], correct: 1, explanation: "Нереализованная возможность покупки." },
+  { tag: "Question 13", question: "13. The team _____ the match easily, but they lost their focus.", options: ["could win", "could have won", "must win", "should win"], correct: 1, explanation: "Упустили победу в прошлом." },
+  { tag: "Question 14", question: "14. I _____ you at the airport if you had told me in advance.", options: ["could meet", "could have met", "must meet", "should meet"], correct: 1, explanation: "Упущенная возможность встречи." },
+  { tag: "Question 15", question: "15. They _____ to the beach, but the weather unexpectedly spoiled.", options: ["could go", "could have gone", "must go", "should go"], correct: 1, explanation: "Могли бы пойти, но вмешалась погода." },
+  { tag: "Question 16", question: "16. You _____ your exam result yesterday if you had checked your email.", options: ["could see", "could have seen", "must see", "should see"], correct: 1, explanation: "Упущенный шанс узнать результат раньше." },
+
+  { tag: "Question 17", question: "17. _____ she had very little experience, she made an amazing dinner.", options: ["While", "Much as", "Even though", "Despite"], correct: 2, explanation: "'Even though' связывает полноценное предложение уступки." },
+  { tag: "Question 18", question: "18. _____ the heavy rain, the children spent the whole afternoon playing outside.", options: ["Even though", "Although", "Despite", "Much as"], correct: 2, explanation: "'Despite' ставится перед существительным." },
+  { tag: "Question 19", question: "19. He walked to the office _____ feeling very tired.", options: ["even though", "although", "despite", "while"], correct: 2, explanation: "После 'despite' используется герундий ('feeling')." },
+  { tag: "Question 20", question: "20. _____ it was freezing outside, they enjoyed their evening walk.", options: ["Even though", "Despite", "In spite of", "Regardless"], correct: 0, explanation: "'Even though' + подлежащее и сказуемое." },
+  { tag: "Question 21", question: "21. We enjoyed our vacation _____ the bad weather in the mountains.", options: ["even though", "although", "in spite of", "whereas"], correct: 2, explanation: "'In spite of' перед существительным." },
+  { tag: "Question 22", question: "22. _____ he studied hard every night, he found the test difficult.", options: ["Despite", "Although", "In spite of", "Despite of"], correct: 1, explanation: "'Although' используется с полноценным предложением." },
+  { tag: "Question 23", question: "23. They arrived on time _____ the terrible traffic jams.", options: ["even though", "although", "despite", "whereas"], correct: 2, explanation: "'Despite' управляет существительным ('traffic jams')." },
+  { tag: "Question 24", question: "24. _____ I love sweet desserts, I decided to skip the cake.", options: ["Despite", "In spite of", "Even though", "Despite that"], correct: 2, explanation: "'Even though' + полноценная конструкция предложения." },
+
+  { tag: "Question 25", question: "25. The local baker, _____ bread won an award, opened a second shop.", options: ["who", "whom", "whose", "which"], correct: 2, explanation: "'Whose' передает принадлежность ('чей bread')." },
+  { tag: "Question 26", question: "26. The old town hall, _____ was built in 1924, is being repaired.", options: ["which", "that", "where", "whose"], correct: 0, explanation: "В non-defining relative clauses (с запятыми) используется 'which'." },
+  { tag: "Question 27", question: "27. That is the artist _____ paintings were shown in the museum.", options: ["who", "whom", "whose", "which"], correct: 2, explanation: "'Whose' — чьи картины." },
+  { tag: "Question 28", question: "28. The summer cafe, _____ we used to meet, has been closed.", options: ["which", "that", "where", "whose"], correct: 2, explanation: "'Where' обозначает место действия." },
+  { tag: "Question 29", question: "29. My sister brought home a puppy, _____ fur was completely black.", options: ["who", "which", "whose", "that"], correct: 2, explanation: "'Whose' для принадлежности." },
+  { tag: "Question 30", question: "30. The bicycle, _____ I bought last week, already has a flat tire.", options: ["which", "where", "whose", "what"], correct: 0, explanation: "'Which' для предметов в предложениях с запятыми." },
+  { tag: "Question 31", question: "31. The neighbor _____ dog barks all night lives on the second floor.", options: ["who", "whom", "whose", "which"], correct: 2, explanation: "'Whose' — сосед, чья собака..." },
+  { tag: "Question 32", question: "32. The park _____ we played as children is now a parking lot.", options: ["which", "where", "whose", "that"], correct: 1, explanation: "'Where' — парк, в котором мы играли." },
+
+  { tag: "Question 33", question: "33. My friends spent the whole afternoon _____ for their exam.", options: ["studied", "studying", "to study", "having studied"], correct: 1, explanation: "'Spend time + V-ing'." },
+  { tag: "Question 34", question: "34. My doctor advised me against _____ late at night.", options: ["eating", "to eat", "eat", "having eaten"], correct: 0, explanation: "Предлог 'against' требует герундий." },
+  { tag: "Question 35", question: "35. They spent hours _____ to fix the old engine.", options: ["try", "trying", "to try", "having tried"], correct: 1, explanation: "'spend hours + V-ing'." },
+  { tag: "Question 36", question: "36. She thanked him for _____ her heavy baggage.", options: ["carry", "carrying", "to carry", "having carried"], correct: 1, explanation: "Предлог 'for' управляет герундием." },
+  { tag: "Question 37", question: "37. He spends a lot of time _____ on new art projects.", options: ["work", "working", "to work", "having worked"], correct: 1, explanation: "'spend time + V-ing'." },
+  { tag: "Question 38", question: "38. Are you interested in _____ our hiking club this weekend?", options: ["join", "joining", "to join", "having joined"], correct: 1, explanation: "Предлог 'in' + V-ing." },
+  { tag: "Question 39", question: "39. She apologises for _____ late to the meeting.", options: ["be", "being", "to be", "having been"], correct: 1, explanation: "Предлог 'for' + V-ing." },
+  { tag: "Question 40", question: "40. He insisted on _____ for the entire dinner himself.", options: ["pay", "paying", "to pay", "having paid"], correct: 1, explanation: "Предлог 'on' + V-ing." },
+
+  { tag: "Question 41", question: "41. _____ by the sudden noise, the cat hid under the bed.", options: ["Alarming", "Alarmed", "Having alarmed", "Having been alarmed"], correct: 1, explanation: "'Alarmed' — пассивная причина ('будучи напуганной')." },
+  { tag: "Question 42", question: "42. _____ by his success, Jack decided to write a book too.", options: ["Inspiring", "Inspired", "Having inspired", "To inspire"], correct: 1, explanation: "'Inspired' — вдохновленный." },
+  { tag: "Question 43", question: "43. _____ in a small town, she preferred quiet nature.", options: ["Raising", "Raised", "Having raised", "To raise"], correct: 1, explanation: "'Raised' — выращенная в маленьком городке." },
+  { tag: "Question 44", question: "44. _____ by the dark clouds, they ran back home.", options: ["Frightening", "Frightened", "Having frightened", "To frighten"], correct: 1, explanation: "'Frightened' — напуганные тучами." },
+  { tag: "Question 45", question: "45. _____ in simple words, the text was easy to read.", options: ["Writing", "Written", "Having written", "To write"], correct: 1, explanation: "'Written' — написанный простыми словами." },
+  { tag: "Question 46", question: "46. _____ by the sunny weather, they stayed longer at the beach.", options: ["Delighting", "Delighted", "Having delighted", "To delight"], correct: 1, explanation: "'Delighted' — обрадованные погодой." },
+  { tag: "Question 47", question: "47. _____ by the loud applause, the singer sang another song.", options: ["Encouraging", "Encouraged", "Having encouraged", "To encourage"], correct: 1, explanation: "'Encouraged' — воодушевленный аплодисментами." },
+  { tag: "Question 48", question: "48. _____ by the beauty of the mountain view, they stopped to take pictures.", options: ["Amazed", "Amazing", "Having amazed", "To amaze"], correct: 0, explanation: "'Amazed' — восхищенные видом." },
+
+  { tag: "Question 49", question: "49. She doesn't talk much, but she _____ write great stories.", options: ["does", "do", "did", "is doing"], correct: 0, explanation: "'Does' дает сильное смысловое усиление для 3-го лица ед. ч." },
+  { tag: "Question 50", question: "50. I know you doubt me, but I _____ lock the door before leaving!", options: ["do", "did", "does", "have done"], correct: 1, explanation: "'Did' усиленно подтверждает действие в прошлом." },
+  { tag: "Question 51", question: "51. He rarely cooks, but when he does, he _____ make great pasta.", options: ["does", "do", "did", "is doing"], correct: 0, explanation: "'Does' задействован для эмоционального акцента." },
+  { tag: "Question 52", question: "52. Please believe me! I _____ want to come to your party.", options: ["do", "does", "did", "am doing"], correct: 0, explanation: "'Do' усиливает Present Simple." },
+  { tag: "Question 53", question: "53. Although they lost, they _____ play very well in the first half.", options: ["do", "does", "did", "were doing"], correct: 2, explanation: "'Did' подчеркивает прошедшее действие." },
+  { tag: "Question 54", question: "54. She doesn't travel often, but she _____ love nature trips.", options: ["does", "do", "did", "is doing"], correct: 0, explanation: "'Does' подчеркивает истинность факта." },
+  { tag: "Question 55", question: "55. You might think I forgot, but I _____ buy the tickets!", options: ["do", "did", "does", "have done"], correct: 1, explanation: "'Did' — эмоциональное подтверждение в прошлом." },
+  { tag: "Question 56", question: "56. He doesn't say much, but he _____ care about his friends.", options: ["does", "do", "did", "is doing"], correct: 0, explanation: "'Does' — эмоциональный акцент в настоящем." },
+
+  { tag: "Question 57", question: "57. _____ all the dishes, Mark sat down to watch a movie.", options: ["Washed", "Washing", "Having washed", "To wash"], correct: 2, explanation: "'Having washed' — полное завершение первого действия." },
+  { tag: "Question 58", question: "58. _____ as a guide for years, Sarah knew every street.", options: ["Worked", "Working", "Having worked", "To have worked"], correct: 2, explanation: "'Having worked' выражает предшествующий опыт." },
+  { tag: "Question 59", question: "59. _____ his homework, the boy went out to play with friends.", options: ["Finished", "Finishing", "Having finished", "To finish"], correct: 2, explanation: "Сначала окончил работу, затем пошел гулять." },
+  { tag: "Question 60", question: "60. _____ the tickets in advance, they avoided the long line.", options: ["Bought", "Buying", "Having bought", "To buy"], correct: 2, explanation: "'Having bought' — сначала купили билеты." },
+  { tag: "Question 61", question: "61. _____ the house top to bottom, she made herself coffee.", options: ["Cleaned", "Cleaning", "Having cleaned", "To clean"], correct: 2, explanation: "Завершив уборку, перешла к чаепитию." },
+  { tag: "Question 62", question: "62. _____ his bag, he called a taxi to the station.", options: ["Packed", "Packing", "Having packed", "To pack"], correct: 2, explanation: "Закончив упаковку чемодана, вызвал машину." },
+  { tag: "Question 63", question: "63. _____ the key in his pocket, he locked the front door.", options: ["Found", "Finding", "Having found", "To find"], correct: 2, explanation: "Найдя ключ, совершил следующее действие." },
+  { tag: "Question 64", question: "64. _____ all the instructions, she felt ready to build the shelf.", options: ["Read", "Reading", "Having read", "To read"], correct: 2, explanation: "Прочитав инструкции, приступила к сборке." },
+
+  { tag: "Question 65", question: "65. The ruins are thought _____ by a eruption long ago.", options: ["to destroy", "to be destroyed", "to have been destroyed", "having been destroyed"], correct: 2, explanation: "Perfect Passive Infinitive ('to have been destroyed') для прошлых событий." },
+  { tag: "Question 66", question: "66. The missing keys are reported _____ under the sofa yesterday.", options: ["to be", "to have been", "having been", "to being"], correct: 1, explanation: "'To have been' связывает мысль в настоящем с событием прошлого." },
+  { tag: "Question 67", question: "67. The letter is believed _____ by mistake two weeks ago.", options: ["to send", "to be sent", "to have been sent", "having been sent"], correct: 2, explanation: "Перфектный пассивный инфинитив." },
+  { tag: "Question 68", question: "68. The stolen bicycle is said _____ near the school garden.", options: ["to find", "to be found", "to have been found", "having been found"], correct: 2, explanation: "'To have been found' — пассивное событие прошлого." },
+  { tag: "Question 69", question: "69. The artist is known _____ his famous portrait in this town.", options: ["to paint", "to be painted", "to have painted", "having painted"], correct: 2, explanation: "'To have painted' — активный инфинитив прошлого времени." },
+  { tag: "Question 70", question: "70. This bridge is considered _____ by Romans in ancient times.", options: ["to build", "to be built", "to have been built", "having been built"], correct: 2, explanation: "'To have been built' — факт древности." },
+  { tag: "Question 71", question: "71. The document is understood _____ lost during the house move.", options: ["to lose", "to be lost", "to have been lost", "having been lost"], correct: 2, explanation: "Пассивное событие в прошлом." },
+  { tag: "Question 72", question: "72. The runner is claimed _____ the world record in 1998.", options: ["to break", "to be broken", "to have broken", "having broken"], correct: 2, explanation: "Активный результат прошлого в Complex Subject." },
+
+  { tag: "Question 73", question: "73. The train is _____ to arrive at 5:00 PM according to schedule.", options: ["due", "about", "bound", "on the verge"], correct: 0, explanation: "'Be due to' — событие по графику/расписанию." },
+  { tag: "Question 74", question: "74. Quick, sit down! The film is _____ to start in a second.", options: ["due", "about", "bound", "likely"], correct: 1, explanation: "'Be about to' — действие вот-вот наступит." },
+  { tag: "Question 75", question: "75. The grocery store is _____ to open at 8:00 AM every morning.", options: ["due", "about", "bound", "verge"], correct: 0, explanation: "График работы = 'due'." },
+  { tag: "Question 76", question: "76. Quiet please! The speech is _____ to begin.", options: ["due", "about", "bound", "due to"], correct: 1, explanation: "'Be about to' — в эту самую секунду." },
+  { tag: "Question 77", question: "77. The evening bus is _____ to land at the station at 9:30 PM.", options: ["due", "about", "bound", "on the point"], correct: 0, explanation: "Прибытие по расписанию." },
+  { tag: "Question 78", question: "78. Look at him, he is _____ to jump into the swimming pool!", options: ["due", "about", "bound", "verge"], correct: 1, explanation: "Прямо сейчас собирается прыгнуть." },
+  { tag: "Question 79", question: "79. The concert is _____ to start in twenty minutes.", options: ["due", "about", "bound", "verge"], correct: 0, explanation: "Запланированное событие по времени." },
+  { tag: "Question 80", question: "80. Stop talking! The judge is _____ to announce the winner.", options: ["due", "about", "bound", "likely"], correct: 1, explanation: "'Be about to' — прямо перед действием." },
+
+  { tag: "Question 81", question: "81. Lately, she _____ long hours trying to finish her book.", options: ["works", "is working", "has worked", "has been working"], correct: 3, explanation: "'Lately' + непрерывный процесс = Present Perfect Continuous." },
+  { tag: "Question 82", question: "82. How long _____ you _____ for the bus in this cold weather?", options: ["do / wait", "are / waiting", "have / been waiting", "had / waited"], correct: 2, explanation: "Длительность действия до настоящего момента." },
+  { tag: "Question 83", question: "83. He is exhausted because he _____ in the garden all morning.", options: ["worked", "is working", "has been working", "had worked"], correct: 2, explanation: "Объяснение видимого состояния от недавнего процесса." },
+  { tag: "Question 84", question: "84. They _____ Spanish for three months and can talk easily.", options: ["learn", "are learning", "have been learning", "learned"], correct: 2, explanation: "Процесс обучения, длившийся период времени." },
+  { tag: "Question 85", question: "85. Why are your hands dirty? — I _____ my old bicycle.", options: ["repaired", "am repairing", "have been repairing", "had repaired"], correct: 2, explanation: "Следствие от недавнего процесса." },
+  { tag: "Question 86", question: "86. She _____ yoga classes lately to stay healthy.", options: ["attends", "is attending", "has been attending", "attended"], correct: 2, explanation: "'Lately' указывает на регулярно повторяющийся процесс." },
+  { tag: "Question 87", question: "87. It _____ all day, so the football field is totally muddy.", options: ["rains", "is raining", "has been raining", "rained"], correct: 2, explanation: "Длительный процесс до настоящего момента." },
+  { tag: "Question 88", question: "88. My eyes hurt because I _____ at the screen for hours.", options: ["look", "am looking", "have been looking", "looked"], correct: 2, explanation: "Причина усталости — многочасовой процесс." },
+
+  { tag: "Question 89", question: "89. Don't worry about noise; she is completely used to _____ in a café.", options: ["work", "working", "be working", "having worked"], correct: 1, explanation: "'be used to + V-ing'." },
+  { tag: "Question 90", question: "90. It took me months to get used to _____ on the left side of the road.", options: ["drive", "driving", "be driving", "have driven"], correct: 1, explanation: "'get used to + V-ing'." },
+  { tag: "Question 91", question: "91. Are you used to _____ up so early for work?", options: ["get", "getting", "be getting", "have gotten"], correct: 1, explanation: "'be used to + V-ing'." },
+  { tag: "Question 92", question: "92. He soon got used to _____ a bike to school every day.", options: ["ride", "riding", "be riding", "have ridden"], correct: 1, explanation: "'get used to + V-ing'." },
+  { tag: "Question 93", question: "93. She isn't used to _____ such spicy food for dinner.", options: ["eat", "eating", "be eating", "have eaten"], correct: 1, explanation: "'be not used to + V-ing'." },
+  { tag: "Question 94", question: "94. They will quickly get used to _____ in a quiet town.", options: ["live", "living", "be living", "have lived"], correct: 1, explanation: "'get used to + V-ing'." },
+  { tag: "Question 95", question: "95. I am not used to _____ coats in warm April weather.", options: ["wear", "wearing", "be wearing", "have worn"], correct: 1, explanation: "'am not used to + V-ing'." },
+  { tag: "Question 96", question: "96. Did it take you long to get used to _____ with a new team?", options: ["work", "working", "be working", "have worked"], correct: 1, explanation: "'get used to + V-ing'." },
+
+  { tag: "Question 97", question: "97. By the time we arrived, the movie _____ for over twenty minutes.", options: ["was", "has been", "had been", "was being"], correct: 2, explanation: "Past Perfect ('had been') для действия/состояния до момента в прошлом." },
+  { tag: "Question 98", question: "98. While the children _____ their homework, the lights went out.", options: ["reviewed", "were reviewing", "had reviewed", "have been reviewing"], correct: 1, explanation: "Past Continuous ('were reviewing') прервано действием в Past Simple." },
+  { tag: "Question 99", question: "99. You _____ bring an umbrella today; the forecast says no rain.", options: ["need not", "must not", "cannot", "may not"], correct: 0, explanation: "'Need not' — отсутствие необходимости." },
+  { tag: "Question 100", question: "100. When I entered the kitchen, she _____ a fresh apple pie.", options: ["baked", "was baking", "had baked", "has been baking"], correct: 1, explanation: "Процесс в определенный момент прошлого." },
+  { tag: "Question 101", question: "101. By midnight, the storm _____ down completely.", options: ["calmed", "was calming", "had calmed", "has calmed"], correct: 2, explanation: "'By midnight' указывает на Past Perfect." },
+  { tag: "Question 102", question: "102. You _____ buy extra milk; we already have three bottles.", options: ["need not", "must not", "cannot", "may not"], correct: 0, explanation: "'Need not' — нет необходимости." },
+  { tag: "Question 103", question: "103. While I _____ for the train, I read two news articles.", options: ["waited", "was waiting", "had waited", "have been waiting"], correct: 1, explanation: "Длительное фоновое действие в прошлом." },
+  { tag: "Question 104", question: "104. By the time the doctor came, the patient _____ better.", options: ["felt", "was feeling", "had felt", "has felt"], correct: 2, explanation: "Предшествующее состояние в прошлом." },
+
+  // ==========================================
+  // БЛОК 2: ДОПОЛНИТЕЛЬНЫЙ БЛОК (21 ВОПРОС ПО ВСЕМ ТЕМАМ ИЗ МАРАФОНА)
+  // ==========================================
+
+  { tag: "Final Check 1", question: "105. _____ through the window, he noticed the first snow falling.", options: ["Looking", "Looked", "Having looked", "To look"], correct: 0, explanation: "Причастие настоящего времени для одновременного действия." },
+  { tag: "Final Check 2", question: "106. _____ that nobody was answering the bell, she left a note.", options: ["Noticed", "Noticing", "Having noticed", "To notice"], correct: 1, explanation: "Причинное значение через V-ing." },
+  { tag: "Final Check 3", question: "107. She _____ the marathon, but she twisted her ankle halfway through.", options: ["could finish", "could have finished", "must finish", "should finish"], correct: 1, explanation: "'Could have finished' — упущенная возможность." },
+  { tag: "Final Check 4", question: "108. _____ he was exhausted, he stayed up to finish reading his novel.", options: ["Even though", "Despite", "In spite of", "Much as"], correct: 0, explanation: "'Even though' связывает полноценное предложение." },
+  { tag: "Final Check 5", question: "109. _____ the heavy traffic outside, the baby slept peacefully.", options: ["Even though", "Although", "Despite", "Much as"], correct: 2, explanation: "'Despite' уходит перед существительным." },
+  { tag: "Final Check 6", question: "110. The scientist, _____ discovery changed medicine, received an award.", options: ["who", "whom", "whose", "which"], correct: 2, explanation: "'Whose' для выражения принадлежности." },
+  { tag: "Final Check 7", question: "111. The new library building, _____ opened last week, looks beautiful.", options: ["which", "that", "where", "whose"], correct: 0, explanation: "Non-defining clause требует 'which'." },
+  { tag: "Final Check 8", question: "112. The village _____ my grandparents lived is near a quiet lake.", options: ["which", "that", "where", "whose"], correct: 2, explanation: "'Where' — место действия." },
+  { tag: "Final Check 9", question: "113. They spent the whole morning _____ the garden after the storm.", options: ["clean", "cleaning", "to clean", "having cleaned"], correct: 1, explanation: "'Spend time + V-ing'." },
+  { tag: "Final Check 10", question: "114. He apologized to everyone for _____ his keys at home.", options: ["forget", "forgetting", "to forget", "having forgotten"], correct: 1, explanation: "Предлог 'for' управляет герундием." },
+  { tag: "Final Check 11", question: "115. _____ by the kind words, she started to smile with delight.", options: ["Touching", "Touched", "Having touched", "To touch"], correct: 1, explanation: "Past Participle ('Touched') — пассивная причина." },
+  { tag: "Final Check 12", question: "116. I know you think I don't care, but I _____ love your new haircut!", options: ["do", "does", "did", "am doing"], correct: 0, explanation: "'Do' для смыслового усиления." },
+  { tag: "Final Check 13", question: "117. _____ all his work early, the boy went home to rest.", options: ["Finished", "Finishing", "Having finished", "To finish"], correct: 2, explanation: "'Having finished' — завершенность первого действия." },
+  { tag: "Final Check 14", question: "118. The ancient manuscript is reported _____ in a secret cave.", options: ["to find", "to be found", "to have been found", "having been found"], correct: 2, explanation: "Complex Subject: 'to have been found'." },
+  { tag: "Final Check 15", question: "119. The bus is _____ to arrive at 4:15 PM according to the schedule.", options: ["due", "about", "bound", "verge"], correct: 0, explanation: "'Be due to' — расписание." },
+  { tag: "Final Check 16", question: "120. Get ready! The plane is _____ to take off in a few seconds.", options: ["due", "about", "bound", "verge"], correct: 1, explanation: "'Be about to' — в эту секунду." },
+  { tag: "Final Check 17", question: "121. Lately, they _____ long hours training for the grand final.", options: ["spend", "are spending", "have spent", "have been spending"], correct: 3, explanation: "Present Perfect Continuous c 'lately'." },
+  { tag: "Final Check 18", question: "122. She quickly got used to _____ in a warm country.", options: ["live", "living", "be living", "have lived"], correct: 1, explanation: "'get used to + V-ing'." },
+  { tag: "Final Check 19", question: "123. By 8 PM yesterday, he _____ all the emails from his friends.", options: ["answered", "was answering", "had answered", "has answered"], correct: 2, explanation: "'By 8 PM' = Past Perfect." },
+  { tag: "Final Check 20", question: "124. While we _____ along the beach, it suddenly started raining.", options: ["walked", "were walking", "had walked", "have been walking"], correct: 1, explanation: "Past Continuous для длительного процесса." },
+  { tag: "Final Check 21", question: "125. You _____ pay for the entrance; kids under 7 enter for free.", options: ["need not", "must not", "cannot", "may not"], correct: 0, explanation: "'Need not' — нет необходимости платить." }
+];
+
+let currentAnswers = new Array(quizData.length).fill(null);
+
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+
+  quizData.forEach((q, index) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    let optionsHTML = '';
+    q.options.forEach((opt, optIndex) => {
+      optionsHTML += `<button class="btn-option" id="opt-${index}-${optIndex}" onclick="checkAnswer(${index}, ${optIndex})">${opt}</button>`;
+    });
+
+    card.innerHTML = `
+      <span class="topic-tag">${q.tag}</span>
+      <div class="question">${q.question}</div>
+      <div class="options">${optionsHTML}</div>
+      <div class="explanation" id="expl-${index}">${q.explanation}</div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function checkAnswer(qIndex, optIndex) {
+  if (currentAnswers[qIndex] !== null) return;
+
+  currentAnswers[qIndex] = optIndex;
+  const q = quizData[qIndex];
+  const explEl = document.getElementById(`expl-${qIndex}`);
+
+  for (let i = 0; i < q.options.length; i++) {
+    const btn = document.getElementById(`opt-${qIndex}-${i}`);
+    btn.disabled = true;
+    if (i === q.correct) {
+      btn.classList.add('correct');
+    }
+    if (i === optIndex && i !== q.correct) {
+      btn.classList.add('incorrect');
+    }
+  }
+
+  explEl.classList.add('show');
+  updateProgress();
+}
+
+function updateProgress() {
+  const answered = currentAnswers.filter(a => a !== null).length;
+  const correctCount = currentAnswers.reduce((acc, val, idx) => {
+    return val === quizData[idx].correct ? acc + 1 : acc;
+  }, 0);
+
+  const percentage = answered > 0 ? Math.round((correctCount / answered) * 100) : 0;
+
+  document.getElementById('answered-count').innerText = `Отвечено: ${answered} / ${quizData.length}`;
+  document.getElementById('score-percentage').innerText = `Счет: ${percentage}%`;
+  document.getElementById('progress-bar').style.width = `${(answered / quizData.length) * 100}%`;
+
+  if (answered === quizData.length) {
+    showFinalResults(correctCount);
+  }
+}
+
+function showFinalResults(correctCount) {
+  const resultContainer = document.getElementById('result-container');
+  const finalScore = document.getElementById('final-score');
+  const percentage = Math.round((correctCount / quizData.length) * 100);
+
+  finalScore.innerText = `Ваш результат: ${correctCount} из ${quizData.length} (${percentage}%)`;
+  resultContainer.style.display = 'block';
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+  currentAnswers = new Array(quizData.length).fill(null);
+  document.getElementById('result-container').style.display = 'none';
+  document.getElementById('answered-count').innerText = `Отвечено: 0 / ${quizData.length}`;
+  document.getElementById('score-percentage').innerText = `Счет: 0%`;
+  document.getElementById('progress-bar').style.width = `0%`;
+  renderQuiz();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+renderQuiz();
+</script>
+
+</body>
+</html>
