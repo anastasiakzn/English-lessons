@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lesson — Svetlana — 03.08.2026</title>
+    <style>
+        :root {
+            --primary-color: #1a56db;
+            --secondary-color: #0e9f6e;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --badge-bg: #fef3c7;
+            --badge-text: #92400e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .tab-btn {
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #475569;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .tab-btn.active {
+            background: #1e293b;
+            color: white;
+            border-color: #1e293b;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Section Cards & Badges */
+        .section-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .warmup-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 18px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 15px;
+        }
+
+        .action-btn {
+            background: #e0e7ff;
+            color: #3730a3;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #c7d2fe;
+        }
+
+        .hidden-text {
+            display: none;
+            color: #1e1b4b;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            padding: 10px;
+            background: #ffffff;
+            border-radius: 6px;
+            border: 1px solid #c7d2fe;
+        }
+
+        /* Homework Section (6 Sentences Layout) */
+        .example-box {
+            background-color: #e0f2fe;
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #0369a1;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .sentence-input-group {
+            margin-bottom: 16px;
+        }
+
+        .sentence-input-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .sentence-input-group input[type="text"] {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+        }
+
+        /* Reading & True/False */
+        .tf-item {
+            background: #f8fafc;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .tf-btn {
+            padding: 6px 16px;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 6px;
+            transition: all 0.2s;
+        }
+
+        .tf-btn.correct-choice {
+            background-color: #10b981 !important;
+            color: white !important;
+            border-color: #10b981 !important;
+        }
+
+        .tf-btn.wrong-choice {
+            background-color: #ef4444 !important;
+            color: white !important;
+            border-color: #ef4444 !important;
+        }
+
+        /* Live Check Inputs */
+        input.live-input {
+            padding: 6px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            width: 160px;
+            transition: border-color 0.2s;
+        }
+
+        input.live-input.correct {
+            border-color: #10b981 !important;
+            background-color: #ecfdf5 !important;
+            color: #065f46;
+        }
+
+        input.live-input.incorrect {
+            border-color: #ef4444 !important;
+            background-color: #fef2f2 !important;
+        }
+
+        /* Grammar Table */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: #f1f5f9;
+        }
+
+        /* Vocabulary Flashcards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 150px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            border-radius: 10px;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .flip-card-front {
+            background-color: #ffffff;
+            color: var(--text-color);
+        }
+
+        .word-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .word-ipa {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin: 3px 0;
+        }
+
+        .word-def {
+            font-size: 0.8rem;
+            color: #475569;
+            font-style: italic;
+            margin-top: 4px;
+        }
+
+        .flip-card-back {
+            background-color: var(--primary-color);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* Translation Section (Exact Match to Irina's Layout) */
+        .translation-instruction {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .story-container-card {
+            background-color: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px;
+            line-height: 2.2;
+            font-size: 1.08rem;
+            color: #1e293b;
+        }
+
+        .inline-sentence-block {
+            margin-bottom: 14px;
+        }
+
+        .inline-ruen-btn {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0 6px;
+            display: inline-block;
+            vertical-align: middle;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+        }
+
+        .inline-ruen-btn:hover {
+            background-color: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .translation-reveal-box {
+            display: none;
+            background-color: #ecfdf5;
+            border-left: 3px solid #10b981;
+            color: #065f46;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 10px 14px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        ol li {
+            margin-bottom: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>English Interactive Lesson</h1>
+        <div class="subtitle">Student: Svetlana | Date: 03.08.2026 | Topic: Second Conditional & Pre-analytical Diagnostics</div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'warmup')">1 · Warm-up</button>
+        <button class="tab-btn" onclick="openTab(event, 'homework')">2 · Homework</button>
+        <button class="tab-btn" onclick="openTab(event, 'reading')">3 · Reading</button>
+        <button class="tab-btn" onclick="openTab(event, 'grammar')">4 · Grammar</button>
+        <button class="tab-btn" onclick="openTab(event, 'vocabulary')">5 · Vocabulary</button>
+        <button class="tab-btn" onclick="openTab(event, 'translation')">6 · Translation</button>
+    </div>
+
+    <!-- TAB 1: WARM-UP -->
+    <div id="warmup" class="tab-content active">
+        <div class="section-card">
+            <h2>1. Professional Warm-up</h2>
+            <div class="warmup-box">
+                <p><strong>Advanced Academic Sentence:</strong></p>
+                <p><em>"Errors stemming from a failure to strictly adhere to standardized phlebotomy protocols during the pre-analytical phase often lead to sample hemolysis, compromised diagnostic accuracy, and unnecessary re-testing."</em></p>
+                <button class="action-btn" onclick="toggleElement('warmup-hint')">Phrasal Verb & Translation</button>
+                <div id="warmup-hint" class="hidden-text">
+                    <strong>Phrasal Verb:</strong> <em>stem from</em> — to result from or be caused by something.<br>
+                    <strong>Translation:</strong> «Ошибки, происходящие из-за несоблюдения строгих протоколов венопункции на преаналитическом этапе, часто приводят к гемолизу проб, снижению точности диагностики и ненужным повторным исследованиям».
+                </div>
+            </div>
+            <p><strong>Discussion Questions:</strong></p>
+            <ul>
+                <li>What is the most frequent pre-analytical error observed in laboratory practice today?</li>
+                <li>How can university courses effectively reduce sample mislabeling among medical trainees?</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- TAB 2: HOMEWORK CHECK -->
+    <div id="homework" class="tab-content">
+        <div class="section-card">
+            <span class="badge">SENTENCES · FIRST CONDITIONAL</span>
+            <h2>Create your own sentences</h2>
+            <p class="subtitle">Write 6 sentences using the First Conditional. Use topics from your work or life — it's more interesting!</p>
+            
+            <div class="example-box">
+                <strong>Example:</strong> If I double-check the samples, we will get more reliable results.
+            </div>
+
+            <div class="sentence-input-group">
+                <label>Sentence 1</label>
+                <input type="text" placeholder="If ..., ... will ...">
+            </div>
+
+            <div class="sentence-input-group">
+                <label>Sentence 2</label>
+                <input type="text" placeholder="If ..., ... will ...">
+            </div>
+
+            <div class="sentence-input-group">
+                <label>Sentence 3</label>
+                <input type="text" placeholder="If ..., ... will ...">
+            </div>
+
+            <div class="sentence-input-group">
+                <label>Sentence 4</label>
+                <input type="text" placeholder="If ..., ... will ...">
+            </div>
+
+            <div class="sentence-input-group">
+                <label>Sentence 5</label>
+                <input type="text" placeholder="If ..., ... will ...">
+            </div>
+
+            <div class="sentence-input-group">
+                <label>Sentence 6</label>
+                <input type="text" placeholder="If ..., ... will ...">
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: READING -->
+    <div id="reading" class="tab-content">
+        <div class="section-card">
+            <h2>3. Reading: Pre-analytical Quality Management</h2>
+            <p>Read the text below:</p>
+            <p>Laboratory diagnostics is a crucial component of modern healthcare, with up to 70% of medical decisions based on laboratory test results. However, clinical studies show that more than 60% of diagnostic errors occur during the pre-analytical phase — before the sample ever reaches the automated analyzer.</p>
+            <p>If hospital management allocated more funding for medical staff training, specimen contamination rates would decrease significantly. Furthermore, if universities introduced dedicated pre-analytical modules, young researchers would make far fewer procedural mistakes.</p>
+            <p>As Professor Svetlana emphasizes in her lectures: "If we eliminated pre-analytical discrepancies, national healthcare systems would save millions of euros every year and substantially improve patient safety."</p>
+        </div>
+
+        <div class="section-card">
+            <h3>Task: Read the text and mark the statements as True or False</h3>
+            
+            <div class="tf-item">
+                <span>1. Over 60% of all laboratory errors occur during the analytical phase.</span>
+                <div>
+                    <button class="tf-btn" onclick="checkTF(this, false)">True</button>
+                    <button class="tf-btn" onclick="checkTF(this, true)">False</button>
+                </div>
+            </div>
+
+            <div class="tf-item">
+                <span>2. Laboratory test results influence up to 70% of clinical decisions.</span>
+                <div>
+                    <button class="tf-btn" onclick="checkTF(this, true)">True</button>
+                    <button class="tf-btn" onclick="checkTF(this, false)">False</button>
+                </div>
+            </div>
+
+            <div class="tf-item">
+                <span>3. According to the text, extra training funding would decrease specimen contamination.</span>
+                <div>
+                    <button class="tf-btn" onclick="checkTF(this, true)">True</button>
+                    <button class="tf-btn" onclick="checkTF(this, false)">False</button>
+                </div>
+            </div>
+
+            <div class="tf-item">
+                <span>4. Dedicated pre-analytical university modules already exist in all medical schools.</span>
+                <div>
+                    <button class="tf-btn" onclick="checkTF(this, false)">True</button>
+                    <button class="tf-btn" onclick="checkTF(this, true)">False</button>
+                </div>
+            </div>
+
+            <div class="tf-item">
+                <span>5. Eliminating pre-analytical discrepancies could save millions of euros annually.</span>
+                <div>
+                    <button class="tf-btn" onclick="checkTF(this, true)">True</button>
+                    <button class="tf-btn" onclick="checkTF(this, false)">False</button>
+                </div>
+            </div>
+
+            <div class="tf-item">
+                <span>6. The pre-analytical phase takes place after the sample reaches the analyzer.</span>
+                <div>
+                    <button class="tf-btn" onclick="checkTF(this, false)">True</button>
+                    <button class="tf-btn" onclick="checkTF(this, true)">False</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: GRAMMAR -->
+    <div id="grammar" class="tab-content">
+        <div class="section-card">
+            <h2>4. Grammar: Second Conditional</h2>
+            <h3>Structure & Rules</h3>
+            <p>The <strong>Second Conditional</strong> is used to talk about hypothetical, imaginary, or unreal situations in the present or future.</p>
+
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>If-clause (Condition)</th>
+                        <th>Main clause (Result)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>If + Past Simple</strong></td>
+                        <td><strong>would / wouldn't + Verb (V1)</strong></td>
+                    </tr>
+                    <tr>
+                        <td>If I <em>had</em> more free time...</td>
+                        <td>...I <em>would visit</em> my daughters in Israel.</td>
+                    </tr>
+                    <tr>
+                        <td>If labs <em>standardized</em> labeling...</td>
+                        <td>...error rates <em>would drop</em> significantly.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Note on "were":</strong> In modern English, <strong>were</strong> is standard for all persons in the If-clause (e.g., <em>If I were, If he were, If the protocol were</em>).</p>
+        </div>
+
+        <!-- Exercise 1 -->
+        <div class="section-card">
+            <h3>Exercise 1: Put the verbs in brackets into the correct Second Conditional form</h3>
+            <p>Type your answer in the text box. The field will turn green when correct.</p>
+            <ol>
+                <li>If the laboratory (have) <input type="text" class="live-input" data-answer="had" oninput="checkInput(this)"> modern equipment, we would process samples faster.</li>
+                <li>If I (be) <input type="text" class="live-input" data-answer="were" oninput="checkInput(this)"> at the congress in Israel, I would present our new study.</li>
+                <li>Phlebotomists would make fewer errors if they (follow) <input type="text" class="live-input" data-answer="followed" oninput="checkInput(this)"> the guidelines strictly.</li>
+                <li>If the patient prepared properly, the blood sample (not / show) <input type="text" class="live-input" style="width: 200px;" data-answer="would not show" oninput="checkInput(this)"> hemolysis.</li>
+                <li>Svetlana (publish) <input type="text" class="live-input" data-answer="would publish" oninput="checkInput(this)"> more papers if she had additional laboratory assistants.</li>
+                <li>If we reduced diagnostic errors, healthcare costs (decrease) <input type="text" class="live-input" data-answer="would decrease" oninput="checkInput(this)"> substantially.</li>
+            </ol>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="section-card">
+            <h3>Exercise 2: Find and correct the mistake in each sentence</h3>
+            <p>Type the correct verb or phrase into the box to fix the sentence:</p>
+            <ol>
+                <li>If I have more time yesterday, I would finish the research report.<br>Correction: <input type="text" class="live-input" data-answer="had" oninput="checkInput(this)"></li>
+                <li>If the blood sample was stored properly, the results would be accurate.<br>Correction: <input type="text" class="live-input" data-answer="were" oninput="checkInput(this)"></li>
+                <li>If she studied the protocol carefully, she will avoid this error.<br>Correction: <input type="text" class="live-input" data-answer="would" oninput="checkInput(this)"></li>
+                <li>What would you do if you win a major scientific research award?<br>Correction: <input type="text" class="live-input" data-answer="won" oninput="checkInput(this)"></li>
+                <li>If the lab received new tubes, they will process samples faster.<br>Correction: <input type="text" class="live-input" data-answer="would" oninput="checkInput(this)"></li>
+                <li>If I didn't traveled so much, I would spend more time at home.<br>Correction: <input type="text" class="live-input" data-answer="travel" oninput="checkInput(this)"></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- TAB 5: VOCABULARY -->
+    <div id="vocabulary" class="tab-content">
+        <div class="section-card">
+            <h2>5. Vocabulary Review</h2>
+            <h3>Part 1: Flashcards from Previous Lessons</h3>
+            <p>Click on the card to reveal the Russian translation:</p>
+
+            <div class="cards-grid">
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="word-title">yet</div>
+                            <div class="word-ipa">/jɛt/</div>
+                            <div class="word-def">in spite of that; nevertheless</div>
+                        </div>
+                        <div class="flip-card-back">хoтя / всё же</div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="word-title">entirely</div>
+                            <div class="word-ipa">/ɪnˈtaɪə.li/</div>
+                            <div class="word-def">completely; in every way</div>
+                        </div>
+                        <div class="flip-card-back">полностью / целиком</div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="word-title">be located</div>
+                            <div class="word-ipa">/bi ləʊˈkeɪ.tɪd/</div>
+                            <div class="word-def">situated in a particular place</div>
+                        </div>
+                        <div class="flip-card-back">располагаться / находиться</div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="word-title">to think over</div>
+                            <div class="word-ipa">/tuː θɪŋk ˈəʊ.vər/</div>
+                            <div class="word-def">consider carefully before deciding</div>
+                        </div>
+                        <div class="flip-card-back">обдумывать</div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="word-title">scientific</div>
+                            <div class="word-ipa">/ˌsaɪənˈtɪf.ɪk/</div>
+                            <div class="word-def">relating to science or study</div>
+                        </div>
+                        <div class="flip-card-back">научный</div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="word-title">economic</div>
+                            <div class="word-ipa">/ˌiː.kəˈnɒm.ɪk/</div>
+                            <div class="word-def">relating to trade, industry, money</div>
+                        </div>
+                        <div class="flip-card-back">экономический</div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="word-title">patience</div>
+                            <div class="word-ipa">/ˈpeɪ.ʃəns/</div>
+                            <div class="word-def">ability to accept delay calmly</div>
+                        </div>
+                        <div class="flip-card-back">терпение</div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="word-title">patient</div>
+                            <div class="word-ipa">/ˈpeɪ.ʃənt/</div>
+                            <div class="word-def">a person receiving medical care</div>
+                        </div>
+                        <div class="flip-card-back">пациент / терпеливый</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h3>Part 2: Practice Exercise (8 Sentences)</h3>
+            <p>Fill in the gaps with the appropriate word or phrase from the flashcards above:</p>
+            <ol>
+                <li>The new medical university research laboratory will <input type="text" class="live-input" style="width: 170px;" data-answer="be located" oninput="checkInput(this)"> in Saint Petersburg.</li>
+                <li>I need some quiet time to <input type="text" class="live-input" style="width: 170px;" data-answer="think over" oninput="checkInput(this)"> the international conference invitation.</li>
+                <li>The test results were not <input type="text" class="live-input" style="width: 170px;" data-answer="entirely" oninput="checkInput(this)"> unexpected, but they surprised the clinical team.</li>
+                <li>Professor Svetlana published a new <input type="text" class="live-input" style="width: 170px;" data-answer="scientific" oninput="checkInput(this)"> article on laboratory diagnostic errors.</li>
+                <li>Teaching young medical students and guiding their research requires immense <input type="text" class="live-input" style="width: 170px;" data-answer="patience" oninput="checkInput(this)">.</li>
+                <li>Every <input type="text" class="live-input" style="width: 170px;" data-answer="patient" oninput="checkInput(this)"> in the clinic relies on accurate diagnostic sample results.</li>
+                <li>We must carefully evaluate both the medical and <input type="text" class="live-input" style="width: 170px;" data-answer="economic" oninput="checkInput(this)"> benefits of the new system.</li>
+                <li>The procedure is quite complex, <input type="text" class="live-input" style="width: 170px;" data-answer="yet" oninput="checkInput(this)"> it produces highly reliable pre-analytical data.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- TAB 6: TRANSLATION -->
+    <div id="translation" class="tab-content">
+        <div class="translation-instruction">
+            💡 Click the <strong>RU→EN</strong> button after each sentence to reveal the translation.
+        </div>
+
+        <div class="story-container-card">
+            <div class="inline-sentence-block">
+                Если бы у меня было больше свободного времени на этой неделе, я бы полетела в Израиль, чтобы навестить своих дочек и внуков.
+                <button class="inline-ruen-btn" onclick="toggleElement('tr1')">RU→EN</button>
+                <div id="tr1" class="translation-reveal-box">If I had more free time this week, I would fly to Israel to visit my daughters and grandchildren.</div>
+            </div>
+
+            <div class="inline-sentence-block">
+                Однако сейчас я готовлю важный научный доклад для международной конференции по лабораторной диагностике.
+                <button class="inline-ruen-btn" onclick="toggleElement('tr2')">RU→EN</button>
+                <div id="tr2" class="translation-reveal-box">However, right now I am preparing an important scientific report for an international conference on laboratory diagnostics.</div>
+            </div>
+
+            <div class="inline-sentence-block">
+                Если бы клиники уделяли больше внимания преаналитическому этапу, число диагностических ошибок сократилось бы вдвое.
+                <button class="inline-ruen-btn" onclick="toggleElement('tr3')">RU→EN</button>
+                <div id="tr3" class="translation-reveal-box">If clinics paid more attention to the pre-analytical phase, the number of diagnostic errors would be cut in half.</div>
+            </div>
+
+            <div class="inline-sentence-block">
+                Мои студенты в университете провели бы исследование значительно быстрее, если бы лаборатория получила новые пробирки вовремя.
+                <button class="inline-ruen-btn" onclick="toggleElement('tr4')">RU→EN</button>
+                <div id="tr4" class="translation-reveal-box">My university students would conduct the research much faster if the laboratory received new tubes on time.</div>
+            </div>
+
+            <div class="inline-sentence-block">
+                Нам нужно тщательно обдумать все результаты, хотя исследование ещё не полностью завершено.
+                <button class="inline-ruen-btn" onclick="toggleElement('tr5')">RU→EN</button>
+                <div id="tr5" class="translation-reveal-box">We need to carefully think over all the results, yet the study is not entirely completed.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    function toggleElement(elementId) {
+        var el = document.getElementById(elementId);
+        if (el.style.display === "block") {
+            el.style.display = "none";
+        } else {
+            el.style.display = "block";
+        }
+    }
+
+    function checkTF(btn, isCorrect) {
+        var parent = btn.parentElement;
+        var buttons = parent.getElementsByClassName("tf-btn");
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove("correct-choice", "wrong-choice");
+        }
+        if (isCorrect) {
+            btn.classList.add("correct-choice");
+        } else {
+            btn.classList.add("wrong-choice");
+        }
+    }
+
+    function checkInput(input) {
+        var expected = input.getAttribute("data-answer").toLowerCase().trim();
+        var actual = input.value.toLowerCase().trim();
+        
+        // Remove trailing punctuation
+        actual = actual.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+        
+        if (actual === expected) {
+            input.classList.add("correct");
+            input.classList.remove("incorrect");
+        } else if (actual.length > 0) {
+            input.classList.add("incorrect");
+            input.classList.remove("correct");
+        } else {
+            input.classList.remove("correct", "incorrect");
+        }
+    }
+</script>
+
+</body>
+</html>
