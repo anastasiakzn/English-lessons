@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lesson — Svetlana — 10.09.2026</title>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1e3a8a;
+            --primary-light: #eff6ff;
+            --secondary: #0e9f6e;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 25px 15px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 1.85rem;
+            margin-bottom: 8px;
+        }
+
+        .header-meta {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .tab-btn {
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #475569;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .tab-btn.active {
+            background: #1e293b;
+            color: white;
+            border-color: #1e293b;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Cards and General Layout */
+        .section-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            color: var(--text-main);
+            margin-bottom: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 22px;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        .hint-notice {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        /* Warm-up Box */
+        .warmup-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .action-btn {
+            background: #e0e7ff;
+            color: #3730a3;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+
+        .action-btn:hover {
+            background: #c7d2fe;
+        }
+
+        .hidden-panel {
+            display: none;
+            color: #1e1b4b;
+            font-size: 0.92rem;
+            margin-top: 12px;
+            padding: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #c7d2fe;
+            line-height: 1.6;
+        }
+
+        /* Story Container (Homework & Translation) */
+        .story-container {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 26px;
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: var(--text-main);
+        }
+
+        .inline-btn {
+            background: #eef1f6;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            user-select: none;
+            display: inline-block;
+            transition: all 0.2s;
+            vertical-align: middle;
+        }
+
+        .inline-btn:hover {
+            background: #cbd5e1;
+        }
+
+        .inline-en {
+            display: none;
+            color: #1d4ed8;
+            font-weight: 600;
+            background-color: #dbeafe;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-left: 4px;
+        }
+
+        /* Audio Player Card */
+        .audio-player-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .player-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .player-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            transition: width 0.2s ease;
+        }
+
+        .time-display {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            min-width: 90px;
+        }
+
+        /* Quiz Elements */
+        .quiz-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.98rem;
+        }
+
+        .quiz-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .choice-btn {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.92rem;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .choice-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .choice-btn.correct {
+            background-color: var(--accent-green) !important;
+            color: white !important;
+            border-color: var(--accent-green) !important;
+        }
+
+        .choice-btn.incorrect {
+            background-color: var(--accent-red) !important;
+            color: white !important;
+            border-color: var(--accent-red) !important;
+        }
+
+        /* Dictation Rows */
+        .dictation-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .play-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: opacity 0.2s;
+        }
+
+        .play-btn:hover {
+            opacity: 0.9;
+        }
+
+        .live-input {
+            flex: 1;
+            min-width: 220px;
+            padding: 9px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .live-input.correct {
+            border-color: var(--accent-green) !important;
+            background-color: #ecfdf5 !important;
+            color: #065f46;
+        }
+
+        .live-input.incorrect {
+            border-color: var(--accent-red) !important;
+            background-color: #fef2f2 !important;
+        }
+
+        .btn-peek {
+            background: #e2e8f0;
+            color: #334155;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-peek:hover {
+            background: #cbd5e1;
+        }
+
+        .answer-reveal {
+            display: none;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #065f46;
+            font-weight: 600;
+            margin-top: 6px;
+            padding: 8px 12px;
+            background: #ecfdf5;
+            border-radius: 6px;
+            border: 1px solid #a7f3d0;
+        }
+
+        /* Grammar Select Styles */
+        .select-input {
+            padding: 6px 10px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 6px;
+            background: #ffffff;
+            font-size: 0.92rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .select-input.correct {
+            border-color: var(--accent-green) !important;
+            background-color: #ecfdf5 !important;
+            color: #065f46;
+        }
+
+        ol.grammar-list li {
+            margin-bottom: 18px;
+            line-height: 2;
+            font-size: 0.98rem;
+        }
+
+        /* Vocabulary Flip Cards */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 160px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .flip-card-front {
+            background-color: #ffffff;
+            color: var(--text-main);
+        }
+
+        .v-word {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .v-ipa {
+            font-size: 0.82rem;
+            color: #64748b;
+            margin: 4px 0;
+        }
+
+        .v-def {
+            font-size: 0.78rem;
+            color: #475569;
+            font-style: italic;
+            margin-top: 3px;
+        }
+
+        .flip-card-back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 0.88rem;
+            text-align: center;
+        }
+
+        .v-trans {
+            font-weight: 700;
+            font-size: 0.98rem;
+            margin-bottom: 6px;
+        }
+
+        .v-ex {
+            font-size: 0.78rem;
+            font-style: italic;
+            color: #dbeafe;
+            line-height: 1.35;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>English Interactive Lesson</h1>
+        <div class="header-meta">Student: Svetlana | Date: 10.09.2026 | Focus: Second Conditional & Diagnostic Tube Studies</div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'warmup')">1 · Warm-up</button>
+        <button class="tab-btn" onclick="openTab(event, 'homework')">2 · Homework Check</button>
+        <button class="tab-btn" onclick="openTab(event, 'listening')">3 · Listening</button>
+        <button class="tab-btn" onclick="openTab(event, 'grammar')">4 · Grammar</button>
+        <button class="tab-btn" onclick="openTab(event, 'vocabulary')">5 · Vocabulary</button>
+        <button class="tab-btn" onclick="openTab(event, 'translation')">6 · Translation</button>
+    </div>
+
+    <!-- TAB 1: WARM-UP -->
+    <div id="warmup" class="tab-content active">
+        <div class="section-card">
+            <h2 class="section-title">1. Professional Warm-up</h2>
+            <div class="warmup-box">
+                <p><strong>Upcoming Conference Poster Topic:</strong></p>
+                <p><em>"At the clinical diagnostics conference in India this late autumn, Svetlana will present a poster comparing blood collection tubes from two manufacturers, demonstrating that diagnostic accuracy is <strong>compromised</strong> whenever pre-analytical centrifugation protocols are not <strong>strictly adhered to</strong>, inevitably causing specimen <strong>failure</strong>."</em></p>
+                <button class="action-btn" onclick="togglePanel('warmup-hint')">Analyze Vocabulary & Translation</button>
+                <div id="warmup-hint" class="hidden-panel">
+                    <strong>Recycled Target Vocabulary:</strong><br>
+                    • <strong>Compromised</strong> — скомпрометированный, нарушенный, под угрозой.<br>
+                    • <strong>Strictly adhere to</strong> — строго придерживаться (протоколов, стандартов).<br>
+                    • <strong>Failure</strong> — сбой, неспособность, дефект образца.<br>
+                    <strong>Russian Translation:</strong> «На конференции по клинической диагностике в Индии поздней осенью Светлана представит стендовый доклад со сравнением вакуумных пробирок двух производителей, демонстрируя, что точность диагностики ставится под угрозу всякий раз, когда протоколы преаналитического центрифугирования строго не соблюдаются, неизбежно приводя к браку образца».
+                </div>
+            </div>
+
+            <p style="font-weight:600; margin-bottom: 8px;">Discussion Questions:</p>
+            <ul style="padding-left: 20px; line-height: 1.8;">
+                <li>What differences between tube manufacturers are most noticeable during laboratory sample preparation?</li>
+                <li>How do poster sessions at international conferences compare to keynote presentations in terms of practical discussion with colleagues?</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- TAB 2: HOMEWORK CHECK -->
+    <div id="homework" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">2. Homework Check (Translation from 07.09)</h2>
+            <p class="hint-notice">💡 Click the <strong>RU→EN</strong> button after each sentence to reveal the reference translation:</p>
+
+            <div class="story-container">
+                Если бы у меня было больше свободного времени на этой неделе, я бы полетела в Израиль, чтобы навестить своих дочек и внуков.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">If I had more free time this week, I would fly to Israel to visit my daughters and grandchildren.</span>
+
+                Однако сейчас я готовлю важный научный доклад для международной конференции по лабораторной диагностике.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">However, right now I am preparing an important scientific report for an international conference on laboratory diagnostics.</span>
+
+                Если бы клиники уделяли больше внимания преаналитическому этапу, число диагностических ошибок сократилось бы вдвое.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">If clinics paid more attention to the pre-analytical phase, the number of diagnostic errors would be cut in half.</span>
+
+                Мои студенты в университете провели бы исследование значительно быстрее, если бы лаборатория получила новые пробирки вовремя.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">My students at the university would conduct the research much faster if the laboratory received new tubes on time.</span>
+
+                Нам нужно тщательно обдумать все результаты, хотя исследование ещё не полностью завершено.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">We need to think over all the results carefully, although the research is not yet entirely completed.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: LISTENING -->
+    <div id="listening" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">3. Listening Practice</h2>
+
+            <!-- Exercise 1 -->
+            <h3 style="margin-bottom: 12px; color: var(--primary);">Exercise 1: Listen to the Report & Select Answers</h3>
+            <p class="hint-notice">💡 Use the audio player controls below to listen, pause, or resume the audio report (duration ~1 min). Then answer the 5 questions.</p>
+
+            <!-- Audio Player Controls -->
+            <div class="audio-player-card">
+                <div class="player-controls">
+                    <button class="player-btn" onclick="playAudioStory()">▶ Play</button>
+                    <button class="player-btn" onclick="pauseAudioStory()">⏸ Pause</button>
+                    <button class="player-btn" style="background: #ef4444;" onclick="stopAudioStory()">⏹ Stop</button>
+                    <div class="progress-container">
+                        <div class="progress-bar" onclick="seekAudioStory(event)">
+                            <div class="progress-fill" id="audio-progress"></div>
+                        </div>
+                        <span class="time-display" id="audio-time">00:00 / 01:05</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <button class="action-btn" onclick="togglePanel('transcript-panel')">Show Transcript</button>
+            </div>
+
+            <div id="transcript-panel" class="hidden-panel">
+                <strong>Transcript:</strong><br>
+                Preparing for an international medical symposium in India requires substantial patience and planning. In November, our laboratory department will present a poster study evaluating blood collection tubes from two distinct manufacturers. Despite identical technical specifications claimed by both brands, our research team observed noticeable differences during routine sample handling. One manufacturer used a special inner coating that prevented premature specimen hemolysis, whereas the other model occasionally caused micro-clotting during centrifugation. On the whole, university researchers conducted over three hundred tests to determine whether diagnostic reliability was compromised. Whenever pre-analytical instructions are strictly adhered to, laboratory errors decrease substantially. Presenting this poster provides a valuable platform to exchange practical observations with Asian colleagues and help hospital purchasing boards avoid unnecessary expenses.
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">1. Where is the upcoming international medical symposium taking place?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, false)">A) In Tel Aviv, Israel</button>
+                    <button class="choice-btn" onclick="checkChoice(this, true)">B) In India</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) In Saint Petersburg</button>
+                </div>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">2. What does Svetlana's department compare in their study?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, true)">A) Blood collection tubes from two distinct manufacturers</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">B) Computer programs for hospital administration</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) Automatic syringe needles from local factories</button>
+                </div>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">3. What advantage was observed with one of the manufacturers?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, false)">A) The tubes were significantly cheaper</button>
+                    <button class="choice-btn" onclick="checkChoice(this, true)">B) A special coating effectively prevented premature hemolysis</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) They arrived in the clinic much faster</button>
+                </div>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">4. How many laboratory tests did the university research team conduct?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, false)">A) Approximately fifty tests</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">B) Exactly one hundred tests</button>
+                    <button class="choice-btn" onclick="checkChoice(this, true)">C) Over three hundred tests</button>
+                </div>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">5. According to the report, what is a key benefit of presenting this poster?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, true)">A) Helping hospital purchasing boards avoid unnecessary expenses</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">B) Signing contract agreements with Indian universities</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) Winning a monetary prize from the organizers</button>
+                </div>
+            </div>
+
+            <!-- Exercise 2 -->
+            <h3 style="margin-top: 30px; margin-bottom: 12px; color: var(--primary);">Exercise 2: Audio Dictation</h3>
+            <p class="hint-notice">💡 Click ▶ to listen to each sentence, then type what you hear. Click "Show answer" if you need to check.</p>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(1)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'The poster presentation is scheduled for late November in India')" placeholder="Listen and type sentence 1...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">The poster presentation is scheduled for late November in India.</div>
+            </div>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(2)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'We compared blood collection tubes from two different manufacturers')" placeholder="Listen and type sentence 2...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">We compared blood collection tubes from two different manufacturers.</div>
+            </div>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(3)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'Diagnostic accuracy would be compromised without standardized protocols')" placeholder="Listen and type sentence 3...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">Diagnostic accuracy would be compromised without standardized protocols.</div>
+            </div>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(4)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'Despite technical challenges our research team completed the centrifugation tests')" placeholder="Listen and type sentence 4...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">Despite technical challenges, our research team completed the centrifugation tests.</div>
+            </div>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(5)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'On the whole strict adherence to guidelines eliminates unnecessary laboratory errors')" placeholder="Listen and type sentence 5...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">On the whole, strict adherence to guidelines eliminates unnecessary laboratory errors.</div>
+            </div>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(6)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'If the hospital bought higher quality tubes hemolysis rates would drop')" placeholder="Listen and type sentence 6...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">If the hospital bought higher quality tubes, hemolysis rates would drop.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: GRAMMAR -->
+    <div id="grammar" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">4. Grammar Practice: Second Conditional</h2>
+            <p class="hint-notice">Formula: <strong>If + Past Simple, ... would + Verb (V1)</strong> (Remember: <em>were</em> is standard for all subjects).</p>
+
+            <!-- Exercise 1 -->
+            <h3 style="margin-bottom: 15px; color: var(--primary);">Exercise 1: Choose the Correct Pair of Verb Forms</h3>
+            <p class="hint-notice">💡 Select the appropriate verb forms from both drop-down lists to complete each Second Conditional sentence.</p>
+
+            <ol class="grammar-list">
+                <li>
+                    If Svetlana 
+                    <select class="select-input" onchange="checkSelect(this, 'had')">
+                        <option value="">-- select --</option>
+                        <option value="has">has</option>
+                        <option value="had">had</option>
+                        <option value="would have">would have</option>
+                    </select>
+                    more lab assistants, she 
+                    <select class="select-input" onchange="checkSelect(this, 'would complete')">
+                        <option value="">-- select --</option>
+                        <option value="completed">completed</option>
+                        <option value="would complete">would complete</option>
+                        <option value="will complete">will complete</option>
+                    </select>
+                    the tube comparison much sooner.
+                </li>
+                <li>
+                    Diagnostic accuracy 
+                    <select class="select-input" onchange="checkSelect(this, 'would not suffer')">
+                        <option value="">-- select --</option>
+                        <option value="did not suffer">did not suffer</option>
+                        <option value="would not suffer">would not suffer</option>
+                        <option value="will not suffer">will not suffer</option>
+                    </select>
+                    if the hospital staff 
+                    <select class="select-input" onchange="checkSelect(this, 'followed')">
+                        <option value="">-- select --</option>
+                        <option value="followed">followed</option>
+                        <option value="would follow">would follow</option>
+                        <option value="follow">follow</option>
+                    </select>
+                    centrifugation guidelines strictly.
+                </li>
+                <li>
+                    If the test tubes 
+                    <select class="select-input" onchange="checkSelect(this, 'were')">
+                        <option value="">-- select --</option>
+                        <option value="are">are</option>
+                        <option value="would be">would be</option>
+                        <option value="were">were</option>
+                    </select>
+                    defective, the laboratory 
+                    <select class="select-input" onchange="checkSelect(this, 'would return')">
+                        <option value="">-- select --</option>
+                        <option value="would return">would return</option>
+                        <option value="returned">returned</option>
+                        <option value="returns">returns</option>
+                    </select>
+                    them directly to the manufacturer.
+                </li>
+                <li>
+                    What 
+                    <select class="select-input" onchange="checkSelect(this, 'would you do')">
+                        <option value="">-- select --</option>
+                        <option value="will you do">will you do</option>
+                        <option value="did you do">did you do</option>
+                        <option value="would you do">would you do</option>
+                    </select>
+                    if you 
+                    <select class="select-input" onchange="checkSelect(this, 'noticed')">
+                        <option value="">-- select --</option>
+                        <option value="noticed">noticed</option>
+                        <option value="notice">notice</option>
+                        <option value="would notice">would notice</option>
+                    </select>
+                    a specimen mislabeling error during an urgent audit?
+                </li>
+                <li>
+                    If the flight to Tel Aviv 
+                    <select class="select-input" onchange="checkSelect(this, 'were')">
+                        <option value="">-- select --</option>
+                        <option value="was being">was being</option>
+                        <option value="were">were</option>
+                        <option value="would be">would be</option>
+                    </select>
+                    direct, I 
+                    <select class="select-input" onchange="checkSelect(this, 'would spend')">
+                        <option value="">-- select --</option>
+                        <option value="spent">spent</option>
+                        <option value="would spend">would spend</option>
+                        <option value="will spend">will spend</option>
+                    </select>
+                    far less time traveling between cities.
+                </li>
+                <li>
+                    The healthcare budget 
+                    <select class="select-input" onchange="checkSelect(this, 'would save')">
+                        <option value="">-- select --</option>
+                        <option value="would save">would save</option>
+                        <option value="saved">saved</option>
+                        <option value="saves">saves</option>
+                    </select>
+                    millions if clinics 
+                    <select class="select-input" onchange="checkSelect(this, 'reduced')">
+                        <option value="">-- select --</option>
+                        <option value="reduce">reduce</option>
+                        <option value="reduced">reduced</option>
+                        <option value="would reduce">would reduce</option>
+                    </select>
+                    unnecessary re-testing procedures.
+                </li>
+            </ol>
+
+            <!-- Exercise 2 -->
+            <h3 style="margin-top: 30px; margin-bottom: 15px; color: var(--primary);">Exercise 2: Sentence Transformation (Hypothetical Scenarios)</h3>
+            <p class="hint-notice">💡 Transform the real present situation into a hypothetical Second Conditional sentence. Click "Show answer" if you get stuck.</p>
+
+            <ol class="grammar-list">
+                <li>
+                    <em>Real: Clinics don't adhere to standardized protocols, so specimen errors occur.</em><br>
+                    If clinics <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'adhered')" placeholder="adhere"> to standardized protocols, specimen errors <input type="text" class="live-input" style="width: 170px;" oninput="liveCheck(this, 'would not occur')" placeholder="not / occur">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: If clinics <strong>adhered</strong> to standardized protocols, specimen errors <strong>would not occur</strong>.</div>
+                </li>
+                <li>
+                    <em>Real: I don't have an extra week in November, so I don't take a vacation in India.</em><br>
+                    If I <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'had')" placeholder="have"> an extra week in November, I <input type="text" class="live-input" style="width: 170px;" oninput="liveCheck(this, 'would take')" placeholder="take"> a vacation in India.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: If I <strong>had</strong> an extra week in November, I <strong>would take</strong> a vacation in India.</div>
+                </li>
+                <li>
+                    <em>Real: The sample tube is not coated with silicone, so the blood hemolyzes.</em><br>
+                    If the sample tube <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'were')" placeholder="be"> coated with silicone, the blood <input type="text" class="live-input" style="width: 170px;" oninput="liveCheck(this, 'would not hemolyze')" placeholder="not / hemolyze">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: If the sample tube <strong>were</strong> coated with silicone, the blood <strong>would not hemolyze</strong>.</div>
+                </li>
+                <li>
+                    <em>Real: We don't have enough laboratory centrifuges, so our students wait for hours.</em><br>
+                    Our students <input type="text" class="live-input" style="width: 170px;" oninput="liveCheck(this, 'would not wait')" placeholder="not / wait"> for hours if we <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'had')" placeholder="have"> enough centrifuges.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: Our students <strong>would not wait</strong> for hours if we <strong>had</strong> enough centrifuges.</div>
+                </li>
+                <li>
+                    <em>Real: The manufacturer doesn't test tube caps properly, so air leaks into the vial.</em><br>
+                    If the manufacturer <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'tested')" placeholder="test"> tube caps properly, air <input type="text" class="live-input" style="width: 170px;" oninput="liveCheck(this, 'would not leak')" placeholder="not / leak">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: If the manufacturer <strong>tested</strong> tube caps properly, air <strong>would not leak</strong>.</div>
+                </li>
+                <li>
+                    <em>Real: Svetlana is not a registered keynote speaker, so she presents a poster instead.</em><br>
+                    Svetlana <input type="text" class="live-input" style="width: 170px;" oninput="liveCheck(this, 'would deliver')" placeholder="deliver"> a keynote talk if she <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'were')" placeholder="be"> a registered keynote speaker.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: Svetlana <strong>would deliver</strong> a keynote talk if she <strong>were</strong> a registered keynote speaker.</div>
+                </li>
+                <li>
+                    <em>Real: The diagnostic results are unreliable, so the physician orders a repeat test.</em><br>
+                    The physician <input type="text" class="live-input" style="width: 170px;" oninput="liveCheck(this, 'would not order')" placeholder="not / order"> a repeat test if the diagnostic results <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'were')" placeholder="be"> reliable.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: The physician <strong>would not order</strong> a repeat test if the diagnostic results <strong>were</strong> reliable.</div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- TAB 5: VOCABULARY -->
+    <div id="vocabulary" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">5. Vocabulary Review (11 Target Words)</h2>
+            <p class="hint-notice">💡 Click on each card to view its Russian translation and practical example sentence:</p>
+
+            <div class="vocab-grid">
+                <!-- 1. failure -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">failure</div>
+                            <div class="v-ipa">/ˈfeɪljər/</div>
+                            <div class="v-def">lack of success; breakdown or defect</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">неудача / сбой / отказ</div>
+                            <div class="v-ex">"Specimen failure was caused by improper storage."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. strictly -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">strictly</div>
+                            <div class="v-ipa">/ˈstrɪktli/</div>
+                            <div class="v-def">in a rigid or precise manner</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">строго / точно</div>
+                            <div class="v-ex">"All laboratory technicians strictly observe safety rules."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. adhere to -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">adhere to</div>
+                            <div class="v-ipa">/ədˈhɪər tuː/</div>
+                            <div class="v-def">follow or conform closely to a rule</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">придерживаться чего-либо</div>
+                            <div class="v-ex">"Nurses must adhere to centrifugation standards."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. compromised -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">compromised</div>
+                            <div class="v-ipa">/ˈkɒmprəmaɪzd/</div>
+                            <div class="v-def">weakened, harmed, or put at risk</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">нарушенный / скомпрометированный</div>
+                            <div class="v-ex">"Diagnostic quality was compromised by tube hemolysis."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. unnecessary -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">unnecessary</div>
+                            <div class="v-ipa">/ʌnˈnesəsəri/</div>
+                            <div class="v-def">not needed; more than is necessary</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">ненужный / излишний</div>
+                            <div class="v-ex">"Careful labeling prevents unnecessary re-testing."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. in comparison with -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">in comparison with</div>
+                            <div class="v-ipa">/ɪn kəmˈpærɪsn wɪð/</div>
+                            <div class="v-def">measured against another thing</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">по сравнению с</div>
+                            <div class="v-ex">"This model performed well in comparison with Brand B."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. on the whole -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">on the whole</div>
+                            <div class="v-ipa">/ɒn ðə həʊl/</div>
+                            <div class="v-def">taking everything into account; generally</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">в целом / в общем</div>
+                            <div class="v-ex">"On the whole, the conference poster received great feedback."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. despite smth -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">despite smth</div>
+                            <div class="v-ipa">/dɪˈspaɪt/</div>
+                            <div class="v-def">without being affected by; in spite of</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">несмотря на</div>
+                            <div class="v-ex">"Despite flight delays, she arrived in Delhi on time."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. economy -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">economy</div>
+                            <div class="v-ipa">/ɪˈkɒnəmi/</div>
+                            <div class="v-def">financial system; careful saving of resources</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">экономика / экономия</div>
+                            <div class="v-ex">"Reducing re-testing contributes to hospital economy."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. to be full of smth -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">be full of smth</div>
+                            <div class="v-ipa">/bi fʊl ɒv/</div>
+                            <div class="v-def">containing a large amount or degree of</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">быть полным чего-либо</div>
+                            <div class="v-ex">"Her university lectures are always full of practical cases."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. manufacturer -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">manufacturer</div>
+                            <div class="v-ipa">/ˌmænjuˈfækʧərər/</div>
+                            <div class="v-def">a company that produces goods in large quantities</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">производитель / завод-изготовитель</div>
+                            <div class="v-ex">"We ordered sample tubes from a domestic manufacturer."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vocabulary Practice Exercise -->
+            <h3 style="margin-top: 25px; margin-bottom: 12px; color: var(--primary);">Practice: Fill in the Blanks</h3>
+            <p class="hint-notice">💡 Complete each sentence using the appropriate word or expression. Click "Show answer" to check.</p>
+
+            <ol class="grammar-list">
+                <li>
+                    Centrifugation speed was calibrated <input type="text" class="live-input" style="width: 160px;" oninput="liveCheck(this, 'in comparison with')" placeholder="type phrase"> the previous protocol.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>in comparison with</strong></div>
+                </li>
+                <li>
+                    <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'Despite')" placeholder="type word"> travel fatigue, Svetlana answered all visitor questions at her poster stand.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>Despite</strong></div>
+                </li>
+                <li>
+                    Hospital medical personnel must <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'strictly')" placeholder="type word"> avoid specimen agitation.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>strictly</strong></div>
+                </li>
+                <li>
+                    If the vacuum tube leaks, diagnostic accuracy will be <input type="text" class="live-input" style="width: 160px;" oninput="liveCheck(this, 'compromised')" placeholder="type word">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>compromised</strong></div>
+                </li>
+                <li>
+                    Medical specialists must always <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'adhere to')" placeholder="type phrase"> international laboratory standards.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>adhere to</strong></div>
+                </li>
+                <li>
+                    The scientific schedule in India will <input type="text" class="live-input" style="width: 160px;" oninput="liveCheck(this, 'be full of')" placeholder="type phrase"> exciting discussions and poster sessions.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>be full of</strong></div>
+                </li>
+                <li>
+                    Sample clotting was identified as an obvious pre-analytical <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'failure')" placeholder="type word">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>failure</strong></div>
+                </li>
+                <li>
+                    <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'On the whole')" placeholder="type phrase">, the new laboratory equipment met our quality expectations.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>On the whole</strong></div>
+                </li>
+                <li>
+                    Purchasing higher quality tubes creates substantial long-term <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'economy')" placeholder="type word"> for the hospital.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>economy</strong></div>
+                </li>
+                <li>
+                    The domestic <input type="text" class="live-input" style="width: 160px;" oninput="liveCheck(this, 'manufacturer')" placeholder="type word"> provided sample batches for university testing.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>manufacturer</strong></div>
+                </li>
+                <li>
+                    Standardized tube labeling eliminates <input type="text" class="live-input" style="width: 150px;" oninput="liveCheck(this, 'unnecessary')" placeholder="type word"> repeat venipunctures for patients.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>unnecessary</strong></div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- TAB 6: TRANSLATION -->
+    <div id="translation" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">6. Final Task: Translation</h2>
+            <p class="hint-notice">💡 Read the cohesive story below. Click the <strong>RU→EN</strong> button after each sentence to verify your translation:</p>
+
+            <div class="story-container">
+                В ноябре я планирую представить стендовый доклад на медицинской конференции в Индии.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">In November, I plan to present a poster report at a medical conference in India.</span>
+
+                Мы проводим детальное исследование пробирок двух производителей, чтобы исключить ненужные преаналитические ошибки.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">We are conducting a detailed study of tubes from two manufacturers to eliminate unnecessary pre-analytical errors.</span>
+
+                Если бы клиники строго придерживались единых стандартов центрифугирования, точность результатов не была бы скомпрометирована.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">If clinics strictly adhered to unified centrifugation standards, the accuracy of results would not be compromised.</span>
+
+                В целом, несмотря на сложный график между Москвой и Петербургом, наши научные эксперименты идут успешно.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">On the whole, despite a challenging schedule between Moscow and St. Petersburg, our scientific experiments are running successfully.</span>
+
+                Если бы у меня появилось несколько свободных дней в декабре, я бы с радостью полетела в Израиль к своим дочкам и внукам.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">If I had a few free days in December, I would gladly fly to Israel to visit my daughters and grandchildren.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab switching
+    function openTab(evt, tabName) {
+        let i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    // Toggle panels
+    function togglePanel(id) {
+        let el = document.getElementById(id);
+        el.style.display = (el.style.display === "block") ? "none" : "block";
+    }
+
+    // Inline translation toggle
+    function toggleInlineEn(btn) {
+        let span = btn.nextElementSibling;
+        if (span.style.display === "inline") {
+            span.style.display = "none";
+            btn.style.background = "#eef1f6";
+            btn.style.color = "#475569";
+        } else {
+            span.style.display = "inline";
+            btn.style.background = "#1a56db";
+            btn.style.color = "#ffffff";
+        }
+    }
+
+    // Reveal answer row (Grammar 2, Vocab, Dictation)
+    function toggleAnswerRow(btn) {
+        let parent = btn.closest('li') || btn.closest('.dictation-row');
+        if (!parent) parent = btn.parentElement;
+        let ans = parent.querySelector('.answer-reveal');
+        if (ans) {
+            ans.style.display = (ans.style.display === "block") ? "none" : "block";
+        }
+    }
+
+    // Quiz choice check
+    function checkChoice(btn, isCorrect) {
+        let choices = btn.parentElement.querySelectorAll(".choice-btn");
+        choices.forEach(c => c.classList.remove("correct", "incorrect"));
+        if (isCorrect) {
+            btn.classList.add("correct");
+        } else {
+            btn.classList.add("incorrect");
+        }
+    }
+
+    // Grammar select dropdown check
+    function checkSelect(sel, targetVal) {
+        if (sel.value === targetVal) {
+            sel.classList.add("correct");
+        } else {
+            sel.classList.remove("correct");
+        }
+    }
+
+    // Input live check
+    function liveCheck(inputElement, targetPhrase) {
+        let userVal = inputElement.value.trim().toLowerCase().replace(/['\.\?!,;:\-]/g, '').replace(/\s+/g, ' ');
+        let expectedVal = targetPhrase.toLowerCase().replace(/['\.\?!,;:\-]/g, '').replace(/\s+/g, ' ');
+
+        // Support contractions
+        expectedVal = expectedVal.replace("would not", "wouldnt").replace("did not", "didnt");
+        let tempUser = userVal.replace("would not", "wouldnt").replace("did not", "didnt");
+
+        if (tempUser === expectedVal) {
+            inputElement.classList.add("correct");
+            inputElement.classList.remove("incorrect");
+        } else if (tempUser.length > 0) {
+            inputElement.classList.remove("correct");
+        } else {
+            inputElement.classList.remove("correct", "incorrect");
+        }
+    }
+
+    // Web Speech API Voice synthesis & Story Player
+    const listeningStory = "Preparing for an international medical symposium in India requires substantial patience and planning. In November, our laboratory department will present a poster study evaluating blood collection tubes from two distinct manufacturers. Despite identical technical specifications claimed by both brands, our research team observed noticeable differences during routine sample handling. One manufacturer used a special inner coating that prevented premature specimen hemolysis, whereas the other model occasionally caused micro-clotting during centrifugation. On the whole, university researchers conducted over three hundred tests to determine whether diagnostic reliability was compromised. Whenever pre-analytical instructions are strictly adhered to, laboratory errors decrease substantially. Presenting this poster provides a valuable platform to exchange practical observations with Asian colleagues and help hospital purchasing boards avoid unnecessary expenses.";
+
+    let audioUtterance = null;
+    let isPlaying = false;
+    let audioTimer = null;
+    let currentSeconds = 0;
+    const totalEstSeconds = 65;
+
+    function formatTime(sec) {
+        let m = Math.floor(sec / 60);
+        let s = Math.floor(sec % 60);
+        return (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+    }
+
+    function playAudioStory() {
+        let synth = window.speechSynthesis;
+        if (synth.paused) {
+            synth.resume();
+            isPlaying = true;
+            startTimer();
+            return;
+        }
+        if (synth.speaking) {
+            synth.cancel();
+        }
+
+        audioUtterance = new SpeechSynthesisUtterance(listeningStory);
+        audioUtterance.lang = 'en-US';
+        audioUtterance.rate = 0.85;
+
+        let voices = synth.getVoices();
+        let femaleVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Google US English') || v.name.includes('Zira')));
+        if (femaleVoice) { audioUtterance.voice = femaleVoice; }
+
+        audioUtterance.onend = function() {
+            stopAudioStory();
+        };
+
+        currentSeconds = 0;
+        synth.speak(audioUtterance);
+        isPlaying = true;
+        startTimer();
+    }
+
+    function pauseAudioStory() {
+        let synth = window.speechSynthesis;
+        if (synth.speaking && !synth.paused) {
+            synth.pause();
+            isPlaying = false;
+            clearInterval(audioTimer);
+        }
+    }
+
+    function stopAudioStory() {
+        let synth = window.speechSynthesis;
+        synth.cancel();
+        isPlaying = false;
+        clearInterval(audioTimer);
+        currentSeconds = 0;
+        updatePlayerUI();
+    }
+
+    function seekAudioStory(e) {
+        let bar = e.currentTarget;
+        let rect = bar.getBoundingClientRect();
+        let clickX = e.clientX - rect.left;
+        let pct = clickX / rect.width;
+        currentSeconds = Math.floor(pct * totalEstSeconds);
+        updatePlayerUI();
+        playAudioStory();
+    }
+
+    function startTimer() {
+        clearInterval(audioTimer);
+        audioTimer = setInterval(() => {
+            if (isPlaying && currentSeconds < totalEstSeconds) {
+                currentSeconds++;
+                updatePlayerUI();
+            }
+        }, 1000);
+    }
+
+    function updatePlayerUI() {
+        let pct = Math.min((currentSeconds / totalEstSeconds) * 100, 100);
+        document.getElementById('audio-progress').style.width = pct + '%';
+        document.getElementById('audio-time').innerText = formatTime(currentSeconds) + " / " + formatTime(totalEstSeconds);
+    }
+
+    // Dictation phrases
+    const dictationPhrases = {
+        1: "The poster presentation is scheduled for late November in India.",
+        2: "We compared blood collection tubes from two different manufacturers.",
+        3: "Diagnostic accuracy would be compromised without standardized protocols.",
+        4: "Despite technical challenges, our research team completed the centrifugation tests.",
+        5: "On the whole, strict adherence to guidelines eliminates unnecessary laboratory errors.",
+        6: "If the hospital bought higher quality tubes, hemolysis rates would drop."
+    };
+
+    function playSentence(num) {
+        let synth = window.speechSynthesis;
+        if (synth.speaking) { synth.cancel(); }
+        let utterance = new SpeechSynthesisUtterance(dictationPhrases[num]);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.83;
+
+        let voices = synth.getVoices();
+        let femaleVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Google US English') || v.name.includes('Zira')));
+        if (femaleVoice) { utterance.voice = femaleVoice; }
+
+        synth.speak(utterance);
+    }
+</script>
+
+</body>
+</html>
