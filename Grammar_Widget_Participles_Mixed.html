@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participles & Mixed Grammar Practice</title>
+    <style>
+        :root {
+            --bg-color: #f0f4f8;
+            --container-bg: #ffffff;
+            --text-main: #2c3e50;
+            --accent-color: #34495e;
+            --highlight: #2980b9;
+            --success: #27ae60;
+            --error: #c0392b;
+            --border-color: #dcdde1;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        h2 {
+            color: var(--highlight);
+            border-bottom: 2px solid var(--highlight);
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+        }
+        h3 {
+            color: var(--accent-color);
+            margin-top: 30px;
+        }
+        .theory-box {
+            background-color: #eaf2f8;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid var(--highlight);
+            margin-bottom: 40px;
+        }
+        .theory-box p {
+            margin-bottom: 15px;
+        }
+        .theory-box ul {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        .theory-example {
+            font-style: italic;
+            color: #34495e;
+            background: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        .instruction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .exercise-block {
+            margin-bottom: 50px;
+        }
+        .question-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fafbfc;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        .question-item:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        .question-text {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid #bdc3c7;
+            background: transparent;
+            padding: 4px 8px;
+            font-family: inherit;
+            font-size: 1em;
+            color: var(--highlight);
+            min-width: 150px;
+            transition: border-bottom 0.3s ease;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-bottom: 2px solid var(--highlight);
+        }
+        select {
+            border: 2px solid #bdc3c7;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1em;
+            color: var(--highlight);
+            background-color: #fff;
+            outline: none;
+        }
+        select:focus {
+            border-color: var(--highlight);
+        }
+        .check-btn {
+            background-color: var(--highlight);
+            color: #fff;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+        .check-btn:hover {
+            background-color: #1a5276;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-size: 0.95em;
+        }
+        .feedback.correct {
+            background-color: #eafaf1;
+            border-left: 4px solid var(--success);
+            color: #1e8449;
+            display: block;
+        }
+        .feedback.incorrect {
+            background-color: #fdedec;
+            border-left: 4px solid var(--error);
+            color: #922b21;
+            display: block;
+        }
+        .show-explanation-btn {
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+        .show-explanation-btn:hover {
+            background-color: #7f8c8d;
+        }
+        .explanation-box {
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            border-radius: 4px;
+            color: #5d4037;
+            display: none;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Advanced Grammar Mastery</h1>
+    <div class="subtitle">Participles, Conditionals & Complex Structures</div>
+
+    <!-- BLOCK 1: THEORY -->
+    <div class="theory-box">
+        <h2>Block 1: Participles and Participle Clauses (Theory)</h2>
+        <p>Participles are verb forms that can function as adjectives or help form continuous/perfect tenses. In advanced grammar, they are widely used to shorten sentences and create <b>Participle Clauses</b>.</p>
+        
+        <h3>1. Participle I (Present Participle) &rarr; V-ing</h3>
+        <ul>
+            <li><b>Form:</b> verb + <i>-ing</i> (e.g., <i>reading, playing, working</i>)</li>
+            <li><b>Usage:</b> Used for <u>active</u> meanings (the noun is doing the action) or continuous processes.</li>
+            <li><span class="theory-example">The <b>crying</b> baby needs milk.</span> (The baby is crying - active).</li>
+            <li><span class="theory-example">The man <b>standing</b> by the door is my boss.</span> (Who is standing - active).</li>
+        </ul>
+
+        <h3>2. Participle II (Past Participle) &rarr; V3 / -ed</h3>
+        <ul>
+            <li><b>Form:</b> regular verbs + <i>-ed</i>, irregular verbs <i>3rd column</i> (e.g., <i>broken, written, played</i>)</li>
+            <li><b>Usage:</b> Used for <u>passive</u> meanings (the action is done to the noun) or completed actions.</li>
+            <li><span class="theory-example">The <b>broken</b> window was repaired.</span> (The window was broken by someone - passive).</li>
+            <li><span class="theory-example">The book <b>written</b> by him became a bestseller.</span> (Passive meaning).</li>
+        </ul>
+
+        <h3>3. Participle Clauses</h3>
+        <p>Participle clauses provide information about the main clause (time, reason, condition) in a more concise way. The subject of the participle clause must usually be the same as the subject of the main clause.</p>
+        <ul>
+            <li><b>Present Participle Clause (V-ing):</b> Used when two actions happen at the <u>same time</u>, or one happens immediately after another. Also used to explain a reason (since/because).
+                <br><span class="theory-example"><b>Walking</b> down the street, I met an old friend.</span> (While I was walking...)
+                <br><span class="theory-example"><b>Not knowing</b> what to do, she cried.</span> (Because she didn't know...)
+            </li>
+            <li><b>Perfect Participle Clause (Having + V3):</b> Used to emphasize that one action was <u>completely finished before</u> the second action started.
+                <br><span class="theory-example"><b>Having finished</b> his homework, he went outside.</span> (After he had finished...)
+            </li>
+            <li><b>Passive Participle Clause (V3 / Having been + V3):</b> Used for passive meanings.
+                <br><span class="theory-example"><b>Shocked</b> by the news, they couldn't speak.</span> (Because they were shocked...)
+                <br><span class="theory-example"><b>Having been told</b> the truth, he felt relieved.</span> (After he had been told...)
+            </li>
+        </ul>
+    </div>
+
+    <!-- BLOCK 1: EXERCISES -->
+    <h2>Block 1: Practice (Participles)</h2>
+
+    <div class="exercise-block" id="ex1">
+        <h3>Exercise 1: Choose the correct Participle</h3>
+        <p class="instruction">Select the appropriate participle form from the dropdown menu.</p>
+        <script>
+        function renderEx1(id, num, part1, part2) {
+            document.write(`
+            <div class="question-item">
+                <div class="question-text">${num}. ${part1} 
+                <select id="${id}">
+                    <option value="">-- select --</option>
+                    <option value="a">Walking</option>
+                    <option value="b">Walked</option>
+                    <option value="c">Having walked</option>
+                </select> ${part2}
+                <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                </div><div id="feedback_${id}" class="feedback"></div>
+            </div>`);
+        }
+        function renderEx1b(id, num, part1, optA, optB, optC, part2) {
+            document.write(`
+            <div class="question-item">
+                <div class="question-text">${num}. ${part1} 
+                <select id="${id}">
+                    <option value="">-- select --</option>
+                    <option value="a">${optA}</option>
+                    <option value="b">${optB}</option>
+                    <option value="c">${optC}</option>
+                </select> ${part2}
+                <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                </div><div id="feedback_${id}" class="feedback"></div>
+            </div>`);
+        }
+        renderEx1b('e1_q1', 1, "", "Walking", "Walked", "Having walked", "down the street, I saw a rare bird.");
+        renderEx1b('e1_q2', 2, "", "Surprising", "Surprised", "Having surprised", "by the sudden noise, the cat jumped onto the table.");
+        renderEx1b('e1_q3', 3, "", "Finishing", "Finished", "Having finished", "the report, she sent it to her manager and went home.");
+        renderEx1b('e1_q4', 4, "The boy ", "playing", "played", "having played", "in the garden is my younger brother.");
+        renderEx1b('e1_q5', 5, "", "Not knowing", "Not known", "Not having known", "what to do in the emergency, I called the police.");
+        renderEx1b('e1_q6', 6, "The window ", "breaking", "broken", "having broken", "during the storm has finally been repaired.");
+        renderEx1b('e1_q7', 7, "", "Telling", "Told", "Having been told", "the whole truth, the suspect finally confessed.");
+        </script>
+    </div>
+
+    <div class="exercise-block" id="ex2">
+        <h3>Exercise 2: Type the Correct Participle Form</h3>
+        <p class="instruction">Transform the verb in brackets into the correct participle (V-ing, V3, or Having + V3).</p>
+        <script>
+        function renderEx2(id, num, part1, bracket, part2) {
+            document.write(`
+            <div class="question-item">
+                <div class="question-text">${num}. ${part1} <input type="text" id="${id}" placeholder="(${bracket})"> ${part2}
+                <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                </div><div id="feedback_${id}" class="feedback"></div>
+            </div>`);
+        }
+        renderEx2('e2_q1', 1, "", "open", "the door, she found a mysterious package on the mat.");
+        renderEx2('e2_q2', 2, "", "write", "in pencil, the old letter was extremely hard to read.");
+        renderEx2('e2_q3', 3, "", "complete", "his master's degree, he started applying for senior positions. (Focus on completed action before next action)");
+        renderEx2('e2_q4', 4, "Anyone ", "wish", "to join the drama club must sign up on this sheet.");
+        renderEx2('e2_q5', 5, "", "reject", "by all publishers, the author decided to self-publish her novel.");
+        renderEx2('e2_q6', 6, "", "lose", "her keys, she had to wait outside in the rain until her roommate arrived.");
+        renderEx2('e2_q7', 7, "The dog ", "bark", "loudly outside belongs to our new neighbors.");
+        </script>
+    </div>
+
+    <div class="exercise-block" id="ex3">
+        <h3>Exercise 3: Find and Correct the Mistake</h3>
+        <p class="instruction">Identify the mistake in the participle clause and type ONLY the correct word/phrase.</p>
+        <script>
+        function renderEx3(id, num, sentence) {
+            document.write(`
+            <div class="question-item">
+                <div class="question-text">${num}. ${sentence} <br>&rarr; <input type="text" id="${id}" placeholder="Correction">
+                <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                </div><div id="feedback_${id}" class="feedback"></div>
+            </div>`);
+        }
+        renderEx3('e3_q1', 1, "Read the book, I returned it to the city library.");
+        renderEx3('e3_q2', 2, "Having finishing the project, the team went out for dinner.");
+        renderEx3('e3_q3', 3, "Surprising by the exam results, he immediately called his parents.");
+        renderEx3('e3_q4', 4, "The red car parking outside is mine.");
+        renderEx3('e3_q5', 5, "Not having know the correct answer, he kept silent during the meeting.");
+        renderEx3('e3_q6', 6, "Building in 1920, the historic house desperately needs renovation.");
+        renderEx3('e3_q7', 7, "Having been invite to the prestigious gala, she bought a new dress.");
+        </script>
+    </div>
+
+    <!-- BLOCK 2: EXERCISES (MIXED) -->
+    <h2>Block 2: Mixed Grammar & Conditionals Practice</h2>
+    <p>This block covers: Present Perfect Continuous, If only, It's high time, Impersonal passive, Would you mind, be about to / be able to, on the verge of, to be to, ALL Conditionals (Types 1-3 & Mixed), and Participles.</p>
+
+    <div class="exercise-block" id="ex4">
+        <h3>Exercise 4: Multiple Choice (Mixed Structures)</h3>
+        <p class="instruction">Select the correct option to complete the sentences.</p>
+        <script>
+        renderEx1b('e4_q1', 1, "If I hadn't stayed up so late yesterday, I ", "won't be", "wouldn't be", "wouldn't have been", "so tired right now.");
+        renderEx1b('e4_q2', 2, "The new company policy is expected ", "improving", "to improve", "improve", "employee productivity.");
+        renderEx1b('e4_q3', 3, "It's high time you ", "start", "to start", "started", "taking your responsibilities seriously.");
+        renderEx1b('e4_q4', 4, "If she ", "knew", "had known", "has known", "about the traffic jam, she would have taken a different route.");
+        renderEx1b('e4_q5', 5, "Shh! The headmaster is ", "about to", "able to", "on the verge", "begin his speech.");
+        renderEx1b('e4_q6', 6, "Would you mind ", "to explain", "explain", "explaining", "that grammar rule one more time?");
+        renderEx1b('e4_q7', 7, "They have been ", "discuss", "discussed", "discussing", "the budget allocation for three hours.");
+        renderEx1b('e4_q8', 8, "", "Exhausting", "Exhausted", "Having exhaust", "from the long flight, she went straight to bed.");
+        renderEx1b('e4_q9', 9, "If only it ", "stops", "stopped", "would stop", "raining! We've been stuck inside all day.");
+        renderEx1b('e4_q10', 10, "All students are ", "to submit", "submit", "submitting", "their final essays by midnight tonight.");
+        </script>
+    </div>
+
+    <div class="exercise-block" id="ex5">
+        <h3>Exercise 5: Correct Verb Form (Mixed)</h3>
+        <p class="instruction">Type the correct form of the verb in brackets.</p>
+        <script>
+        renderEx2('e5_q1', 1, "If I", "have", "more free time right now, I would definitely help you with the project.");
+        renderEx2('e5_q2', 2, "The CEO is on the verge of", "resign", "due to the recent financial scandal.");
+        renderEx2('e5_q3', 3, "If they had left the house earlier, they", "not miss", "their flight to London.");
+        renderEx2('e5_q4', 4, "The famous actor is reported", "be", "recovering well in the hospital. (Present state)");
+        renderEx2('e5_q5', 5, "I've been", "study", "French for two years, but I still can't speak fluently.");
+        renderEx2('e5_q6', 6, "Would you mind if I", "turn", "down the air conditioning?");
+        renderEx2('e5_q7', 7, "If only I", "know", "the truth when you asked me yesterday!");
+        renderEx2('e5_q8', 8, "If you", "mix", "red and blue, you get purple. (Fact)");
+        renderEx2('e5_q9', 9, "", "spend", "all his money on clothes, he couldn't afford to buy a train ticket. (Focus on completed action)");
+        renderEx2('e5_q10', 10, "I wouldn't be in this difficult situation now if I", "take", "that job offer last year.");
+        </script>
+    </div>
+
+    <div class="exercise-block" id="ex6">
+        <h3>Exercise 6: Key Word Transformation</h3>
+        <p class="instruction">Complete the second sentence using the word in bold. Write 2-5 words.</p>
+        <script>
+        function renderEx6(id, num, s1, word, s2_start, s2_end) {
+            document.write(`
+            <div class="question-item">
+                <div class="question-text">
+                    ${num}. ${s1} <b>(${word})</b><br>
+                    ${s2_start} <input type="text" id="${id}" style="width:250px;"> ${s2_end}
+                    <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                </div>
+                <div id="feedback_${id}" class="feedback"></div>
+            </div>`);
+        }
+        renderEx6('e6_q1', 1, "He started watching TV at 2 PM. It is now 5 PM.", "BEEN", "He", "TV for three hours.");
+        renderEx6('e6_q2', 2, "I regret buying this expensive laptop.", "ONLY", "If", "this expensive laptop.");
+        renderEx6('e6_q3', 3, "You really should go to the dentist.", "TIME", "It's", "to the dentist.");
+        renderEx6('e6_q4', 4, "Please don't use my personal computer.", "MIND", "Would", "my personal computer?");
+        renderEx6('e6_q5', 5, "People say that the thief is hiding in the forest.", "SAID", "The thief", "hiding in the forest.");
+        renderEx6('e6_q6', 6, "Because he had seen the movie before, he didn't want to go.", "HAVING", "", "the movie before, he didn't want to go.");
+        renderEx6('e6_q7', 7, "We were very close to cancelling the entire event.", "VERGE", "We were", "the entire event.");
+        renderEx6('e6_q8', 8, "The train will depart in just a few seconds.", "ABOUT", "The train", "depart.");
+        renderEx6('e6_q9', 9, "I didn't prepare for the exam, so I am failing now.", "PREPARED", "If", ", I wouldn't be failing now.");
+        renderEx6('e6_q10', 10, "If you don't water the plants, they die.", "UNLESS", "The plants die", "them.");
+        </script>
+    </div>
+
+</div>
+
+<script>
+    const answerKey = {
+        // Ex 1: Participles MCQ
+        'e1_q1': { ans: ["a"], correct: "Walking", expl: "Present Participle Clause (V-ing) используется для активного действия, происходящего одновременно с главным (Шел по улице и увидел)." },
+        'e1_q2': { ans: ["b"], correct: "Surprised", expl: "Past Participle (V3) используется для пассивного значения (Будучи удивленным / Испугавшись)." },
+        'e1_q3': { ans: ["c"], correct: "Having finished", expl: "Perfect Participle (Having + V3) показывает, что одно действие полностью завершилось до начала второго (Сначала закончила отчет, потом отправила)." },
+        'e1_q4': { ans: ["a"], correct: "playing", expl: "Present Participle (V-ing) в функции определения, активный залог (Мальчик, который играет)." },
+        'e1_q5': { ans: ["a"], correct: "Not knowing", expl: "Present Participle (V-ing) передает причину в активном залоге. Отрицание 'not' ставится перед причастием." },
+        'e1_q6': { ans: ["b"], correct: "broken", expl: "Past Participle (V3) в функции определения с пассивным смыслом (Окно, которое было разбито)." },
+        'e1_q7': { ans: ["c"], correct: "Having been told", expl: "Passive Perfect Participle. Действие (ему сказали) произошло раньше главного действия (он признался) и имеет пассивный смысл." },
+
+        // Ex 2: Participles Verb Form
+        'e2_q1': { ans: ["opening"], correct: "Opening", expl: "Present Participle (V-ing). Два действия происходят почти одновременно (Открывая дверь, она нашла)." },
+        'e2_q2': { ans: ["written"], correct: "Written", expl: "Past Participle (V3) с пассивным смыслом (Написанное карандашом письмо)." },
+        'e2_q3': { ans: ["having completed"], correct: "Having completed", expl: "Perfect Participle (Having + V3) акцентирует внимание на том, что получение диплома завершилось до начала поиска работы." },
+        'e2_q4': { ans: ["wishing"], correct: "wishing", expl: "Present Participle (V-ing) заменяет определительное придаточное 'who wishes' (Тот, кто желает)." },
+        'e2_q5': { ans: ["rejected"], correct: "Rejected", expl: "Past Participle (V3). Пассивный смысл: ее отвергли издатели (Будучи отвергнутой)." },
+        'e2_q6': { ans: ["having lost"], correct: "Having lost", expl: "Perfect Participle (Having + V3). Действие (потеря ключей) произошло до того, как ей пришлось ждать." },
+        'e2_q7': { ans: ["barking"], correct: "barking", expl: "Present Participle (V-ing) в роли определения. Собака сама лает (активный смысл)." },
+
+        // Ex 3: Participles Mistake
+        'e3_q1': { ans: ["reading", "having read"], correct: "Reading / Having read", expl: "Нужна активная форма. Либо 'Reading' (Читая), либо 'Having read' (Прочитав). 'Read' - это пассив (Прочитанная книга)." },
+        'e3_q2': { ans: ["finished"], correct: "finished", expl: "Конструкция Perfect Participle состоит из Having + V3 (finished)." },
+        'e3_q3': { ans: ["surprised"], correct: "Surprised", expl: "Нужен пассивный смысл 'Будучи удивленным' -> V3 (Surprised). Surprising значит 'удивительный'." },
+        'e3_q4': { ans: ["parked"], correct: "parked", expl: "Машина не сама паркуется, ее припарковали (пассив). Нужна 3-я форма глагола (parked)." },
+        'e3_q5': { ans: ["known"], correct: "known", expl: "После 'having' всегда используется 3-я форма глагола (having known)." },
+        'e3_q6': { ans: ["built"], correct: "Built", expl: "Здание было построено (пассивное действие). Нужно Past Participle (Built)." },
+        'e3_q7': { ans: ["invited"], correct: "invited", expl: "В пассивном Perfect Participle 'Having been + V3' глагол invite должен быть в 3-й форме (invited)." },
+
+        // Ex 4: Mixed MCQ
+        'e4_q1': { ans: ["b"], correct: "wouldn't be", expl: "Mixed Conditional (3 -> 2): условие в прошлом (hadn't stayed), а результат в настоящем (right now), поэтому 'wouldn't be'." },
+        'e4_q2': { ans: ["b"], correct: "to improve", expl: "Impersonal passive 'is expected' требует после себя инфинитив с частицей to." },
+        'e4_q3': { ans: ["c"], correct: "started", expl: "После конструкции 'It's high time you' по правилам используется Past Simple (started)." },
+        'e4_q4': { ans: ["b"], correct: "had known", expl: "Third Conditional: сожаление о прошлом. If + Past Perfect, ... would have + V3." },
+        'e4_q5': { ans: ["a"], correct: "about to", expl: "Конструкция 'be about to' используется для действий, которые вот-вот произойдут (сейчас начнется речь)." },
+        'e4_q6': { ans: ["c"], correct: "explaining", expl: "После фразы 'Would you mind' всегда используется герундий (V-ing)." },
+        'e4_q7': { ans: ["c"], correct: "discussing", expl: "Present Perfect Continuous (have been + V-ing) описывает длительное действие, начавшееся в прошлом." },
+        'e4_q8': { ans: ["b"], correct: "Exhausted", expl: "Past Participle (V3). Причина состояния передается через причастие прошедшего времени (Измученная)." },
+        'e4_q9': { ans: ["c"], correct: "would stop", expl: "Конструкция 'If only... would' используется для выражения раздражения и желания, чтобы кто-то/что-то изменило поведение в будущем." },
+        'e4_q10': { ans: ["a"], correct: "to submit", expl: "Конструкция 'to be to' (are to submit) используется для официальных приказов, инструкций и строгих дедлайнов." },
+
+        // Ex 5: Mixed Verb Form
+        'e5_q1': { ans: ["had"], correct: "had", expl: "Second Conditional: нереальное условие в настоящем (If I had..., I would...)." },
+        'e5_q2': { ans: ["quitting"], correct: "quitting", expl: "Идиома 'on the verge of' (на грани) требует герундия (V-ing) из-за предлога of." },
+        'e5_q3': { ans: ["would not have missed", "wouldn't have missed"], correct: "wouldn't have missed", expl: "Third Conditional: условие и результат относятся к прошлому (would have + V3)." },
+        'e5_q4': { ans: ["to be"], correct: "to be", expl: "Impersonal passive 'is reported' + to-infinitive (to be)." },
+        'e5_q5': { ans: ["studying"], correct: "studying", expl: "Present Perfect Continuous (have been + V-ing)." },
+        'e5_q6': { ans: ["turned"], correct: "turned", expl: "Конструкция 'Would you mind if I' требует после себя глагол в Past Simple (turned)." },
+        'e5_q7': { ans: ["had known", "'d known"], correct: "had known", expl: "Сожаление о прошлом (yesterday) с 'If only' требует Past Perfect." },
+        'e5_q8': { ans: ["mix"], correct: "mix", expl: "Zero Conditional: научные факты. If + Present Simple, Present Simple." },
+        'e5_q9': { ans: ["having spent"], correct: "Having spent", expl: "Perfect Participle Clause. Он потратил все деньги ДО того, как понял, что не может купить билет." },
+        'e5_q10': { ans: ["had taken", "'d taken"], correct: "had taken", expl: "Mixed Conditional (2 -> 3): результат в настоящем (wouldn't be), но условие в прошлом (If I had taken)." },
+
+        // Ex 6: Mixed Transformation
+        'e6_q1': { ans: ["has been watching", "'s been watching"], correct: "has been watching", expl: "Present Perfect Continuous. Действие длится с 2-х часов до 5-ти." },
+        'e6_q2': { ans: ["only i hadn't bought", "only i had not bought"], correct: "only I hadn't bought", expl: "Сожаление о прошлом (regret buying). If only + Past Perfect." },
+        'e6_q3': { ans: ["high time you went", "about time you went"], correct: "high time you went", expl: "Конструкция It's high time + Subject + Past Simple." },
+        'e6_q4': { ans: ["you mind not using", "you mind me not using"], correct: "you mind not using", expl: "Would you mind + not + V-ing (для вежливой просьбы не делать чего-то)." },
+        'e6_q5': { ans: ["is said to be"], correct: "is said to be", expl: "Impersonal passive: The thief is said to be hiding (Continuous infinitive)." },
+        'e6_q6': { ans: ["having seen"], correct: "Having seen", expl: "Perfect Participle Clause (Having + V3). Заменяет придаточное причины/времени (Because he had seen)." },
+        'e6_q7': { ans: ["on the verge of cancelling"], correct: "on the verge of cancelling", expl: "Выражение very close to = on the verge of + герундий." },
+        'e6_q8': { ans: ["is about to"], correct: "is about to", expl: "will depart in a few seconds = is about to depart." },
+        'e6_q9': { ans: ["i had prepared"], correct: "I had prepared", expl: "Mixed Conditional (3 -> 2). Если бы я подготовился в прошлом (Past Perfect)." },
+        'e6_q10': { ans: ["unless you water"], correct: "unless you water", expl: "Unless означает 'if not'. После unless отрицание не ставится." }
+    };
+
+    function checkAnswer(id) {
+        const inputEl = document.getElementById(id);
+        const feedbackEl = document.getElementById('feedback_' + id);
+        let userVal = inputEl.value.trim().toLowerCase();
+        
+        userVal = userVal.replace(/\s+/g, ' ');
+
+        const data = answerKey[id];
+        if (!data) return;
+
+        feedbackEl.className = 'feedback';
+        feedbackEl.innerHTML = '';
+
+        if (userVal === '') {
+            feedbackEl.classList.add('incorrect');
+            feedbackEl.textContent = '❌ Please enter an answer before checking.';
+            return;
+        }
+
+        const isCorrect = data.ans.includes(userVal);
+
+        if (isCorrect) {
+            feedbackEl.classList.add('correct');
+            feedbackEl.innerHTML = `<strong>✅ Correct!</strong>`;
+            inputEl.style.borderBottomColor = 'var(--success)';
+            if(inputEl.tagName === 'SELECT') inputEl.style.borderColor = 'var(--success)';
+        } else {
+            feedbackEl.classList.add('incorrect');
+            feedbackEl.innerHTML = `<strong>❌ Incorrect.</strong> 
+                <br>
+                <button class="show-explanation-btn" onclick="showExplanation('${id}')">Show Correct Answer & Explanation</button>
+                <div id="expl_${id}" class="explanation-box">
+                    <b>Correct answer:</b> ${data.correct} <br><br>
+                    <b>Explanation:</b> ${data.expl}
+                </div>`;
+            inputEl.style.borderBottomColor = 'var(--error)';
+            if(inputEl.tagName === 'SELECT') inputEl.style.borderColor = 'var(--error)';
+        }
+    }
+
+    function showExplanation(id) {
+        const explBox = document.getElementById('expl_' + id);
+        if (explBox.style.display === 'block') {
+            explBox.style.display = 'none';
+        } else {
+            explBox.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
