@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Vocabulary Practice - Set 3</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 950px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 { text-align: center; color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #2980b9; margin-top: 40px; border-left: 5px solid #2980b9; padding-left: 10px; }
+        .task-description { font-style: italic; color: #7f8c8d; margin-bottom: 20px; }
+        .task-warning { font-weight: bold; color: #e74c3c; margin-bottom: 15px; display: block; }
+        .question-block {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fcfcfc;
+            border: 1px solid #eee;
+            transition: 0.3s;
+        }
+        .correct-bg { background-color: #d4edda !important; border-color: #28a745 !important; }
+        .incorrect-bg { background-color: #f8d7da !important; border-color: #dc3545 !important; }
+        
+        select, input[type="text"] {
+            padding: 6px; margin: 0 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 16px;
+        }
+        .options-box {
+            background: #e8f4f8; padding: 15px; border-radius: 5px; margin-bottom: 20px; font-weight: bold; text-align: center; line-height: 1.8;
+        }
+        .btn-group { margin-top: 10px; }
+        button {
+            padding: 8px 12px; margin-right: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.2s;
+        }
+        .btn-check { background-color: #3498db; color: white; }
+        .btn-check:hover { background-color: #2980b9; }
+        .btn-answer { background-color: #95a5a6; color: white; }
+        .btn-answer:hover { background-color: #7f8c8d; }
+        
+        .feedback-box {
+            margin-top: 10px; padding: 10px; background-color: #fff3cd; border-left: 4px solid #ffc107; font-size: 14px; display: none; color: #555;
+        }
+        .radio-label { display: block; margin-bottom: 6px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Vocabulary Exam Prep (Set 3)</h1>
+
+    <!-- TASK 1 -->
+    <h2>Task 1: Match the words and expressions</h2>
+    <p class="task-description">Choose the correct Russian translation for each English phrase. Click "Check" to verify, or "Show Answer" if you forgot.</p>
+    <div id="task1-container"></div>
+
+    <!-- TASK 2 -->
+    <h2>Task 2: Fill in the blanks</h2>
+    <p class="task-description">Select the most appropriate word or phrase to complete the sentences.</p>
+    <div class="options-box">
+        conscientious | kick-starter | to distinguish | to envision | a mishmash | to rank | an incentive | susceptible | to blend in | invaluable | to loathe | pressing
+    </div>
+    <div id="task2-container"></div>
+
+    <!-- TASK 3 -->
+    <h2>Task 3: Multiple Choice</h2>
+    <p class="task-description">Choose the correct option (A, B, or C). If you make a mistake, read the translations of all options.</p>
+    <div id="task3-container"></div>
+
+    <!-- TASK 4 -->
+    <h2>Task 4: Match the sentence halves</h2>
+    <p class="task-description">Connect the beginning of the sentence with the correct ending.</p>
+    <div id="task4-container"></div>
+
+    <!-- TASK 5 -->
+    <h2>Task 5: Text Completion (Cloze Test)</h2>
+    <p class="task-description">Read the text about mental health and choose the correct words to fill in the gaps.</p>
+    <div class="question-block" id="task5-block" style="line-height: 2.2; font-size: 16px;">
+        Experiencing a panic attack or developing a severe 
+        <select class="t5-select" data-ans="phobia"><option value="">---</option><option value="fad">fad</option><option value="phobia">phobia</option><option value="stigma">stigma</option></select> 
+        can be an incredibly frightening experience. People often feel 
+        <select class="t5-select" data-ans="anxious"><option value="">---</option><option value="anxious">anxious</option><option value="vivid">vivid</option><option value="lucid">lucid</option></select> 
+        and constantly 
+        <select class="t5-select" data-ans="on edge"><option value="">---</option><option value="at fault">at fault</option><option value="on a whim">on a whim</option><option value="on edge">on edge</option></select>, 
+        expecting the worst to happen. Even the thought of facing their fear makes them 
+        <select class="t5-select" data-ans="get goosebumps"><option value="">---</option><option value="get goosebumps">get goosebumps</option><option value="pig out">pig out</option><option value="touch base">touch base</option></select>. 
+        When forced into a stressful situation, they might completely 
+        <select class="t5-select" data-ans="go to pieces"><option value="">---</option><option value="go to pieces">go to pieces</option><option value="pull together">pull together</option><option value="stand a chance">stand a chance</option></select>. 
+        However, it is crucial to remember that these fears are often 
+        <select class="t5-select" data-ans="irrational"><option value="">---</option><option value="innate">innate</option><option value="irrational">irrational</option><option value="profound">profound</option></select>. 
+        The first step to emotional first aid is learning to 
+        <select class="t5-select" data-ans="open up"><option value="">---</option><option value="bottle up">bottle up</option><option value="open up">open up</option><option value="back out">back out</option></select> 
+        about your feelings rather than hiding them. Talking to a therapist can bring a huge sense of 
+        <select class="t5-select" data-ans="relief"><option value="">---</option><option value="relief">relief</option><option value="guilty conscience">guilty conscience</option><option value="stamina">stamina</option></select>. 
+        It takes time to 
+        <select class="t5-select" data-ans="get over"><option value="">---</option><option value="get over">get over</option><option value="cut out">cut out</option><option value="catch on">catch on</option></select> 
+        deep-rooted anxiety, but prioritizing your psychological 
+        <select class="t5-select" data-ans="well-being"><option value="">---</option><option value="well-being">well-being</option><option value="earnings">earnings</option><option value="hustle and bustle">hustle and bustle</option></select> 
+        is the most important thing you can do.
+        
+        <div class="btn-group" style="margin-top: 20px;">
+            <button class="btn-check" onclick="checkTask5()">Check Text</button>
+            <button class="btn-answer" onclick="showTask5Answers()">Show Answers & Translation</button>
+        </div>
+        <div class="feedback-box" id="task5-feedback">
+            <strong>Правильные ответы по порядку:</strong> phobia, anxious, on edge, get goosebumps, go to pieces, irrational, open up, relief, get over, well-being.<br><br>
+            <strong>Перевод:</strong><br>
+            Пережить паническую атаку или заработать тяжелую фобию (phobia) — это невероятно пугающий опыт. Люди часто чувствуют тревогу (anxious) и постоянно находятся на взводе (on edge), ожидая худшего. Даже сама мысль о столкновении со своим страхом вызывает у них мурашки (get goosebumps). Оказавшись в стрессовой ситуации, они могут совершенно расклеиться / потерять самообладание (go to pieces). Однако крайне важно помнить, что эти страхи часто иррациональны (irrational). Первый шаг к эмоциональной первой помощи — научиться открываться (open up) и говорить о своих чувствах, а не прятать их. Разговор с психотерапевтом может принести огромное чувство облегчения (relief). Требуется время, чтобы преодолеть (get over) укоренившуюся тревогу, но забота о своем психологическом благополучии (well-being) — это самое важное, что вы можете сделать.
+        </div>
+    </div>
+
+    <!-- TASK 6 -->
+    <h2>Task 6: Word Formation & Synonyms</h2>
+    <p class="task-description">Type the word or phrase from the box that has a similar meaning to the words in brackets.</p>
+    <span class="task-warning">⚠️ IMPORTANT: You MUST change the grammatical form of the word (e.g. add -s, -ed, -ing, or make a noun plural) so it fits the sentence perfectly! Do not type 'to' or 'a/an'.</span>
+    
+    <div class="options-box">
+        to utilise | an income | to alter | an impairment | to overthink | to reconstruct | a breakthrough | to surpass | to empathise | to comprehend | to wear out | to nurture | a misconception | to emit | to inhibit
+    </div>
+    <div id="task6-container"></div>
+
+</div>
+
+<script>
+    // TASK 1 DATA
+    const task1Data = [
+        { q: "down-to-earth", ans: "F", explain: "down-to-earth — приземленный, практичный, реалистичный." },
+        { q: "a poker face", ans: "C", explain: "a poker face — бесстрастное лицо, не выражающее эмоций." },
+        { q: "to catch up on", ans: "H", explain: "to catch up on — наверстать упущенное (например, сон или работу)." },
+        { q: "to shake off", ans: "A", explain: "to shake off — избавиться от (мысли, болезни, привычки)." },
+        { q: "guilty conscience", ans: "K", explain: "guilty conscience — нечистая совесть, чувство вины." },
+        { q: "to cherish", ans: "B", explain: "to cherish — лелеять, бережно хранить (в памяти), дорожить." },
+        { q: "to back out", ans: "J", explain: "to back out — пойти на попятную, отказаться от участия или обещания." },
+        { q: "to water down", ans: "D", explain: "to water down — смягчить, разбавить (идею, текст, требования)." },
+        { q: "an obstacle", ans: "L", explain: "an obstacle — препятствие, преграда." },
+        { q: "cumbersome", ans: "E", explain: "cumbersome — громоздкий, обременительный, неудобный." },
+        { q: "scattered", ans: "G", explain: "scattered — разбросанный, рассеянный." },
+        { q: "an urge", ans: "I", explain: "an urge — сильное желание, порыв." }
+    ];
+    const task1Opts = [
+        {val: "A", text: "А. избавиться от (мысли, болезни)"}, {val: "B", text: "B. лелеять, дорожить"},
+        {val: "C", text: "C. бесстрастное лицо"}, {val: "D", text: "D. смягчить, разбавить (идею)"},
+        {val: "E", text: "E. громоздкий, обременительный"}, {val: "F", text: "F. приземленный, практичный"},
+        {val: "G", text: "G. разбросанный, рассеянный"}, {val: "H", text: "H. наверстать упущенное"},
+        {val: "I", text: "I. сильное желание, порыв"}, {val: "J", text: "J. пойти на попятную, отказаться"},
+        {val: "K", text: "K. чувство вины, нечистая совесть"}, {val: "L", text: "L. препятствие, преграда"}
+    ];
+
+    // TASK 2 DATA
+    const task2Data = [
+        { q: "Being an extremely [gap] student, she would always double-check her grammar tests before submitting them.", ans: "conscientious", explain: "<b>conscientious</b> - добросовестный, сознательный.<br><i>Грамматика: Participle clause (Being...). Перевод: Будучи чрезвычайно добросовестной студенткой, она всегда перепроверяла свои тесты по грамматике перед сдачей.</i>" },
+        { q: "A cup of strong coffee is the perfect [gap] for those early morning Vinyasa yoga sessions.", ans: "kick-starter", explain: "<b>kick-starter</b> - стимул, то, что дает заряд энергии для начала.<br><i>Перевод: Чашка крепкого кофе — идеальный стартовый импульс для ранних утренних занятий виньяса-йогой.</i>" },
+        { q: "If he hadn't read the manual, he wouldn't be able to [gap] between the two complex software features now.", ans: "distinguish", explain: "<b>distinguish</b> - различать, отличать.<br><i>Грамматика: Mixed Conditional. Перевод: Если бы он не прочитал руководство, он бы сейчас не смог отличить две сложные функции программы.</i>" },
+        { q: "Can you really [gap] yourself running a business in ten years, or is it just a pipe dream?", ans: "envision", explain: "<b>envision</b> - воображать, представлять себе.<br><i>Перевод: Ты действительно можешь представить себе, что будешь управлять бизнесом через десять лет, или это просто несбыточная мечта?</i>" },
+        { q: "His latest novel, which was heavily criticized, turned out to be a bizarre [gap] of postmodern ideas and cheap romance.", ans: "mishmash", explain: "<b>mishmash</b> - мешанина, путаница.<br><i>Грамматика: Relative Clause (which was...). Перевод: Его последний роман, подвергшийся жесткой критике, оказался причудливой мешаниной постмодернистских идей и дешевой романтики.</i>" },
+        { q: "It's highly likely that this university will [gap] among the top 100 globally next year.", ans: "rank", explain: "<b>rank</b> - занимать место, оцениваться.<br><i>Грамматика: Phrase for future (It's highly likely that...). Перевод: Весьма вероятно, что в следующем году этот университет войдет в сотню лучших в мире.</i>" },
+        { q: "The management should provide a better financial [gap] so that the employees wouldn't look for other jobs.", ans: "incentive", explain: "<b>incentive</b> - стимул, поощрение.<br><i>Грамматика: Clause of purpose (so that...). Перевод: Руководству следует обеспечить лучший финансовый стимул, чтобы сотрудники не искали другую работу.</i>" },
+        { q: "Young children are particularly [gap] to the marketing tactics used in mobile applications.", ans: "susceptible", explain: "<b>susceptible</b> - восприимчивый, подверженный влиянию.<br><i>Грамматика: Adjective + to. Перевод: Маленькие дети особенно восприимчивы к маркетинговым тактикам, используемым в мобильных приложениях.</i>" },
+        { q: "She had her hair dyed brown simply to [gap] with the crowd and avoid unnecessary attention.", ans: "blend in", explain: "<b>blend in</b> - слиться с толпой, не выделяться.<br><i>Грамматика: Causative (had + object + V3). Перевод: Она покрасила волосы в каштановый цвет просто для того, чтобы слиться с толпой и избежать лишнего внимания.</i>" },
+        { q: "The insights provided by the life coach proved to be absolutely [gap] for her personal growth.", ans: "invaluable", explain: "<b>invaluable</b> - бесценный.<br><i>Перевод: Идеи (озарения), предоставленные лайф-коучем, оказались абсолютно бесценными для ее личностного роста.</i>" },
+        { q: "I absolutely [gap] having to commute two hours each way; I'd rather work as a digital nomad.", ans: "loathe", explain: "<b>loathe</b> - ненавидеть, питать отвращение.<br><i>Грамматика: I'd rather + infinitive. Перевод: Я абсолютно ненавижу тратить на дорогу по два часа в каждую сторону; я бы предпочел работать как цифровой кочевник.</i>" },
+        { q: "Unless we deal with these [gap] issues immediately, the project will definitely fail.", ans: "pressing", explain: "<b>pressing</b> - неотложный, насущный.<br><i>Грамматика: Alternative conditions (Unless = If not). Перевод: Если мы не решим эти насущные проблемы немедленно, проект определенно провалится.</i>" }
+    ];
+    const task2Opts = ["conscientious", "kick-starter", "to distinguish", "to envision", "a mishmash", "to rank", "an incentive", "susceptible", "to blend in", "invaluable", "to loathe", "pressing"].sort();
+
+    // TASK 3 DATA
+    const task3Data = [
+        { q: "Despite being tired, the students were incredibly ___ about the new interactive grammar game.", opts: ["enthusiastic", "neurotic", "devastated"], ans: 0, explain: "<b>enthusiastic</b> - полный энтузиазма; <b>neurotic</b> - невротичный; <b>devastated</b> - раздавленный горем.<br><i>Несмотря на усталость, студенты были полны энтузиазма по поводу новой грамматической игры.</i>" },
+        { q: "Stop acting like a wet blanket! You need to ___ and finish your thesis.", opts: ["beat around the bush", "pull yourself together", "go to pieces"], ans: 1, explain: "<b>pull oneself together</b> - взять себя в руки; <b>beat around the bush</b> - ходить вокруг да около; <b>go to pieces</b> - расклеиться.<br><i>Перестань вести себя как зануда! Тебе нужно взять себя в руки и закончить диссертацию.</i>" },
+        { q: "Having analyzed all the data, the scientists were able to ___ that the climate is indeed changing rapidly.", opts: ["conclude", "reconstruct", "smash"], ans: 0, explain: "<b>conclude</b> - сделать вывод; <b>reconstruct</b> - реконструировать; <b>smash</b> - разбить.<br><i>Проанализировав все данные (Perfect Participle), ученые смогли сделать вывод...</i>" },
+        { q: "I'd rather you didn't blame me. I am not ___ for the failure of this start-up.", opts: ["at odds", "at fault", "at ease"], ans: 1, explain: "<b>at fault</b> - виноватый; <b>at odds</b> - в разногласиях; <b>at ease</b> - расслабленный.<br><i>Я бы предпочел, чтобы ты меня не винил (I'd rather you didn't). Я не виноват в провале этого стартапа.</i>" },
+        { q: "The politician's provocative speech was intended to ___ conflict among the voters.", opts: ["stir", "soothe", "inhibit"], ans: 0, explain: "<b>stir</b> - разжигать, провоцировать; <b>soothe</b> - успокаивать; <b>inhibit</b> - подавлять.<br><i>Провокационная речь политика была направлена на то, чтобы разжечь конфликт среди избирателей.</i>" },
+        { q: "Before participating in the clinical trial, all volunteers had to be thoroughly ___ for any underlying conditions.", opts: ["screened", "nurtured", "devised"], ans: 0, explain: "<b>to screen</b> - проверять, обследовать; <b>nurture</b> - воспитывать; <b>devise</b> - разрабатывать.<br><i>Перед участием в испытании все добровольцы должны были пройти тщательное обследование. (Passive)</i>" },
+        { q: "The company's earnings did ___ expectations, leading to a huge celebration in the office.", opts: ["prevent", "surpass", "deteriorate"], ans: 1, explain: "<b>surpass</b> - превосходить; <b>prevent</b> - предотвращать; <b>deteriorate</b> - ухудшаться.<br><i>Доходы компании действительно превзошли ожидания (Emphatic 'did').</i>" },
+        { q: "It was practically speaking ___ that the housing market would crash eventually.", opts: ["cumbersome", "inevitable", "inventive"], ans: 1, explain: "<b>inevitable</b> - неизбежный; <b>cumbersome</b> - громоздкий; <b>inventive</b> - изобретательный.<br><i>С практической точки зрения, было неизбежно, что рынок жилья в конечном итоге рухнет.</i>" },
+        { q: "You must maintain eye contact to show the ___ that you are actively listening.", opts: ["scammer", "interlocutor", "prodigy"], ans: 1, explain: "<b>interlocutor</b> - собеседник; <b>scammer</b> - мошенник; <b>prodigy</b> - вундеркинд.<br><i>Вы должны поддерживать зрительный контакт, чтобы показать собеседнику, что вы внимательно слушаете.</i>" },
+        { q: "Writing academic citations manually can be incredibly ___; you'd better use a software tool.", opts: ["time-consuming", "rewarding", "transparent"], ans: 0, explain: "<b>time-consuming</b> - отнимающий много времени; <b>rewarding</b> - приносящий удовлетворение; <b>transparent</b> - прозрачный.<br><i>Оформление цитат вручную может отнимать массу времени; тебе лучше использовать программу. (Had better)</i>" },
+        { q: "Fish and seafood are a ___ in a pescatarian diet.", opts: ["fad", "hoax", "staple"], ans: 2, explain: "<b>staple</b> - основной продукт; <b>fad</b> - причуда; <b>hoax</b> - фальшивка.<br><i>Рыба и морепродукты — основа пескетарианской диеты.</i>" },
+        { q: "She loves to keep up with ___ by reading several independent news websites every morning.", opts: ["current affairs", "smoke and mirrors", "creature comforts"], ans: 0, explain: "<b>current affairs</b> - текущие события, новости; <b>smoke and mirrors</b> - пыль в глаза; <b>creature comforts</b> - бытовые удобства.<br><i>Она любит быть в курсе текущих событий, читая новости каждое утро.</i>" }
+    ];
+
+    // TASK 4 DATA
+    const task4Data = [
+        { q: "1. I wish he wouldn't lounge around all day", ans: "A", explain: "<b>lounge around</b> - бездельничать, валяться; <b>give a hand</b> - помочь.<br><i>Хотел бы я, чтобы он не валялся весь день на диване и хоть раз помог бы по дому.</i>" },
+        { q: "2. The new rules were imposed on the staff", ans: "B", explain: "<b>impose on</b> - навязывать кому-то.<br><i>Новые правила были навязаны персоналу без предварительного согласования.</i>" },
+        { q: "3. Standing with crossed arms is often interpreted", ans: "C", explain: "<b>crossed arms</b> - скрещенные руки; <b>defensive posture</b> - защитная поза.<br><i>Скрещенные на груди руки часто интерпретируются как защитная поза в невербальном общении.</i>" },
+        { q: "4. The detective managed to reconstruct the crime scene", ans: "D", explain: "<b>reconstruct</b> - воссоздать; <b>eyewitness</b> - свидетель.<br><i>Детективу удалось воссоздать место преступления благодаря детальному рассказу свидетеля.</i>" },
+        { q: "5. We need to nail down the exact date for the tournament", ans: "E", explain: "<b>nail down</b> - точно определить, утвердить.<br><i>Нам нужно утвердить точную дату турнира до того, как мы разошлем приглашения.</i>" },
+        { q: "6. It's time we got acquainted with our new neighbors", ans: "F", explain: "<b>get acquainted</b> - познакомиться; <b>It's time</b> + Past Simple.<br><i>Пора бы нам познакомиться с нашими новыми соседями, раз уж мы переехали.</i>" },
+        { q: "7. The manager gave a thumbs-up to the project,", ans: "G", explain: "<b>give a thumbs-up</b> - одобрить, дать добро.<br><i>Менеджер дал добро на проект, так что мы можем приступать к следующему этапу.</i>" },
+        { q: "8. Had I known the pizza was so caloric, I wouldn't have pigged out on it", ans: "H", explain: "<b>pig out</b> - объедаться; Третье условное (Had I known...).<br><i>Если бы я знал, что пицца такая калорийная, я бы не объелся ею вчера вечером.</i>" },
+        { q: "9. Good schools should foster lateral thinking", ans: "I", explain: "<b>foster</b> - поощрять, развивать; <b>lateral thinking</b> - нестандартное мышление.<br><i>Хорошие школы должны развивать нестандартное мышление, а не просто заставлять учить наизусть.</i>" },
+        { q: "10. He is planning to embark on a completely new career", ans: "J", explain: "<b>embark on</b> - начать (что-то новое).<br><i>Он планирует начать совершенно новую карьеру, как только получит сертификат.</i>" }
+    ];
+    const task4Opts = [
+        {val: "A", text: "A. and actually gave us a hand with the chores for once."},
+        {val: "B", text: "B. without any prior consultation."},
+        {val: "C", text: "C. as a defensive posture in nonverbal communication."},
+        {val: "D", text: "D. thanks to the detailed account provided by the eyewitness."},
+        {val: "E", text: "E. before we send out the official invitations."},
+        {val: "F", text: "F. since we moved in over a month ago."},
+        {val: "G", text: "G. so we can finally proceed to the next stage."},
+        {val: "H", text: "H. like there was no tomorrow last night."},
+        {val: "I", text: "I. rather than just forcing students to memorize facts."},
+        {val: "J", text: "J. as soon as he receives his final certification."}
+    ];
+
+    // TASK 6 DATA (Word Forms)
+    const task6Data = [
+        { q: "Instead of throwing away old materials, the factory has started (using) [gap] them for new products.", ans: "utilising|utilizing", explain: "<b>utilising / utilizing</b> (от to utilise) - использовать. <br><i>Грамматика: После глагола 'start' часто используется герундий (-ing).</i>" },
+        { q: "Both of their (earnings/money) [gap] combined were still not enough to afford a house in that area.", ans: "incomes", explain: "<b>incomes</b> (от an income) - доходы. <br><i>Грамматика: Речь идет о доходах двоих людей, нужно множественное число (добавляем -s).</i>" },
+        { q: "The original document had been completely (changed) [gap] by the time it reached the director.", ans: "altered", explain: "<b>altered</b> (от to alter) - изменять. <br><i>Грамматика: Past Perfect Passive (had been + V3).</i>" },
+        { q: "The new policy aims to support employees with severe visual or hearing (disabilities) [gap].", ans: "impairments", explain: "<b>impairments</b> (от an impairment) - нарушения, расстройства. <br><i>Грамматика: Множественное число (-s).</i>" },
+        { q: "She couldn't sleep, (worrying too much) [gap] every single word she had said during the interview.", ans: "overthinking", explain: "<b>overthinking</b> (от to overthink) - накручивать, слишком много думать. <br><i>Грамматика: Present Participle (деепричастие) -ing.</i>" },
+        { q: "The entire medieval castle was meticulously (rebuilt) [gap] using authentic historical techniques.", ans: "reconstructed", explain: "<b>reconstructed</b> (от to reconstruct) - реконструировать, восстановить. <br><i>Грамматика: Past Simple Passive (was + V3).</i>" },
+        { q: "Scientists have recently made several remarkable (major discoveries) [gap] in the field of genetic engineering.", ans: "breakthroughs", explain: "<b>breakthroughs</b> (от a breakthrough) - прорывы. <br><i>Грамматика: Множественное число после слова 'several' (-s).</i>" },
+        { q: "The company's annual revenue has significantly (exceeded) [gap] all initial expectations.", ans: "surpassed", explain: "<b>surpassed</b> (от to surpass) - превосходить. <br><i>Грамматика: Present Perfect (has + V3).</i>" },
+        { q: "By (sympathizing) [gap] with your clients, you can build much stronger relationships.", ans: "empathising|empathizing", explain: "<b>empathising / empathizing</b> (от to empathise) - сопереживать. <br><i>Грамматика: После предлога 'by' нужен герундий.</i>" },
+        { q: "I am having a really hard time (understanding) [gap] the complex logic behind this financial decision.", ans: "comprehending", explain: "<b>comprehending</b> (от to comprehend) - постигать, понимать. <br><i>Грамматика: После фразы 'have a hard time' идет герундий (-ing).</i>" },
+        { q: "After running the marathon and staying awake for two days, I was completely (exhausted) [gap].", ans: "worn out", explain: "<b>worn out</b> (от to wear out) - измотанный. <br><i>Грамматика: Passive/Adjective форма (was + V3 от неправильного глагола wear -> worn).</i>" },
+        { q: "Talent alone is not enough; it must be carefully (cared for / developed) [gap] from a young age.", ans: "nurtured", explain: "<b>nurtured</b> (от to nurture) - воспитывать, лелеять, развивать. <br><i>Грамматика: Passive Voice с модальным глаголом (must be + V3).</i>" },
+        { q: "There are many common (false beliefs) [gap] about what it actually takes to be a successful entrepreneur.", ans: "misconceptions", explain: "<b>misconceptions</b> (от a misconception) - заблуждения. <br><i>Грамматика: Множественное число после 'many' (-s).</i>" },
+        { q: "The engine was (giving out) [gap] a strange humming noise before it finally broke down.", ans: "emitting", explain: "<b>emitting</b> (от to emit) - излучать, испускать (звук, свет). <br><i>Грамматика: Past Continuous (was + V-ing). Обратите внимание на удвоение буквы 't'.</i>" },
+        { q: "The new medication has effectively (held back) [gap] the spread of the virus within the first 48 hours.", ans: "inhibited", explain: "<b>inhibited</b> (от to inhibit) - подавлять, препятствовать. <br><i>Грамматика: Present Perfect (has + V3).</i>" }
+    ];
+
+    // RENDER AND LOGIC
+    function buildSelect(options, correctAns) {
+        let html = `<select data-ans="${correctAns}"><option value="">--Select--</option>`;
+        options.forEach(opt => {
+            let val = typeof opt === 'string' ? opt : opt.val;
+            let text = typeof opt === 'string' ? opt : opt.text;
+            html += `<option value="${val}">${text}</option>`;
+        });
+        return html + `</select>`;
+    }
+
+    function buildItem(taskNum, index, questionHTML, explainText, isRadio = false) {
+        let boxId = `t${taskNum}_q${index}`;
+        return `
+        <div class="question-block" id="${boxId}">
+            <div style="margin-bottom: 10px;">${questionHTML}</div>
+            <div class="btn-group">
+                <button class="btn-check" onclick="checkItem('${boxId}', ${isRadio})">Check</button>
+                <button class="btn-answer" onclick="showAnswer('${boxId}')">Show Answer</button>
+            </div>
+            <div class="feedback-box" id="${boxId}_fb">
+                ${explainText}
+            </div>
+        </div>`;
+    }
+
+    window.onload = function() {
+        // T1
+        let t1Html = "";
+        task1Data.forEach((item, i) => {
+            t1Html += buildItem(1, i, `<strong>${item.q}</strong> ` + buildSelect(task1Opts, item.ans), item.explain);
+        });
+        document.getElementById('task1-container').innerHTML = t1Html;
+
+        // T2
+        let t2Html = "";
+        task2Data.forEach((item, i) => {
+            let parts = item.q.split("[gap]");
+            let qStr = `<strong>${i+1}.</strong> ${parts[0]} ${buildSelect(task2Opts, item.ans)} ${parts[1]}`;
+            t2Html += buildItem(2, i, qStr, item.explain);
+        });
+        document.getElementById('task2-container').innerHTML = t2Html;
+
+        // T3
+        let t3Html = "";
+        task3Data.forEach((item, i) => {
+            let rHtml = `<p><strong>${i+1}. ${item.q}</strong></p>`;
+            item.opts.forEach((opt, oIndex) => {
+                rHtml += `<label class="radio-label"><input type="radio" name="t3_r${i}" value="${oIndex}" data-ans="${item.ans}"> ${String.fromCharCode(65+oIndex)}) ${opt}</label>`;
+            });
+            t3Html += buildItem(3, i, rHtml, item.explain, true);
+        });
+        document.getElementById('task3-container').innerHTML = t3Html;
+
+        // T4
+        let t4Html = "";
+        task4Data.forEach((item, i) => {
+            t4Html += buildItem(4, i, `<strong>${item.q}</strong> ` + buildSelect(task4Opts, item.ans), item.explain);
+        });
+        document.getElementById('task4-container').innerHTML = t4Html;
+
+        // T6
+        let t6Html = "";
+        task6Data.forEach((item, i) => {
+            let qStr = `<strong>${i+1}.</strong> ` + item.q.replace("[gap]", `<input type="text" data-ans="${item.ans}" placeholder="type form...">`);
+            t6Html += buildItem(6, i, qStr, item.explain);
+        });
+        document.getElementById('task6-container').innerHTML = t6Html;
+    };
+
+    function checkItem(boxId, isRadio) {
+        let box = document.getElementById(boxId);
+        let fb = document.getElementById(boxId + "_fb");
+        box.classList.remove('correct-bg', 'incorrect-bg');
+        
+        let isCorrect = false;
+        let hasAnswered = false;
+
+        if (isRadio) {
+            let radios = box.querySelectorAll('input[type="radio"]');
+            radios.forEach(r => {
+                if (r.checked) {
+                    hasAnswered = true;
+                    if (r.value === r.getAttribute('data-ans')) isCorrect = true;
+                }
+            });
+        } else {
+            let input = box.querySelector('select, input[type="text"]');
+            let val = input.value.trim().toLowerCase();
+            let ansStr = input.getAttribute('data-ans').toLowerCase();
+            if (val !== "") hasAnswered = true;
+            
+            // Allow multiple variants separated by pipe |
+            let ansArr = ansStr.split('|');
+            let valNoSpace = val.replace(" ", "");
+            if (ansArr.includes(val) || ansArr.includes(valNoSpace)) {
+                isCorrect = true;
+            }
+        }
+
+        if (!hasAnswered) {
+            alert("Пожалуйста, выберите/введите ответ перед проверкой.");
+            return;
+        }
+
+        if (isCorrect) {
+            box.classList.add('correct-bg');
+            fb.style.display = 'none'; 
+        } else {
+            box.classList.add('incorrect-bg');
+            fb.style.display = 'block'; 
+        }
+    }
+
+    function showAnswer(boxId) {
+        let fb = document.getElementById(boxId + "_fb");
+        let box = document.getElementById(boxId);
+        fb.style.display = 'block';
+        box.classList.remove('incorrect-bg');
+        box.classList.add('correct-bg'); 
+        
+        let input = box.querySelector('select, input[type="text"]');
+        if (input) {
+            let correctAns = input.getAttribute('data-ans');
+            if (correctAns.includes('|')) {
+                input.value = correctAns.split('|')[0]; // pick first variant
+            } else {
+                input.value = correctAns;
+            }
+        } else {
+            let radios = box.querySelectorAll('input[type="radio"]');
+            radios.forEach(r => {
+                if (r.value === r.getAttribute('data-ans')) r.checked = true;
+            });
+        }
+    }
+
+    function checkTask5() {
+        let selects = document.querySelectorAll('.t5-select');
+        let allCorrect = true;
+        selects.forEach(sel => {
+            sel.style.backgroundColor = ""; 
+            if (sel.value === "") {
+                sel.style.backgroundColor = "#fff3cd"; 
+                allCorrect = false;
+            } else if (sel.value === sel.getAttribute('data-ans')) {
+                sel.style.backgroundColor = "#d4edda"; 
+            } else {
+                sel.style.backgroundColor = "#f8d7da"; 
+                allCorrect = false;
+            }
+        });
+        if(!allCorrect) {
+            document.getElementById('task5-feedback').style.display = 'block';
+        }
+    }
+
+    function showTask5Answers() {
+        let selects = document.querySelectorAll('.t5-select');
+        selects.forEach(sel => {
+            sel.value = sel.getAttribute('data-ans');
+            sel.style.backgroundColor = "#d4edda";
+        });
+        document.getElementById('task5-feedback').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
