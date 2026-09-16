@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General English · Translation Masterclass</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --primary-light: #34495e;
+            --background: #ecf0f1;
+            --card-bg: #ffffff;
+            --text: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --accent: #e74c3c;
+            --border: #bdc3c7;
+            --success: #27ae60;
+            --error: #c0392b;
+            --nav-bg: #1a252f;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        nav {
+            background-color: var(--nav-bg);
+            color: #ffffff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #ecf0f1;
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .tab-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tablinks {
+            flex: 1;
+            min-width: 140px;
+            padding: 12px 10px;
+            background: none;
+            border: none;
+            text-align: center;
+            color: var(--text);
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .tablinks:hover {
+            background-color: var(--background);
+        }
+
+        .tablinks.active {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .tabcontent {
+            display: none;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            border: 1px solid var(--border);
+            min-height: 400px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--text);
+            margin-bottom: 25px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+
+        .instruction {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+        }
+
+        .exercise-item {
+            margin-bottom: 25px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .exercise-item label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text);
+            font-size: 1.05rem;
+        }
+
+        .interactive-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .text-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .text-input:focus { border-color: var(--primary-light); }
+        .text-input.correct-input, .inline-input.correct-input {
+            border-color: var(--success) !important;
+            background-color: #f0fff4 !important;
+            color: #1e824c;
+        }
+
+        .inline-input {
+            width: 140px;
+            padding: 6px 10px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            display: inline-block;
+            margin: 0 6px;
+        }
+
+        .btn-action {
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.85rem;
+        }
+
+        .btn-action:hover { background-color: var(--primary-light); }
+
+        .ans-block {
+            display: none;
+            font-size: 0.95rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-top: 15px;
+            padding: 12px;
+            background: #ecf0f1;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary);
+            width: 100%;
+        }
+
+        /* Reorder Styles */
+        .reorder-container {
+            display: flex; flex-direction: column; gap: 10px; margin-top: 10px;
+        }
+        .drop-zone {
+            min-height: 50px; border: 2px dashed #bdc3c7; border-radius: 6px; padding: 10px;
+            display: flex; flex-wrap: wrap; gap: 8px; align-items: center; transition: all 0.3s;
+        }
+        .drop-zone.correct-drop { border-color: var(--success); background-color: #f0fff4; }
+        .word-bank {
+            min-height: 50px; background: #f8f9fa; border-radius: 6px; padding: 10px;
+            display: flex; flex-wrap: wrap; gap: 8px; align-items: center; border: 1px solid var(--border);
+        }
+        .word-chip {
+            background: var(--primary); color: white; padding: 8px 14px; border-radius: 20px;
+            font-size: 0.95rem; font-weight: 600; cursor: pointer; user-select: none;
+        }
+        .word-chip:hover { background: var(--primary-light); }
+
+        /* Multiple Choice Styles */
+        .quiz-options-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+        .quiz-option {
+            padding: 12px 15px; border: 2px solid var(--border); border-radius: 6px; background: #ffffff;
+            font-size: 0.95rem; font-weight: 600; cursor: pointer; text-align: left; transition: all 0.2s;
+        }
+        .quiz-option:hover { border-color: var(--primary-light); }
+        .quiz-option.correct { background-color: var(--success) !important; color: white !important; border-color: var(--success) !important; }
+        .quiz-option.incorrect { background-color: var(--error) !important; color: white !important; border-color: var(--error) !important; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">TRANSLATION MASTERCLASS</div>
+</nav>
+
+<div class="main-container">
+    <div class="tab-container">
+        <button class="tablinks active" onclick="openTab(event, 'ex1')">1. Full (RU → EN)</button>
+        <button class="tablinks" onclick="openTab(event, 'ex2')">2. Full (EN → RU)</button>
+        <button class="tablinks" onclick="openTab(event, 'ex3')">3. Partial Translation</button>
+        <button class="tablinks" onclick="openTab(event, 'ex4')">4. Spot the Error</button>
+        <button class="tablinks" onclick="openTab(event, 'ex5')">5. Reorder Translation</button>
+        <button class="tablinks" onclick="openTab(event, 'ex6')">6. Meaning nuances</button>
+    </div>
+
+    <!-- EXERCISE 1: FULL TRANSLATION (RU -> EN) -->
+    <div id="ex1" class="tabcontent" style="display: block;">
+        <h2>Format 1: Full Translation (RU → EN)</h2>
+        <div class="instruction">💡 Translate the Russian sentences into English. Use the target vocabulary and grammar structures. The field turns green when correct.</div>
+
+        <div class="exercise-item">
+            <label>1. В общем, удивительно, что древний монастырь был частично разрушен.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['In general it is surprising that the ancient monastery was partially destroyed'])" placeholder="Type your translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">In general, it is surprising that the ancient monastery was partially destroyed.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>2. Я бы предпочел вырастить эти растения сам, чем зависеть от каждого обстоятельства.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['I would rather grow these plants myself than depend on every circumstance', 'I would rather grow these plants myself than depend on each circumstance'])" placeholder="Type your translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">I would rather grow these plants myself than depend on every circumstance.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>3. Если бы только мы не застряли в пробке в прошлый раз!</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['If only we had not got stuck in traffic last time', 'If only we hadnt got stuck in a traffic jam last time', 'If only we had not gotten stuck in traffic last time'])" placeholder="Type your translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">If only we had not got stuck in traffic last time!</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>4. Ожидается, что двуязычный гид ответит на все вопросы.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['The bilingual guide is due to answer all questions', 'The bilingual guide is due to answer all the questions'])" placeholder="Type your translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">The bilingual guide is due to answer all questions.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>5. Тебе следовало сократить расходы, чтобы не быть должным всем.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['You should have cut costs not to owe everyone', 'You should have cut costs so as not to owe everyone', 'You should have cut costs in order not to owe everyone'])" placeholder="Type your translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">You should have cut costs not to owe everyone.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>6. Несмотря на напряженное препятствие, он пришел помочь мне повесить шторы.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Despite the tense obstacle he came to help me hang the curtains', 'In spite of the tense obstacle he came to help me hang the curtains', 'Despite the tense obstacle he came to help me to hang the curtains'])" placeholder="Type your translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">Despite the tense obstacle, he came to help me hang the curtains.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>7. Нам лучше придумать простой рецепт до вылета.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['We had better come up with a simple recipe before departure', 'We had better come up with a simple recipe before the departure'])" placeholder="Type your translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">We had better come up with a simple recipe before departure.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>8. Хорошая возможность вряд ли придет, если ты не будешь ждать.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['A good opportunity is unlikely to come if you do not wait', 'A good opportunity is unlikely to come if you dont wait'])" placeholder="Type your translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">A good opportunity is unlikely to come if you do not wait.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>9. Я привыкаю доверять невербальным сигналам в напряженных обстоятельствах.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['I am getting used to trusting nonverbal signals in tense circumstances', 'I am getting used to trusting non-verbal signals in tense circumstances'])" placeholder="Type your translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">I am getting used to trusting non-verbal signals in tense circumstances.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>10. Скорее всего, они решат сыграть во что-нибудь в шортах и юбках.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['They are likely to decide to play something in shorts and skirts', 'They are likely to decide to play in shorts and skirts'])" placeholder="Type your translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">They are likely to decide to play something in shorts and skirts.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXERCISE 2: FULL TRANSLATION (EN -> RU) -->
+    <div id="ex2" class="tabcontent">
+        <h2>Format 2: Full Translation (EN → RU)</h2>
+        <div class="instruction">💡 Translate the English sentences into Russian. The script is flexible, but try to be precise.</div>
+
+        <div class="exercise-item">
+            <label>1. Having poured the tea, she spent time answering the letter.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Налив чай она провела время отвечая на письмо', 'Налив чай она проводила время отвечая на письмо'])" placeholder="Напишите перевод...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">Налив чай, она провела время, отвечая на письмо.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>2. To what extent can this obstacle be solved simply?</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['В какой степени это препятствие может быть решено просто', 'Насколько это препятствие может быть решено просто'])" placeholder="Напишите перевод...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">В какой степени это препятствие может быть решено просто?</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>3. We are on the verge of losing a good possibility.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Мы находимся на грани потери хорошей возможности', 'Мы на грани потери хорошей возможности', 'Мы на грани того чтобы потерять хорошую возможность'])" placeholder="Напишите перевод...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">Мы находимся на грани потери хорошей возможности.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>4. I wish he had not bought that last-minute package tour.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Жаль что он не купил ту горящую путевку', 'Жаль что он купил ту горящую путевку', 'О если бы он не купил ту горящую путевку'])" placeholder="Напишите перевод...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">Жаль, что он купил ту горящую путевку. (Или: О, если бы он не купил ту горящую путевку.)</div>
+            </div>
+        </div>
+        
+        <div class="exercise-item">
+            <label>5. The departure will have been expected by tomorrow morning.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Вылет будут ожидать к завтрашнему утру', 'Отправление будут ожидать к завтрашнему утру', 'Вылет будет ожидаться к завтрашнему утру'])" placeholder="Напишите перевод...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">Вылет будут ожидать (будет ожидаться) к завтрашнему утру.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>6. Providing that you trust me, we will cut costs.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['При условии что ты доверяешь мне мы сократим расходы', 'При условии что вы доверяете мне мы сократим расходы'])" placeholder="Напишите перевод...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">При условии, что ты доверяешь мне, мы сократим расходы.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>7. Even a simple decision might lead to surprising consequences.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Даже простое решение может привести к удивительным последствиям', 'Даже простое решение могло привести к удивительным последствиям'])" placeholder="Напишите перевод...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">Даже простое решение может привести к удивительным последствиям.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>8. The tense situation was partially solved by a non-verbal gesture.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Напряженная ситуация была частично решена невербальным жестом', 'Напряженная ситуация была частично решена при помощи невербального жеста'])" placeholder="Напишите перевод...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">Напряженная ситуация была частично решена невербальным жестом.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>9. I would rather grow all vegetables well.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Я бы предпочел хорошо выращивать все овощи', 'Я бы предпочел растить все овощи хорошо'])" placeholder="Напишите перевод...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">Я бы предпочел хорошо выращивать все овощи.</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>10. You must have been surprised by his opinion on this circumstance.</label>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Ты должно быть был удивлен его мнением об этом обстоятельстве', 'Вы должно быть были удивлены его мнением об этом обстоятельстве'])" placeholder="Напишите перевод...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">Ты, должно быть, был удивлен его мнением об этом обстоятельстве.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXERCISE 3: PARTIAL TRANSLATION -->
+    <div id="ex3" class="tabcontent">
+        <h2>Format 3: Inline Partial Translation</h2>
+        <div class="instruction">💡 Translate the Russian words in brackets into English to complete the sentences.</div>
+        
+        <div class="exercise-item">
+            <div style="font-size: 1.1rem; line-height: 2;">1. <input type="text" class="inline-input" style="width:160px;" oninput="liveCheck(this, ['Providing that', 'On condition that'])"> <em>(При условии, что)</em> you find the <input type="text" class="inline-input" oninput="liveCheck(this, ['wheel'])"> <em>(руль)</em>, we will <input type="text" class="inline-input" oninput="liveCheck(this, ['depart'])"> <em>(отправимся)</em>.</div>
+            <button class="btn-action" style="margin-top: 15px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">Providing that you find the wheel, we will depart.</div>
+        </div>
+
+        <div class="exercise-item">
+            <div style="font-size: 1.1rem; line-height: 2;">2. It is <input type="text" class="inline-input" oninput="liveCheck(this, ['unlikely'])"> <em>(маловероятно)</em> that the <input type="text" class="inline-input" style="width: 170px;" oninput="liveCheck(this, ['ancient monastery'])"> <em>(древний монастырь)</em> will <input type="text" class="inline-input" oninput="liveCheck(this, ['accumulate'])"> <em>(накопит)</em> <input type="text" class="inline-input" oninput="liveCheck(this, ['imaginary'])"> <em>(воображаемое)</em> wealth.</div>
+            <button class="btn-action" style="margin-top: 15px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">It is unlikely that the ancient monastery will accumulate imaginary wealth.</div>
+        </div>
+
+        <div class="exercise-item">
+            <div style="font-size: 1.1rem; line-height: 2;">3. She <input type="text" class="inline-input" oninput="liveCheck(this, ['was about to'])"> <em>(собиралась / вот-вот должна была)</em> <input type="text" class="inline-input" oninput="liveCheck(this, ['lose'])"> <em>(потерять)</em> her <input type="text" class="inline-input" oninput="liveCheck(this, ['skirt'])"> <em>(юбку)</em>.</div>
+            <button class="btn-action" style="margin-top: 15px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">She was about to lose her skirt.</div>
+        </div>
+
+        <div class="exercise-item">
+            <div style="font-size: 1.1rem; line-height: 2;">4. <input type="text" class="inline-input" oninput="liveCheck(this, ['Despite', 'In spite of'])"> <em>(Несмотря на)</em> the <input type="text" class="inline-input" oninput="liveCheck(this, ['tension'])"> <em>(напряжение)</em>, he <input type="text" class="inline-input" oninput="liveCheck(this, ['spent time'])"> <em>(проводил время)</em> <input type="text" class="inline-input" oninput="liveCheck(this, ['playing'])"> <em>(играя)</em>.</div>
+            <button class="btn-action" style="margin-top: 15px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">Despite the tension, he spent time playing.</div>
+        </div>
+
+        <div class="exercise-item">
+            <div style="font-size: 1.1rem; line-height: 2;">5. <input type="text" class="inline-input" oninput="liveCheck(this, ['Every'])"> <em>(Каждый)</em> <input type="text" class="inline-input" oninput="liveCheck(this, ['bilingual'])"> <em>(двуязычный)</em> student tried to <input type="text" class="inline-input" oninput="liveCheck(this, ['come up with'])"> <em>(придумать)</em> a <input type="text" class="inline-input" oninput="liveCheck(this, ['simple'])"> <em>(простой)</em> answer.</div>
+            <button class="btn-action" style="margin-top: 15px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">Every bilingual student tried to come up with a simple answer.</div>
+        </div>
+
+        <div class="exercise-item">
+            <div style="font-size: 1.1rem; line-height: 2;">6. I am <input type="text" class="inline-input" style="width: 150px;" oninput="liveCheck(this, ['getting used to'])"> <em>(привыкаю)</em> <input type="text" class="inline-input" oninput="liveCheck(this, ['waiting'])"> <em>(ждать)</em> for a <input type="text" class="inline-input" oninput="liveCheck(this, ['good'])"> <em>(хорошей)</em> <input type="text" class="inline-input" oninput="liveCheck(this, ['opportunity'])"> <em>(возможности)</em>.</div>
+            <button class="btn-action" style="margin-top: 15px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">I am getting used to waiting for a good opportunity.</div>
+        </div>
+
+        <div class="exercise-item">
+            <div style="font-size: 1.1rem; line-height: 2;">7. The chef <input type="text" class="inline-input" oninput="liveCheck(this, ['is likely to'])"> <em>(скорее всего)</em> <input type="text" class="inline-input" oninput="liveCheck(this, ['pour'])"> <em>(нальет)</em> <input type="text" class="inline-input" oninput="liveCheck(this, ['all'])"> <em>(всю)</em> the water.</div>
+            <button class="btn-action" style="margin-top: 15px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">The chef is likely to pour all the water.</div>
+        </div>
+
+        <div class="exercise-item">
+            <div style="font-size: 1.1rem; line-height: 2;">8. <input type="text" class="inline-input" oninput="liveCheck(this, ['Although', 'Even though'])"> <em>(Хотя)</em> I was <input type="text" class="inline-input" oninput="liveCheck(this, ['surprised'])"> <em>(удивлен)</em>, I tried to <input type="text" class="inline-input" oninput="liveCheck(this, ['help'])"> <em>(помочь)</em> him.</div>
+            <button class="btn-action" style="margin-top: 15px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">Although I was surprised, I tried to help him.</div>
+        </div>
+
+        <div class="exercise-item">
+            <div style="font-size: 1.1rem; line-height: 2;">9. I <input type="text" class="inline-input" oninput="liveCheck(this, ['would rather'])"> <em>(предпочел бы)</em> <input type="text" class="inline-input" oninput="liveCheck(this, ['trust'])"> <em>(доверять)</em> my <input type="text" class="inline-input" oninput="liveCheck(this, ['opinion'])"> <em>(мнению)</em> <input type="text" class="inline-input" oninput="liveCheck(this, ['than'])"> <em>(чем)</em> yours.</div>
+            <button class="btn-action" style="margin-top: 15px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">I would rather trust my opinion than yours.</div>
+        </div>
+
+        <div class="exercise-item">
+            <div style="font-size: 1.1rem; line-height: 2;">10. <input type="text" class="inline-input" oninput="liveCheck(this, ['If only'])"> <em>(Если бы только)</em> we <input type="text" class="inline-input" style="width: 170px;" oninput="liveCheck(this, ['had not got stuck', 'had not gotten stuck'])"> <em>(не застряли)</em> in that <input type="text" class="inline-input" oninput="liveCheck(this, ['obstacle'])"> <em>(препятствии)</em>!</div>
+            <button class="btn-action" style="margin-top: 15px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">If only we had not got stuck in that obstacle!</div>
+        </div>
+    </div>
+
+    <!-- EXERCISE 4: SPOT THE ERROR -->
+    <div id="ex4" class="tabcontent">
+        <h2>Format 4: Spot the Translation Error</h2>
+        <div class="instruction">💡 Read the Russian sentence and its English translation. There is ONE translation/grammar mistake in English. Type the <strong>corrected word/phrase</strong> in the box.</div>
+
+        <div class="exercise-item">
+            <label>1. RU: Я бы предпочел вырастить это сам, чем просить о помощи.</label>
+            <div style="font-size: 1.05rem; margin-bottom: 10px;">EN: I would rather grow this myself then ask for help.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['than'])" placeholder="Type the correct word(s)...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">than (после would rather используется than для сравнения)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>2. RU: Мы вот-вот отправимся в монастырь.</label>
+            <div style="font-size: 1.05rem; margin-bottom: 10px;">EN: We are about to departing to the monastery.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['to depart'])" placeholder="Type the correct word(s)...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">to depart (be about to + Infinitive)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>3. RU: Тебе лучше ответить на все вопросы.</label>
+            <div style="font-size: 1.05rem; margin-bottom: 10px;">EN: You had better to answer all questions.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['answer'])" placeholder="Type the correct word(s)...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">answer (после had better используется голый инфинитив без to)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>4. RU: Он собирался (был на грани) потерять руль.</label>
+            <div style="font-size: 1.05rem; margin-bottom: 10px;">EN: He was on the verge to lose the wheel.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['of losing'])" placeholder="Type the correct word(s)...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">of losing (конструкция be on the verge of + V-ing)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>5. RU: Ожидается, что они частично решат проблему.</label>
+            <div style="font-size: 1.05rem; margin-bottom: 10px;">EN: They are due solving the problem partially.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['to solve'])" placeholder="Type the correct word(s)...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">to solve (be due to + Infinitive)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>6. RU: Я бы предпочел доверять невербальным сигналам.</label>
+            <div style="font-size: 1.05rem; margin-bottom: 10px;">EN: I would rather to trust non-verbal signals.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['trust'])" placeholder="Type the correct word(s)...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">trust (после would rather используется инфинитив без to)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>7. RU: Если бы он подождал, мы бы не потеряли возможность.</label>
+            <div style="font-size: 1.05rem; margin-bottom: 10px;">EN: If he waited, we would not have lost the opportunity.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['had waited'])" placeholder="Type the correct word(s)...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">had waited (Third Conditional требует Past Perfect в условии)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>8. RU: Маловероятно, что эта ситуация приведет к напряжению.</label>
+            <div style="font-size: 1.05rem; margin-bottom: 10px;">EN: This situation is unlikely lead to tension.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['to lead'])" placeholder="Type the correct word(s)...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">to lead (be unlikely + to + Infinitive)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>9. RU: Несмотря на удивительные обстоятельства, мы приехали.</label>
+            <div style="font-size: 1.05rem; margin-bottom: 10px;">EN: Although the surprising circumstances, we came.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['despite', 'in spite of'])" placeholder="Type the correct word(s)...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">Despite / In spite of (после Although должно идти полное предложение)</div>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>10. RU: Мы не привыкли накапливать долги.</label>
+            <div style="font-size: 1.05rem; margin-bottom: 10px;">EN: We are not used to accumulate debts.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['accumulating'])" placeholder="Type the correct word(s)...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block">accumulating (конструкция be used to требует герундий V-ing)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXERCISE 5: REORDER TRANSLATION -->
+    <div id="ex5" class="tabcontent">
+        <h2>Format 5: Translation Assembly (Word Order)</h2>
+        <div class="instruction">💡 Read the Russian sentence. Click the English words in the correct order to translate it.</div>
+
+        <div class="exercise-item">
+            <label>1. Хорошая возможность вряд ли придет быстро.</label>
+            <div class="reorder-container" data-target="A good opportunity is unlikely to come quickly.">
+                <div class="drop-zone" onclick="returnWord(event)"></div>
+                <div class="word-bank" onclick="selectWord(event)">
+                    <span class="word-chip">unlikely</span>
+                    <span class="word-chip">opportunity</span>
+                    <span class="word-chip">A good</span>
+                    <span class="word-chip">to come</span>
+                    <span class="word-chip">quickly.</span>
+                    <span class="word-chip">is</span>
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">A good opportunity is unlikely to come quickly.</div>
+        </div>
+
+        <div class="exercise-item">
+            <label>2. Если бы он помог мне, я бы не застрял.</label>
+            <div class="reorder-container" data-target="If he had helped me, I would not have got stuck.">
+                <div class="drop-zone" onclick="returnWord(event)"></div>
+                <div class="word-bank" onclick="selectWord(event)">
+                    <span class="word-chip">I</span>
+                    <span class="word-chip">helped me,</span>
+                    <span class="word-chip">got stuck.</span>
+                    <span class="word-chip">If</span>
+                    <span class="word-chip">have</span>
+                    <span class="word-chip">he</span>
+                    <span class="word-chip">not</span>
+                    <span class="word-chip">would</span>
+                    <span class="word-chip">had</span>
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">If he had helped me, I would not have got stuck.</div>
+        </div>
+
+        <div class="exercise-item">
+            <label>3. Ожидается, что этот древний монастырь накопит много напряжения.</label>
+            <div class="reorder-container" data-target="This ancient monastery is due to accumulate a lot of tension.">
+                <div class="drop-zone" onclick="returnWord(event)"></div>
+                <div class="word-bank" onclick="selectWord(event)">
+                    <span class="word-chip">is</span>
+                    <span class="word-chip">accumulate</span>
+                    <span class="word-chip">a lot of tension.</span>
+                    <span class="word-chip">to</span>
+                    <span class="word-chip">due</span>
+                    <span class="word-chip">monastery</span>
+                    <span class="word-chip">This ancient</span>
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">This ancient monastery is due to accumulate a lot of tension.</div>
+        </div>
+
+        <div class="exercise-item">
+            <label>4. Я наконец привыкаю доверять каждому невербальному сигналу.</label>
+            <div class="reorder-container" data-target="I am finally getting used to trusting every non-verbal signal.">
+                <div class="drop-zone" onclick="returnWord(event)"></div>
+                <div class="word-bank" onclick="selectWord(event)">
+                    <span class="word-chip">finally</span>
+                    <span class="word-chip">every non-verbal</span>
+                    <span class="word-chip">trusting</span>
+                    <span class="word-chip">to</span>
+                    <span class="word-chip">getting used</span>
+                    <span class="word-chip">I am</span>
+                    <span class="word-chip">signal.</span>
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">I am finally getting used to trusting every non-verbal signal.</div>
+        </div>
+
+        <div class="exercise-item">
+            <label>5. В целом, это удивительное препятствие можно решить просто.</label>
+            <div class="reorder-container" data-target="In general, this surprising obstacle can be solved simply.">
+                <div class="drop-zone" onclick="returnWord(event)"></div>
+                <div class="word-bank" onclick="selectWord(event)">
+                    <span class="word-chip">In general,</span>
+                    <span class="word-chip">simply.</span>
+                    <span class="word-chip">be</span>
+                    <span class="word-chip">can</span>
+                    <span class="word-chip">this surprising obstacle</span>
+                    <span class="word-chip">solved</span>
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">In general, this surprising obstacle can be solved simply.</div>
+        </div>
+
+        <div class="exercise-item">
+            <label>6. Я бы предпочел налить все сам, чем потерять руль.</label>
+            <div class="reorder-container" data-target="I would rather pour all myself than lose the wheel.">
+                <div class="drop-zone" onclick="returnWord(event)"></div>
+                <div class="word-bank" onclick="selectWord(event)">
+                    <span class="word-chip">pour</span>
+                    <span class="word-chip">lose</span>
+                    <span class="word-chip">than</span>
+                    <span class="word-chip">the wheel.</span>
+                    <span class="word-chip">all myself</span>
+                    <span class="word-chip">I</span>
+                    <span class="word-chip">would rather</span>
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">I would rather pour all myself than lose the wheel.</div>
+        </div>
+
+        <div class="exercise-item">
+            <label>7. Вымыв шторы, она наконец провела время играя.</label>
+            <div class="reorder-container" data-target="Having washed the curtains, she finally spent time playing.">
+                <div class="drop-zone" onclick="returnWord(event)"></div>
+                <div class="word-bank" onclick="selectWord(event)">
+                    <span class="word-chip">the curtains,</span>
+                    <span class="word-chip">playing.</span>
+                    <span class="word-chip">finally</span>
+                    <span class="word-chip">washed</span>
+                    <span class="word-chip">she</span>
+                    <span class="word-chip">spent time</span>
+                    <span class="word-chip">Having</span>
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">Having washed the curtains, she finally spent time playing.</div>
+        </div>
+
+        <div class="exercise-item">
+            <label>8. Маловероятно, что он придумает хороший рецепт.</label>
+            <div class="reorder-container" data-target="He is unlikely to come up with a good recipe.">
+                <div class="drop-zone" onclick="returnWord(event)"></div>
+                <div class="word-bank" onclick="selectWord(event)">
+                    <span class="word-chip">He</span>
+                    <span class="word-chip">come up with</span>
+                    <span class="word-chip">to</span>
+                    <span class="word-chip">is</span>
+                    <span class="word-chip">a good recipe.</span>
+                    <span class="word-chip">unlikely</span>
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">He is unlikely to come up with a good recipe.</div>
+        </div>
+
+        <div class="exercise-item">
+            <label>9. Тебе лучше выяснить их мнение об этой путевке.</label>
+            <div class="reorder-container" data-target="You had better find out their opinion on this package tour.">
+                <div class="drop-zone" onclick="returnWord(event)"></div>
+                <div class="word-bank" onclick="selectWord(event)">
+                    <span class="word-chip">You</span>
+                    <span class="word-chip">on this package tour.</span>
+                    <span class="word-chip">had better</span>
+                    <span class="word-chip">their opinion</span>
+                    <span class="word-chip">find out</span>
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">You had better find out their opinion on this package tour.</div>
+        </div>
+
+        <div class="exercise-item">
+            <label>10. Несмотря на то, что обстоятельства были напряженными, мы не были удивлены.</label>
+            <div class="reorder-container" data-target="Although the circumstances were tense, we were not surprised.">
+                <div class="drop-zone" onclick="returnWord(event)"></div>
+                <div class="word-bank" onclick="selectWord(event)">
+                    <span class="word-chip">Although</span>
+                    <span class="word-chip">we</span>
+                    <span class="word-chip">tense,</span>
+                    <span class="word-chip">the circumstances</span>
+                    <span class="word-chip">were</span>
+                    <span class="word-chip">were</span>
+                    <span class="word-chip">not surprised.</span>
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Show answer</button>
+            <div class="ans-block">Although the circumstances were tense, we were not surprised.</div>
+        </div>
+    </div>
+
+    <!-- EXERCISE 6: CHOOSE THE BEST TRANSLATION -->
+    <div id="ex6" class="tabcontent">
+        <h2>Format 6: Nuances of Translation (Multiple Choice)</h2>
+        <div class="instruction">💡 Read the English sentence containing complex grammar. Choose the most accurate Russian translation that conveys the exact grammatical meaning.</div>
+
+        <div class="exercise-item">
+            <label>1. The bilingual guide <u>must have answered</u> all questions.</label>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">A) Двуязычный гид, должно быть, ответил на все вопросы.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) Двуязычный гид должен ответить на все вопросы.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Двуязычный гид вынужден был ответить на все вопросы.</button>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>2. He <u>is likely to</u> owe them a lot.</label>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) Ему нравится быть должным им много.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) Он вряд ли должен им много.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">C) Он, скорее всего, должен им много.</button>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>3. <u>Having departed</u>, the team spent time playing.</label>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">A) Отправившись, команда провела время играя.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) Команда, которая отправляется, проводит время играя.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Чтобы отправиться, команда провела время играя.</button>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>4. You <u>should have expected</u> surprising obstacles.</label>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) Тебе следует ожидать удивительных препятствий.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">B) Тебе следовало ожидать удивительных препятствий (но ты не ожидал).</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Ты должен был ожидать удивительных препятствий (обязательство).</button>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>5. <u>If only</u> we hadn't lost the wheel!</label>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) Если мы не потеряем руль!</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">B) Ах, если бы мы только не потеряли руль!</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) При условии, что мы не потеряем руль!</button>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>6. <u>Having accumulated</u> enough tension, he departed.</label>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) Накапливая достаточно напряжения, он отправляется.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">B) Накопив достаточно напряжения, он отправился.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Чтобы накопить достаточно напряжения, он отправился.</button>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>7. The departure <u>is due to</u> happen soon.</label>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">A) Вылет должен (по расписанию) состояться скоро.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) Вылет обязан состояться скоро.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Вылету нравится состояться скоро.</button>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>8. We <u>will have decided</u> to cut costs by tomorrow.</label>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) Мы будем решать сократить расходы завтра.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">B) Мы (уже) решим сократить расходы к завтрашнему дню.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Мы бы решили сократить расходы завтра.</button>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>9. I am <u>not used to pouring</u> wine.</label>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) Я не использовал возможность наливать вино.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">B) Я не привык наливать вино.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Мне не следует наливать вино.</button>
+            </div>
+        </div>
+
+        <div class="exercise-item">
+            <label>10. She <u>might have come up with</u> a recipe.</label>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">A) Возможно, она (уже) придумала рецепт.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) Она могла бы придумать рецепт (если бы захотела).</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Она должна была придумать рецепт.</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab Navigation Logic
+    function openTab(evt, tabName) {
+        let i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Live Check for multiple acceptable answers array
+    function liveCheck(inputElement, correctAnswersArray) {
+        let userAns = inputElement.value.trim().toLowerCase().replace(/['\.\?!,;:-]/g, '').replace(/\s+/g, ' ');
+        
+        let isCorrect = false;
+        
+        for (let i = 0; i < correctAnswersArray.length; i++) {
+            let targetAns = correctAnswersArray[i].toLowerCase().replace(/['\.\?!,;:-]/g, '').replace(/\s+/g, ' ');
+            
+            // basic handling for contractions
+            targetAns = targetAns.replace("would not", "wouldnt").replace("had not", "hadnt");
+            let tempUserAns = userAns.replace("would not", "wouldnt").replace("had not", "hadnt");
+            
+            if (tempUserAns === targetAns) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        if (isCorrect) {
+            inputElement.classList.add('correct-input');
+        } else {
+            inputElement.classList.remove('correct-input');
+        }
+    }
+
+    // Multiple Choice Check
+    function checkQuizOption(btn, isCorrect) {
+        let siblings = btn.parentNode.querySelectorAll('.quiz-option');
+        siblings.forEach(b => b.classList.remove('correct', 'incorrect'));
+        if (isCorrect) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('incorrect');
+        }
+    }
+
+    // Toggle Answer Block (Robust lookup)
+    function showAns(btnElement) {
+        let container = btnElement.closest('.exercise-item');
+        if (!container) container = btnElement.parentNode; // Fallback
+        
+        let ansBlock = container.querySelector('.ans-block');
+        if(ansBlock) {
+            ansBlock.style.display = (ansBlock.style.display === "block") ? "none" : "block";
+        }
+    }
+
+    // Word Reorder Logic
+    function selectWord(e) {
+        if(e.target.classList.contains('word-chip')) {
+            let container = e.target.closest('.reorder-container');
+            container.querySelector('.drop-zone').appendChild(e.target);
+            checkReorder(container);
+        }
+    }
+
+    function returnWord(e) {
+        if(e.target.classList.contains('word-chip')) {
+            let container = e.target.closest('.reorder-container');
+            container.querySelector('.word-bank').appendChild(e.target);
+            checkReorder(container);
+        }
+    }
+
+    function checkReorder(container) {
+        let chips = container.querySelector('.drop-zone').querySelectorAll('.word-chip');
+        let currentText = Array.from(chips).map(c => c.innerText).join(' ').trim();
+        let targetText = container.getAttribute('data-target').trim();
+        let dz = container.querySelector('.drop-zone');
+        
+        if(currentText === targetText) {
+            dz.classList.add('correct-drop');
+        } else {
+            dz.classList.remove('correct-drop');
+        }
+    }
+</script>
+
+</body>
+</html>
