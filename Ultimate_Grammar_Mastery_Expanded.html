@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Grammar Mastery (Expanded)</title>
+    <style>
+        :root {
+            --bg-color: #f7f9fc;
+            --container-bg: #ffffff;
+            --text-main: #333333;
+            --accent-color: #5d6d7e;
+            --highlight: #8e44ad;
+            --success: #27ae60;
+            --error: #c0392b;
+            --border-color: #e5e8e8;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+        .subtitle {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 40px;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        h2 {
+            color: var(--highlight);
+            border-bottom: 2px solid var(--highlight);
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .instruction {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        .exercise-block {
+            margin-bottom: 60px;
+        }
+        .question-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fcfcfc;
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        .question-item:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            background-color: #fff;
+        }
+        .question-text {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+        input[type="text"] {
+            border: none;
+            border-bottom: 2px solid #bdc3c7;
+            background: transparent;
+            padding: 4px 8px;
+            font-family: inherit;
+            font-size: 1em;
+            color: var(--highlight);
+            min-width: 150px;
+            transition: border-bottom 0.3s ease;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-bottom: 2px solid var(--highlight);
+        }
+        select {
+            border: 2px solid #bdc3c7;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1em;
+            color: var(--highlight);
+            background-color: #fff;
+            outline: none;
+        }
+        select:focus {
+            border-color: var(--highlight);
+        }
+        .check-btn {
+            background-color: var(--highlight);
+            color: #fff;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 0.9em;
+            transition: background-color 0.2s;
+        }
+        .check-btn:hover {
+            background-color: #732d91;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 6px;
+            display: none;
+            font-size: 0.95em;
+        }
+        .feedback.correct {
+            background-color: #eafaf1;
+            border-left: 4px solid var(--success);
+            color: #1e8449;
+            display: block;
+        }
+        .feedback.incorrect {
+            background-color: #fdedec;
+            border-left: 4px solid var(--error);
+            color: #922b21;
+            display: block;
+        }
+        .show-explanation-btn {
+            background-color: #7f8c8d;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 0.85em;
+        }
+        .show-explanation-btn:hover {
+            background-color: #34495e;
+        }
+        .explanation-box {
+            margin-top: 10px;
+            padding: 15px;
+            background-color: #fcf3cf;
+            border: 1px solid #f1c40f;
+            border-radius: 6px;
+            color: #7d6608;
+            display: none;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        .matching-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .matching-column {
+            flex: 1;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .matching-column ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .matching-column li {
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ultimate Grammar Challenge (Expanded)</h1>
+    <div class="subtitle">Conditionals, Participles, and Advanced Structures</div>
+
+    <!-- EXERCISE 1 -->
+    <div class="exercise-block" id="ex1">
+        <h2>Exercise 1: Multiple Choice</h2>
+        <p class="instruction">Choose the correct option to complete each sentence.</p>
+        <script>
+        function renderEx1(id, num, part1, optA, optB, optC, part2) {
+            document.write(`
+            <div class="question-item">
+                <div class="question-text">${num}. ${part1} 
+                <select id="${id}">
+                    <option value="">-- select --</option>
+                    <option value="a">${optA}</option>
+                    <option value="b">${optB}</option>
+                    <option value="c">${optC}</option>
+                </select> ${part2}
+                <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                </div><div id="feedback_${id}" class="feedback"></div>
+            </div>`);
+        }
+        renderEx1('e1_q1', 1, "If she had studied harder, she ", "would pass", "will pass", "would have passed", "the final exam last week.");
+        renderEx1('e1_q2', 2, "", "Amazed", "Amazing", "Having amazed", "by the beautiful landscape, the tourists took dozens of photos.");
+        renderEx1('e1_q3', 3, "It's high time the government ", "take", "took", "taking", "action against global warming.");
+        renderEx1('e1_q4', 4, "Do you think you will ", "be able to", "can", "able to", "finish the report by Friday?");
+        renderEx1('e1_q5', 5, "If I had bought Bitcoin in 2010, I ", "would have been", "would be", "will be", "a millionaire right now.");
+        renderEx1('e1_q6', 6, "The scientist is on the verge of ", "discover", "to discover", "discovering", "a new renewable energy source.");
+        renderEx1('e1_q7', 7, "It is ", "believed", "believe", "believing", "that the ancient ruins date back to 3000 BC.");
+        renderEx1('e1_q8', 8, "How long have you ", "been working", "worked", "working", "for this IT company?");
+        renderEx1('e1_q9', 9, "The President is ", "to visit", "about visit", "able visiting", "our country next week for an official meeting.");
+        renderEx1('e1_q10', 10, "If only I ", "know", "have known", "knew", "how to speak Spanish fluently!");
+        </script>
+    </div>
+
+    <!-- EXERCISE 2 -->
+    <div class="exercise-block" id="ex2">
+        <h2>Exercise 2: Type the Correct Form</h2>
+        <p class="instruction">Write the correct form of the verb in brackets.</p>
+        <script>
+        function renderEx2(id, num, part1, bracket, part2) {
+            document.write(`
+            <div class="question-item">
+                <div class="question-text">${num}. ${part1} <input type="text" id="${id}" placeholder="(${bracket})"> ${part2}
+                <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                </div><div id="feedback_${id}" class="feedback"></div>
+            </div>`);
+        }
+        renderEx2('e2_q1', 1, "", "finish", "his dinner, he went out for a walk. (Focus on sequence of events)");
+        renderEx2('e2_q2', 2, "Would you mind", "open", "the window? It's really hot in here.");
+        renderEx2('e2_q3', 3, "I", "try", "to fix this bug in the code for three hours!");
+        renderEx2('e2_q4', 4, "If she wasn't so afraid of flying, she", "travel", "to Australia with us last year.");
+        renderEx2('e2_q5', 5, "The ancient temple is believed", "build", "in the 5th century. (Impersonal passive, past action)");
+        renderEx2('e2_q6', 6, "If it", "rain", "tomorrow, we will cancel the picnic in the park.");
+        renderEx2('e2_q7', 7, "It's high time you", "buy", "a new laptop; yours is so slow.");
+        renderEx2('e2_q8', 8, "If I", "be", "you, I would definitely accept the job offer.");
+        renderEx2('e2_q9', 9, "Despite the heavy snow, we", "be able to", "reach the cabin before dark.");
+        renderEx2('e2_q10', 10, "The girl", "sit", "next to the window is my younger sister.");
+        </script>
+    </div>
+
+    <!-- EXERCISE 3 -->
+    <div class="exercise-block" id="ex3">
+        <h2>Exercise 3: Key Word Transformation</h2>
+        <p class="instruction">Complete the second sentence so it has a similar meaning to the first, using the word in bold. Write exactly 2-5 words.</p>
+        <script>
+        function renderEx3(id, num, s1, word, s2_start, s2_end) {
+            document.write(`
+            <div class="question-item">
+                <div class="question-text">
+                    ${num}. ${s1} <b>(${word})</b><br>
+                    ${s2_start} <input type="text" id="${id}" style="width: 250px;"> ${s2_end}
+                    <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                </div>
+                <div id="feedback_${id}" class="feedback"></div>
+            </div>`);
+        }
+        renderEx3('e3_q1', 1, "We are very close to signing the contract.", "VERGE", "We are", "signing the contract.");
+        renderEx3('e3_q2', 2, "I regret not telling him the truth earlier.", "ONLY", "If", "him the truth earlier.");
+        renderEx3('e3_q3', 3, "People expect that the new smartphone will be released soon.", "EXPECTED", "The new smartphone", "released soon.");
+        renderEx3('e3_q4', 4, "Because she had lost her passport, she couldn't board the plane.", "HAVING", "", "her passport, she couldn't board the plane.");
+        renderEx3('e3_q5', 5, "The meeting is scheduled to start at 9 AM.", "TO", "The meeting", "start at 9 AM.");
+        renderEx3('e3_q6', 6, "Please don't smoke in here.", "MIND", "Would", "in here?");
+        renderEx3('e3_q7', 7, "He started playing tennis three hours ago and he is still playing.", "BEEN", "He", "tennis for three hours.");
+        renderEx3('e3_q8', 8, "If you don't hurry, you'll miss the train.", "UNLESS", "You'll miss the train", "hurry.");
+        renderEx3('e3_q9', 9, "I didn't bring my umbrella, so I am wet now.", "BROUGHT", "If I", ", I wouldn't be wet now.");
+        renderEx3('e3_q10', 10, "Could you swim across the river when you were younger?", "ABLE", "Were", "across the river when you were younger?");
+        </script>
+    </div>
+
+    <!-- EXERCISE 4 -->
+    <div class="exercise-block" id="ex4">
+        <h2>Exercise 4: Find and Correct the Mistake</h2>
+        <p class="instruction">Identify the grammatical mistake in each sentence and type ONLY the correct version of the incorrect word/phrase.</p>
+        <script>
+        function renderEx4(id, num, sentence) {
+            document.write(`
+            <div class="question-item">
+                <div class="question-text">${num}. ${sentence} <br>&rarr; <input type="text" id="${id}" placeholder="Correction">
+                <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                </div><div id="feedback_${id}" class="feedback"></div>
+            </div>`);
+        }
+        renderEx4('e4_q1', 1, "Would you mind to help me with this heavy box?");
+        renderEx4('e4_q2', 2, "If only I have more money, I would travel the world.");
+        renderEx4('e4_q3', 3, "It's high time we go home; it's getting very late.");
+        renderEx4('e4_q4', 4, "She has been worked in this department since 2020.");
+        renderEx4('e4_q5', 5, "The company is on the verge to declare bankruptcy.");
+        renderEx4('e4_q6', 6, "The package is to delivered tomorrow morning.");
+        renderEx4('e4_q7', 7, "If I had seen him, I will have said hello.");
+        renderEx4('e4_q8', 8, "Walked down the street, I found a wallet.");
+        renderEx4('e4_q9', 9, "He is said to is a great musician.");
+        renderEx4('e4_q10', 10, "I hope I will able to come to your party on Saturday.");
+        </script>
+    </div>
+
+    <!-- EXERCISE 5 -->
+    <div class="exercise-block" id="ex5">
+        <h2>Exercise 5: Matching (Sentence Halves)</h2>
+        <p class="instruction">Match the sentence beginnings (1-10) with their correct endings (A-J). Type just the letter (A-J).</p>
+        
+        <div class="matching-container">
+            <div class="matching-column">
+                <ul>
+                    <script>
+                    const starts = [
+                        "If I hadn't lost my keys,", 
+                        "Having spent all his money,", 
+                        "Would you mind if I", 
+                        "It's high time you",
+                        "The escaped prisoner is thought", 
+                        "Unless you apologize immediately,", 
+                        "The concert is to",
+                        "They are on the verge of", 
+                        "I wouldn't have called you", 
+                        "Not knowing the local language,"
+                    ];
+                    for(let i=0; i<10; i++) {
+                        let id = 'e5_q' + (i+1);
+                        document.write(`<li>${i+1}. ${starts[i]} 
+                        <input type="text" id="${id}" style="width:30px; text-align:center; text-transform:uppercase;" maxlength="1">
+                        <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                        <div id="feedback_${id}" class="feedback" style="margin-top:5px;"></div>
+                        </li>`);
+                    }
+                    </script>
+                </ul>
+            </div>
+            <div class="matching-column">
+                <ul>
+                    <li><b>A.</b> to be hiding in the forest.</li>
+                    <li><b>B.</b> opened the window for a while?</li>
+                    <li><b>C.</b> begin at 8 PM sharp.</li>
+                    <li><b>D.</b> the tourists easily got lost.</li>
+                    <li><b>E.</b> I wouldn't be standing outside now.</li>
+                    <li><b>F.</b> if it hadn't been an absolute emergency.</li>
+                    <li><b>G.</b> she will never forgive you.</li>
+                    <li><b>H.</b> started looking for a new job.</li>
+                    <li><b>I.</b> making a huge scientific breakthrough.</li>
+                    <li><b>J.</b> he couldn't buy a ticket home.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXERCISE 6 -->
+    <div class="exercise-block" id="ex6">
+        <h2>Exercise 6: Open Cloze</h2>
+        <p class="instruction">Type exactly ONE missing word in each gap.</p>
+        
+        <script>
+        function renderEx6(id, num, p1, p2) {
+            document.write(`
+            <div class="question-item">
+                <div class="question-text">
+                    ${num}. ${p1} <input type="text" id="${id}" style="width: 80px; text-align:center;"> ${p2}
+                    <button class="check-btn" onclick="checkAnswer('${id}')">Check</button>
+                </div>
+                <div id="feedback_${id}" class="feedback"></div>
+            </div>`);
+        }
+        renderEx6('e6_q1', 1, "I have", "studying all day and I'm completely exhausted.");
+        renderEx6('e6_q2', 2, "It's high", "we made a decision about the project.");
+        renderEx6('e6_q3', 3, "She is", "the verge of tears after hearing the bad news.");
+        renderEx6('e6_q4', 4, "The suspect is believed", "have left the country yesterday.");
+        renderEx6('e6_q5', 5, "", "only I had listened to your advice when you warned me!");
+        renderEx6('e6_q6', 6, "Would you", "helping me with this complicated report?");
+        renderEx6('e6_q7', 7, "Hurry up! The show is", "to start in just two minutes.");
+        renderEx6('e6_q8', 8, "Unfortunately, I won't", "able to attend the meeting tomorrow.");
+        renderEx6('e6_q9', 9, "", "having read the instructions, he immediately broke the new machine.");
+        renderEx6('e6_q10', 10, "If I", "you, I would definitely take that amazing opportunity.");
+        </script>
+    </div>
+
+</div>
+
+<script>
+    const answerKey = {
+        // Ex 1: Multiple Choice
+        'e1_q1': { ans: ["c"], correct: "would have passed", expl: `Third Conditional (условие в прошлом). If + Past Perfect, ... would have + V3.` },
+        'e1_q2': { ans: ["a"], correct: "Amazed", expl: `Past Participle (V3). Имеет пассивный смысл — "Будучи пораженными" пейзажем.` },
+        'e1_q3': { ans: ["b"], correct: "took", expl: `После конструкции "It's high time" требуется Past Simple (took).` },
+        'e1_q4': { ans: ["a"], correct: "be able to", expl: `После will модальный глагол can не используется. Для будущего времени используется be able to.` },
+        'e1_q5': { ans: ["b"], correct: "would be", expl: `Mixed Conditional (3->2). Условие было в прошлом (If I had bought), а результат мы видим сейчас (I would be).` },
+        'e1_q6': { ans: ["c"], correct: "discovering", expl: `Выражение "on the verge of" требует после себя герундий (V-ing), так как заканчивается на предлог of.` },
+        'e1_q7': { ans: ["a"], correct: "believed", expl: `Безличная пассивная конструкция строится как "It is + V3" (It is believed that...).` },
+        'e1_q8': { ans: ["a"], correct: "been working", expl: `Present Perfect Continuous (have/has been + V-ing) используется для действия, начавшегося в прошлом и длящегося до сих пор.` },
+        'e1_q9': { ans: ["a"], correct: "to visit", expl: `Конструкция "to be to + infinitive" (is to visit) используется для запланированных по расписанию официальных действий.` },
+        'e1_q10': { ans: ["c"], correct: "knew", expl: `Сожаление о настоящем времени в конструкции "If only" требует использования Past Simple (knew).` },
+
+        // Ex 2: Correct Form
+        'e2_q1': { ans: ["having finished"], correct: "Having finished", expl: `Perfect Participle Clause (Having + V3). Подчеркивает, что действие "поужинал" полностью завершилось до того, как он "вышел на прогулку".` },
+        'e2_q2': { ans: ["opening"], correct: "opening", expl: `Вежливая просьба "Would you mind" требует герундий (V-ing).` },
+        'e2_q3': { ans: ["have been trying", "'ve been trying"], correct: "have been trying", expl: `Действие длится уже три часа и не завершено -> Present Perfect Continuous.` },
+        'e2_q4': { ans: ["would have traveled", "would have travelled", "'d have traveled"], correct: "would have traveled", expl: `Mixed Conditional (2->3). Условие — постоянный страх (Present), результат — сорвавшаяся поездка в прошлом (Past). Therefore: would have + V3.` },
+        'e2_q5': { ans: ["to have been built"], correct: "to have been built", expl: `Impersonal passive для действия в прошлом. Храм "is believed" (сейчас) "to have been built" (в прошлом). Perfect Infinitive Passive.` },
+        'e2_q6': { ans: ["rains"], correct: "rains", expl: `First Conditional (реальное условие в будущем). В части If используется Present Simple.` },
+        'e2_q7': { ans: ["bought"], correct: "bought", expl: `Конструкция "It's high time you" требует глагола в Past Simple.` },
+        'e2_q8': { ans: ["were", "was"], correct: "were", expl: `Second Conditional (нереальное условие в настоящем). "If I were you" — стандартная фраза для советов.` },
+        'e2_q9': { ans: ["were able to"], correct: "were able to", expl: `Прошедшая форма от "be able to". Означает, что они смогли что-то сделать (преодолев трудности).` },
+        'e2_q10': { ans: ["sitting"], correct: "sitting", expl: `Present Participle (V-ing) выступает в роли определения: девочка, (которая) сидит.` },
+
+        // Ex 3: Key Word Transformation
+        'e3_q1': { ans: ["on the verge of"], correct: "on the verge of", expl: `"very close to" заменяется на "on the verge of". После of уже стоит герундий signing.` },
+        'e3_q2': { ans: ["only i had told", "only i'd told"], correct: "only I had told", expl: `Сожаление о прошлом (regret not telling). Используем If only + Past Perfect (had told).` },
+        'e3_q3': { ans: ["is expected to be"], correct: "is expected to be", expl: `Impersonal passive: "People expect that..." превращается в "The smartphone is expected to be...".` },
+        'e3_q4': { ans: ["having lost"], correct: "Having lost", expl: `Perfect Participle Clause (Having + V3) заменяет придаточное причины (Because she had lost).` },
+        'e3_q5': { ans: ["is to"], correct: "is to", expl: `"is scheduled to" заменяется на конструкцию "is to" (официальное расписание).` },
+        'e3_q6': { ans: ["you mind not smoking"], correct: "you mind not smoking", expl: `Просьба не делать что-то с Would you mind строится как: Would you mind + not + V-ing.` },
+        'e3_q7': { ans: ["has been playing", "'s been playing"], correct: "has been playing", expl: `Present Perfect Continuous описывает действие, начавшееся в прошлом и все еще идущее.` },
+        'e3_q8': { ans: ["unless you"], correct: "unless you", expl: `Unless означает "If not". "If you don't hurry" = "Unless you hurry".` },
+        'e3_q9': { ans: ["had brought my umbrella", "'d brought my umbrella"], correct: "had brought my umbrella", expl: `Mixed Conditional (3->2). Если бы я взял зонт (тогда, в прошлом) -> If I had brought.` },
+        'e3_q10': { ans: ["you able to swim"], correct: "you able to swim", expl: `Вопрос со способностью в прошлом: "Could you..." = "Were you able to...".` },
+
+        // Ex 4: Find and Correct the Mistake
+        'e4_q1': { ans: ["helping"], correct: "helping", expl: `После "Would you mind" используется герундий (helping), а не инфинитив.` },
+        'e4_q2': { ans: ["had"], correct: "had", expl: `В Second Conditional и в конструкции "If only" для нереального настоящего требуется Past Simple (had).` },
+        'e4_q3': { ans: ["went"], correct: "went", expl: `После "It's high time" требуется Past Simple (went).` },
+        'e4_q4': { ans: ["working"], correct: "working", expl: `Present Perfect Continuous строится как has been + V-ing (working). "Worked" это пассив.` },
+        'e4_q5': { ans: ["of declaring"], correct: "of declaring", expl: `Идиома "on the verge of" требует после себя герундий (declaring).` },
+        'e4_q6': { ans: ["be delivered"], correct: "be delivered", expl: `Конструкция "is to" требует инфинитива. Так как смысл пассивный, нужно "be delivered".` },
+        'e4_q7': { ans: ["would"], correct: "would", expl: `В Third Conditional во второй части используется "would have + V3", а не "will".` },
+        'e4_q8': { ans: ["walking"], correct: "Walking", expl: `Нужен активный смысл "Идя по улице" (Present Participle -> Walking). "Walked" — это пассив.` },
+        'e4_q9': { ans: ["be"], correct: "be", expl: `После "is said to" должен идти инфинитив в начальной форме (be).` },
+        'e4_q10': { ans: ["be able to"], correct: "be able to", expl: `После модального will требуется смысловой глагол. Конструкция звучит как "will be able to".` },
+
+        // Ex 5: Matching
+        'e5_q1': { ans: ["e"], correct: "E", expl: `Mixed Conditional: Условие в прошлом (hadn't lost), результат сейчас (wouldn't be standing).` },
+        'e5_q2': { ans: ["j"], correct: "J", expl: `Perfect Participle Clause. Потратив все деньги, он не смог купить билет.` },
+        'e5_q3': { ans: ["b"], correct: "B", expl: `Фраза "Would you mind if I..." требует глагола в Past Simple (opened).` },
+        'e5_q4': { ans: ["h"], correct: "H", expl: `Конструкция "It's high time you..." требует Past Simple (started).` },
+        'e5_q5': { ans: ["a"], correct: "A", expl: `Impersonal passive: is thought + to-infinitive (to be hiding).` },
+        'e5_q6': { ans: ["g"], correct: "G", expl: `First Conditional с Unless (если не). Если не извинишься, она не простит.` },
+        'e5_q7': { ans: ["c"], correct: "C", expl: `Конструкция "is to" означает расписание: начать ровно в 8.` },
+        'e5_q8': { ans: ["i"], correct: "I", expl: `Идиома "on the verge of" требует после себя герундий (making).` },
+        'e5_q9': { ans: ["f"], correct: "F", expl: `Third conditional: результат в прошлом (wouldn't have called) зависит от условия в прошлом (hadn't been).` },
+        'e5_q10': { ans: ["d"], correct: "D", expl: `Present Participle Clause причины: не зная языка, они потерялись.` },
+
+        // Ex 6: Open Cloze
+        'e6_q1': { ans: ["been"], correct: "been", expl: `Present Perfect Continuous (have been + V-ing).` },
+        'e6_q2': { ans: ["time"], correct: "time", expl: `Устойчивое выражение "It's high time" (Давно пора).` },
+        'e6_q3': { ans: ["on"], correct: "on", expl: `Предлог для выражения "on the verge of" (на грани).` },
+        'e6_q4': { ans: ["to"], correct: "to", expl: `Impersonal passive: is believed + TO + infinitive.` },
+        'e6_q5': { ans: ["if"], correct: "If", expl: `Конструкция сожаления начинается со слов "If only".` },
+        'e6_q6': { ans: ["mind"], correct: "mind", expl: `Вежливая просьба "Would you mind + V-ing?".` },
+        'e6_q7': { ans: ["about"], correct: "about", expl: `Конструкция "be about to" используется для действий, которые вот-вот начнутся.` },
+        'e6_q8': { ans: ["be"], correct: "be", expl: `Конструкция способности в будущем "will (won't) be able to".` },
+        'e6_q9': { ans: ["not"], correct: "Not", expl: `Отрицательная форма причастного оборота начинается с "Not" (Not having read).` },
+        'e6_q10': { ans: ["were", "was"], correct: "were", expl: `Second conditional: "If I were you" (на твоем месте).` }
+    };
+
+    function checkAnswer(id) {
+        const inputEl = document.getElementById(id);
+        const feedbackEl = document.getElementById('feedback_' + id);
+        let userVal = inputEl.value.trim().toLowerCase();
+        
+        userVal = userVal.replace(/\s+/g, ' ');
+
+        const data = answerKey[id];
+        if (!data) return;
+
+        feedbackEl.className = 'feedback';
+        feedbackEl.innerHTML = '';
+
+        if (userVal === '') {
+            feedbackEl.classList.add('incorrect');
+            feedbackEl.textContent = '❌ Please enter an answer before checking.';
+            return;
+        }
+
+        const isCorrect = data.ans.includes(userVal);
+
+        if (isCorrect) {
+            feedbackEl.classList.add('correct');
+            feedbackEl.innerHTML = `<strong>✅ Correct!</strong>`;
+            inputEl.style.borderBottomColor = 'var(--success)';
+            if(inputEl.tagName === 'SELECT') inputEl.style.borderColor = 'var(--success)';
+        } else {
+            feedbackEl.classList.add('incorrect');
+            feedbackEl.innerHTML = `<strong>❌ Incorrect.</strong> 
+                <br>
+                <button class="show-explanation-btn" onclick="showExplanation('${id}')">Show Correct Answer & Explanation</button>
+                <div id="expl_${id}" class="explanation-box">
+                    <b>Correct answer:</b> ${data.correct} <br><br>
+                    <b>Explanation:</b> ${data.expl}
+                </div>`;
+            inputEl.style.borderBottomColor = 'var(--error)';
+            if(inputEl.tagName === 'SELECT') inputEl.style.borderColor = 'var(--error)';
+        }
+    }
+
+    function showExplanation(id) {
+        const explBox = document.getElementById('expl_' + id);
+        if (explBox.style.display === 'block') {
+            explBox.style.display = 'none';
+        } else {
+            explBox.style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
