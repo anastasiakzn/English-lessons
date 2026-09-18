@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lesson — Svetlana — 21.09.2026</title>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1e3a8a;
+            --primary-light: #eff6ff;
+            --secondary: #0e9f6e;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --badge-bg: #fef3c7;
+            --badge-text: #92400e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 25px 15px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 1.85rem;
+            margin-bottom: 8px;
+        }
+
+        .header-meta {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        .tab-btn {
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #475569;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .tab-btn.active {
+            background: #1e293b;
+            color: white;
+            border-color: #1e293b;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Section Cards & Titles */
+        .section-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            color: var(--text-main);
+            margin-bottom: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 22px;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        .hint-notice {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        /* Warm-up Box */
+        .warmup-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .action-btn {
+            background: #e0e7ff;
+            color: #3730a3;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+
+        .action-btn:hover {
+            background: #c7d2fe;
+        }
+
+        .hidden-panel {
+            display: none;
+            color: #1e1b4b;
+            font-size: 0.92rem;
+            margin-top: 12px;
+            padding: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #c7d2fe;
+            line-height: 1.6;
+        }
+
+        /* Audio Player Bar */
+        .audio-player-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .player-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .player-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            transition: width 0.2s ease;
+        }
+
+        .time-display {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            min-width: 90px;
+        }
+
+        /* Quiz Items */
+        .quiz-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.98rem;
+        }
+
+        .quiz-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .choice-btn {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.92rem;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .choice-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .choice-btn.correct {
+            background-color: var(--accent-green) !important;
+            color: white !important;
+            border-color: var(--accent-green) !important;
+        }
+
+        .choice-btn.incorrect {
+            background-color: var(--accent-red) !important;
+            color: white !important;
+            border-color: var(--accent-red) !important;
+        }
+
+        /* Dictation Rows */
+        .dictation-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .play-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: opacity 0.2s;
+        }
+
+        .play-btn:hover {
+            opacity: 0.9;
+        }
+
+        .live-input {
+            flex: 1;
+            min-width: 220px;
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .live-input.correct {
+            border-color: var(--accent-green) !important;
+            background-color: #ecfdf5 !important;
+            color: #065f46;
+        }
+
+        .btn-peek {
+            background: #e2e8f0;
+            color: #334155;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-peek:hover {
+            background: #cbd5e1;
+        }
+
+        .answer-reveal {
+            display: none;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #065f46;
+            font-weight: 600;
+            margin-top: 6px;
+            padding: 8px 12px;
+            background: #ecfdf5;
+            border-radius: 6px;
+            border: 1px solid #a7f3d0;
+        }
+
+        /* Grammar Table */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px 0;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .grammar-table th {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        ol.grammar-list li {
+            margin-bottom: 20px;
+            line-height: 2.1;
+            font-size: 0.98rem;
+        }
+
+        /* Vocabulary Flip Cards */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 165px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .flip-card-front {
+            background-color: #ffffff;
+            color: var(--text-main);
+        }
+
+        .v-word {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .v-ipa {
+            font-size: 0.82rem;
+            color: #64748b;
+            margin: 4px 0;
+        }
+
+        .v-def {
+            font-size: 0.76rem;
+            color: #475569;
+            font-style: italic;
+            margin-top: 3px;
+        }
+
+        .flip-card-back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 0.86rem;
+            text-align: center;
+        }
+
+        .v-trans {
+            font-weight: 700;
+            font-size: 0.96rem;
+            margin-bottom: 6px;
+        }
+
+        .v-ex {
+            font-size: 0.76rem;
+            font-style: italic;
+            color: #dbeafe;
+            line-height: 1.35;
+        }
+
+        /* Homework Review Blocks */
+        .hw-sentence-block {
+            margin-bottom: 16px;
+        }
+
+        .hw-sentence-block label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 6px;
+        }
+
+        .hw-sentence-block input[type="text"] {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            background: #ffffff;
+        }
+
+        /* Continuous Story Container (Translation) */
+        .story-container {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 26px;
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: var(--text-main);
+        }
+
+        .inline-btn {
+            background: #eef1f6;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            user-select: none;
+            display: inline-block;
+            transition: all 0.2s;
+            vertical-align: middle;
+        }
+
+        .inline-btn:hover {
+            background: #cbd5e1;
+        }
+
+        .inline-en {
+            display: none;
+            color: #1d4ed8;
+            font-weight: 600;
+            background-color: #dbeafe;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-left: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>English Interactive Lesson</h1>
+        <div class="header-meta">Student: Svetlana | Date: 21.09.2026 | Focus: Third Conditional & Pre-analytical Diagnostics</div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'warmup')">1 · Warm-up</button>
+        <button class="tab-btn" onclick="openTab(event, 'homework')">2 · Homework Check</button>
+        <button class="tab-btn" onclick="openTab(event, 'listening')">3 · Listening</button>
+        <button class="tab-btn" onclick="openTab(event, 'grammar')">4 · Grammar</button>
+        <button class="tab-btn" onclick="openTab(event, 'vocabulary')">5 · Vocabulary</button>
+        <button class="tab-btn" onclick="openTab(event, 'translation')">6 · Translation</button>
+    </div>
+
+    <!-- TAB 1: WARM-UP -->
+    <div id="warmup" class="tab-content active">
+        <div class="section-card">
+            <h2 class="section-title">1. Professional Warm-up</h2>
+            <div class="warmup-box">
+                <p><strong>Advanced Diagnostic Insight:</strong></p>
+                <p><em>"Preserving diagnostic reliability requires thorough pre-analytical inspection, whenever outdated centrifuges inevitably distort blood sample integrity."</em></p>
+                <button class="action-btn" onclick="togglePanel('warmup-hint')">Analyze Vocabulary & Translation</button>
+                <div id="warmup-hint" class="hidden-panel">
+                    <strong>Key Lesson Terms:</strong><br>
+                    • <strong>Reliability</strong> — надёжность, достоверность.<br>
+                    • <strong>To preserve</strong> — сохранять, поддерживать в неизменном виде.<br>
+                    • <strong>Whenever</strong> — всякий раз когда.<br>
+                    • <strong>Inevitably</strong> — неизбежно.<br>
+                    <strong>Russian Translation:</strong> «Сохранение диагностической надёжности требует тщательного преаналитического контроля всякий раз, когда устаревшие центрифуги неизбежно нарушают целостность образцов крови».
+                </div>
+            </div>
+
+            <p style="font-weight:600; margin-bottom: 8px;">Discussion Questions for Svetlana:</p>
+            <ul style="padding-left: 20px; line-height: 1.8;">
+                <li>What methods do you use to preserve specimen stability when transporting tubes between medical sites?</li>
+                <li>How will your poster presentation in India attract the attention of international laboratory directors?</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- TAB 2: HOMEWORK CHECK (8 SENTENCES REVIEW) -->
+    <div id="homework" class="tab-content">
+        <div class="section-card">
+            <span class="badge">HOMEWORK CHECK · SECOND CONDITIONAL</span>
+            <h2 class="section-title">Check Your 8 Sentences</h2>
+            <p class="hint-notice">💡 Read and review the 8 sentences you prepared at home using the Second Conditional (<em>If + Past Simple, ... would + V1</em>):</p>
+
+            <div class="hw-sentence-block">
+                <label>Sentence 1 (If ..., ... would ...)</label>
+                <input type="text" placeholder="Read or paste your sentence 1 here...">
+            </div>
+
+            <div class="hw-sentence-block">
+                <label>Sentence 2 (... would ... if ...)</label>
+                <input type="text" placeholder="Read or paste your sentence 2 here...">
+            </div>
+
+            <div class="hw-sentence-block">
+                <label>Sentence 3 (If ..., ... would ...)</label>
+                <input type="text" placeholder="Read or paste your sentence 3 here...">
+            </div>
+
+            <div class="hw-sentence-block">
+                <label>Sentence 4 (... would ... if ...)</label>
+                <input type="text" placeholder="Read or paste your sentence 4 here...">
+            </div>
+
+            <div class="hw-sentence-block">
+                <label>Sentence 5 (If I were ..., I would ...)</label>
+                <input type="text" placeholder="Read or paste your sentence 5 here...">
+            </div>
+
+            <div class="hw-sentence-block">
+                <label>Sentence 6 (If clinics ..., diagnostic accuracy would ...)</label>
+                <input type="text" placeholder="Read or paste your sentence 6 here...">
+            </div>
+
+            <div class="hw-sentence-block">
+                <label>Sentence 7 (What would happen if ...?)</label>
+                <input type="text" placeholder="Read or paste your sentence 7 here...">
+            </div>
+
+            <div class="hw-sentence-block">
+                <label>Sentence 8 (If I had more free time, I would ...)</label>
+                <input type="text" placeholder="Read or paste your sentence 8 here...">
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: LISTENING -->
+    <div id="listening" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">3. Listening Practice</h2>
+
+            <!-- Exercise 1 -->
+            <h3 style="margin-bottom: 12px; color: var(--primary);">Exercise 1: Listen to the Report & Select Answers</h3>
+            <p class="hint-notice">💡 Listen to the recording (~1 min). Then choose the correct answer for each of the 6 questions below.</p>
+
+            <!-- Audio Player Controls -->
+            <div class="audio-player-card">
+                <div class="player-controls">
+                    <button class="player-btn" onclick="playAudioStory()">▶ Play</button>
+                    <button class="player-btn" onclick="pauseAudioStory()">⏸ Pause</button>
+                    <button class="player-btn" style="background: #ef4444;" onclick="stopAudioStory()">⏹ Stop</button>
+                    <div class="progress-container">
+                        <div class="progress-bar" onclick="seekAudioStory(event)">
+                            <div class="progress-fill" id="audio-progress"></div>
+                        </div>
+                        <span class="time-display" id="audio-time">00:00 / 01:05</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <button class="action-btn" onclick="togglePanel('transcript-panel')">Show Transcript</button>
+            </div>
+
+            <div id="transcript-panel" class="hidden-panel">
+                <strong>Transcript:</strong><br>
+                Whenever laboratory researchers prepare for an international symposium, attention to detail is vital. Ahead of the conference in India this late autumn, Professor Svetlana's team conducted an intensive comparative evaluation of blood collection tubes. During the initial tests, they found out that several clinics still relied on outdated centrifuge models. Such practices inevitably compromised diagnostic reliability. However, when laboratory assistants followed modern pre-analytical protocols thoroughly, specimen stability was preserved. Svetlana plans to present these findings in a calm and convincing manner. She believes the comparative poster will attract great interest from clinical specialists, giving young medical researchers greater self-confidence in their daily laboratory work.
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">1. When is the international symposium in India taking place?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, false)">A) Early in the spring</button>
+                    <button class="choice-btn" onclick="checkChoice(this, true)">B) In late autumn</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) During the summer holidays</button>
+                </div>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">2. What did Svetlana's research team discover during their initial audits?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, true)">A) Several clinics still used outdated centrifuge models.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">B) Blood collection tubes were completely free of charge.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) Technicians refused to collect patient samples.</button>
+                </div>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">3. What was the inevitable outcome of relying on outdated centrifuge equipment?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, false)">A) Tests finished in less than five minutes.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, true)">B) Diagnostic reliability was inevitably compromised.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) Reagent costs decreased significantly.</button>
+                </div>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">4. What preserved specimen stability in the laboratory?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, true)">A) Following modern pre-analytical protocols thoroughly.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">B) Freezing the samples for several months.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) Using tubes from five different suppliers at once.</button>
+                </div>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">5. How does Svetlana intend to present her comparative findings?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, false)">A) In a very emotional and rushed way.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, true)">B) In a calm and convincing manner.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) Only through written email summaries.</button>
+                </div>
+            </div>
+
+            <div class="quiz-item">
+                <div class="quiz-question">6. What positive effect will the presentation have on young researchers?</div>
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, false)">A) They will stop conducting pre-analytical tests.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">B) It will shorten their university degree by a year.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, true)">C) It will give them greater professional self-confidence.</button>
+                </div>
+            </div>
+
+            <!-- Exercise 2 -->
+            <h3 style="margin-top: 30px; margin-bottom: 12px; color: var(--primary);">Exercise 2: Audio Dictation</h3>
+            <p class="hint-notice">💡 Listen to each sentence and type what you hear. Click "Show answer" to check.</p>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(1)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'Whenever we evaluate test reliability we prepare for experiments thoroughly')" placeholder="Listen and type sentence 1...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">Whenever we evaluate test reliability, we prepare for experiments thoroughly.</div>
+            </div>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(2)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'Our poster will attract the attention of international colleagues')" placeholder="Listen and type sentence 2...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">Our poster will attract the attention of international colleagues.</div>
+            </div>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(3)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'We found out that some clinics still used outdated manuals')" placeholder="Listen and type sentence 3...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">We found out that some clinics still used outdated manuals.</div>
+            </div>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(4)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'She presented the research data with genuine self confidence')" placeholder="Listen and type sentence 4...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">She presented the research data with genuine self-confidence.</div>
+            </div>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(5)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'The professor answered all questions in a professional manner')" placeholder="Listen and type sentence 5...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">The professor answered all questions in a professional manner.</div>
+            </div>
+
+            <div class="dictation-row">
+                <button class="play-btn" onclick="playSentence(6)">▶</button>
+                <input type="text" class="live-input" oninput="liveCheck(this, 'If the laboratory had checked the tubes earlier errors would have been avoided')" placeholder="Listen and type sentence 6...">
+                <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                <div class="answer-reveal">If the laboratory had checked the tubes earlier, errors would have been avoided.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: GRAMMAR (THIRD CONDITIONAL) -->
+    <div id="grammar" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">4. Grammar: Third Conditional (Unreal Past Situations)</h2>
+            <p>The <strong>Third Conditional</strong> talks about hypothetical situations in the <strong>past</strong> — actions that did not happen, and their imaginary past results (often expressing regret or historical analysis).</p>
+
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>Condition (If-clause)</th>
+                        <th>Result (Main clause)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>If + Past Perfect (had + V3)</strong></td>
+                        <td><strong>would have + V3</strong></td>
+                    </tr>
+                    <tr>
+                        <td>If the clinic <em>had replaced</em> outdated centrifuges...</td>
+                        <td>...sample hemolysis <em>would not have occurred</em>.</td>
+                    </tr>
+                    <tr>
+                        <td>Svetlana <em>would have arrived</em> in Tel Aviv earlier...</td>
+                        <td>...if her connection flight <em>had not been</em> delayed.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="hint-notice"><em>*Notice that the result clause can also come first without a comma!</em></p>
+        </div>
+
+        <!-- Exercise 1 -->
+        <div class="section-card">
+            <h3 style="margin-bottom: 12px; color: var(--primary);">Exercise 1: Put the Verbs into the Third Conditional</h3>
+            <p class="hint-notice">💡 Pay close attention to the clause position (Condition vs. Result). The field will turn green when correct.</p>
+
+            <ol class="grammar-list">
+                <li>
+                    If the clinic (order) <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'had ordered')" placeholder="had + V3"> silicone-coated tubes, the blood specimens (not / hemolyze) <input type="text" class="live-input" style="width: 220px;" oninput="liveCheck(this, 'would not have hemolyzed')" placeholder="would have + V3">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>had ordered</strong> ... <strong>would not have hemolyzed</strong> (or <strong>wouldn't have hemolyzed</strong>)</div>
+                </li>
+                <li>
+                    Diagnostic reliability (suffer) <input type="text" class="live-input" style="width: 200px;" oninput="liveCheck(this, 'would have suffered')" placeholder="would have + V3"> if the laboratory team (ignore) <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'had ignored')" placeholder="had + V3"> the storage guidelines.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>would have suffered</strong> ... <strong>had ignored</strong></div>
+                </li>
+                <li>
+                    If Svetlana (finish) <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'had finished')" placeholder="had + V3"> the comparative analysis last Friday, she (fly) <input type="text" class="live-input" style="width: 180px;" oninput="liveCheck(this, 'would have flown')" placeholder="would have + V3"> to Israel for the weekend.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>had finished</strong> ... <strong>would have flown</strong></div>
+                </li>
+                <li>
+                    Our doctoral students (not / waste) <input type="text" class="live-input" style="width: 210px;" oninput="liveCheck(this, 'would not have wasted')" placeholder="would have + V3"> three days of research if the manufacturer (deliver) <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'had delivered')" placeholder="had + V3"> the tubes on time.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>would not have wasted</strong> ... <strong>had delivered</strong></div>
+                </li>
+                <li>
+                    If the technician (follow) <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'had followed')" placeholder="had + V3"> the updated mixing protocol, the blood sample (preserve) <input type="text" class="live-input" style="width: 200px;" oninput="liveCheck(this, 'would have preserved')" placeholder="would have + V3"> its diagnostic properties.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>had followed</strong> ... <strong>would have preserved</strong></div>
+                </li>
+                <li>
+                    What (you / do) <input type="text" class="live-input" style="width: 180px;" oninput="liveCheck(this, 'would you have done')" placeholder="would + S + have + V3"> if the audit (reveal) <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'had revealed')" placeholder="had + V3"> specimen mislabeling in your hospital?
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>would you have done</strong> ... <strong>had revealed</strong></div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="section-card">
+            <h3 style="margin-bottom: 12px; color: var(--primary);">Exercise 2: Sentence Transformation (Past Regrets & Real Cases)</h3>
+            <p class="hint-notice">💡 Transform the real past event into a hypothetical Third Conditional sentence:</p>
+
+            <ol class="grammar-list">
+                <li>
+                    <em>Real: The laboratory didn't calibrate the centrifuge, so the test results were distorted.</em><br>
+                    If the laboratory <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'had calibrated')" placeholder="had + V3"> the centrifuge, the results <input type="text" class="live-input" style="width: 220px;" oninput="liveCheck(this, 'would not have been distorted')" placeholder="would not have been">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: If the laboratory <strong>had calibrated</strong> ..., the results <strong>would not have been distorted</strong>.</div>
+                </li>
+                <li>
+                    <em>Real: The manufacturer sent the wrong batch, so we postponed our tube comparison.</em><br>
+                    We <input type="text" class="live-input" style="width: 210px;" oninput="liveCheck(this, 'would not have postponed')" placeholder="would have + V3"> our tube comparison if the manufacturer <input type="text" class="live-input" style="width: 130px;" oninput="liveCheck(this, 'had sent')" placeholder="had + V3"> the correct batch.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: We <strong>would not have postponed</strong> ... if the manufacturer <strong>had sent</strong> ...</div>
+                </li>
+                <li>
+                    <em>Real: Svetlana had a hectic lecture schedule in Moscow, so she didn't attend the regional seminar.</em><br>
+                    Svetlana <input type="text" class="live-input" style="width: 190px;" oninput="liveCheck(this, 'would have attended')" placeholder="would have + V3"> the regional seminar if she <input type="text" class="live-input" style="width: 150px;" oninput="liveCheck(this, 'had not had')" placeholder="had not had"> such a hectic schedule.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: Svetlana <strong>would have attended</strong> ... if she <strong>had not had</strong> (or <strong>hadn't had</strong>) ...</div>
+                </li>
+                <li>
+                    <em>Real: The nurses shook the collection vials vigorously, so the red cells hemolyzed.</em><br>
+                    If the nurses <input type="text" class="live-input" style="width: 160px;" oninput="liveCheck(this, 'had not shaken')" placeholder="had not + V3"> the vials vigorously, the red cells <input type="text" class="live-input" style="width: 210px;" oninput="liveCheck(this, 'would not have hemolyzed')" placeholder="would have + V3">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: If the nurses <strong>had not shaken</strong> ..., the red cells <strong>would not have hemolyzed</strong>.</div>
+                </li>
+                <li>
+                    <em>Real: The department didn't discover the tube defects earlier, so thousands of euros were wasted.</em><br>
+                    The department <input type="text" class="live-input" style="width: 190px;" oninput="liveCheck(this, 'would have saved')" placeholder="would have + V3"> thousands of euros if it <input type="text" class="live-input" style="width: 150px;" oninput="liveCheck(this, 'had discovered')" placeholder="had + V3"> the tube defects earlier.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: The department <strong>would have saved</strong> ... if it <strong>had discovered</strong> ...</div>
+                </li>
+                <li>
+                    <em>Real: The flight between the cities was delayed, so Svetlana missed the faculty dinner.</em><br>
+                    Svetlana <input type="text" class="live-input" style="width: 200px;" oninput="liveCheck(this, 'would not have missed')" placeholder="would have + V3"> the faculty dinner if the flight <input type="text" class="live-input" style="width: 160px;" oninput="liveCheck(this, 'had not been delayed')" placeholder="had not been">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: Svetlana <strong>would not have missed</strong> ... if the flight <strong>had not been delayed</strong>.</div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- TAB 5: VOCABULARY (13 TARGET WORDS) -->
+    <div id="vocabulary" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">5. Vocabulary Review (13 Target Units)</h2>
+            <p class="hint-notice">💡 Click on each card to view its phonetic transcription, definition, and Russian translation:</p>
+
+            <div class="vocab-grid">
+                <!-- 1. reliability -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">reliability</div>
+                            <div class="v-ipa">/rɪˌlaɪəˈbɪləti/</div>
+                            <div class="v-def">the quality of being trustworthy or dependable</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">надёжность / достоверность</div>
+                            <div class="v-ex">"Diagnostic reliability depends on tube quality."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. to preserve -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">to preserve</div>
+                            <div class="v-ipa">/tuː prɪˈzɜːv/</div>
+                            <div class="v-def">to keep safe from harm, loss, or decay</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">сохранять / сберегать</div>
+                            <div class="v-ex">"Proper chilling preserves blood chemistry."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. whenever -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">whenever</div>
+                            <div class="v-ipa">/wenˈevər/</div>
+                            <div class="v-def">at any time that; on every occasion</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">всякий раз когда</div>
+                            <div class="v-ex">"Whenever nurses invert tubes, they must be gentle."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. prepare for -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">prepare for</div>
+                            <div class="v-ipa">/prɪˈpeər fɔːr/</div>
+                            <div class="v-def">to get ready for an upcoming event</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">готовиться к чему-либо</div>
+                            <div class="v-ex">"We prepare for the symposium in India."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. thoroughly -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">thoroughly</div>
+                            <div class="v-ipa">/ˈθʌrəli/</div>
+                            <div class="v-def">in a detailed, complete, and careful way</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">тщательно / досконально</div>
+                            <div class="v-ex">"She analyzed the centrifuge data thoroughly."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. to attract -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">to attract</div>
+                            <div class="v-ipa">/tuː əˈtrækt/</div>
+                            <div class="v-def">draw attention or interest from people</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">привлекать / притягивать</div>
+                            <div class="v-ex">"The new poster will attract medical visitors."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. inevitably -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">inevitably</div>
+                            <div class="v-ipa">/ɪnˈevɪtəbli/</div>
+                            <div class="v-def">unavoidably; as is certain to happen</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">неизбежно</div>
+                            <div class="v-ex">"Outdated protocols inevitably cause errors."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. to find out -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">to find out</div>
+                            <div class="v-ipa">/tuː faɪnd aʊt/</div>
+                            <div class="v-def">discover a piece of information or fact</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">выяснять / узнавать</div>
+                            <div class="v-ex">"We audited the ward to find out why tubes clotted."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. outdated -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">outdated</div>
+                            <div class="v-ipa">/ˌaʊtˈdeɪtɪd/</div>
+                            <div class="v-def">no longer useful, current, or modern</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">устаревший</div>
+                            <div class="v-ex">"The lab replaced its outdated centrifuge."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. still -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">still</div>
+                            <div class="v-ipa">/stɪl/</div>
+                            <div class="v-def">continuing up to the present time</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">всё ещё / до сих пор</div>
+                            <div class="v-ex">"Many clinics still use manual sample forms."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. self-confidence -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">self-confidence</div>
+                            <div class="v-ipa">/ˌself ˈkɒnfɪdəns/</div>
+                            <div class="v-def">a feeling of trust in one's own abilities</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">уверенность в себе</div>
+                            <div class="v-ex">"Publishing papers builds professional self-confidence."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. to present -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">to present</div>
+                            <div class="v-ipa">/tuː prɪˈzent/</div>
+                            <div class="v-def">formally exhibit or show research to others</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">представлять / демонстрировать</div>
+                            <div class="v-ex">"Svetlana will present her poster in Delhi."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 13. manner -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">manner</div>
+                            <div class="v-ipa">/ˈmænər/</div>
+                            <div class="v-def">the style or way in which something is done</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">манера / способ</div>
+                            <div class="v-ex">"She responded in a composed and polite manner."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vocabulary Practice Exercise -->
+            <h3 style="margin-top: 25px; margin-bottom: 12px; color: var(--primary);">Practice: Fill in the Blanks</h3>
+            <p class="hint-notice">💡 Complete each sentence using the appropriate word or phrase from the cards above:</p>
+
+            <ol class="grammar-list">
+                <li>
+                    Testing pre-analytical variables is essential to guarantee diagnostic <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'reliability')" placeholder="word"> in laboratory medicine.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>reliability</strong></div>
+                </li>
+                <li>
+                    Proper refrigeration helps <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'preserve')" placeholder="verb"> biomaterial specimens before analyzer processing.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>preserve</strong></div>
+                </li>
+                <li>
+                    <input type="text" class="live-input" style="width: 130px;" oninput="liveCheck(this, 'Whenever')" placeholder="word"> our students prepare sample batches, they double-check the barcode labels.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>Whenever</strong></div>
+                </li>
+                <li>
+                    Medical researchers must <input type="text" class="live-input" style="width: 150px;" oninput="liveCheck(this, 'prepare for')" placeholder="phrase"> international conference questions thoroughly.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>prepare for</strong></div>
+                </li>
+                <li>
+                    The professor reviewed the comparative tube findings <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'thoroughly')" placeholder="word"> before writing the abstract.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>thoroughly</strong></div>
+                </li>
+                <li>
+                    A well-designed poster stand will <input type="text" class="live-input" style="width: 130px;" oninput="liveCheck(this, 'attract')" placeholder="verb"> numerous international colleagues during the poster session.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>attract</strong></div>
+                </li>
+                <li>
+                    Violating centrifugation temperature protocols will <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'inevitably')" placeholder="word"> result in test result discrepancies.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>inevitably</strong></div>
+                </li>
+                <li>
+                    The laboratory audit helped us <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'find out')" placeholder="phrase"> the primary causes of tube contamination.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>find out</strong></div>
+                </li>
+                <li>
+                    Clinics should discontinue using <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'outdated')" placeholder="word"> vacuum tubes that lack standard internal barriers.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>outdated</strong></div>
+                </li>
+                <li>
+                    Several provincial clinics <input type="text" class="live-input" style="width: 110px;" oninput="liveCheck(this, 'still')" placeholder="word"> perform manual blood mixing instead of automated inversion.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>still</strong></div>
+                </li>
+                <li>
+                    Presenting validated scientific data gives young doctoral students genuine <input type="text" class="live-input" style="width: 170px;" oninput="liveCheck(this, 'self confidence')" placeholder="phrase">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>self-confidence</strong></div>
+                </li>
+                <li>
+                    In November, Svetlana will <input type="text" class="live-input" style="width: 130px;" oninput="liveCheck(this, 'present')" placeholder="verb"> a comparative poster evaluating two tube manufacturers.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>present</strong></div>
+                </li>
+                <li>
+                    The speaker delivered her keynote remarks in an organized and professional <input type="text" class="live-input" style="width: 140px;" oninput="liveCheck(this, 'manner')" placeholder="word">.
+                    <button class="btn-peek" onclick="toggleAnswerRow(this)">Show answer</button>
+                    <div class="answer-reveal">Answer: <strong>manner</strong></div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- TAB 6: TRANSLATION -->
+    <div id="translation" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">6. Final Task: Translation</h2>
+            <p class="hint-notice">💡 Read the cohesive story below. Click the <strong>RU→EN</strong> button after each sentence to check your translation:</p>
+
+            <div class="story-container">
+                Всякий раз, когда мы оцениваем надежность пробирок, мы тщательно готовимся к экспериментам.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">Whenever we evaluate tube reliability, we thoroughly prepare for the experiments.</span>
+
+                Наш стендовый доклад в Индии обязательно привлечет внимание зарубежных коллег, если мы представим результаты в убедительной манере.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">Our poster report in India will certainly attract the attention of international colleagues if we present the results in a convincing manner.</span>
+
+                Мы выяснили, что устаревшие методы центрифугирования все еще неизбежно вызывают гемолиз.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">We found out that outdated centrifugation methods still inevitably cause hemolysis.</span>
+
+                Если бы клиника использовала качественные пробирки в прошлом месяце, мы бы сохранили все ценные биоматериалы.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">If the clinic had used high-quality tubes last month, we would have preserved all valuable biomaterials.</span>
+
+                Я бы уже полетела в Израиль к дочкам, если бы завершила научный отчет вовремя.
+                <span class="inline-btn" onclick="toggleInlineEn(this)">RU→EN</span>
+                <span class="inline-en">I would have already flown to Israel to visit my daughters if I had completed the scientific report on time.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab switching
+    function openTab(evt, tabName) {
+        let i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    // Toggle panels
+    function togglePanel(id) {
+        let el = document.getElementById(id);
+        el.style.display = (el.style.display === "block") ? "none" : "block";
+    }
+
+    // Inline translation toggle
+    function toggleInlineEn(btn) {
+        let span = btn.nextElementSibling;
+        if (span.style.display === "inline") {
+            span.style.display = "none";
+            btn.style.background = "#eef1f6";
+            btn.style.color = "#475569";
+        } else {
+            span.style.display = "inline";
+            btn.style.background = "#1a56db";
+            btn.style.color = "#ffffff";
+        }
+    }
+
+    // Quiz choice check
+    function checkChoice(btn, isCorrect) {
+        let choices = btn.parentElement.querySelectorAll(".choice-btn");
+        choices.forEach(c => c.classList.remove("correct", "incorrect"));
+        if (isCorrect) {
+            btn.classList.add("correct");
+        } else {
+            btn.classList.add("incorrect");
+        }
+    }
+
+    // Reveal answer block
+    function toggleAnswerRow(btn) {
+        let parent = btn.closest('li') || btn.closest('.dictation-row');
+        if (!parent) parent = btn.parentElement;
+        let ans = parent.querySelector('.answer-reveal');
+        if (ans) {
+            ans.style.display = (ans.style.display === "block") ? "none" : "block";
+        }
+    }
+
+    // Live Check for inputs
+    function liveCheck(inputElement, targetPhrase) {
+        let userVal = inputElement.value.trim().toLowerCase().replace(/['\.\?!,;:\-]/g, '').replace(/\s+/g, ' ');
+        let expectedVal = targetPhrase.toLowerCase().replace(/['\.\?!,;:\-]/g, '').replace(/\s+/g, ' ');
+
+        // Support contractions
+        expectedVal = expectedVal.replace("would not", "wouldnt").replace("had not", "hadnt");
+        let tempUser = userVal.replace("would not", "wouldnt").replace("had not", "hadnt");
+
+        if (tempUser === expectedVal) {
+            inputElement.classList.add("correct");
+        } else {
+            inputElement.classList.remove("correct");
+        }
+    }
+
+    // Web Speech API Voice synthesis & Story Player
+    const listeningStory = "Whenever laboratory researchers prepare for an international symposium, attention to detail is vital. Ahead of the conference in India this late autumn, Professor Svetlana's team conducted an intensive comparative evaluation of blood collection tubes. During the initial tests, they found out that several clinics still relied on outdated centrifuge models. Such practices inevitably compromised diagnostic reliability. However, when laboratory assistants followed modern pre-analytical protocols thoroughly, specimen stability was preserved. Svetlana plans to present these findings in a calm and convincing manner. She believes the comparative poster will attract great interest from clinical specialists, giving young medical researchers greater self-confidence in their daily laboratory work.";
+
+    let audioUtterance = null;
+    let isPlaying = false;
+    let audioTimer = null;
+    let currentSeconds = 0;
+    const totalEstSeconds = 65;
+
+    function formatTime(sec) {
+        let m = Math.floor(sec / 60);
+        let s = Math.floor(sec % 60);
+        return (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+    }
+
+    function playAudioStory() {
+        let synth = window.speechSynthesis;
+        if (synth.paused) {
+            synth.resume();
+            isPlaying = true;
+            startTimer();
+            return;
+        }
+        if (synth.speaking) {
+            synth.cancel();
+        }
+
+        audioUtterance = new SpeechSynthesisUtterance(listeningStory);
+        audioUtterance.lang = 'en-US';
+        audioUtterance.rate = 0.84;
+
+        let voices = synth.getVoices();
+        let femaleVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Google US English') || v.name.includes('Zira')));
+        if (femaleVoice) { audioUtterance.voice = femaleVoice; }
+
+        audioUtterance.onend = function() {
+            stopAudioStory();
+        };
+
+        currentSeconds = 0;
+        synth.speak(audioUtterance);
+        isPlaying = true;
+        startTimer();
+    }
+
+    function pauseAudioStory() {
+        let synth = window.speechSynthesis;
+        if (synth.speaking && !synth.paused) {
+            synth.pause();
+            isPlaying = false;
+            clearInterval(audioTimer);
+        }
+    }
+
+    function stopAudioStory() {
+        let synth = window.speechSynthesis;
+        synth.cancel();
+        isPlaying = false;
+        clearInterval(audioTimer);
+        currentSeconds = 0;
+        updatePlayerUI();
+    }
+
+    function seekAudioStory(e) {
+        let bar = e.currentTarget;
+        let rect = bar.getBoundingClientRect();
+        let clickX = e.clientX - rect.left;
+        let pct = clickX / rect.width;
+        currentSeconds = Math.floor(pct * totalEstSeconds);
+        updatePlayerUI();
+        playAudioStory();
+    }
+
+    function startTimer() {
+        clearInterval(audioTimer);
+        audioTimer = setInterval(() => {
+            if (isPlaying && currentSeconds < totalEstSeconds) {
+                currentSeconds++;
+                updatePlayerUI();
+            }
+        }, 1000);
+    }
+
+    function updatePlayerUI() {
+        let pct = Math.min((currentSeconds / totalEstSeconds) * 100, 100);
+        document.getElementById('audio-progress').style.width = pct + '%';
+        document.getElementById('audio-time').innerText = formatTime(currentSeconds) + " / " + formatTime(totalEstSeconds);
+    }
+
+    // Dictation phrases
+    const dictationPhrases = {
+        1: "Whenever we evaluate test reliability, we prepare for experiments thoroughly.",
+        2: "Our poster will attract the attention of international colleagues.",
+        3: "We found out that some clinics still used outdated manuals.",
+        4: "She presented the research data with genuine self-confidence.",
+        5: "The professor answered all questions in a professional manner.",
+        6: "If the laboratory had checked the tubes earlier, errors would have been avoided."
+    };
+
+    function playSentence(num) {
+        let synth = window.speechSynthesis;
+        if (synth.speaking) { synth.cancel(); }
+        let utterance = new SpeechSynthesisUtterance(dictationPhrases[num]);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.83;
+
+        let voices = synth.getVoices();
+        let femaleVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Google US English') || v.name.includes('Zira')));
+        if (femaleVoice) { utterance.voice = femaleVoice; }
+
+        synth.speak(utterance);
+    }
+</script>
+
+</body>
+</html>
