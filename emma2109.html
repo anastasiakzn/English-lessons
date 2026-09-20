@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English Lesson — Emma — 21.09.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF6EC; --cream-2:#FDEBDC; --card:#FFFFFF;
+  --ink:#2C2140; --ink-soft:#6B6280;
+  --violet:#6D4AE0; --violet-soft:#EFE9FF;
+  --amber:#F6B93B; --amber-soft:#FDEBC4;
+  --teal:#0E9E8B; --rose:#E2607A; --line:#F0E6DC;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);
+  background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);background-attachment:fixed;
+  font-size:17px;line-height:1.6}
+h1,h2,h3,h4{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;line-height:1.2;margin:0}
+.wrap{max-width:880px;margin:0 auto;padding:26px 18px 60px}
+
+.head{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.badge{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#FFB86B,#F6795B);
+  display:grid;place-items:center;font-size:30px;flex:none;box-shadow:0 8px 18px rgba(246,121,91,.28)}
+.head h1{font-size:32px}
+.head p{margin:3px 0 0;color:var(--ink-soft);font-size:15px}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.tab{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:9px 16px;font:inherit;font-weight:700;font-size:14px;color:var(--ink);cursor:pointer}
+.tab i{width:20px;height:20px;border-radius:50%;background:var(--violet-soft);color:var(--violet);
+  font-style:normal;font-size:12px;display:grid;place-items:center;font-weight:800}
+.tab:hover{border-color:var(--violet)}
+.tab.on{background:#241B39;border-color:#241B39;color:#fff}
+.tab.on i{background:rgba(255,255,255,.22);color:#fff}
+
+.page{display:none;background:var(--card);border-radius:24px;padding:28px 26px;
+  box-shadow:0 4px 22px rgba(90,60,30,.07)}
+.page.on{display:block}
+.eyebrow{display:inline-block;background:#E9F1FF;color:#3B7BEA;font-weight:800;font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:6px 14px;margin-bottom:14px}
+.page h2{font-size:27px;display:flex;align-items:center;gap:10px}
+.page h3{font-size:20px;margin:28px 0 8px}
+.lead{color:var(--ink-soft);font-size:15px;margin:8px 0 0}
+.hint{background:#FFFBF0;border-left:4px solid var(--amber);border-radius:10px;padding:10px 14px;
+  color:#7A6236;font-size:15px;margin:14px 0}
+p{margin:10px 0}
+
+/* warm-up */
+.ask{background:#FFFDFA;border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:9px 0;font-weight:700}
+.quote{background:linear-gradient(135deg,#F3EEFF,#FFF2E4);border-radius:20px;padding:26px 24px;margin:16px 0 8px;
+  font-family:'Baloo 2',sans-serif;font-size:26px;line-height:1.45;text-align:center}
+.chip{background:#FFE7A8;border-radius:8px;padding:0 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+/* buttons */
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center}
+button{font:inherit;font-weight:800;border-radius:12px;cursor:pointer;border:1px solid transparent;padding:10px 20px}
+.btn-main{background:var(--teal);color:#fff}
+.btn-main:hover{background:#0B8878}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+.mini{font-size:13px;padding:4px 11px;border-radius:9px;background:#fff;border:1px solid var(--line);
+  color:var(--ink-soft);font-weight:800;white-space:nowrap}
+.mini:hover{border-color:var(--violet);color:var(--violet)}
+.score{font-weight:800;color:var(--teal)}
+.rev{display:none;background:var(--violet-soft);border-radius:12px;padding:8px 13px;margin-top:8px;
+  font-weight:700;color:#4A2FB0;font-size:15px}
+.rev.show{display:block}
+
+/* translation flow */
+.flow{font-size:18px;line-height:2.3}
+.flow .en{display:none;background:#DFF5EC;color:#0A6B5E;border-radius:8px;padding:3px 10px;font-weight:700}
+.flow .en.show{display:inline}
+
+/* tables */
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:16px}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+th{background:var(--violet-soft);color:#4A2FB0;font-weight:800}
+td b{color:var(--violet)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.box{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:#FFFDFA}
+.box h4{margin:0 0 6px;font-size:17px}
+.box p{margin:4px 0;font-size:15px}
+.plus h4{color:var(--teal)} .minus h4{color:var(--rose)} .quest h4{color:var(--violet)}
+
+/* exercises */
+ol.tasks{list-style:none;counter-reset:t;padding:0;margin:12px 0 0}
+ol.tasks>li{counter-increment:t;display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
+ol.tasks>li:last-child{border-bottom:none}
+ol.tasks>li::before{content:counter(t);flex:none;width:26px;height:26px;border-radius:50%;
+  background:var(--violet);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:4px}
+.taskbody{flex:1;min-width:0}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:7px;padding:2px 8px;margin-right:6px;vertical-align:2px}
+.tag.p{background:#DFF5EC;color:#0A6B5E}
+.tag.m{background:#FCE4E9;color:#9E2F45}
+.tag.q{background:var(--violet-soft);color:#4A2FB0}
+input.gap{font:inherit;font-weight:700;color:var(--ink);background:var(--amber-soft);border:none;
+  border-bottom:2px solid var(--amber);border-radius:6px 6px 0 0;padding:3px 8px;width:130px}
+input.gap:focus{outline:2px solid var(--violet);outline-offset:1px}
+input.gap.ok{background:#DFF5EC;border-bottom-color:var(--teal)}
+input.gap.no{background:#FCE4E9;border-bottom-color:var(--rose)}
+.line{display:flex;gap:8px;align-items:center;margin-top:7px}
+.line input.gap{flex:1;width:auto;min-width:0}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.bank b{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700;font-size:15px}
+
+/* vocabulary cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin-top:16px}
+.vcard{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;min-height:104px}
+.vcard .w{font-family:'Baloo 2',sans-serif;font-size:19px;font-weight:700}
+.vcard .tr{color:var(--ink-soft);font-size:14px}
+.vcard .back{display:none;margin-top:9px;font-size:15px}
+.vcard.open{background:var(--violet-soft);border-color:#CDBCFF}
+.vcard.open .back{display:block}
+.vcard .ru{font-weight:800;color:#4A2FB0}
+.vcard .ex{font-style:italic;color:var(--ink-soft);font-size:14px;margin-top:4px}
+
+/* player */
+.player{background:#241B39;border-radius:20px;padding:18px 20px;color:#fff;margin:16px 0}
+.player .ctrls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.player button{background:rgba(255,255,255,.14);color:#fff;border:none;padding:9px 18px;border-radius:12px}
+.player button:hover{background:rgba(255,255,255,.26)}
+.player .time{margin-left:auto;font-weight:800;font-variant-numeric:tabular-nums;opacity:.85}
+.bar{height:6px;border-radius:99px;background:rgba(255,255,255,.18);margin-top:14px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:#FFB86B;border-radius:99px;transition:width .25s linear}
+
+/* mcq */
+.q{margin:18px 0 0}
+.q p{font-weight:700;margin:0 0 8px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{text-align:left;background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:600;padding:9px 14px;border-radius:12px}
+.opt:hover{border-color:var(--violet)}
+.opt.ok{background:#DFF5EC;border-color:var(--teal);color:#0A6B5E}
+.opt.no{background:#FCE4E9;border-color:var(--rose);color:#9E2F45}
+
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+footer{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:26px}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:18px 13px 48px}
+  .head h1{font-size:25px}
+  .badge{width:52px;height:52px;border-radius:16px;font-size:24px}
+  .page{padding:20px 16px;border-radius:20px}
+  .quote{font-size:20px;padding:20px 16px}
+  .three{grid-template-columns:1fr}
+  .tab{padding:8px 12px;font-size:13px}
+  table{font-size:15px}
+  input.gap{width:110px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="head">
+  <div class="badge">🎸</div>
+  <div>
+    <h1>English lesson — Emma</h1>
+    <p>21.09.2026 · Verb <b>to be</b>: statements, negatives, questions</p>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab on" data-go="p1"><i>1</i>Warm-up</button>
+  <button class="tab" data-go="p2"><i>2</i>Homework Check</button>
+  <button class="tab" data-go="p3"><i>3</i>Grammar</button>
+  <button class="tab" data-go="p4"><i>4</i>Vocabulary</button>
+  <button class="tab" data-go="p5"><i>5</i>Listening</button>
+  <button class="tab" data-go="p6"><i>6</i>Speaking</button>
+  <button class="tab" data-go="p7"><i>7</i>Translation</button>
+</div>
+
+<!-- 1 WARM-UP -->
+<section class="page on" id="p1">
+  <div class="eyebrow">Warm-up</div>
+  <h2>☀️ Let's start</h2>
+
+  <div class="ask">How are you today?</div>
+  <div class="ask">What is the weather like today?</div>
+  <div class="ask">What day is it today?</div>
+  <div class="ask">Are you at home now?</div>
+  <div class="ask">How old are you?</div>
+  <div class="ask">Are you ready for English?</div>
+
+  <h3>Phrase of the day</h3>
+  <div class="quote">"I am <span class="chip">over the moon</span> today!"</div>
+  <div class="row">
+    <button class="mini" data-toggle="#ph1">Show translation</button>
+    <button class="btn-ghost" data-speak="I am over the moon today!" data-rate="0.85">🔊 Listen</button>
+  </div>
+  <div class="rev" id="ph1">over the moon /ˌəʊvə ðə ˈmuːn/ — на седьмом небе от счастья, в полном восторге.<br>
+    <span style="font-weight:400">«Я сегодня на седьмом небе от счастья!»</span></div>
+
+  <div class="pager"><span></span><button class="btn-main" data-go="p2">Next: Homework Check →</button></div>
+</section>
+
+<!-- 2 HOMEWORK CHECK -->
+<section class="page" id="p2">
+  <div class="eyebrow">Homework · Translation</div>
+  <h2>🌍 Translate the text into English</h2>
+  <p class="lead">Read a sentence, translate it aloud, then tap RU→EN and check yourself. <button class="mini" data-toggle="#i2">RUS</button></p>
+  <div class="rev" id="i2" style="font-weight:400">Читай предложение, переводи вслух, потом нажимай RU→EN и сверяйся.</div>
+
+  <div class="flow">
+    Привет! Меня зовут Эмма, и мне одиннадцать лет.
+    <button class="mini" data-rev>RU→EN</button> <span class="en">Hi! My name is Emma and I am eleven years old.</span>
+    Сейчас лето, и я очень весёлая.
+    <button class="mini" data-rev>RU→EN</button> <span class="en">It is summer now and I am very cheerful.</span>
+    У меня четыре собаки. Они дружелюбные и совсем не ленивые.
+    <button class="mini" data-rev>RU→EN</button> <span class="en">I have four dogs. They are friendly and not lazy at all.</span>
+    Колокольчики — мои любимые цветы, они очень красивые.
+    <button class="mini" data-rev>RU→EN</button> <span class="en">Bluebells are my favourite flowers, they are very beautiful.</span>
+    Летний лагерь — это большое приключение.
+    <button class="mini" data-rev>RU→EN</button> <span class="en">Summer camp is a big adventure.</span>
+    Мой рюкзак готов? Да, он готов!
+    <button class="mini" data-rev>RU→EN</button> <span class="en">Is my backpack ready? Yes, it is!</span>
+    Я талантливая? Думаю, да — я играю на гитаре.
+    <button class="mini" data-rev>RU→EN</button> <span class="en">Am I talented? I think so — I play the guitar.</span>
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p1">← Back</button><button class="btn-main" data-go="p3">Next: Grammar →</button></div>
+</section>
+
+<!-- 3 GRAMMAR -->
+<section class="page" id="p3">
+  <div class="eyebrow">Grammar</div>
+  <h2>⭐ The verb <i>to be</i>: am / is / are</h2>
+
+  <table>
+    <tr><th>Person</th><th>Full form</th><th>Short form</th><th>Example</th></tr>
+    <tr><td>I</td><td><b>am</b></td><td>I'm</td><td>I <b>am</b> twelve.</td></tr>
+    <tr><td>you</td><td><b>are</b></td><td>you're</td><td>You <b>are</b> my teacher.</td></tr>
+    <tr><td>he / she / it</td><td><b>is</b></td><td>he's / she's / it's</td><td>My brother <b>is</b> at school.</td></tr>
+    <tr><td>we</td><td><b>are</b></td><td>we're</td><td>We <b>are</b> a big family.</td></tr>
+    <tr><td>they</td><td><b>are</b></td><td>they're</td><td>My dogs <b>are</b> friendly.</td></tr>
+  </table>
+
+  <div class="three">
+    <div class="box plus"><h4>+ Statement</h4>
+      <p>I <b>am</b> ready.</p><p>She <b>is</b> cheerful.</p><p>They <b>are</b> friendly.</p>
+      <p class="lead">person → am/is/are → rest</p></div>
+    <div class="box minus"><h4>− Negative</h4>
+      <p>I <b>am not</b> ready.</p><p>She <b>isn't</b> cheerful.</p><p>They <b>aren't</b> friendly.</p>
+      <p class="lead">am/is/are + not</p></div>
+    <div class="box quest"><h4>? Question</h4>
+      <p><b>Am</b> I ready?</p><p><b>Is</b> she cheerful?</p><p><b>Are</b> they friendly?</p>
+      <p class="lead">am/is/are goes first</p></div>
+  </div>
+
+  <h3>Short answers</h3>
+  <table>
+    <tr><th>Question</th><th>Yes 👍</th><th>No 👎</th></tr>
+    <tr><td>Are you ready?</td><td>Yes, I am.</td><td>No, I'm not.</td></tr>
+    <tr><td>Is your backpack new?</td><td>Yes, it is.</td><td>No, it isn't.</td></tr>
+    <tr><td>Are your sisters at home?</td><td>Yes, they are.</td><td>No, they aren't.</td></tr>
+  </table>
+  <div class="hint">💡 In a short "Yes" answer we never use the short form: <b>Yes, I am</b> — not "Yes, I'm". In a "No" answer the short form is fine: <b>No, I'm not</b>. <button class="mini" data-toggle="#i3">RUS</button></div>
+  <div class="rev" id="i3" style="font-weight:400">В коротком ответе «Yes» сокращать нельзя: Yes, I am — не «Yes, I'm». А в ответе «No» сокращение возможно: No, I'm not.</div>
+
+  <h3>Exercise 1. Put in the right form of <i>to be</i></h3>
+  <p class="lead">Look at the sign: + statement, − negative, ? question. <button class="mini" data-toggle="#i4">RUS</button></p>
+  <div class="rev" id="i4" style="font-weight:400">Смотри на значок: + утверждение, − отрицание, ? вопрос.</div>
+  <ol class="tasks" data-ex="g1">
+    <li><div class="taskbody"><span class="tag p">+</span>I <input class="gap" data-a="am"> twelve years old now.
+      <button class="mini" data-ans>Answer</button><div class="rev">I <b>am</b> twelve years old now.</div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>My dogs <input class="gap" data-a="are not|aren't"> lazy.
+      <button class="mini" data-ans>Answer</button><div class="rev">My dogs <b>are not (aren't)</b> lazy.</div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span><input class="gap" data-a="is"> your backpack ready for school?
+      <button class="mini" data-ans>Answer</button><div class="rev"><b>Is</b> your backpack ready for school?</div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span>My new classmates <input class="gap" data-a="are"> friendly and cheerful.
+      <button class="mini" data-ans>Answer</button><div class="rev">My new classmates <b>are</b> friendly and cheerful.</div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>I <input class="gap" data-a="am not|'m not"> tired after the lesson.
+      <button class="mini" data-ans>Answer</button><div class="rev">I <b>am not (I'm not)</b> tired after the lesson.</div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span><input class="gap" data-a="are"> your sisters at home today?
+      <button class="mini" data-ans>Answer</button><div class="rev"><b>Are</b> your sisters at home today?</div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g1">Check</button><span class="score" data-score="g1"></span></div>
+
+  <h3>Exercise 2. Make a sentence from the words</h3>
+  <p class="lead">Put the words in the right order. The sign tells you what to make: + statement, − negative, ? question. <button class="mini" data-toggle="#i5">RUS</button></p>
+  <div class="rev" id="i5" style="font-weight:400">Составь предложение из слов. Значок подсказывает, что нужно получить: + утверждение, − отрицание, ? вопрос.</div>
+  <ol class="tasks" data-ex="g2">
+    <li><div class="taskbody"><span class="tag m">&minus;</span>my sisters / cheerful / are / not / today
+      <div class="line"><input class="gap" data-a="my sisters are not cheerful today|my sisters aren't cheerful today"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">My sisters are not (aren't) cheerful today.</div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span>the dogs / in the garden / are
+      <div class="line"><input class="gap" data-a="are the dogs in the garden"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">Are the dogs in the garden?</div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span>friendly / classmates / my / new / are
+      <div class="line"><input class="gap" data-a="my new classmates are friendly"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">My new classmates are friendly.</div></div></li>
+    <li><div class="taskbody"><span class="tag m">&minus;</span>ready / I / not / am / for the hike
+      <div class="line"><input class="gap" data-a="i am not ready for the hike|i'm not ready for the hike"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">I am not (I'm not) ready for the hike.</div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span>talented / Emma / is / at music
+      <div class="line"><input class="gap" data-a="is emma talented at music"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">Is Emma talented at music?</div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span>heavy / is / backpack / my
+      <div class="line"><input class="gap" data-a="my backpack is heavy"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">My backpack is heavy.</div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g2">Check</button><span class="score" data-score="g2"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p2">← Back</button><button class="btn-main" data-go="p4">Next: Vocabulary →</button></div>
+</section>
+
+<!-- 4 VOCABULARY -->
+<section class="page" id="p4">
+  <div class="eyebrow">Vocabulary</div>
+  <h2>🃏 Words from your homework</h2>
+  <p class="lead">Tap a card to see the translation and an example. <button class="mini" data-toggle="#i6">RUS</button></p>
+  <div class="rev" id="i6" style="font-weight:400">Нажми на карточку — откроется перевод и пример.</div>
+
+  <div class="cards">
+    <div class="vcard"><div class="w">adventure</div><div class="tr">/ədˈventʃə/</div>
+      <div class="back"><div class="ru">приключение</div><div class="ex">A new school year is a big adventure.</div></div></div>
+    <div class="vcard"><div class="w">tent</div><div class="tr">/tent/</div>
+      <div class="back"><div class="ru">палатка</div><div class="ex">Our tent is in the garage now.</div></div></div>
+    <div class="vcard"><div class="w">backpack</div><div class="tr">/ˈbækpæk/</div>
+      <div class="back"><div class="ru">рюкзак</div><div class="ex">My backpack is not heavy this year.</div></div></div>
+    <div class="vcard"><div class="w">hike</div><div class="tr">/haɪk/</div>
+      <div class="back"><div class="ru">поход, долгая прогулка пешком</div><div class="ex">At the weekend we are on a long hike.</div></div></div>
+    <div class="vcard"><div class="w">talented</div><div class="tr">/ˈtæləntɪd/</div>
+      <div class="back"><div class="ru">талантливый</div><div class="ex">She is talented: she plays the guitar.</div></div></div>
+    <div class="vcard"><div class="w">cheerful</div><div class="tr">/ˈtʃɪəfl/</div>
+      <div class="back"><div class="ru">весёлый, жизнерадостный</div><div class="ex">My sisters are always cheerful.</div></div></div>
+    <div class="vcard"><div class="w">friendly</div><div class="tr">/ˈfrendli/</div>
+      <div class="back"><div class="ru">дружелюбный</div><div class="ex">My dogs are friendly and love everyone.</div></div></div>
+    <div class="vcard"><div class="w">over the moon</div><div class="tr">/ˌəʊvə ðə ˈmuːn/</div>
+      <div class="back"><div class="ru">на седьмом небе от счастья</div><div class="ex">I am over the moon today!</div></div></div>
+  </div>
+
+  <h3>Practice: choose the right word</h3>
+  <p class="lead">Use each word once. <button class="mini" data-toggle="#i7">RUS</button></p>
+  <div class="rev" id="i7" style="font-weight:400">Каждое слово используется один раз.</div>
+  <div class="bank"><b>adventure</b><b>tent</b><b>backpack</b><b>hike</b><b>talented</b><b>cheerful</b><b>friendly</b><b>over the moon</b></div>
+  <ol class="tasks" data-ex="v1">
+    <li><div class="taskbody">My <input class="gap" data-a="backpack"> is on the chair — my books and pens are inside.
+      <button class="mini" data-ans>Answer</button><div class="rev">backpack — рюкзак</div></div></li>
+    <li><div class="taskbody">Summer is over, so our <input class="gap" data-a="tent"> is in the garage now.
+      <button class="mini" data-ans>Answer</button><div class="rev">tent — палатка</div></div></li>
+    <li><div class="taskbody">A new school year is a big <input class="gap" data-a="adventure">!
+      <button class="mini" data-ans>Answer</button><div class="rev">adventure — приключение</div></div></li>
+    <li><div class="taskbody">She plays the guitar and the piano — she is so <input class="gap" data-a="talented">.
+      <button class="mini" data-ans>Answer</button><div class="rev">talented — талантливая</div></div></li>
+    <li><div class="taskbody">At the weekend we are on a long <input class="gap" data-a="hike"> in the forest.
+      <button class="mini" data-ans>Answer</button><div class="rev">hike — поход, долгая прогулка</div></div></li>
+    <li><div class="taskbody">My four dogs are <input class="gap" data-a="friendly"> and love everyone.
+      <button class="mini" data-ans>Answer</button><div class="rev">friendly — дружелюбные</div></div></li>
+    <li><div class="taskbody">He is always smiling — he is a very <input class="gap" data-a="cheerful"> boy.
+      <button class="mini" data-ans>Answer</button><div class="rev">cheerful — весёлый, жизнерадостный</div></div></li>
+    <li><div class="taskbody">My birthday is tomorrow and I am <input class="gap" data-a="over the moon">.
+      <button class="mini" data-ans>Answer</button><div class="rev">over the moon — на седьмом небе от счастья</div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="v1">Check</button><span class="score" data-score="v1"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p3">← Back</button><button class="btn-main" data-go="p5">Next: Listening →</button></div>
+</section>
+
+<!-- 5 LISTENING -->
+<section class="page" id="p5">
+  <div class="eyebrow">Listening</div>
+  <h2>🎧 Lily's new school year</h2>
+  <p class="lead">Listen to the story (about one minute) and answer five questions. <button class="mini" data-toggle="#i8">RUS</button></p>
+  <div class="rev" id="i8" style="font-weight:400">Послушай историю (около одной минуты) и ответь на пять вопросов.</div>
+
+  <div class="player" id="player"
+    data-text="Hi! My name is Lily and I am twelve years old. It is autumn now, and it is my first month at a new online school. My classroom is my laptop, my teacher is on the screen, and my classmates are from different cities. They are friendly and very cheerful, so our mornings are fun. My backpack is not heavy this year, because all my books are in the computer. My old tent is in the garage now. Summer camp is over, but it is a good memory. At the weekend my family is always outside. We are on a long hike in the forest with our two dogs. They are never lazy! My music lessons are on Tuesday. My teacher says I am talented, and after every lesson I am over the moon. A new school year is a big adventure, and I am ready for it.">
+    <div class="ctrls">
+      <button data-play>▶ Play</button>
+      <button data-pause>⏸ Pause</button>
+      <button data-stop>⏹ Stop</button>
+      <span class="time"><span data-elapsed>00:00</span></span>
+    </div>
+    <div class="bar"><i data-bar></i></div>
+  </div>
+
+  <div class="row"><button class="btn-ghost" data-toggle="#transcript">Show transcript</button></div>
+  <div class="rev" id="transcript" style="font-weight:400">Hi! My name is Lily and I am twelve years old. It is autumn now, and it is my first month at a new online school. My classroom is my laptop, my teacher is on the screen, and my classmates are from different cities. They are friendly and very cheerful, so our mornings are fun. My backpack is not heavy this year, because all my books are in the computer. My old tent is in the garage now. Summer camp is over, but it is a good memory. At the weekend my family is always outside. We are on a long hike in the forest with our two dogs. They are never lazy! My music lessons are on Tuesday. My teacher says I am talented, and after every lesson I am over the moon. A new school year is a big adventure, and I am ready for it.</div>
+
+  <div class="q"><p>1. Where is Lily's classroom?</p>
+    <div class="opts">
+      <button class="opt">It is in the forest.</button>
+      <button class="opt" data-ok>It is her laptop.</button>
+      <button class="opt">It is in the garage.</button>
+    </div></div>
+  <div class="q"><p>2. What are her new classmates like?</p>
+    <div class="opts">
+      <button class="opt">They are lazy and tired.</button>
+      <button class="opt">They are all from her city.</button>
+      <button class="opt" data-ok>They are friendly and cheerful.</button>
+    </div></div>
+  <div class="q"><p>3. Why is her backpack not heavy?</p>
+    <div class="opts">
+      <button class="opt" data-ok>Her books are in the computer.</button>
+      <button class="opt">Her backpack is new.</button>
+      <button class="opt">Her books are at school.</button>
+    </div></div>
+  <div class="q"><p>4. What is the family's weekend activity?</p>
+    <div class="opts">
+      <button class="opt">They are in the tent.</button>
+      <button class="opt" data-ok>They are on a long hike with the dogs.</button>
+      <button class="opt">They are at a music lesson.</button>
+    </div></div>
+  <div class="q"><p>5. How is Lily after a music lesson?</p>
+    <div class="opts">
+      <button class="opt">She is tired and sad.</button>
+      <button class="opt">She is not ready.</button>
+      <button class="opt" data-ok>She is over the moon.</button>
+    </div></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p4">← Back</button><button class="btn-main" data-go="p6">Next: Speaking →</button></div>
+</section>
+
+<!-- 6 SPEAKING -->
+<section class="page" id="p6">
+  <div class="eyebrow">Speaking</div>
+  <h2>💬 About you</h2>
+  <p class="lead">Answer in full sentences.</p>
+  <div class="ask">Is your family big or small? Who is in your family?</div>
+  <div class="ask">Are your dogs friendly? Are they lazy?</div>
+  <div class="ask">Is your new school year a big adventure?</div>
+  <div class="ask">Are your classmates cheerful?</div>
+  <div class="ask">Are you talented at music?</div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p5">← Back</button><button class="btn-main" data-go="p7">Next: Translation →</button></div>
+</section>
+
+<!-- 7 TRANSLATION -->
+<section class="page" id="p7">
+  <div class="eyebrow">Final task · Translation</div>
+  <h2>✍️ Translate the story</h2>
+  <p class="lead">Translate sentence by sentence. Tap English only if you are really stuck. <button class="mini" data-toggle="#i9">RUS</button></p>
+  <div class="rev" id="i9" style="font-weight:400">Переводи по одному предложению. Кнопка English — только если совсем запуталась.</div>
+
+  <div class="flow">
+    Привет! Сейчас осень, и я снова в школе.
+    <button class="mini" data-rev>English</button> <span class="en">Hi! It is autumn now and I am at school again.</span>
+    Моя школа онлайн, поэтому мой класс — это мой ноутбук.
+    <button class="mini" data-rev>English</button> <span class="en">My school is online, so my classroom is my laptop.</span>
+    Мои новые одноклассники дружелюбные и весёлые.
+    <button class="mini" data-rev>English</button> <span class="en">My new classmates are friendly and cheerful.</span>
+    Мой рюкзак не тяжёлый, мои учебники в компьютере.
+    <button class="mini" data-rev>English</button> <span class="en">My backpack is not heavy, my books are in the computer.</span>
+    Наша палатка в гараже до следующего лета.
+    <button class="mini" data-rev>English</button> <span class="en">Our tent is in the garage until next summer.</span>
+    Мои собаки готовы к походу? Да, готовы — они совсем не ленивые!
+    <button class="mini" data-rev>English</button> <span class="en">Are my dogs ready for a hike? Yes, they are — they are not lazy at all!</span>
+    Я талантливая? Думаю, да — моя гитара всегда со мной.
+    <button class="mini" data-rev>English</button> <span class="en">Am I talented? I think so — my guitar is always with me.</span>
+    Новый учебный год — это большое приключение, и я на седьмом небе от счастья!
+    <button class="mini" data-rev>English</button> <span class="en">A new school year is a big adventure and I am over the moon!</span>
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p6">← Back</button><span></span></div>
+</section>
+
+<footer>See you next lesson! 🎸🌼</footer>
+</div>
+
+<script>
+(function(){
+  var synth = window.speechSynthesis;
+  var P = { el:null, seconds:0, timer:null, playing:false, total:78 };
+
+  function stopSpeech(){
+    if(synth) synth.cancel();
+    if(P.timer){ clearInterval(P.timer); P.timer=null; }
+    P.seconds=0; P.playing=false;
+    if(P.el){ P.el.querySelector('[data-elapsed]').textContent='00:00';
+      P.el.querySelector('[data-bar]').style.width='0%'; }
+  }
+
+  /* pages */
+  var show = function(id){
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.toggle('on', p.id===id); });
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('on', t.getAttribute('data-go')===id); });
+    stopSpeech();
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.addEventListener('click', function(){ show(b.getAttribute('data-go')); });
+  });
+
+  /* answers */
+  var norm = function(s){
+    return (s||'').toLowerCase().replace(/[\u2018\u2019\u02BC]/g,"'")
+      .replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+  };
+  var isOk = function(i){
+    var v = norm(i.value);
+    return v!=='' && (i.getAttribute('data-a')||'').split('|').map(norm).indexOf(v)!==-1;
+  };
+  var mark = function(i){
+    i.classList.remove('ok','no');
+    if(i.value.trim()==='') return;
+    i.classList.add(isOk(i)?'ok':'no');
+  };
+  document.addEventListener('input', function(e){
+    if(e.target.classList && e.target.classList.contains('gap')) mark(e.target);
+  });
+  document.querySelectorAll('[data-check]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var key=b.getAttribute('data-check'), box=document.querySelector('[data-ex="'+key+'"]');
+      if(!box) return;
+      var ins=box.querySelectorAll('input.gap'), good=0;
+      ins.forEach(function(i){ mark(i); if(isOk(i)) good++; });
+      var out=document.querySelector('[data-score="'+key+'"]');
+      if(out){ out.textContent=good+' / '+ins.length+(good===ins.length?'  🎉 Perfect!':'');
+        out.style.color=(good===ins.length)?'#0E9E8B':'#E2607A'; }
+    });
+  });
+
+  /* per-item answer */
+  document.querySelectorAll('[data-ans]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var body = b.closest('.taskbody');
+      var rev = body ? body.querySelector('.rev') : null;
+      if(rev) rev.classList.toggle('show');
+    });
+  });
+
+  /* reveals */
+  document.querySelectorAll('[data-rev]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var en=b.nextElementSibling;
+      while(en && !(en.classList && en.classList.contains('en'))) en=en.nextElementSibling;
+      if(en) en.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('[data-toggle]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var el=document.querySelector(b.getAttribute('data-toggle'));
+      if(el) el.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('.vcard').forEach(function(c){
+    c.addEventListener('click', function(){ c.classList.toggle('open'); });
+  });
+  document.querySelectorAll('.opts').forEach(function(box){
+    box.querySelectorAll('.opt').forEach(function(o){
+      o.addEventListener('click', function(){
+        box.querySelectorAll('.opt').forEach(function(x){ x.classList.remove('ok','no'); });
+        if(o.hasAttribute('data-ok')) o.classList.add('ok');
+        else { o.classList.add('no');
+          var r=box.querySelector('[data-ok]'); if(r) r.classList.add('ok'); }
+      });
+    });
+  });
+
+  /* speech */
+  var enVoice = null;
+  var loadVoice = function(){
+    if(!synth) return;
+    var vs = synth.getVoices();
+    enVoice = vs.filter(function(v){ return /en[-_]GB/i.test(v.lang); })[0]
+           || vs.filter(function(v){ return /^en/i.test(v.lang); })[0] || null;
+  };
+  if(synth){ loadVoice(); synth.onvoiceschanged = loadVoice; }
+
+  document.querySelectorAll('[data-speak]').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(!synth){ alert('Браузер не поддерживает озвучку — открой урок в Chrome.'); return; }
+      synth.cancel();
+      var u=new SpeechSynthesisUtterance(b.getAttribute('data-speak'));
+      u.lang='en-GB'; u.rate=parseFloat(b.getAttribute('data-rate')||'0.9');
+      if(enVoice) u.voice=enVoice;
+      synth.speak(u);
+    });
+  });
+
+  /* listening player */
+  P.el = document.getElementById('player');
+  if(P.el && synth){
+    var text = P.el.getAttribute('data-text');
+    var parts = text.match(/[^.!?]+[.!?]*/g) || [text];
+    var fmt = function(s){ var m=Math.floor(s/60), r=s%60;
+      return (m<10?'0':'')+m+':'+(r<10?'0':'')+r; };
+    var tick = function(){
+      P.seconds++;
+      P.el.querySelector('[data-elapsed]').textContent = fmt(P.seconds);
+      P.el.querySelector('[data-bar]').style.width = Math.min(100, Math.round(P.seconds/P.total*100))+'%';
+    };
+    P.el.querySelector('[data-play]').addEventListener('click', function(){
+      if(P.playing && synth.paused){ synth.resume(); if(!P.timer) P.timer=setInterval(tick,1000); return; }
+      if(P.playing) return;
+      synth.cancel(); P.seconds=0; P.playing=true;
+      parts.forEach(function(s,idx){
+        var u=new SpeechSynthesisUtterance(s.trim());
+        u.lang='en-GB'; u.rate=0.85; if(enVoice) u.voice=enVoice;
+        if(idx===parts.length-1){
+          u.onend=function(){ P.playing=false;
+            if(P.timer){clearInterval(P.timer);P.timer=null;}
+            P.el.querySelector('[data-bar]').style.width='100%'; };
+        }
+        synth.speak(u);
+      });
+      if(P.timer) clearInterval(P.timer);
+      P.timer=setInterval(tick,1000);
+    });
+    P.el.querySelector('[data-pause]').addEventListener('click', function(){
+      if(P.playing && !synth.paused){ synth.pause(); if(P.timer){ clearInterval(P.timer); P.timer=null; } }
+    });
+    P.el.querySelector('[data-stop]').addEventListener('click', stopSpeech);
+  }
+  window.addEventListener('beforeunload', function(){ if(synth) synth.cancel(); });
+})();
+</script>
+</body>
+</html>
