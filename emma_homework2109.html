@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>21.09 Homework — Emma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF6EC; --cream-2:#FDEBDC; --card:#FFFFFF;
+  --ink:#2C2140; --ink-soft:#6B6280;
+  --violet:#6D4AE0; --violet-soft:#EFE9FF;
+  --amber:#F6B93B; --amber-soft:#FDEBC4;
+  --teal:#0E9E8B; --rose:#E2607A; --line:#F0E6DC;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);
+  background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);background-attachment:fixed;
+  font-size:17px;line-height:1.6}
+h1,h2,h3,h4{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;line-height:1.2;margin:0}
+.wrap{max-width:880px;margin:0 auto;padding:26px 18px 60px}
+
+.head{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.badge{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#FFB86B,#F6795B);
+  display:grid;place-items:center;font-size:30px;flex:none;box-shadow:0 8px 18px rgba(246,121,91,.28)}
+.head h1{font-size:32px}
+.head p{margin:3px 0 0;color:var(--ink-soft);font-size:15px}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.tab{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:9px 16px;font:inherit;font-weight:700;font-size:14px;color:var(--ink);cursor:pointer}
+.tab i{width:20px;height:20px;border-radius:50%;background:var(--violet-soft);color:var(--violet);
+  font-style:normal;font-size:12px;display:grid;place-items:center;font-weight:800}
+.tab:hover{border-color:var(--violet)}
+.tab.on{background:#241B39;border-color:#241B39;color:#fff}
+.tab.on i{background:rgba(255,255,255,.22);color:#fff}
+
+.page{display:none;background:var(--card);border-radius:24px;padding:28px 26px;
+  box-shadow:0 4px 22px rgba(90,60,30,.07)}
+.page.on{display:block}
+.eyebrow{display:inline-block;background:#E9F1FF;color:#3B7BEA;font-weight:800;font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:6px 14px;margin-bottom:14px}
+.page h2{font-size:27px;display:flex;align-items:center;gap:10px}
+.page h3{font-size:20px;margin:28px 0 8px}
+.lead{color:var(--ink-soft);font-size:15px;margin:8px 0 0}
+p{margin:10px 0}
+
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center}
+button{font:inherit;font-weight:800;border-radius:12px;cursor:pointer;border:1px solid transparent;padding:10px 20px}
+.btn-main{background:var(--teal);color:#fff}
+.btn-main:hover{background:#0B8878}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+.mini{font-size:13px;padding:4px 11px;border-radius:9px;background:#fff;border:1px solid var(--line);
+  color:var(--ink-soft);font-weight:800;white-space:nowrap}
+.mini:hover{border-color:var(--violet);color:var(--violet)}
+.score{font-weight:800;color:var(--teal)}
+.rev{display:none;background:var(--violet-soft);border-radius:12px;padding:8px 13px;margin-top:8px;
+  font-weight:700;color:#4A2FB0;font-size:15px}
+.rev.show{display:block}
+.rev.plain{font-weight:400}
+
+.flow{font-size:18px;line-height:2.3}
+.flow .en{display:none;background:#DFF5EC;color:#0A6B5E;border-radius:8px;padding:3px 10px;font-weight:700}
+.flow .en.show{display:inline}
+
+ol.tasks{list-style:none;counter-reset:t;padding:0;margin:12px 0 0}
+ol.tasks>li{counter-increment:t;display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
+ol.tasks>li:last-child{border-bottom:none}
+ol.tasks>li::before{content:counter(t);flex:none;width:26px;height:26px;border-radius:50%;
+  background:var(--violet);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:4px}
+.taskbody{flex:1;min-width:0}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:7px;padding:2px 8px;margin-right:6px;vertical-align:2px}
+.tag.p{background:#DFF5EC;color:#0A6B5E}
+.tag.m{background:#FCE4E9;color:#9E2F45}
+.tag.q{background:var(--violet-soft);color:#4A2FB0}
+input.gap{font:inherit;font-weight:700;color:var(--ink);background:var(--amber-soft);border:none;
+  border-bottom:2px solid var(--amber);border-radius:6px 6px 0 0;padding:3px 8px;width:130px}
+input.gap:focus{outline:2px solid var(--violet);outline-offset:1px}
+input.gap.ok{background:#DFF5EC;border-bottom-color:var(--teal)}
+input.gap.no{background:#FCE4E9;border-bottom-color:var(--rose)}
+.line{display:flex;gap:8px;align-items:center;margin-top:7px}
+.line input.gap{flex:1;width:auto;min-width:0}
+.play{width:38px;height:38px;border-radius:50%;background:var(--violet);color:#fff;border:none;
+  display:grid;place-items:center;font-size:14px;flex:none;padding:0}
+.play:hover{background:#5A38CC}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.bank b{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700;font-size:15px}
+
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+footer{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:26px}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:18px 13px 48px}
+  .head h1{font-size:25px}
+  .badge{width:52px;height:52px;border-radius:16px;font-size:24px}
+  .page{padding:20px 16px;border-radius:20px}
+  .tab{padding:8px 12px;font-size:13px}
+  input.gap{width:110px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="head">
+  <div class="badge">📝</div>
+  <div>
+    <h1>21.09 Homework</h1>
+    <p>Verb <b>to be</b> · four tasks for Emma. Take your time and check yourself! 🌼</p>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab on" data-go="p1"><i>1</i>Grammar</button>
+  <button class="tab" data-go="p2"><i>2</i>Listening</button>
+  <button class="tab" data-go="p3"><i>3</i>Vocabulary</button>
+  <button class="tab" data-go="p4"><i>4</i>Translation</button>
+</div>
+
+<!-- 1 GRAMMAR -->
+<section class="page on" id="p1">
+  <div class="eyebrow">Homework · Grammar</div>
+  <h2>⭐ am / is / are</h2>
+
+  <h3>Exercise 1. Put in the right form of <i>to be</i></h3>
+  <p class="lead">Look at the sign: + statement, − negative, ? question. <button class="mini" data-toggle="#i1">RUS</button></p>
+  <div class="rev plain" id="i1">Смотри на значок: + утверждение, − отрицание, ? вопрос.</div>
+  <ol class="tasks" data-ex="g1">
+    <li><div class="taskbody"><span class="tag p">+</span>My brother <input class="gap" data-a="is"> at school today.
+      <button class="mini" data-ans>Answer</button><div class="rev">My brother <b>is</b> at school today.</div></div></li>
+    <li><div class="taskbody"><span class="tag m">&minus;</span>We <input class="gap" data-a="are not|aren't"> in the garden now.
+      <button class="mini" data-ans>Answer</button><div class="rev">We <b>are not (aren't)</b> in the garden now.</div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span><input class="gap" data-a="are"> you over the moon today?
+      <button class="mini" data-ans>Answer</button><div class="rev"><b>Are</b> you over the moon today?</div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span>My laptop <input class="gap" data-a="is"> on the table.
+      <button class="mini" data-ans>Answer</button><div class="rev">My laptop <b>is</b> on the table.</div></div></li>
+    <li><div class="taskbody"><span class="tag m">&minus;</span>I <input class="gap" data-a="am not|'m not"> lazy on Mondays.
+      <button class="mini" data-ans>Answer</button><div class="rev">I <b>am not (I'm not)</b> lazy on Mondays.</div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span><input class="gap" data-a="are"> your dogs friendly with cats?
+      <button class="mini" data-ans>Answer</button><div class="rev"><b>Are</b> your dogs friendly with cats?</div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g1">Check</button><span class="score" data-score="g1"></span></div>
+
+  <h3>Exercise 2. Make a sentence from the words</h3>
+  <p class="lead">Put the words in the right order. The sign tells you what to make: + statement, − negative, ? question. <button class="mini" data-toggle="#i2">RUS</button></p>
+  <div class="rev plain" id="i2">Составь предложение из слов. Значок подсказывает, что нужно получить: + утверждение, − отрицание, ? вопрос.</div>
+  <ol class="tasks" data-ex="g2">
+    <li><div class="taskbody"><span class="tag p">+</span>online / is / my / school
+      <div class="line"><input class="gap" data-a="my school is online"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">My school is online.</div></div></li>
+    <li><div class="taskbody"><span class="tag m">&minus;</span>heavy / my / backpack / not / is
+      <div class="line"><input class="gap" data-a="my backpack is not heavy|my backpack isn't heavy"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">My backpack is not (isn't) heavy.</div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span>ready / your / backpack / is
+      <div class="line"><input class="gap" data-a="is your backpack ready"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">Is your backpack ready?</div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span>are / cheerful / classmates / my
+      <div class="line"><input class="gap" data-a="my classmates are cheerful"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">My classmates are cheerful.</div></div></li>
+    <li><div class="taskbody"><span class="tag m">&minus;</span>in the garage / the tent / not / is
+      <div class="line"><input class="gap" data-a="the tent is not in the garage|the tent isn't in the garage"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">The tent is not (isn't) in the garage.</div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span>a big adventure / the new school year / is
+      <div class="line"><input class="gap" data-a="is the new school year a big adventure"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">Is the new school year a big adventure?</div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g2">Check</button><span class="score" data-score="g2"></span></div>
+
+  <div class="pager"><span></span><button class="btn-main" data-go="p2">Next: Listening →</button></div>
+</section>
+
+<!-- 2 LISTENING -->
+<section class="page" id="p2">
+  <div class="eyebrow">Homework · Listening</div>
+  <h2>🎧 Listen and write</h2>
+  <p class="lead">Press ▶, listen to the sentence two or three times and write it down. The box turns green when everything is right. <button class="mini" data-toggle="#i3">RUS</button></p>
+  <div class="rev plain" id="i3">Нажми ▶, послушай предложение два-три раза и запиши его. Поле станет зелёным, когда всё написано верно.</div>
+  <ol class="tasks" data-ex="d1">
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="My school is online this year.">▶</button>
+      <input class="gap" data-a="my school is online this year"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">My school is online this year.</div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="My new classmates are friendly.">▶</button>
+      <input class="gap" data-a="my new classmates are friendly"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">My new classmates are friendly.</div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="Is your backpack heavy?">▶</button>
+      <input class="gap" data-a="is your backpack heavy"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">Is your backpack heavy?</div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="The tent is not in the garden.">▶</button>
+      <input class="gap" data-a="the tent is not in the garden|the tent isn't in the garden"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">The tent is not in the garden.</div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="We are ready for a long hike.">▶</button>
+      <input class="gap" data-a="we are ready for a long hike|we're ready for a long hike"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">We are ready for a long hike.</div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="Are you talented at music?">▶</button>
+      <input class="gap" data-a="are you talented at music"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">Are you talented at music?</div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="My sisters are not lazy.">▶</button>
+      <input class="gap" data-a="my sisters are not lazy|my sisters aren't lazy"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">My sisters are not lazy.</div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="I am over the moon today!">▶</button>
+      <input class="gap" data-a="i am over the moon today|i'm over the moon today"><button class="mini" data-ans>Answer</button></div>
+      <div class="rev">I am over the moon today!</div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="d1">Check</button><span class="score" data-score="d1"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p1">← Back</button><button class="btn-main" data-go="p3">Next: Vocabulary →</button></div>
+</section>
+
+<!-- 3 VOCABULARY -->
+<section class="page" id="p3">
+  <div class="eyebrow">Homework · Vocabulary</div>
+  <h2>🃏 Choose the right word</h2>
+  <p class="lead">Use each word once. <button class="mini" data-toggle="#i4">RUS</button></p>
+  <div class="rev plain" id="i4">Каждое слово используется один раз.</div>
+  <div class="bank"><b>adventure</b><b>tent</b><b>backpack</b><b>hike</b><b>talented</b><b>cheerful</b><b>friendly</b><b>over the moon</b></div>
+  <ol class="tasks" data-ex="v1">
+    <li><div class="taskbody">My <input class="gap" data-a="backpack"> is small and blue, and my laptop is inside.
+      <button class="mini" data-ans>Answer</button><div class="rev">backpack — рюкзак</div></div></li>
+    <li><div class="taskbody">Is the <input class="gap" data-a="tent"> big enough for three people?
+      <button class="mini" data-ans>Answer</button><div class="rev">tent — палатка</div></div></li>
+    <li><div class="taskbody">My first week at an online school is a real <input class="gap" data-a="adventure">.
+      <button class="mini" data-ans>Answer</button><div class="rev">adventure — приключение</div></div></li>
+    <li><div class="taskbody">The weather is good, so we are ready for a <input class="gap" data-a="hike">.
+      <button class="mini" data-ans>Answer</button><div class="rev">hike — поход</div></div></li>
+    <li><div class="taskbody">My classmate is <input class="gap" data-a="talented"> — she is a singer and a dancer.
+      <button class="mini" data-ans>Answer</button><div class="rev">talented — талантливая</div></div></li>
+    <li><div class="taskbody">Our teacher is always smiling. She is very <input class="gap" data-a="cheerful">.
+      <button class="mini" data-ans>Answer</button><div class="rev">cheerful — весёлая, жизнерадостная</div></div></li>
+    <li><div class="taskbody">Are your dogs <input class="gap" data-a="friendly"> with new people?
+      <button class="mini" data-ans>Answer</button><div class="rev">friendly — дружелюбные</div></div></li>
+    <li><div class="taskbody">My new guitar strings are here and I am <input class="gap" data-a="over the moon">!
+      <button class="mini" data-ans>Answer</button><div class="rev">over the moon — на седьмом небе от счастья</div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="v1">Check</button><span class="score" data-score="v1"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p2">← Back</button><button class="btn-main" data-go="p4">Next: Translation →</button></div>
+</section>
+
+<!-- 4 TRANSLATION -->
+<section class="page" id="p4">
+  <div class="eyebrow">Homework · Translation</div>
+  <h2>🌍 Translate the text into English</h2>
+  <p class="lead">Translate sentence by sentence. Tap English only if you are really stuck. <button class="mini" data-toggle="#i5">RUS</button></p>
+  <div class="rev plain" id="i5">Переводи по одному предложению. Кнопка English — только если совсем запуталась.</div>
+
+  <div class="flow">
+    Привет! Сейчас осень, и я снова в школе.
+    <button class="mini" data-rev>English</button> <span class="en">Hi! It is autumn now and I am at school again.</span>
+    Моя школа онлайн, поэтому мой класс — это мой ноутбук.
+    <button class="mini" data-rev>English</button> <span class="en">My school is online, so my classroom is my laptop.</span>
+    Мои новые одноклассники дружелюбные и весёлые.
+    <button class="mini" data-rev>English</button> <span class="en">My new classmates are friendly and cheerful.</span>
+    Мой рюкзак не тяжёлый, мои учебники в компьютере.
+    <button class="mini" data-rev>English</button> <span class="en">My backpack is not heavy, my books are in the computer.</span>
+    Наша палатка в гараже до следующего лета.
+    <button class="mini" data-rev>English</button> <span class="en">Our tent is in the garage until next summer.</span>
+    Мои собаки готовы к походу? Да, готовы — они совсем не ленивые!
+    <button class="mini" data-rev>English</button> <span class="en">Are my dogs ready for a hike? Yes, they are — they are not lazy at all!</span>
+    Я талантливая? Думаю, да — моя гитара всегда со мной.
+    <button class="mini" data-rev>English</button> <span class="en">Am I talented? I think so — my guitar is always with me.</span>
+    Новый учебный год — это большое приключение, и я на седьмом небе от счастья!
+    <button class="mini" data-rev>English</button> <span class="en">A new school year is a big adventure and I am over the moon!</span>
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p3">← Back</button><span></span></div>
+</section>
+
+<footer>Great job, Emma! See you next lesson! 🎸🌼</footer>
+</div>
+
+<script>
+(function(){
+  var synth = window.speechSynthesis;
+
+  var show = function(id){
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.toggle('on', p.id===id); });
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('on', t.getAttribute('data-go')===id); });
+    if(synth) synth.cancel();
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.addEventListener('click', function(){ show(b.getAttribute('data-go')); });
+  });
+
+  var norm = function(s){
+    return (s||'').toLowerCase().replace(/[\u2018\u2019\u02BC]/g,"'")
+      .replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+  };
+  var isOk = function(i){
+    var v = norm(i.value);
+    return v!=='' && (i.getAttribute('data-a')||'').split('|').map(norm).indexOf(v)!==-1;
+  };
+  var mark = function(i){
+    i.classList.remove('ok','no');
+    if(i.value.trim()==='') return;
+    i.classList.add(isOk(i)?'ok':'no');
+  };
+  document.addEventListener('input', function(e){
+    if(e.target.classList && e.target.classList.contains('gap')) mark(e.target);
+  });
+  document.querySelectorAll('[data-check]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var key=b.getAttribute('data-check'), box=document.querySelector('[data-ex="'+key+'"]');
+      if(!box) return;
+      var ins=box.querySelectorAll('input.gap'), good=0;
+      ins.forEach(function(i){ mark(i); if(isOk(i)) good++; });
+      var out=document.querySelector('[data-score="'+key+'"]');
+      if(out){ out.textContent=good+' / '+ins.length+(good===ins.length?'  🎉 Perfect!':'');
+        out.style.color=(good===ins.length)?'#0E9E8B':'#E2607A'; }
+    });
+  });
+  document.querySelectorAll('[data-ans]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var body=b.closest('.taskbody'), rev=body?body.querySelector('.rev'):null;
+      if(rev) rev.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('[data-rev]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var en=b.nextElementSibling;
+      while(en && !(en.classList && en.classList.contains('en'))) en=en.nextElementSibling;
+      if(en) en.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('[data-toggle]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var el=document.querySelector(b.getAttribute('data-toggle'));
+      if(el) el.classList.toggle('show');
+    });
+  });
+
+  var enVoice=null;
+  var loadVoice=function(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    enVoice = vs.filter(function(v){ return /en[-_]GB/i.test(v.lang); })[0]
+           || vs.filter(function(v){ return /^en/i.test(v.lang); })[0] || null;
+  };
+  if(synth){ loadVoice(); synth.onvoiceschanged=loadVoice; }
+  document.querySelectorAll('[data-speak]').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(!synth){ alert('Your browser cannot read the text aloud. Please open the page in Chrome.'); return; }
+      synth.cancel();
+      var u=new SpeechSynthesisUtterance(b.getAttribute('data-speak'));
+      u.lang='en-GB'; u.rate=0.8; if(enVoice) u.voice=enVoice;
+      synth.speak(u);
+    });
+  });
+})();
+</script>
+</body>
+</html>
