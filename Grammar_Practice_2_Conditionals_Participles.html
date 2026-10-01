@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Grammar Practice 2: Conditionals & Participles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f6fb; --card:#ffffff; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb;
+  --accent:#4f46e5; --accent-soft:#eef2ff; --ok:#15803d; --ok-soft:#dcfce7;
+  --bad:#b91c1c; --bad-soft:#fee2e2; --info:#92400e; --info-soft:#fef3c7;
+  --field:#ffffff; --field-line:#cbd5e1; --soft:#f3f4f6; --ok-line:#86efac; --info-line:#fcd34d; --ru:#374151;
+  --tile:#eef2ff; --tile-ink:#3730a3;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#12131a; --card:#1c1e28; --ink:#e7e8ee; --muted:#9ca0b0; --line:#2d3040;
+  --accent:#8b85ff; --accent-soft:#2a2850; --ok:#6ee7a0; --ok-soft:#133524;
+  --bad:#fca5a5; --bad-soft:#3d1a1d; --info:#fcd34d; --info-soft:#3a2f12;
+  --field:#14151d; --field-line:#3a3d50; --soft:#262836; --ok-line:#2f7a4f; --info-line:#8a6a17; --ru:#d4d6df;
+  --tile:#2a2850; --tile-ink:#c7c4ff;}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#12131a; --card:#1c1e28; --ink:#e7e8ee; --muted:#9ca0b0; --line:#2d3040;
+  --accent:#8b85ff; --accent-soft:#2a2850; --ok:#6ee7a0; --ok-soft:#133524;
+  --bad:#fca5a5; --bad-soft:#3d1a1d; --info:#fcd34d; --info-soft:#3a2f12;
+  --field:#14151d; --field-line:#3a3d50; --soft:#262836; --ok-line:#2f7a4f; --info-line:#8a6a17; --ru:#d4d6df;
+  --tile:#2a2850; --tile-ink:#c7c4ff;}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;padding:22px 0 18px}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header h1{margin:0;font-size:1.6rem;text-wrap:balance}
+header p{margin:4px 0 0;opacity:.9;font-size:.95rem}
+.score{margin-top:10px;display:inline-block;background:rgba(255,255,255,.18);padding:4px 12px;border-radius:999px;font-weight:600;font-size:.9rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:8px;padding-bottom:8px}
+nav button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;font:500 .9rem Inter,sans-serif;cursor:pointer;white-space:nowrap}
+nav button.active{background:#4f46e5;border-color:#4f46e5;color:#fff}
+nav button .mini{font-size:.75rem;opacity:.8;margin-left:4px}
+main{padding:20px 0 60px}
+.page{display:none}.page.active{display:block}
+.intro{background:var(--card);border-radius:14px;padding:16px 18px;margin-bottom:16px;border-left:5px solid var(--accent)}
+.intro h2{margin:0 0 4px;font-size:1.25rem}
+.intro p{margin:0;color:var(--muted)}
+.item{background:var(--card);border-radius:12px;padding:14px 16px;margin-bottom:12px;border:1px solid var(--line)}
+.item.solved{border-color:var(--ok-line)}
+.item.revealed{border-color:var(--info-line)}
+.q{font-weight:500}
+.q .n{display:inline-block;min-width:26px;color:var(--accent);font-weight:700}
+.sit{color:var(--muted);font-style:italic;margin:0 0 4px 26px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;padding-left:26px}
+input[type=text],select{font:inherit;padding:7px 10px;border:1px solid var(--field-line);border-radius:8px;background:var(--field);color:var(--ink)}
+input[type=text]{min-width:240px}
+input[type=text]:focus,select:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+.btn{border:none;border-radius:8px;padding:7px 14px;font:600 .85rem Inter,sans-serif;cursor:pointer}
+.btn:focus-visible,.opt:focus-visible,.tile:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn.check{background:#4f46e5;color:#fff}
+.btn.ans{background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.btn.small{padding:3px 9px;font-size:.75rem;background:var(--card);color:var(--accent);border:1px solid var(--accent)}
+.btn.reset,.btn.copy{background:var(--card);color:var(--muted);border:1px solid var(--line)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.copied{color:var(--ok);font-size:.85rem;align-self:center}
+/* options */
+.opts{display:flex;flex-direction:column;gap:6px;margin-top:10px;padding-left:26px}
+.opts.inline{flex-direction:row;flex-wrap:wrap}
+.opt{text-align:left;border:1px solid var(--field-line);background:var(--field);color:var(--ink);padding:8px 12px;border-radius:8px;cursor:pointer;font:inherit}
+.opt:hover{border-color:var(--accent)}
+.opt.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:600}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+/* builder */
+.built{min-height:44px;border:2px dashed var(--field-line);border-radius:10px;padding:6px;display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0 26px;align-items:center}
+.built:empty::before{content:"Click the words below in the right order";color:var(--muted);font-size:.85rem;padding-left:4px}
+.bank{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0 26px}
+.tile{border:1px solid var(--accent);background:var(--tile);color:var(--tile-ink);border-radius:8px;padding:5px 10px;font:500 .95rem Inter,sans-serif;cursor:pointer}
+.tile.used{visibility:hidden}
+/* dialogue */
+.dlg-title{font-weight:700;margin:18px 0 8px}
+.speaker{display:inline-block;min-width:54px;font-weight:700;color:var(--accent)}
+.item select{margin:0 4px}
+/* feedback */
+.fb{display:none;margin:10px 0 0 26px;padding:9px 12px;border-radius:8px;font-size:.92rem}
+.fb.ok{display:block;background:var(--ok-soft);color:var(--ok)}
+.fb.bad{display:block;background:var(--bad-soft);color:var(--bad)}
+.fb.info{display:block;background:var(--info-soft);color:var(--info)}
+.fb .en{display:block;margin-top:3px;color:var(--ink);font-weight:400}
+.fb .ru{display:block;margin-top:4px;color:var(--ru);font-weight:400}
+.fb .fbtools{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+/* translation */
+.tr .ru-src{font-weight:500}
+.tr .en-out{margin:8px 0 0 26px;padding:8px 12px;border-radius:8px;background:var(--accent-soft);color:var(--ink)}
+@media (max-width:600px){
+  input[type=text]{min-width:0;width:100%}
+  .row,.opts,.bank{padding-left:0;margin-left:0}.built,.fb,.sit,.tr .en-out{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Grammar Practice 2</h1>
+    <p>Participles &amp; Participle Clauses · Present Perfect Continuous · If only · It's high time · Impersonal Passive · Would you mind · Be able to · On the verge of · Be to · Conditionals (1, 2, 3, mixed)</p>
+    <span class="score" id="totalScore">Score: 0 / 0</span>
+  </div>
+</header>
+<nav><div class="wrap" id="tabs"></div></nav>
+<main><div class="wrap" id="pages"></div></main>
+
+<script>
+/* ================= DATA ================= */
+const EX = [
+{
+ id:"build", title:"1. Sentence Builder", type:"build",
+ intro:"Put the words in the correct order to make a sentence. Click a word to add it; click it again in your sentence to remove it.",
+ items:[
+  {t:["Having","been","told","the truth","she","felt","much","better"], full:"Having been told the truth, she felt much better.",
+   alt:["she felt much better having been told the truth"],
+   en:"Perfect passive participle (having been + V3): she was told first, then felt better.",
+   ru:"Перфектное пассивное причастие (having been + V3): сначала ей сказали правду, потом ей стало легче."},
+  {t:["It's","high","time","you","got","a","proper","job"], full:"It's high time you got a proper job.",
+   en:"It's high time + subject + Past Simple.", ru:"It's high time + подлежащее + Past Simple (got), хотя речь о настоящем."},
+  {t:["If","only","he","would","stop","interrupting","me"], full:"If only he would stop interrupting me!",
+   en:"If only + would: a complaint about someone else's annoying behaviour.", ru:"If only + would — недовольство чужим поведением, которое хочется изменить."},
+  {t:["The castle","is","thought","to","have","been","built","in the 12th century"], full:"The castle is thought to have been built in the 12th century.",
+   en:"Impersonal passive with a perfect passive infinitive: the building happened long before ‘is thought’.",
+   ru:"Безличный пассив + перфектный пассивный инфинитив: замок построили (пассив) задолго до того, как «считают»."},
+  {t:["Would","you","mind","not","talking","so","loudly"], full:"Would you mind not talking so loudly?",
+   en:"Would you mind + (not) + V-ing.", ru:"Would you mind + (not) + V-ing — вежливая просьба (не) делать что-то."},
+  {t:["How long","have","you","been","living","in this city"], full:"How long have you been living in this city?",
+   en:"How long…? + Present Perfect Continuous for an action that started in the past and is still going on.",
+   ru:"How long…? + Present Perfect Continuous — действие началось в прошлом и продолжается сейчас."},
+  {t:["If","I","had","known","about the traffic","I","would","have","taken","the metro"], full:"If I had known about the traffic, I would have taken the metro.",
+   alt:["i would have taken the metro if i had known about the traffic"],
+   en:"Third conditional: if + Past Perfect → would have + V3.", ru:"Третий тип: if + Past Perfect → would have + V3 (нереальное прошлое)."},
+  {t:["She","was","on","the","verge","of","tears","when","the phone","rang"], full:"She was on the verge of tears when the phone rang.",
+   alt:["when the phone rang she was on the verge of tears"],
+   en:"on the verge of + noun / V-ing = very close to.", ru:"on the verge of + существительное / V-ing — «на грани, вот-вот»."},
+  {t:["If","she","spoke","better","English","she","would","have","got","the job"], full:"If she spoke better English, she would have got the job.",
+   alt:["she would have got the job if she spoke better english"],
+   en:"Mixed conditional: a present situation (her English now) → a past result (the job she didn't get).",
+   ru:"Смешанное условное: условие в настоящем (Past Simple) → результат в прошлом (would have + V3)."},
+  {t:["Nobody","was","able","to","explain","what","had","happened"], full:"Nobody was able to explain what had happened.",
+   en:"was able to = managed to in a specific past situation.", ru:"was able to — смог (в конкретной ситуации в прошлом)."},
+  {t:["You","are","not","to","tell","anyone","about","this"], full:"You are not to tell anyone about this.",
+   en:"be (not) to + V1: an order or prohibition.", ru:"be (not) to + V1 — приказ или запрет («ты не должен…»)."},
+  {t:["The students","sitting","at the back","couldn't","hear","the lecturer"], full:"The students sitting at the back couldn't hear the lecturer.",
+   en:"Present participle replacing a relative clause: sitting = who were sitting.", ru:"Причастие I вместо придаточного: sitting = who were sitting."}
+ ]
+},
+{
+ id:"spot", title:"2. Spot the Wrong One", type:"spot",
+ intro:"Two sentences are correct and one is wrong. Click the WRONG sentence.",
+ items:[
+  {o:["It's high time we left.","It's time to leave.","It's high time we leave."], a:2, fix:"It's high time we left.",
+   en:"After It's high time + subject we need the Past Simple: we left.", ru:"После It's high time + подлежащее нужен Past Simple: we left."},
+  {o:["If only I had more free time.","If only I would have more free time.","If only I had had more free time last year."], a:1, fix:"If only I had more free time.",
+   en:"We don't use would for our own states: If only I had…", ru:"If only + would не используется для своих состояний: If only I had more free time."},
+  {o:["He is said to be very rich.","It is said that he is very rich.","He is said that he is very rich."], a:2, fix:"He is said to be very rich.",
+   en:"Two patterns: It is said that he is… OR He is said to be… — never mix them.", ru:"Две конструкции: It is said that he is… ИЛИ He is said to be… — смешивать нельзя."},
+  {o:["I've been reading this book for a week.","I've been reading this book three times.","I've read this book three times."], a:1, fix:"I've read this book three times.",
+   en:"When we say how many times, we use the Present Perfect Simple, not Continuous.", ru:"Если указано количество раз — Present Perfect Simple, а не Continuous."},
+  {o:["Would you mind if I opened the window?","Would you mind opening the window?","Would you mind to open the window?"], a:2, fix:"Would you mind opening the window?",
+   en:"Would you mind + V-ing, not + to-infinitive.", ru:"Would you mind + V-ing, а не to + инфинитив."},
+  {o:["She'll be able to come tomorrow.","She can to come tomorrow.","She can come tomorrow."], a:1, fix:"She can come tomorrow.",
+   en:"Modal can is followed by the bare infinitive (no to).", ru:"После модального can — инфинитив без to."},
+  {o:["Feeling tired, I went to bed early.","Having finished dinner, we washed the dishes.","Walking home, the rain started."], a:2, fix:"Walking home, I got caught in the rain.",
+   en:"Dangling participle: the subject of the main clause must be the one doing the participle action. The rain wasn't walking home!",
+   ru:"«Висячее» причастие: подлежащее главного предложения должно совершать действие причастия. Дождь не шёл домой!"},
+  {o:["I was bored by the film.","The film was boring.","I was boring by the film."], a:2, fix:"I was bored by the film.",
+   en:"-ed participle = how a person feels; -ing participle = what causes the feeling.", ru:"Причастие на -ed — что чувствует человек; на -ing — что вызывает это чувство."},
+  {o:["If I see her, I'll tell her.","If I'll see her, I'll tell her.","I'll tell her if I see her."], a:1, fix:"If I see her, I'll tell her.",
+   en:"First conditional: no will in the if-clause.", ru:"Первый тип: в придаточном с if — Present Simple, без will."},
+  {o:["If I had gone to bed earlier, I wouldn't be so tired now.","If I hadn't gone to bed so late, I wouldn't feel so tired now.","If I had gone to bed earlier, I wouldn't have been so tired now."], a:2, fix:"If I had gone to bed earlier, I wouldn't be so tired now.",
+   en:"The result is in the present (now), so we need would + V1 (mixed conditional).", ru:"Результат в настоящем (now) → would + V1 (смешанное условное), а не would have been."},
+  {o:["The ship was on the verge of sinking.","The ship was on the verge to sink.","The ship was about to sink."], a:1, fix:"The ship was on the verge of sinking.",
+   en:"on the verge OF + V-ing.", ru:"on the verge OF + V-ing."},
+  {o:["The new rules are to come into force in May.","The new rules are to coming into force in May.","The new rules are due to come into force in May."], a:1, fix:"The new rules are to come into force in May.",
+   en:"be to + bare infinitive (V1), not V-ing.", ru:"be to + V1 (инфинитив), а не V-ing."},
+  {o:["If you had told me, I would have helped you.","If you would have told me, I would have helped you.","Had you told me, I would have helped you."], a:1, fix:"If you had told me, I would have helped you.",
+   en:"No would in the if-clause: if + Past Perfect. (Had you told me… is a correct formal inversion.)",
+   ru:"В придаточном с if не бывает would: if + Past Perfect. (Had you told me… — правильная формальная инверсия.)"},
+  {o:["The man arrested yesterday has been released.","The man arresting yesterday has been released.","The man who was arrested yesterday has been released."], a:1, fix:"The man arrested yesterday has been released.",
+   en:"The man was arrested (passive meaning) → past participle: arrested.", ru:"Человека арестовали (пассивное значение) → Причастие II: arrested."}
+ ]
+},
+{
+ id:"sort", title:"3. Sort the Conditionals", type:"sort",
+ cats:["First","Second","Third","Mixed"],
+ intro:"Read each sentence and decide which type of conditional it is: First, Second, Third or Mixed.",
+ items:[
+  {q:"If you leave now, you'll catch the train.", a:"First", en:"if + Present Simple → will: a real possibility in the future.", ru:"if + Present Simple → will: реальная ситуация в будущем."},
+  {q:"If I were taller, I'd play basketball.", a:"Second", en:"if + Past Simple → would + V1: unreal present.", ru:"if + Past Simple → would + V1: нереальное настоящее."},
+  {q:"If they had invited me, I would have gone.", a:"Third", en:"if + Past Perfect → would have + V3: unreal past.", ru:"if + Past Perfect → would have + V3: нереальное прошлое."},
+  {q:"If I had saved more money, I would be able to buy a car now.", a:"Mixed", en:"Past condition (had saved) → present result (now).", ru:"Условие в прошлом (had saved) → результат в настоящем (now)."},
+  {q:"Unless it stops raining, the match will be cancelled.", a:"First", en:"Unless = if not; Present Simple → will.", ru:"Unless = if not; Present Simple → will — реальное будущее."},
+  {q:"If she knew the answer, she would tell us.", a:"Second", en:"Unreal present: she doesn't know the answer now.", ru:"Нереальное настоящее: сейчас она ответа не знает."},
+  {q:"If he hadn't missed the penalty, they would have won the cup.", a:"Third", en:"Both parts are in the past: the penalty and the cup.", ru:"Обе части — о прошлом: пенальти и кубок."},
+  {q:"If I weren't afraid of flying, I would have visited you in Australia last year.", a:"Mixed", en:"Permanent present situation (I'm afraid) → past result (last year).", ru:"Постоянная ситуация в настоящем (боюсь летать) → результат в прошлом (last year)."},
+  {q:"Had we known, we would have come earlier.", a:"Third", en:"Inversion: Had we known = If we had known.", ru:"Инверсия: Had we known = If we had known — третий тип."},
+  {q:"If I had a car, I wouldn't need to take the bus every day.", a:"Second", en:"Unreal present: I don't have a car.", ru:"Нереальное настоящее: машины у меня нет."},
+  {q:"If you hadn't eaten all the cake, there would be some left for me now.", a:"Mixed", en:"Past action (ate the cake) → present result (now).", ru:"Действие в прошлом (съел торт) → результат сейчас (now)."},
+  {q:"Should you need any help, I'll be in my office.", a:"First", en:"Should you need = If you need (formal inversion); result with will.", ru:"Should you need = If you need (формальная инверсия); результат с will — первый тип."}
+ ]
+},
+{
+ id:"dlg", title:"4. Dialogues", type:"dlg",
+ intro:"Read the dialogues and choose the correct option for each gap. Check each line separately.",
+ items:[
+  {d:"At the office", s:"Nick", pre:"You look worn out. What", o:["have you been doing","are you doing","had you done"], a:0, post:"all morning?",
+   en:"Present Perfect Continuous: a long activity with a visible result (she looks tired).", ru:"Present Perfect Continuous: длительное действие с видимым результатом (выглядит уставшей)."},
+  {s:"Laura", pre:"I", o:["have been answering","am answering","answer"], a:0, post:"emails since 8 a.m.",
+   en:"since 8 a.m. → an action that started in the past and is still going on.", ru:"since 8 a.m. → действие началось в прошлом и продолжается → Present Perfect Continuous."},
+  {s:"Nick", pre:"Well, it's high time you", o:["took","take","will take"], a:0, post:"a break.",
+   en:"It's high time + subject + Past Simple.", ru:"It's high time + подлежащее + Past Simple."},
+  {s:"Laura", pre:"I know. Would you mind", o:["getting","to get","get"], a:0, post:"me a coffee?",
+   en:"Would you mind + V-ing.", ru:"Would you mind + V-ing."},
+  {s:"Nick", pre:"Sure. By the way, is it true that the boss is", o:["to","about","on the verge"], a:0, post:"retire?",
+   en:"be to + V1: an official plan. (‘about’ would need ‘to’; ‘on the verge’ would need ‘of retiring’.)", ru:"be to + V1 — официальный план. (about требует to, а on the verge — of retiring.)"},
+  {s:"Laura", pre:"Yes, he is said", o:["to have made","to make","making"], a:0, post:"the decision last month.",
+   en:"The decision was made in the past (last month) → perfect infinitive.", ru:"Решение принято в прошлом (last month) → перфектный инфинитив to have made."},
+  {s:"Laura", pre:"If only he", o:["had told","told","would tell"], a:0, post:"us earlier — now everything is chaos!",
+   en:"If only + Past Perfect: regret about the past (earlier).", ru:"If only + Past Perfect — сожаление о прошлом (earlier)."},
+  {d:"A phone call", s:"Olga", pre:"Max, where are you? The concert is on the verge of", o:["starting","to start","start"], a:0, post:"!",
+   en:"on the verge of + V-ing.", ru:"on the verge of + V-ing."},
+  {s:"Max", pre:"Sorry! I", o:["wasn't able to","couldn't to","didn't can"], a:0, post:"find a parking space.",
+   en:"wasn't able to + V1 (couldn't is also possible, but never ‘couldn't to’ or ‘didn't can’).", ru:"wasn't able to + V1 (можно и couldn't find, но не couldn't to и не didn't can)."},
+  {s:"Olga", pre:"If you", o:["had left","left","would leave"], a:0, post:"home earlier, you wouldn't be in this situation now.",
+   en:"Mixed conditional: past condition (earlier) → present result (now).", ru:"Смешанное условное: условие в прошлом (earlier) → результат в настоящем (now)."},
+  {s:"Max", pre:"I know. If the traffic", o:["weren't","won't be","hadn't"], a:0, post:"so bad every day, I'd drive more often.",
+   en:"Second conditional: unreal present (every day) → if + Past Simple (were/weren't).", ru:"Второй тип: нереальное настоящее (every day) → if + Past Simple (weren't)."},
+  {s:"Olga", pre:"", o:["Having bought","Buying","Bought"], a:0, post:"the tickets two months ago, I really don't want to miss it.",
+   en:"Perfect participle: the buying happened long before now.", ru:"Перфектное причастие: билеты купили задолго до этого момента → Having bought."},
+  {s:"Max", pre:"Don't worry. If I", o:["find","will find","found"], a:0, post:"a place in the next five minutes, I'll be there on time.",
+   en:"First conditional: if + Present Simple → will.", ru:"Первый тип: if + Present Simple → will."},
+  {s:"Olga", pre:"OK. The doors are", o:["to be closed","to closed","being close"], a:0, post:"at 7:30 sharp, so hurry!",
+   en:"be to + passive infinitive (to be closed): an official arrangement.", ru:"be to + пассивный инфинитив (to be closed) — официальное распоряжение."},
+  {s:"Max", pre:"(later) Phew, made it! If it hadn't been for your call, I", o:["would have given","will give","gave"], a:0, post:"up.",
+   en:"Third conditional: if it hadn't been for… → would have + V3.", ru:"Третий тип: If it hadn't been for… (если бы не…) → would have + V3."}
+ ]
+},
+{
+ id:"fin", title:"5. Finish the Sentence", type:"fin",
+ intro:"Read the first sentence. Then complete the second sentence so that it means the same. Type only the missing words.",
+ items:[
+  {s:"I'm sorry I didn't come to your party.", q:"If only I ___ to your party.", a:["had come"],
+   en:"If only + Past Perfect: regret about the past.", ru:"If only + Past Perfect — сожаление о прошлом."},
+  {s:"It's 11 p.m. The children should be asleep by now!", q:"It's high time the children ___ in bed.", a:["were","was"],
+   en:"It's high time + subject + Past Simple (were).", ru:"It's high time + подлежащее + Past Simple (were)."},
+  {s:"Experts expect that prices will rise.", q:"Prices ___ rise.", a:["are expected to"],
+   en:"Personal passive construction: subject + is/are expected + to-infinitive.", ru:"Личная пассивная конструкция: подлежащее + are expected + to + V1."},
+  {s:"It is reported that two people were injured.", q:"Two people ___ injured.", a:["are reported to have been"],
+   en:"The injuring happened before the report → perfect passive infinitive.", ru:"Травмы получены раньше, чем сообщают → to have been + V3."},
+  {s:"Because I didn't have an umbrella, I got wet.", q:"___ an umbrella, I got wet.", a:["not having"],
+   en:"Negative participle clause of reason: Not + V-ing.", ru:"Отрицательный причастный оборот причины: Not having…"},
+  {s:"When she opened the door, she saw a stranger.", q:"___ the door, she saw a stranger.", a:["opening","on opening"],
+   en:"Participle clause of time: two actions follow each other immediately.", ru:"Причастный оборот времени: действия следуют одно за другим → Opening the door…"},
+  {s:"I started this essay at 9 o'clock, and I'm still writing it.", q:"I ___ this essay since 9 o'clock.", a:["have been writing","'ve been writing"],
+   en:"since + a point in time, still in progress → Present Perfect Continuous.", ru:"since + момент времени, действие продолжается → Present Perfect Continuous."},
+  {s:"Can you help me, please?", q:"Would you mind ___ me?", a:["helping"],
+   en:"Would you mind + V-ing.", ru:"Would you mind + V-ing."},
+  {s:"I didn't learn to drive, so I can't drive you to the airport now.", q:"If I ___ to drive, I could drive you to the airport now.", a:["had learnt","had learned"],
+   en:"Mixed conditional: past condition (Past Perfect) → present result.", ru:"Смешанное условное: условие в прошлом (Past Perfect) → результат сейчас."},
+  {s:"Ella is always very busy, so she didn't come to the meeting yesterday.", q:"If Ella ___ so busy, she would have come to the meeting yesterday.", a:["weren't","wasn't","were not","was not"],
+   en:"Mixed conditional: present situation (Past Simple) → past result (would have + V3).", ru:"Смешанное условное: постоянная ситуация (Past Simple) → результат в прошлом."},
+  {s:"We won't go out unless the rain stops.", q:"If the rain ___, we won't go out.", a:["doesn't stop","does not stop"],
+   en:"unless = if not; first conditional with Present Simple.", ru:"unless = if not; первый тип — Present Simple: doesn't stop."},
+  {s:"The official plan is for the minister to visit the hospital tomorrow.", q:"The minister ___ visit the hospital tomorrow.", a:["is to"],
+   en:"be to + V1: an official plan.", ru:"be to + V1 — официальный план."},
+  {s:"She almost burst into tears.", q:"She was on the verge of ___ into tears.", a:["bursting"],
+   en:"on the verge of + V-ing.", ru:"on the verge of + V-ing."},
+  {s:"Despite his injury, he managed to finish the race.", q:"Despite his injury, he ___ finish the race.", a:["was able to"],
+   en:"was able to = managed to (success in a specific past situation).", ru:"was able to = managed to — смог в конкретной ситуации в прошлом."}
+ ]
+},
+{
+ id:"tr", title:"6. Translation", type:"tr",
+ intro:"Translate the sentences into English orally. Then press “EN” to compare your version with the model. Other correct versions may be possible.",
+ items:[
+  {ru:"Тебе давно пора научиться готовить.", en:"It's high time you learnt to cook."},
+  {ru:"Если бы только я не потерял его номер!", en:"If only I hadn't lost his number!"},
+  {ru:"Говорят, что этот дом был построен в восемнадцатом веке.", en:"This house is said to have been built in the eighteenth century."},
+  {ru:"Ты не мог бы меня не перебивать?", en:"Would you mind not interrupting me?"},
+  {ru:"Я жду от них ответа уже три недели.", en:"I've been waiting for their reply for three weeks."},
+  {ru:"Закончив работу, он пошёл домой.", en:"Having finished his work, he went home."},
+  {ru:"Компания на грани банкротства.", en:"The company is on the verge of bankruptcy."},
+  {ru:"Встреча должна состояться в пятницу.", en:"The meeting is to take place on Friday."},
+  {ru:"Я не смогу прийти завтра.", en:"I won't be able to come tomorrow."},
+  {ru:"Если бы ты пришёл вчера, ты бы увидел Анну.", en:"If you had come yesterday, you would have seen Anna."},
+  {ru:"Если бы я лучше знал английский, я бы давно нашёл работу за границей.", en:"If I knew English better, I would have found a job abroad long ago."},
+  {ru:"Если закончишь пораньше, позвони мне.", en:"If you finish early, call me."},
+  {ru:"Мальчик, который играет на гитаре, — мой брат.", en:"The boy playing the guitar is my brother."},
+  {ru:"Ожидается, что погода улучшится.", en:"The weather is expected to improve."}
+ ]
+}
+];
+
+/* ================= HELPERS ================= */
+function norm(s){
+  return String(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/[“”".,!?;:—–-]/g," ")
+    .replace(/\bwon't\b/g,"will not").replace(/\bcan't\b/g,"cannot").replace(/n't\b/g," not")
+    .replace(/'ll\b/g," will").replace(/'ve\b/g," have").replace(/'re\b/g," are").replace(/'m\b/g," am")
+    .replace(/\s+/g," ").trim();
+}
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const state={}, given={};          // state: solved | revealed ; given: student's last answer
+const K=(ex,i)=>ex+"-"+i;
+
+let voice=null;
+function pickVoice(){
+  if(!("speechSynthesis" in window)) return;
+  const vs=speechSynthesis.getVoices();
+  voice=vs.find(v=>/en-GB/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang))||null;
+}
+if("speechSynthesis" in window){pickVoice(); speechSynthesis.onvoiceschanged=pickVoice;}
+function speak(text){
+  if(!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; u.rate=.92; if(voice) u.voice=voice;
+  speechSynthesis.speak(u);
+}
+
+function mark(exId,i,d,how){
+  const k=K(exId,i);
+  if(how==="solved" && state[k]!=="revealed"){state[k]="solved"; d.classList.add("solved");}
+  if(how==="revealed" && state[k]!=="solved"){state[k]="revealed"; d.classList.add("revealed");}
+  totals();
+}
+// feedback box: kind ok|bad|info; English explanation visible, Russian behind RUS; Listen reads the full correct sentence
+function feedback(fb,kind,head,it,full){
+  fb.className="fb "+kind;
+  fb.innerHTML=`<b>${head}</b><span class="en">${esc(it.en)}</span><span class="ru" hidden>${esc(it.ru)}</span>
+    <span class="fbtools"><button class="btn small" data-act="rus">RUS</button>${full?`<button class="btn small" data-act="say">▶ Listen</button>`:""}</span>`;
+  fb.querySelector('[data-act="rus"]').onclick=()=>{const r=fb.querySelector(".ru"); r.hidden=!r.hidden;};
+  if(full) fb.querySelector('[data-act="say"]').onclick=()=>speak(full);
+}
+function totals(){
+  let all=0,ok=0;
+  EX.forEach(ex=>{
+    if(ex.type==="tr") return;
+    let s=0; ex.items.forEach((_,i)=>{if(state[K(ex.id,i)]==="solved") s++;});
+    all+=ex.items.length; ok+=s;
+    const m=document.getElementById("mini-"+ex.id); if(m) m.textContent=`${s}/${ex.items.length}`;
+  });
+  document.getElementById("totalScore").textContent=`Score: ${ok} / ${all}`;
+}
+function itemBox(ex,i,inner){
+  const d=document.createElement("div"); d.className="item"; d.id="it-"+K(ex.id,i); d.innerHTML=inner; return d;
+}
+
+/* ================= BUILDERS ================= */
+function shuffle(arr){
+  const a=arr.map((t,i)=>({t,i}));
+  for(let n=0;n<10;n++){
+    for(let j=a.length-1;j>0;j--){const r=Math.floor(Math.random()*(j+1));[a[j],a[r]]=[a[r],a[j]];}
+    if(a.some((x,j)=>x.i!==j)) break;
+  }
+  return a;
+}
+function buildBuild(ex,p){
+  ex.items.forEach((it,i)=>{
+    const d=itemBox(ex,i,`<div class="q"><span class="n">${i+1}.</span>Make a sentence:</div>
+      <div class="built"></div><div class="bank"></div>
+      <div class="row"><button class="btn check">Check</button><button class="btn ans">Answer</button><button class="btn ans clr">Clear</button></div>
+      <div class="fb"></div>`);
+    const built=d.querySelector(".built"), bank=d.querySelector(".bank"), fb=d.querySelector(".fb");
+    const order=[];
+    const sync=()=>{given[K(ex.id,i)]=order.map(o=>it.t[o]).join(" ");};
+    shuffle(it.t).forEach(({t,i:idx})=>{
+      const b=document.createElement("button"); b.className="tile"; b.textContent=t; b.dataset.idx=idx;
+      b.onclick=()=>{
+        b.classList.add("used"); order.push(idx);
+        const c=document.createElement("button"); c.className="tile"; c.textContent=t;
+        c.onclick=()=>{order.splice(order.indexOf(idx),1); c.remove(); b.classList.remove("used"); sync();};
+        built.appendChild(c); sync();
+      };
+      bank.appendChild(b);
+    });
+    d.querySelector(".clr").onclick=()=>{order.length=0; built.innerHTML=""; bank.querySelectorAll(".tile").forEach(t=>t.classList.remove("used")); fb.className="fb"; sync();};
+    d.querySelector(".check").onclick=()=>{
+      if(order.length<it.t.length){fb.className="fb bad"; fb.innerHTML="<b>Use all the words first.</b>"; return;}
+      const ans=norm(order.map(o=>it.t[o]).join(" "));
+      const ok=[it.full,...(it.alt||[])].some(x=>norm(x)===ans);
+      if(ok){feedback(fb,"ok","✓ Correct! "+esc(it.full),it,it.full); mark(ex.id,i,d,"solved");}
+      else feedback(fb,"bad","✗ Not quite. Try again.",it,null);
+    };
+    d.querySelector(".ans:not(.clr)").onclick=()=>{feedback(fb,"info","Answer: "+esc(it.full),it,it.full); mark(ex.id,i,d,"revealed");};
+    p.appendChild(d);
+  });
+}
+function buildSpot(ex,p){
+  ex.items.forEach((it,i)=>{
+    const d=itemBox(ex,i,`<div class="q"><span class="n">${i+1}.</span>Which sentence is wrong?</div>
+      <div class="opts">${it.o.map((o,j)=>`<button class="opt" data-j="${j}">${String.fromCharCode(97+j)}) ${esc(o)}</button>`).join("")}</div>
+      <div class="row"><button class="btn ans">Answer</button></div><div class="fb"></div>`);
+    const fb=d.querySelector(".fb"), opts=d.querySelectorAll(".opt");
+    opts.forEach(b=>b.onclick=()=>{
+      const j=+b.dataset.j; given[K(ex.id,i)]=String.fromCharCode(97+j);
+      if(j===it.a){opts.forEach(x=>x.classList.remove("wrong")); b.classList.add("right");
+        feedback(fb,"ok","✓ Correct! It should be: "+esc(it.fix),it,it.fix); mark(ex.id,i,d,"solved");}
+      else {b.classList.add("wrong"); feedback(fb,"bad","✗ This sentence is correct. Look again.",it,null);}
+    });
+    d.querySelector(".ans").onclick=()=>{opts[it.a].classList.add("right");
+      feedback(fb,"info",`Answer: ${String.fromCharCode(97+it.a)}). Correct version: ${esc(it.fix)}`,it,it.fix); mark(ex.id,i,d,"revealed");};
+    p.appendChild(d);
+  });
+}
+function buildSort(ex,p){
+  ex.items.forEach((it,i)=>{
+    const d=itemBox(ex,i,`<div class="q"><span class="n">${i+1}.</span>${esc(it.q)}</div>
+      <div class="opts inline">${ex.cats.map(c=>`<button class="opt" data-c="${c}">${c}</button>`).join("")}
+      <button class="btn ans">Answer</button></div><div class="fb"></div>`);
+    const fb=d.querySelector(".fb"), opts=d.querySelectorAll(".opt");
+    opts.forEach(b=>b.onclick=()=>{
+      given[K(ex.id,i)]=b.dataset.c;
+      if(b.dataset.c===it.a){opts.forEach(x=>x.classList.remove("wrong")); b.classList.add("right");
+        feedback(fb,"ok","✓ Correct! "+it.a+" conditional.",it,it.q); mark(ex.id,i,d,"solved");}
+      else {b.classList.add("wrong"); feedback(fb,"bad","✗ Not quite. Look at the tenses in both parts.",it,null);}
+    });
+    d.querySelector(".ans").onclick=()=>{[...opts].find(x=>x.dataset.c===it.a).classList.add("right");
+      feedback(fb,"info","Answer: "+it.a+" conditional.",it,it.q); mark(ex.id,i,d,"revealed");};
+    p.appendChild(d);
+  });
+}
+function buildDlg(ex,p){
+  ex.items.forEach((it,i)=>{
+    if(it.d){const h=document.createElement("div"); h.className="dlg-title"; h.textContent="Dialogue: "+it.d; p.appendChild(h);}
+    const full=`${it.pre} ${it.o[it.a]} ${it.post}`.replace(/\s+([!?.,])/g,"$1").trim();
+    const d=itemBox(ex,i,`<div class="q"><span class="n">${i+1}.</span><span class="speaker">${it.s}:</span>
+      ${esc(it.pre)} <select id="sel-${K(ex.id,i)}"><option value="">— choose —</option>${it.o.map((o,j)=>`<option value="${j}">${esc(o)}</option>`).join("")}</select> ${esc(it.post)}</div>
+      <div class="row"><button class="btn check">Check</button><button class="btn ans">Answer</button></div><div class="fb"></div>`);
+    const sel=d.querySelector("select"), fb=d.querySelector(".fb");
+    sel.onchange=()=>{given[K(ex.id,i)]=sel.value===""?"":it.o[+sel.value];};
+    d.querySelector(".check").onclick=()=>{
+      if(sel.value===""){fb.className="fb bad"; fb.innerHTML="<b>Choose an option first.</b>"; return;}
+      if(+sel.value===it.a){feedback(fb,"ok","✓ Correct!",it,full); mark(ex.id,i,d,"solved");}
+      else feedback(fb,"bad","✗ Not quite. Try again.",it,null);
+    };
+    d.querySelector(".ans").onclick=()=>{sel.value=String(it.a); given[K(ex.id,i)]=it.o[it.a];
+      feedback(fb,"info","Answer: "+esc(it.o[it.a]),it,full); mark(ex.id,i,d,"revealed");};
+    p.appendChild(d);
+  });
+}
+function buildFin(ex,p){
+  ex.items.forEach((it,i)=>{
+    const full=it.q.replace("___",it.a[0]);
+    const d=itemBox(ex,i,`<div class="sit">${esc(it.s)}</div>
+      <div class="q"><span class="n">${i+1}.</span>${esc(it.q).replace("___","<b>_______</b>")}</div>
+      <div class="row"><input type="text" id="in-${K(ex.id,i)}" placeholder="Missing words" autocomplete="off" spellcheck="false">
+      <button class="btn check">Check</button><button class="btn ans">Answer</button></div><div class="fb"></div>`);
+    const inp=d.querySelector("input"), fb=d.querySelector(".fb");
+    inp.oninput=()=>{given[K(ex.id,i)]=inp.value.trim();};
+    const check=()=>{
+      if(!inp.value.trim()){fb.className="fb bad"; fb.innerHTML="<b>Type your answer first.</b>"; return;}
+      if(it.a.some(a=>norm(a)===norm(inp.value))){feedback(fb,"ok","✓ Correct!",it,full); mark(ex.id,i,d,"solved");}
+      else feedback(fb,"bad","✗ Not quite. Try again.",it,null);
+    };
+    d.querySelector(".check").onclick=check;
+    inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+    d.querySelector(".ans").onclick=()=>{feedback(fb,"info","Answer: "+it.a.map(esc).join(" / "),it,full); mark(ex.id,i,d,"revealed");};
+    p.appendChild(d);
+  });
+}
+function buildTr(ex,p){
+  ex.items.forEach((it,i)=>{
+    const d=itemBox(ex,i,`<div class="q ru-src"><span class="n">${i+1}.</span>${esc(it.ru)}</div>
+      <div class="row"><button class="btn small en-btn">EN</button><button class="btn small say">▶ Listen</button></div>
+      <div class="en-out" hidden>${esc(it.en)}</div>`);
+    d.classList.add("tr");
+    d.querySelector(".en-btn").onclick=()=>{const o=d.querySelector(".en-out"); o.hidden=!o.hidden;};
+    d.querySelector(".say").onclick=()=>speak(it.en);
+    p.appendChild(d);
+  });
+}
+
+/* ================= PAGE ================= */
+const tabs=document.getElementById("tabs"), pages=document.getElementById("pages");
+const B={build:buildBuild,spot:buildSpot,sort:buildSort,dlg:buildDlg,fin:buildFin,tr:buildTr};
+EX.forEach(ex=>{
+  const b=document.createElement("button"); b.id="tab-"+ex.id;
+  b.innerHTML=`${ex.title}<span class="mini" id="mini-${ex.id}"></span>`; b.onclick=()=>show(ex.id); tabs.appendChild(b);
+  const p=document.createElement("section"); p.className="page"; p.id="page-"+ex.id;
+  p.innerHTML=`<div class="intro"><h2>${ex.title}</h2><p>${ex.intro}</p></div>`;
+  B[ex.type](ex,p);
+  if(ex.type!=="tr"){
+    const t=document.createElement("div"); t.className="tools";
+    t.innerHTML=`<button class="btn copy">Copy my answers</button><button class="btn reset">Reset this exercise</button><span class="copied" hidden>Copied!</span>`;
+    t.querySelector(".copy").onclick=()=>copyAnswers(ex,t.querySelector(".copied"));
+    t.querySelector(".reset").onclick=()=>resetEx(ex);
+    p.appendChild(t);
+  }
+  pages.appendChild(p);
+});
+function copyAnswers(ex,flag){
+  const lines=[ex.title];
+  ex.items.forEach((it,i)=>{
+    const a=given[K(ex.id,i)]||"—"; const st=state[K(ex.id,i)];
+    lines.push(`${i+1}. ${a}${st==="solved"?" ✓":st==="revealed"?" (answer shown)":""}`);
+  });
+  const text=lines.join("\n");
+  const done=()=>{flag.hidden=false; setTimeout(()=>flag.hidden=true,1800);};
+  const fallback=()=>{const ta=document.createElement("textarea"); ta.value=text; document.body.appendChild(ta); ta.select();
+    try{document.execCommand("copy");}catch(e){} ta.remove(); done();};
+  try{ navigator.clipboard.writeText(text).then(done,fallback); }catch(e){ fallback(); }
+}
+function resetEx(ex){
+  ex.items.forEach((_,i)=>{delete state[K(ex.id,i)]; delete given[K(ex.id,i)];});
+  const page=document.getElementById("page-"+ex.id); const fresh=document.createElement("section");
+  fresh.className=page.className; fresh.id=page.id; fresh.innerHTML=`<div class="intro"><h2>${ex.title}</h2><p>${ex.intro}</p></div>`;
+  B[ex.type](ex,fresh);
+  const tools=page.querySelector(".tools"); fresh.appendChild(tools); page.replaceWith(fresh); totals();
+}
+function show(id){
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id==="page-"+id));
+  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.id==="tab-"+id));
+  window.scrollTo({top:0});
+}
+show(EX[0].id); totals();
+</script>
+</body>
+</html>
