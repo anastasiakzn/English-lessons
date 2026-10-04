@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English Lesson — Emma — 05.10.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF6EC; --cream-2:#FDEBDC; --card:#FFFFFF;
+  --ink:#2C2140; --ink-soft:#6B6280;
+  --violet:#6D4AE0; --violet-soft:#EFE9FF;
+  --amber:#F6B93B; --amber-soft:#FDEBC4;
+  --teal:#0E9E8B; --rose:#E2607A; --line:#F0E6DC;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);
+  background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);background-attachment:fixed;
+  font-size:17px;line-height:1.6}
+h1,h2,h3,h4{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;line-height:1.2;margin:0}
+.wrap{max-width:880px;margin:0 auto;padding:26px 18px 60px}
+
+.head{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.badge{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#FFB86B,#F6795B);
+  display:grid;place-items:center;font-size:30px;flex:none;box-shadow:0 8px 18px rgba(246,121,91,.28)}
+.head h1{font-size:32px}
+.head p{margin:3px 0 0;color:var(--ink-soft);font-size:15px}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.tab{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:9px 16px;font:inherit;font-weight:700;font-size:14px;color:var(--ink);cursor:pointer}
+.tab i{width:20px;height:20px;border-radius:50%;background:var(--violet-soft);color:var(--violet);
+  font-style:normal;font-size:12px;display:grid;place-items:center;font-weight:800}
+.tab:hover{border-color:var(--violet)}
+.tab.on{background:#241B39;border-color:#241B39;color:#fff}
+.tab.on i{background:rgba(255,255,255,.22);color:#fff}
+
+.page{display:none;background:var(--card);border-radius:24px;padding:28px 26px;
+  box-shadow:0 4px 22px rgba(90,60,30,.07)}
+.page.on{display:block}
+.eyebrow{display:inline-block;background:#E9F1FF;color:#3B7BEA;font-weight:800;font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:6px 14px;margin-bottom:14px}
+.page h2{font-size:27px;display:flex;align-items:center;gap:10px}
+.page h3{font-size:20px;margin:28px 0 8px}
+.lead{color:var(--ink-soft);font-size:15px;margin:8px 0 0}
+.hint{background:#FFFBF0;border-left:4px solid var(--amber);border-radius:10px;padding:10px 14px;
+  color:#7A6236;font-size:15px;margin:14px 0}
+p{margin:10px 0}
+
+.ask{background:#FFFDFA;border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:9px 0;font-weight:700}
+.quote{background:linear-gradient(135deg,#F3EEFF,#FFF2E4);border-radius:20px;padding:26px 24px;margin:16px 0 8px;
+  font-family:'Baloo 2',sans-serif;font-size:26px;line-height:1.45;text-align:center}
+.chip{background:#FFE7A8;border-radius:8px;padding:0 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center}
+button{font:inherit;font-weight:800;border-radius:12px;cursor:pointer;border:1px solid transparent;padding:10px 20px}
+.btn-main{background:var(--teal);color:#fff}
+.btn-main:hover{background:#0B8878}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+.mini{font-size:13px;padding:4px 11px;border-radius:9px;background:#fff;border:1px solid var(--line);
+  color:var(--ink-soft);font-weight:800;white-space:nowrap}
+.mini:hover{border-color:var(--violet);color:var(--violet)}
+.score{font-weight:800;color:var(--teal)}
+.rev{display:none;background:var(--violet-soft);border-radius:12px;padding:8px 13px;margin-top:8px;
+  font-weight:700;color:#4A2FB0;font-size:15px}
+.rev.show{display:block}
+.rev.plain{font-weight:400}
+
+.ru-text{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-top:14px;
+  font-size:18px;line-height:1.9}
+.flow{font-size:18px;line-height:2.1}
+.flow .en{display:none;background:#DFF5EC;color:#0A6B5E;border-radius:8px;padding:3px 10px;font-weight:700}
+.flow .en.show{display:inline}
+
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:16px}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+th{background:var(--violet-soft);color:#4A2FB0;font-weight:800}
+td b{color:var(--violet)}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.box{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:#FFFDFA}
+.box h4{margin:0 0 6px;font-size:17px}
+.box p{margin:4px 0;font-size:15px}
+.plus h4{color:var(--teal)} .minus h4{color:var(--rose)} .quest h4{color:var(--violet)}
+
+ol.tasks{list-style:none;counter-reset:t;padding:0;margin:12px 0 0}
+ol.tasks>li{counter-increment:t;display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
+ol.tasks>li:last-child{border-bottom:none}
+ol.tasks>li::before{content:counter(t);flex:none;width:26px;height:26px;border-radius:50%;
+  background:var(--violet);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:4px}
+.taskbody{flex:1;min-width:0}
+input.gap{font:inherit;font-weight:700;color:var(--ink);background:var(--amber-soft);border:none;
+  border-bottom:2px solid var(--amber);border-radius:6px 6px 0 0;padding:3px 8px;width:130px}
+input.gap:focus{outline:2px solid var(--violet);outline-offset:1px}
+input.gap.ok{background:#DFF5EC;border-bottom-color:var(--teal)}
+input.gap.no{background:#FCE4E9;border-bottom-color:var(--rose)}
+input.small{width:78px;text-align:center}
+.line{display:flex;gap:8px;align-items:center;margin-top:7px}
+.line input.gap{flex:1;width:auto;min-width:0}
+.answers{background:#FFFDFA;border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-top:14px}
+.answers div{padding:3px 0;font-weight:600}
+.answers b{color:var(--violet);margin-right:8px}
+
+.choices{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.choice{background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:700;
+  padding:6px 16px;border-radius:999px;font-size:15px}
+.choice:hover{border-color:var(--violet)}
+.choice.ok{background:#DFF5EC;border-color:var(--teal);color:#0A6B5E}
+.choice.no{background:#FCE4E9;border-color:var(--rose);color:#9E2F45}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:16px}
+.vcard{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;min-height:104px}
+.vcard .w{font-family:'Baloo 2',sans-serif;font-size:19px;font-weight:700}
+.vcard .tr{color:var(--ink-soft);font-size:14px}
+.vcard .back{display:none;margin-top:9px;font-size:15px}
+.vcard.open{background:var(--violet-soft);border-color:#CDBCFF}
+.vcard.open .back{display:block}
+.vcard .def{font-weight:700;color:#4A2FB0}
+.vcard .ex{font-style:italic;color:var(--ink-soft);font-size:14px;margin-top:4px}
+
+.text{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-top:14px;font-size:17px;line-height:1.85}
+.text p{margin:0 0 12px}
+.text p:last-child{margin-bottom:0}
+
+.q{margin:18px 0 0}
+.q p{font-weight:700;margin:0 0 8px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{text-align:left;background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:600;padding:9px 14px;border-radius:12px}
+.opt:hover{border-color:var(--violet)}
+.opt.ok{background:#DFF5EC;border-color:var(--teal);color:#0A6B5E}
+.opt.no{background:#FCE4E9;border-color:var(--rose);color:#9E2F45}
+
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+footer{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:26px}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:18px 13px 48px}
+  .head h1{font-size:25px}
+  .badge{width:52px;height:52px;border-radius:16px;font-size:24px}
+  .page{padding:20px 16px;border-radius:20px}
+  .quote{font-size:20px;padding:20px 16px}
+  .three{grid-template-columns:1fr}
+  .tab{padding:8px 12px;font-size:13px}
+  table{font-size:15px}
+  input.gap{width:110px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="head">
+  <div class="badge">🧭</div>
+  <div>
+    <h1>English lesson — Emma</h1>
+    <p>05.10.2026 · <b>to be</b>: statements, negatives and questions</p>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab on" data-go="p1"><i>1</i>Warm-up</button>
+  <button class="tab" data-go="p2"><i>2</i>Homework Check</button>
+  <button class="tab" data-go="p3"><i>3</i>Grammar</button>
+  <button class="tab" data-go="p4"><i>4</i>Vocabulary</button>
+  <button class="tab" data-go="p5"><i>5</i>Reading</button>
+  <button class="tab" data-go="p6"><i>6</i>Speaking</button>
+  <button class="tab" data-go="p7"><i>7</i>Translation</button>
+</div>
+
+<!-- 1 WARM-UP -->
+<section class="page on" id="p1">
+  <div class="eyebrow">Warm-up</div>
+  <h2>☀️ Let's start</h2>
+
+  <div class="ask">How are you today?</div>
+  <div class="ask">What is the weather like outside? Is it terrible or nice?</div>
+  <div class="ask">Where are you now — upstairs or downstairs?</div>
+  <div class="ask">Who is in the room with you?</div>
+  <div class="ask">Is your room tidy today?</div>
+  <div class="ask">Are you ready for our lesson?</div>
+
+  <h3>Phrase of the day</h3>
+  <div class="quote">"I am <span class="chip">under the weather</span> today."</div>
+  <div class="row">
+    <button class="mini" data-toggle="#ph1">Show translation</button>
+    <button class="btn-ghost" data-speak="I am under the weather today." data-rate="0.85">🔊 Listen</button>
+  </div>
+  <div class="rev" id="ph1">under the weather /ˌʌndə ðə ˈweðə/ — неважно себя чувствовать, «что-то я расклеилась».<br>
+    <span style="font-weight:400">«Мне сегодня нездоровится.»</span></div>
+
+  <div class="pager"><span></span><button class="btn-main" data-go="p2">Next: Homework Check →</button></div>
+</section>
+
+<!-- 2 HOMEWORK CHECK -->
+<section class="page" id="p2">
+  <div class="eyebrow">Homework · Translation</div>
+  <h2>🌍 Translate the text into English</h2>
+  <p class="lead">Translate sentence by sentence — out loud. <button class="mini" data-toggle="#i0">RUS</button></p>
+  <div class="rev plain" id="i0">Переводи вслух по одному предложению.</div>
+
+  <div class="ru-text">
+    Добро пожаловать в мою комнату! Она наверху. Моя комната небольшая, но она тёплая и уютная. Мои постеры на стене, а мои книги на полке. Моё одеяло зелёное, потому что зелёный — мой любимый цвет. Моя гитара не на стене, она под кроватью. Сегодня у меня беспорядок, но в воскресенье всегда чисто. Твоя комната убрана? Да, убрана. Мои собаки внизу, на кухне. Они не на улице. На улице льёт как из ведра, поэтому мы дома. Английский — это проще простого? Сегодня да!
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p1">← Back</button><button class="btn-main" data-go="p3">Next: Grammar →</button></div>
+</section>
+
+<!-- 3 GRAMMAR -->
+<section class="page" id="p3">
+  <div class="eyebrow">Grammar</div>
+  <h2>⭐ The verb <i>to be</i></h2>
+
+  <table>
+    <tr><th>Person</th><th>Full form</th><th>Short form</th><th>Example</th></tr>
+    <tr><td>I</td><td><b>am</b></td><td>I'm</td><td>I <b>am</b> under the weather.</td></tr>
+    <tr><td>you</td><td><b>are</b></td><td>you're</td><td>You <b>are</b> near the window.</td></tr>
+    <tr><td>he / she / it</td><td><b>is</b></td><td>he's / she's / it's</td><td>My cat <b>is</b> under the table.</td></tr>
+    <tr><td>we</td><td><b>are</b></td><td>we're</td><td>We <b>are</b> at home.</td></tr>
+    <tr><td>they</td><td><b>are</b></td><td>they're</td><td>My books <b>are</b> behind the door.</td></tr>
+  </table>
+
+  <div class="three">
+    <div class="box plus"><h4>+ Statement</h4>
+      <p>I <b>am</b> late.</p><p>The weather <b>is</b> terrible.</p><p>My pencils <b>are</b> there.</p>
+      <p class="lead">person → am/is/are → rest</p></div>
+    <div class="box minus"><h4>− Negative</h4>
+      <p>I <b>am not</b> late.</p><p>The weather <b>isn't</b> terrible.</p><p>My pencils <b>aren't</b> there.</p>
+      <p class="lead">am/is/are + not</p></div>
+    <div class="box quest"><h4>? Question</h4>
+      <p><b>Am</b> I late?</p><p><b>Is</b> the weather terrible?</p><p><b>Are</b> your pencils there?</p>
+      <p class="lead">am/is/are goes first</p></div>
+  </div>
+
+  <table>
+    <tr><th>Question</th><th>Yes 👍</th><th>No 👎</th></tr>
+    <tr><td>Are you at home?</td><td>Yes, I am.</td><td>No, I'm not.</td></tr>
+    <tr><td>Is your cat under the bed?</td><td>Yes, it is.</td><td>No, it isn't.</td></tr>
+    <tr><td>Are your books there?</td><td>Yes, they are.</td><td>No, they aren't.</td></tr>
+  </table>
+  <div class="hint">💡 The word order in a question never changes: <b>Is</b> your room tidy? — not "Tidy is your room?" <button class="mini" data-toggle="#i1">RUS</button></div>
+  <div class="rev plain" id="i1">Порядок слов в вопросе фиксированный: Is your room tidy? Нельзя начинать вопрос с прилагательного или с подлежащего.</div>
+
+  <h3>Exercise 1. Change the words to a pronoun</h3>
+  <p class="lead">Example: <i>My brother is downstairs. → He is downstairs.</i> Write the whole sentence. <button class="mini" data-toggle="#i2">RUS</button></p>
+  <div class="rev plain" id="i2">Замени подлежащее местоимением (I, you, he, she, it, we, they) и напиши предложение целиком. Пример: My brother is downstairs. → He is downstairs.</div>
+  <ol class="tasks" data-ex="g1">
+    <li><div class="taskbody">My little sister is near the window.
+      <div class="line"><input class="gap" data-a="she is near the window|she's near the window"></div></div></li>
+    <li><div class="taskbody">My dogs are under the table.
+      <div class="line"><input class="gap" data-a="they are under the table|they're under the table"></div></div></li>
+    <li><div class="taskbody">Emma and I are at home today.
+      <div class="line"><input class="gap" data-a="we are at home today|we're at home today"></div></div></li>
+    <li><div class="taskbody">My guitar is behind the door.
+      <div class="line"><input class="gap" data-a="it is behind the door|it's behind the door"></div></div></li>
+    <li><div class="taskbody">My brother is not in his room.
+      <div class="line"><input class="gap" data-a="he is not in his room|he isn't in his room|he's not in his room"></div></div></li>
+    <li><div class="taskbody">The weather and the sky are terrible today.
+      <div class="line"><input class="gap" data-a="they are terrible today|they're terrible today"></div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g1">Check</button><span class="score" data-score="g1"></span></div>
+
+  <h3>Exercise 2. Match the two halves of the sentence</h3>
+  <p class="lead">Write the letter (A–F) in the box. <button class="mini" data-toggle="#i3">RUS</button></p>
+  <div class="rev plain" id="i3">Соедини две половинки предложения: впиши в окошко букву (A–F).</div>
+  <div class="answers">
+    <div><b>A</b>… on the shelf under the window.</div>
+    <div><b>B</b>… terrible: it is only two degrees.</div>
+    <div><b>C</b>… a bit of a mess today.</div>
+    <div><b>D</b>… tired — I am happy!</div>
+    <div><b>E</b>… upstairs in her room?</div>
+    <div><b>F</b>… under the table again?</div>
+  </div>
+  <ol class="tasks" data-ex="g2">
+    <li><div class="taskbody">My room is <input class="gap small" data-a="c"></div></li>
+    <li><div class="taskbody">My books are <input class="gap small" data-a="a"></div></li>
+    <li><div class="taskbody">Is your sister <input class="gap small" data-a="e"></div></li>
+    <li><div class="taskbody">Are your dogs <input class="gap small" data-a="f"></div></li>
+    <li><div class="taskbody">The weather today is <input class="gap small" data-a="b"></div></li>
+    <li><div class="taskbody">I am not <input class="gap small" data-a="d"></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g2">Check</button><span class="score" data-score="g2"></span></div>
+
+  <h3>Exercise 3. Write the question</h3>
+  <p class="lead">Look at the answer and write the question. <button class="mini" data-toggle="#i4">RUS</button></p>
+  <div class="rev plain" id="i4">Посмотри на ответ и восстанови вопрос.</div>
+  <ol class="tasks" data-ex="g3">
+    <li><div class="taskbody">— … ? — Yes, my room is tidy.
+      <div class="line"><input class="gap" data-a="is your room tidy"></div></div></li>
+    <li><div class="taskbody">— … ? — No, my dogs aren't under the table.
+      <div class="line"><input class="gap" data-a="are your dogs under the table"></div></div></li>
+    <li><div class="taskbody">— … ? — Yes, I am at home.
+      <div class="line"><input class="gap" data-a="are you at home"></div></div></li>
+    <li><div class="taskbody">— … ? — No, the weather isn't terrible today.
+      <div class="line"><input class="gap" data-a="is the weather terrible today"></div></div></li>
+    <li><div class="taskbody">— … ? — Yes, my guitar is behind the door.
+      <div class="line"><input class="gap" data-a="is your guitar behind the door"></div></div></li>
+    <li><div class="taskbody">— … ? — No, my sisters aren't upstairs.
+      <div class="line"><input class="gap" data-a="are your sisters upstairs"></div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g3">Check</button><span class="score" data-score="g3"></span></div>
+
+  <h3>Exercise 4. Fix the word order</h3>
+  <p class="lead">Every sentence is in the wrong order. Write it correctly. <button class="mini" data-toggle="#i5">RUS</button></p>
+  <div class="rev plain" id="i5">В каждом предложении нарушен порядок слов. Запиши правильный вариант.</div>
+  <ol class="tasks" data-ex="g4">
+    <li><div class="taskbody">Tidy is my room?
+      <div class="line"><input class="gap" data-a="is my room tidy"></div></div></li>
+    <li><div class="taskbody">Not my dogs are under the bed.
+      <div class="line"><input class="gap" data-a="my dogs are not under the bed|my dogs aren't under the bed"></div></div></li>
+    <li><div class="taskbody">Terrible the weather is today.
+      <div class="line"><input class="gap" data-a="the weather is terrible today"></div></div></li>
+    <li><div class="taskbody">Only it is three degrees outside.
+      <div class="line"><input class="gap" data-a="it is only three degrees outside|it's only three degrees outside"></div></div></li>
+    <li><div class="taskbody">Your sister is near the window?
+      <div class="line"><input class="gap" data-a="is your sister near the window"></div></div></li>
+    <li><div class="taskbody">Between the window and the door my desk is.
+      <div class="line"><input class="gap" data-a="my desk is between the window and the door"></div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g4">Check</button><span class="score" data-score="g4"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p2">← Back</button><button class="btn-main" data-go="p4">Next: Vocabulary →</button></div>
+</section>
+
+<!-- 4 VOCABULARY -->
+<section class="page" id="p4">
+  <div class="eyebrow">Vocabulary</div>
+  <h2>🃏 Ten words</h2>
+  <p class="lead">Tap a card: the meaning is in English, with an example. <button class="mini" data-toggle="#i6">RUS</button></p>
+  <div class="rev plain" id="i6">Нажми на карточку — значение по-английски и пример.</div>
+
+  <div class="cards">
+    <div class="vcard"><div class="w">a bit of a mess</div><div class="tr">/ə ˌbɪt əv ə ˈmes/</div>
+      <div class="back"><div class="def">not very tidy — things are everywhere</div><div class="ex">My room is a bit of a mess today.</div></div></div>
+    <div class="vcard"><div class="w">terrible</div><div class="tr">/ˈterəbl/</div>
+      <div class="back"><div class="def">very, very bad</div><div class="ex">The weather is terrible: rain, wind and cold.</div></div></div>
+    <div class="vcard"><div class="w">only</div><div class="tr">/ˈəʊnli/</div>
+      <div class="back"><div class="def">not more than this — a very small number</div><div class="ex">It is only two degrees outside.</div></div></div>
+    <div class="vcard"><div class="w">degree</div><div class="tr">/dɪˈɡriː/</div>
+      <div class="back"><div class="def">we use it for temperature: 10°, 25°</div><div class="ex">It is twelve degrees in my room.</div></div></div>
+    <div class="vcard"><div class="w">there</div><div class="tr">/ðeə/</div>
+      <div class="back"><div class="def">in that place, not here</div><div class="ex">Look — my cat is over there, on the shelf!</div></div></div>
+    <div class="vcard"><div class="w">under</div><div class="tr">/ˈʌndə/</div>
+      <div class="back"><div class="def">below something</div><div class="ex">My guitar is under the bed.</div></div></div>
+    <div class="vcard"><div class="w">behind</div><div class="tr">/bɪˈhaɪnd/</div>
+      <div class="back"><div class="def">at the back of something — you can't see it</div><div class="ex">My bag is behind the door.</div></div></div>
+    <div class="vcard"><div class="w">next to</div><div class="tr">/ˈnekst tuː/</div>
+      <div class="back"><div class="def">very close, on the side of something</div><div class="ex">My desk is next to the window.</div></div></div>
+    <div class="vcard"><div class="w">near</div><div class="tr">/nɪə/</div>
+      <div class="back"><div class="def">not far from something</div><div class="ex">Our house is near the river.</div></div></div>
+    <div class="vcard"><div class="w">between</div><div class="tr">/bɪˈtwiːn/</div>
+      <div class="back"><div class="def">in the middle of two things</div><div class="ex">My lamp is between the books and the photos.</div></div></div>
+  </div>
+
+  <h3>Exercise 1. Tap the right word</h3>
+  <p class="lead">One option in every line. <button class="mini" data-toggle="#i7">RUS</button></p>
+  <div class="rev plain" id="i7">Нажми на подходящее слово в каждой строке.</div>
+  <ol class="tasks">
+    <li><div class="taskbody">My guitar is ___ the bed, in a black bag.
+      <div class="choices"><button class="choice" data-ok>under</button><button class="choice">only</button><button class="choice">there</button></div></div></li>
+    <li><div class="taskbody">The weather today is ___ : rain, wind and six degrees.
+      <div class="choices"><button class="choice">tidy</button><button class="choice" data-ok>terrible</button><button class="choice">cosy</button></div></div></li>
+    <li><div class="taskbody">It is ___ four degrees outside — so cold!
+      <div class="choices"><button class="choice">near</button><button class="choice">there</button><button class="choice" data-ok>only</button></div></div></li>
+    <li><div class="taskbody">My desk is ___ the window and the door.
+      <div class="choices"><button class="choice">under</button><button class="choice" data-ok>between</button><button class="choice">behind</button></div></div></li>
+    <li><div class="taskbody">My room is ___ today — my clothes are on the floor!
+      <div class="choices"><button class="choice">a piece of cake</button><button class="choice" data-ok>a bit of a mess</button><button class="choice">a degree</button></div></div></li>
+    <li><div class="taskbody">Look over ___ — my cat is on the shelf!
+      <div class="choices"><button class="choice" data-ok>there</button><button class="choice">near</button><button class="choice">under</button></div></div></li>
+    <li><div class="taskbody">My school bag is ___ the door, so it is not on the floor.
+      <div class="choices"><button class="choice" data-ok>behind</button><button class="choice">only</button><button class="choice">between</button></div></div></li>
+    <li><div class="taskbody">The park is ___ our house — it is five minutes from here.
+      <div class="choices"><button class="choice">under</button><button class="choice" data-ok>near</button><button class="choice">between</button></div></div></li>
+    <li><div class="taskbody">My sister's room is ___ to my room.
+      <div class="choices"><button class="choice">behind</button><button class="choice">under</button><button class="choice" data-ok>next</button></div></div></li>
+    <li><div class="taskbody">It is twenty ___ in my room — it is warm and cosy.
+      <div class="choices"><button class="choice">messes</button><button class="choice" data-ok>degrees</button><button class="choice">weathers</button></div></div></li>
+  </ol>
+
+  <h3>Exercise 2. Write the English phrase</h3>
+  <p class="lead">Not one word — the whole phrase. <button class="mini" data-toggle="#i8">RUS</button></p>
+  <div class="rev plain" id="i8">Напиши не одно слово, а всё словосочетание целиком.</div>
+  <ol class="tasks" data-ex="v2">
+    <li><div class="taskbody">под кроватью — <input class="gap" data-a="under the bed"></div></li>
+    <li><div class="taskbody">за дверью — <input class="gap" data-a="behind the door"></div></li>
+    <li><div class="taskbody">рядом с окном — <input class="gap" data-a="next to the window"></div></li>
+    <li><div class="taskbody">между столом и кроватью — <input class="gap" data-a="between the desk and the bed"></div></li>
+    <li><div class="taskbody">недалеко от школы — <input class="gap" data-a="near the school"></div></li>
+    <li><div class="taskbody">ужасная погода — <input class="gap" data-a="terrible weather|the weather is terrible"></div></li>
+    <li><div class="taskbody">всего пять градусов — <input class="gap" data-a="only five degrees"></div></li>
+    <li><div class="taskbody">небольшой беспорядок — <input class="gap" data-a="a bit of a mess"></div></li>
+    <li><div class="taskbody">вон там — <input class="gap" data-a="over there"></div></li>
+    <li><div class="taskbody">под столом — <input class="gap" data-a="under the table|under the desk"></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="v2">Check</button><span class="score" data-score="v2"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p3">← Back</button><button class="btn-main" data-go="p5">Next: Reading →</button></div>
+</section>
+
+<!-- 5 READING -->
+<section class="page" id="p5">
+  <div class="eyebrow">Reading</div>
+  <h2>📖 Nina's messy room</h2>
+  <p class="lead">Read the text and do the two tasks below. <button class="mini" data-toggle="#i9">RUS</button></p>
+  <div class="rev plain" id="i9">Прочитай текст и выполни два задания ниже.</div>
+
+  <div class="text">
+    <p>Hello! I am Nina and I am twelve. Our house is near the river, so the view from my window is amazing. My room is upstairs, next to my parents' room.</p>
+    <p>Today the weather is terrible. It is only three degrees, it is windy and the sky is grey. My umbrella is behind the door, but it is not useful today — I am at home with my little brother.</p>
+    <p>My room is a bit of a mess. My books are not on the shelf — they are under my bed. My school bag is behind the chair, and my pencils are between the lamp and my laptop. Only my guitar is in its place: it is next to the window, in a black bag.</p>
+    <p>My brother is not in his room. He is here, on my floor, with his toy cars. For him my messy room is a perfect place. And for me? Well, it is a mess, but it is my mess — and it is cosy.</p>
+  </div>
+
+  <h3>Task 1. Choose the right answer</h3>
+  <div class="q"><p>1. Where is Nina's house?</p>
+    <div class="opts">
+      <button class="opt">It is next to the school.</button>
+      <button class="opt" data-ok>It is near the river.</button>
+      <button class="opt">It is behind the park.</button>
+    </div></div>
+  <div class="q"><p>2. What is the weather like today?</p>
+    <div class="opts">
+      <button class="opt">It is warm and sunny.</button>
+      <button class="opt">It is twenty degrees.</button>
+      <button class="opt" data-ok>It is terrible: only three degrees and windy.</button>
+    </div></div>
+  <div class="q"><p>3. Where are her books?</p>
+    <div class="opts">
+      <button class="opt">They are on the shelf.</button>
+      <button class="opt" data-ok>They are under her bed.</button>
+      <button class="opt">They are in her school bag.</button>
+    </div></div>
+  <div class="q"><p>4. Where is her guitar?</p>
+    <div class="opts">
+      <button class="opt" data-ok>It is next to the window, in a black bag.</button>
+      <button class="opt">It is behind the door.</button>
+      <button class="opt">It is between the lamp and the laptop.</button>
+    </div></div>
+  <div class="q"><p>5. Who is in Nina's room?</p>
+    <div class="opts">
+      <button class="opt">Her parents are there.</button>
+      <button class="opt">Nobody is there.</button>
+      <button class="opt" data-ok>Her little brother is there with his toy cars.</button>
+    </div></div>
+
+  <h3>Task 2. Complete the sentences about the text</h3>
+  <p class="lead">One word (or two) in every gap: under / behind / next to / near / between. <button class="mini" data-toggle="#i10">RUS</button></p>
+  <div class="rev plain" id="i10">Вставь в каждый пропуск нужный предлог места: under / behind / next to / near / between.</div>
+  <ol class="tasks" data-ex="r2">
+    <li><div class="taskbody">Nina's house is <input class="gap small" data-a="near"> the river.</div></li>
+    <li><div class="taskbody">Her room is <input class="gap" data-a="next to"> her parents' room.</div></li>
+    <li><div class="taskbody">Her umbrella is <input class="gap small" data-a="behind"> the door.</div></li>
+    <li><div class="taskbody">Her books are <input class="gap small" data-a="under"> her bed.</div></li>
+    <li><div class="taskbody">Her pencils are <input class="gap small" data-a="between"> the lamp and the laptop.</div></li>
+    <li><div class="taskbody">Her guitar is <input class="gap" data-a="next to"> the window.</div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="r2">Check</button><span class="score" data-score="r2"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p4">← Back</button><button class="btn-main" data-go="p6">Next: Speaking →</button></div>
+</section>
+
+<!-- 6 SPEAKING -->
+<section class="page" id="p6">
+  <div class="eyebrow">Speaking</div>
+  <h2>💬 About you</h2>
+  <p class="lead">Answer in full sentences.</p>
+  <div class="ask">Is your house near a park, a river or a school?</div>
+  <div class="ask">What is under your bed?</div>
+  <div class="ask">Where is your guitar — next to the window or behind the door?</div>
+  <div class="ask">Is your room a bit of a mess today? Why?</div>
+  <div class="ask">How many degrees is it in your room now?</div>
+  <div class="ask">Where are your dogs when the weather is terrible?</div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p5">← Back</button><button class="btn-main" data-go="p7">Next: Translation →</button></div>
+</section>
+
+<!-- 7 TRANSLATION -->
+<section class="page" id="p7">
+  <div class="eyebrow">Final task · Translation</div>
+  <h2>✍️ Translate the story</h2>
+  <p class="lead">Translate sentence by sentence. Tap English only if you are really stuck. <button class="mini" data-toggle="#i11">RUS</button></p>
+  <div class="rev plain" id="i11">Переводи по одному предложению. Кнопка English — только если совсем запуталась.</div>
+
+  <div class="flow">
+    Привет! Наш дом недалеко от реки.
+    <button class="mini" data-rev>English</button> <span class="en">Hi! Our house is near the river.</span>
+    Моя комната наверху, рядом с комнатой родителей.
+    <button class="mini" data-rev>English</button> <span class="en">My room is upstairs, next to my parents' room.</span>
+    Сегодня погода ужасная: всего четыре градуса и сильный ветер.
+    <button class="mini" data-rev>English</button> <span class="en">Today the weather is terrible: it is only four degrees and it is very windy.</span>
+    Мой зонт за дверью.
+    <button class="mini" data-rev>English</button> <span class="en">My umbrella is behind the door.</span>
+    В комнате небольшой беспорядок: мои книги под кроватью.
+    <button class="mini" data-rev>English</button> <span class="en">My room is a bit of a mess: my books are under the bed.</span>
+    Мои карандаши между лампой и ноутбуком.
+    <button class="mini" data-rev>English</button> <span class="en">My pencils are between the lamp and the laptop.</span>
+    Моя гитара не под кроватью, она рядом с окном.
+    <button class="mini" data-rev>English</button> <span class="en">My guitar is not under the bed, it is next to the window.</span>
+    Твои собаки там, на кухне? Да, там.
+    <button class="mini" data-rev>English</button> <span class="en">Are your dogs there, in the kitchen? Yes, they are.</span>
+    Мой брат не в своей комнате, он здесь.
+    <button class="mini" data-rev>English</button> <span class="en">My brother is not in his room, he is here.</span>
+    Это беспорядок, но это мой беспорядок, и мне уютно.
+    <button class="mini" data-rev>English</button> <span class="en">It is a mess, but it is my mess and I am cosy.</span>
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p6">← Back</button><span></span></div>
+</section>
+
+<footer>See you next lesson! 🎸🌼</footer>
+</div>
+
+<script>
+(function(){
+  var synth = window.speechSynthesis;
+
+  var show = function(id){
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.toggle('on', p.id===id); });
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('on', t.getAttribute('data-go')===id); });
+    if(synth) synth.cancel();
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.addEventListener('click', function(){ show(b.getAttribute('data-go')); });
+  });
+
+  var norm = function(s){
+    return (s||'').toLowerCase().replace(/[\u2018\u2019\u02BC]/g,"'")
+      .replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+  };
+  var isOk = function(i){
+    var a=i.getAttribute('data-a');
+    if(!a) return false;
+    var v=norm(i.value);
+    return v!=='' && a.split('|').map(norm).indexOf(v)!==-1;
+  };
+  var mark = function(i){
+    i.classList.remove('ok','no');
+    if(!i.getAttribute('data-a')) return;
+    if(i.value.trim()==='') return;
+    i.classList.add(isOk(i)?'ok':'no');
+  };
+  document.addEventListener('input', function(e){
+    if(e.target.classList && e.target.classList.contains('gap')) mark(e.target);
+  });
+  document.querySelectorAll('[data-check]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var key=b.getAttribute('data-check'), box=document.querySelector('[data-ex="'+key+'"]');
+      if(!box) return;
+      var ins=box.querySelectorAll('input.gap'), good=0;
+      ins.forEach(function(i){ mark(i); if(isOk(i)) good++; });
+      var out=document.querySelector('[data-score="'+key+'"]');
+      if(out){ out.textContent=good+' / '+ins.length+(good===ins.length?'  🎉 Perfect!':'');
+        out.style.color=(good===ins.length)?'#0E9E8B':'#E2607A'; }
+    });
+  });
+  document.querySelectorAll('[data-rev]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var en=b.nextElementSibling;
+      while(en && !(en.classList && en.classList.contains('en'))) en=en.nextElementSibling;
+      if(en) en.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('[data-toggle]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var el=document.querySelector(b.getAttribute('data-toggle'));
+      if(el) el.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('.vcard').forEach(function(c){
+    c.addEventListener('click', function(){ c.classList.toggle('open'); });
+  });
+  document.querySelectorAll('.opts').forEach(function(box){
+    box.querySelectorAll('.opt').forEach(function(o){
+      o.addEventListener('click', function(){
+        box.querySelectorAll('.opt').forEach(function(x){ x.classList.remove('ok','no'); });
+        if(o.hasAttribute('data-ok')) o.classList.add('ok');
+        else { o.classList.add('no');
+          var r=box.querySelector('[data-ok]'); if(r) r.classList.add('ok'); }
+      });
+    });
+  });
+  document.querySelectorAll('.choices').forEach(function(box){
+    box.querySelectorAll('.choice').forEach(function(o){
+      o.addEventListener('click', function(){
+        box.querySelectorAll('.choice').forEach(function(x){ x.classList.remove('ok','no'); });
+        o.classList.add(o.hasAttribute('data-ok')?'ok':'no');
+      });
+    });
+  });
+
+  var enVoice=null;
+  var loadVoice=function(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    enVoice = vs.filter(function(v){ return /en[-_]GB/i.test(v.lang); })[0]
+           || vs.filter(function(v){ return /^en/i.test(v.lang); })[0] || null;
+  };
+  if(synth){ loadVoice(); synth.onvoiceschanged=loadVoice; }
+  document.querySelectorAll('[data-speak]').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(!synth){ alert('Your browser cannot read the text aloud. Please open the page in Chrome.'); return; }
+      synth.cancel();
+      var u=new SpeechSynthesisUtterance(b.getAttribute('data-speak'));
+      u.lang='en-GB'; u.rate=parseFloat(b.getAttribute('data-rate')||'0.85');
+      if(enVoice) u.voice=enVoice;
+      synth.speak(u);
+    });
+  });
+})();
+</script>
+</body>
+</html>
