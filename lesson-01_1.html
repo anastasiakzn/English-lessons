@@ -1,0 +1,764 @@
+<title>Mini-group English · Lesson 1</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap">
+<style>
+  :root{
+    color-scheme: light;
+    --paper:#F6F5F8; --card:#FFFFFF; --ink:#241C2B; --ink-soft:#5B5266;
+    --line:#E0DCE6; --plum:#4A2C4D; --plum-soft:#7A5A7D; --gold:#8F6512;
+    --good:#2A7340; --good-bg:#E9F4ED; --bad:#AE3434; --bad-bg:#FAEBEB;
+    --chip:#F0ECF3; --r:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --paper:#17141B; --card:#211C28; --ink:#EDE8F2; --ink-soft:#AFA5BC;
+      --line:#352E3E; --plum:#D9B6DC; --plum-soft:#A98FAD; --gold:#E0B454;
+      --good:#78CE92; --good-bg:#1B2E22; --bad:#F09292; --bad-bg:#31201F;
+      --chip:#2B2433;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --paper:#17141B; --card:#211C28; --ink:#EDE8F2; --ink-soft:#AFA5BC;
+    --line:#352E3E; --plum:#D9B6DC; --plum-soft:#A98FAD; --gold:#E0B454;
+    --good:#78CE92; --good-bg:#1B2E22; --bad:#F09292; --bad-bg:#31201F;
+    --chip:#2B2433;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px; line-height:1.55;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding-inline:16px; padding-block:22px 48px;}
+
+  header.top{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:18px;}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--plum-soft); font-weight:700;}
+  h1{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:clamp(25px,5vw,35px); margin:0; line-height:1.1; text-wrap:balance;}
+  .meta{font-size:13px; color:var(--ink-soft); margin-top:4px;}
+  .rusbtn{
+    font-family:inherit; font-size:12px; font-weight:700; letter-spacing:.08em;
+    padding:7px 13px; border-radius:999px; cursor:pointer;
+    background:transparent; color:var(--plum); border:1.5px solid var(--plum);
+  }
+  .rusbtn[aria-pressed="true"]{background:var(--plum); color:var(--paper);}
+
+  nav.tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px; border-bottom:1px solid var(--line); padding-bottom:12px;}
+  .tab{
+    font-family:inherit; font-size:13px; font-weight:700; cursor:pointer;
+    padding:8px 14px; border-radius:999px; border:1px solid transparent;
+    background:var(--chip); color:var(--ink-soft);
+  }
+  .tab[aria-selected="true"]{background:var(--plum); color:var(--paper);}
+  .tab:focus-visible,button:focus-visible,input:focus-visible,.vc:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+
+  .panel[hidden]{display:none!important}
+  .lead{font-size:15px; color:var(--ink-soft); margin:0 0 18px;}
+
+  .ru{display:none; font-style:italic; color:var(--plum-soft); font-size:14.5px;}
+  .ruopen .ru, body.showrus .ru{display:block;}
+  .ru.inl{display:none}
+  .ruopen .ru.inl, body.showrus .ru.inl{display:inline;}
+
+  .mini{
+    font-family:inherit; font-size:10.5px; font-weight:700; letter-spacing:.09em;
+    padding:4px 10px; border-radius:999px; cursor:pointer; vertical-align:middle;
+    background:transparent; color:var(--gold); border:1.2px solid var(--gold);
+    white-space:nowrap;
+  }
+  .mini.on{background:var(--gold); color:var(--paper);}
+  .say{border-color:var(--plum-soft); color:var(--plum-soft); padding:4px 9px;}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px; margin-bottom:16px;}
+  .card h3{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--plum-soft); margin:0 0 12px; font-weight:700; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .card h3 em{font-style:italic; text-transform:none; letter-spacing:0;}
+
+  /* warm-up */
+  .frames{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .frames li{display:flex; flex-direction:column;}
+  .frames .ph{font-family:"Fraunces",Georgia,serif; font-size:19px;}
+  .frames .opt{font-size:14px; color:var(--ink-soft); margin-top:3px;}
+  .blank{display:inline-block; min-width:52px; border-bottom:2px solid var(--plum-soft);}
+
+  /* grammar: uses */
+  .use{display:flex; flex-direction:column; gap:11px; margin:0; padding:0; list-style:none;}
+  .use li{background:var(--chip); border-radius:11px; padding:13px 15px;}
+  .use .head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+  .use .num{font-size:11px; letter-spacing:.12em; color:var(--plum-soft); font-weight:700;}
+  .use .name{font-weight:700; color:var(--plum); font-size:16px;}
+  .use .eg{display:block; margin-top:6px; font-family:"Fraunces",Georgia,serif; font-size:16px;}
+  .use .ind{display:block; margin-top:5px; font-size:13.5px; color:var(--ink-soft);}
+  .use .ru{margin-top:8px; padding-top:8px; border-top:1px solid var(--line);}
+
+  /* grammar: schemes */
+  .sc{display:flex; flex-direction:column; gap:15px;}
+  .scg{border-left:3px solid var(--plum-soft); padding-left:13px;}
+  .scg .sign{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--plum-soft); font-weight:700; margin-bottom:7px;}
+  .scg .sign .ru{display:none; font-style:italic; text-transform:none; letter-spacing:0; font-size:13px;}
+  .ruopen .scg .sign .ru, body.showrus .scg .sign .ru{display:inline;}
+  .scg .row{padding:5px 0; border-bottom:1px dashed var(--line);}
+  .scg .row:last-child{border-bottom:none;}
+  .scg .line{display:flex; gap:12px; flex-wrap:wrap; align-items:baseline;}
+  .scg .form{flex:0 0 auto; min-width:240px; font-weight:700; color:var(--plum); font-size:15.5px;}
+  .scg .eg{font-family:"Fraunces",Georgia,serif; font-size:15.5px; color:var(--ink);}
+  .scg .ru{margin-top:3px; font-size:14px;}
+  .note{margin-top:13px; background:var(--chip); border-radius:10px; padding:11px 14px; font-size:14.5px; color:var(--ink-soft);}
+  .note b{color:var(--plum);}
+  .note .ru{margin-top:7px;}
+
+  /* exercise items */
+  ol.items{list-style:none; counter-reset:q; margin:0; padding:0; display:flex; flex-direction:column; gap:13px;}
+  ol.items > li{counter-increment:q; display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap;}
+  ol.items > li::before{
+    content:counter(q); flex:0 0 auto; width:23px; height:23px; margin-top:4px;
+    display:grid; place-items:center; border-radius:50%;
+    background:var(--chip); color:var(--plum); font-size:12px; font-weight:700;
+    font-variant-numeric:tabular-nums;
+  }
+  .qbody{flex:1 1 230px; min-width:0;}
+  .qtext{font-size:16px;}
+  .btns{display:flex; gap:6px; flex:0 0 auto; margin-top:3px;}
+  input.gap{
+    font-family:inherit; font-size:15px; width:140px; max-width:100%;
+    padding:4px 9px; border-radius:7px; border:1.5px solid var(--line);
+    background:var(--paper); color:var(--ink);
+  }
+  input.gap.wide{width:100%; margin-top:5px;}
+  .chk{
+    font-family:inherit; font-size:11px; font-weight:700; letter-spacing:.06em; cursor:pointer;
+    padding:5px 12px; border-radius:999px;
+    background:transparent; color:var(--plum); border:1.5px solid var(--plum);
+  }
+  .ruq{margin-top:5px;}
+  .fb{display:none; margin-top:7px; border-radius:9px; padding:9px 11px; font-size:14.5px; line-height:1.5;}
+  li.done .fb{display:block;}
+  .fb.ok{background:var(--good-bg); color:var(--good); font-weight:700;}
+  .fb.no{background:var(--bad-bg); color:var(--ink);}
+  .fb .right{color:var(--bad); font-weight:700; display:block; margin-bottom:4px;}
+  .fb.ok .right{color:var(--good);}
+  .fb .ru{margin-top:4px;}
+  li.done.okrow input.gap{border-color:var(--good);}
+  li.done.norow input.gap{border-color:var(--bad);}
+
+  .exfoot{margin-top:14px; padding-top:12px; border-top:1px solid var(--line); display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .copy{font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; padding:7px 14px; border-radius:999px; border:none; background:var(--plum); color:var(--paper);}
+  .cmsg{font-size:13px; color:var(--ink-soft);}
+  .cmsg.ok{color:var(--good); font-weight:700;}
+
+  /* vocabulary */
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:11px;}
+  .vc{
+    background:var(--chip); border:1px solid var(--line); border-radius:12px;
+    padding:13px 14px; cursor:pointer; text-align:left;
+    display:flex; flex-direction:column; gap:3px;
+  }
+  .vc .en{font-family:"Fraunces",Georgia,serif; font-size:19px; font-weight:600; line-height:1.15; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .vc .tr{font-size:13px; color:var(--plum-soft);}
+  .vc .df{font-size:13.5px; color:var(--ink-soft); line-height:1.4; margin-top:3px;}
+  .vc .rux{display:none; margin-top:7px; padding-top:7px; border-top:1px solid var(--line); font-size:15px; font-weight:700; color:var(--plum);}
+  .vc.flip .rux{display:block;}
+  .vc .tap{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--plum-soft); margin-top:7px;}
+  .vc.flip .tap{display:none;}
+
+  /* reading */
+  .story{display:flex; flex-direction:column; gap:10px;}
+  .sent .en{font-size:16.5px; line-height:1.6;}
+  .sent .en b{color:var(--plum); font-weight:700;}
+  .sent .bar{display:inline-flex; gap:6px; margin-left:8px; vertical-align:middle;}
+
+  .tf{display:flex; gap:6px; margin-top:5px;}
+  .tf button{
+    font-family:inherit; font-size:13px; font-weight:700; cursor:pointer;
+    padding:4px 14px; border-radius:999px; border:1.5px solid var(--line);
+    background:var(--paper); color:var(--ink-soft);
+  }
+  .tf button[aria-pressed="true"]{border-color:var(--plum); background:var(--plum); color:var(--paper);}
+
+  /* speaking */
+  .sp{display:flex; flex-direction:column; gap:12px; margin:0; padding:0; list-style:none; counter-reset:s;}
+  .sp li{counter-increment:s; display:flex; gap:10px; align-items:flex-start;}
+  .sp li::before{
+    content:counter(s); flex:0 0 auto; width:23px; height:23px; margin-top:3px;
+    display:grid; place-items:center; border-radius:50%;
+    background:var(--chip); color:var(--plum); font-size:12px; font-weight:700;
+  }
+  .sp .q{font-family:"Fraunces",Georgia,serif; font-size:17px;}
+  .sp .bar{display:inline-flex; gap:6px; margin-left:8px; vertical-align:middle;}
+
+  /* translation */
+  .tl{display:flex; flex-direction:column; gap:15px; margin:0; padding:0; list-style:none; counter-reset:t;}
+  .tl li{counter-increment:t; display:flex; gap:10px; align-items:flex-start;}
+  .tl li::before{
+    content:counter(t); flex:0 0 auto; width:23px; height:23px; margin-top:3px;
+    display:grid; place-items:center; border-radius:50%;
+    background:var(--chip); color:var(--plum); font-size:12px; font-weight:700;
+  }
+  .tl .ru0{font-size:16px;}
+  .tl .bar{display:inline-flex; gap:6px; margin-left:8px; vertical-align:middle;}
+  .tl .enx{display:none; margin-top:6px; font-family:"Fraunces",Georgia,serif; font-size:16.5px; color:var(--plum); line-height:1.5;}
+  .tl li.open .enx{display:block;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <span class="eyebrow">Mini-group · Lesson 1 · 6 October</span>
+      <h1>To be &amp; Present Simple</h1>
+      <div class="meta">Tuesday &amp; Friday, 12:00–12:50</div>
+    </div>
+    <button class="rusbtn" id="rusbtn" aria-pressed="false">RUS</button>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="p1">Warm-up</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p2">Grammar</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p3">Vocabulary</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p4">Reading</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p5">Speaking</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p6">Translation</button>
+  </nav>
+
+  <section class="panel" id="p1" role="tabpanel">
+    <p class="lead">Say these sentences about yourself.
+      <span class="ru inl">Скажите эти предложения о себе.</span></p>
+    <div class="card"><h3>About me</h3><ul class="frames" id="warm"></ul></div>
+  </section>
+
+  <section class="panel" id="p2" role="tabpanel" hidden>
+    <p class="lead">First the rules, then four exercises.
+      <span class="ru inl">Сначала правила, потом четыре упражнения.</span></p>
+    <div class="card"><h3>When do we use the Present Simple?</h3><ol class="use" id="uses"></ol></div>
+    <div class="card" id="sc1"><h3>Scheme 1 — the verb <em>to be</em></h3></div>
+    <div class="card" id="sc2"><h3>Scheme 2 — all other verbs</h3></div>
+    <div class="card"><h3>Exercise 1 — <em>to be</em></h3><ol class="items" id="g1"></ol><div class="exfoot" data-for="g1"></div></div>
+    <div class="card"><h3>Exercise 2 — other verbs</h3><ol class="items" id="g2"></ol><div class="exfoot" data-for="g2"></div></div>
+    <div class="card"><h3>Exercise 3 — <em>to be</em></h3><ol class="items" id="g3"></ol><div class="exfoot" data-for="g3"></div></div>
+    <div class="card"><h3>Exercise 4 — other verbs</h3><ol class="items" id="g4"></ol><div class="exfoot" data-for="g4"></div></div>
+  </section>
+
+  <section class="panel" id="p3" role="tabpanel" hidden>
+    <p class="lead">Ten words. Tap a card to see the translation.
+      <span class="ru inl">Десять слов. Нажмите на карточку, чтобы увидеть перевод.</span></p>
+    <div class="card"><h3>Word cards</h3><div class="cards" id="cards"></div></div>
+    <div class="card"><h3>Exercise 1 — fill in the word</h3><ol class="items" id="v1"></ol><div class="exfoot" data-for="v1"></div></div>
+    <div class="card"><h3>Exercise 2 — fill in the word</h3><ol class="items" id="v2"></ol><div class="exfoot" data-for="v2"></div></div>
+  </section>
+
+  <section class="panel" id="p4" role="tabpanel" hidden>
+    <p class="lead">One sentence each, then one question each.
+      <span class="ru inl">Читаем по предложению, потом каждая отвечает на свой вопрос.</span></p>
+    <div class="card"><h3>Text 1 — Anna's day</h3><div class="story" id="story1"></div></div>
+    <div class="card"><h3>Exercise 1 — one question each</h3><ol class="items" id="r1"></ol><div class="exfoot" data-for="r1"></div></div>
+    <div class="card"><h3>Text 2 — Nina</h3><div class="story" id="story2"></div></div>
+    <div class="card"><h3>Exercise 2 — true or false?</h3><ol class="items" id="r2"></ol><div class="exfoot" data-for="r2"></div></div>
+  </section>
+
+  <section class="panel" id="p5" role="tabpanel" hidden>
+    <p class="lead">One question each. Short answers — one sentence is enough.
+      <span class="ru inl">По одному вопросу каждой. Отвечаем коротко, одним предложением.</span></p>
+    <div class="card">
+      <h3>Your turn</h3>
+      <ol class="sp" id="speak"></ol>
+      <div class="note">Useful starts: <b>Yes, I am. · No, I'm not. · Yes, I do. · No, I don't. · I get up at… · Twice a week.</b></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p6" role="tabpanel" hidden>
+    <p class="lead">Translate out loud, sentence by sentence. Press EN to check yourself.
+      <span class="ru inl">Переводите вслух, по предложению. Нажмите EN, чтобы проверить себя.</span></p>
+    <div class="card"><h3>Translation</h3><ol class="tl" id="trans"></ol></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var canSpeak = ("speechSynthesis" in window) && ("SpeechSynthesisUtterance" in window);
+  function speak(t){
+    if(!canSpeak) return;
+    try{
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      u.lang = "en-GB"; u.rate = 0.85;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+  function sayBtn(text){
+    if(!canSpeak) return null;
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "mini say"; b.textContent = "▶";
+    b.setAttribute("aria-label", "Listen");
+    b.addEventListener("click", function(e){ e.stopPropagation(); speak(text); });
+    return b;
+  }
+  function ruBtn(host){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "mini"; b.textContent = "RUS";
+    b.addEventListener("click", function(e){
+      e.stopPropagation();
+      var on = host.classList.toggle("ruopen");
+      b.classList.toggle("on", on);
+    });
+    return b;
+  }
+  function el(tag, cls, txt){
+    var d = document.createElement(tag);
+    if(cls) d.className = cls;
+    if(txt !== undefined) d.textContent = txt;
+    return d;
+  }
+
+  /* ================= data ================= */
+
+  var WARM = [
+    {t:"Hello! My name is …"},
+    {t:"I am from …"},
+    {t:"I am a …", opt:"mother · teacher · engineer · lawyer · doctor · manager · accountant"},
+    {t:"My child is ___ years old."},
+    {t:"Today I am …", opt:"happy · tired · busy · fine · nervous · excited"}
+  ];
+
+  var USES = [
+    {n:"01", name:"Regular actions and facts in general",
+     eg:"I live in Petrozavodsk. My sister works at a school.",
+     ru:"Регулярные действия и факты вообще — то, что верно всегда.\nI live in Petrozavodsk. — Я живу в Петрозаводске.\nMy sister works at a school. — Моя сестра работает в школе."},
+    {n:"02", name:"Repeated actions",
+     ind:"Indicators: every day · usually · often · sometimes · seldom · never · twice a week · on Mondays",
+     eg:"I go to the pool twice a week. She often reads in the evening.",
+     ru:"Повторяющиеся действия.\nСлова-подсказки: каждый день · обычно · часто · иногда · редко · никогда · два раза в неделю · по понедельникам.\nI go to the pool twice a week. — Я хожу в бассейн два раза в неделю.\nShe often reads in the evening. — Она часто читает вечером."},
+    {n:"03", name:"Scientific facts",
+     eg:"Water boils at 100 degrees. The sun rises in the east.",
+     ru:"Научные факты и законы природы.\nWater boils at 100 degrees. — Вода кипит при 100 градусах.\nThe sun rises in the east. — Солнце встаёт на востоке."},
+    {n:"04", name:"Timetables — films, performances, flights, trains, buses",
+     eg:"The train leaves at 7:30 tomorrow. The film starts at eight tonight.",
+     ru:"Расписание: сеансы, спектакли, рейсы, поезда, автобусы.\nThe train leaves at 7:30 tomorrow. — Поезд отходит завтра в 7:30.\nThe film starts at eight tonight. — Фильм начинается сегодня в восемь.\nОбратите внимание: речь о будущем, а время всё равно Present Simple — потому что это расписание."}
+  ];
+
+  var SCHEMES = [
+    {host:"sc1",
+     note:"", noteRu:"To be — это «быть». По-русски мы его не произносим («Я мама»), по-английски пропустить нельзя. В вопросе to be выходит на первое место, а в отрицании к нему добавляется not.",
+     groups:[
+       {sign:"+  affirmative", signRu:"— утвердительные предложения", rows:[
+         {form:"I am", formRu:"я", eg:"I am a mother.", egRu:"Я мама."},
+         {form:"He / She / It is", formRu:"он / она / оно", eg:"She is at work.", egRu:"Она на работе."},
+         {form:"We / You / They are", formRu:"мы / ты, вы / они", eg:"They are at home.", egRu:"Они дома."}
+       ]},
+       {sign:"−  negative", signRu:"— отрицательные предложения", rows:[
+         {form:"I am not (I'm not)", formRu:"я не", eg:"I'm not busy today.", egRu:"Я сегодня не занята."},
+         {form:"He / She / It is not (isn't)", formRu:"он / она / оно не", eg:"She isn't at home.", egRu:"Её нет дома."},
+         {form:"We / You / They are not (aren't)", formRu:"мы / ты, вы / они не", eg:"They aren't tired.", egRu:"Они не устали."}
+       ]},
+       {sign:"?  question", signRu:"— вопросительные предложения", rows:[
+         {form:"Am I …?", formRu:"я …?", eg:"Am I late?", egRu:"Я опоздала?"},
+         {form:"Is he / she / it …?", formRu:"он / она / оно …?", eg:"Is she busy?", egRu:"Она занята?"},
+         {form:"Are we / you / they …?", formRu:"мы / ты, вы / они …?", eg:"Are you tired?", egRu:"Ты устала?"}
+       ]}
+     ]},
+    {host:"sc2",
+     note:"V1 is the first form of the verb — the infinitive without to: to work → work, to go → go.",
+     noteRu:"V1 — первая форма глагола, то есть инфинитив без частицы to: to work → work, to go → go. Главное правило: в третьем лице (he / she / it) глагол получает -s. А в отрицании и вопросе это -s забирает себе does, и глагол остаётся чистым: He doesn't work. Does he work?",
+     groups:[
+       {sign:"+  affirmative", signRu:"— утвердительные предложения", rows:[
+         {form:"I / We / You / They + V1", formRu:"я / мы / ты, вы / они + глагол", eg:"I work every day.", egRu:"Я работаю каждый день."},
+         {form:"He / She / It + V1 + s", formRu:"он / она / оно + глагол + s", eg:"She works every day.", egRu:"Она работает каждый день."}
+       ]},
+       {sign:"−  negative", signRu:"— отрицательные предложения", rows:[
+         {form:"I / We / You / They + don't + V1", formRu:"я / мы / ты, вы / они + don't + глагол", eg:"I don't work on Sunday.", egRu:"Я не работаю в воскресенье."},
+         {form:"He / She / It + doesn't + V1", formRu:"он / она / оно + doesn't + глагол", eg:"He doesn't work on Sunday.", egRu:"Он не работает в воскресенье."}
+       ]},
+       {sign:"?  question", signRu:"— вопросительные предложения", rows:[
+         {form:"Do + I / we / you / they + V1 …?", formRu:"Do + я / мы / ты, вы / они + глагол …?", eg:"Do you work on Sunday?", egRu:"Ты работаешь в воскресенье?"},
+         {form:"Does + he / she / it + V1 …?", formRu:"Does + он / она / оно + глагол …?", eg:"Does he work on Sunday?", egRu:"Он работает в воскресенье?"}
+       ]}
+     ]}
+  ];
+
+  var WORDS = [
+    ["family","/ˈfæməli/","the people you live with: parents and children","семья"],
+    ["husband","/ˈhʌzbənd/","the man a woman is married to","муж"],
+    ["daughter","/ˈdɔːtə/","somebody's female child","дочь"],
+    ["son","/sʌn/","somebody's male child","сын"],
+    ["tired","/ˈtaɪəd/","feeling that you need rest or sleep","уставший, уставшая"],
+    ["busy","/ˈbɪzi/","having a lot of things to do","занятый, занятая"],
+    ["usually","/ˈjuːʒuəli/","most of the time; almost always","обычно"],
+    ["twice a week","/ˌtwaɪs ə ˈwiːk/","two times in one week","два раза в неделю"],
+    ["at home","/ət ˈhəʊm/","in the place where you live","дома"],
+    ["get up","/ˌɡet ˈʌp/","to leave your bed in the morning","вставать"]
+  ];
+
+  var STORY1 = [
+    ["Anna is a young mother from Petrozavodsk.","Анна — молодая мама из Петрозаводска."],
+    ["She has a daughter, Masha, and Masha is two years old.","У неё есть дочь Маша, Маше два года."],
+    ["In the morning Anna is usually very busy: she makes breakfast and plays with Masha.","Утром Анна обычно очень занята: она готовит завтрак и играет с Машей."],
+    ["Her husband works in an office and comes home at six.","Её муж работает в офисе и приходит домой в шесть."],
+    ["In the evening Anna is tired, but she is happy, and she studies English twice a week.","Вечером Анна уставшая, но счастливая, и она учит английский два раза в неделю."]
+  ];
+
+  var STORY2 = [
+    ["Nina is forty and she lives in a small town near Petrozavodsk with her husband and her son.","Нине сорок, она живёт в маленьком городе рядом с Петрозаводском, с мужем и сыном."],
+    ["Her son is ten and he goes to school.","Её сыну десять, и он ходит в школу."],
+    ["Nina works in a shop four days a week.","Нина работает в магазине четыре дня в неделю."],
+    ["She doesn't drive, so she takes the bus, and the bus leaves at half past seven.","Она не водит машину, поэтому ездит на автобусе, а автобус отходит в половине восьмого."],
+    ["On Sunday the family is always at home, and Nina cooks a big dinner.","В воскресенье семья всегда дома, и Нина готовит большой обед."]
+  ];
+
+  var SPEAK = [
+    ["Are you tired today?","Ты сегодня устала?"],
+    ["Where are you from?","Откуда ты?"],
+    ["Is your family big?","У тебя большая семья?"],
+    ["What time do you get up?","Во сколько ты встаёшь?"],
+    ["How often do you cook?","Как часто ты готовишь?"]
+  ];
+
+  var TRANS = [
+    ["Меня зовут Ольга, я мама из Петрозаводска. Сегодня я не занята.","My name is Olga, I am a mother from Petrozavodsk. Today I'm not busy."],
+    ["Твой муж на работе?","Is your husband at work?"],
+    ["Моя сестра работает в школе и встаёт в шесть.","My sister works at a school and gets up at six."],
+    ["Мы не смотрим телевизор вечером.","We don't watch TV in the evening."],
+    ["Ты пьёшь кофе утром?","Do you drink coffee in the morning?"]
+  ];
+
+  var EX = {
+    g1:[
+      {q:"I __ a mother.", a:["am"], rus:"Я мама.", en:"After I we always use am.", ru:"После I всегда am."},
+      {q:"My son __ three years old.", a:["is"], rus:"Моему сыну три года.", en:"My son = he, so we use is.", ru:"My son — это he, поэтому is."},
+      {q:"We __ at home now.", a:["are"], rus:"Мы сейчас дома.", en:"We, you and they take are.", ru:"We, you, they берут are."},
+      {q:"My husband __ not busy today.", a:["is"], rus:"Мой муж сегодня не занят.", en:"My husband = he. The negative is he is not / isn't.", ru:"My husband — это he, отрицание: is not / isn't."},
+      {q:"__ you tired?", a:["are"], rus:"Ты устала?", en:"In a question the verb to be comes first: Are you…?", ru:"В вопросе to be выходит вперёд: Are you…?"}
+    ],
+    g2:[
+      {q:"She __ at a school. (work)", a:["works"], rus:"Она работает в школе.", en:"She is third person singular, so the verb takes -s.", ru:"She — третье лицо единственного числа, глагол получает -s."},
+      {q:"I __ up at seven. (get)", a:["get"], rus:"Я встаю в семь.", en:"After I the verb has no -s.", ru:"После I глагол без -s."},
+      {q:"He __ coffee. (not / like)", a:["doesn't like","does not like","doesnt like"], rus:"Он не любит кофе.", en:"For he we use doesn't, and then the verb loses its -s.", ru:"Для he берём doesn't, и глагол теряет -s."},
+      {q:"__ your daughter speak English?", a:["does"], rus:"Твоя дочь говорит по-английски?", en:"Your daughter = she, so the question starts with Does.", ru:"Your daughter — это she, вопрос начинается с Does."},
+      {q:"The train __ at 7:30 tomorrow. (leave)", a:["leaves"], rus:"Поезд отходит завтра в 7:30.", en:"A timetable takes the Present Simple even about tomorrow. The train = it, so leaves.", ru:"Расписание — это Present Simple, даже когда речь о завтра. The train — это it, значит leaves."}
+    ],
+    g3:[
+      {q:"My name __ Olga.", a:["is"], rus:"Меня зовут Ольга.", en:"My name = it, so is.", ru:"My name — это it, значит is."},
+      {q:"The children __ in the kitchen.", a:["are"], rus:"Дети на кухне.", en:"Children is plural, so are.", ru:"Children — множественное число, значит are."},
+      {q:"It __ cold today.", a:["is"], rus:"Сегодня холодно.", en:"It always takes is.", ru:"It всегда берёт is."},
+      {q:"I __ not a teacher.", a:["am"], rus:"Я не учительница.", en:"I am not — the short form is I'm not.", ru:"I am not — короткая форма I'm not."},
+      {q:"__ your husband at work?", a:["is"], rus:"Твой муж на работе?", en:"Your husband = he, and in a question is comes first.", ru:"Your husband — это he, и в вопросе is выходит вперёд."}
+    ],
+    g4:[
+      {q:"My mother __ in Moscow. (live)", a:["lives"], rus:"Моя мама живёт в Москве.", en:"My mother = she, so the verb takes -s.", ru:"My mother — это she, глагол получает -s."},
+      {q:"They __ TV in the evening. (not / watch)", a:["don't watch","do not watch","dont watch"], rus:"Они не смотрят телевизор вечером.", en:"They takes don't.", ru:"They берёт don't."},
+      {q:"__ you drink tea in the morning?", a:["do"], rus:"Ты пьёшь чай утром?", en:"A question with you starts with Do.", ru:"Вопрос с you начинается с Do."},
+      {q:"The bus __ at eight tomorrow. (come)", a:["comes"], rus:"Автобус придёт завтра в восемь.", en:"The bus = it, so comes. Timetables use the Present Simple.", ru:"The bus — это it, значит comes. Расписание — Present Simple."},
+      {q:"He __ on Sunday. (not / work)", a:["doesn't work","does not work","doesnt work"], rus:"Он не работает в воскресенье.", en:"He takes doesn't, and work stays without -s.", ru:"He берёт doesn't, и work остаётся без -s."}
+    ],
+    v1:[
+      {q:"My __ is at work until six.", a:["husband"], rus:"Мой муж на работе до шести.", en:"husband — the man a woman is married to.", ru:"husband — муж."},
+      {q:"In the evening I am very __.", a:["tired"], rus:"Вечером я очень уставшая.", en:"tired — feeling that you need rest or sleep.", ru:"tired — уставшая."},
+      {q:"On Sunday we are always __.", a:["at home"], rus:"В воскресенье мы всегда дома.", en:"at home — in the place where you live.", ru:"at home — дома."},
+      {q:"I __ at half past six every morning.", a:["get up"], rus:"Я встаю в полседьмого каждое утро.", en:"get up — to leave your bed in the morning.", ru:"get up — вставать утром."},
+      {q:"She is __ in the morning — she has a lot to do.", a:["busy"], rus:"Утром она занята — у неё много дел.", en:"busy — having a lot of things to do.", ru:"busy — занятая."}
+    ],
+    v2:[
+      {q:"I go to the pool __.", a:["twice a week"], rus:"Я хожу в бассейн два раза в неделю.", en:"twice a week — two times in one week.", ru:"twice a week — два раза в неделю."},
+      {q:"My __ is big: my parents, my sister and my brother.", a:["family"], rus:"Моя семья большая: родители, сестра и брат.", en:"family — the people you live with.", ru:"family — семья."},
+      {q:"I __ have coffee in the morning.", a:["usually"], rus:"Утром я обычно пью кофе.", en:"usually — most of the time, almost always.", ru:"usually — обычно."},
+      {q:"Her __ is ten and he goes to school.", a:["son"], rus:"Её сыну десять, и он ходит в школу.", en:"son — somebody's male child.", ru:"son — сын."},
+      {q:"We __ early on Monday. (leave your bed)", a:["get up"], rus:"В понедельник мы встаём рано.", en:"get up — to leave your bed in the morning.", ru:"get up — вставать утром."}
+    ],
+    r1:[
+      {q:"Where is Anna from?", wide:true, mode:"has", a:["petrozavodsk"], model:"She is from Petrozavodsk.", rus:"Откуда Анна?", en:"The answer is in sentence 1.", ru:"Ответ в первом предложении."},
+      {q:"How old is Masha?", wide:true, mode:"has", a:["two","2"], model:"She is two years old.", rus:"Сколько лет Маше?", en:"The answer is in sentence 2.", ru:"Ответ во втором предложении."},
+      {q:"When is Anna busy?", wide:true, mode:"has", a:["morning"], model:"She is busy in the morning.", rus:"Когда Анна занята?", en:"The answer is in sentence 3.", ru:"Ответ в третьем предложении."},
+      {q:"Where does her husband work?", wide:true, mode:"has", a:["office"], model:"He works in an office.", rus:"Где работает её муж?", en:"The answer is in sentence 4.", ru:"Ответ в четвёртом предложении."},
+      {q:"How often does Anna study English?", wide:true, mode:"has", a:["twice"], model:"She studies English twice a week.", rus:"Как часто Анна занимается английским?", en:"The answer is in sentence 5.", ru:"Ответ в последнем предложении."}
+    ],
+    r2:[
+      {q:"Nina lives in Petrozavodsk.", tf:true, a:["false"], rus:"Нина живёт в Петрозаводске.", en:"She lives in a small town near Petrozavodsk, not in the city.", ru:"Она живёт в маленьком городе рядом с Петрозаводском, а не в нём."},
+      {q:"Her son goes to school.", tf:true, a:["true"], rus:"Её сын ходит в школу.", en:"He is ten and he goes to school.", ru:"Ему десять, и он ходит в школу."},
+      {q:"Nina works every day.", tf:true, a:["false"], rus:"Нина работает каждый день.", en:"She works four days a week.", ru:"Она работает четыре дня в неделю."},
+      {q:"Nina drives to work.", tf:true, a:["false"], rus:"Нина ездит на работу на машине.", en:"She doesn't drive, she takes the bus.", ru:"Она не водит машину, ездит на автобусе."},
+      {q:"On Sunday Nina cooks a big dinner.", tf:true, a:["true"], rus:"В воскресенье Нина готовит большой обед.", en:"On Sunday the family is at home and she cooks.", ru:"В воскресенье семья дома, и она готовит."}
+    ]
+  };
+
+  /* ================= build ================= */
+
+  function norm(s){
+    return String(s).toLowerCase().replace(/[’`]/g,"'").replace(/[.,!?;:]+$/,"").replace(/\s+/g," ").trim();
+  }
+  function multiline(host, text){
+    text.split("\n").forEach(function(line, i){
+      if(i) host.appendChild(document.createElement("br"));
+      host.appendChild(document.createTextNode(line));
+    });
+  }
+
+  function buildItem(it){
+    var li = el("li");
+    var body = el("div","qbody");
+
+    if(it.tf){
+      body.appendChild(el("span","qtext", it.q));
+      var g = el("div","tf");
+      ["true","false"].forEach(function(v){
+        var b = el("button", null, v === "true" ? "True" : "False");
+        b.type = "button"; b.setAttribute("aria-pressed","false");
+        b.addEventListener("click", function(){
+          Array.prototype.forEach.call(g.querySelectorAll("button"), function(o){ o.setAttribute("aria-pressed","false"); });
+          b.setAttribute("aria-pressed","true");
+          li.dataset.val = v;
+        });
+        g.appendChild(b);
+      });
+      body.appendChild(g);
+    } else {
+      var parts = it.q.split("__");
+      var wrap = el("span","qtext");
+      var inp = document.createElement("input");
+      inp.className = "gap"; inp.type = "text"; inp.placeholder = "…";
+      inp.setAttribute("autocomplete","off"); inp.setAttribute("autocapitalize","off");
+      if(parts.length > 1){
+        wrap.appendChild(document.createTextNode(parts[0]));
+        wrap.appendChild(inp);
+        wrap.appendChild(document.createTextNode(parts[1]));
+        body.appendChild(wrap);
+      } else {
+        wrap.appendChild(document.createTextNode(it.q));
+        body.appendChild(wrap);
+        inp.classList.add("wide");
+        body.appendChild(inp);
+      }
+      if(it.wide) inp.classList.add("wide");
+    }
+
+    if(it.rus) body.appendChild(el("span","ru ruq", it.rus));
+    var fb = el("div","fb");
+    body.appendChild(fb);
+
+    var btns = el("div","btns");
+    var chk = el("button","chk","CHECK");
+    chk.type = "button";
+    btns.appendChild(chk);
+    btns.appendChild(ruBtn(li));
+
+    chk.addEventListener("click", function(){
+      var val = it.tf ? (li.dataset.val || "") : body.querySelector("input.gap").value;
+      var v = norm(val), ok;
+      if(!v) ok = false;
+      else if(it.mode === "has") ok = it.a.some(function(k){ return v.indexOf(norm(k)) !== -1; });
+      else ok = it.a.some(function(k){ return norm(k) === v; });
+
+      li.classList.add("done");
+      li.classList.toggle("okrow", ok);
+      li.classList.toggle("norow", !ok);
+      fb.className = "fb " + (ok ? "ok" : "no");
+      fb.textContent = "";
+
+      var right = el("span","right");
+      right.textContent = ok
+        ? (it.model ? "Correct — " + it.model : "Correct!")
+        : (it.model ? it.model : (it.tf ? (it.a[0] === "true" ? "True" : "False") : it.a[0]));
+      fb.appendChild(right);
+      fb.appendChild(el("span", null, it.en));
+      fb.appendChild(el("span","ru", it.ru));
+    });
+
+    li.appendChild(body);
+    li.appendChild(btns);
+    return li;
+  }
+
+  var LABELS = {
+    g1:"Grammar · Exercise 1 (to be)", g2:"Grammar · Exercise 2 (other verbs)",
+    g3:"Grammar · Exercise 3 (to be)", g4:"Grammar · Exercise 4 (other verbs)",
+    v1:"Vocabulary · Exercise 1", v2:"Vocabulary · Exercise 2",
+    r1:"Reading · Exercise 1", r2:"Reading · Exercise 2 (true / false)"
+  };
+
+  Object.keys(EX).forEach(function(id){
+    var ol = document.getElementById(id);
+    if(!ol) return;
+    EX[id].forEach(function(it){ ol.appendChild(buildItem(it)); });
+    var foot = document.querySelector('.exfoot[data-for="' + id + '"]');
+    if(!foot) return;
+    var b = el("button","copy","Скопировать мои ответы");
+    b.type = "button";
+    var m = el("span","cmsg");
+    b.addEventListener("click", function(){
+      var out = [LABELS[id] || id, ""];
+      Array.prototype.forEach.call(ol.children, function(li, i){
+        var inp = li.querySelector("input.gap");
+        var v = inp ? inp.value.trim() : (li.dataset.val || "");
+        out.push((i + 1) + ". " + (v || "—"));
+      });
+      var text = out.join("\n");
+      function ok(){ m.textContent = "Скопировано"; m.className = "cmsg ok"; }
+      function fail(){ m.textContent = "Не вышло — выделите вручную"; m.className = "cmsg"; }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(ok).catch(fail);
+      } else fail();
+    });
+    foot.appendChild(b); foot.appendChild(m);
+  });
+
+  var warmUl = document.getElementById("warm");
+  WARM.forEach(function(w){
+    var li = el("li");
+    var ph = el("span","ph");
+    if(w.t.indexOf("___") !== -1){
+      var pp = w.t.split("___");
+      ph.appendChild(document.createTextNode(pp[0]));
+      var bl = el("span","blank");
+      bl.appendChild(document.createTextNode("   "));
+      ph.appendChild(bl);
+      ph.appendChild(document.createTextNode(pp[1]));
+    } else ph.textContent = w.t;
+    li.appendChild(ph);
+    if(w.opt) li.appendChild(el("span","opt", w.opt));
+    warmUl.appendChild(li);
+  });
+
+  var usesOl = document.getElementById("uses");
+  USES.forEach(function(u){
+    var li = el("li");
+    var head = el("div","head");
+    head.appendChild(el("span","num", u.n));
+    head.appendChild(el("span","name", u.name));
+    head.appendChild(ruBtn(li));
+    li.appendChild(head);
+    if(u.ind) li.appendChild(el("span","ind", u.ind));
+    li.appendChild(el("span","eg", u.eg));
+    var r = el("div","ru");
+    multiline(r, u.ru);
+    li.appendChild(r);
+    usesOl.appendChild(li);
+  });
+
+  SCHEMES.forEach(function(s){
+    var host = document.getElementById(s.host);
+    host.querySelector("h3").appendChild(ruBtn(host));
+    var sc = el("div","sc");
+    s.groups.forEach(function(g){
+      var box = el("div","scg");
+      var sign = el("div","sign");
+      sign.appendChild(document.createTextNode(g.sign));
+      sign.appendChild(el("span","ru", " " + g.signRu));
+      box.appendChild(sign);
+      g.rows.forEach(function(r){
+        var row = el("div","row");
+        var line = el("div","line");
+        line.appendChild(el("span","form", r.form));
+        line.appendChild(el("span","eg", r.eg));
+        row.appendChild(line);
+        row.appendChild(el("div","ru", r.formRu + " · " + r.egRu));
+        box.appendChild(row);
+      });
+      sc.appendChild(box);
+    });
+    host.appendChild(sc);
+    var note = el("div","note");
+    if(s.note) note.appendChild(document.createTextNode(s.note));
+    note.appendChild(el("div","ru", s.noteRu));
+    host.appendChild(note);
+  });
+
+  var box = document.getElementById("cards");
+  WORDS.forEach(function(w){
+    var d = el("div","vc");
+    d.tabIndex = 0; d.setAttribute("role","button");
+    var en = el("span","en");
+    en.appendChild(document.createTextNode(w[0]));
+    var sb = sayBtn(w[0]);
+    if(sb) en.appendChild(sb);
+    d.appendChild(en);
+    d.appendChild(el("span","tr", w[1]));
+    d.appendChild(el("span","df", w[2]));
+    d.appendChild(el("span","rux", w[3]));
+    d.appendChild(el("span","tap","tap for Russian"));
+    function flip(){ d.classList.toggle("flip"); }
+    d.addEventListener("click", flip);
+    d.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); } });
+    box.appendChild(d);
+  });
+
+  function story(hostId, data, bolds){
+    var host = document.getElementById(hostId);
+    data.forEach(function(s){
+      var d = el("div","sent");
+      var en = el("span","en");
+      var html = s[0];
+      bolds.forEach(function(w){
+        html = html.replace(new RegExp("\\b" + w + "\\b","g"), "<b>" + w + "</b>");
+      });
+      en.innerHTML = html;
+      var bar = el("span","bar");
+      var sb = sayBtn(s[0]);
+      if(sb) bar.appendChild(sb);
+      bar.appendChild(ruBtn(d));
+      en.appendChild(bar);
+      d.appendChild(en);
+      d.appendChild(el("div","ru", s[1]));
+      host.appendChild(d);
+    });
+  }
+  story("story1", STORY1, ["is","has","makes","plays","works","comes","studies"]);
+  story("story2", STORY2, ["is","lives","goes","works","doesn't","takes","leaves","cooks"]);
+
+  var spOl = document.getElementById("speak");
+  SPEAK.forEach(function(p){
+    var li = el("li");
+    var wrap = el("div");
+    var q = el("span","q", p[0]);
+    var bar = el("span","bar");
+    var sb = sayBtn(p[0]);
+    if(sb) bar.appendChild(sb);
+    bar.appendChild(ruBtn(li));
+    q.appendChild(bar);
+    wrap.appendChild(q);
+    wrap.appendChild(el("div","ru", p[1]));
+    li.appendChild(wrap);
+    spOl.appendChild(li);
+  });
+
+  var tlOl = document.getElementById("trans");
+  TRANS.forEach(function(p){
+    var li = el("li");
+    var wrap = el("div");
+    var r = el("span","ru0", p[0]);
+    var bar = el("span","bar");
+    var b = el("button","mini","EN");
+    b.type = "button";
+    b.addEventListener("click", function(){
+      var on = li.classList.toggle("open");
+      b.classList.toggle("on", on);
+    });
+    bar.appendChild(b);
+    var sb = sayBtn(p[1]);
+    if(sb) bar.appendChild(sb);
+    r.appendChild(bar);
+    wrap.appendChild(r);
+    wrap.appendChild(el("div","enx", p[1]));
+    li.appendChild(wrap);
+    tlOl.appendChild(li);
+  });
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  tabs.forEach(function(t){
+    t.addEventListener("click", function(){
+      tabs.forEach(function(o){
+        var on = o === t;
+        o.setAttribute("aria-selected", on ? "true" : "false");
+        document.getElementById(o.dataset.p).hidden = !on;
+      });
+      if(canSpeak){ try{ window.speechSynthesis.cancel(); }catch(e){} }
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  });
+
+  var rb = document.getElementById("rusbtn");
+  rb.addEventListener("click", function(){
+    var on = rb.getAttribute("aria-pressed") === "true";
+    rb.setAttribute("aria-pressed", on ? "false" : "true");
+    document.body.classList.toggle("showrus", !on);
+  });
+})();
+</script>
