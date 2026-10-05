@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anna, 6 October</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EEF1EC; --sheet:#FFFFFF; --ink:#1E2B3A; --soft:#5B6878;
+  --blue:#2B4C7E; --mark:#F3D35B; --ok:#2E7D5B; --okbg:#E3F1EA;
+  --bad:#B33A3A; --badbg:#F7E4E4; --line:#CCD3CB;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", "Segoe UI", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{font-weight:700;font-size:2.2rem;line-height:1.15;margin:0}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0}
+.tab{font-family:var(--sans);font-weight:600;font-size:.92rem;border:0;background:none;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}
+section.active{display:block}
+h2{font-size:1.55rem;margin:0 0 12px}
+h3{font-size:1.15rem;margin:0 0 6px}
+.task{font-family:var(--sans);font-size:.95rem;color:var(--soft);margin:0 0 14px;max-width:68ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px}
+button{font-family:var(--sans)}
+.btn{font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:4px 10px;cursor:pointer;margin:2px 4px 2px 0}
+.btn:hover{border-color:var(--blue)}
+.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}
+.hidden{display:none !important}
+.en{color:var(--blue);font-style:italic}
+.ru{color:var(--soft);font-family:var(--sans);font-size:.9rem}
+.qlist{margin:0;padding-left:1.3em}
+.qlist li{margin:8px 0}
+
+/* parts inside a tab */
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.85rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.part{display:none}
+.part.active{display:block}
+
+/* quote */
+.quote{font-size:1.6rem;line-height:1.35;font-style:italic;margin:4px 0 6px;max-width:30ch}
+.src{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 16px}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px}
+.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}
+.card .tr{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:2px 0 6px}
+.card .def{font-size:.95rem;margin:0 0 6px}
+.card .ex2{font-size:.92rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+
+/* rows */
+.dl{padding:12px 0;border-bottom:1px solid var(--line)}
+.dl:last-of-type{border-bottom:0}
+.dl p{margin:0}
+.fb{font-size:.95rem}
+.fb .ex{margin:4px 0}
+.fb.okc{color:var(--ok)}
+.fb.badc{color:var(--bad)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#FBFCFA;border-radius:4px;padding:5px 12px;cursor:pointer;color:var(--ink)}
+.opts.col{flex-direction:column}
+.opt.okc{background:var(--okbg);border-color:var(--ok)}
+.opt.badc{background:var(--badbg);border-color:var(--bad)}
+input.gap{font-family:var(--serif);font-size:1rem;padding:2px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#FBFCFA;color:var(--ink);width:11em;max-width:100%}
+input.gap.okc{border-color:var(--ok);background:var(--okbg)}
+input.gap.badc{border-color:var(--bad);background:var(--badbg)}
+.hint{font-family:var(--sans);font-size:.85rem;color:var(--soft)}
+.bank{font-family:var(--sans);font-size:.9rem;background:#F4F6F2;border-radius:4px;padding:8px 12px;margin:0 0 12px}
+.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}
+.copied{font-family:var(--sans);font-size:.85rem;color:var(--ok)}
+.score{font-family:var(--sans);font-weight:700;font-size:.95rem;margin:10px 0 0}
+
+/* error clinic */
+.item{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.num{font-family:var(--sans);font-weight:700;color:var(--soft);font-size:.9rem;padding-top:4px}
+.chips{margin:0;line-height:2.1}
+.chip{font-family:var(--serif);font-size:1.02rem;color:var(--ink);background:none;border:0;border-bottom:1px dashed #A9B3A8;padding:0 2px;margin:0 2px;cursor:pointer;border-radius:2px}
+.chip:hover{background:#F4F6F2}
+.chip.wrong{background:var(--badbg);border-bottom-color:var(--bad);animation:nudge .25s}
+.chip.hit{background:linear-gradient(transparent 55%, var(--mark) 55%);text-decoration:line-through;text-decoration-color:var(--bad);border-bottom-color:transparent;cursor:default}
+.fix{font-family:var(--sans);font-weight:700;color:var(--ok);margin-left:4px}
+.item .fb,.item .actions{grid-column:2}
+.fixbox{margin-right:6px}
+@keyframes nudge{0%,100%{transform:translateX(0)}30%{transform:translateX(-3px)}70%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.chip.wrong{animation:none}}
+
+/* drill table */
+.tablewrap{overflow-x:auto}
+table.drill{border-collapse:collapse;width:100%;min-width:560px;font-size:.98rem}
+.drill th{font-family:var(--sans);font-size:.82rem;color:var(--soft);text-align:left;font-weight:600;padding:6px 8px;border-bottom:2px solid var(--line)}
+.drill td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.drill td.t{font-weight:600;white-space:nowrap}
+.drill td.m{color:var(--soft);font-style:italic}
+.drill tr.grp td{background:#F4F6F2;font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);padding:4px 8px}
+.base{font-size:1.35rem;font-weight:600;margin:0 0 4px}
+
+/* listening + speaking */
+.player{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cue{border:2px solid var(--blue);border-radius:6px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}
+.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}
+.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}
+.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+.ttext{font-size:1.08rem;line-height:1.9}
+.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+@media (max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.quote{font-size:1.3rem}}
+</style></head>
+<body>
+<header>
+  <h1>Welcome back, Anna</h1>
+  <p>Lesson of 6 October 2026</p>
+</header>
+<nav><div class="tabs" role="tablist" id="tabs"></div></nav>
+<main>
+
+<section data-title="Quote of the day">
+  <h2>Quote of the day</h2>
+  <div class="sheet">
+    <p class="quote">“The limits of my language mean the limits of my world.”</p>
+    <p class="src">Ludwig Wittgenstein</p>
+    <ol class="qlist">
+      <li>What do you think Wittgenstein meant? Do you agree with him?</li>
+      <li>Is there anything that is easier for you to express in English than in Russian?</li>
+      <li>Can a person be a brilliant English teacher and still feel limited when speaking? Why?</li>
+    </ol>
+  </div>
+</section>
+
+<section data-title="Vocabulary">
+  <h2>Vocabulary</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part">
+    <p class="task">Read the words and examples, then make up your own example for each one. Translation is under “RUS”.</p>
+    <div class="cards" id="cards"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Choose the right option</h3>
+    <div id="v1"></div>
+    <div class="copyrow"><button class="btn" data-copy="v1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Let's talk</h3>
+    <p class="task">Answer in detail and use the words in your answers.</p>
+    <ol class="qlist">
+      <li>How do you <b>juggle</b> teaching and the rest of your life, especially in a <b>hectic</b> week?</li>
+      <li>What is the <b>steepest learning curve</b> you've ever faced? How long did it take you to <b>get the hang of</b> it?</li>
+      <li>What do people <b>take for granted</b> about teachers? Do teachers <b>go the extra mile</b> more often than people in other jobs?</li>
+    </ol>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Complete the sentences</h3>
+    <p class="task">Write one word from the box in each gap, in the correct form.</p>
+    <p class="bank">juggle &nbsp; hectic &nbsp; curve &nbsp; hang &nbsp; granted &nbsp; extra</p>
+    <div id="v2"></div>
+    <div class="copyrow"><button class="btn" data-copy="v2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Grammar">
+  <h2>Grammar</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Speech drill</button><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part sheet">
+    <h3>Speech drill</h3>
+    <p class="base">She makes a mountain out of a molehill.</p>
+    <p class="task"><i>To make a mountain out of a molehill</i>: to treat a small problem as if it were a big one (делать из мухи слона). Say the sentence in every tense, using the time words. Then do the round again with negatives and questions.</p>
+    <div class="tablewrap"><table class="drill" id="drill"><thead><tr><th>Tense</th><th>Time words</th><th>Check</th></tr></thead><tbody></tbody></table></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Find and correct the mistake</h3>
+    <p class="task">Each sentence has one mistake, and all of them are slips from our lessons last year. Click the wrong part, then type the correct version.</p>
+    <div id="clinic"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Complete the sentences</h3>
+    <p class="task">Use the word in brackets in the correct form, or add the missing word.</p>
+    <div id="g2"></div>
+    <div class="copyrow"><button class="btn" data-copy="g2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Listening">
+  <h2>Listening: the teacher who stopped doing exercises</h2>
+  <div class="sheet">
+    <audio id="aud" src="anna0610-listening.mp3" preload="metadata" controls class="hidden" style="width:100%"></audio>
+    <div class="player" id="ttsPlayer">
+      <button class="btn solid" id="playL">▶ Play the recording</button>
+      <button class="btn" id="pauseL">Pause</button>
+      <button class="btn" id="stopL">Stop</button>
+    </div>
+    <p class="hint" id="ttsNote" style="margin:8px 0 0"></p>
+    <button class="btn" id="showT" style="margin-top:8px">Show transcript</button>
+    <p id="transcript" class="hidden" style="margin:12px 0 0"></p>
+  </div>
+  <div class="subnav" role="tablist">
+    <button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Answer the questions</h3>
+    <p class="task">Listen once and answer the questions orally, in full sentences.</p>
+    <div id="l1"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. True, false or not stated?</h3>
+    <p class="task">Listen again and decide.</p>
+    <div id="l2"></div>
+    <div class="copyrow"><button class="btn" data-copy="l2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Speaking">
+  <h2>Speaking</h2>
+  <div class="cue">
+    <p class="topic">Describe a time when you had to learn something new very quickly.</p>
+    <p style="margin:0">You should say:</p>
+    <ul>
+      <li>what you had to learn</li>
+      <li>why you had to learn it so quickly</li>
+      <li>how you went about it and what helped you</li>
+    </ul>
+    <p style="margin:8px 0 0">and explain how you felt once you had got the hang of it.</p>
+  </div>
+  <div class="sheet">
+    <p class="task" style="margin-bottom:6px">One minute to prepare (key words only), then two minutes to speak. Use at least three words from today.</p>
+    <button class="btn solid" id="startTalk">Start</button><button class="btn" id="resetTalk">Reset</button>
+    <div class="clock" id="clock">1:00</div>
+    <div class="phase" id="phase">Preparation</div>
+  </div>
+  <div class="sheet">
+    <h3>Let's discuss</h3>
+    <ol class="qlist">
+      <li>Do adults learn new skills differently from children? In what ways?</li>
+      <li>Why do so many learners stop making progress once they reach a certain level?</li>
+      <li>Has technology made learning easier, or just more distracting?</li>
+    </ol>
+  </div>
+</section>
+
+<section data-title="Homework">
+  <h2>Homework: translation</h2>
+  <p class="task">Translate the text into English sentence by sentence. Check yourself with “EN”.</p>
+  <div class="sheet ttext" id="ttext"></div>
+</section>
+</main>
+<script>
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+let uid=0;const nid=()=>"x"+(++uid);
+const stopSpeech=()=>{if("speechSynthesis" in window)speechSynthesis.cancel();};
+
+/* tabs */
+const sections=[...document.querySelectorAll("main > section")],tabs=document.getElementById("tabs");
+sections.forEach((s,i)=>{
+  const b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=s.dataset.title;
+  b.setAttribute("aria-selected",i===0);if(i===0)s.classList.add("active");
+  b.onclick=()=>{sections.forEach(x=>x.classList.remove("active"));s.classList.add("active");
+    [...tabs.children].forEach(t=>t.setAttribute("aria-selected","false"));b.setAttribute("aria-selected","true");window.scrollTo(0,0);};
+  tabs.appendChild(b);
+});
+sections.forEach(s=>{
+  const subs=[...s.querySelectorAll(".sub")],parts=[...s.querySelectorAll(".part")];if(!subs.length)return;
+  const show=k=>{parts.forEach((p,i)=>p.classList.toggle("active",i===k));subs.forEach((b,i)=>b.setAttribute("aria-selected",i===k));};
+  subs.forEach((b,k)=>b.onclick=()=>show(k));show(0);
+});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-toggle]");if(!b)return;const el=document.getElementById(b.dataset.toggle);if(el)el.classList.toggle("hidden");});
+function explain(en,ru){const id=nid();return `<p class="ex">${en} <button class="btn" data-toggle="${id}">RUS</button></p><p class="ex ru hidden" id="${id}">${ru}</p>`;}
+const norm=s=>s.toLowerCase().replace(/[’‘`]/g,"'").replace(/[.!?,]+$/,"").replace(/\s+/g," ").trim();
+
+/* ---------- vocabulary ---------- */
+const vocab=[
+ ["to juggle (sth)","ˈdʒʌɡl","to manage several jobs or activities at the same time","She juggles a full-time job, two kids and an evening course.","совмещать, «жонглировать» делами"],
+ ["hectic","ˈhektɪk","extremely busy and full of activity","It's been a hectic week: I haven't had a minute to myself.","суматошный, безумный (о графике)"],
+ ["a steep learning curve","ə ˌstiːp ˈlɜːnɪŋ kɜːv","a situation where you have to learn a lot very quickly","Moving to online teaching was a steep learning curve for me.","когда приходится очень быстро осваивать много нового"],
+ ["to get the hang of sth","ˈhæŋ","to learn how to do something, especially after some practice","It's tricky at first, but you'll soon get the hang of it.","освоиться, набить руку, разобраться"],
+ ["to take sth for granted","ˈɡrɑːntɪd","not to appreciate something because you've always had it","We take clean water for granted.","принимать как должное"],
+ ["to go the extra mile","ˌɡəʊ ði ˌekstrə ˈmaɪl","to make more effort than is expected of you","Good teachers go the extra mile for their students.","сделать больше, чем требуется; постараться на славу"]
+];
+document.getElementById("cards").innerHTML=vocab.map(([w,t,d,x,r])=>{const id=nid();
+ return `<div class="card"><div class="w">${w}</div><div class="tr">/${t}/</div><p class="def">${d}</p><p class="ex2">${x}</p><button class="btn" data-toggle="${id}">RUS</button> <span id="${id}" class="ru hidden">${r}</span></div>`;}).join("");
+
+const states={};
+function buildChoice(boxId,data,col){
+ states[boxId]={};
+ document.getElementById(boxId).innerHTML=data.map((m,i)=>`<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${m.q}</p><div class="opts${col?" col":""}">${m.o.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div><div class="fb"></div><button class="btn ans">Answer</button></div>`).join("");
+ document.querySelectorAll(`#${boxId} .dl`).forEach(row=>{
+  const i=+row.dataset.i,m=data[i],fb=row.querySelector(".fb");
+  const mark=(k,shown)=>{
+   if(states[boxId][i]===undefined)states[boxId][i]={v:shown?"(answer shown)":m.o[k],ok:!shown&&k===m.c};
+   row.querySelectorAll(".opt").forEach(b=>b.classList.remove("okc","badc"));
+   if(k===m.c){row.querySelector(`.opt[data-k="${k}"]`).classList.add("okc");fb.className="fb okc";fb.innerHTML=shown?explain(m.en,m.ru):`<p class="ex">Correct.</p>`;}
+   else{row.querySelector(`.opt[data-k="${k}"]`).classList.add("badc");fb.className="fb badc";fb.innerHTML=explain(m.en,m.ru);}
+  };
+  row.querySelectorAll(".opt").forEach(b=>b.onclick=()=>mark(+b.dataset.k,false));
+  row.querySelector(".ans").onclick=e=>{mark(m.c,true);e.target.classList.add("hidden");};
+ });
+}
+function buildGaps(boxId,data){
+ states[boxId]={};
+ document.getElementById(boxId).innerHTML=data.map((g,i)=>{
+  const inp=`<input class="gap" data-i="${i}" aria-label="Gap ${i+1}" autocomplete="off" spellcheck="false">`;
+  return `<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${g.q.replace("___",inp)}</p><div class="fb"></div><button class="btn chk">Check</button><button class="btn ans">Answer</button></div>`;}).join("");
+ document.querySelectorAll(`#${boxId} .dl`).forEach(row=>{
+  const i=+row.dataset.i,g=data[i],inp=row.querySelector("input"),fb=row.querySelector(".fb");
+  const check=()=>{const v=norm(inp.value);if(!v)return;const ok=g.a.map(norm).includes(v);
+   if(states[boxId][i]===undefined)states[boxId][i]={v:inp.value.trim(),ok};
+   inp.classList.remove("okc","badc");
+   if(ok){inp.classList.add("okc");fb.className="fb okc";fb.innerHTML=`<p class="ex">Correct.</p>`;}
+   else{inp.classList.add("badc");fb.className="fb badc";fb.innerHTML=explain(g.en,g.ru);}
+  };
+  row.querySelector(".chk").onclick=check;
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+  row.querySelector(".ans").onclick=e=>{if(states[boxId][i]===undefined)states[boxId][i]={v:"(answer shown)",ok:false};
+   inp.value=g.a[0];inp.classList.remove("badc");inp.classList.add("okc");fb.className="fb okc";fb.innerHTML=explain(g.en,g.ru);e.target.classList.add("hidden");};
+ });
+}
+
+buildChoice("v1",[
+ {q:"Starting a new job abroad was ___: I had to learn everything in a month.",o:["the extra mile","a steep learning curve","the hang of it"],c:1,
+  en:"A lot to learn in a short time is <i>a steep learning curve</i>.",ru:"Много нового за короткое время — a steep learning curve."},
+ {q:"This week has been absolutely ___: three exams and a parents' meeting.",o:["granted","juggled","hectic"],c:2,
+  en:"Very busy and full of activity: <i>hectic</i>.",ru:"Очень загруженный, суматошный — hectic."},
+ {q:"It took me a while, but now I've finally got ___ of online teaching.",o:["the hang","the curve","the mile"],c:0,
+  en:"The fixed phrase is <i>get the hang of something</i>.",ru:"Устойчивое выражение — get the hang of something."},
+ {q:"Too many people take their health ___ until they fall ill.",o:["the extra mile","for granted","the hang of"],c:1,
+  en:"<i>To take something for granted</i>: not to appreciate it because you've always had it.",ru:"To take something for granted — принимать как должное."},
+ {q:"Our manager always ___: she even answers clients' messages at weekends.",o:["takes it for granted","gets the hang of it","goes the extra mile"],c:2,
+  en:"Doing more than is expected: <i>go the extra mile</i>.",ru:"Делать больше, чем требуется, — go the extra mile."},
+ {q:"It's not easy to ___ a full-time job and two small children.",o:["juggle","get the hang of","take for granted"],c:0,
+  en:"Managing several things at once: <i>juggle</i>.",ru:"Совмещать несколько дел одновременно — juggle."}
+]);
+buildGaps("v2",[
+ {q:"She has been ___ two jobs and a baby for a year now.",a:["juggling"],
+  en:"The word is <i>juggle</i>; after <i>has been</i> we need the -ing form: <i>juggling</i>.",ru:"Слово juggle; после has been нужна форма на -ing: juggling."},
+ {q:"Last month was so ___ that I didn't have a single free evening.",a:["hectic"],
+  en:"<i>So</i> + adjective: <i>so hectic</i>.",ru:"So + прилагательное: so hectic."},
+ {q:"Learning to drive in a big city was a really steep learning ___.",a:["curve"],
+  en:"The phrase is <i>a steep learning curve</i>.",ru:"Выражение — a steep learning curve."},
+ {q:"Don't worry, you'll get the ___ of it after a couple of lessons.",a:["hang"],
+  en:"The fixed phrase is <i>get the hang of something</i>.",ru:"Устойчивое выражение — get the hang of something."},
+ {q:"We only realise how much we take clean water for ___ when it's gone.",a:["granted"],
+  en:"The fixed phrase is <i>take something for granted</i>.",ru:"Устойчивое выражение — take something for granted."},
+ {q:"Good teachers are always ready to go the ___ mile.",a:["extra"],
+  en:"The fixed phrase is <i>go the extra mile</i>.",ru:"Устойчивое выражение — go the extra mile."}
+]);
+
+/* ---------- speech drill ---------- */
+const drill=[
+ ["Present"],
+ ["Present Simple","always, every time, usually","She always makes a mountain out of a molehill."],
+ ["Present Continuous","now, look!, again","Look, she's making a mountain out of a molehill again!"],
+ ["Present Perfect","just, already, never","She has just made a mountain out of a molehill."],
+ ["Present Perfect Continuous","all morning, for an hour","She has been making a mountain out of a molehill all morning."],
+ ["Past"],
+ ["Past Simple","yesterday, last week","She made a mountain out of a molehill at yesterday's meeting."],
+ ["Past Continuous","when I came in, at 5 p.m. yesterday","She was making a mountain out of a molehill when I came in."],
+ ["Past Perfect","by the time, before","By the time I arrived, she had already made a mountain out of a molehill."],
+ ["Past Perfect Continuous","for an hour when / before","She had been making a mountain out of a molehill for an hour when her husband finally laughed."],
+ ["Future"],
+ ["Future Simple","tomorrow, I'm sure","I'm sure she will make a mountain out of a molehill tomorrow."],
+ ["Future Continuous","this time tomorrow","This time tomorrow she will be making a mountain out of a molehill again."],
+ ["Future Perfect","by the end of the day, by Friday","She will have made a mountain out of a molehill by the end of the day."],
+ ["Future Perfect Continuous","for two hours by the time","By the time we get there, she will have been making a mountain out of a molehill for two hours."]
+];
+document.querySelector("#drill tbody").innerHTML=drill.map(r=>{
+ if(r.length===1)return `<tr class="grp"><td colspan="3">${r[0]}</td></tr>`;
+ const id=nid();return `<tr><td class="t">${r[0]}</td><td class="m">${r[1]}</td><td><button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en hidden">${r[2]}</span></td></tr>`;}).join("");
+
+/* ---------- find and correct ---------- */
+const clinic=[
+ {p:["By the time we finally sat down,","the guests","waited","for over an hour","and were starving."],w:2,fix:["had been waiting","'d been waiting"],
+  en:"The waiting started earlier and continued up to a past moment (<i>by the time we sat down</i>), and <i>for over an hour</i> stresses duration: Past Perfect Continuous.",ru:"Ожидание началось раньше и длилось до момента в прошлом (by the time we sat down), а for over an hour подчёркивает длительность — Past Perfect Continuous."},
+ {p:["If I","took","that job in Moscow in 2020,","I would be living","there now."],w:1,fix:["had taken","'d taken"],
+  en:"A mixed conditional: an unreal <b>past</b> condition (<i>in 2020</i>) with a <b>present</b> result (<i>now</i>). The <i>if</i>-clause needs the Past Perfect.",ru:"Смешанное условное: нереальное условие в прошлом (in 2020) и результат в настоящем (now). В части с if нужен Past Perfect."},
+ {p:["Sorry,","my son","can't come to the phone:","he","went","to his granny's","for the weekend."],w:4,fix:["has gone","'s gone"],
+  en:"He went there and is still there, so the present result matters: Present Perfect. <i>Has gone to</i> = is there now; <i>has been to</i> = went and came back.",ru:"Он уехал и сейчас там — важен результат, поэтому Present Perfect. has gone to — уехал и ещё там; has been to — съездил и вернулся."},
+ {p:["I kept thinking about","an old friend","whom","I","haven't seen","for ages."],w:4,fix:["hadn't seen","had not seen"],
+  en:"The story is in the past, and the 'not seeing' started even earlier, so we use the Past Perfect.",ru:"Рассказ в прошлом, а «не видела» тянется из ещё более раннего времени — Past Perfect."},
+ {p:["I can't stand","a person","who","dislike","animals."],w:3,fix:["dislikes"],
+  en:"<i>Who</i> refers to <i>a person</i>, which is singular, so the verb takes -s.",ru:"Who относится к a person (единственное число), поэтому у глагола окончание -s."},
+ {p:["My study","is so cramped","because","lot of books","in it."],w:3,fix:["there are a lot of books","there are lots of books","there are so many books"],
+  en:"Russian can drop the verb (<i>потому что много книг</i>), English can't: we need <i>there are</i>, and <i>a lot of</i> needs its article.",ru:"В русском глагол можно опустить, в английском нет: нужно there are, а в a lot of — артикль."},
+ {p:["Could you","take","your laptop","when you come","to my place tomorrow?"],w:1,fix:["bring"],
+  en:"<i>Bring</i> means movement towards the speaker (here: to my place). <i>Take</i> means away from the speaker.",ru:"Bring — движение к говорящему (сюда, ко мне). Take — от говорящего (туда)."},
+ {p:["He","was hearing","my talk","very carefully","and took notes."],w:1,fix:["was listening to"],
+  en:"<i>Hear</i> is perception: it just happens. <i>Listen to</i> is a deliberate action. Also, <i>hear</i> is rarely used in the continuous.",ru:"Hear — восприятие, «слышать». Listen to — намеренно «слушать». К тому же hear почти не бывает в Continuous."}
+];
+const cst={};
+(function(){
+ const box=document.getElementById("clinic");
+ box.innerHTML=clinic.map((it,i)=>`<div class="item" data-i="${i}"><div class="num">${i+1}</div><p class="chips">${it.p.map((c,j)=>`<button class="chip" data-j="${j}">${esc(c)}</button>`).join(" ")}</p>
+  <div class="fb"></div>
+  <div class="actions"><span class="fixbox hidden"><input class="gap" aria-label="Correct version" autocomplete="off" spellcheck="false"> <button class="btn chk">Check</button></span><button class="btn ans">Answer</button></div></div>`).join("")
+  +`<p class="score"></p><div class="copyrow"><button class="btn" data-copy="clinic">Copy my answers</button><span class="copied"></span></div>`;
+ const upd=()=>{const ok=Object.values(cst).filter(s=>s.ok).length,done=Object.values(cst).filter(s=>s.done).length;
+  box.querySelector(".score").textContent=`Correct on the first try: ${ok} of ${clinic.length}`+(done<clinic.length?` (${clinic.length-done} left)`:"");};
+ box.querySelectorAll(".item").forEach(row=>{
+  const i=+row.dataset.i,it=clinic[i],fb=row.querySelector(".fb"),fbox=row.querySelector(".fixbox"),inp=fbox.querySelector("input");
+  cst[i]={click:null,typed:null,ok:false,done:false};const st=cst[i];
+  const finish=(showKey)=>{st.done=true;const hit=row.querySelector(`.chip[data-j="${it.w}"]`);hit.classList.add("hit");
+   if(!row.querySelector(".fix"))hit.insertAdjacentHTML("afterend",`<span class="fix">${it.fix[0]}</span>`);
+   row.querySelectorAll(".chip").forEach(c=>c.disabled=true);fbox.classList.add("hidden");row.querySelector(".ans").classList.add("hidden");
+   fb.className="fb okc";fb.innerHTML=explain(it.en,it.ru);upd();};
+  row.querySelectorAll(".chip").forEach(ch=>ch.onclick=()=>{if(st.done)return;const j=+ch.dataset.j;
+   if(st.click===null)st.click=j;
+   if(j===it.w){row.querySelectorAll(".chip").forEach(c=>c.classList.remove("wrong"));ch.classList.add("hit");
+     fbox.classList.remove("hidden");fb.className="fb";fb.innerHTML=`<p class="ex">Yes, this is the mistake. Now type the correct version.</p>`;inp.focus();}
+   else{ch.classList.remove("wrong");void ch.offsetWidth;ch.classList.add("wrong");fb.className="fb badc";fb.innerHTML=`<p class="ex">“${esc(it.p[j])}” is fine here. Look again.</p>`;}});
+  const check=()=>{const v=norm(inp.value);if(!v)return;const good=it.fix.map(norm).includes(v);
+   if(st.typed===null){st.typed=inp.value.trim();st.ok=good&&st.click===it.w;}
+   inp.classList.remove("okc","badc");
+   if(good){inp.classList.add("okc");finish();}
+   else{inp.classList.add("badc");fb.className="fb badc";fb.innerHTML=`<p class="ex">Not quite. Try again or press “Answer”.</p>`;}};
+  fbox.querySelector(".chk").onclick=check;inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+  row.querySelector(".ans").onclick=()=>{if(st.typed===null)st.typed="(answer shown)";st.ok=false;finish();};
+ });
+})();
+
+/* ---------- grammar exercise 2 ---------- */
+buildGaps("g2",[
+ {q:"I ___ (not / get) used to driving on the left yet, so I'm still extremely careful.",a:["haven't got","have not got","haven't gotten","have not gotten"],
+  en:"<i>Get used to</i> is the process of becoming accustomed. <i>Yet</i> needs the Present Perfect: <i>haven't got used to</i>.",ru:"Get used to — процесс привыкания. С yet нужен Present Perfect: haven't got used to."},
+ {q:"After ten years in the city, she ___ (be / get) used to the noise and doesn't even notice it any more.",a:["is","'s"],
+  en:"<i>Be used to</i> describes a state: she is already accustomed to it.",ru:"Be used to — состояние: она уже привыкла."},
+ {q:"When I moved to London, I ___ (not / be) used to queuing, but I soon got used to it.",a:["wasn't","was not"],
+  en:"<i>Be used to</i> + -ing in the past: <i>I wasn't used to queuing</i>. Don't confuse it with <i>used to</i> + infinitive (past habits).",ru:"Be used to + -ing в прошлом: I wasn't used to queuing. Не путать с used to + инфинитив (привычки в прошлом)."},
+ {q:"If she ___ (not / miss) the train this morning, she would be here by now.",a:["hadn't missed","had not missed"],
+  en:"Mixed conditional: an unreal past condition (<i>this morning</i>) with a present result (<i>by now</i>), so the Past Perfect in the <i>if</i>-clause.",ru:"Смешанное условное: нереальное условие в прошлом (this morning) и результат в настоящем (by now) — Past Perfect в части с if."},
+ {q:"If I ___ (be) more organised, I wouldn't have forgotten about yesterday's meeting.",a:["were","was"],
+  en:"The other type of mixed conditional: a general present fact (<i>I'm not organised</i>) causes a past result. The <i>if</i>-clause takes the Past Simple: <i>were</i> (or <i>was</i> in informal speech).",ru:"Второй тип смешанного условного: постоянное свойство в настоящем повлияло на прошлое. В части с if — Past Simple: were (в разговорной речи was)."},
+ {q:"___ (finish) the report, she finally went home.",a:["having finished","after finishing"],
+  en:"A perfect participle clause shows that one action was completed before the next: <i>Having finished…</i>",ru:"Перфектный причастный оборот показывает, что одно действие завершилось раньше другого: Having finished…"},
+ {q:"___ (not / know) what to say, I just smiled and nodded.",a:["not knowing"],
+  en:"A participle clause giving the reason; the negative <i>not</i> goes before the participle: <i>Not knowing…</i>",ru:"Причастный оборот со значением причины; not ставится перед причастием: Not knowing…"},
+ {q:"The woman ___ (stand) by the window is our new director.",a:["standing"],
+  en:"A reduced relative clause with an active meaning: <i>who is standing</i> → <i>standing</i>.",ru:"Сокращённое определительное придаточное с активным значением: who is standing → standing."},
+ {q:"Most of the speakers ___ (invite) to the conference came from abroad.",a:["invited"],
+  en:"A reduced relative clause with a passive meaning: <i>who were invited</i> → <i>invited</i>.",ru:"Сокращённое определительное придаточное с пассивным значением: who were invited → invited."},
+ {q:"I asked two colleagues for help, but ___ of them had time. (neither / none / either)",a:["neither"],
+  en:"Two people and a negative meaning: <i>neither of them</i>.",ru:"Речь о двух людях, значение отрицательное — neither of them."},
+ {q:"I've got three brothers, and ___ of them speaks English. (neither / none / either)",a:["none"],
+  en:"More than two people and a negative meaning: <i>none of them</i>.",ru:"Больше двух, значение отрицательное — none of them."},
+ {q:"You can take ___ road: they both lead to the lake. (neither / none / either)",a:["either"],
+  en:"One of two, it doesn't matter which: <i>either</i> + singular noun.",ru:"Любая из двух, неважно какая — either + существительное в единственном числе."},
+ {q:"I wonder where ___ (she / go) after the meeting yesterday.",a:["she went"],
+  en:"An indirect question keeps statement word order, and <i>yesterday</i> needs the Past Simple: <i>where she went</i>.",ru:"Косвенный вопрос — прямой порядок слов, а yesterday требует Past Simple: where she went."},
+ {q:"I go to the dentist once ___ six months.",a:["every"],
+  en:"For regular frequency: <i>once every six months</i>.",ru:"Для регулярной частоты: once every six months."},
+ {q:"By the end of this year, I ___ (teach) English for twenty years.",a:["will have been teaching","'ll have been teaching"],
+  en:"Duration up to a point in the future (<i>by the end of this year… for twenty years</i>): Future Perfect Continuous.",ru:"Длительность вплоть до момента в будущем (by the end of this year… for twenty years) — Future Perfect Continuous."}
+]);
+
+/* ---------- listening ---------- */
+const story=`Helen has taught English for almost fifteen years, and she believes teachers make the most stubborn learners. "We know the rules inside out," she says, "so we take our own English for granted." Last year her school merged with another one. Suddenly she was juggling twice as many groups, and her weeks became so hectic that she had no time left for her own studies. When she finally came back to them, she noticed something odd. Her grammar was as accurate as ever, but her speech sounded flat. "I was speaking like a coursebook," she laughs. "Correct, but nobody actually talks like that." A colleague suggested she stop doing exercises altogether and spend the time talking instead: podcasts, long conversations, even arguing with herself in the car. At first it was a steep learning curve. Real people speak fast, interrupt each other and use phrases that never appear in textbooks. But within three months she had got the hang of it and had picked up dozens of expressions she had never taught. Now she goes the extra mile to bring this into her own lessons: every week her students listen to an unscripted conversation and steal three phrases from it. "That's where real fluency lives," she says. "In how people argue, hesitate and change their minds."`;
+document.getElementById("transcript").textContent=story;
+const aud=document.getElementById("aud"),ttsP=document.getElementById("ttsPlayer"),note=document.getElementById("ttsNote");
+aud.addEventListener("loadedmetadata",()=>{aud.classList.remove("hidden");ttsP.classList.add("hidden");note.textContent="";});
+let voice=null;
+function pickVoice(){try{const vs=speechSynthesis.getVoices();voice=vs.find(v=>v.lang==="en-GB")||vs.find(v=>/^en/i.test(v.lang))||null;
+ if(!aud.classList.contains("hidden"))return;
+ note.textContent=vs.length&&!voice?"This browser has no English voice. Open the page in Chrome, Edge or Safari.":"";}catch(e){}}
+if("speechSynthesis" in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+else note.textContent="This browser can't read the text aloud. Open the page in Chrome, Edge or Safari.";
+/* read sentence by sentence: long single utterances get cut off in Chrome */
+const chunks=story.match(/[^.!?]+[.!?]+["”]?\s*/g).map(s=>s.trim());
+document.getElementById("playL").onclick=()=>{
+ if(!("speechSynthesis" in window))return;stopSpeech();
+ chunks.forEach(c=>{const u=new SpeechSynthesisUtterance(c);u.lang="en-GB";if(voice)u.voice=voice;u.rate=0.95;speechSynthesis.speak(u);});
+};
+document.getElementById("pauseL").onclick=e=>{if(!("speechSynthesis" in window))return;
+ if(speechSynthesis.paused){speechSynthesis.resume();e.target.textContent="Pause";}else if(speechSynthesis.speaking){speechSynthesis.pause();e.target.textContent="Resume";}};
+document.getElementById("stopL").onclick=()=>{stopSpeech();document.getElementById("pauseL").textContent="Pause";};
+document.getElementById("showT").onclick=e=>{const t=document.getElementById("transcript");t.classList.toggle("hidden");e.target.textContent=t.classList.contains("hidden")?"Show transcript":"Hide transcript";};
+
+const l1=[
+ ["Why, according to Helen, are teachers stubborn learners?","They know the rules inside out, so they take their own English for granted."],
+ ["What did she notice when she came back to her studies, and what did her colleague suggest?","Her grammar was as accurate as ever, but her speech sounded flat, like a coursebook. The colleague suggested she stop doing exercises and spend the time talking instead."],
+ ["How has the experience changed her own lessons?","Every week her students listen to an unscripted conversation and pick out three phrases from it."]
+];
+document.getElementById("l1").innerHTML=l1.map(([q,a],i)=>{const id=nid();return `<div class="dl"><p><b>${i+1}.</b> ${q}</p><button class="btn" data-toggle="${id}">Answer</button><span id="${id}" class="en hidden">${a}</span></div>`;}).join("");
+const tfn=["True","False","Not stated"];
+buildChoice("l2",[
+ {q:"Helen has been teaching English for about fifteen years.",c:0,en:"She has taught English for almost fifteen years.",ru:"Она преподаёт почти пятнадцать лет."},
+ {q:"Helen's school closed down last year.",c:1,en:"It didn't close: it merged with another school.",ru:"Школа не закрылась, а объединилась с другой."},
+ {q:"Her grammar got worse during the break.",c:1,en:"Her grammar was as accurate as ever; it was her speech that sounded flat.",ru:"Грамматика осталась такой же точной; «плоской» стала речь."},
+ {q:"The colleague who gave her the advice was also an English teacher.",c:2,en:"The speaker only says “a colleague”; we don't know what she teaches.",ru:"Сказано только «коллега», что она преподаёт, неизвестно."},
+ {q:"At first she found real conversations easy to follow.",c:1,en:"It was a steep learning curve: people speak fast and interrupt each other.",ru:"Сначала было трудно: люди говорят быстро и перебивают друг друга."},
+ {q:"Her students now listen to an unscripted conversation every week.",c:0,en:"Every week they listen to one and take three phrases from it.",ru:"Каждую неделю они слушают такой разговор и берут из него три фразы."},
+ {q:"Helen is planning to write a book about fluency.",c:2,en:"There is nothing about a book in the recording.",ru:"О книге в записи ничего не говорится."}
+].map(x=>({...x,o:tfn})));
+
+/* ---------- speaking timer ---------- */
+let tId=null;
+const clock=document.getElementById("clock"),phase=document.getElementById("phase");
+const fmt=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;
+document.getElementById("resetTalk").onclick=()=>{clearInterval(tId);clock.textContent="1:00";phase.textContent="Preparation";document.getElementById("startTalk").textContent="Start";};
+document.getElementById("startTalk").onclick=e=>{
+ clearInterval(tId);let s=60,stage=1;e.target.textContent="Restart";phase.textContent="Preparation";clock.textContent=fmt(s);
+ tId=setInterval(()=>{s--;
+  if(s<=0&&stage===1){stage=2;s=120;phase.textContent="Speak now";}
+  else if(s<=0&&stage===2){clearInterval(tId);clock.textContent="0:00";phase.textContent="Time's up";return;}
+  clock.textContent=fmt(s);},1000);
+};
+
+/* ---------- homework ---------- */
+const tr=[
+ ["Я не занималась английским почти год: этот год выдался очень суматошным.","I haven't studied English for almost a year: it's been a really hectic year."],
+ ["Мне приходилось совмещать работу, учёбу и семью, и времени на себя почти не оставалось.","I had to juggle work, studies and family, and there was hardly any time left for myself."],
+ ["Раньше я принимала свой английский как должное.","I used to take my English for granted."],
+ ["Вчера коллега спросила меня, сколько слов должен знать ученик уровня C1, и я поняла, что никогда об этом не задумывалась.","Yesterday a colleague asked me how many words a C1 student should know, and I realised I had never thought about it."],
+ ["Сначала придётся многое осваивать заново, но я уверена, что быстро освоюсь.","At first it will be a steep learning curve, but I'm sure I'll soon get the hang of it."],
+ ["Короче, пора возвращаться в форму.","In short, it's time to get back into shape."]
+];
+document.getElementById("ttext").innerHTML=tr.map(([r,e])=>{const id=nid();return `<span>${r}</span> <button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en enout hidden">${e}</span> `;}).join("");
+
+/* ---------- copy answers ---------- */
+function copyText(t,btn){
+ const done=()=>{const s=btn.nextElementSibling;s.textContent="Copied";setTimeout(()=>s.textContent="",1800);};
+ const fb=()=>{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");done();}catch(e){}a.remove();};
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,fb);else fb();
+}
+const titles={v1:"Vocabulary, exercise 1",v2:"Vocabulary, exercise 2",g2:"Grammar, exercise 2",l2:"Listening, exercise 2",clinic:"Grammar, exercise 1"};
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-copy]");if(!b)return;const k=b.dataset.copy;let lines;
+ if(k==="clinic"){lines=clinic.map((it,i)=>{const s=cst[i];if(s.click===null&&s.typed===null)return `${i+1}. —`;
+   const c=s.click===null?"—":`“${it.p[s.click]}”`;return `${i+1}. clicked ${c}, wrote: ${s.typed??"—"}${s.typed==="(answer shown)"?"":(s.ok?" ✓":" ✗")} → ${it.fix[0]}`;});}
+ else{const n=document.querySelectorAll(`#${k} .dl`).length,st=states[k];
+  lines=[...Array(n).keys()].map(i=>{const s=st[i];if(!s)return `${i+1}. —`;return `${i+1}. ${s.v}${s.v==="(answer shown)"?"":(s.ok?" ✓":" ✗")}`;});}
+ copyText([titles[k]].concat(lines).join("\n"),b);
+});
+</script>
+</body>
+</html>
