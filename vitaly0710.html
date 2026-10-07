@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vitaliy · Translation Workout III</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#f3f4f0; --surface:#ffffff; --surface2:#eceee8; --ink:#1c2230; --muted:#5d6574;
+  --line:#d9dcd3; --accent:#2c5a86; --accent-ink:#ffffff; --mark:#f3d47a;
+  --ok:#2d7a4c; --ok-bg:#e3f1e8; --bad:#b0413a; --bad-bg:#f8e5e3;
+  --serif:"Literata",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#15181f; --surface:#1d212b; --surface2:#252a36; --ink:#e7e9ee; --muted:#9aa2b1;
+    --line:#333a48; --accent:#7fb0e0; --accent-ink:#10141b; --mark:#6b5a24;
+    --ok:#7ccf9c; --ok-bg:#1c3326; --bad:#f09a92; --bad-bg:#3a2020;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#15181f; --surface:#1d212b; --surface2:#252a36; --ink:#e7e9ee; --muted:#9aa2b1;
+  --line:#333a48; --accent:#7fb0e0; --accent-ink:#10141b; --mark:#6b5a24;
+  --ok:#7ccf9c; --ok-bg:#1c3326; --bad:#f09a92; --bad-bg:#3a2020;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-inline:16px;padding-block:20px 60px}
+header.top .eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+header.top h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,4vw,2rem);margin:2px 0 4px;text-wrap:balance}
+header.top p{margin:0;color:var(--muted);font-size:.95rem}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:6px;overflow-x:auto;padding-block:12px;margin-top:14px;border-bottom:1px solid var(--line);scrollbar-width:thin}
+nav.tabs button{flex:0 0 auto;font:600 .85rem var(--sans);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav.tabs button .n{color:var(--muted);font-weight:500;margin-right:4px;font-variant-numeric:tabular-nums}
+nav.tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+nav.tabs button[aria-selected="true"] .n{color:inherit;opacity:.75}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.panel{padding-top:18px}
+.phead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin-bottom:6px}
+.phead h2{font-family:var(--serif);font-weight:600;font-size:1.35rem;margin:0}
+.meta{font-size:.8rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.instr{margin:0 0 16px;color:var(--muted);max-width:68ch}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.q{display:flex;gap:10px;align-items:flex-start}
+.q .num{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600;min-width:1.6em}
+.q .txt{font-family:var(--serif);font-size:1.05rem;flex:1}
+.sub{color:var(--muted);font-family:var(--serif)}
+.sub.wrongline{color:var(--ink)}
+.lbl{font:700 .72rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.key{font:700 .75rem var(--sans);letter-spacing:.04em;background:var(--mark);color:var(--ink);padding:2px 7px;border-radius:4px;white-space:nowrap}
+.body{padding-left:calc(1.6em + 10px);display:flex;flex-direction:column;gap:8px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.opt{font:500 .95rem var(--serif);text-align:left;border:1px solid var(--line);background:var(--surface2);color:var(--ink);padding:7px 12px;border-radius:6px;cursor:pointer;width:100%}
+.opt:hover{border-color:var(--accent)}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.opts{display:flex;flex-direction:column;gap:6px}
+input.gap{font:500 1rem var(--sans);padding:5px 9px;border:1px solid var(--line);border-radius:6px;background:var(--surface2);color:var(--ink);width:min(100%,260px)}
+input.gap.inl{width:min(100%,190px);margin:2px 2px}
+.ok-f{border-color:var(--ok)!important;background:var(--ok-bg)!important}
+.bad-f{border-color:var(--bad)!important;background:var(--bad-bg)!important}
+textarea{font:1rem var(--sans);width:100%;min-height:58px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface2);color:var(--ink);resize:vertical}
+.btn{font:600 .85rem var(--sans);padding:6px 12px;border-radius:6px;cursor:pointer;border:1px solid var(--accent);background:transparent;color:var(--accent)}
+.btn.solid{background:var(--accent);color:var(--accent-ink)}
+.fb:empty{display:none}
+.fb{font-size:.93rem}
+.good{color:var(--ok);font-weight:600}
+.wrong{color:var(--bad);font-weight:600}
+.ru{color:var(--muted)}
+.model{background:var(--surface2);border-radius:6px;padding:8px 10px;font-family:var(--serif)}
+.model small{display:block;font-family:var(--sans);color:var(--muted);margin-top:4px}
+.inline{font-family:var(--serif);font-size:1.05rem;line-height:2.1}
+.inline i{color:var(--muted)}
+.pool,.built{display:flex;flex-wrap:wrap;gap:6px;min-height:40px;padding:6px;border-radius:8px}
+.built{border:1px dashed var(--line);background:var(--surface2)}
+.built.ok-f,.built.bad-f{border-style:solid}
+.tile{font:500 .98rem var(--serif);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:4px 10px;border-radius:6px;cursor:pointer}
+.tile:hover{border-color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.78rem;background:var(--surface2);border:1px solid var(--line);padding:2px 8px;border-radius:999px;color:var(--muted)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:18px}
+.half{display:flex;flex-direction:column;gap:6px}
+.words{display:flex;flex-wrap:wrap;gap:4px;font-family:var(--serif);font-size:1.05rem}
+.w{border:1px solid transparent;background:none;color:var(--ink);font:inherit;padding:1px 4px;border-radius:4px;cursor:pointer}
+.w:hover{border-color:var(--line);background:var(--surface2)}
+.w.hit{background:var(--bad-bg);color:var(--bad);text-decoration:line-through}
+.w.miss{color:var(--muted)}
+.btn.listen{font-size:.75rem;padding:2px 8px;vertical-align:middle}
+.who{display:inline-block;font:700 .72rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-right:8px}
+.item.alt{margin-left:clamp(0px,4vw,28px)}
+.choice{display:inline-flex;flex-wrap:wrap;gap:4px;margin:0 3px;vertical-align:middle}
+.ch{font:500 .95rem var(--serif);border:1px dashed var(--accent);background:var(--surface2);color:var(--ink);padding:1px 8px;border-radius:5px;cursor:pointer}
+.ch.ok{border-style:solid;border-color:var(--ok);background:var(--ok-bg);color:var(--ok);font-weight:600}
+.ch.bad{border-style:solid;border-color:var(--bad);background:var(--bad-bg);color:var(--bad);text-decoration:line-through}
+.ch.off{opacity:.35;text-decoration:line-through;cursor:default}
+.match{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.match .col{display:flex;flex-direction:column;gap:6px}
+.card{font:1rem var(--serif);text-align:left;border:1px solid var(--line);background:var(--surface2);color:var(--ink);padding:8px 10px;border-radius:8px;cursor:pointer}
+.card:hover{border-color:var(--accent)}
+.card.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.card.ok{border-color:var(--ok);background:var(--ok-bg);color:var(--ok);cursor:default}
+.card.bad{border-color:var(--bad);background:var(--bad-bg)}
+.start{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-family:var(--serif);font-size:1.05rem}
+.lead{font-weight:600}
+input.gap.wide{width:min(100%,520px);flex:1 1 260px}
+.src{display:flex;flex-direction:column;gap:4px;font-family:var(--serif);font-size:1.03rem;line-height:1.7}
+.para{gap:2px 0}
+.found{display:flex;flex-direction:column;gap:4px;font-size:.93rem}
+.found:empty{display:none}
+.pair{font-family:var(--serif)}
+.pair s{color:var(--bad)}
+.art-title{font-family:var(--serif);font-weight:600;font-size:1.15rem;margin:0}
+.dir{font:700 .7rem var(--sans);letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Translation Masterclass · part 4</div>
+    <h1>Translation Workout III</h1>
+    <p>Vitaliy · 7 October · new word list · grammar review · 8 new formats · about 90 minutes</p>
+  </header>
+  <nav class="tabs" id="tabs" role="tablist"></nav>
+  <main id="panels"></main>
+</div>
+
+<script>
+/* =========================================================
+   Answer patterns: {a|b} = one of the options, [x] = optional.
+   Checking ignores case, punctuation, contractions and UK/US spelling.
+   ========================================================= */
+
+/* ---------- Format 1: translation traps  {{correct|wrong|wrong}} ---------- */
+const B1=[
+ ["Его рост — метр девяносто.","His {{height|growth|tallness}} is 1.90 metres.","Рост человека — height. Growth — рост в смысле увеличения, развития."],
+ ["Рост компании в этом году удивил всех.","The company's {{growth|height|rising up}} this year {{surprised|was surprised|was surprising}} everyone.","Рост компании (увеличение) — growth. «Удивил всех» — активный залог: surprised everyone."],
+ ["Он работал больше, чем все остальные, а потом ушёл в отпуск.","He worked more {{than|then}} everyone else, and {{then|than}} he went on holiday.","Than — «чем» (сравнение). Then — «потом, тогда»."],
+ ["Эта обувь очень удобная.","This {{footwear is|footwear are|footwears are}} very comfortable.","Footwear — неисчисляемое: без -s, глагол в единственном числе."],
+ ["Я сделал почти всё домашнее задание.","I have done {{almost all|almost every|almost each}} my {{homework|homeworks|home tasks}}.","Homework — неисчисляемое. Every/each не ставятся перед my + неисчисляемым — нужно almost all (of) my homework."],
+ ["Что он тебе сказал?","What did he {{say to|say|tell to}} you?","Say to sb; tell sb (без to). «Say you» и «tell to you» — ошибки."],
+ ["Давай обсудим это с менеджером.","Let's {{discuss it|discuss about it|discuss over it}} {{with|to|for}} the manager.","Discuss sth with sb — без about."],
+ ["Пришли мне ссылку на описание товара.","Send me the {{link to|link on|reference on}} the product {{description|describing|discription}}.","Link to sth (не on). Description — существительное."],
+ ["Это временное решение, но оно очень эффективное.","It's a {{temporary|temporal|timely}} solution, but it's very {{effective|affective|effectful}}.","Temporary — временный. Temporal — «временной» (относящийся ко времени как категории)."],
+ ["Он взял на себя ответственность за ошибку.","He {{took responsibility|took a responsibility|got responsibility}} {{for|of|about}} the mistake.","Take responsibility for sth — обычно без артикля."],
+ ["Сухость кожи — частая проблема зимой.","{{Dryness|Dry|Dryity}} of the skin is a common problem in winter.","Существительное — dryness (dry skin — другая конструкция, с прилагательным)."],
+ ["Мы купили горящий тур дешевле, чем ожидали.","We bought a {{last-minute package tour|hot tour|burning tour}} cheaper {{than|then}} we had expected.","Горящий тур — last-minute package tour (hot tour — калька). Чем — than."]
+];
+
+/* ---------- Format 2: tense match (groups of 3) ---------- */
+const B2=[
+ ["accept",[["Вчера он принял предложение.","He accepted the offer yesterday."],["К тому времени он уже принял предложение.","He had already accepted the offer by then."],["Говорят, что он принял предложение.","He is said to have accepted the offer."]]],
+ ["discuss",[["Мы обсуждаем это с командой.","We are discussing it with the team."],["Мы обсуждаем это с командой уже час.","We have been discussing it with the team for an hour."],["Это обсуждается с командой.","It is being discussed with the team."]]],
+ ["future",[["Поезд вот-вот отправится.","The train is about to leave."],["Поезд должен отправиться в 6.","The train is due to leave at 6."],["Поезд, скорее всего, опоздает.","The train is likely to be late."]]],
+ ["if",[["Если бы он вчера взял велосипед, он бы успел.","If he had taken the bicycle yesterday, he would have made it."],["Если бы у него был велосипед, он бы не опаздывал.","If he had a bicycle, he wouldn't be late."],["Если бы он вчера взял велосипед, он бы сейчас не был таким уставшим.","If he had taken the bicycle yesterday, he wouldn't be so tired now."]]],
+ ["participles",[["Прочитав описание, он купил обувь.","Having read the description, he bought the footwear."],["Читая описание, он нашёл ошибку.","Reading the description, he found a mistake."],["Описание, написанное на английском, было непонятным.","The description, written in English, was unclear."]]]
+];
+
+/* ---------- Format 3: finish the translation ---------- */
+const B3=[
+ ["Говорят, что этот бренд выпускает лучшую спортивную обувь.","This brand is said",["to {make|produce|manufacture} the best {sports |sport |athletic |}footwear"],"to make the best sports footwear.","Subject + is said + to V (настоящее время). Footwear — без -s."],
+ ["Считается, что рост цен временный.","The growth of prices",["is {believed|considered|thought} to be temporary"],"is believed to be temporary.","Is believed/considered to be + прилагательное."],
+ ["Не хочу сглазить, но, похоже, мы сделали почти всё.","I don't want to",["{endanger the success|endanger our success|jinx it} but {it seems|it looks like|apparently} [that ]we have done almost everything","{endanger the success|endanger our success|jinx it} but we seem to have done almost everything"],"endanger the success, but it seems we have done almost everything.","Сглазить — endanger the success (разг. jinx it). Почти всё — almost everything."],
+ ["Ростом этот игрок выше всех в команде.","This player is",["taller than {everyone|everybody|anyone|anybody}[ else] {in|on} the team","the tallest {in|on} the team","the tallest player {in|on} the team"],"taller than anyone else in the team.","«Ростом выше» — taller (а не higher). Than — чем."],
+ ["Если бы ты тогда прислал мне ссылку, я бы уже прочитал статью.","If you had sent me the link then,",["i would {already have|have already} read the article","i would have read the article[ already]"],"I would already have read the article.","Третий тип: would have + V3."],
+ ["Ожидается, что команда возьмёт на себя ответственность.","The team is expected",["to take responsibility[ for it]"],"to take responsibility.","Is expected to + V; take responsibility — без артикля."],
+ ["Мы обсуждали значение этого слова, когда вошёл учитель.","We were",["discussing the meaning of {this|that|the} word when the teacher {came in|entered|walked in|came into the room|entered the room}"],"discussing the meaning of this word when the teacher came in.","Past Continuous (обсуждали) прерван Past Simple (вошёл)."],
+ ["Я потерял нить разговора, потому что меня постоянно перебивали.","I lost the thread",["of the conversation because i {was constantly being|kept being|was always being|was constantly|was being constantly} interrupted"],"of the conversation because I kept being interrupted.","Lose the thread of — потерять нить. Пассив в Past Continuous: was being interrupted."],
+ ["К концу месяца он будет ездить на работу на велосипеде уже год.","By the end of the month,",["he will have been {cycling|riding a bicycle|riding his bicycle|riding a bike|riding his bike|going by bicycle|going by bike} to work for a year[ already]","he will {already have|have already} been {cycling|riding a bicycle|riding his bicycle|riding a bike|riding his bike} to work for a year"],"he will have been cycling to work for a year.","Future Perfect Continuous: will have been + -ing."]
+];
+
+/* ---------- Format 4: edit the translation  {wrong|fix|explanation} ---------- */
+const B4RU="В последнее время я часто покупаю обувь онлайн. В прошлый раз я заказал кроссовки известного бренда за 9 000 рублей. В описании было сказано, что они подходят для бега и езды на велосипеде. Когда я их получил, они оказались меньше, чем я ожидал. Я написал в магазин и обсудил проблему с менеджером. Он сказал мне, что магазин возьмёт на себя ответственность и вернёт деньги. Удивительно, но уже через два дня деньги вернули.";
+const B4EN="Lately I often {buy|have often bought / have been buying|Lately (в последнее время) требует Present Perfect: have often bought / have been buying.} footwear online. Last time I ordered trainers of a famous brand for 9,000 {rouble.|roubles.|После числа больше одного — множественное число: roubles.} The description said that they were suitable {to|for|Suitable for sth.} running and cycling. When I got them, they turned out to be smaller {then|than|«Чем» — than.} I had expected. I wrote to the shop and discussed {about|— (удалить)|Discuss sth — без about.} the problem with the manager. He {said|told|Tell sb / say to sb: He told me…} me that the shop would take {a|— (удалить)|Take responsibility — без артикля.} responsibility and return the money. {Surprising,|Surprisingly,|В начале предложения нужно наречие: Surprisingly, …} the money was returned in just two days.";
+
+/* ---------- Format 5: RU → EN full ---------- */
+const B5=[
+ ["Говорят, что рост продаж этого бренда был удивительным.",
+  ["it is said that the growth {in|of} {this brand's sales|the sales of this brand|sales of this brand|this brand's sales|the brand's sales} was surprising","the growth {in|of} {this brand's sales|the sales of this brand|sales of this brand|the brand's sales} is said to have been surprising"],
+  "It is said that the growth in this brand's sales was surprising. / The growth in this brand's sales is said to have been surprising.",
+  "Безличный пассив; рост продаж — growth in/of sales; прошлое → to have been."],
+ ["Тетрадь, оставленная на столе, принадлежала новому студенту.",
+  ["the notebook {left|which had been left|that had been left|which was left|that was left} on the table belonged to the new student"],
+  "The notebook left on the table belonged to the new student.",
+  "Причастие прошедшего времени (left) вместо придаточного; belong to."],
+ ["Если бы он тогда взял на себя ответственность, у нас сейчас не было бы этих проблем.",
+  ["{if he had taken|had he taken} responsibility[ for it][ then][ back then] we would not have these problems[ now]","{if he had taken|had he taken} responsibility[ for it][ then][ back then] we would not now have these problems"],
+  "If he had taken responsibility then, we wouldn't have these problems now.",
+  "Смешанный тип: If + Past Perfect → would + V (сейчас). Take responsibility."],
+ ["В какой степени этот метод эффективнее, чем старый?",
+  ["to what extent is this method more effective than the old one","to what extent is this method more effective than the old method"],
+  "To what extent is this method more effective than the old one?",
+  "To what extent + вопросительный порядок; more effective than."],
+ ["Мы как раз собирались обсудить домашнее задание, когда он позвонил.",
+  ["we were [just ]about to discuss {the |our |}homework when he {called|rang|phoned}[ us]"],
+  "We were just about to discuss the homework when he called.",
+  "Was/were about to — собирались вот-вот; discuss sth (без about)."],
+ ["Этот велосипед временно продаётся за пять тысяч рублей.",
+  ["this {bicycle|bike} is {temporarily being sold|being sold temporarily|temporarily sold|temporarily on sale} for {5000|5 thousand} roubles","this {bicycle|bike} is {being sold|sold|on sale} for {5000|5 thousand} roubles temporarily"],
+  "This bicycle is temporarily being sold for 5,000 roubles.",
+  "Пассив (is being sold / is sold); temporarily — наречие от temporary."],
+ ["Они уже десять минут ругались на повышенных тонах, когда я наконец понял значение его слов.",
+  ["they had [already ]been {arguing|quarreling|shouting|fighting} in raised voices for 10 minutes[ already] when i finally {understood|realized|got} the meaning of his words"],
+  "They had been arguing in raised voices for ten minutes when I finally understood the meaning of his words.",
+  "Past Perfect Continuous; in raised voices; the meaning of."],
+ ["Лучше не обсуждать это сейчас, чтобы не сглазить.",
+  ["it is better not to discuss {it|this} now {so as not to|in order not to|not to} {endanger the success|jinx it}","{it is better|we had better|you had better} not {to |}discuss {it|this} now {so as not to|in order not to|not to|so that we do not|so we do not|or we will} {endanger the success|jinx it}"],
+  "It's better not to discuss it now so as not to endanger the success.",
+  "Отрицательная цель: so as not to / in order not to. Сглазить — endanger the success (разг. jinx it)."]
+];
+
+/* ---------- Format 6: upgrade the translation ---------- */
+const B6=[
+ ["Он, скорее всего, примет предложение.","Probably he will accept the offer.","LIKELY",["he is likely to accept the offer"],"He is likely to accept the offer.","Be likely to + V — скорее всего."],
+ ["Поезд вот-вот уйдёт.","The train will leave very soon.","ABOUT",["the train is about to {leave|go|depart}"],"The train is about to leave.","Be about to + V — вот-вот."],
+ ["Компания на грани банкротства.","The company will go bankrupt very soon.","VERGE",["the company is on the verge of {bankruptcy|going bankrupt}"],"The company is on the verge of bankruptcy.","Be on the verge of + сущ. / -ing."],
+ ["Говорят, что эта обувь очень удобная.","People say that this footwear is very comfortable.","SAID",["this footwear is said to be very comfortable","it is said that this footwear is very comfortable"],"This footwear is said to be very comfortable.","Безличный пассив."],
+ ["Узнав значение слова, он улыбнулся.","When he learnt the meaning of the word, he smiled.","HAVING",["having {learnt|learned|found out|understood} the meaning of the word he smiled"],"Having learnt the meaning of the word, he smiled.","Перфектный причастный оборот: Having + V3."],
+ ["Посылка должна прийти завтра (по графику).","The parcel will arrive tomorrow according to the schedule.","DUE",["the parcel is due {to arrive|to come|} tomorrow"],"The parcel is due to arrive tomorrow.","Be due to — по расписанию, по плану."],
+ ["Вряд ли он поймёт значение этого слова.","I don't think he will understand the meaning of this word.","UNLIKELY",["he is unlikely to understand the meaning of {this|the} word"],"He is unlikely to understand the meaning of this word.","Be unlikely to + V — вряд ли."],
+ ["Кто-то украл мой велосипед.","Someone has stolen my bicycle.","BEEN",["my {bicycle|bike} has been stolen"],"My bicycle has been stolen.","Пассив в Present Perfect: has been + V3."],
+ ["Шум мешал ему работать.","The noise disturbed his work.","INTERFERED",["the noise interfered with his work","the noise interfered with his working"],"The noise interfered with his work.","Interfere with sth — мешать чему-то."]
+];
+
+/* ---------- Format 7: sight translation (oral) ---------- */
+const B7=[
+ ["Lately, more and more people in Russia have been buying footwear from local brands.","В последнее время всё больше людей в России покупают обувь местных брендов."],
+ ["One of them, a small company from Kazan, has grown surprisingly fast.","Одна из них, небольшая компания из Казани, выросла удивительно быстро."],
+ ["Its sales are said to have tripled over the last two years.","Говорят, что за последние два года её продажи выросли втрое."],
+ ["Having started with a single shop, the company now sells almost everything online.","Начав с одного магазина, компания теперь продаёт почти всё онлайн."],
+ ["Each product page contains a detailed description and a link to a video review.","Каждая страница товара содержит подробное описание и ссылку на видеообзор."],
+ ["The founders, who had worked for a large brand before, took responsibility for every stage of production.","Основатели, которые раньше работали в крупном бренде, взяли на себя ответственность за каждый этап производства."],
+ ["Prices start at 4,000 roubles, which is much lower than those of foreign competitors.","Цены начинаются от 4 000 рублей — это намного ниже, чем у иностранных конкурентов."],
+ ["Experts believe this growth is unlikely to be temporary: the brand is on the verge of entering foreign markets.","Эксперты считают, что этот рост вряд ли временный: бренд на пороге выхода на зарубежные рынки."]
+];
+
+/* ---------- Format 8: interpreter ---------- */
+const B8=[
+ ["Customer","ru","Здравствуйте! Я ищу велосипед для сына. Его рост — примерно 150 сантиметров.","Hello! I'm looking for a bicycle for my son. His height is about 150 centimetres."],
+ ["Assistant","en","Of course. For a child of that height, this model is the best choice. It's temporarily on sale: it costs 20 per cent less than usual.","Конечно. Для ребёнка такого роста эта модель — лучший выбор. Сейчас на неё временная скидка: она стоит на 20 процентов дешевле, чем обычно."],
+ ["Customer","ru","Звучит хорошо. Можно мне ссылку на описание, чтобы я обсудил это с женой?","Sounds good. Could I get a link to the description so that I can discuss it with my wife?"],
+ ["Assistant","en","Sure, I'll send it to you. But I should warn you: this model is likely to sell out by the weekend.","Конечно, я вам её пришлю. Но должен предупредить: эту модель, скорее всего, раскупят к выходным."],
+ ["Customer","ru","В прошлый раз я ждал слишком долго и упустил скидку. Не хочу сглазить, но, кажется, сейчас всё получится.","Last time I waited too long and missed the discount. I don't want to endanger the success (jinx it), but it seems everything will work out this time."],
+ ["Assistant","en","If you had come yesterday, you would have got a free helmet as well. Unfortunately, that offer has already ended.","Если бы вы пришли вчера, вы бы ещё получили шлем в подарок. К сожалению, эта акция уже закончилась."],
+ ["Customer","ru","Ничего страшного, я принимаю ваше предложение. А сколько это будет в рублях?","Never mind, I accept your offer. And how much is that in roubles?"],
+ ["Assistant","en","Roughly 25,000 roubles. And if anything goes wrong with the bike, we take full responsibility for repairs during the first year.","Примерно 25 000 рублей. И если с велосипедом что-то будет не так, в течение первого года мы берём на себя полную ответственность за ремонт."]
+];
+
+/* ======================= CHECKING ======================= */
+const SPELL={realise:"realize",realised:"realized",neighbour:"neighbor",neighbours:"neighbors",cancelling:"canceling",cancelled:"canceled",quarrelling:"quarreling",favour:"favor",gotten:"got",two:"2",three:"3",four:"4",five:"5",six:"6",seven:"7",nine:"9",eight:"8",ten:"10",fifteenth:"15th",xv:"15th"};
+const spellRe=new RegExp("\\b("+Object.keys(SPELL).join("|")+")\\b","g");
+const PP=/^(been|had|made|got|done|gone|come|left|felt|kept|said|told|stuck|bought|thought|brought|built|sent|spent|lost|met|paid|heard|put|let|set|seen|known|taken|given|written|already|never|just|finished|\w+ed)$/;
+function baseClean(s){return s.toLowerCase().replace(/[’`ʼ]/g,"'").replace(/[-–—]/g," ").replace(/[.,!?;:"“”«»…()]/g," ").replace(/o'clock/g,"oclock").replace(spellRe,m=>SPELL[m]).replace(/\s+/g," ").trim();}
+function normInput(s){
+  s=baseClean(s).replace(/won't/g,"will not").replace(/can't/g,"cannot").replace(/can not/g,"cannot").replace(/n't/g," not").replace(/'ll/g," will").replace(/'re/g," are").replace(/'ve/g," have").replace(/'m/g," am");
+  const t=s.split(" ");
+  for(let i=0;i<t.length;i++){
+    const m=t[i].match(/^(\w+)'(d|s)$/);if(!m)continue;const nx=t[i+1]||"";
+    if(m[2]==="d")t[i]=m[1]+(nx==="better"||PP.test(nx)?" had":" would");
+    else if(/^(due|likely|unlikely|about|expected|said|believed|thought|going|on)$/.test(nx))t[i]=m[1]+" is";
+    else if(["it","that","there","what","who","he","she","where","here"].includes(m[1]))t[i]=m[1]+(/^(been|got|gone|had|come|never)$/.test(nx)?" has":" is");
+  }
+  return t.join(" ").replace(/'/g,"").replace(/\s/g,"");
+}
+function patRe(p){
+  p=baseClean(p.replace(/[{}\[\]|]/g,c=>({"{":"\u0001","}":"\u0002","[":"\u0003","]":"\u0004","|":"\u0005"}[c]))).replace(/'/g,"").replace(/\s/g,"");
+  let r="";for(const c of p){r+=c==="\u0001"?"(?:":c==="\u0002"?")":c==="\u0003"?"(?:":c==="\u0004"?")?":c==="\u0005"?"|":c.replace(/[.*+?^$()\\\/]/g,"\\$&");}
+  return new RegExp("^"+r+"$");
+}
+function matches(input,patterns){const v=normInput(input);if(!v)return null;return patterns.some(p=>patRe(p).test(v));}
+
+/* ======================= HELPERS ======================= */
+const $=(t,a={},...kids)=>{const e=document.createElement(t);for(const k in a){if(k==="class")e.className=a[k];else if(k==="html")e.innerHTML=a[k];else if(k.startsWith("on"))e.addEventListener(k.slice(2),a[k]);else e.setAttribute(k,a[k]);}kids.flat().forEach(c=>c!=null&&e.append(c.nodeType?c:document.createTextNode(c)));return e;};
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const scores={};
+function scoreEl(id,total){const s=$("span",{class:"meta"});scores[id]={ok:new Set(),total,el:s};upd(id);return s;}
+function upd(id){const s=scores[id];s.el.textContent=`${s.ok.size} / ${s.total} correct`;}
+function mark(id,i){scores[id]&&(scores[id].ok.add(i),upd(id));}
+function numRow(i,node){return $("div",{class:"q"},$("span",{class:"num"},String(i+1)),node);}
+const model=(t,n)=>`<div class="model">${esc(t)}${n?`<small>${n}</small>`:""}</div>`;
+function setState(el,st){el.classList.remove("ok-f","bad-f");if(st===true)el.classList.add("ok-f");if(st===false)el.classList.add("bad-f");}
+
+/* ======================= AUDIO ======================= */
+function speak(t){try{const s=window.speechSynthesis;if(!s)return;s.cancel();const u=new SpeechSynthesisUtterance(t.split(" / ")[0]);u.lang="en-GB";u.rate=.92;const v=s.getVoices().find(v=>/^en-GB/i.test(v.lang))||s.getVoices().find(v=>/^en/i.test(v.lang));if(v)u.voice=v;s.speak(u);}catch(e){}}
+const listenBtn=t=>$("button",{class:"btn listen",type:"button",onclick:()=>speak(t)},"Listen");
+function modelEN(t,note){const box=$("div",{class:"model"},t," ",listenBtn(t));if(note)box.append($("small",{},note));return box;}
+function showModel(fb,t,note){fb.innerHTML="";fb.append(modelEN(t,note));}
+
+/* ======================= SECTIONS ======================= */
+const SECTIONS=[];
+function section(id,title,mins,instr,build){SECTIONS.push({id,title,mins,instr,build});}
+
+section("f1","Translation traps",8,"Read the Russian sentence. In the English translation, choose the correct word in each group. These are typical traps for Russian speakers.",(list)=>{
+  B1.forEach((q,i)=>{
+    const fb=$("div",{class:"fb"});const line=$("div",{class:"inline txt"});const slots=[];
+    q[1].split(/(\{\{[^}]+\}\})/).forEach(part=>{
+      const m=part.match(/^\{\{([^}]+)\}\}$/);if(!m){line.append(part);return;}
+      const opts=m[1].split("|");const grp=$("span",{class:"choice"});const slot={done:false,btns:[]};
+      shuffle(opts.map((o,k)=>[o,k])).forEach(([o,k])=>{const b=$("button",{class:"ch"},o);slot.btns.push([b,k]);b.onclick=()=>{
+        if(slot.done)return;
+        if(k===0){slot.done=true;b.classList.add("ok");slot.btns.forEach(([x,kk])=>{if(kk)x.classList.add("off");});
+          if(slots.every(s=>s.done)){fb.innerHTML=`<span class="good">Correct.</span> <span class="ru">${q[2]}</span>`;mark("f1",i);}else fb.innerHTML="";}
+        else{b.classList.add("bad");fb.innerHTML=`<span class="wrong">Not quite.</span> <span class="ru">${q[2]}</span>`;}};grp.append(b);});
+      slots.push(slot);line.append(grp);
+    });
+    const full=q[1].replace(/\{\{([^|}]+)[^}]*\}\}/g,"$1");
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},line,$("div",{class:"row"},$("button",{class:"btn",onclick:()=>{slots.forEach(s=>{s.done=true;s.btns.forEach(([x,k])=>x.classList.add(k?"off":"ok"));});fb.innerHTML="";fb.append(modelEN(full,q[2]));}},"Answer"),listenBtn(full)),fb)));
+  });return B1.length;});
+
+section("f2","Match the translations",8,"Each group has three Russian sentences and three English translations that look alike. Click a Russian sentence, then its exact translation. Watch tense, voice and structure.",(list)=>{
+  B2.forEach((g,i)=>{
+    const fb=$("div",{class:"fb"});let sel=null,done=0;const ru=[],en=[];
+    g[1].forEach((p,k)=>{const b=$("button",{class:"card ru-card"},p[0]);b.onclick=()=>{if(b.classList.contains("ok"))return;ru.forEach(x=>x.classList.remove("sel"));b.classList.add("sel");sel=k;fb.innerHTML="";};ru.push(b);});
+    const enOrder=shuffle([0,1,2]);
+    enOrder.forEach(k=>{const b=$("button",{class:"card"},g[1][k][1]);b.dataset.k=k;b.onclick=()=>{
+      if(b.classList.contains("ok"))return;
+      if(sel===null){fb.innerHTML=`<span class="ru">Сначала выберите русское предложение.</span>`;return;}
+      if(sel===k){b.classList.add("ok");ru[k].classList.remove("sel");ru[k].classList.add("ok");sel=null;done++;fb.innerHTML="";if(done===3){fb.innerHTML=`<span class="good">All matched.</span>`;mark("f2",i);}}
+      else{b.classList.add("bad");setTimeout(()=>b.classList.remove("bad"),700);fb.innerHTML=`<span class="wrong">Not quite.</span> <span class="ru">Сравните время, залог и маркеры (уже, вчера, сейчас).</span>`;}};en[k]=b;});
+    const grid=$("div",{class:"match"},$("div",{class:"col"},...ru),$("div",{class:"col"},...enOrder.map(k=>en[k])));
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},$("span",{class:"key"},"Group "+(i+1)))),$("div",{class:"body"},grid,$("div",{class:"row"},$("button",{class:"btn",onclick:()=>{ru.forEach(x=>{x.classList.remove("sel");x.classList.add("ok");});en.forEach(x=>x.classList.add("ok"));fb.innerHTML=g[1].map(p=>`<div class="pair">${esc(p[0])} → <b>${esc(p[1])}</b></div>`).join("");}},"Answer")),fb)));
+  });return B2.length;});
+
+section("f3","Finish the translation",12,"The English translation has already started. Finish it so that it means exactly the same as the Russian sentence. Press Enter or Check.",(list)=>{
+  B3.forEach((q,i)=>{
+    const fb=$("div",{class:"fb"});const inp=$("input",{class:"gap wide",type:"text",autocomplete:"off",autocapitalize:"off",spellcheck:"false",id:"f3-"+i,"aria-label":"End of the sentence"});
+    const check=()=>{const r=matches(inp.value,q[2]);if(r===null)return;setState(inp,r);
+      fb.innerHTML=r?`<span class="good">Correct.</span> <span class="ru">${q[4]}</span>`:`<span class="wrong">Not quite.</span> <span class="ru">Подсказка: ${q[4]}</span>`;if(r)mark("f3",i);};
+    inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},$("div",{class:"start"},$("span",{class:"lead"},q[1]+" …"),inp),$("div",{class:"row"},$("button",{class:"btn solid",onclick:check},"Check"),$("button",{class:"btn",onclick:()=>showModel(fb,q[1]+" "+q[3],q[4])},"Answer")),fb)));
+  });return B3.length;});
+
+section("f4","Edit the translation",8,"A student translated this Russian text into English and made 8 mistakes. Find them: click every wrong word. The correction appears below.",(list)=>{
+  const found=$("div",{class:"found"});const counter=$("span",{class:"meta"});const fb=$("div",{class:"fb"});
+  const text=$("div",{class:"words para"});const errs=[];let hits=0;
+  const upd4=()=>{counter.textContent=`Found ${hits} / ${errs.length}`;};
+  B4EN.split(/(\{[^}]+\})/).forEach(part=>{
+    const m=part.match(/^\{([^|]+)\|([^|]+)\|([^}]+)\}$/);
+    if(m){const b=$("button",{class:"w"},m[1]);const e={b,wrong:m[1],fix:m[2],ex:m[3],hit:false};errs.push(e);
+      b.onclick=()=>{if(e.hit)return;e.hit=true;hits++;b.classList.add("hit");found.append($("div",{class:"pair"},$("s",{},e.wrong)," → ",$("b",{},e.fix)," ",$("span",{class:"ru"},"— "+e.ex)));upd4();fb.innerHTML="";if(hits===errs.length){fb.innerHTML=`<span class="good">All 8 mistakes found.</span>`;mark("f4",0);}};text.append(b," ");return;}
+    part.split(" ").filter(Boolean).forEach(w=>{const b=$("button",{class:"w"},w);b.onclick=()=>{b.classList.add("miss");fb.innerHTML=`<span class="wrong">This word is correct.</span> <span class="ru">Это слово употреблено правильно.</span>`;};text.append(b," ");});
+  });
+  upd4();
+  list.append($("div",{class:"item"},$("div",{class:"src"},$("span",{class:"lbl"},"RU"),B4RU),$("div",{class:"src"},$("span",{class:"lbl"},"EN"),text),$("div",{class:"row"},counter,$("button",{class:"btn",onclick:()=>{errs.forEach(e=>{if(!e.hit)e.b.click();});}},"Answer")),fb,found));
+  return 1;});
+
+section("f5","RU → EN",16,"Translate the Russian sentences into English. Use the target vocabulary and grammar. Press Check: the field turns green when your translation is correct. Contractions and British/American spelling are both fine.",(list)=>{
+  B5.forEach((q,i)=>{
+    const fb=$("div",{class:"fb"});const ta=$("textarea",{id:"f5-"+i,"aria-label":"Your translation",spellcheck:"false"});
+    const check=()=>{const r=matches(ta.value,q[1]);if(r===null)return;setState(ta,r);
+      fb.innerHTML=r?`<span class="good">Correct.</span> <span class="ru">${q[3]}</span>`:`<span class="wrong">Not quite.</span> <span class="ru">Подсказка: ${q[3]}</span>`;if(r)mark("f5",i);};
+    ta.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();check();}});
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},ta,$("div",{class:"row"},$("button",{class:"btn solid",onclick:check},"Check"),$("button",{class:"btn",onclick:()=>showModel(fb,q[2],q[3])},"Answer")),fb)));
+  });return B5.length;});
+
+section("f6","Upgrade the translation",10,"The plain translation is correct but simple. Rewrite it using the word in capitals so that it sounds closer to the Russian original and uses the target grammar.",(list)=>{
+  B6.forEach((q,i)=>{
+    const fb=$("div",{class:"fb"});const inp=$("input",{class:"gap wide",type:"text",autocomplete:"off",autocapitalize:"off",spellcheck:"false",id:"f6-"+i,"aria-label":"Better translation"});
+    const check=()=>{const r=matches(inp.value,q[3]);if(r===null)return;setState(inp,r);
+      fb.innerHTML=r?`<span class="good">Correct.</span> <span class="ru">${q[5]}</span>`:`<span class="wrong">Not quite.</span> <span class="ru">Используйте ${esc(q[2])}: ${q[5]}</span>`;if(r)mark("f6",i);};
+    inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},$("div",{class:"sub"},$("span",{class:"lbl"},"Plain"),q[1]),$("div",{class:"row"},$("span",{class:"key"},q[2]),inp),$("div",{class:"row"},$("button",{class:"btn solid",onclick:check},"Check"),$("button",{class:"btn",onclick:()=>showModel(fb,q[4],q[5])},"Answer")),fb)));
+  });return B6.length;});
+
+section("f7","Sight translation",12,"Read or listen to the short article. Translate it into Russian aloud, sentence by sentence, without writing. Then press RU to compare.",(list)=>{
+  list.append($("p",{class:"art-title"},"A local brand steps out"));
+  B7.forEach((q,i)=>{
+    const fb=$("div",{class:"fb"});
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},$("div",{class:"row"},listenBtn(q[0]),$("button",{class:"btn",onclick:()=>{fb.innerHTML=fb.innerHTML?"":`<div class="model">${esc(q[1])}</div>`;}},"RU")),fb)));
+  });return null;});
+
+section("f8","Interpreter",14,"You are the interpreter in a bike shop abroad. The customer speaks Russian, the shop assistant speaks English. Interpret each line aloud into the other language, then check.",(list)=>{
+  B8.forEach((q,i)=>{
+    const fb=$("div",{class:"fb"});const toEN=q[1]==="ru";
+    const btns=$("div",{class:"row"});
+    if(!toEN)btns.append(listenBtn(q[2]));
+    btns.append($("button",{class:"btn",onclick:()=>{if(fb.innerHTML){fb.innerHTML="";return;}if(toEN)showModel(fb,q[3]);else fb.innerHTML=`<div class="model">${esc(q[3])}</div>`;}},toEN?"EN":"RU"));
+    list.append($("div",{class:"item"+(toEN?"":" alt")},numRow(i,$("div",{class:"txt"},$("span",{class:"who"},q[0]),$("span",{class:"dir"},toEN?"RU → EN":"EN → RU"),$("br"),q[2])),$("div",{class:"body"},btns,fb)));
+  });return null;});
+
+/* ======================= RENDER ======================= */
+const tabs=document.getElementById("tabs"),panels=document.getElementById("panels");const tbtn=[],pans=[];
+SECTIONS.forEach((s,idx)=>{
+  const b=$("button",{role:"tab","aria-selected":"false",id:"t-"+s.id},$("span",{class:"n"},String(idx+1)),s.title);b.onclick=()=>show(idx);tabs.append(b);tbtn.push(b);
+  const list=$("div",{class:"list"});const metaWrap=$("div",{style:"display:flex;gap:14px;flex-wrap:wrap"},$("span",{class:"meta"},"Format "+(idx+1)+" · ≈ "+s.mins+" min"));
+  const p=$("section",{class:"panel",role:"tabpanel",id:s.id},$("div",{class:"phead"},$("h2",{},s.title),metaWrap),$("p",{class:"instr"},s.instr),list);
+  const total=s.build(list);if(total&&s.id!=="f4")metaWrap.append(scoreEl(s.id,total));
+  const nav=$("div",{class:"foot"});
+  nav.append(idx>0?$("button",{class:"btn",onclick:()=>show(idx-1)},"← "+SECTIONS[idx-1].title):$("span"));
+  if(idx<SECTIONS.length-1)nav.append($("button",{class:"btn solid",onclick:()=>show(idx+1)},SECTIONS[idx+1].title+" →"));
+  p.append(nav);p.hidden=true;panels.append(p);pans.push(p);
+});
+function show(i){tbtn.forEach((b,k)=>b.setAttribute("aria-selected",k===i?"true":"false"));pans.forEach((p,k)=>p.hidden=k!==i);tbtn[i].scrollIntoView({block:"nearest",inline:"nearest"});window.scrollTo({top:0});try{localStorage.setItem("vit-0710-tab",i)}catch(e){}}
+let start=0;try{const v=+localStorage.getItem("vit-0710-tab");if(v>=0&&v<SECTIONS.length)start=v;}catch(e){}
+const hi=SECTIONS.findIndex(s=>s.id===location.hash.slice(1));if(hi>=0)start=hi;
+show(start);
+</script>
+
+</body>
+</html>
