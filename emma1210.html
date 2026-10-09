@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English Lesson — Emma — 12.10.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF6EC; --cream-2:#FDEBDC; --card:#FFFFFF;
+  --ink:#2C2140; --ink-soft:#6B6280;
+  --violet:#6D4AE0; --violet-soft:#EFE9FF;
+  --amber:#F6B93B; --amber-soft:#FDEBC4;
+  --teal:#0E9E8B; --rose:#E2607A; --line:#F0E6DC;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);
+  background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);background-attachment:fixed;
+  font-size:17px;line-height:1.6}
+h1,h2,h3,h4,h5{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;line-height:1.2;margin:0}
+.wrap{max-width:880px;margin:0 auto;padding:26px 18px 60px}
+
+.head{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.badge{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#FFB86B,#F6795B);
+  display:grid;place-items:center;font-size:30px;flex:none;box-shadow:0 8px 18px rgba(246,121,91,.28)}
+.head h1{font-size:32px}
+.head p{margin:3px 0 0;color:var(--ink-soft);font-size:15px}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.tab{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:9px 16px;font:inherit;font-weight:700;font-size:14px;color:var(--ink);cursor:pointer}
+.tab i{width:20px;height:20px;border-radius:50%;background:var(--violet-soft);color:var(--violet);
+  font-style:normal;font-size:12px;display:grid;place-items:center;font-weight:800}
+.tab:hover{border-color:var(--violet)}
+.tab.on{background:#241B39;border-color:#241B39;color:#fff}
+.tab.on i{background:rgba(255,255,255,.22);color:#fff}
+
+.page{display:none;background:var(--card);border-radius:24px;padding:28px 26px;
+  box-shadow:0 4px 22px rgba(90,60,30,.07)}
+.page.on{display:block}
+.eyebrow{display:inline-block;background:#E9F1FF;color:#3B7BEA;font-weight:800;font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:6px 14px;margin-bottom:14px}
+.page h2{font-size:27px;display:flex;align-items:center;gap:10px}
+.page h3{font-size:20px;margin:28px 0 8px}
+.lead{color:var(--ink-soft);font-size:15px;margin:8px 0 0}
+.hint{background:#FFFBF0;border-left:4px solid var(--amber);border-radius:10px;padding:10px 14px;
+  color:#7A6236;font-size:15px;margin:14px 0}
+p{margin:10px 0}
+
+.ask{background:#FFFDFA;border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:9px 0;font-weight:700}
+.quote{background:linear-gradient(135deg,#F3EEFF,#FFF2E4);border-radius:20px;padding:26px 24px;margin:16px 0 8px;
+  font-family:'Baloo 2',sans-serif;font-size:26px;line-height:1.45;text-align:center}
+.chip{background:#FFE7A8;border-radius:8px;padding:0 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center}
+button{font:inherit;font-weight:800;border-radius:12px;cursor:pointer;border:1px solid transparent;padding:10px 20px}
+.btn-main{background:var(--teal);color:#fff}
+.btn-main:hover{background:#0B8878}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+.mini{font-size:13px;padding:4px 11px;border-radius:9px;background:#fff;border:1px solid var(--line);
+  color:var(--ink-soft);font-weight:800;white-space:nowrap}
+.mini:hover{border-color:var(--violet);color:var(--violet)}
+.rus{font-size:11px;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:#fff;
+  border:1px solid #D9C9A8;color:#A07C3C;font-weight:800;vertical-align:2px;margin-left:8px}
+.rus:hover{border-color:var(--violet);color:var(--violet)}
+.score{font-weight:800;color:var(--teal)}
+.rev{display:none;background:var(--violet-soft);border-radius:12px;padding:10px 14px;margin-top:10px;
+  font-weight:700;color:#4A2FB0;font-size:15px}
+.rev.show{display:block}
+.rev.plain{font-weight:400}
+.rev ul{margin:6px 0 0;padding-left:20px}
+.rev li{margin:3px 0}
+
+.flow{font-size:18px;line-height:2.1}
+.flow .en{display:none;background:#DFF5EC;color:#0A6B5E;border-radius:8px;padding:3px 10px;font-weight:700}
+.flow .en.show{display:inline}
+
+/* theory — uses */
+.block{border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin-top:14px;background:#fff}
+.block-title{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:800}
+.u{background:#F5F2FB;border-radius:14px;padding:14px 18px;margin-top:12px}
+.u .num{color:#A99CC4;font-weight:800;font-size:13px;margin-right:9px}
+.u h4{display:inline;font-size:18px}
+.u .ind{color:var(--ink-soft);font-size:14px;margin-top:6px}
+.u .ex{margin-top:7px;font-size:16px}
+
+/* theory — scheme */
+.sec{border-left:3px solid #C8B8F0;padding-left:14px;margin:18px 0}
+.sec h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.sec .r{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:7px 0;border-bottom:1px dotted var(--line)}
+.sec .r:last-child{border-bottom:none}
+.sec .f{font-weight:800;color:var(--ink)}
+.sec .e{color:var(--ink-soft)}
+.plusline h5{color:var(--teal)} .minusline h5{color:var(--rose)} .questline h5{color:var(--violet)}
+.note{background:#F5F2FB;border-radius:12px;padding:10px 14px;font-size:15px;color:var(--ink-soft);margin-top:14px}
+
+ol.tasks{list-style:none;counter-reset:t;padding:0;margin:12px 0 0}
+ol.tasks>li{counter-increment:t;display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
+ol.tasks>li:last-child{border-bottom:none}
+ol.tasks>li::before{content:counter(t);flex:none;width:26px;height:26px;border-radius:50%;
+  background:var(--violet);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:4px}
+.taskbody{flex:1;min-width:0}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:7px;padding:2px 8px;margin-right:6px;vertical-align:2px}
+.tag.p{background:#DFF5EC;color:#0A6B5E}
+.tag.m{background:#FCE4E9;color:#9E2F45}
+.tag.q{background:var(--violet-soft);color:#4A2FB0}
+.verb{display:inline-block;background:var(--violet-soft);color:#4A2FB0;border-radius:7px;
+  padding:1px 9px;font-weight:800;font-size:15px}
+input.gap{font:inherit;font-weight:700;color:var(--ink);background:var(--amber-soft);border:none;
+  border-bottom:2px solid var(--amber);border-radius:6px 6px 0 0;padding:3px 8px;width:140px}
+input.gap:focus{outline:2px solid var(--violet);outline-offset:1px}
+input.gap.ok{background:#DFF5EC;border-bottom-color:var(--teal)}
+input.gap.no{background:#FCE4E9;border-bottom-color:var(--rose)}
+input.free{background:#FFFDFA;border:1px solid var(--line);border-bottom:2px solid var(--violet);border-radius:10px}
+.line{display:flex;gap:8px;align-items:center;margin-top:7px}
+.line input.gap{flex:1;width:auto;min-width:0}
+.bank{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.bank b{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-weight:700;font-size:15px}
+.answers{background:#FFFDFA;border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-top:14px}
+.answers div{padding:3px 0;font-weight:600;font-size:15px}
+.answers b{color:var(--violet);margin-right:8px}
+
+/* grammar table exercise */
+.grid3{margin-top:14px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.grid3 .hrow,.grid3 .brow{display:grid;grid-template-columns:34px 1fr 1fr 1fr;gap:0}
+.grid3 .hrow{background:var(--violet-soft);color:#4A2FB0;font-weight:800;font-size:14px}
+.grid3 .hrow div,.grid3 .brow div{padding:9px 10px;border-bottom:1px solid var(--line)}
+.grid3 .brow:last-child div{border-bottom:none}
+.grid3 .n{color:var(--ink-soft);font-weight:800;font-size:13px;text-align:center}
+.grid3 .given{font-weight:700}
+.grid3 input.gap{width:100%}
+
+.choices{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.choice{background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:700;
+  padding:6px 16px;border-radius:999px;font-size:15px}
+.choice:hover{border-color:var(--violet)}
+.choice.ok{background:#DFF5EC;border-color:var(--teal);color:#0A6B5E}
+.choice.no{background:#FCE4E9;border-color:var(--rose);color:#9E2F45}
+
+/* vocabulary cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:16px}
+.vcard{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;min-height:110px}
+.vcard .top{display:flex;align-items:flex-start;gap:8px}
+.vcard .w{font-family:'Baloo 2',sans-serif;font-size:19px;font-weight:700;flex:1}
+.vcard .say{flex:none;width:32px;height:32px;border-radius:50%;background:var(--violet);color:#fff;
+  border:none;padding:0;font-size:14px;display:grid;place-items:center}
+.vcard .say:hover{background:#5A38CC}
+.vcard .tr{color:var(--ink-soft);font-size:14px}
+.vcard .back{display:none;margin-top:9px;font-size:15px}
+.vcard.open{background:var(--violet-soft);border-color:#CDBCFF}
+.vcard.open .back{display:block}
+.vcard .def{font-weight:700;color:#4A2FB0}
+.vcard .ex{font-style:italic;color:var(--ink-soft);font-size:14px;margin-top:4px}
+
+.text{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-top:14px;font-size:17px;line-height:1.85}
+.text p{margin:0 0 12px}
+.text p:last-child{margin-bottom:0}
+
+.own{border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-top:14px;background:#FFFDFA}
+.own h4{font-size:17px;margin-bottom:6px}
+.own.plus h4{color:var(--teal)} .own.minus h4{color:var(--rose)} .own.quest h4{color:var(--violet)}
+.own input{display:block;width:100%;margin-top:9px}
+
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+footer{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:26px}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:18px 13px 48px}
+  .head h1{font-size:25px}
+  .badge{width:52px;height:52px;border-radius:16px;font-size:24px}
+  .page{padding:20px 16px;border-radius:20px}
+  .block{padding:16px 14px}
+  .quote{font-size:20px;padding:20px 16px}
+  .sec .r{grid-template-columns:1fr}
+  .sec .e{padding-left:0}
+  .grid3 .hrow,.grid3 .brow{grid-template-columns:28px 1fr}
+  .grid3 .hrow div:nth-child(3),.grid3 .hrow div:nth-child(4){display:none}
+  .tab{padding:8px 12px;font-size:13px}
+  input.gap{width:120px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="head">
+  <div class="badge">⏰</div>
+  <div>
+    <h1>English lesson — Emma</h1>
+    <p>12.10.2026 · <b>Present Simple</b> — all the other verbs</p>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab on" data-go="p1"><i>1</i>Warm-up</button>
+  <button class="tab" data-go="p2"><i>2</i>Homework Check</button>
+  <button class="tab" data-go="p3"><i>3</i>Grammar</button>
+  <button class="tab" data-go="p4"><i>4</i>Vocabulary</button>
+  <button class="tab" data-go="p5"><i>5</i>Reading</button>
+  <button class="tab" data-go="p6"><i>6</i>Speaking</button>
+  <button class="tab" data-go="p7"><i>7</i>Translation</button>
+</div>
+
+<!-- 1 WARM-UP -->
+<section class="page on" id="p1">
+  <div class="eyebrow">Warm-up</div>
+  <h2>☀️ Let's start</h2>
+
+  <div class="ask">How are you today? Are you under the weather?</div>
+  <div class="ask">What time is it now?</div>
+  <div class="ask">What is the weather like outside?</div>
+  <div class="ask">What is on your desk right now?</div>
+  <div class="ask">Who is your favourite singer or band?</div>
+  <div class="ask">What is the first thing you do in the morning?</div>
+
+  <h3>Phrase of the day</h3>
+  <div class="quote">"Tea and a film tonight? <span class="chip">Sounds like a plan!</span>"</div>
+  <div class="row">
+    <button class="mini" data-toggle="#ph1">Show translation</button>
+    <button class="btn-ghost" data-speak="Tea and a film tonight? Sounds like a plan!" data-rate="0.85">🔊 Listen</button>
+  </div>
+  <div class="rev" id="ph1">it sounds like a plan /saʊndz laɪk ə ˈplæn/ — «отличная идея», «договорились».<br>
+    <span style="font-weight:400">«Чай и фильм сегодня вечером? Звучит отлично!»</span></div>
+
+  <div class="pager"><span></span><button class="btn-main" data-go="p2">Next: Homework Check →</button></div>
+</section>
+
+<!-- 2 HOMEWORK CHECK -->
+<section class="page" id="p2">
+  <div class="eyebrow">Homework · Your sentences</div>
+  <h2>📝 Your nine sentences</h2>
+  <p class="lead">Write your nine sentences here and read them aloud. <button class="rus" data-toggle="#i0">RUS</button></p>
+  <div class="rev plain" id="i0">Запиши сюда свои девять предложений и прочитай их вслух.</div>
+
+  <div class="own plus">
+    <h4>+ Three statements</h4>
+    <input class="gap free" placeholder="1.">
+    <input class="gap free" placeholder="2.">
+    <input class="gap free" placeholder="3.">
+  </div>
+
+  <div class="own minus">
+    <h4>− Three negatives</h4>
+    <input class="gap free" placeholder="1.">
+    <input class="gap free" placeholder="2.">
+    <input class="gap free" placeholder="3.">
+  </div>
+
+  <div class="own quest">
+    <h4>? Three questions</h4>
+    <input class="gap free" placeholder="1.">
+    <input class="gap free" placeholder="2.">
+    <input class="gap free" placeholder="3.">
+  </div>
+
+  <h3>Check yourself first</h3>
+  <p class="lead">Read every sentence again and answer these four questions. <button class="rus" data-toggle="#i1">RUS</button></p>
+  <div class="rev plain" id="i1">Перечитай каждое предложение и ответь себе на четыре вопроса: та ли форма глагола для этого лица; стоит ли not после am / is / are; начинается ли вопрос с Am / Is / Are; есть ли во всех предложениях глагол.</div>
+  <div class="answers">
+    <div><b>1</b>Is the form right for the person — am, is or are?</div>
+    <div><b>2</b>In your negatives, is <i>not</i> after am / is / are?</div>
+    <div><b>3</b>Do your questions start with Am / Is / Are?</div>
+    <div><b>4</b>Is there a verb in every sentence? ("I twelve" is not a sentence!)</div>
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p1">← Back</button><button class="btn-main" data-go="p3">Next: Grammar →</button></div>
+</section>
+
+<!-- 3 GRAMMAR -->
+<section class="page" id="p3">
+  <div class="eyebrow">Grammar</div>
+  <h2>⭐ Present Simple</h2>
+  <p class="lead">The verb <i>to be</i> is done. Now we take all the other verbs: work, live, go, read, wake up…</p>
+
+  <div class="block">
+    <div class="block-title">When do we use the Present Simple?</div>
+
+    <div class="u">
+      <span class="num">01</span><h4>Regular actions and facts in general</h4>
+      <button class="rus" data-toggle="#r01">RUS</button>
+      <div class="ex">I live in St Petersburg. My brother studies abroad.</div>
+      <div class="rev plain" id="r01">Регулярные действия и факты вообще — то, что верно не только сейчас, а в целом: «я живу в Санкт-Петербурге», «мой брат учится за границей».</div>
+    </div>
+
+    <div class="u">
+      <span class="num">02</span><h4>Repeated actions</h4>
+      <button class="rus" data-toggle="#r02">RUS</button>
+      <div class="ind">Indicators: every day · usually · often · sometimes · seldom · never · twice a week · on Mondays</div>
+      <div class="ex">I play the guitar twice a week. My sister often reads in the evening.</div>
+      <div class="rev plain" id="r02">Повторяющиеся действия. Слова-подсказки: every day — каждый день, usually — обычно, often — часто, sometimes — иногда, seldom — редко, never — никогда, twice a week — дважды в неделю, on Mondays — по понедельникам.</div>
+    </div>
+
+    <div class="u">
+      <span class="num">03</span><h4>Scientific facts</h4>
+      <button class="rus" data-toggle="#r03">RUS</button>
+      <div class="ex">Water boils at 100 degrees. The sun rises in the east.</div>
+      <div class="rev plain" id="r03">Научные факты и законы природы: вода кипит при 100 градусах, солнце встаёт на востоке.</div>
+    </div>
+
+    <div class="u">
+      <span class="num">04</span><h4>Timetables — films, performances, flights, trains, buses</h4>
+      <button class="rus" data-toggle="#r04">RUS</button>
+      <div class="ex">Our English lesson starts at four. The film starts at eight tonight.</div>
+      <div class="rev plain" id="r04">Расписание: уроки, сеансы, спектакли, рейсы, поезда, автобусы. «Урок начинается в четыре», «фильм начинается в восемь» — даже если речь о завтрашнем дне.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">Scheme 2 — all other verbs</div>
+    <button class="rus" data-toggle="#r2">RUS</button>
+
+    <div class="sec plusline">
+      <h5>+ Affirmative</h5>
+      <div class="r"><div class="f">I / We / You / They + V1</div><div class="e">I play the guitar every day.</div></div>
+      <div class="r"><div class="f">He / She / It + V1 + s</div><div class="e">She plays the guitar every day.</div></div>
+    </div>
+
+    <div class="sec minusline">
+      <h5>− Negative</h5>
+      <div class="r"><div class="f">I / We / You / They + don't + V1</div><div class="e">I don't play football on Sunday.</div></div>
+      <div class="r"><div class="f">He / She / It + doesn't + V1</div><div class="e">He doesn't play football on Sunday.</div></div>
+    </div>
+
+    <div class="sec questline">
+      <h5>? Question</h5>
+      <div class="r"><div class="f">Do + I / we / you / they + V1 …?</div><div class="e">Do you play football on Sunday?</div></div>
+      <div class="r"><div class="f">Does + he / she / it + V1 …?</div><div class="e">Does he play football on Sunday?</div></div>
+    </div>
+
+    <div class="note">V1 is the first form of the verb — the infinitive without <i>to</i>: to play → play, to go → go.</div>
+
+    <div class="rev plain" id="r2">Схема для всех глаголов, кроме to be:
+      <ul>
+        <li><b>Утверждение:</b> подлежащее + V1. Для he / she / it к глаголу добавляется <b>-s</b>: I play → She play<b>s</b>.</li>
+        <li><b>Отрицание:</b> подлежащее + <b>don't</b> (для he / she / it — <b>doesn't</b>) + V1. Окончание -s уже «ушло» в doesn't, поэтому сам глагол остаётся без -s: He <b>doesn't play</b>, а не «doesn't plays».</li>
+        <li><b>Вопрос:</b> <b>Do</b> (для he / she / it — <b>Does</b>) + подлежащее + V1. Снова без -s: <b>Does</b> he <b>play</b>?</li>
+        <li><b>Короткие ответы:</b> Yes, I do. / No, I don't. Yes, she does. / No, she doesn't.</li>
+        <li><b>V1</b> — первая форма глагола, инфинитив без частицы to: to play → play.</li>
+        <li><b>Написание -s:</b> play → plays, read → reads; go → go<b>es</b>, watch → watch<b>es</b>; study → stud<b>ies</b>, cry → cr<b>ies</b>.</li>
+        <li><b>Важно:</b> глаголу <b>to be</b> помощники do / does не нужны: «I am tired», «Is she ill?» — а не «I do be tired».</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Exercise 1. Put the verb in the right form</h3>
+  <p class="lead">Mind the sign: + statement, − negative, ? question. <button class="rus" data-toggle="#i2">RUS</button></p>
+  <div class="rev plain" id="i2">Поставь глагол из рамки в нужную форму. Смотри на значок: + утверждение, − отрицание, ? вопрос.</div>
+  <ol class="tasks" data-ex="g1">
+    <li><div class="taskbody"><span class="tag p">+</span>I <input class="gap" data-a="wake up"> at seven o'clock. <span class="verb">wake up</span></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span>My sister <input class="gap" data-a="studies"> English twice a week. <span class="verb">study</span></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>We <input class="gap" data-a="don't play|do not play"> football on Monday. <span class="verb">not / play</span></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>My brother <input class="gap" data-a="doesn't watch|does not watch"> films in the morning. <span class="verb">not / watch</span></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span><input class="gap" data-a="do you like"> loud music? <span class="verb">you / like</span></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span><input class="gap" data-a="does emma go"> to school on Saturday? <span class="verb">Emma / go</span></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g1">Check</button><span class="score" data-score="g1"></span></div>
+
+  <h3>Exercise 2. Now it is about your sister</h3>
+  <p class="lead">Example: <i>I wake up early. → She wakes up early.</i> Write the whole sentence. <button class="rus" data-toggle="#i3">RUS</button></p>
+  <div class="rev plain" id="i3">Перепиши предложение про сестру: I или you меняется на she. Пример: I wake up early. → She wakes up early. В вопросах не забудь про Does.</div>
+  <ol class="tasks" data-ex="g2">
+    <li><div class="taskbody"><span class="tag p">+</span>I like quiet mornings.
+      <div class="line"><input class="gap" data-a="she likes quiet mornings"></div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span>I go to school at eight.
+      <div class="line"><input class="gap" data-a="she goes to school at eight"></div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>I don't watch films in the evening.
+      <div class="line"><input class="gap" data-a="she doesn't watch films in the evening|she does not watch films in the evening"></div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>I don't feel ill today.
+      <div class="line"><input class="gap" data-a="she doesn't feel ill today|she does not feel ill today"></div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span>Do you read before school?
+      <div class="line"><input class="gap" data-a="does she read before school"></div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span>Do you wake up early?
+      <div class="line"><input class="gap" data-a="does she wake up early"></div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g2">Check</button><span class="score" data-score="g2"></span></div>
+
+  <h3>Exercise 3. Complete the table</h3>
+  <p class="lead">One form is given — write the other two. <button class="rus" data-toggle="#i4">RUS</button></p>
+  <div class="rev plain" id="i4">Одна форма уже дана — напиши две другие. Пиши предложение целиком.</div>
+  <div class="grid3" data-ex="g3">
+    <div class="hrow"><div></div><div>+ statement</div><div>− negative</div><div>? question</div></div>
+    <div class="brow">
+      <div class="n">1</div>
+      <div class="given">My sister wakes up early.</div>
+      <div><input class="gap" data-a="my sister doesn't wake up early|my sister does not wake up early"></div>
+      <div><input class="gap" data-a="does my sister wake up early|does your sister wake up early"></div>
+    </div>
+    <div class="brow">
+      <div class="n">2</div>
+      <div><input class="gap" data-a="they play the guitar every day"></div>
+      <div class="given">They don't play the guitar every day.</div>
+      <div><input class="gap" data-a="do they play the guitar every day"></div>
+    </div>
+    <div class="brow">
+      <div class="n">3</div>
+      <div><input class="gap" data-a="the lesson starts at five o'clock"></div>
+      <div><input class="gap" data-a="the lesson doesn't start at five o'clock|the lesson does not start at five o'clock"></div>
+      <div class="given">Does the lesson start at five o'clock?</div>
+    </div>
+    <div class="brow">
+      <div class="n">4</div>
+      <div class="given">My dogs sleep in the kitchen.</div>
+      <div><input class="gap" data-a="my dogs don't sleep in the kitchen|my dogs do not sleep in the kitchen"></div>
+      <div><input class="gap" data-a="do my dogs sleep in the kitchen|do your dogs sleep in the kitchen"></div>
+    </div>
+  </div>
+  <div class="row"><button class="btn-main" data-check="g3">Check</button><span class="score" data-score="g3"></span></div>
+
+  <h3>Exercise 4. Find the mistake and write the sentence correctly</h3>
+  <p class="lead">Every sentence has one mistake. <button class="rus" data-toggle="#i5">RUS</button></p>
+  <div class="rev plain" id="i5">В каждом предложении одна ошибка. Напиши правильный вариант целиком.</div>
+  <ol class="tasks" data-ex="g4">
+    <li><div class="taskbody"><span class="tag p">+</span>My brother wake up at six o'clock.
+      <div class="line"><input class="gap" data-a="my brother wakes up at six o'clock"></div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span>She go to the pool twice a week.
+      <div class="line"><input class="gap" data-a="she goes to the pool twice a week"></div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>My sister don't like loud music.
+      <div class="line"><input class="gap" data-a="my sister doesn't like loud music|my sister does not like loud music"></div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>He doesn't watches films in the morning.
+      <div class="line"><input class="gap" data-a="he doesn't watch films in the morning|he does not watch films in the morning"></div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span>Does she reads before school?
+      <div class="line"><input class="gap" data-a="does she read before school"></div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span>Do your sister study English on Monday?
+      <div class="line"><input class="gap" data-a="does your sister study english on monday"></div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g4">Check</button><span class="score" data-score="g4"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p2">← Back</button><button class="btn-main" data-go="p4">Next: Vocabulary →</button></div>
+</section>
+
+<!-- 4 VOCABULARY -->
+<section class="page" id="p4">
+  <div class="eyebrow">Vocabulary</div>
+  <h2>🃏 Ten words</h2>
+  <p class="lead">Tap a card for the meaning and an example. Tap 🔊 to hear the word. <button class="rus" data-toggle="#i6">RUS</button></p>
+  <div class="rev plain" id="i6">Нажми на карточку — значение по-английски и пример. Кнопка 🔊 — послушать, как слово звучит.</div>
+
+  <div class="cards">
+    <div class="vcard">
+      <div class="top"><div class="w">to be in the same boat</div><button class="say" data-speak="to be in the same boat">🔊</button></div>
+      <div class="tr">/ɪn ðə ˌseɪm ˈbəʊt/</div>
+      <div class="back"><div class="def">to be in the same situation as somebody else</div><div class="ex">We are in the same boat: we both have a test tomorrow.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to be under the weather</div><button class="say" data-speak="to be under the weather">🔊</button></div>
+      <div class="tr">/ˌʌndə ðə ˈweðə/</div>
+      <div class="back"><div class="def">not very well, a little ill</div><div class="ex">My mum is under the weather today.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">ill</div><button class="say" data-speak="ill">🔊</button></div>
+      <div class="tr">/ɪl/</div>
+      <div class="back"><div class="def">not healthy — you stay in bed</div><div class="ex">Polina is ill this week.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to wake up</div><button class="say" data-speak="to wake up">🔊</button></div>
+      <div class="tr">/ˌweɪk ˈʌp/</div>
+      <div class="back"><div class="def">to stop sleeping in the morning</div><div class="ex">I wake up at seven o'clock.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">late</div><button class="say" data-speak="late">🔊</button></div>
+      <div class="tr">/leɪt/</div>
+      <div class="back"><div class="def">after the right time</div><div class="ex">Hurry up, we are late!</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">early</div><button class="say" data-speak="early">🔊</button></div>
+      <div class="tr">/ˈɜːli/</div>
+      <div class="back"><div class="def">before the right time — the opposite of late</div><div class="ex">My sister wakes up early.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">sure</div><button class="say" data-speak="sure">🔊</button></div>
+      <div class="tr">/ʃʊə/</div>
+      <div class="back"><div class="def">you have no doubt — you know it</div><div class="ex">Are you sure? — Yes, I am sure!</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">blanket</div><button class="say" data-speak="blanket">🔊</button></div>
+      <div class="tr">/ˈblæŋkɪt/</div>
+      <div class="back"><div class="def">you are under it in bed when it is cold</div><div class="ex">My blanket is green and warm.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">loud</div><button class="say" data-speak="loud">🔊</button></div>
+      <div class="tr">/laʊd/</div>
+      <div class="back"><div class="def">with a lot of noise — not quiet</div><div class="ex">My brother likes loud music.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">sound</div><button class="say" data-speak="sound">🔊</button></div>
+      <div class="tr">/saʊnd/</div>
+      <div class="back"><div class="def">something you hear; or: "it sounds good" = it seems good</div><div class="ex">The sounds of the morning wake me up. / That sounds great!</div></div></div>
+  </div>
+
+  <h3>Exercise 1. Complete the mini-dialogues</h3>
+  <p class="lead">One word or phrase from the list in every gap. Use each one once. <button class="rus" data-toggle="#i8">RUS</button></p>
+  <div class="rev plain" id="i8">Вставь в каждый пропуск слово или выражение из списка. Каждое используется один раз.</div>
+  <div class="bank"><b>late</b><b>early</b><b>sure</b><b>blanket</b><b>under the weather</b><b>ill</b><b>loud</b><b>sound</b><b>in the same boat</b><b>wake up</b></div>
+  <ol class="tasks" data-ex="v2">
+    <li><div class="taskbody">— Hurry up, the film starts in five minutes! — Oh no, we are <input class="gap" data-a="late"> again!</div></li>
+    <li><div class="taskbody">— Why is your sister up at six? — She always gets up <input class="gap" data-a="early">.</div></li>
+    <li><div class="taskbody">— Polina isn't at school today. — I know, she is <input class="gap" data-a="ill">.</div></li>
+    <li><div class="taskbody">— Are you cold? — A little. Where is my <input class="gap" data-a="blanket">?</div></li>
+    <li><div class="taskbody">— You look tired. Are you OK? — I'm not ill, just a bit <input class="gap" data-a="under the weather">.</div></li>
+    <li><div class="taskbody">— Why is your brother angry? — Because our music is too <input class="gap" data-a="loud">.</div></li>
+    <li><div class="taskbody">— What is that <input class="gap" data-a="sound"> in the kitchen? — It's my dog with his bowl.</div></li>
+    <li><div class="taskbody">— I have two tests tomorrow. — Me too! We are <input class="gap" data-a="in the same boat">.</div></li>
+    <li><div class="taskbody">— What time do you <input class="gap" data-a="wake up"> on a school day? — At seven o'clock.</div></li>
+    <li><div class="taskbody">— Is our lesson on Monday? — Yes, I am <input class="gap" data-a="sure">.</div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="v2">Check</button><span class="score" data-score="v2"></span></div>
+
+  <h3>Exercise 2. Finish the word</h3>
+  <p class="lead">The first letter is there — write the whole word. <button class="rus" data-toggle="#i7">RUS</button></p>
+  <div class="rev plain" id="i7">Первая буква уже дана — впиши слово целиком.</div>
+  <ol class="tasks" data-ex="v1">
+    <li><div class="taskbody">My lesson starts at five and it is five twenty now. I am l… <input class="gap" data-a="late"></div></li>
+    <li><div class="taskbody">My sister gets up at six o'clock. She is always e… <input class="gap" data-a="early"></div></li>
+    <li><div class="taskbody">Polina is in bed with a hot tea. She is i… <input class="gap" data-a="ill"></div></li>
+    <li><div class="taskbody">It is cold tonight, so I am under a warm b… <input class="gap" data-a="blanket"></div></li>
+    <li><div class="taskbody">Our neighbours listen to very l… music at night. <input class="gap" data-a="loud"></div></li>
+    <li><div class="taskbody">The birds in the garden make my favourite s… <input class="gap" data-a="sounds|sound"></div></li>
+    <li><div class="taskbody">I w… up at seven o'clock every morning. <input class="gap" data-a="wake"></div></li>
+    <li><div class="taskbody">— Is your answer correct? — Yes, I am s… <input class="gap" data-a="sure"></div></li>
+    <li><div class="taskbody">My mum is not really ill, she is just under the w… <input class="gap" data-a="weather"></div></li>
+    <li><div class="taskbody">We both have a test tomorrow — we are in the same b… <input class="gap" data-a="boat"></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="v1">Check</button><span class="score" data-score="v1"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p3">← Back</button><button class="btn-main" data-go="p5">Next: Reading →</button></div>
+</section>
+
+<!-- 5 READING -->
+<section class="page" id="p5">
+  <div class="eyebrow">Reading</div>
+  <h2>📖 Two very different mornings</h2>
+  <p class="lead">Read the text and do the two tasks below. <button class="rus" data-toggle="#i9">RUS</button></p>
+  <div class="rev plain" id="i9">Прочитай текст и выполни два задания ниже.</div>
+
+  <div class="text">
+    <p>Hi! We are Vera and Polina. We are cousins, we are both twelve and we are in the same boat: school, homework and music lessons every day. But our mornings are very different.</p>
+    <p>Vera wakes up at six o'clock. She is always early. She makes her bed, she puts her blanket in the cupboard and she reads a book before school. She likes quiet mornings and she doesn't like loud music.</p>
+    <p>Polina wakes up at half past seven and she is often late. Her blanket is on the floor, her books are under the bed and she listens to loud music in the bathroom. "Morning sounds are my favourite sounds!" she says. Her mum is not sure about that.</p>
+    <p>This week Polina is ill. She is in bed with a hot tea and two blankets, and the house is very quiet. Vera is under the weather too, but only a little. So the cousins are in the same boat again: no school, no music lessons, only films and tea.</p>
+    <p>"Do you like our quiet week?" Vera asks. "No, I don't!" Polina answers. "I want my loud mornings back!"</p>
+  </div>
+
+  <h3>Task 1. Who is it — Vera or Polina?</h3>
+  <p class="lead">Tap the name. <button class="rus" data-toggle="#i10">RUS</button></p>
+  <div class="rev plain" id="i10">Нажми на имя того, о ком идёт речь.</div>
+  <ol class="tasks">
+    <li><div class="taskbody">She wakes up at six o'clock.
+      <div class="choices"><button class="choice" data-ok>Vera</button><button class="choice">Polina</button></div></div></li>
+    <li><div class="taskbody">She is often late.
+      <div class="choices"><button class="choice">Vera</button><button class="choice" data-ok>Polina</button></div></div></li>
+    <li><div class="taskbody">She reads a book before school.
+      <div class="choices"><button class="choice" data-ok>Vera</button><button class="choice">Polina</button></div></div></li>
+    <li><div class="taskbody">She listens to loud music in the bathroom.
+      <div class="choices"><button class="choice">Vera</button><button class="choice" data-ok>Polina</button></div></div></li>
+    <li><div class="taskbody">Her blanket is on the floor.
+      <div class="choices"><button class="choice">Vera</button><button class="choice" data-ok>Polina</button></div></div></li>
+    <li><div class="taskbody">She is ill this week.
+      <div class="choices"><button class="choice">Vera</button><button class="choice" data-ok>Polina</button></div></div></li>
+    <li><div class="taskbody">She doesn't like loud music.
+      <div class="choices"><button class="choice" data-ok>Vera</button><button class="choice">Polina</button></div></div></li>
+    <li><div class="taskbody">She wants her loud mornings back.
+      <div class="choices"><button class="choice">Vera</button><button class="choice" data-ok>Polina</button></div></div></li>
+  </ol>
+
+  <h3>Task 2. Finish the sentence with a word from the text</h3>
+  <p class="lead">One word in every gap. Look back at the text if you need to. <button class="rus" data-toggle="#i11">RUS</button></p>
+  <div class="rev plain" id="i11">В каждый пропуск одно слово из текста. Если нужно — возвращайся к тексту.</div>
+  <ol class="tasks" data-ex="r2">
+    <li><div class="taskbody">Vera and Polina are not sisters, they are <input class="gap" data-a="cousins">.</div></li>
+    <li><div class="taskbody">Vera wakes up at <input class="gap" data-a="six|6"> o'clock, and Polina at half past <input class="gap" data-a="seven|7">.</div></li>
+    <li><div class="taskbody">Vera puts her blanket in the <input class="gap" data-a="cupboard">.</div></li>
+    <li><div class="taskbody">Polina's books are under the <input class="gap" data-a="bed">.</div></li>
+    <li><div class="taskbody">Polina listens to music in the <input class="gap" data-a="bathroom">.</div></li>
+    <li><div class="taskbody">This week Polina is in bed with a hot <input class="gap" data-a="tea"> and two blankets.</div></li>
+    <li><div class="taskbody">The house is very <input class="gap" data-a="quiet"> this week.</div></li>
+    <li><div class="taskbody">The cousins have no school and no music lessons — only <input class="gap" data-a="films"> and tea.</div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="r2">Check</button><span class="score" data-score="r2"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p4">← Back</button><button class="btn-main" data-go="p6">Next: Speaking →</button></div>
+</section>
+
+<!-- 6 SPEAKING -->
+<section class="page" id="p6">
+  <div class="eyebrow">Speaking</div>
+  <h2>💬 About you</h2>
+  <p class="lead">Answer in full sentences.</p>
+  <div class="ask">What time do you wake up on a school day?</div>
+  <div class="ask">Do you wake up early or late at the weekend?</div>
+  <div class="ask">Do you like loud music? What do you listen to?</div>
+  <div class="ask">Who in your family is always late?</div>
+  <div class="ask">What do you do when you are ill?</div>
+  <div class="ask">Are you and your sisters in the same boat?</div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p5">← Back</button><button class="btn-main" data-go="p7">Next: Translation →</button></div>
+</section>
+
+<!-- 7 TRANSLATION -->
+<section class="page" id="p7">
+  <div class="eyebrow">Final task · Translation</div>
+  <h2>✍️ Translate the story</h2>
+  <p class="lead">Translate sentence by sentence. Tap English only if you are really stuck. <button class="rus" data-toggle="#i12">RUS</button></p>
+  <div class="rev plain" id="i12">Переводи по одному предложению. Кнопка English — только если совсем запуталась.</div>
+
+  <div class="flow">
+    Я просыпаюсь в семь часов каждое утро.
+    <button class="mini" data-rev>English</button> <span class="en">I wake up at seven o'clock every morning.</span>
+    Моя сестра просыпается рано, а я всегда опаздываю.
+    <button class="mini" data-rev>English</button> <span class="en">My sister wakes up early, but I am always late.</span>
+    Она не любит громкую музыку по утрам.
+    <button class="mini" data-rev>English</button> <span class="en">She doesn't like loud music in the morning.</span>
+    Ты слушаешь музыку, когда просыпаешься? Да.
+    <button class="mini" data-rev>English</button> <span class="en">Do you listen to music when you wake up? Yes, I do.</span>
+    Сегодня моя мама болеет, она в постели под двумя одеялами.
+    <button class="mini" data-rev>English</button> <span class="en">Today my mum is ill, she is in bed under two blankets.</span>
+    Я неважно себя чувствую, но я не уверена.
+    <button class="mini" data-rev>English</button> <span class="en">I am under the weather, but I am not sure.</span>
+    Мой брат не просыпается рано в воскресенье.
+    <button class="mini" data-rev>English</button> <span class="en">My brother doesn't wake up early on Sunday.</span>
+    Твои собаки издают громкие звуки ночью?
+    <button class="mini" data-rev>English</button> <span class="en">Do your dogs make loud sounds at night?</span>
+    Мы с сестрой в одной лодке: наш урок начинается в пять часов.
+    <button class="mini" data-rev>English</button> <span class="en">My sister and I are in the same boat: our lesson starts at five o'clock.</span>
+    Чай и фильм? Звучит отлично!
+    <button class="mini" data-rev>English</button> <span class="en">Tea and a film? That sounds like a plan!</span>
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p6">← Back</button><span></span></div>
+</section>
+
+<footer>See you next lesson! 🎸🌼</footer>
+</div>
+
+<script>
+(function(){
+  var synth = window.speechSynthesis;
+
+  var show = function(id){
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.toggle('on', p.id===id); });
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('on', t.getAttribute('data-go')===id); });
+    if(synth) synth.cancel();
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.addEventListener('click', function(){ show(b.getAttribute('data-go')); });
+  });
+
+  var norm = function(s){
+    return (s||'').toLowerCase().replace(/[‘’ʼ]/g,"'")
+      .replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+  };
+  var isOk = function(i){
+    var a=i.getAttribute('data-a');
+    if(!a) return false;
+    var v=norm(i.value);
+    return v!=='' && a.split('|').map(norm).indexOf(v)!==-1;
+  };
+  var mark = function(i){
+    i.classList.remove('ok','no');
+    if(!i.getAttribute('data-a')) return;
+    if(i.value.trim()==='') return;
+    i.classList.add(isOk(i)?'ok':'no');
+  };
+  document.addEventListener('input', function(e){
+    if(e.target.classList && e.target.classList.contains('gap')) mark(e.target);
+  });
+  document.querySelectorAll('[data-check]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var key=b.getAttribute('data-check'), box=document.querySelector('[data-ex="'+key+'"]');
+      if(!box) return;
+      var ins=box.querySelectorAll('input.gap'), good=0;
+      ins.forEach(function(i){ mark(i); if(isOk(i)) good++; });
+      var out=document.querySelector('[data-score="'+key+'"]');
+      if(out){ out.textContent=good+' / '+ins.length+(good===ins.length?'  🎉 Perfect!':'');
+        out.style.color=(good===ins.length)?'#0E9E8B':'#E2607A'; }
+    });
+  });
+  document.querySelectorAll('[data-rev]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var en=b.nextElementSibling;
+      while(en && !(en.classList && en.classList.contains('en'))) en=en.nextElementSibling;
+      if(en) en.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('[data-toggle]').forEach(function(b){
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      var el=document.querySelector(b.getAttribute('data-toggle'));
+      if(el) el.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('.vcard').forEach(function(c){
+    c.addEventListener('click', function(){ c.classList.toggle('open'); });
+  });
+  document.querySelectorAll('.choices').forEach(function(box){
+    box.querySelectorAll('.choice').forEach(function(o){
+      o.addEventListener('click', function(){
+        box.querySelectorAll('.choice').forEach(function(x){ x.classList.remove('ok','no'); });
+        o.classList.add(o.hasAttribute('data-ok')?'ok':'no');
+      });
+    });
+  });
+
+  var enVoice=null;
+  var loadVoice=function(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    enVoice = vs.filter(function(v){ return /en[-_]GB/i.test(v.lang); })[0]
+           || vs.filter(function(v){ return /^en/i.test(v.lang); })[0] || null;
+  };
+  if(synth){ loadVoice(); synth.onvoiceschanged=loadVoice; }
+  var speak = function(text, rate){
+    if(!synth){ alert('Your browser cannot read the text aloud. Please open the page in Chrome.'); return; }
+    synth.cancel();
+    var u=new SpeechSynthesisUtterance(text);
+    u.lang='en-GB'; u.rate=rate||0.85;
+    if(enVoice) u.voice=enVoice;
+    synth.speak(u);
+  };
+  document.querySelectorAll('[data-speak]').forEach(function(b){
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      speak(b.getAttribute('data-speak'), parseFloat(b.getAttribute('data-rate')||'0.85'));
+    });
+  });
+})();
+</script>
+</body>
+</html>
