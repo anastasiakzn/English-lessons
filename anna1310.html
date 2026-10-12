@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anna, 13 October</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F4F8; --sheet:#FFFFFF; --ink:#1E2B3A; --soft:#5B6878;
+  --blue:#2F5FAF; --mark:#F3D35B; --ok:#2E7D5B; --okbg:#E3F1EA;
+  --bad:#B33A3A; --badbg:#F7E4E4; --line:#D3D9E3;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", "Segoe UI", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{font-weight:700;font-size:2.2rem;line-height:1.15;margin:0}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0}
+.tab{font-family:var(--sans);font-weight:600;font-size:.92rem;border:0;background:none;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}
+section.active{display:block}
+h2{font-size:1.55rem;margin:0 0 12px}
+h3{font-size:1.15rem;margin:0 0 6px}
+.task{font-family:var(--sans);font-size:.95rem;color:var(--soft);margin:0 0 14px;max-width:68ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px}
+button{font-family:var(--sans)}
+.btn{font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:4px 10px;cursor:pointer;margin:2px 4px 2px 0}
+.btn:hover{border-color:var(--blue)}
+.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}
+.hidden{display:none !important}
+.en{color:var(--blue);font-style:italic}
+.ru{color:var(--soft);font-family:var(--sans);font-size:.9rem}
+.qlist{margin:0;padding-left:1.3em}
+.qlist li{margin:8px 0}
+
+/* parts inside a tab */
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.85rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.part{display:none}
+.part.active{display:block}
+
+/* quote */
+.quote{font-size:1.6rem;line-height:1.35;font-style:italic;margin:4px 0 6px;max-width:30ch}
+.src{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 16px}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px}
+.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}
+.card .tr{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:2px 0 6px}
+.card .def{font-size:.95rem;margin:0 0 6px}
+.card .ex2{font-size:.92rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+
+/* rows */
+.dl{padding:12px 0;border-bottom:1px solid var(--line)}
+.dl:last-of-type{border-bottom:0}
+.dl p{margin:0}
+.fb{font-size:.95rem}
+.fb .ex{margin:4px 0}
+.fb.okc{color:var(--ok)}
+.fb.badc{color:var(--bad)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#FBFCFA;border-radius:4px;padding:5px 12px;cursor:pointer;color:var(--ink)}
+.opts.col{flex-direction:column}
+.opt.okc{background:var(--okbg);border-color:var(--ok)}
+.opt.badc{background:var(--badbg);border-color:var(--bad)}
+input.gap{font-family:var(--serif);font-size:1rem;padding:2px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#FBFCFA;color:var(--ink);width:11em;max-width:100%}
+input.gap.okc{border-color:var(--ok);background:var(--okbg)}
+input.gap.badc{border-color:var(--bad);background:var(--badbg)}
+.hint{font-family:var(--sans);font-size:.85rem;color:var(--soft)}
+.bank{font-family:var(--sans);font-size:.9rem;background:#F4F6F2;border-radius:4px;padding:8px 12px;margin:0 0 12px}
+.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}
+.copied{font-family:var(--sans);font-size:.85rem;color:var(--ok)}
+.score{font-family:var(--sans);font-weight:700;font-size:.95rem;margin:10px 0 0}
+
+/* error clinic */
+.item{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.num{font-family:var(--sans);font-weight:700;color:var(--soft);font-size:.9rem;padding-top:4px}
+.chips{margin:0;line-height:2.1}
+.chip{font-family:var(--serif);font-size:1.02rem;color:var(--ink);background:none;border:0;border-bottom:1px dashed #A9B3A8;padding:0 2px;margin:0 2px;cursor:pointer;border-radius:2px}
+.chip:hover{background:#F4F6F2}
+.chip.wrong{background:var(--badbg);border-bottom-color:var(--bad);animation:nudge .25s}
+.chip.hit{background:linear-gradient(transparent 55%, var(--mark) 55%);text-decoration:line-through;text-decoration-color:var(--bad);border-bottom-color:transparent;cursor:default}
+.fix{font-family:var(--sans);font-weight:700;color:var(--ok);margin-left:4px}
+.item .fb,.item .actions{grid-column:2}
+.fixbox{margin-right:6px}
+@keyframes nudge{0%,100%{transform:translateX(0)}30%{transform:translateX(-3px)}70%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.chip.wrong{animation:none}}
+
+/* drill table */
+.tablewrap{overflow-x:auto}
+table.drill{border-collapse:collapse;width:100%;min-width:560px;font-size:.98rem}
+.drill th{font-family:var(--sans);font-size:.82rem;color:var(--soft);text-align:left;font-weight:600;padding:6px 8px;border-bottom:2px solid var(--line)}
+.drill td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.drill td.t{font-weight:600;white-space:nowrap}
+.drill td.m{color:var(--soft);font-style:italic}
+.drill tr.grp td{background:#F4F6F2;font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);padding:4px 8px}
+.base{font-size:1.35rem;font-weight:600;margin:0 0 4px}
+
+/* listening + speaking */
+.player{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cue{border:2px solid var(--blue);border-radius:6px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}
+.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}
+.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}
+.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+.ttext{font-size:1.08rem;line-height:1.9}
+.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+@media (max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.quote{font-size:1.3rem}}
+
+.stat{border-left:4px solid var(--mark);background:#FBF8E8;padding:10px 14px;margin:0 0 16px;font-size:1rem}
+.stat b{font-size:1.5rem;font-family:var(--sans);color:var(--ink)}
+.new{font-family:var(--sans);font-size:.7rem;font-weight:700;color:#fff;background:var(--ok);border-radius:3px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+select.pick{font-family:var(--serif);font-size:1rem;padding:2px 6px;border:1px solid var(--line);border-radius:4px;background:#FBFCFA;color:var(--ink);max-width:100%}
+select.pick.okc{border-color:var(--ok);background:var(--okbg)}
+select.pick.badc{border-color:var(--bad);background:var(--badbg)}
+.endings{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:4px}
+.endings li{font-size:.98rem}
+.endings b{font-family:var(--sans);color:var(--blue);margin-right:6px}
+.verdict{display:inline-flex;gap:6px;margin:6px 0}
+
+.tiles,.built{display:flex;flex-wrap:wrap;gap:6px;min-height:38px;margin:6px 0}
+.built{border-bottom:2px dashed var(--line);padding-bottom:6px}
+.tile{font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F9FC;border-radius:4px;padding:3px 10px;cursor:pointer;color:var(--ink)}
+.tile:hover{border-color:var(--blue)}
+.built.okc{border-bottom-color:var(--ok)}
+.built.badc{border-bottom-color:var(--bad)}
+.cloze{font-size:1.08rem;line-height:2.2}
+.mini{font-size:.75rem;padding:1px 6px}
+.para{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;margin:0 0 12px}
+.para .pl{font-family:var(--sans);font-weight:700;color:var(--blue)}
+.para p{margin:0}
+.dilemma{font-size:1.25rem;font-weight:600;line-height:1.35;margin:0 0 4px}
+.or{font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);letter-spacing:.08em}
+</style>
+</head>
+<body>
+<header>
+  <h1>Anna, lesson 3</h1>
+  <p>Lesson of 13 October 2026</p>
+</header>
+<nav><div class="tabs" role="tablist" id="tabs"></div></nav>
+<main>
+
+<section data-title="Warm-up">
+  <h2>Warm-up: Would you rather…?</h2>
+  <p class="task">Choose one option in each dilemma and defend your choice.</p>
+  <div class="sheet">
+    <p class="dilemma">…be fluent in ten languages</p><p class="or">OR</p><p class="dilemma">…play one musical instrument like a virtuoso?</p>
+  </div>
+  <div class="sheet">
+    <p class="dilemma">…always know how a film ends before you watch it</p><p class="or">OR</p><p class="dilemma">…never remember any film you've seen?</p>
+  </div>
+</section>
+
+<section data-title="Homework check">
+  <h2>Homework check: translation</h2>
+  <p class="task">Read your translation sentence by sentence and compare it with “EN”.</p>
+  <div class="sheet ttext" id="hwcheck"></div>
+</section>
+
+<section data-title="Vocabulary">
+  <h2>Vocabulary</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part">
+    <p class="task">Two expressions from last lesson and four new ones. Read the examples and make up your own sentence for each. Translation is under “RUS”.</p>
+    <div class="cards" id="cards"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Used correctly?</h3>
+    <p class="task">Is the expression used correctly in each sentence?</p>
+    <div id="v1"></div>
+    <p class="score" id="v1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Let's talk</h3>
+    <ol class="qlist">
+      <li>Do you ever get <b>stage fright</b>, before a choir competition or in front of a new class? How do you deal with it?</li>
+      <li>What gives you a <b>sense of belonging</b>? Which part of your life do you find the most <b>rewarding</b>?</li>
+    </ol>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Complete the story</h3>
+    <p class="task">Write one word in each gap. The first letter is given.</p>
+    <div class="cloze" id="v2"></div>
+    <button class="btn solid" id="v2check">Check</button>
+    <p class="score" id="v2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Grammar">
+  <h2>Grammar</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Speech drill</button><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part sheet">
+    <h3>Speech drill</h3>
+    <p class="base">She drags her feet over the paperwork.</p>
+    <p class="task"><i>To drag your feet (over sth)</i>: to do something slowly because you don't want to do it (тянуть резину). Say the sentence in every tense, using the time words. Then do the round again with negatives and questions.</p>
+    <div class="tablewrap"><table class="drill" id="drill"><thead><tr><th>Tense</th><th>Time words</th><th>Check</th></tr></thead><tbody></tbody></table></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Key word transformation</h3>
+    <p class="task">Complete the second sentence so that it means the same as the first. Use the word in capitals and write 2–5 words.</p>
+    <div id="g1"></div>
+    <div class="copyrow"><button class="btn" data-copy="g1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Which one is right?</h3>
+    <p class="task">Only one sentence in each pair is correct. Choose it.</p>
+    <div id="g2"></div>
+    <p class="score" id="g2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="g2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Reading">
+  <h2>Reading: the teacher who sang only in the shower</h2>
+  <div class="sheet" id="text"></div>
+  <div class="subnav" role="tablist">
+    <button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Answer the questions</h3>
+    <p class="task">Answer orally, in full sentences.</p>
+    <div id="r1"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Match the headings</h3>
+    <p class="task">Choose the best heading for each paragraph. There is one heading you don't need.</p>
+    <ul class="endings" id="heads"></ul>
+    <div id="r2"></div>
+    <div class="copyrow"><button class="btn" data-copy="r2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Speaking">
+  <h2>Speaking</h2>
+  <div class="cue">
+    <p class="topic">Describe a period in your life when you had to juggle a lot of things at once.</p>
+    <p style="margin:0">You should say:</p>
+    <ul>
+      <li>when it was</li>
+      <li>what you were juggling</li>
+      <li>how you managed to keep everything going</li>
+    </ul>
+    <p style="margin:8px 0 0">and explain what that hectic period taught you.</p>
+  </div>
+  <div class="sheet">
+    <p class="task" style="margin-bottom:6px">Try to use at least one mixed conditional (<i>If I hadn't…, I wouldn't be…</i>) and one participle clause (<i>Having…</i>).</p>
+    <button class="btn solid" id="prep">Preparation 1 min</button><button class="btn solid" id="speech">Speech 2 min</button><button class="btn" id="resetTalk">Reset</button>
+    <div class="clock" id="clock">0:00</div>
+    <div class="phase" id="phase"></div>
+  </div>
+  <div class="sheet">
+    <h3>If we have time</h3>
+    <ol class="qlist">
+      <li>Is multitasking a real skill, or just a myth?</li>
+      <li>Are people today really busier than their parents' generation, or do they just feel busier?</li>
+    </ol>
+  </div>
+</section>
+
+<section data-title="Homework">
+  <h2>Homework: translation</h2>
+  <p class="task">Translate the text into English sentence by sentence. Check yourself with “EN”.</p>
+  <div class="sheet ttext" id="hw"></div>
+</section>
+</main>
+<script>
+let uid=0;const nid=()=>"x"+(++uid);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const sections=[...document.querySelectorAll("main > section")],tabs=document.getElementById("tabs");
+sections.forEach((s,i)=>{
+  const b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=s.dataset.title;
+  b.setAttribute("aria-selected",i===0);if(i===0)s.classList.add("active");
+  b.onclick=()=>{sections.forEach(x=>x.classList.remove("active"));s.classList.add("active");
+    [...tabs.children].forEach(t=>t.setAttribute("aria-selected","false"));b.setAttribute("aria-selected","true");window.scrollTo(0,0);};
+  tabs.appendChild(b);
+});
+sections.forEach(s=>{
+  const subs=[...s.querySelectorAll(".sub")],parts=[...s.querySelectorAll(".part")];if(!subs.length)return;
+  const show=k=>{parts.forEach((p,i)=>p.classList.toggle("active",i===k));subs.forEach((b,i)=>b.setAttribute("aria-selected",i===k));};
+  subs.forEach((b,k)=>b.onclick=()=>show(k));show(0);
+});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-toggle]");if(!b)return;const el=document.getElementById(b.dataset.toggle);if(el)el.classList.toggle("hidden");});
+function explain(en,ru){const id=nid();return `<p class="ex">${en} <button class="btn" data-toggle="${id}">RUS</button></p><p class="ex ru hidden" id="${id}">${ru}</p>`;}
+const norm=s=>s.toLowerCase().replace(/[’‘`]/g,"'").replace(/[.!?,;:]+$/,"").replace(/\s+/g," ").trim();
+const states={};
+const markS=s=>s?`${s.v}${s.v==="(answer shown)"?"":(s.ok?" ✓":" ✗")}`:"—";
+
+/* ---------- homework check (from 8 October) ---------- */
+const hw8=[
+ ["Никогда ещё у меня не было такой суматошной осени.","Never have I had such a hectic autumn."],
+ ["Если бы я в сентябре не взвалила на себя столько работы, сейчас я бы не чувствовала себя такой выжатой.","If I hadn't bitten off more than I could chew in September, I wouldn't feel so drained now."],
+ ["Ни одна из моих коллег не жалуется, хотя мы все работаем без выходных.","None of my colleagues complains, even though we all work without a day off."],
+ ["Проведя последний урок, я наконец выключила телефон.","Having taught my last lesson, I finally switched off my phone."],
+ ["Мне давно пора научиться говорить «нет», пока я окончательно не выгорела.","It's high time I learnt to say no before I burn out completely."]
+];
+document.getElementById("hwcheck").innerHTML=hw8.map(([r,e])=>{const id=nid();return `<span>${r}</span> <button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en enout hidden">${e}</span> `;}).join("");
+
+/* ---------- vocabulary ---------- */
+const vocab=[
+ ["to bite off more than you can chew","ˌbaɪt ˈɒf mɔː ðən ju kən ˈtʃuː","to try to do more than you are able to","I agreed to three new groups and soon realised I'd bitten off more than I could chew.","взвалить на себя больше, чем по силам",0],
+ ["to cut corners","ˌkʌt ˈkɔːnəz","to do something quickly and badly, to save time or money","Never cut corners when it comes to safety.","срезать углы, халтурить, экономить на качестве",0],
+ ["stage fright","ˈsteɪdʒ fraɪt","nervousness before or during a performance in front of an audience","Even experienced singers get stage fright before a big concert.","страх сцены, волнение перед выступлением",1],
+ ["rewarding","rɪˈwɔːdɪŋ","giving you satisfaction because it is useful or important, not because of money","Teaching adults is hard work, but it's incredibly rewarding.","приносящий удовлетворение, благодарный (о работе, деле)",1],
+ ["a sense of belonging","ə ˌsens əv bɪˈlɒŋɪŋ","the feeling that you are an accepted part of a group","Singing in a choir gives many people a strong sense of belonging.","чувство принадлежности, ощущение «я среди своих»",1],
+ ["to pay off","ˌpeɪ ˈɒf","(of effort or a risk) to bring good results, to be worth it","All those extra rehearsals paid off: we won first prize.","окупиться, принести плоды",1]
+];
+document.getElementById("cards").innerHTML=vocab.map(([w,t,d,x,r,n])=>{const id=nid();
+ return `<div class="card"><div class="w">${w}${n?'<span class="new">NEW</span>':""}</div><div class="tr">/${t}/</div><p class="def">${d}</p><p class="ex2">${x}</p><button class="btn" data-toggle="${id}">RUS</button> <span id="${id}" class="ru hidden">${r}</span></div>`;}).join("");
+
+/* two-button exercise (used correctly? / which one is right?) */
+function buildBinary(boxId,data,labels,scoreId){
+ states[boxId]={};
+ document.getElementById(boxId).innerHTML=data.map((m,i)=>`<div class="dl" data-i="${i}">${m.q?`<p><b>${i+1}.</b> ${m.q}</p>`:`<p><b>${i+1}.</b></p>`}
+  <div class="opts${m.col?" col":""}">${(m.o||labels).map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div><div class="fb"></div><button class="btn ans">Answer</button></div>`).join("");
+ const upd=()=>{const v=Object.values(states[boxId]);document.getElementById(scoreId).textContent=`Correct on the first try: ${v.filter(s=>s.ok).length} of ${data.length}`+(v.length<data.length?` (${data.length-v.length} left)`:"");};
+ document.querySelectorAll(`#${boxId} .dl`).forEach(row=>{
+  const i=+row.dataset.i,m=data[i],fb=row.querySelector(".fb"),opts=m.o||labels;
+  const mark=(k,shown)=>{
+   if(states[boxId][i]===undefined){states[boxId][i]={v:shown?"(answer shown)":opts[k],ok:!shown&&k===m.c};upd();}
+   row.querySelectorAll(".opt").forEach(b=>b.classList.remove("okc","badc"));
+   row.querySelector(`.opt[data-k="${k}"]`).classList.add(k===m.c?"okc":"badc");
+   fb.className="fb "+(k===m.c?"okc":"badc");
+   fb.innerHTML=(k===m.c&&!shown?`<p class="ex">Correct.</p>`:"")+explain(m.en,m.ru);
+  };
+  row.querySelectorAll(".opt").forEach(b=>b.onclick=()=>mark(+b.dataset.k,false));
+  row.querySelector(".ans").onclick=e=>{mark(m.c,true);e.target.classList.add("hidden");};
+ });
+}
+buildBinary("v1",[
+ {q:"Teaching teenagers can be exhausting, but it's incredibly rewarding.",c:0,en:"Correct: the work is hard but gives satisfaction.",ru:"Верно: работа трудная, но приносит удовлетворение."},
+ {q:"I had terrible stage fright, so I couldn't wait to get on stage.",c:1,en:"<i>Stage fright</i> is fear of performing, so you wouldn't be eager to go on stage.",ru:"Stage fright — страх сцены, с ним на сцену не рвутся."},
+ {q:"All those extra rehearsals paid off: we won first prize.",c:0,en:"Correct: the effort brought a good result.",ru:"Верно: усилия принесли результат."},
+ {q:"Singing in this choir gives me a real sense of belonging, so I always feel like an outsider there.",c:1,en:"A <i>sense of belonging</i> is the opposite of feeling like an outsider.",ru:"Чувство принадлежности — противоположность ощущению чужака."},
+ {q:"The sound engineer cut corners on the sound check, and the microphones failed in the middle of the concert.",c:0,en:"Correct: doing the job quickly and badly led to a problem.",ru:"Верно: халтура привела к проблеме."},
+ {q:"I agreed to sing three solos, organise the trip and design the posters, and soon realised I'd bitten off more than I could chew.",c:0,en:"Correct: she took on more than she could manage.",ru:"Верно: взяла на себя больше, чем могла осилить."},
+ {q:"The job was so rewarding that I quit after a week.",c:1,en:"A <i>rewarding</i> job gives satisfaction, so it's not a reason to quit.",ru:"Rewarding — работа, приносящая удовлетворение; из-за этого не увольняются."},
+ {q:"Months of practice paid off: we forgot the words and came last.",c:1,en:"<i>Pay off</i> means the effort brought <b>good</b> results. Here the result was bad.",ru:"Pay off — усилия принесли хороший результат, а здесь результат плохой."}
+],["Correct","Incorrect"],"v1score");
+
+/* story cloze */
+const story=[
+ {a:"chew",h:"c"},{a:"corners",h:"c"},{a:"fright",h:"f"},{a:"belonging",h:"b"},{a:"off",h:"o"},{a:"rewarding",h:"r"}
+];
+const storyText=`This spring our choir entered its first international competition. As the choir's secretary, I offered to book the hotels, the coaches and the rehearsal rooms, and soon realised I'd bitten off more than I could {0}. Still, I refused to cut {1}: every booking was checked twice. On the day of the final, half of us had terrible stage {2}, but standing together on that stage gave us an amazing sense of {3}. All those months of hard work paid {4}: we came second. It was the most {5} experience of my life.`;
+states.v2={};
+document.getElementById("v2").innerHTML=storyText.replace(/\{(\d)\}/g,(_,n)=>`<b>${+n+1}</b> <input class="gap" style="width:7.5em" data-n="${n}" placeholder="${story[n].h}…" aria-label="Gap ${+n+1}" autocomplete="off" spellcheck="false"> <button class="btn mini sans" data-show="${n}">Answer</button>`);
+const v2box=document.getElementById("v2");
+const v2upd=()=>{const ok=[...v2box.querySelectorAll("input")].filter(x=>x.classList.contains("okc")).length;document.getElementById("v2score").textContent=`${ok} of ${story.length} correct`;};
+document.getElementById("v2check").onclick=()=>{v2box.querySelectorAll("input").forEach(inp=>{const n=+inp.dataset.n,v=norm(inp.value);if(!v)return;const ok=v===story[n].a;
+  if(states.v2[n]===undefined)states.v2[n]={v:inp.value.trim(),ok};inp.classList.remove("okc","badc");inp.classList.add(ok?"okc":"badc");});v2upd();};
+v2box.querySelectorAll("[data-show]").forEach(b=>b.onclick=()=>{const n=+b.dataset.show,inp=v2box.querySelector(`input[data-n="${n}"]`);
+ if(states.v2[n]===undefined)states.v2[n]={v:"(answer shown)",ok:false};inp.value=story[n].a;inp.classList.remove("badc");inp.classList.add("okc");b.classList.add("hidden");v2upd();});
+
+/* ---------- speech drill ---------- */
+const drill=[
+ ["Present"],
+ ["Present Simple","always, whenever she can","She always drags her feet over the paperwork."],
+ ["Present Continuous","now, again, look!","She's dragging her feet over the paperwork again!"],
+ ["Present Perfect","for weeks, since Monday, already","She has dragged her feet over the paperwork since Monday."],
+ ["Present Perfect Continuous","for a month, all week","She has been dragging her feet over the paperwork all week."],
+ ["Past"],
+ ["Past Simple","last year, at her old job","She dragged her feet over the paperwork at her old job too."],
+ ["Past Continuous","when the deadline came","She was still dragging her feet over the paperwork when the deadline came."],
+ ["Past Perfect","by the time, before","By the time her boss found out, she had dragged her feet over the paperwork for a month."],
+ ["Past Perfect Continuous","for weeks before","She had been dragging her feet over the paperwork for weeks before anyone noticed."],
+ ["Future"],
+ ["Future Simple","I bet, next time","I bet she'll drag her feet over the paperwork next time too."],
+ ["Future Continuous","(at) this time next week","This time next week she'll still be dragging her feet over the paperwork."],
+ ["Future Perfect","by Friday, by the end of the month","By the end of the month she'll have dragged her feet over every form."],
+ ["Future Perfect Continuous","for two months by the time","By the time the audit starts, she'll have been dragging her feet over the paperwork for two months."]
+];
+document.querySelector("#drill tbody").innerHTML=drill.map(r=>{
+ if(r.length===1)return `<tr class="grp"><td colspan="3">${r[0]}</td></tr>`;
+ const id=nid();return `<tr><td class="t">${r[0]}</td><td class="m">${r[1]}</td><td><button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en hidden">${r[2]}</span></td></tr>`;}).join("");
+
+/* ---------- grammar 1: key word transformation ---------- */
+const g1=[
+ {s:"I'm not accustomed to working at weekends.",k:"USED",q:"I'm not ___ at weekends.",a:["used to working"],
+  en:"<i>Be used to</i> + -ing: <i>to</i> is a preposition here.",ru:"Be used to + -ing: здесь to — предлог."},
+ {s:"I only realised the mistake when I got home.",k:"UNTIL",q:"Not ___ realise the mistake.",a:["until I got home did I"],
+  en:"<i>Not until</i> + clause at the start of a sentence triggers inversion in the main clause: <i>did I realise</i>.",ru:"Not until + придаточное в начале — инверсия в главном предложении: did I realise."},
+ {s:"It's a pity I didn't take that job.",k:"WISH",q:"I ___ that job.",a:["wish I had taken","wish I'd taken"],
+  en:"A regret about the past: <i>wish</i> + Past Perfect.",ru:"Сожаление о прошлом: wish + Past Perfect."},
+ {s:"I didn't save any money, so I'm broke now.",k:"HAD",q:"If ___ some money, I wouldn't be broke now.",a:["I had saved","I'd saved"],
+  en:"Mixed conditional: unreal past condition (Past Perfect) with a present result (<i>would</i> + infinitive).",ru:"Смешанное условное: нереальное условие в прошлом (Past Perfect) и результат в настоящем."},
+ {s:"After she had finished the course, she applied for a new job.",k:"HAVING",q:"___ the course, she applied for a new job.",a:["Having finished"],
+  en:"A perfect participle clause shows the first of two past actions.",ru:"Перфектный причастный оборот обозначает первое из двух действий."},
+ {s:"A technician repaired my laptop yesterday.",k:"HAD",q:"I ___ yesterday.",a:["had my laptop repaired"],
+  en:"The causative: <i>have something done</i> (someone else did it for me).",ru:"Каузатив: have something done — сделал кто-то другой для меня."},
+ {s:"It wasn't necessary for you to book a table, but you did.",k:"NEEDN'T",q:"You ___ a table.",a:["needn't have booked","need not have booked"],
+  en:"An action that happened but wasn't necessary: <i>needn't have</i> + past participle.",ru:"Действие было, но в нём не было необходимости: needn't have + причастие."},
+ {s:"My two sisters can't drive.",k:"NEITHER",q:"___ my sisters can drive.",a:["Neither of"],
+  en:"Two people, negative meaning: <i>neither of</i> + plural noun, with a positive verb.",ru:"Двое, отрицательное значение: neither of + существительное, глагол без not."}
+];
+states.g1={};
+document.getElementById("g1").innerHTML=g1.map((g,i)=>{
+ const inp=`<input class="gap" style="width:13em" data-i="${i}" aria-label="Answer ${i+1}" autocomplete="off" spellcheck="false">`;
+ return `<div class="dl" data-i="${i}"><p class="hint" style="margin:0 0 2px"><b>${i+1}.</b> ${g.s} <b style="color:var(--blue)">${g.k}</b></p><p>${g.q.replace("___",inp)}</p><div class="fb"></div><button class="btn chk">Check</button><button class="btn ans">Answer</button></div>`;}).join("");
+document.querySelectorAll("#g1 .dl").forEach(row=>{
+ const i=+row.dataset.i,g=g1[i],inp=row.querySelector("input"),fb=row.querySelector(".fb");
+ const check=()=>{const v=norm(inp.value);if(!v)return;const ok=g.a.map(norm).includes(v);
+  if(states.g1[i]===undefined)states.g1[i]={v:inp.value.trim(),ok};
+  inp.classList.remove("okc","badc");inp.classList.add(ok?"okc":"badc");
+  fb.className="fb "+(ok?"okc":"badc");fb.innerHTML=ok?`<p class="ex">Correct.</p>`:explain(g.en,g.ru);};
+ row.querySelector(".chk").onclick=check;inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+ row.querySelector(".ans").onclick=e=>{if(states.g1[i]===undefined)states.g1[i]={v:"(answer shown)",ok:false};
+  inp.value=g.a[0];inp.classList.remove("badc");inp.classList.add("okc");fb.className="fb okc";fb.innerHTML=explain(g.en,g.ru);e.target.classList.add("hidden");};
+});
+
+/* ---------- grammar 2: which one is right? ---------- */
+const g2raw=[
+ ["I'm slowly getting used to waking up at six.","I'm slowly getting used to wake up at six.","<i>Get used to</i> + -ing.","Get used to + -ing."],
+ ["None of my three colleagues has a car.","Neither of my three colleagues has a car.","Three people: <i>none</i>. <i>Neither</i> is only for two.","Трое — none. Neither — только о двух."],
+ ["Either answer is correct.","Either answers are correct.","<i>Either</i> + singular noun + singular verb.","Either + существительное и глагол в единственном числе."],
+ ["If I had studied medicine, I would be a doctor now.","If I studied medicine, I would have been a doctor now.","Unreal past condition + present result: <i>if</i> + Past Perfect, <i>would</i> + infinitive.","Нереальное прошлое + результат в настоящем: if + Past Perfect, would + инфинитив."],
+ ["Seldom do we eat out these days.","Seldom we eat out these days.","<i>Seldom</i> at the start of a sentence requires inversion.","Seldom в начале предложения требует инверсии."],
+ ["Having lived in Spain for years, she speaks fluent Spanish.","Having been lived in Spain for years, she speaks fluent Spanish.","<i>Live</i> is intransitive and the meaning is active: <i>Having lived</i>.","Live не имеет пассива, значение активное: Having lived."],
+ ["It's about time you got a proper job.","It's about time you get a proper job.","<i>It's (about) time</i> + subject + Past Simple.","It's (about) time + подлежащее + Past Simple."],
+ ["I'd rather you didn't mention it to anyone.","I'd rather you not to mention it to anyone.","<i>Would rather</i> + another person + Past Simple.","Would rather + другое лицо + Past Simple."],
+ ["What annoys me most is the noise.","What annoys me most are the noise.","A <i>what</i>-clause as subject takes a singular verb, especially with a singular noun.","Конструкция с what в роли подлежащего — глагол в единственном числе."],
+ ["She must have left already: her coat's gone.","She can have left already: her coat's gone.","A confident deduction about the past: <i>must have</i>. <i>Can have</i> isn't used this way in positive sentences.","Уверенное предположение о прошлом — must have. Can have в утвердительных так не используется."],
+ ["We're having the roof repaired next week.","We're having repaired the roof next week.","Causative word order: <i>have</i> + object + past participle.","Порядок слов в каузативе: have + объект + причастие."],
+ ["Only after the meeting did I realise my mistake.","Only after the meeting I realised my mistake.","<i>Only after…</i> at the start of a sentence requires inversion.","Only after… в начале предложения требует инверсии."],
+ ["The candidate interviewed yesterday got the job.","The candidate interviewing yesterday got the job.","The candidate <b>was</b> interviewed (passive), so the past participle: <i>interviewed</i>.","Кандидата проинтервьюировали (пассив) — нужно причастие прошедшего времени."],
+ ["I wish you would stop interrupting me.","I wish you stop interrupting me.","Annoyance about someone's behaviour: <i>wish</i> + <i>would</i>.","Раздражение чужим поведением: wish + would."],
+ ["Had I known about the traffic, I'd have left earlier.","If I would have known about the traffic, I'd have left earlier.","No <i>would</i> in the <i>if</i>-clause. Inversion <i>Had I known</i> = <i>If I had known</i>.","В части с if would не ставится. Had I known = If I had known."]
+];
+const g2=g2raw.map(([r,w,en,ru],i)=>{const first=[0,1,1,0,1,0,1,0,0,1,0,1,0,1,0][i];return {o:first?[w,r]:[r,w],c:first,col:1,en,ru};});
+buildBinary("g2",g2,null,"g2score");
+
+/* ---------- reading ---------- */
+const paras=[
+ [["For years, Olivia, a maths teacher from Leeds, sang only in the shower."],
+  ["Having been told at school that she couldn't sing, she never dared to join a choir, and most of her evenings were spent marking homework."]],
+ [["Everything changed when a colleague persuaded her to come to a rehearsal of a local community choir."],
+  ["Nobody asked her to audition: she was simply handed a folder of music and shown to a seat among the altos."],
+  ["Within a month she had a sense of belonging she hadn't felt since university."]],
+ [["Six months later, the choir decided to enter a national competition."],
+  ["Olivia volunteered to organise the trip, design the programme and sing a short solo, and she soon realised she had bitten off more than she could chew."],
+  ["Not once, though, did she think of cutting corners: she rehearsed her solo every single evening."]],
+ [["On the day of the competition, her stage fright was so bad that her hands were shaking."],
+  ["Only when she saw the other singers smiling at her from the back row did she calm down."]],
+ [["All that hard work paid off: the choir made it to the final."],
+  ["“If I hadn't gone to that first rehearsal, I'd still be singing only in the shower,” Olivia laughs."],
+  ["She now finds the choir just as rewarding as her teaching, and on some days even more so."]]
+];
+document.getElementById("text").innerHTML=paras.map((p,k)=>`<div class="para"><span class="pl">${k+1}</span><p>${p.map(([e])=>e).join(" ")}</p></div>`).join("");
+const r1=[
+ ["Why had Olivia never joined a choir before?","Because she had been told at school that she couldn't sing."],
+ ["Why did she realise she had bitten off more than she could chew?","Because she volunteered to organise the trip, design the programme and sing a solo, all at the same time."]
+];
+document.getElementById("r1").innerHTML=r1.map(([q,a],i)=>{const id=nid();return `<div class="dl"><p><b>${i+1}.</b> ${q}</p><button class="btn" data-toggle="${id}">Answer</button><span id="${id}" class="en hidden">${a}</span></div>`;}).join("");
+const heads=["Accepted from day one","Worth every rehearsal","A voice kept hidden","Leaving her teaching job","Taking on too much","Shaking hands on stage"];
+const HL="ABCDEF";
+document.getElementById("heads").innerHTML=heads.map((h,k)=>`<li><b>${HL[k]}</b>${h}</li>`).join("");
+const r2key=[2,0,4,5,1];
+const r2ex=[
+ ["For years she hid her voice and sang only in the shower.","Годами она скрывала свой голос и пела только в душе."],
+ ["Nobody made her audition, and she quickly felt she belonged.","Прослушивания не было, и она быстро почувствовала себя своей."],
+ ["She took on the trip, the programme and a solo at once.","Она взялась сразу за поездку, программу и соло."],
+ ["Her stage fright was so bad that her hands were shaking.","Страх сцены был так силён, что у неё дрожали руки."],
+ ["The hard work paid off: the choir reached the final.","Труд окупился: хор вышел в финал."]
+];
+states.r2={};
+document.getElementById("r2").innerHTML=r2key.map((c,i)=>`<div class="dl" data-i="${i}"><p><b>Paragraph ${i+1}</b> <select class="pick" aria-label="Heading for paragraph ${i+1}"><option value="">…</option>${heads.map((h,k)=>`<option value="${k}">${HL[k]}</option>`).join("")}</select></p><div class="fb"></div><button class="btn ans">Answer</button></div>`).join("");
+document.querySelectorAll("#r2 .dl").forEach(row=>{
+ const i=+row.dataset.i,c=r2key[i],s=row.querySelector("select"),fb=row.querySelector(".fb");
+ const check=shown=>{if(s.value==="")return;const ok=+s.value===c;
+  if(states.r2[i]===undefined)states.r2[i]={v:shown?"(answer shown)":HL[+s.value],ok:ok&&!shown};
+  s.classList.remove("okc","badc");s.classList.add(ok?"okc":"badc");fb.className="fb "+(ok?"okc":"badc");
+  fb.innerHTML=ok&&!shown?`<p class="ex">Correct: ${heads[c]}.</p>`:explain(ok?`${HL[c]}: ${heads[c]}. ${r2ex[i][0]}`:"Read the paragraph again: what is its main idea?",ok?r2ex[i][1]:"Перечитайте абзац: какова его главная мысль?");};
+ s.onchange=()=>check(false);
+ row.querySelector(".ans").onclick=e=>{s.value=String(c);check(true);e.target.classList.add("hidden");};
+});
+
+/* ---------- speaking timer ---------- */
+let tId=null;const clock=document.getElementById("clock"),phase=document.getElementById("phase");
+const fmt=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;
+function run(sec,label){clearInterval(tId);let s=sec;phase.textContent=label;clock.textContent=fmt(s);
+ tId=setInterval(()=>{s--;clock.textContent=fmt(Math.max(s,0));if(s<=0){clearInterval(tId);phase.textContent="Time's up";}},1000);}
+document.getElementById("prep").onclick=()=>run(60,"Preparation");
+document.getElementById("speech").onclick=()=>run(120,"Speech");
+document.getElementById("resetTalk").onclick=()=>{clearInterval(tId);clock.textContent="0:00";phase.textContent="";};
+
+/* ---------- homework ---------- */
+const hw=[
+ ["Я пою в хоре почти пять лет, но до сих пор волнуюсь перед каждым выступлением.","I've been singing in the choir for almost five years, but I still get stage fright before every performance."],
+ ["Однако в прошлую субботу, едва я вышла на сцену финала, как мой страх исчез.","However, last Saturday, hardly had I gone on stage in the final when my fear disappeared."],
+ ["Все наши усилия окупились: хор занял второе место.","All our efforts paid off: the choir came second."],
+ ["Если бы мы не репетировали так много, сейчас мы бы не праздновали.","If we hadn't rehearsed so much, we wouldn't be celebrating now."],
+ ["Вернувшись домой, я поняла, что хор даёт мне чувство принадлежности, которого мне раньше не хватало.","Having come back home, I realised that the choir gives me the sense of belonging that I used to lack."]
+];
+document.getElementById("hw").innerHTML=hw.map(([r,e])=>{const id=nid();return `<span>${r}</span> <button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en enout hidden">${e}</span> `;}).join("");
+
+/* ---------- copy answers ---------- */
+function copyText(t,btn){
+ const done=()=>{const s=btn.nextElementSibling;s.textContent="Copied";setTimeout(()=>s.textContent="",1800);};
+ const fb=()=>{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");done();}catch(e){}a.remove();};
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,fb);else fb();
+}
+const titles={v1:"Vocabulary, exercise 1",v2:"Vocabulary, exercise 2",g1:"Grammar, exercise 1",g2:"Grammar, exercise 2",r2:"Reading, exercise 2"};
+const counts={v1:8,v2:6,g1:g1.length,g2:g2.length,r2:5};
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-copy]");if(!b)return;const k=b.dataset.copy;
+ const lines=[...Array(counts[k]).keys()].map(i=>`${i+1}. ${markS(states[k][i])}`);
+ copyText([titles[k]].concat(lines).join("\n"),b);
+});
+</script>
+</body>
+</html>
