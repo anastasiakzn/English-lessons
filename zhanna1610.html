@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zhanna, 16 October</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F5FA; --sheet:#FFFFFF; --ink:#2D3142; --soft:#667085;
+  --blue:#5B5BD6; --mark:#FFD166; --ok:#2E7D5B; --okbg:#E3F1EA;
+  --bad:#B33A3A; --badbg:#F7E4E4; --line:#E2E5EF;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", "Segoe UI", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{color:var(--ink)}
+.card:nth-child(3n+2){border-left-color:#F08A7E}.card:nth-child(3n){border-left-color:#2BB39A}
+header h1{font-weight:700;font-size:2.2rem;line-height:1.15;margin:0}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0}
+.tab{font-family:var(--sans);font-weight:600;font-size:.92rem;border:0;background:none;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}
+section.active{display:block}
+h2{font-size:1.55rem;margin:0 0 12px}
+h3{font-size:1.15rem;margin:0 0 6px}
+.task{font-family:var(--sans);font-size:.95rem;color:var(--soft);margin:0 0 14px;max-width:68ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px}
+button{font-family:var(--sans)}
+.btn{font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:4px 10px;cursor:pointer;margin:2px 4px 2px 0}
+.btn:hover{border-color:var(--blue)}
+.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}
+.hidden{display:none !important}
+.en{color:var(--blue);font-style:italic}
+.ru{color:var(--soft);font-family:var(--sans);font-size:.9rem}
+.qlist{margin:0;padding-left:1.3em}
+.qlist li{margin:8px 0}
+
+/* parts inside a tab */
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.85rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.part{display:none}
+.part.active{display:block}
+
+/* quote */
+.quote{font-size:1.6rem;line-height:1.35;font-style:italic;margin:4px 0 6px;max-width:30ch}
+.src{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 16px}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px}
+.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}
+.card .tr{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:2px 0 6px}
+.card .def{font-size:.95rem;margin:0 0 6px}
+.card .ex2{font-size:.92rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+
+/* rows */
+.dl{padding:12px 0;border-bottom:1px solid var(--line)}
+.dl:last-of-type{border-bottom:0}
+.dl p{margin:0}
+.fb{font-size:.95rem}
+.fb .ex{margin:4px 0}
+.fb.okc{color:var(--ok)}
+.fb.badc{color:var(--bad)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F8FC;border-radius:4px;padding:5px 12px;cursor:pointer;color:var(--ink)}
+.opts.col{flex-direction:column}
+.opt.okc{background:var(--okbg);border-color:var(--ok)}
+.opt.badc{background:var(--badbg);border-color:var(--bad)}
+input.gap{font-family:var(--serif);font-size:1rem;padding:2px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#F7F8FC;color:var(--ink);width:11em;max-width:100%}
+input.gap.okc{border-color:var(--ok);background:var(--okbg)}
+input.gap.badc{border-color:var(--bad);background:var(--badbg)}
+.hint{font-family:var(--sans);font-size:.85rem;color:var(--soft)}
+.bank{font-family:var(--sans);font-size:.9rem;background:#F7F8FC;border-radius:4px;padding:8px 12px;margin:0 0 12px}
+.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}
+.copied{font-family:var(--sans);font-size:.85rem;color:var(--ok)}
+.score{font-family:var(--sans);font-weight:700;font-size:.95rem;margin:10px 0 0}
+
+/* error clinic */
+.item{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.num{font-family:var(--sans);font-weight:700;color:var(--soft);font-size:.9rem;padding-top:4px}
+.chips{margin:0;line-height:2.1}
+.chip{font-family:var(--serif);font-size:1.02rem;color:var(--ink);background:none;border:0;border-bottom:1px dashed #B9BFD6;padding:0 2px;margin:0 2px;cursor:pointer;border-radius:2px}
+.chip:hover{background:#F7F8FC}
+.chip.wrong{background:var(--badbg);border-bottom-color:var(--bad);animation:nudge .25s}
+.chip.hit{background:linear-gradient(transparent 55%, var(--mark) 55%);text-decoration:line-through;text-decoration-color:var(--bad);border-bottom-color:transparent;cursor:default}
+.fix{font-family:var(--sans);font-weight:700;color:var(--ok);margin-left:4px}
+.item .fb,.item .actions{grid-column:2}
+.fixbox{margin-right:6px}
+@keyframes nudge{0%,100%{transform:translateX(0)}30%{transform:translateX(-3px)}70%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.chip.wrong{animation:none}}
+
+/* drill table */
+.tablewrap{overflow-x:auto}
+table.drill{border-collapse:collapse;width:100%;min-width:560px;font-size:.98rem}
+.drill th{font-family:var(--sans);font-size:.82rem;color:var(--soft);text-align:left;font-weight:600;padding:6px 8px;border-bottom:2px solid var(--line)}
+.drill td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.drill td.t{font-weight:600;white-space:nowrap}
+.drill td.m{color:var(--soft);font-style:italic}
+.drill tr.grp td{background:#F7F8FC;font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);padding:4px 8px}
+.base{font-size:1.35rem;font-weight:600;margin:0 0 4px}
+
+/* listening + speaking */
+.player{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cue{border:2px solid var(--blue);border-radius:6px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}
+.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}
+.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}
+.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+.ttext{font-size:1.08rem;line-height:1.9}
+.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+@media (max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.quote{font-size:1.3rem}}
+
+.stat{border-left:4px solid var(--mark);background:#FFF6DC;padding:10px 14px;margin:0 0 16px;font-size:1rem}
+.stat b{font-size:1.5rem;font-family:var(--sans);color:var(--ink)}
+.new{font-family:var(--sans);font-size:.7rem;font-weight:700;color:#fff;background:var(--ok);border-radius:3px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+select.pick{font-family:var(--serif);font-size:1rem;padding:2px 6px;border:1px solid var(--line);border-radius:4px;background:#F7F8FC;color:var(--ink);max-width:100%}
+select.pick.okc{border-color:var(--ok);background:var(--okbg)}
+select.pick.badc{border-color:var(--bad);background:var(--badbg)}
+.endings{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:4px}
+.endings li{font-size:.98rem}
+.endings b{font-family:var(--sans);color:var(--blue);margin-right:6px}
+.verdict{display:inline-flex;gap:6px;margin:6px 0}
+</style>
+<body>
+<header>
+  <h1>Zhanna, lesson 2</h1>
+  <p>Lesson of 16 October 2026</p>
+</header>
+<nav><div class="tabs" role="tablist" id="tabs"></div></nav>
+<main>
+
+<section data-title="Warm-up">
+  <h2>Two truths and a lie</h2>
+  <div class="sheet">
+    <p class="task">Say three sentences about your life: two are true and one is a lie. Use <b>usually / every day</b> (Present Simple) and <b>these days / this week</b> (Present Continuous). Your teacher guesses the lie, then you swap!</p>
+    <div class="bank"><b>Example:</b><br>1. I usually get up at six. &nbsp;2. These days I'm learning to play the guitar. &nbsp;3. I never drink coffee.</div>
+    <ul class="qlist">
+      <li>Something you <b>usually</b> do in the morning</li>
+      <li>Something you <b>are doing</b> these days</li>
+      <li>Something you <b>never</b> do</li>
+    </ul>
+  </div>
+</section>
+
+<section data-title="Homework check">
+  <h2>Homework check: translation</h2>
+  <p class="task">Translate the text from our last lesson into English out loud, sentence by sentence. Press “EN” to check yourself.</p>
+  <div class="sheet ttext" id="hwtext"></div>
+</section>
+
+<section data-title="Vocabulary">
+  <h2>Vocabulary</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part">
+    <p class="task">Words from our first lesson and some new ones. Press “Listen” to hear a word and “Tap for Russian” to see the translation. Make up your own sentence with each word.</p>
+    <div class="cards" id="cards"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Match the halves</h3>
+    <p class="task">Choose the letter of the ending that completes each sentence.</p>
+    <ul class="endings" id="endings"></ul>
+    <div id="v1"></div>
+    <p class="score" id="v1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Let's talk</h3>
+    <ol class="qlist">
+      <li>What are your <b>colleagues</b> like?</li>
+      <li>Do you have any good or bad <b>habits</b>?</li>
+    </ol>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Write the word</h3>
+    <p class="task">Write the missing word. The first letter is in brackets. Sometimes you need a different form (for example, <i>takes</i>, <i>makes</i>).</p>
+    <div id="v2"></div>
+    <div class="copyrow"><button class="btn" data-copy="v2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Grammar">
+  <h2>Grammar: Present Simple or Present Continuous?</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Reminder</button><button class="sub">Usually / today</button><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part sheet">
+    <div class="tablewrap"><table class="drill">
+      <thead><tr><th></th><th>Present Simple</th><th>Present Continuous</th></tr></thead>
+      <tbody>
+        <tr><td class="t">When?</td><td><b>habits</b>, routines, facts</td><td>now; <b>temporary</b> situations</td></tr>
+        <tr><td class="t">Time words</td><td class="m">usually, always, often, never, every day, at weekends</td><td class="m">now, right now, at the moment, today, these days, this week, Look! Listen!</td></tr>
+        <tr><td class="t">Examples</td><td>I usually <b>make</b> breakfast at eight.<br>She <b>doesn't work</b> at weekends.<br><b>Do</b> you <b>play</b> board games?</td><td>Today I'<b>m making</b> pancakes.<br>She <b>isn't working</b> this week.<br><b>Are</b> you <b>playing</b> now?</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="part sheet">
+    <h3>Usually… but today…</h3>
+    <p class="task">Today is a strange day: everybody is doing something different! Make sentences like this: <i>Kate usually goes to work by metro, but today she is taking a taxi.</i> Then check with “EN”.</p>
+    <div id="gs"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Correct or incorrect?</h3>
+    <p class="task">Some sentences are correct, some are not. Decide. If a sentence is wrong, write the whole corrected sentence.</p>
+    <div id="g1"></div>
+    <p class="score" id="g1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="g1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Mila's message</h3>
+    <p class="task">Mila is writing a message to her friend. Put the verbs in brackets in the Present Simple or the Present Continuous.</p>
+    <div id="g2"></div>
+    <div class="copyrow"><button class="btn" data-copy="g2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Listening">
+  <h2>Listening: a cook's week</h2>
+  <div class="sheet">
+    <div class="player">
+      <button class="btn solid" id="playL">▶ Play the recording</button>
+      <button class="btn" id="pauseL">Pause</button>
+      <button class="btn" id="stopL">Stop</button>
+    </div>
+    <p class="hint" id="ttsNote" style="margin:8px 0 0"></p>
+    <button class="btn" id="showT" style="margin-top:8px">Show transcript</button>
+    <p id="transcript" class="hidden" style="margin:12px 0 0"></p>
+  </div>
+  <div class="subnav" role="tablist">
+    <button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Answer the questions</h3>
+    <p class="task">Listen once and answer in full sentences.</p>
+    <div id="l1"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Complete the notes</h3>
+    <p class="task">Listen again and write <b>one word or a number</b> in each gap. This is a task from the IELTS Listening test.</p>
+    <div id="l2"></div>
+    <div class="copyrow"><button class="btn" data-copy="l2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Speaking">
+  <h2>Speaking</h2>
+  <div class="cue">
+    <p class="topic">Describe your daily routine.</p>
+    <p style="margin:0">You should say:</p>
+    <ul>
+      <li>what you usually do in the morning</li>
+      <li>what you usually do at work</li>
+      <li>what is different in your life these days</li>
+    </ul>
+    <p style="margin:8px 0 0">and explain whether your routine is balanced.</p>
+  </div>
+  <div class="sheet">
+    <p class="task" style="margin-bottom:6px">This is like Part 2 of the IELTS Speaking test. One minute to prepare (write key words only), then speak for 1–2 minutes.</p>
+    <button class="btn solid" id="tPrep">Preparation · 1 min</button><button class="btn solid" id="tTalk">Speech · 2 min</button><button class="btn" id="tStop">■ Stop</button>
+    <div class="clock" id="clock">1:00</div>
+    <div class="phase" id="phase"></div>
+  </div>
+  <div class="sheet">
+    <h3>Useful phrases</h3>
+    <ul class="qlist">
+      <li>In the morning I usually …</li>
+      <li>At work I'm responsible for …</li>
+      <li>These days I'm … / This month I'm …</li>
+      <li>I think my routine is (not) balanced because …</li>
+    </ul>
+  </div>
+  <div class="sheet">
+    <h3>If we have time</h3>
+    <ol class="qlist">
+      <li>Why is it important to have a balanced life?</li>
+      <li>Do you like to plan everything, or do you prefer to be spontaneous?</li>
+    </ol>
+  </div>
+</section>
+
+<section data-title="Translation">
+  <h2>Translation</h2>
+  <p class="task">Translate the text into English out loud, sentence by sentence. Press “EN” to check yourself.</p>
+  <div class="sheet ttext" id="ttext"></div>
+</section>
+</main>
+<script>
+let uid=0;const nid=()=>"x"+(++uid);
+const hasTTS="speechSynthesis" in window;
+const stopSpeech=()=>{if(hasTTS)speechSynthesis.cancel();};
+const sections=[...document.querySelectorAll("main > section")],tabs=document.getElementById("tabs");
+sections.forEach((s,i)=>{
+  const b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=s.dataset.title;
+  b.setAttribute("aria-selected",i===0);if(i===0)s.classList.add("active");
+  b.onclick=()=>{stopSpeech();sections.forEach(x=>x.classList.remove("active"));s.classList.add("active");
+    [...tabs.children].forEach(t=>t.setAttribute("aria-selected","false"));b.setAttribute("aria-selected","true");window.scrollTo(0,0);};
+  tabs.appendChild(b);
+});
+sections.forEach(s=>{
+  const subs=[...s.querySelectorAll(".sub")],parts=[...s.querySelectorAll(".part")];if(!subs.length)return;
+  const show=k=>{parts.forEach((p,i)=>p.classList.toggle("active",i===k));subs.forEach((b,i)=>b.setAttribute("aria-selected",i===k));};
+  subs.forEach((b,k)=>b.onclick=()=>show(k));show(0);
+});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-toggle]");if(!b)return;const el=document.getElementById(b.dataset.toggle);if(el)el.classList.toggle("hidden");});
+const explain=en=>`<p class="ex">${en}</p>`;
+const norm=s=>s.toLowerCase().replace(/[’‘`]/g,"'").replace(/[.!?,;:]+$/,"").replace(/\s+/g," ").trim();
+const states={};
+const mark=(s)=>s?`${s.v}${s.v==="(answer shown)"?"":(s.ok?" ✓":" ✗")}`:"—";
+
+/* speech */
+let voice=null;
+function pickVoice(){try{const vs=speechSynthesis.getVoices();voice=vs.find(v=>v.lang==="en-GB")||vs.find(v=>/^en/i.test(v.lang))||null;
+ }catch(e){}}
+if(hasTTS){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+
+function say(parts,rate){if(!hasTTS)return;stopSpeech();parts.forEach(c=>{const u=new SpeechSynthesisUtterance(c);u.lang="en-GB";if(voice)u.voice=voice;u.rate=rate||0.9;speechSynthesis.speak(u);});}
+
+/* typed gaps */
+function buildGaps(boxId,data){
+ states[boxId]={};
+ document.getElementById(boxId).innerHTML=data.map((g,i)=>{
+  const inp=`<input class="gap" data-i="${i}" aria-label="Gap ${i+1}" autocomplete="off" spellcheck="false">`;
+  return `<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${g.q.replace("___",inp)}</p><div class="fb"></div><button class="btn chk">Check</button><button class="btn ans">Answer</button></div>`;}).join("");
+ document.querySelectorAll(`#${boxId} .dl`).forEach(row=>{
+  const i=+row.dataset.i,g=data[i],inp=row.querySelector("input"),fb=row.querySelector(".fb");
+  const check=()=>{const v=norm(inp.value);if(!v)return;const ok=g.a.map(norm).includes(v);
+   if(states[boxId][i]===undefined)states[boxId][i]={v:inp.value.trim(),ok};
+   inp.classList.remove("okc","badc");
+   if(ok){inp.classList.add("okc");fb.className="fb okc";fb.innerHTML=`<p class="ex">Correct.</p>`;}
+   else{inp.classList.add("badc");fb.className="fb badc";fb.innerHTML=explain(g.en);}};
+  row.querySelector(".chk").onclick=check;inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+  row.querySelector(".ans").onclick=e=>{if(states[boxId][i]===undefined)states[boxId][i]={v:"(answer shown)",ok:false};
+   inp.value=g.a[0];inp.classList.remove("badc");inp.classList.add("okc");fb.className="fb okc";fb.innerHTML=explain(g.en);e.target.classList.add("hidden");};
+ });
+}
+/* inline select */
+function buildSelects(boxId,data,scoreId){
+ states[boxId]={};
+ document.getElementById(boxId).innerHTML=data.map((g,i)=>{
+  const sel=`<select class="pick" data-i="${i}" aria-label="Option for sentence ${i+1}"><option value="">…</option>${g.o.map((o,k)=>`<option value="${k}">${o}</option>`).join("")}</select>`;
+  return `<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${g.q.replace("___",sel)}</p><div class="fb"></div><button class="btn ans">Answer</button></div>`;}).join("");
+ const upd=()=>{if(!scoreId)return;const vals=Object.values(states[boxId]);document.getElementById(scoreId).textContent=`Correct on the first try: ${vals.filter(s=>s.ok).length} of ${data.length}`+(vals.length<data.length?` (${data.length-vals.length} left)`:"");};
+ document.querySelectorAll(`#${boxId} .dl`).forEach(row=>{
+  const i=+row.dataset.i,g=data[i],s=row.querySelector("select"),fb=row.querySelector(".fb");
+  const check=shown=>{const v=s.value;if(v==="")return;const ok=+v===g.c;
+   if(states[boxId][i]===undefined){states[boxId][i]={v:shown?"(answer shown)":g.o[+v],ok:ok&&!shown};upd();}
+   s.classList.remove("okc","badc");
+   if(ok){s.classList.add("okc");fb.className="fb okc";fb.innerHTML=shown?explain(g.en):`<p class="ex">Correct.</p>`;}
+   else{s.classList.add("badc");fb.className="fb badc";fb.innerHTML=explain(g.en);}};
+  s.onchange=()=>check(false);
+  row.querySelector(".ans").onclick=e=>{s.value=String(g.c);check(true);e.target.classList.add("hidden");};
+ });
+}
+
+/* ---------- vocabulary ---------- */
+const vocab=[
+ ["different","ˈdɪfrənt","not the same","My two jobs are very different.","разный, другой"],
+ ["everything","ˈevriθɪŋ","all things","She organises everything for the party.","всё"],
+ ["at work","ət ˈwɜːk","in the place where you work","I'm at work until six.","на работе"],
+ ["a colleague","ˈkɒliːɡ","a person you work with","My colleagues are very friendly.","коллега"],
+ ["a department","dɪˈpɑːtmənt","one part of a big company or organisation","I work in the events department.","отдел"],
+ ["to organise","ˈɔːɡənaɪz","to plan and arrange something, for example an event","We organise about ten events a month.","организовывать"],
+ ["a client","ˈklaɪənt","a person or a company that pays for a service","Our client wants a big chocolate cake.","клиент, заказчик"],
+ ["to be responsible for","rɪˈspɒnsəbl fə","to have the job of taking care of something","Who is responsible for the guest list?","отвечать за что-то"],
+ ["to take care of","teɪk ˈkeər əv","to look after someone or something","My mum takes care of my cat when I travel.","заботиться о, присматривать за"],
+ ["creative","kriˈeɪtɪv","good at thinking of new ideas or making new things","Designers are creative people.","творческий, креативный"],
+ ["to meet the deadline","miːt ðə ˈdedlaɪn","to finish the work on time","We worked all night to meet the deadline.","уложиться в срок, успеть к дедлайну"],
+ ["a habit","ˈhæbɪt","something you do often, almost without thinking","Drinking water in the morning is a good habit.","привычка"],
+ ["temporary","ˈtemprəri","only for a short time, not for ever","It's a temporary job, only for the summer.","временный"],
+ ["to make breakfast","meɪk ˈbrekfəst","to cook food for the morning meal","On Sundays I make breakfast for my family.","готовить завтрак"],
+ ["to fry","fraɪ","to cook food in hot oil in a pan","I usually fry eggs for breakfast.","жарить"],
+ ["shorts","ʃɔːts","short trousers that end above the knees","In summer I always wear shorts.","шорты"],
+ ["balanced","ˈbælənst","with the right amount of different things","A balanced diet has vegetables, fruit and fish.","сбалансированный"],
+ ["a board game","ˈbɔːd ɡeɪm","a game you play on a board, like chess or Monopoly","We often play board games with friends.","настольная игра"]
+];
+document.getElementById("cards").innerHTML=vocab.map(([w,t,d,x,r],i)=> {const id=nid();return `<div class="card"><div class="w">${w}</div><div class="tr">/${t}/</div><p class="def">${d}</p><p class="ex2">${x}</p><button class="btn" data-say="${i}">▶ Listen</button><button class="btn" data-toggle="${id}">Tap for Russian</button> <span id="${id}" class="ru hidden">${r}</span></div>`;}).join("");
+document.getElementById("cards").addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(!b)return;say([vocab[+b.dataset.say][0]]);});
+
+/* match the halves */
+const endings=[
+ "because he wants to change the menu.",
+ "so I'll call you after six.",
+ "is ready for the party.",
+ "weddings, birthdays and conferences.",
+ "so she knows a lot about advertising.",
+ "to meet the deadline.",
+ "the guest lists and the music.",
+ "helps me when I have too many tasks.",
+ "because every event must be different."
+];
+const L="ABCDEFGHI";
+document.getElementById("endings").innerHTML=endings.map((e,k)=>`<li><b>${L[k]}</b>${e}</li>`).join("");
+const begins=[
+ ["I can't talk now: I'm <b>at work</b>,",1],
+ ["My <b>colleague</b> Anna always",7],
+ ["She works in the marketing <b>department</b>,",4],
+ ["Our team <b>organises</b>",3],
+ ["The <b>client</b> called this morning",0],
+ ["In our office, I'm <b>responsible for</b>",6],
+ ["You need to be <b>creative</b> in this job",8],
+ ["We stayed at work late on Friday",5],
+ ["Don't worry, <b>everything</b>",2]
+];
+buildSelects("v1",begins.map(([q,c])=>({q:q+" ___",o:[...L],c,en:`The ending is ${L[c]}: “${endings[c]}”`})),"v1score");
+
+buildGaps("v2",[
+ {q:"My sister and I look the same, but our characters are very ___ (d…).",a:["different"],en:"Not the same: <i>different</i>."},
+ {q:"Who ___ (t…) care of your dog when you travel?",a:["takes"],en:"<i>Take care of</i>; with <i>who</i> in the Present Simple: <i>takes</i>."},
+ {q:"Checking my phone in bed is a bad ___ (h…).",a:["habit"],en:"Something you do often without thinking: <i>a habit</i>."},
+ {q:"It's a ___ (t…) job: I'm working in this café only for the summer.",a:["temporary"],en:"Only for a short time: <i>temporary</i>."},
+ {q:"Every morning my dad ___ (m…) breakfast for the whole family.",a:["makes"],en:"<i>Make breakfast</i>; he + Present Simple: <i>makes</i>."},
+ {q:"I usually ___ (f…) eggs and tomatoes in the morning.",a:["fry"],en:"To cook in hot oil in a pan: <i>fry</i>."},
+ {q:"It's very hot today, so I'm wearing ___ (s…).",a:["shorts"],en:"Short trousers: <i>shorts</i> (always plural)."},
+ {q:"Fruit, vegetables and fish: that's a ___ (b…) diet.",a:["balanced"],en:"With the right amount of different things: <i>balanced</i>."},
+ {q:"On Friday evenings we play ___ (b…) games with our friends.",a:["board"],en:"<i>Board games</i>: chess, Monopoly and so on."}
+]);
+
+/* ---------- grammar: usually / today ---------- */
+const gs=[
+ ["Kate","go to work by metro","take a taxi","Kate usually goes to work by metro, but today she is taking a taxi."],
+ ["Mark","wear a suit at work","wear shorts","Mark usually wears a suit at work, but today he is wearing shorts."],
+ ["The chef","fry eggs for breakfast","make pancakes","The chef usually fries eggs for breakfast, but today he is making pancakes."],
+ ["My colleagues","drink tea after lunch","drink champagne","My colleagues usually drink tea after lunch, but today they are drinking champagne."],
+ ["Anna and Tom","play board games on Fridays","watch a film","Anna and Tom usually play board games on Fridays, but today they are watching a film."],
+ ["I","…","…","Now say two sentences about yourself!"]
+];
+document.getElementById("gs").innerHTML=`<div class="tablewrap"><table class="drill"><thead><tr><th>Who?</th><th>Usually</th><th>Today</th><th>Check</th></tr></thead><tbody>`+
+ gs.map(([w,u,t,a])=>{const id=nid();return `<tr><td class="t">${w}</td><td>${u}</td><td>${t}</td><td>${w==="I"?`<span class="hint">${a}</span>`:`<button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en hidden"> ${a}</span>`}</td></tr>`;}).join("")+`</tbody></table></div>`;
+
+/* ---------- grammar 1: correct or not ---------- */
+const g1=[
+ {s:"I usually fry eggs for breakfast.",ok:true,full:"",fix:[],en:"Correct. <i>Usually</i> = a habit: Present Simple."},
+ {s:"Look! Our client comes into the office.",ok:false,full:"Look! Our client is coming into the office.",fix:["look! our client is coming into the office","look our client is coming into the office","look! our client's coming into the office"],en:"<i>Look!</i> = it is happening now: Present Continuous, <i>is coming</i>."},
+ {s:"She is working in the events department every day.",ok:false,full:"She works in the events department every day.",fix:["she works in the events department every day"],en:"<i>Every day</i> = a routine: Present Simple, <i>she works</i>."},
+ {s:"This month I'm taking care of my neighbour's cat.",ok:true,full:"",fix:[],en:"Correct. <i>This month</i> = a temporary situation: Present Continuous."},
+ {s:"My colleagues often are playing board games after work.",ok:false,full:"My colleagues often play board games after work.",fix:["my colleagues often play board games after work"],en:"<i>Often</i> = a habit: Present Simple, <i>they often play</i>."},
+ {s:"Are you wearing shorts today? It's cold!",ok:true,full:"",fix:[],en:"Correct. <i>Today</i>, at this moment: Present Continuous."},
+ {s:"Does she makes breakfast every morning?",ok:false,full:"Does she make breakfast every morning?",fix:["does she make breakfast every morning"],en:"After <i>does</i> the verb has no -s: <i>Does she make…?</i>"},
+ {s:"It's a temporary change: this week we work from home.",ok:false,full:"It's a temporary change: this week we are working from home.",fix:["it's a temporary change: this week we are working from home","it's a temporary change: this week we're working from home","it is a temporary change: this week we are working from home","it's a temporary change, this week we are working from home","it's a temporary change, this week we're working from home"],en:"<i>This week</i>, temporary: Present Continuous, <i>we are working</i>."},
+ {s:"Our team usually meets the deadline.",ok:true,full:"",fix:[],en:"Correct. <i>Usually</i> = a routine: Present Simple, <i>the team meets</i>."}
+];
+const normS=s=>norm(s).replace(/[!?.,:;—–-]/g," ").replace(/\s+/g," ").trim();
+states.g1={};
+document.getElementById("g1").innerHTML=g1.map((it,i)=>`<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${it.s}</p>
+ <div class="verdict"><button class="opt" data-v="1">Correct</button><button class="opt" data-v="0">Incorrect</button></div>
+ <div class="fixrow hidden"><input class="gap" style="width:26em" aria-label="Corrected sentence" autocomplete="off" spellcheck="false"> <button class="btn chk">Check</button></div>
+ <div class="fb"></div><button class="btn ans">Answer</button></div>`).join("");
+const g1score=()=>{const v=Object.values(states.g1).filter(s=>s.done);document.getElementById("g1score").textContent=`Correct on the first try: ${v.filter(s=>s.ok).length} of ${g1.length}`+(v.length<g1.length?` (${g1.length-v.length} left)`:"");};
+document.querySelectorAll("#g1 .dl").forEach(row=>{
+ const i=+row.dataset.i,it=g1[i],fb=row.querySelector(".fb"),fr=row.querySelector(".fixrow"),inp=fr.querySelector("input");
+ const st=states.g1[i]={v:null,typed:null,ok:false,done:false,first:true};
+ const finish=(okFirst,shown)=>{if(st.done)return;st.done=true;st.ok=okFirst&&!shown;
+  row.querySelectorAll(".verdict .opt").forEach(b=>b.disabled=true);fr.classList.add("hidden");row.querySelector(".ans").classList.add("hidden");
+  row.querySelector(`.verdict .opt[data-v="${it.ok?1:0}"]`).classList.add("okc");
+  fb.className="fb okc";fb.innerHTML=(it.ok?"":`<p class="ex"><b>${it.full}</b></p>`)+explain(it.en);g1score();};
+ row.querySelectorAll(".verdict .opt").forEach(b=>b.onclick=()=>{if(st.done)return;const v=b.dataset.v==="1";
+  if(st.v===null)st.v=v?"Correct":"Incorrect";
+  row.querySelectorAll(".verdict .opt").forEach(x=>x.classList.remove("okc","badc"));
+  if(v===it.ok){
+   if(it.ok){b.classList.add("okc");finish(st.first,false);}
+   else{b.classList.add("okc");fr.classList.remove("hidden");fb.className="fb";fb.innerHTML=`<p class="ex">Yes, there's a mistake. Now write the whole corrected sentence.</p>`;inp.focus();}
+  }else{st.first=false;b.classList.add("badc");fb.className="fb badc";fb.innerHTML=`<p class="ex">${it.ok?"Look again: this sentence is actually correct.":"Look again: there is a mistake here."}</p>`;}
+ });
+ const check=()=>{const v=normS(inp.value);if(!v)return;const good=it.fix.concat([it.full]).map(normS).includes(v);
+  if(st.typed===null)st.typed=inp.value.trim();
+  inp.classList.remove("okc","badc");
+  if(good){inp.classList.add("okc");finish(st.first,false);}
+  else{st.first=false;inp.classList.add("badc");fb.className="fb badc";fb.innerHTML=`<p class="ex">Not quite. Check the verb and try again, or press “Answer”.</p>`;}};
+ fr.querySelector(".chk").onclick=check;inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+ row.querySelector(".ans").onclick=()=>{if(st.v===null)st.v="(answer shown)";finish(false,true);};
+});
+
+/* ---------- grammar 2: Mila's message ---------- */
+buildGaps("g2",[
+ {q:"Hi Sasha! Usually I ___ (start) work at nine,",a:["start"],en:"<i>Usually</i> = a routine: Present Simple, <i>I start</i>."},
+ {q:"but this week I ___ (start) at eight,",a:["am starting","'m starting","i'm starting","i am starting"],en:"<i>This week</i> = a temporary situation: <i>I'm starting</i>."},
+ {q:"because we ___ (organise) a big conference.",a:["are organising","'re organising","are organizing","'re organizing"],en:"Happening these days, temporary: <i>we are organising</i>."},
+ {q:"My colleague Dina usually ___ (take) care of the clients.",a:["takes"],en:"<i>Usually</i>, she: Present Simple, <i>takes</i>."},
+ {q:"Right now she ___ (talk) to a client on the phone,",a:["is talking","'s talking"],en:"<i>Right now</i>: Present Continuous, <i>is talking</i>."},
+ {q:"and I ___ (drink) my third coffee!",a:["am drinking","'m drinking","i'm drinking","i am drinking"],en:"At this moment: <i>I'm drinking</i>."},
+ {q:"At weekends we often ___ (play) board games. Come and join us!",a:["play"],en:"<i>Often, at weekends</i> = a habit: Present Simple, <i>we play</i>."}
+]);
+
+/* ---------- listening ---------- */
+const story=`My name is Oleg, and I work as a cook in the restaurant department of a big hotel. Every day at work is different. In the morning I usually make breakfast for about a hundred guests: I fry eggs, cook porridge and cut fruit. Breakfast must be ready by seven, and I always meet the deadline. Our manager wants every menu to be balanced, so we always have vegetables and fish. I have a good habit: I write everything in my notebook. But this month is special. One of my colleagues is on holiday, so I'm taking care of the kitchen alone. It's only temporary, but it's hard! At the moment I'm working ten hours a day, and I'm always tired. At work I wear a white uniform, but at home I put on my shorts and play board games with my kids.`;
+document.getElementById("transcript").textContent=story;
+const note=document.getElementById("ttsNote");
+if(!hasTTS)note.textContent="This browser can't read the text aloud. Open the page in Chrome, Edge or Safari.";
+const chunks=story.match(/[^.!?]+[.!?]+\s*/g).map(s=>s.trim());
+document.getElementById("playL").onclick=()=>{if(!hasTTS)return;if(!voice)pickVoice();
+ if(!voice&&speechSynthesis.getVoices().length)note.textContent="This browser has no English voice. Open the page in Chrome, Edge or Safari.";
+ say(chunks,0.85);document.getElementById("pauseL").textContent="Pause";};
+document.getElementById("pauseL").onclick=e=>{if(!hasTTS)return;
+ if(speechSynthesis.paused){speechSynthesis.resume();e.target.textContent="Pause";}else if(speechSynthesis.speaking){speechSynthesis.pause();e.target.textContent="Resume";}};
+document.getElementById("stopL").onclick=()=>{stopSpeech();document.getElementById("pauseL").textContent="Pause";};
+document.getElementById("showT").onclick=e=>{const t=document.getElementById("transcript");t.classList.toggle("hidden");e.target.textContent=t.classList.contains("hidden")?"Show transcript":"Hide transcript";};
+
+const l1=[
+ ["What does Oleg usually do in the morning?","He usually makes breakfast for about a hundred guests: he fries eggs, cooks porridge and cuts fruit."],
+ ["Why is this month special for Oleg?","Because one of his colleagues is on holiday, so he is taking care of the kitchen alone."]
+];
+document.getElementById("l1").innerHTML=l1.map(([q,a],i)=>{const id=nid();return `<div class="dl"><p><b>${i+1}.</b> ${q}</p><button class="btn" data-toggle="${id}">Answer</button> <span id="${id}" class="en hidden">${a}</span></div>`;}).join("");
+buildGaps("l2",[
+ {q:"Oleg makes breakfast for about ___ guests.",a:["a hundred","hundred","100","one hundred"],en:"“…for about a hundred guests.”"},
+ {q:"Breakfast must be ready by ___ o'clock.",a:["seven","7"],en:"“Breakfast must be ready by seven.”"},
+ {q:"Oleg writes everything in his ___.",a:["notebook"],en:"“I write everything in my notebook.”"},
+ {q:"This month one of his colleagues is on ___.",a:["holiday","vacation"],en:"“One of my colleagues is on holiday.”"},
+ {q:"At the moment Oleg works ___ hours a day.",a:["ten","10"],en:"“I'm working ten hours a day.”"},
+ {q:"At work he wears a white ___.",a:["uniform"],en:"“At work I wear a white uniform.”"}
+]);
+
+/* ---------- speaking timer ---------- */
+let tId=null;
+const clock=document.getElementById("clock"),phase=document.getElementById("phase");
+const fmt=n=>`${Math.floor(n/60)}:${String(n%60).padStart(2,"0")}`;
+const stopT=()=>{clearInterval(tId);tId=null;};
+function runT(sec,label,done){stopT();let n=sec;clock.textContent=fmt(n);phase.textContent=label;
+ tId=setInterval(()=>{n--;clock.textContent=fmt(n);if(n<=0){stopT();phase.textContent=done;}},1000);}
+document.getElementById("tPrep").onclick=()=>runT(60,"Preparation: make notes…","Time to speak!");
+document.getElementById("tTalk").onclick=()=>runT(120,"Speaking…","Time's up. Thank you!");
+document.getElementById("tStop").onclick=()=>{stopT();phase.textContent="Stopped";};
+
+/* ---------- translation ---------- */
+const tr=[
+ ["Моя подруга Лена работает в отделе маркетинга большой компании.","My friend Lena works in the marketing department of a big company."],
+ ["Обычно она отвечает за рекламу и общается с клиентами.","She is usually responsible for advertising, and she talks to clients."],
+ ["Но в этом месяце она организует новогоднюю вечеринку для всех коллег.","But this month she is organising a New Year party for all her colleagues."],
+ ["Это временная задача, но ей нужно успеть к дедлайну.","It's a temporary task, but she needs to meet the deadline."],
+ ["Прямо сейчас она выбирает настольные игры для вечеринки.","Right now she is choosing board games for the party."],
+ ["На работе Лена всегда носит костюм, а дома ходит в шортах.","At work Lena always wears a suit, but at home she wears shorts."],
+ ["Дома её парень заботится обо всём: он готовит завтрак и жарит блины.","At home her boyfriend takes care of everything: he makes breakfast and fries pancakes."],
+ ["У Лены хорошая привычка: она всегда ест сбалансированный завтрак.","Lena has a good habit: she always eats a balanced breakfast."]
+];
+document.getElementById("ttext").innerHTML=tr.map(([r,e])=>{const id=nid();return `<span>${r}</span> <button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en enout hidden">${e}</span> `;}).join("");
+
+/* ---------- homework check (translation from 12 October) ---------- */
+const hw=[
+ ["Меня зовут Ольга, и я работаю event-менеджером в большом отеле.","My name is Olga, and I work as an event manager at a big hotel."],
+ ["Обычно я организую конференции и деловые встречи.","I usually organise conferences and business meetings."],
+ ["Но в этом месяце я организую большую свадьбу на 200 гостей.","But this month I'm organising a big wedding for 200 guests."],
+ ["Я отвечаю за музыку, цветы и меню.","I'm responsible for the music, the flowers and the menu."],
+ ["Наши клиенты — очень творческие люди, и у них много идей.","Our clients are very creative people, and they have a lot of ideas."],
+ ["Дедлайн для приглашений — завтра, поэтому сегодня я работаю допоздна.","The deadline for the invitations is tomorrow, so today I'm working late."],
+ ["Прямо сейчас я разговариваю с флористом по телефону.","Right now I'm talking to the florist on the phone."],
+ ["Я интересуюсь дизайном, поэтому иногда помогаю клиентам с приглашениями.","I'm interested in design, so I sometimes help clients with the invitations."]
+];
+document.getElementById("hwtext").innerHTML=hw.map(([r,e])=>{const id=nid();return `<span>${r}</span> <button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en enout hidden">${e}</span> `;}).join("");
+
+/* ---------- copy answers ---------- */
+function copyText(t,btn){
+ const done=()=>{const s=btn.nextElementSibling;s.textContent="Copied";setTimeout(()=>s.textContent="",1800);};
+ const fb=()=>{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");done();}catch(e){}a.remove();};
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,fb);else fb();
+}
+const titles={v1:"Vocabulary, exercise 1",v2:"Vocabulary, exercise 2",g1:"Grammar, exercise 1",g2:"Grammar, exercise 2",l2:"Listening, exercise 2"};
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-copy]");if(!b)return;const k=b.dataset.copy;let lines;
+ if(k==="g1"){lines=g1.map((it,i)=>{const s=states.g1[i];if(s.v===null)return `${i+1}. —`;
+   return `${i+1}. ${s.v}${s.typed?`, wrote: ${s.typed}`:""}${s.v==="(answer shown)"||!s.done?"":(s.ok?" ✓":" ✗")}`;});}
+ else{const n=document.querySelectorAll(`#${k} .dl`).length;lines=[...Array(n).keys()].map(i=>`${i+1}. ${mark(states[k][i])}`);}
+ copyText(["Zhanna, 16 October — "+titles[k]].concat(lines).join("\n"),b);
+});
+</script>
+</body>
+</html>
