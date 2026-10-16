@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English Lesson — Emma — 19.10.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF6EC; --cream-2:#FDEBDC; --card:#FFFFFF;
+  --ink:#2C2140; --ink-soft:#6B6280;
+  --violet:#6D4AE0; --violet-soft:#EFE9FF;
+  --amber:#F6B93B; --amber-soft:#FDEBC4;
+  --teal:#0E9E8B; --rose:#E2607A; --line:#F0E6DC;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);
+  background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);background-attachment:fixed;
+  font-size:17px;line-height:1.6}
+h1,h2,h3,h4,h5{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;line-height:1.2;margin:0}
+.wrap{max-width:880px;margin:0 auto;padding:26px 18px 60px}
+
+.head{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.badge{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#FFB86B,#F6795B);
+  display:grid;place-items:center;font-size:30px;flex:none;box-shadow:0 8px 18px rgba(246,121,91,.28)}
+.head h1{font-size:32px}
+.head p{margin:3px 0 0;color:var(--ink-soft);font-size:15px}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.tab{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:9px 16px;font:inherit;font-weight:700;font-size:14px;color:var(--ink);cursor:pointer}
+.tab i{width:20px;height:20px;border-radius:50%;background:var(--violet-soft);color:var(--violet);
+  font-style:normal;font-size:12px;display:grid;place-items:center;font-weight:800}
+.tab:hover{border-color:var(--violet)}
+.tab.on{background:#241B39;border-color:#241B39;color:#fff}
+.tab.on i{background:rgba(255,255,255,.22);color:#fff}
+
+.page{display:none;background:var(--card);border-radius:24px;padding:28px 26px;
+  box-shadow:0 4px 22px rgba(90,60,30,.07)}
+.page.on{display:block}
+.eyebrow{display:inline-block;background:#E9F1FF;color:#3B7BEA;font-weight:800;font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:6px 14px;margin-bottom:14px}
+.page h2{font-size:27px;display:flex;align-items:center;gap:10px}
+.page h3{font-size:20px;margin:28px 0 8px}
+.lead{color:var(--ink-soft);font-size:15px;margin:8px 0 0}
+.hint{background:#FFFBF0;border-left:4px solid var(--amber);border-radius:10px;padding:10px 14px;
+  color:#7A6236;font-size:15px;margin:14px 0}
+p{margin:10px 0}
+
+.quote{background:linear-gradient(135deg,#F3EEFF,#FFF2E4);border-radius:20px;padding:26px 24px;margin:16px 0 8px;
+  font-family:'Baloo 2',sans-serif;font-size:26px;line-height:1.45;text-align:center}
+.chip{background:#FFE7A8;border-radius:8px;padding:0 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center}
+button{font:inherit;font-weight:800;border-radius:12px;cursor:pointer;border:1px solid transparent;padding:10px 20px}
+.btn-main{background:var(--teal);color:#fff}
+.btn-main:hover{background:#0B8878}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+.mini{font-size:13px;padding:4px 11px;border-radius:9px;background:#fff;border:1px solid var(--line);
+  color:var(--ink-soft);font-weight:800;white-space:nowrap}
+.mini:hover{border-color:var(--violet);color:var(--violet)}
+.rus{font-size:11px;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:#fff;
+  border:1px solid #D9C9A8;color:#A07C3C;font-weight:800;vertical-align:2px;margin-left:8px}
+.rus:hover{border-color:var(--violet);color:var(--violet)}
+.score{font-weight:800;color:var(--teal)}
+.rev{display:none;background:var(--violet-soft);border-radius:12px;padding:10px 14px;margin-top:10px;
+  font-weight:700;color:#4A2FB0;font-size:15px}
+.rev.show{display:block}
+.rev.plain{font-weight:400}
+.rev ul{margin:6px 0 0;padding-left:20px}
+.rev li{margin:3px 0}
+
+.ru-text{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-top:14px;
+  font-size:18px;line-height:1.9}
+.flow{font-size:18px;line-height:2.1}
+.flow .en{display:none;background:#DFF5EC;color:#0A6B5E;border-radius:8px;padding:3px 10px;font-weight:700}
+.flow .en.show{display:inline}
+
+/* theory */
+.block{border:1px solid var(--line);border-radius:20px;padding:20px 22px;margin-top:14px;background:#fff}
+.block-title{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:800}
+.u{background:#F5F2FB;border-radius:14px;padding:14px 18px;margin-top:12px}
+.u .num{color:#A99CC4;font-weight:800;font-size:13px;margin-right:9px}
+.u h4{display:inline;font-size:18px}
+.u .ind{color:var(--ink-soft);font-size:14px;margin-top:6px}
+.u .ex{margin-top:7px;font-size:16px}
+.sec{border-left:3px solid #C8B8F0;padding-left:14px;margin:18px 0}
+.sec h5{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.sec .r{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:7px 0;border-bottom:1px dotted var(--line)}
+.sec .r:last-child{border-bottom:none}
+.sec .f{font-weight:800;color:var(--ink)}
+.sec .e{color:var(--ink-soft)}
+.plusline h5{color:var(--teal)} .minusline h5{color:var(--rose)} .questline h5{color:var(--violet)}
+.note{background:#F5F2FB;border-radius:12px;padding:10px 14px;font-size:15px;color:var(--ink-soft);margin-top:14px}
+
+ol.tasks{list-style:none;counter-reset:t;padding:0;margin:12px 0 0}
+ol.tasks>li{counter-increment:t;display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
+ol.tasks>li:last-child{border-bottom:none}
+ol.tasks>li::before{content:counter(t);flex:none;width:26px;height:26px;border-radius:50%;
+  background:var(--violet);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:4px}
+.taskbody{flex:1;min-width:0}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:7px;padding:2px 8px;margin-right:6px;vertical-align:2px}
+.tag.p{background:#DFF5EC;color:#0A6B5E}
+.tag.m{background:#FCE4E9;color:#9E2F45}
+.tag.q{background:var(--violet-soft);color:#4A2FB0}
+.verb{display:inline-block;background:var(--violet-soft);color:#4A2FB0;border-radius:7px;
+  padding:1px 9px;font-weight:800;font-size:15px}
+input.gap{font:inherit;font-weight:700;color:var(--ink);background:var(--amber-soft);border:none;
+  border-bottom:2px solid var(--amber);border-radius:6px 6px 0 0;padding:3px 8px;width:150px}
+input.gap:focus{outline:2px solid var(--violet);outline-offset:1px}
+input.gap.ok{background:#DFF5EC;border-bottom-color:var(--teal)}
+input.gap.no{background:#FCE4E9;border-bottom-color:var(--rose)}
+input.small{width:92px;text-align:center}
+.line{display:flex;gap:8px;align-items:center;margin-top:7px}
+.line input.gap{flex:1;width:auto;min-width:0}
+.sub{display:flex;gap:8px;align-items:center;margin-top:7px}
+.sub em{font-style:normal;font-weight:800;color:var(--ink-soft);font-size:13px;width:22px;flex:none}
+.sub input.gap{flex:1;width:auto;min-width:0}
+.answers{background:#FFFDFA;border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin-top:14px}
+.answers div{padding:3px 0;font-weight:600;font-size:15px}
+.answers b{color:var(--violet);margin-right:8px}
+.para{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-top:12px;
+  font-size:17px;line-height:2.5}
+
+.choices{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.choice{background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:700;
+  padding:6px 16px;border-radius:999px;font-size:15px}
+.choice:hover{border-color:var(--violet)}
+.choice.ok{background:#DFF5EC;border-color:var(--teal);color:#0A6B5E}
+.choice.no{background:#FCE4E9;border-color:var(--rose);color:#9E2F45}
+.ab{display:flex;flex-direction:column;gap:7px;margin-top:8px}
+.ab .choice{text-align:left;border-radius:12px;font-weight:600}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:16px}
+.vcard{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;min-height:110px}
+.vcard .top{display:flex;align-items:flex-start;gap:8px}
+.vcard .w{font-family:'Baloo 2',sans-serif;font-size:19px;font-weight:700;flex:1}
+.vcard .say{flex:none;width:32px;height:32px;border-radius:50%;background:var(--violet);color:#fff;
+  border:none;padding:0;font-size:14px;display:grid;place-items:center}
+.vcard .say:hover{background:#5A38CC}
+.vcard .tr{color:var(--ink-soft);font-size:14px}
+.vcard .back{display:none;margin-top:9px;font-size:15px}
+.vcard.open{background:var(--violet-soft);border-color:#CDBCFF}
+.vcard.open .back{display:block}
+.vcard .def{font-weight:700;color:#4A2FB0}
+.vcard .ex{font-style:italic;color:var(--ink-soft);font-size:14px;margin-top:4px}
+
+.text{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-top:14px;font-size:17px;line-height:1.85}
+.text p{margin:0 0 12px}
+.text p:last-child{margin-bottom:0}
+
+.q{margin:18px 0 0}
+.q p{font-weight:700;margin:0 0 8px}
+.opts{display:flex;flex-direction:column;gap:7px}
+.opts.tf{flex-direction:row}
+.opt{text-align:left;background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:600;padding:9px 14px;border-radius:12px}
+.opts.tf .opt{min-width:120px;text-align:center;font-weight:800}
+.opt:hover{border-color:var(--violet)}
+.opt.ok{background:#DFF5EC;border-color:var(--teal);color:#0A6B5E}
+.opt.no{background:#FCE4E9;border-color:var(--rose);color:#9E2F45}
+
+/* speaking / warm-up */
+.prompt{display:flex;gap:12px;align-items:center;background:#FFFDFA;border:1px solid var(--line);
+  border-radius:14px;padding:12px 16px;margin:9px 0;flex-wrap:wrap}
+.prompt .k{font-weight:800;color:var(--violet);flex:1;min-width:160px}
+.prompt .a{color:var(--ink-soft);font-size:15px}
+.emojis{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:16px}
+.ecard{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:18px 14px;text-align:center}
+.ecard .e{font-size:34px;line-height:1.2}
+.ecard .t{margin-top:6px;font-weight:800;color:var(--violet);font-size:15px}
+.spin{background:#241B39;border-radius:20px;padding:22px;color:#fff;text-align:center;margin-top:14px}
+.spin .topic{font-family:'Baloo 2',sans-serif;font-size:24px;min-height:34px;margin-bottom:12px}
+.spin button{background:#FFB86B;color:#241B39;border:none}
+.spin button:hover{background:#FFA64D}
+
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+footer{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:26px}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:18px 13px 48px}
+  .head h1{font-size:25px}
+  .badge{width:52px;height:52px;border-radius:16px;font-size:24px}
+  .page{padding:20px 16px;border-radius:20px}
+  .block{padding:16px 14px}
+  .quote{font-size:20px;padding:20px 16px}
+  .sec .r{grid-template-columns:1fr}
+  .tab{padding:8px 12px;font-size:13px}
+  input.gap{width:130px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="head">
+  <div class="badge">🦉</div>
+  <div>
+    <h1>English lesson — Emma</h1>
+    <p>19.10.2026 · <b>Present Simple</b> — early birds and night owls</p>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab on" data-go="p1"><i>1</i>Warm-up</button>
+  <button class="tab" data-go="p2"><i>2</i>Homework Check</button>
+  <button class="tab" data-go="p3"><i>3</i>Grammar</button>
+  <button class="tab" data-go="p4"><i>4</i>Vocabulary</button>
+  <button class="tab" data-go="p5"><i>5</i>Reading</button>
+  <button class="tab" data-go="p6"><i>6</i>Speaking</button>
+  <button class="tab" data-go="p7"><i>7</i>Translation</button>
+</div>
+
+<!-- 1 WARM-UP -->
+<section class="page on" id="p1">
+  <div class="eyebrow">Warm-up</div>
+  <h2>🧩 Emoji sentences</h2>
+  <p class="lead">Look at the pictures and make a sentence about yourself. <button class="rus" data-toggle="#i1">RUS</button></p>
+  <div class="rev plain" id="i1">Посмотри на картинки и составь предложение о себе.</div>
+
+  <div class="emojis">
+    <div class="ecard"><div class="e">🌅⏰</div><div class="t">7:00</div></div>
+    <div class="ecard"><div class="e">🐕🥣</div><div class="t">every morning</div></div>
+    <div class="ecard"><div class="e">🎸</div><div class="t">twice a week</div></div>
+    <div class="ecard"><div class="e">📚🌙</div><div class="t">in the evening</div></div>
+    <div class="ecard"><div class="e">🦉🛏️</div><div class="t">11 o'clock</div></div>
+    <div class="ecard"><div class="e">🌧️💤</div><div class="t">the sound of the rain</div></div>
+  </div>
+
+  <div class="hint">💡 Example: 🌅⏰ 7:00 → <b>I get up at seven o'clock.</b> · <b>I don't get up at seven o'clock.</b></div>
+
+  <h3>Phrase of the day</h3>
+  <div class="quote">"It is Sunday — I <span class="chip">sleep like a log</span> until eleven!"</div>
+  <div class="row">
+    <button class="mini" data-toggle="#ph1">Show translation</button>
+    <button class="btn-ghost" data-speak="It is Sunday — I sleep like a log until eleven!" data-rate="0.85">🔊 Listen</button>
+  </div>
+  <div class="rev" id="ph1">to sleep like a log /sliːp laɪk ə ˈlɒɡ/ — спать как убитый, спать без задних ног.<br>
+    <span style="font-weight:400">«Сегодня воскресенье — я сплю без задних ног до одиннадцати!»</span></div>
+
+  <div class="pager"><span></span><button class="btn-main" data-go="p2">Next: Homework Check →</button></div>
+</section>
+
+<!-- 2 HOMEWORK CHECK -->
+<section class="page" id="p2">
+  <div class="eyebrow">Homework · Translation</div>
+  <h2>🌍 Translate the text into English</h2>
+  <p class="lead">Translate sentence by sentence — out loud. <button class="rus" data-toggle="#i0">RUS</button></p>
+  <div class="rev plain" id="i0">Переводи вслух по одному предложению.</div>
+
+  <div class="ru-text">
+    Я встаю в семь часов, но я не жаворонок. Мой брат завтракает в восемь. Я кормлю собак перед школой. Ты гуляешь с собакой утром? Нет. Моя сестра не делает домашнюю работу вечером. Я занимаюсь на гитаре два раза в неделю. У тебя много свободного времени в субботу? Мой папа не смотрит фильмы с нами, он рано ложится спать. Твоя мама встаёт в пять часов? Да. Я сова: я ложусь спать в одиннадцать.
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p1">← Back</button><button class="btn-main" data-go="p3">Next: Grammar →</button></div>
+</section>
+
+<!-- 3 GRAMMAR -->
+<section class="page" id="p3">
+  <div class="eyebrow">Grammar</div>
+  <h2>⭐ Present Simple</h2>
+  <p class="lead">The verb <i>to be</i> is done. Now we take all the other verbs: live, go, read, practise, wake up…</p>
+
+  <div class="block">
+    <div class="block-title">When do we use the Present Simple?</div>
+
+    <div class="u">
+      <span class="num">01</span><h4>Regular actions and facts in general</h4>
+      <button class="rus" data-toggle="#r01">RUS</button>
+      <div class="ex">I live in St Petersburg. My brother studies abroad.</div>
+      <div class="rev plain" id="r01">Регулярные действия и факты вообще — то, что верно не только сейчас, а в целом: «я живу в Санкт-Петербурге», «мой брат учится за границей».</div>
+    </div>
+
+    <div class="u">
+      <span class="num">02</span><h4>Repeated actions</h4>
+      <button class="rus" data-toggle="#r02">RUS</button>
+      <div class="ind">Indicators: every day · usually · often · sometimes · seldom · never · twice a week · on Mondays</div>
+      <div class="ex">I play the guitar twice a week. My sister often reads in the evening.</div>
+      <div class="rev plain" id="r02">Повторяющиеся действия. Слова-подсказки: every day — каждый день, usually — обычно, often — часто, sometimes — иногда, seldom — редко, never — никогда, twice a week — дважды в неделю, on Mondays — по понедельникам.</div>
+    </div>
+
+    <div class="u">
+      <span class="num">03</span><h4>Scientific facts</h4>
+      <button class="rus" data-toggle="#r03">RUS</button>
+      <div class="ex">Water boils at 100 degrees. The sun rises in the east.</div>
+      <div class="rev plain" id="r03">Научные факты и законы природы: вода кипит при 100 градусах, солнце встаёт на востоке.</div>
+    </div>
+
+    <div class="u">
+      <span class="num">04</span><h4>Timetables — films, performances, flights, trains, buses</h4>
+      <button class="rus" data-toggle="#r04">RUS</button>
+      <div class="ex">Our English lesson starts at four. The film starts at eight tonight.</div>
+      <div class="rev plain" id="r04">Расписание: уроки, сеансы, спектакли, рейсы, поезда, автобусы. «Урок начинается в четыре», «фильм начинается в восемь» — даже если речь о завтрашнем дне.</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">Scheme 2 — all other verbs</div>
+    <button class="rus" data-toggle="#r2">RUS</button>
+
+    <div class="sec plusline">
+      <h5>+ Affirmative</h5>
+      <div class="r"><div class="f">I / We / You / They + V1</div><div class="e">I play the guitar every day.</div></div>
+      <div class="r"><div class="f">He / She / It + V1 + s</div><div class="e">She plays the guitar every day.</div></div>
+    </div>
+
+    <div class="sec minusline">
+      <h5>− Negative</h5>
+      <div class="r"><div class="f">I / We / You / They + don't + V1</div><div class="e">I don't play football on Sunday.</div></div>
+      <div class="r"><div class="f">He / She / It + doesn't + V1</div><div class="e">He doesn't play football on Sunday.</div></div>
+    </div>
+
+    <div class="sec questline">
+      <h5>? Question</h5>
+      <div class="r"><div class="f">Do + I / we / you / they + V1 …?</div><div class="e">Do you play football on Sunday?</div></div>
+      <div class="r"><div class="f">Does + he / she / it + V1 …?</div><div class="e">Does he play football on Sunday?</div></div>
+    </div>
+
+    <div class="note">V1 is the first form of the verb — the infinitive without <i>to</i>: to play → play, to go → go.</div>
+
+    <div class="rev plain" id="r2">Схема для всех глаголов, кроме to be:
+      <ul>
+        <li><b>Утверждение:</b> подлежащее + V1. Для he / she / it к глаголу добавляется <b>-s</b>: I play → She play<b>s</b>.</li>
+        <li><b>Отрицание:</b> подлежащее + <b>don't</b> (для he / she / it — <b>doesn't</b>) + V1. Окончание -s уже «ушло» в doesn't, поэтому сам глагол остаётся без -s: He <b>doesn't play</b>, а не «doesn't plays».</li>
+        <li><b>Вопрос:</b> <b>Do</b> (для he / she / it — <b>Does</b>) + подлежащее + V1. Снова без -s: <b>Does</b> he <b>play</b>?</li>
+        <li><b>Короткие ответы:</b> Yes, I do. / No, I don't. Yes, she does. / No, she doesn't.</li>
+        <li><b>V1</b> — первая форма глагола, инфинитив без частицы to: to play → play.</li>
+        <li><b>Написание -s:</b> play → plays, read → reads; go → go<b>es</b>, watch → watch<b>es</b>; study → stud<b>ies</b>, cry → cr<b>ies</b>.</li>
+        <li><b>Важно:</b> глаголу <b>to be</b> помощники do / does не нужны: «I am tired», «Is she ill?» — а не «I do be tired».</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Exercise 1. Match the two halves</h3>
+  <p class="lead">Write the letter (A–F) in the box. <button class="rus" data-toggle="#i2">RUS</button></p>
+  <div class="rev plain" id="i2">Соедини две половинки предложения: впиши в окошко букву (A–F).</div>
+  <div class="answers">
+    <div><b>A</b>… wake up at six and want their breakfast?</div>
+    <div><b>B</b>… gets up at half past five.</div>
+    <div><b>C</b>… feed your cat in the evening?</div>
+    <div><b>D</b>… get up early at the weekend.</div>
+    <div><b>E</b>… late for our lesson.</div>
+    <div><b>F</b>… have breakfast together on Sunday.</div>
+  </div>
+  <ol class="tasks" data-ex="g1">
+    <li><div class="taskbody"><span class="tag p">+</span>My mum always <input class="gap small" data-a="b"></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>My dad doesn't <input class="gap small" data-a="d"></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span>Do your dogs <input class="gap small" data-a="a"></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>My sister is never <input class="gap small" data-a="e"></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span>Does your brother <input class="gap small" data-a="c"></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span>We don't <input class="gap small" data-a="f"></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g1">Check</button><span class="score" data-score="g1"></span></div>
+
+  <h3>Exercise 2. Complete the text</h3>
+  <p class="lead">Put the verb from the box into the right form. <button class="rus" data-toggle="#i3">RUS</button></p>
+  <div class="rev plain" id="i3">Поставь глагол из рамки в нужную форму. Следи за знаками: где-то нужно отрицание, где-то вопрос.</div>
+  <div class="para" data-ex="g2">
+    My cousin Dima <input class="gap small" data-a="is"> <span class="verb">be</span> a real night owl.
+    He <input class="gap" data-a="doesn't get up|does not get up"> <span class="verb">not / get up</span> before ten o'clock.
+    His mum <input class="gap small" data-a="wakes"> <span class="verb">wake</span> him up three times every morning!
+    <input class="gap" data-a="does he have"> <span class="verb">he / have</span> breakfast at home?
+    No, he <input class="gap" data-a="doesn't have|does not have"> <span class="verb">not / have</span> breakfast at all.
+    He <input class="gap small" data-a="feeds"> <span class="verb">feed</span> his cat, he <input class="gap small" data-a="drinks"> <span class="verb">drink</span> his tea
+    and he <input class="gap small" data-a="runs"> <span class="verb">run</span> to school. He <input class="gap small" data-a="is"> <span class="verb">be</span> always late!
+  </div>
+  <div class="row"><button class="btn-main" data-check="g2">Check</button><span class="score" data-score="g2"></span></div>
+
+  <h3>Exercise 3. Which sentence is correct — A or B?</h3>
+  <p class="lead">Tap the right one. <button class="rus" data-toggle="#i4">RUS</button></p>
+  <div class="rev plain" id="i4">Нажми на правильный вариант: A или B.</div>
+  <ol class="tasks">
+    <li><div class="taskbody"><span class="tag p">+</span><div class="ab">
+      <button class="choice">A — My sister get up at seven o'clock.</button>
+      <button class="choice" data-ok>B — My sister gets up at seven o'clock.</button></div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span><div class="ab">
+      <button class="choice" data-ok>A — I don't feed the cat in the morning.</button>
+      <button class="choice">B — I don't feeds the cat in the morning.</button></div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span><div class="ab">
+      <button class="choice">A — Does your dad wakes up early?</button>
+      <button class="choice" data-ok>B — Does your dad wake up early?</button></div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span><div class="ab">
+      <button class="choice" data-ok>A — My dogs always wake me up at six.</button>
+      <button class="choice">B — My dogs always wakes me up at six.</button></div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span><div class="ab">
+      <button class="choice" data-ok>A — My brother doesn't go to bed until eleven.</button>
+      <button class="choice">B — My brother don't go to bed until eleven.</button></div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span><div class="ab">
+      <button class="choice">A — Do your sister feed the dogs?</button>
+      <button class="choice" data-ok>B — Does your sister feed the dogs?</button></div></div></li>
+  </ol>
+
+  <h3>Exercise 4. Ask and answer</h3>
+  <p class="lead">Write the question and then the short answer — (Yes) or (No). <button class="rus" data-toggle="#i5">RUS</button></p>
+  <div class="rev plain" id="i5">Составь вопрос, а потом напиши короткий ответ: (Yes) или (No). Например: Yes, she does. / No, I don't.</div>
+  <ol class="tasks" data-ex="g3">
+    <li><div class="taskbody">your sister / get up early (Yes)
+      <div class="sub"><em>?</em><input class="gap" data-a="does your sister get up early"></div>
+      <div class="sub"><em>+</em><input class="gap" data-a="yes she does"></div></div></li>
+    <li><div class="taskbody">you / feed your dogs in the morning (No)
+      <div class="sub"><em>?</em><input class="gap" data-a="do you feed your dogs in the morning"></div>
+      <div class="sub"><em>−</em><input class="gap" data-a="no i don't|no i do not"></div></div></li>
+    <li><div class="taskbody">your dad / wake up at five (No)
+      <div class="sub"><em>?</em><input class="gap" data-a="does your dad wake up at five"></div>
+      <div class="sub"><em>−</em><input class="gap" data-a="no he doesn't|no he does not"></div></div></li>
+    <li><div class="taskbody">your dogs / sleep until nine (Yes)
+      <div class="sub"><em>?</em><input class="gap" data-a="do your dogs sleep until nine"></div>
+      <div class="sub"><em>+</em><input class="gap" data-a="yes they do"></div></div></li>
+    <li><div class="taskbody">Emma / practise the guitar every day (Yes)
+      <div class="sub"><em>?</em><input class="gap" data-a="does emma practise the guitar every day|does emma practice the guitar every day"></div>
+      <div class="sub"><em>+</em><input class="gap" data-a="yes she does"></div></div></li>
+    <li><div class="taskbody">your sisters / go to bed late (No)
+      <div class="sub"><em>?</em><input class="gap" data-a="do your sisters go to bed late"></div>
+      <div class="sub"><em>−</em><input class="gap" data-a="no they don't|no they do not"></div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g3">Check</button><span class="score" data-score="g3"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p2">← Back</button><button class="btn-main" data-go="p4">Next: Vocabulary →</button></div>
+</section>
+
+<!-- 4 VOCABULARY -->
+<section class="page" id="p4">
+  <div class="eyebrow">Vocabulary</div>
+  <h2>🃏 Ten words</h2>
+  <p class="lead">Tap a card for the meaning and an example. Tap 🔊 to hear the word. <button class="rus" data-toggle="#i6">RUS</button></p>
+  <div class="rev plain" id="i6">Нажми на карточку — значение по-английски и пример. Кнопка 🔊 — послушать, как слово звучит.</div>
+
+  <div class="cards">
+    <div class="vcard">
+      <div class="top"><div class="w">an early bird</div><button class="say" data-speak="an early bird">🔊</button></div>
+      <div class="tr">/ˌɜːli ˈbɜːd/</div>
+      <div class="back"><div class="def">a person who gets up very early and likes mornings</div><div class="ex">My mum is an early bird: she gets up at five.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">a night owl</div><button class="say" data-speak="a night owl">🔊</button></div>
+      <div class="tr">/ˌnaɪt ˈaʊl/</div>
+      <div class="back"><div class="def">a person who likes to be awake late at night</div><div class="ex">I am a night owl: I go to bed at eleven.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to wake up</div><button class="say" data-speak="to wake up">🔊</button></div>
+      <div class="tr">/ˌweɪk ˈʌp/</div>
+      <div class="back"><div class="def">to stop sleeping and open your eyes</div><div class="ex">I wake up at seven, but I stay in bed.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to get up</div><button class="say" data-speak="to get up">🔊</button></div>
+      <div class="tr">/ˌɡet ˈʌp/</div>
+      <div class="back"><div class="def">to get out of bed and stand up</div><div class="ex">I wake up at seven and I get up at half past seven.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">always</div><button class="say" data-speak="always">🔊</button></div>
+      <div class="tr">/ˈɔːlweɪz/</div>
+      <div class="back"><div class="def">every time, 100% of the time</div><div class="ex">My dad is always late on Monday.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to be late</div><button class="say" data-speak="to be late">🔊</button></div>
+      <div class="tr">/leɪt/</div>
+      <div class="back"><div class="def">to come after the right time</div><div class="ex">Hurry up — we are late for the lesson!</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to be under the weather</div><button class="say" data-speak="to be under the weather">🔊</button></div>
+      <div class="tr">/ˌʌndə ðə ˈweðə/</div>
+      <div class="back"><div class="def">not very well, a little ill</div><div class="ex">My brother is under the weather today.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">sound</div><button class="say" data-speak="sound">🔊</button></div>
+      <div class="tr">/saʊnd/</div>
+      <div class="back"><div class="def">something you hear: music, rain, a dog</div><div class="ex">The sound of the rain helps me sleep.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">until</div><button class="say" data-speak="until">🔊</button></div>
+      <div class="tr">/ənˈtɪl/</div>
+      <div class="back"><div class="def">up to this time and not later</div><div class="ex">On Sunday I sleep until eleven.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to feed</div><button class="say" data-speak="to feed">🔊</button></div>
+      <div class="tr">/fiːd/</div>
+      <div class="back"><div class="def">to give food to an animal or a person</div><div class="ex">I feed my four dogs before school.</div></div></div>
+  </div>
+
+  <h3>Exercise 1. Which word is it?</h3>
+  <p class="lead">Read and write the word. <button class="rus" data-toggle="#i7">RUS</button></p>
+  <div class="rev plain" id="i7">Прочитай описание и напиши подходящее слово или выражение.</div>
+  <ol class="tasks" data-ex="v1">
+    <li><div class="taskbody">This person gets up at five o'clock and loves mornings.
+      <div class="line"><input class="gap" data-a="an early bird|early bird"></div></div></li>
+    <li><div class="taskbody">This person goes to bed very late and hates early mornings.
+      <div class="line"><input class="gap" data-a="a night owl|night owl"></div></div></li>
+    <li><div class="taskbody">You open your eyes in the morning — you …
+      <div class="line"><input class="gap" data-a="wake up"></div></div></li>
+    <li><div class="taskbody">You get out of bed — you …
+      <div class="line"><input class="gap" data-a="get up"></div></div></li>
+    <li><div class="taskbody">You give food to your dogs — you … them.
+      <div class="line"><input class="gap" data-a="feed"></div></div></li>
+    <li><div class="taskbody">You are not really ill, but you don't feel well — you are …
+      <div class="line"><input class="gap" data-a="under the weather"></div></div></li>
+    <li><div class="taskbody">Your lesson starts at five and you come at ten past five — you are …
+      <div class="line"><input class="gap" data-a="late"></div></div></li>
+    <li><div class="taskbody">Rain, music, a dog at the door — you hear it. It is a …
+      <div class="line"><input class="gap" data-a="sound|a sound"></div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="v1">Check</button><span class="score" data-score="v1"></span></div>
+
+  <h3>Exercise 2. True or False?</h3>
+  <p class="lead">Is it true about the meaning of the word? <button class="rus" data-toggle="#i8">RUS</button></p>
+  <div class="rev plain" id="i8">Верно ли сказано про значение слова? Нажми True или False.</div>
+  <div class="q"><p>1. An early bird gets up late.</p>
+    <div class="opts tf"><button class="opt">True</button><button class="opt" data-ok>False</button></div></div>
+  <div class="q"><p>2. "Always" means 100% of the time.</p>
+    <div class="opts tf"><button class="opt" data-ok>True</button><button class="opt">False</button></div></div>
+  <div class="q"><p>3. "I sleep until nine" means I get up at nine.</p>
+    <div class="opts tf"><button class="opt" data-ok>True</button><button class="opt">False</button></div></div>
+  <div class="q"><p>4. When you are under the weather, you feel great.</p>
+    <div class="opts tf"><button class="opt">True</button><button class="opt" data-ok>False</button></div></div>
+  <div class="q"><p>5. "Wake up" and "get up" are exactly the same.</p>
+    <div class="opts tf"><button class="opt">True</button><button class="opt" data-ok>False</button></div></div>
+  <div class="q"><p>6. A night owl likes late evenings.</p>
+    <div class="opts tf"><button class="opt" data-ok>True</button><button class="opt">False</button></div></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p3">← Back</button><button class="btn-main" data-go="p5">Next: Reading →</button></div>
+</section>
+
+<!-- 5 READING -->
+<section class="page" id="p5">
+  <div class="eyebrow">Reading</div>
+  <h2>📖 Two early birds and two night owls</h2>
+  <p class="lead">Read the text and do the two tasks below. <button class="rus" data-toggle="#i9">RUS</button></p>
+  <div class="rev plain" id="i9">Прочитай текст и выполни два задания ниже.</div>
+
+  <div class="text">
+    <p>Hi! My name is Mira and I am twelve. Our family is a strange family: we have two early birds and two night owls.</p>
+    <p>My mum is an early bird. She gets up at half past five and she is never late for work. Our dog Bruno is an early bird too. He wakes up at six o'clock and makes a loud sound at my door: "Breakfast, please!" So I get up and feed him. I am not happy about it, because I am a night owl!</p>
+    <p>My dad is a night owl like me. He works until ten in the evening, so he always goes to bed late. On Saturday he sleeps until eleven and my mum says: "Your dad is under the weather again!" But he is not ill — he is just a night owl.</p>
+    <p>And my sister? On school days she wakes up early, but at the weekend she stays in bed until twelve. She says: "I am an early bird from Monday to Friday and a night owl at the weekend."</p>
+    <p>So in our house breakfast is never at the same time. And that is the sound of our mornings: the kettle, the dog and my mum — "Hurry up, you are late again!"</p>
+  </div>
+
+  <h3>Task 1. Choose the right answer</h3>
+  <div class="q"><p>1. Who is an early bird in Mira's family?</p>
+    <div class="opts">
+      <button class="opt">Mira and her dad.</button>
+      <button class="opt" data-ok>Her mum and the dog Bruno.</button>
+      <button class="opt">Her dad and her sister.</button>
+    </div></div>
+  <div class="q"><p>2. Why does Mira get up at six o'clock?</p>
+    <div class="opts">
+      <button class="opt">Because she is an early bird.</button>
+      <button class="opt">Because her lesson starts at six.</button>
+      <button class="opt" data-ok>Because the dog wakes her up and she feeds him.</button>
+    </div></div>
+  <div class="q"><p>3. Why does Mira's dad go to bed late?</p>
+    <div class="opts">
+      <button class="opt" data-ok>Because he works until ten in the evening.</button>
+      <button class="opt">Because he is ill.</button>
+      <button class="opt">Because he walks the dog at night.</button>
+    </div></div>
+  <div class="q"><p>4. Is Mira's dad really ill on Saturday?</p>
+    <div class="opts">
+      <button class="opt">Yes, he is under the weather.</button>
+      <button class="opt" data-ok>No, he is not ill — he is just a night owl.</button>
+      <button class="opt">Yes, and he stays in bed all day.</button>
+    </div></div>
+  <div class="q"><p>5. What does Mira's sister say about herself?</p>
+    <div class="opts">
+      <button class="opt">She is always an early bird.</button>
+      <button class="opt">She is always a night owl.</button>
+      <button class="opt" data-ok>She is an early bird on school days and a night owl at the weekend.</button>
+    </div></div>
+
+  <h3>Task 2. Find the mistake</h3>
+  <p class="lead">One word in every sentence is not true about the text. Find it and write the correct word. <button class="rus" data-toggle="#i10">RUS</button></p>
+  <div class="rev plain" id="i10">В каждом предложении одно слово не соответствует тексту. Найди его и напиши правильное слово.</div>
+  <ol class="tasks" data-ex="r2">
+    <li><div class="taskbody">Mira's mum gets up at half past six. <input class="gap small" data-a="five"></div></li>
+    <li><div class="taskbody">Bruno wakes up at six o'clock and makes a quiet sound at the door. <input class="gap small" data-a="loud"></div></li>
+    <li><div class="taskbody">Mira feeds the cat before breakfast. <input class="gap small" data-a="dog|bruno"></div></li>
+    <li><div class="taskbody">Mira's dad works until ten in the morning. <input class="gap" data-a="evening|in the evening"></div></li>
+    <li><div class="taskbody">On Saturday Mira's dad sleeps until twelve. <input class="gap small" data-a="eleven"></div></li>
+    <li><div class="taskbody">At the weekend Mira's sister is an early bird. <input class="gap" data-a="a night owl|night owl"></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="r2">Check</button><span class="score" data-score="r2"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p4">← Back</button><button class="btn-main" data-go="p6">Next: Speaking →</button></div>
+</section>
+
+<!-- 6 SPEAKING -->
+<section class="page" id="p6">
+  <div class="eyebrow">Speaking</div>
+  <h2>💬 Talk about it for 30 seconds</h2>
+  <p class="lead">Tap the button and talk about the topic — at least five sentences. Then your teacher takes a topic too! <button class="rus" data-toggle="#i11">RUS</button></p>
+  <div class="rev plain" id="i11">Нажми на кнопку и говори на выпавшую тему не меньше пяти предложений. Потом тему берёт учитель, а ты слушаешь и задаёшь один вопрос.</div>
+
+  <div class="spin">
+    <div class="topic" id="topic">?</div>
+    <button id="spinBtn">Give me a topic</button>
+  </div>
+
+  <div class="hint">💡 Useful words for every topic: always · usually · never · until · early bird · night owl · wake up · get up · feed.</div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p5">← Back</button><button class="btn-main" data-go="p7">Next: Translation →</button></div>
+</section>
+
+<!-- 7 TRANSLATION -->
+<section class="page" id="p7">
+  <div class="eyebrow">Final task · Translation</div>
+  <h2>✍️ Translate the story</h2>
+  <p class="lead">Translate sentence by sentence. Tap English only if you are really stuck. <button class="rus" data-toggle="#i12">RUS</button></p>
+  <div class="rev plain" id="i12">Переводи по одному предложению. Кнопка English — только если совсем запуталась.</div>
+
+  <div class="flow">
+    Моя мама — жаворонок: она встаёт в половине шестого.
+    <button class="mini" data-rev>English</button> <span class="en">My mum is an early bird: she gets up at half past five.</span>
+    Она никогда не опаздывает на работу.
+    <button class="mini" data-rev>English</button> <span class="en">She is never late for work.</span>
+    А я сова: я просыпаюсь в семь, но встаю в половине восьмого.
+    <button class="mini" data-rev>English</button> <span class="en">And I am a night owl: I wake up at seven, but I get up at half past seven.</span>
+    Мои собаки будят меня громкими звуками каждое утро, и я их кормлю.
+    <button class="mini" data-rev>English</button> <span class="en">My dogs wake me up with loud sounds every morning and I feed them.</span>
+    Мой брат не встаёт рано на выходных: он спит до двенадцати.
+    <button class="mini" data-rev>English</button> <span class="en">My brother doesn't get up early at the weekend: he sleeps until twelve.</span>
+    Сегодня мама неважно себя чувствует, поэтому мы завтракаем позже.
+    <button class="mini" data-rev>English</button> <span class="en">Today my mum is under the weather, so we have breakfast later.</span>
+    А ты жаворонок или сова? Ты кормишь своих кошек утром?
+    <button class="mini" data-rev>English</button> <span class="en">And you? Are you an early bird or a night owl? Do you feed your cats in the morning?</span>
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p6">← Back</button><span></span></div>
+</section>
+
+<footer>See you next lesson! 🎸🌼</footer>
+</div>
+
+<script>
+(function(){
+  var synth = window.speechSynthesis;
+
+  var show = function(id){
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.toggle('on', p.id===id); });
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('on', t.getAttribute('data-go')===id); });
+    if(synth) synth.cancel();
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.addEventListener('click', function(){ show(b.getAttribute('data-go')); });
+  });
+
+  var norm = function(s){
+    return (s||'').toLowerCase().replace(/[‘’ʼ]/g,"'")
+      .replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+  };
+  var isOk = function(i){
+    var a=i.getAttribute('data-a');
+    if(!a) return false;
+    var v=norm(i.value);
+    return v!=='' && a.split('|').map(norm).indexOf(v)!==-1;
+  };
+  var mark = function(i){
+    i.classList.remove('ok','no');
+    if(!i.getAttribute('data-a')) return;
+    if(i.value.trim()==='') return;
+    i.classList.add(isOk(i)?'ok':'no');
+  };
+  document.addEventListener('input', function(e){
+    if(e.target.classList && e.target.classList.contains('gap')) mark(e.target);
+  });
+  document.querySelectorAll('[data-check]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var key=b.getAttribute('data-check'), box=document.querySelector('[data-ex="'+key+'"]');
+      if(!box) return;
+      var ins=box.querySelectorAll('input.gap'), good=0;
+      ins.forEach(function(i){ mark(i); if(isOk(i)) good++; });
+      var out=document.querySelector('[data-score="'+key+'"]');
+      if(out){ out.textContent=good+' / '+ins.length+(good===ins.length?'  🎉 Perfect!':'');
+        out.style.color=(good===ins.length)?'#0E9E8B':'#E2607A'; }
+    });
+  });
+  document.querySelectorAll('[data-rev]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var en=b.nextElementSibling;
+      while(en && !(en.classList && en.classList.contains('en'))) en=en.nextElementSibling;
+      if(en) en.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('[data-toggle]').forEach(function(b){
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      var el=document.querySelector(b.getAttribute('data-toggle'));
+      if(el) el.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('.vcard').forEach(function(c){
+    c.addEventListener('click', function(){ c.classList.toggle('open'); });
+  });
+  document.querySelectorAll('.opts').forEach(function(box){
+    box.querySelectorAll('.opt').forEach(function(o){
+      o.addEventListener('click', function(){
+        box.querySelectorAll('.opt').forEach(function(x){ x.classList.remove('ok','no'); });
+        if(o.hasAttribute('data-ok')) o.classList.add('ok');
+        else { o.classList.add('no');
+          var r=box.querySelector('[data-ok]'); if(r) r.classList.add('ok'); }
+      });
+    });
+  });
+  document.querySelectorAll('.choices, .ab').forEach(function(box){
+    box.querySelectorAll('.choice').forEach(function(o){
+      o.addEventListener('click', function(){
+        box.querySelectorAll('.choice').forEach(function(x){ x.classList.remove('ok','no'); });
+        o.classList.add(o.hasAttribute('data-ok')?'ok':'no');
+      });
+    });
+  });
+
+  /* topic spinner */
+  var topics = ['My morning','My evening','My dogs','A Sunday at home','My school day',
+                'My family in the morning','My guitar','My perfect weekend','My free time'];
+  var spinBtn = document.getElementById('spinBtn');
+  if(spinBtn){
+    spinBtn.addEventListener('click', function(){
+      var box=document.getElementById('topic'), i=0;
+      var roll=setInterval(function(){
+        box.textContent = topics[Math.floor(Math.random()*topics.length)];
+        if(++i>8){ clearInterval(roll); }
+      },70);
+    });
+  }
+
+  var enVoice=null;
+  var loadVoice=function(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    enVoice = vs.filter(function(v){ return /en[-_]GB/i.test(v.lang); })[0]
+           || vs.filter(function(v){ return /^en/i.test(v.lang); })[0] || null;
+  };
+  if(synth){ loadVoice(); synth.onvoiceschanged=loadVoice; }
+  document.querySelectorAll('[data-speak]').forEach(function(b){
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(!synth){ alert('Your browser cannot read the text aloud. Please open the page in Chrome.'); return; }
+      synth.cancel();
+      var u=new SpeechSynthesisUtterance(b.getAttribute('data-speak'));
+      u.lang='en-GB'; u.rate=parseFloat(b.getAttribute('data-rate')||'0.8');
+      if(enVoice) u.voice=enVoice;
+      synth.speak(u);
+    });
+  });
+})();
+</script>
+</body>
+</html>
