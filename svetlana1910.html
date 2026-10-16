@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lesson — Svetlana — 19.10.2026</title>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1e3a8a;
+            --primary-light: #eff6ff;
+            --secondary: #0e9f6e;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --badge-bg: #fef3c7;
+            --badge-text: #92400e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 25px 15px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 { color: var(--primary); font-size: 1.85rem; margin-bottom: 8px; }
+        .header-meta { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        .tab-btn {
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #475569;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        .tab-btn:hover { background: #e2e8f0; }
+        .tab-btn.active { background: #1e293b; color: white; border-color: #1e293b; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Section Cards & Titles */
+        .section-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: 1.35rem;
+            color: var(--text-main);
+            margin-bottom: 18px;
+            font-weight: 700;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 5px; height: 22px;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+        .ex-title { margin-bottom: 12px; color: var(--primary); font-size: 1.1rem; }
+        .hint-notice { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        /* Warm-up Box */
+        .warmup-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        .idiom { font-size: 1.5rem; font-weight: 700; color: var(--primary-dark); margin: 6px 0 10px; }
+
+        .action-btn {
+            background: #e0e7ff;
+            color: #3730a3;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+        .action-btn:hover { background: #c7d2fe; }
+
+        .hidden-panel {
+            display: none;
+            color: #1e1b4b;
+            font-size: 0.92rem;
+            margin-top: 12px;
+            padding: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #c7d2fe;
+            line-height: 1.6;
+        }
+
+        /* Reading text */
+        .reading-text {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px 26px;
+            font-size: 1.02rem;
+            line-height: 1.85;
+            margin-bottom: 26px;
+        }
+        .reading-text h4 { font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 12px; }
+        .reading-text p { margin-bottom: 12px; }
+        .reading-text p:last-child { margin-bottom: 0; }
+        .player-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+            margin-right: 6px;
+        }
+        .player-btn:hover { background-color: var(--primary-dark); }
+
+        /* Quiz Items */
+        .quiz-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 15px;
+        }
+        .quiz-question { font-weight: 600; margin-bottom: 10px; font-size: 0.98rem; }
+        .quiz-choices { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-choices.row { flex-direction: row; flex-wrap: wrap; }
+        .choice-btn {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.92rem;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .choice-btn:hover { border-color: var(--primary); }
+        .choice-btn.correct {
+            background-color: var(--accent-green) !important;
+            color: white !important;
+            border-color: var(--accent-green) !important;
+        }
+        .choice-btn.incorrect {
+            background-color: var(--accent-red) !important;
+            color: white !important;
+            border-color: var(--accent-red) !important;
+        }
+
+        .live-input {
+            min-width: 120px;
+            padding: 6px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .live-input.correct {
+            border-color: var(--accent-green) !important;
+            background-color: #ecfdf5 !important;
+            color: #065f46;
+        }
+        .wide-input { width: 100%; margin-top: 8px; padding: 10px 14px; }
+
+        select.match-select {
+            padding: 7px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.93rem;
+            background: #fff;
+            max-width: 100%;
+            margin-top: 6px;
+        }
+        select.match-select.correct { border-color: var(--accent-green); background: #ecfdf5; color: #065f46; }
+        select.match-select.incorrect { border-color: var(--accent-red); background: #fef2f2; color: #991b1b; }
+
+        .btn-peek {
+            background: #e2e8f0;
+            color: #334155;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: background 0.2s;
+            white-space: nowrap;
+            margin-left: 4px;
+        }
+        .btn-peek:hover { background: #cbd5e1; }
+
+        .answer-reveal {
+            display: none;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #065f46;
+            font-weight: 600;
+            margin-top: 6px;
+            padding: 8px 12px;
+            background: #ecfdf5;
+            border-radius: 6px;
+            border: 1px solid #a7f3d0;
+            line-height: 1.6;
+        }
+
+        /* Grammar Table */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px 0;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .grammar-table th { background-color: var(--primary); color: white; }
+
+        .tip-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 0.93rem;
+            margin-top: 10px;
+        }
+
+        ol.grammar-list { padding-left: 22px; }
+        ol.grammar-list li { margin-bottom: 20px; line-height: 2.1; font-size: 0.98rem; }
+
+        /* Word bank */
+        .word-bank {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 20px;
+        }
+        .word-chip {
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
+            padding: 4px 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        /* Vocabulary Flip Cards */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .flip-card { background-color: transparent; height: 195px; perspective: 1000px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .flip-card-front { background-color: #ffffff; color: var(--text-main); }
+        .v-word { font-size: 1.05rem; font-weight: 700; color: var(--primary); }
+        .v-ipa { font-size: 0.82rem; color: #64748b; margin: 4px 0; }
+        .v-def { font-size: 0.76rem; color: #475569; font-style: italic; margin-top: 3px; }
+        .v-say {
+            margin-top: 6px;
+            background: #f1f5f9; border: 1px solid #cbd5e1;
+            border-radius: 12px; padding: 1px 9px;
+            font-size: 0.78rem; cursor: pointer;
+        }
+        .flip-card-back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 0.86rem;
+        }
+        .v-trans { font-weight: 700; font-size: 0.96rem; margin-bottom: 6px; }
+        .v-ex { font-size: 0.76rem; font-style: italic; color: #dbeafe; line-height: 1.35; }
+        .v-note { font-size: 0.7rem; color: #bfdbfe; margin-top: 5px; }
+
+        /* Homework check */
+        .hw-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
+        .hw-ru { font-weight: 600; font-size: 0.97rem; }
+
+        /* Translation story */
+        .story-container {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 26px;
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: var(--text-main);
+        }
+        .inline-btn {
+            background: #eef1f6;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            user-select: none;
+            display: inline-block;
+            transition: all 0.2s;
+            vertical-align: middle;
+        }
+        .inline-btn:hover { background: #cbd5e1; }
+        .inline-en {
+            display: none;
+            color: #1d4ed8;
+            font-weight: 600;
+            background-color: #dbeafe;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-left: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 1.5rem; }
+            .section-card { padding: 16px; }
+        }
+            /* ---- additions 01.10 ---- */
+        .say-btn {
+            background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 12px;
+            padding: 0 8px; font-size: 0.8rem; cursor: pointer; margin-left: 4px;
+            vertical-align: middle; line-height: 1.6;
+        }
+        .say-btn:hover { background: #e2e8f0; }
+        .ex-card { position: relative; }
+        .item { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; line-height: 2.1; }
+        .item-num { font-weight: 700; color: var(--primary); margin-right: 4px; }
+        .btn-check {
+            background: var(--primary); color: #fff; border: none; padding: 6px 12px;
+            border-radius: 6px; cursor: pointer; font-size: 0.82rem; font-weight: 600; margin-left: 4px;
+        }
+        .btn-check:hover { background: var(--primary-dark); }
+        .feedback { display: none; margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: 0.9rem; line-height: 1.6; }
+        .feedback.ok { display: block; background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+        .feedback.bad { display: block; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+        .rus-btn {
+            background: #fff; border: 1px solid #cbd5e1; color: #475569; font-size: 0.7rem; font-weight: 700;
+            padding: 1px 6px; border-radius: 4px; cursor: pointer; margin-left: 6px; vertical-align: middle;
+        }
+        .rus-text { display: none; color: #7f1d1d; margin-top: 4px; font-style: italic; }
+        .copy-btn {
+            background: #fff; border: 1px dashed var(--primary); color: var(--primary);
+            padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; margin-top: 6px;
+        }
+        .copy-btn:hover { background: var(--primary-light); }
+        .copy-msg { margin-left: 8px; font-size: 0.85rem; color: var(--secondary); font-weight: 600; }
+        .live-input.wrong { border-color: var(--accent-red); background: #fef2f2; }
+
+        /* dialogue */
+        .dialogue-line { margin-bottom: 6px; }
+        .sp { font-weight: 700; color: var(--primary-dark); }
+        .dialogue-line.speaking { background: #fef9c3; border-radius: 4px; }
+        .order-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .order-row select { padding: 5px 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
+        .order-row select.correct { border-color: var(--accent-green); background: #ecfdf5; }
+        .order-row select.incorrect { border-color: var(--accent-red); background: #fef2f2; }
+
+        /* sentence builder */
+        .chip-pool, .chip-answer { display: flex; flex-wrap: wrap; gap: 6px; min-height: 40px; padding: 6px; border-radius: 8px; }
+        .chip-answer { background: #fff; border: 2px dashed #cbd5e1; margin-bottom: 8px; }
+        .chip-answer.correct { border-color: var(--accent-green); background: #ecfdf5; }
+        .chip-answer.incorrect { border-color: var(--accent-red); background: #fef2f2; }
+        .chip {
+            background: #e0e7ff; color: #3730a3; border: none; border-radius: 6px; padding: 4px 10px;
+            font-size: 0.92rem; font-weight: 600; cursor: pointer; line-height: 1.5;
+        }
+        .chip:hover { background: #c7d2fe; }
+        .btn-reset { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.82rem; font-weight: 600; }
+
+        /* spot the mistake */
+        .spot-words { display: flex; flex-wrap: wrap; gap: 5px; }
+        .spot-word {
+            background: #fff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 2px 9px;
+            cursor: pointer; font-size: 0.97rem; line-height: 1.7;
+        }
+        .spot-word:hover { border-color: var(--primary); }
+        .spot-word.found { background: var(--accent-green); color: #fff; border-color: var(--accent-green); text-decoration: line-through; }
+        .spot-word.miss { background: var(--accent-red); color: #fff; border-color: var(--accent-red); }
+        .inline-btn.en { min-width: 30px; text-align: center; }
+        textarea.free { width: 100%; min-height: 70px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.95rem; margin-top: 8px; }
+        .match-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 14px; margin-bottom: 10px; }
+        .match-col { display: flex; flex-direction: column; gap: 8px; }
+        .match-btn { text-align: left; padding: 9px 12px; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; cursor: pointer; font-size: 0.93rem; font-weight: 600; color: var(--primary-dark); }
+        .match-btn.def { font-weight: 400; color: var(--text-main); }
+        .match-btn:hover { border-color: var(--primary); }
+        .match-btn.active { background: #e0e7ff; border-color: var(--primary); }
+        .match-btn.done { background: #ecfdf5; border-color: var(--accent-green); color: #065f46; cursor: default; }
+        .match-btn.miss { background: #fef2f2; border-color: var(--accent-red); }
+        select.match-select { margin: 2px 0; }
+        @media (max-width: 600px) { .match-grid { grid-template-columns: 1fr; } }
+        .tt-ru { font-size: 0.82rem; color: var(--text-muted); }
+        .tt-ex { background: #f8fafc; font-size: 0.92rem; }
+        .inline-ru { display: none; color: #7c2d12; background: #fff7ed; padding: 1px 6px; border-radius: 4px; font-size: 0.9rem; font-style: italic; }
+        .reading-text .rus-btn { margin-left: 2px; margin-right: 2px; }
+        .hw-sentence-block { margin-bottom: 14px; }
+        .hw-sentence-block label { display: block; font-weight: 600; font-size: 0.9rem; color: #475569; margin-bottom: 6px; }
+        .hw-sentence-block input { width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; }
+        .inline-choice { display: inline-flex; flex-wrap: wrap; gap: 3px; align-items: center; background: #f1f5f9; border-radius: 6px; padding: 1px 4px; margin: 0 3px; }
+        .ic-btn { background: #fff; border: 1px solid #cbd5e1; border-radius: 5px; padding: 0 8px; font-size: 0.92rem; cursor: pointer; line-height: 1.8; }
+        .ic-btn:hover { border-color: var(--primary); }
+        .ic-btn.correct { background: var(--accent-green); color: #fff; border-color: var(--accent-green); }
+        .ic-btn.incorrect { background: var(--accent-red); color: #fff; border-color: var(--accent-red); }
+        .ic-sep { color: #94a3b8; }
+        .topic-row { display: block; padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; cursor: pointer; border: 1px solid transparent; }
+        .topic-row input { margin-right: 8px; transform: scale(1.15); }
+        .topic-row.ok { background: #ecfdf5; border-color: #a7f3d0; }
+        .topic-row.bad { background: #fef2f2; border-color: #fecaca; }
+        .notes-card { background: #fffef5; border: 1px solid #fde68a; border-radius: 10px; padding: 14px; }
+        .notes-card .item { background: transparent; border: none; border-bottom: 1px dashed #fde68a; border-radius: 0; margin-bottom: 4px; font-family: 'Segoe Print', 'Comic Sans MS', 'Segoe UI', sans-serif; }
+        .base-word { display: inline-block; background: #e0e7ff; color: #3730a3; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; padding: 1px 8px; border-radius: 4px; margin-left: 6px; }
+        .num-badge { display: inline-block; min-width: 92px; text-align: center; background: var(--primary); color: #fff; font-weight: 700; border-radius: 6px; padding: 3px 10px; margin-right: 8px; }
+        .ru-hint { color: #92400e; font-style: italic; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>English Interactive Lesson</h1>
+        <div class="header-meta">Student: Svetlana | Date: 19.10.2026 | Focus: Patient Preparation Study · Conditionals (Types 1, 2, 3)</div>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'warmup')">1 · Warm-up</button>
+        <button class="tab-btn" onclick="openTab(event, 'homework')">2 · Homework Check</button>
+        <button class="tab-btn" onclick="openTab(event, 'listening')">3 · Listening</button>
+        <button class="tab-btn" onclick="openTab(event, 'grammar')">4 · Grammar</button>
+        <button class="tab-btn" onclick="openTab(event, 'vocabulary')">5 · Vocabulary</button>
+        <button class="tab-btn" onclick="openTab(event, 'sentences')">6 · Sentences</button>
+    </div>
+
+    <!-- TAB 1: WARM-UP -->
+    <div id="warmup" class="tab-content active">
+        <div class="section-card">
+            <h2 class="section-title">1. Warm-up: Agree or Disagree?</h2>
+            <div class="warmup-box">
+                <p><em>"Patient preparation is the most neglected part of the total testing process."</em></p>
+                <button class="action-btn" onclick="togglePanel('warmup-hint')">Key Terms</button>
+                <div id="warmup-hint" class="hidden-panel">
+                    • <strong>patient preparation</strong> — what the patient should and shouldn't do before a test<br>
+                    • <strong>neglected</strong> — not given enough attention or care<br>
+                    • <strong>the total testing process</strong> — all steps of laboratory testing, from the doctor's request to the interpretation of the result
+                    <button class="rus-btn" onclick="toggleRus(this)">RUS</button>
+                    <div class="rus-text">«Подготовка пациента — самая недооценённая (заброшенная) часть всего процесса лабораторного исследования». patient preparation — подготовка пациента; neglected — оставленный без внимания; total testing process — полный цикл лабораторного исследования.</div>
+                </div>
+            </div>
+            <p style="font-weight:600;">Do you agree with this statement? Why or why not?</p>
+        </div>
+    </div>
+
+    <!-- TAB 2: HOMEWORK CHECK -->
+    <div id="homework" class="tab-content">
+        <div class="section-card">
+            <span class="badge">Homework check · Translation from 15.10</span>
+            <h2 class="section-title">Check Your Translation</h2>
+            <p class="hint-notice">💡 Read your translation of each sentence aloud. Then click the <strong>EN</strong> button after the sentence to compare it with a model version. Other correct variants are possible!</p>
+            <div class="story-container" id="hw-story"></div>
+        </div>
+    </div>
+
+    <!-- TAB 3: LISTENING -->
+    <div id="listening" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">3. Listening: A Podcast Interview</h2>
+            <p class="hint-notice">💡 Daniel, the host of the podcast "Lab Talk", interviews Dr Sofia Marquez about her new study (~1.5 min).</p>
+            <div style="background:#f8fafc; border:1px solid var(--border-color); border-radius:10px; padding:15px 20px; margin-bottom:16px;">
+                <button class="player-btn" onclick="playDialogue()">▶ Play</button>
+                <button class="player-btn" onclick="pauseDialogue()">⏸ Pause</button>
+                <button class="player-btn" style="background:#ef4444;" onclick="stopSpeech()">⏹ Stop</button>
+                <span id="dlg-status" style="font-size:0.85rem; color:var(--text-muted); font-weight:600;"></span>
+            </div>
+            <button class="action-btn" style="margin-top:0; margin-bottom:16px;" onclick="togglePanel('transcript-panel')">Show Transcript</button>
+            <div id="transcript-panel" class="hidden-panel" style="margin-bottom:20px;"></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 1: Answer the Questions</h3>
+            <p class="hint-notice">💡 Listen and choose the correct answer.</p>
+            <div id="question-list"></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 2: What Do the Numbers Mean?</h3>
+            <p class="hint-notice">💡 Listen again. What does each number refer to? Choose from the list.</p>
+            <div id="number-list"></div>
+        </div>
+    </div>
+
+    <!-- TAB 4: GRAMMAR -->
+    <div id="grammar" class="tab-content">
+        <div class="section-card">
+            <span class="badge">Conditionals · Types 1, 2, 3</span>
+            <h3 class="ex-title">Exercise 1: Which Sentence Is Correct?</h3>
+            <p class="hint-notice">💡 Only <strong>one</strong> sentence in each group is correct. Click it.</p>
+            <div id="which-list"></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 2: Complete the Mini-Dialogues</h3>
+            <p class="hint-notice">💡 Put the verbs in brackets into the correct form. Decide which type of conditional you need. The field turns green when it is correct.</p>
+            <div id="dlg-gap-list"></div>
+        </div>
+    </div>
+
+    <!-- TAB 5: VOCABULARY -->
+    <div id="vocabulary" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">5. Vocabulary (9 Target Units)</h2>
+            <p class="hint-notice">💡 Read the word, its transcription and explanation. Click the card to see the translation and an example. Click 🔊 to hear the word.</p>
+            <div class="vocab-grid" id="vocab-grid"></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 1: Closest Meaning</h3>
+            <p class="hint-notice">💡 Choose the meaning that is closest to the word in bold.</p>
+            <div id="close-list"></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 2: Say It in English</h3>
+            <p class="hint-notice">💡 Replace the Russian words in brackets with today's words. The field turns green when it is correct.</p>
+            <div id="ru-list"></div>
+        </div>
+    </div>
+
+    <!-- TAB 6: SENTENCES -->
+    <div id="sentences" class="tab-content">
+        <div class="section-card">
+            <span class="badge">Homework</span>
+            <h2 class="section-title">6. Sentences</h2>
+            <p style="font-size:1.05rem;">Write <strong>9 sentences</strong>: <strong>3</strong> with the <strong>1st</strong> conditional, <strong>3</strong> with the <strong>2nd</strong> conditional and <strong>3</strong> with the <strong>3rd</strong> conditional.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+// ================= HELPERS =================
+function openTab(evt, tabName) {
+    document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+    stopSpeech();
+}
+function togglePanel(id) {
+    const el = document.getElementById(id);
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+function toggleNext(btn) {
+    const el = btn.parentElement.querySelector('.answer-reveal');
+    if (el) el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+function toggleRus(btn) {
+    const el = btn.nextElementSibling;
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+function escJs(s) { return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+function normalize(s) {
+    return s.toLowerCase()
+        .replace(/[’‘`']/g, '')
+        .replace(/[\.\?!,;:\-—"«»]/g, ' ')
+        .replace(/\s+/g, ' ').trim()
+        .replace(/\bwouldnt\b/g, 'would not').replace(/\bhadnt\b/g, 'had not');
+}
+function matches(value, answers) {
+    const v = normalize(value);
+    return answers.some(a => normalize(a) === v);
+}
+function showFeedback(box, ok, en, ru, okText) {
+    box.className = 'feedback ' + (ok ? 'ok' : 'bad');
+    box.innerHTML = ok ? (okText || '✓ Correct!') :
+        '✗ ' + en + (ru ? ' <button class="rus-btn" onclick="toggleRus(this)">RUS</button><div class="rus-text">' + ru + '</div>' : '');
+}
+function shuffle(arr, seed) {
+    const a = arr.slice(); let s = seed;
+    for (let i = a.length - 1; i > 0; i--) { s = (s * 9301 + 49297) % 233280; const j = Math.floor(s / 233280 * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+}
+
+
+// ================= SPEECH (podcast + vocabulary words) =================
+let voicesCache = [];
+function loadVoices() { voicesCache = window.speechSynthesis ? speechSynthesis.getVoices() : []; }
+if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+function enVoices() { return voicesCache.filter(v => v.lang && v.lang.toLowerCase().startsWith('en')); }
+function femaleVoice() {
+    const v = enVoices();
+    return v.find(x => /female|samantha|zira|libby|sonia|serena|kate|google uk english female/i.test(x.name)) || v.find(x => x.lang.startsWith('en-GB')) || v[0];
+}
+function maleVoice() {
+    const v = enVoices();
+    return v.find(x => /\bmale\b|daniel|david|george|ryan|guy|arthur|google uk english male/i.test(x.name) && !/female/i.test(x.name)) || null;
+}
+function makeUtterance(text, who) {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB'; u.rate = 0.88;
+    if (who === 'D') {
+        const m = maleVoice();
+        if (m) u.voice = m; else { const f = femaleVoice(); if (f) u.voice = f; u.pitch = 0.6; }
+    } else { const f = femaleVoice(); if (f) u.voice = f; u.pitch = 1.05; }
+    return u;
+}
+let dlgIndex = 0, dlgPlaying = false, dlgPaused = false, dlgRun = 0;
+function say(text) {
+    if (!window.speechSynthesis) return;
+    dlgPlaying = false; dlgPaused = false; dlgRun++;
+    speechSynthesis.cancel(); speechSynthesis.speak(makeUtterance(text, 'S'));
+}
+function stopSpeech() {
+    dlgPlaying = false; dlgPaused = false; dlgRun++;
+    if (window.speechSynthesis) speechSynthesis.cancel();
+    document.querySelectorAll('.dialogue-line.speaking').forEach(l => l.classList.remove('speaking'));
+}
+
+// ================= COMMON =================
+function liveGap(inp) {
+    inp.classList.remove('wrong');
+    inp.classList.toggle('correct', matches(inp.value, inp.dataset.ans.split('|')));
+}
+function checkGap(btn) {
+    const item = btn.closest('.item');
+    let ok = true;
+    item.querySelectorAll('input[data-ans]').forEach(inp => {
+        const good = matches(inp.value, inp.dataset.ans.split('|'));
+        inp.classList.toggle('correct', good); inp.classList.toggle('wrong', !good);
+        if (!good) ok = false;
+    });
+    showFeedback(item.querySelector('.feedback'), ok, item.dataset.en, item.dataset.ru);
+}
+function gapHtml(text) {
+    return esc(text).replace(/\[\[(.+?)\]\]/g, (m, a) => {
+        const w = Math.max(100, a.split('|')[0].length * 10 + 30);
+        return '<input type="text" class="live-input" style="width:' + w + 'px" data-ans="' + esc(a) + '" oninput="liveGap(this)">';
+    });
+}
+function gapFull(text) { return text.replace(/\[\[(.+?)\]\]/g, (m, a) => a.split('|')[0]); }
+function itemButtons() {
+    return ' <button class="btn-check" onclick="checkGap(this)">Check</button><button class="btn-peek" onclick="toggleNext(this)">Answer</button>';
+}
+function toggleInlineEn(btn) {
+    const span = btn.nextElementSibling;
+    const open = span.style.display === "inline";
+    span.style.display = open ? "none" : "inline";
+    btn.style.background = open ? "#eef1f6" : "#1a56db";
+    btn.style.color = open ? "#475569" : "#ffffff";
+}
+function renderStory(id, story) {
+    document.getElementById(id).innerHTML = story.map(([ru, en]) =>
+        esc(ru) + ' <span class="inline-btn en" onclick="toggleInlineEn(this)">EN</span><span class="inline-en">' + esc(en) + '</span> ').join('\n');
+}
+function choiceItem(i, text, options, handler, col) {
+    return '<div class="item"><span class="item-num">' + (i + 1) + '.</span> ' + text +
+        '<div class="quiz-choices' + (col ? '' : ' row') + '" style="margin-top:6px;">' + options.map((o, k) =>
+            '<button class="choice-btn" onclick="' + handler + '(this,' + i + ',' + k + ')">' + esc(o) + '</button>').join('') +
+        '</div><div class="feedback"></div></div>';
+}
+function markChoice(btn, ok) {
+    btn.closest('.item').querySelectorAll('.choice-btn').forEach(c => c.classList.remove('correct', 'incorrect'));
+    btn.classList.add(ok ? 'correct' : 'incorrect');
+    return btn.closest('.item').querySelector('.feedback');
+}
+
+// ================= HOMEWORK CHECK =================
+renderStory('hw-story', [
+    ["На прошлой неделе мне позвонила организатор конференции в Индии.", "Last week the organizer of the conference in India called me."],
+    ["Она признанный специалист в лабораторной диагностике, и я давно читаю её статьи.", "She is a recognised expert in laboratory diagnostics, and I have been reading her articles for a long time."],
+    ["Она рассказала мне о пациенте, у которого после интенсивной тренировки был повышен уровень мышечного фермента.", "She told me about a patient whose muscle enzyme level was elevated after a strenuous workout."],
+    ["Если бы врач знал о тренировке, он бы не назначил столько лишних анализов.", "If the doctor had known about the workout, he wouldn't have ordered so many extra tests."],
+    ["Точность результата часто зависит от того, что пациент делал накануне.", "The accuracy of the result often depends on what the patient did the day before."],
+    ["Если бы я жила в Индии, я бы ходила на все её лекции.", "If I lived in India, I would go to all her lectures."],
+    ["Если у меня будет время на конференции, я обязательно приду на её доклад.", "If I have time at the conference, I will definitely come to her talk."]
+]);
+
+// ================= LISTENING =================
+const dialogue = [
+    ['D', "Welcome back to Lab Talk. My guest today is Doctor Sofia Marquez, who studies how patients prepare for blood tests. Sofia, welcome!"],
+    ['S', "Thank you, Daniel. I'm glad to be here."],
+    ['D', "Tell us about your latest study."],
+    ['S', "We invited forty healthy participants. The day before their blood test, half of them did a strenuous two-hour workout, and the other half simply rested."],
+    ['D', "And what did you find?"],
+    ['S', "In the workout group, the level of creatine kinase was, on average, about three times higher. Some participants had results that could easily be mistaken for a muscle disease."],
+    ['D', "That's a big difference! So physical load really matters."],
+    ['S', "Absolutely. And it isn't only sport. Carrying heavy bags or working in the garden can also count as physical load."],
+    ['D', "So what should patients do?"],
+    ['S', "To prepare for a test in a proper way, patients should avoid strenuous exercise for at least one day, ideally two. And they should come in the morning, after a good night's sleep."],
+    ['D', "Did anything change after you shared your results?"],
+    ['S', "Yes. Our clinic started giving every patient a short leaflet. Six months later, we had about twenty percent fewer repeat tests."],
+    ['D', "That's impressive."],
+    ['S', "And we've seen a real growth in interest from other clinics. Five more hospitals now use our leaflet."],
+    ['D', "Sofia, thank you so much for joining us."],
+    ['S', "My pleasure."]
+];
+const speakerName = { D: 'Daniel', S: 'Dr Marquez' };
+document.getElementById('transcript-panel').innerHTML = '<strong>Transcript:</strong><br>' + dialogue.map((l, i) =>
+    '<div class="dialogue-line" id="dl-' + i + '"><span class="sp">' + speakerName[l[0]] + ':</span> ' + esc(l[1]) + '</div>').join('');
+document.getElementById('dlg-status').textContent = 'Line 0 / ' + dialogue.length;
+function playDialogue() {
+    if (!window.speechSynthesis) return;
+    if (dlgPaused) { speechSynthesis.resume(); dlgPaused = false; dlgPlaying = true; return; }
+    speechSynthesis.cancel();
+    dlgIndex = 0; dlgPlaying = true; dlgRun++;
+    speakLine(dlgRun);
+}
+function speakLine(run) {
+    if (run !== dlgRun) return;
+    document.querySelectorAll('.dialogue-line.speaking').forEach(l => l.classList.remove('speaking'));
+    if (!dlgPlaying || dlgIndex >= dialogue.length) {
+        dlgPlaying = false;
+        document.getElementById('dlg-status').textContent = 'Line ' + Math.min(dlgIndex, dialogue.length) + ' / ' + dialogue.length;
+        return;
+    }
+    const [who, text] = dialogue[dlgIndex];
+    document.getElementById('dlg-status').textContent = 'Line ' + (dlgIndex + 1) + ' / ' + dialogue.length + ' · ' + speakerName[who];
+    const line = document.getElementById('dl-' + dlgIndex); if (line) line.classList.add('speaking');
+    const u = makeUtterance(text, who);
+    u.onend = () => { if (!dlgPlaying || run !== dlgRun) return; dlgIndex++; setTimeout(() => speakLine(run), 450); };
+    speechSynthesis.speak(u);
+}
+function pauseDialogue() {
+    if (window.speechSynthesis && speechSynthesis.speaking && !speechSynthesis.paused) { speechSynthesis.pause(); dlgPaused = true; }
+}
+
+// Exercise 1: questions (4)
+const questions = [
+    { q: "What did the workout group do the day before the test?", o: ["went for a one-hour walk", "did a strenuous two-hour workout", "went for a long swim"], a: 1, en: "Listen to Dr Marquez's description of the study.", ru: "Послушайте, как доктор Маркес описывает исследование." },
+    { q: "According to Dr Marquez, what else can count as physical load?", o: ["reading for many hours", "carrying heavy bags or working in the garden", "long phone calls"], a: 1, en: "Listen to what she says after 'it isn't only sport'.", ru: "Послушайте, что она говорит после «it isn't only sport»." },
+    { q: "When should patients come for the test?", o: ["in the morning, after a good night's sleep", "in the evening, after work", "at any time of the day"], a: 0, en: "Listen to her advice for patients.", ru: "Послушайте её совет пациентам." },
+    { q: "What did the clinic start doing?", o: ["testing patients only in the evening", "cancelling all morning tests", "giving every patient a short leaflet"], a: 2, en: "Listen to the part about changes after the study.", ru: "Послушайте часть про изменения после исследования." }
+];
+document.getElementById('question-list').innerHTML = questions.map((q, i) => choiceItem(i, '<strong>' + esc(q.q) + '</strong>', q.o, 'checkQuestion', true)).join('');
+function checkQuestion(btn, i, k) {
+    const q = questions[i], ok = q.a === k;
+    showFeedback(markChoice(btn, ok), ok, q.en, q.ru);
+}
+
+// Exercise 2: numbers
+const numbers = [
+    { n: "40", m: "the number of participants in the study" },
+    { n: "two hours", m: "how long the workout lasted" },
+    { n: "three times", m: "how much higher the CK level was in the workout group" },
+    { n: "20%", m: "how many fewer repeat tests the clinic had" },
+    { n: "six months", m: "the time after which the clinic saw the change" },
+    { n: "five", m: "how many other hospitals now use the leaflet" }
+];
+const numOrder = [2, 5, 0, 4, 1, 3];
+document.getElementById('number-list').innerHTML = numbers.map((x, i) =>
+    '<div class="item"><span class="num-badge">' + esc(x.n) + '</span> ' +
+    '<select class="match-select" data-i="' + i + '" onchange="checkNumber(this)"><option value="">— choose —</option>' +
+    numOrder.map(k => '<option value="' + k + '">' + esc(numbers[k].m) + '</option>').join('') + '</select>' +
+    ' <button class="btn-peek" onclick="toggleNext(this)">Answer</button><div class="feedback"></div><div class="answer-reveal">' + esc(x.n) + ' — ' + esc(x.m) + '</div></div>').join('');
+function checkNumber(sel) {
+    const box = sel.closest('.item').querySelector('.feedback');
+    sel.classList.remove('correct', 'incorrect');
+    if (sel.value === '') { box.className = 'feedback'; return; }
+    const ok = +sel.value === +sel.dataset.i;
+    sel.classList.add(ok ? 'correct' : 'incorrect');
+    showFeedback(box, ok, 'Not quite. Listen again for "' + esc(numbers[+sel.dataset.i].n) + '".', 'Послушайте ещё раз, где звучит это число.');
+}
+
+// ================= GRAMMAR =================
+const which = [
+    { s: ["If the participant rests the day before, his CK will be normal.", "If the participant will rest the day before, his CK will be normal.", "If the participant rests the day before, his CK would be normal."],
+      en: "1st conditional: If + Present Simple, … will + V. No 'will' after 'if'.", ru: "1-й тип: If + Present Simple, … will + V. После if не ставим will." },
+    { s: ["If I were younger, I would run a marathon.", "If I would be younger, I would run a marathon.", "If I were younger, I will run a marathon."],
+      en: "2nd conditional: If + Past Simple (I were), … would + V.", ru: "2-й тип: If + Past Simple (I were), … would + V." },
+    { s: ["If he had prepared for the test in a proper way, the result would have been normal.", "If he prepared for the test in a proper way, the result would have been normal.", "If he would have prepared for the test in a proper way, the result would have been normal."],
+      en: "3rd conditional: If + had + V3, … would have + V3.", ru: "3-й тип: If + had + V3, … would have + V3." },
+    { s: ["We will have fewer repeat tests if patients follow the leaflet.", "We would have fewer repeat tests if patients will follow the leaflet.", "We will have fewer repeat tests if patients would follow the leaflet."],
+      en: "1st conditional: … will + V if + Present Simple.", ru: "1-й тип: … will + V if + Present Simple." },
+    { s: ["If the clinic had more staff, there would be fewer mistakes.", "If the clinic has more staff, there would be fewer mistakes.", "If the clinic had more staff, there will be fewer mistakes."],
+      en: "2nd conditional: If + Past Simple, … would + V. Don't mix types.", ru: "2-й тип: If + Past Simple, … would + V. Не смешивайте типы." },
+    { s: ["She wouldn't have done a strenuous workout if she had known about the test.", "She won't have done a strenuous workout if she had known about the test.", "She wouldn't have done a strenuous workout if she has known about the test."],
+      en: "3rd conditional: … would (not) have + V3 if + had + V3.", ru: "3-й тип: … would (not) have + V3 if + had + V3." }
+];
+const whichOrder = [[1, 0, 2], [2, 1, 0], [0, 2, 1], [1, 2, 0], [2, 0, 1], [0, 1, 2]];
+document.getElementById('which-list').innerHTML = which.map((w, i) =>
+    choiceItem(i, '', whichOrder[i].map(k => w.s[k]), 'checkWhich', true)).join('');
+function checkWhich(btn, i, k) {
+    const w = which[i], ok = whichOrder[i][k] === 0;
+    showFeedback(markChoice(btn, ok), ok, 'Not this one. ' + w.en, w.ru, '✓ Correct! ' + w.en);
+}
+
+const dlgGaps = [
+    { a: "I did a strenuous workout the day before my test, and my CK was very high.", b: "Well, if you (not / do) [[hadn't done|had not done]] it, your result (be) [[would have been]] normal.", t: 3 },
+    { a: "Should I come to the clinic tomorrow morning?", b: "Yes. If you (come) [[come]] before nine, you (get) [[will get]] your results by lunch.", t: 1 },
+    { a: "Why don't you run marathons?", b: "I'm too busy. If I (have) [[had]] more free time, I (train) [[would train]] every day.", t: 2 },
+    { a: "We had so many repeat tests last year!", b: "I know. If we (give) [[had given]] patients a leaflet, we (have) [[would have had]] fewer repeat tests.", t: 3 },
+    { a: "How many participants do you need for the study?", b: "At least thirty. If fewer people (agree) [[agree]], we (not / be) [[won't be|will not be]] able to finish it.", t: 1 },
+    { a: "Is the conference in India expensive?", b: "Very! If it (be) [[were|was]] cheaper, more young researchers (come) [[would come]].", t: 2 }
+];
+const typeRule = {
+    1: ["This is a real, possible situation → 1st conditional: If + Present Simple, … will + V.", "Реальная ситуация → 1-й тип: If + Present Simple, … will + V."],
+    2: ["This is an unreal situation now → 2nd conditional: If + Past Simple, … would + V.", "Нереальная ситуация в настоящем → 2-й тип: If + Past Simple, … would + V."],
+    3: ["This is about the past → 3rd conditional: If + had + V3, … would have + V3.", "Речь о прошлом → 3-й тип: If + had + V3, … would have + V3."]
+};
+document.getElementById('dlg-gap-list').innerHTML = dlgGaps.map((d, i) =>
+    '<div class="item" data-en="' + esc(typeRule[d.t][0]) + '" data-ru="' + esc(typeRule[d.t][1]) + '"><span class="item-num">' + (i + 1) + '.</span> — ' + esc(d.a) + '<br>— ' + gapHtml(d.b) + itemButtons() +
+    '<div class="feedback"></div><div class="answer-reveal">— ' + esc(gapFull(d.b).replace(/ \((?:not \/ )?[a-z ]+\)/g, '')) + '</div></div>').join('');
+
+// ================= VOCABULARY =================
+const vocab = [
+    ["participant", "/pɑːˈtɪsɪpənt/", "a person who takes part in something, e.g. a study", "участник", "The study had forty participants.", "to participate in — участвовать в"],
+    ["the day before", "/ðə ˈdeɪ bɪˌfɔː/", "the previous day", "накануне, за день до", "Avoid sport the day before the test.", "the day before yesterday — позавчера"],
+    ["load", "/ləʊd/", "the amount of effort or work; something heavy that is carried", "нагрузка; груз", "Heavy physical load can change test results.", "workload — рабочая нагрузка"],
+    ["growth", "/ɡrəʊθ/", "an increase in size, number or importance", "рост", "We have seen a growth in interest from other clinics.", "verb: to grow"],
+    ["in a proper way", "/ɪn ə ˈprɒpə weɪ/", "correctly; as it should be done", "должным образом, правильно", "Patients should prepare for tests in a proper way.", "= properly"],
+    ["to prepare for", "/prɪˈpeə fɔː/", "to get ready for something", "готовиться к", "How should I prepare for a blood test?", "preparation — подготовка"],
+    ["test", "/test/", "a medical examination of a sample, e.g. blood", "анализ, исследование", "The doctor sent me for a blood test.", "to do / run / order a test"],
+    ["fewer", "/ˈfjuːə/", "a smaller number of (with countable nouns)", "меньше (по количеству)", "We had fewer repeat tests this year.", "fewer + plural noun; less + uncountable noun"],
+    ["strenuous", "/ˈstrenjuəs/", "needing a lot of physical effort or energy", "изнурительный, интенсивный", "Don't do strenuous exercise before the test.", ""]
+];
+document.getElementById('vocab-grid').innerHTML = vocab.map(([w, ipa, def, ru, ex, note]) =>
+    '<div class="flip-card" onclick="this.classList.toggle(\'flipped\')"><div class="flip-card-inner">' +
+    '<div class="flip-card-front"><div class="v-word">' + esc(w) + '</div><div class="v-ipa">' + ipa + '</div><div class="v-def">' + esc(def) + '</div>' +
+    '<button class="v-say" onclick="event.stopPropagation(); say(\'' + escJs(esc(w)) + '\')">🔊</button></div>' +
+    '<div class="flip-card-back"><div class="v-trans">' + esc(ru) + '</div><div class="v-ex">"' + esc(ex) + '"</div>' +
+    (note ? '<div class="v-note">' + esc(note) + '</div>' : '') +
+    '</div></div></div>').join('');
+
+// Exercise 1: closest meaning
+const close = [
+    { w: "strenuous", o: ["very easy", "needing a lot of effort", "very short"], a: 1, ru: "strenuous — изнурительный, требующий больших усилий." },
+    { w: "the day before", o: ["the previous day", "the next day", "every day"], a: 0, ru: "the day before — накануне." },
+    { w: "in a proper way", o: ["quickly", "secretly", "correctly"], a: 2, ru: "in a proper way — должным образом, правильно." },
+    { w: "growth", o: ["an increase", "a decrease", "a delay"], a: 0, ru: "growth — рост, увеличение." },
+    { w: "to prepare for", o: ["to pay for", "to get ready for", "to wait for"], a: 1, ru: "prepare for — готовиться к." },
+    { w: "fewer", o: ["the same number", "a much bigger number", "not as many"], a: 2, ru: "fewer — меньше (по количеству)." },
+    { w: "participant", o: ["a person who takes part in something", "a person who organizes an event", "a person who only watches"], a: 0, ru: "participant — участник." },
+    { w: "load", o: ["a short rest", "the amount of effort or work", "a type of blood sample"], a: 1, ru: "load — нагрузка." }
+];
+document.getElementById('close-list').innerHTML = close.map((c, i) => choiceItem(i, '<strong>' + esc(c.w) + '</strong>', c.o, 'checkClose')).join('');
+function checkClose(btn, i, k) {
+    const c = close[i], ok = c.a === k;
+    showFeedback(markChoice(btn, ok), ok, 'Not quite. Look at the card for "' + esc(c.w) + '" again.', c.ru);
+}
+
+// Exercise 2: RU in context
+const ruCtx = [
+    { t: "Forty [[participants]] took part in the study.", ru: "(участников)", hint: "участник — participant" },
+    { t: "Please don't do any sport [[the day before]] the test.", ru: "(накануне)", hint: "накануне — the day before" },
+    { t: "Heavy physical [[load]] can change some results.", ru: "(нагрузка)", hint: "нагрузка — load" },
+    { t: "There has been a fast [[growth]] in the number of private clinics.", ru: "(рост)", hint: "рост — growth" },
+    { t: "The skin must be disinfected [[in a proper way|properly]].", ru: "(должным образом)", hint: "должным образом — in a proper way" },
+    { t: "How should I [[prepare for]] a blood test?", ru: "(подготовиться к)", hint: "готовиться к — prepare for" },
+    { t: "My doctor sent me for a blood [[test]].", ru: "(анализ)", hint: "анализ крови — a blood test" },
+    { t: "This year we made [[fewer]] mistakes than last year.", ru: "(меньше)", hint: "with countable nouns (mistakes) — fewer" },
+    { t: "A [[strenuous]] workout can elevate muscle enzymes.", ru: "(изнурительная)", hint: "изнурительный — strenuous" }
+];
+document.getElementById('ru-list').innerHTML = ruCtx.map((r, i) =>
+    '<div class="item" data-en="Check the spelling and the form of the word." data-ru="' + esc(r.hint) + '"><span class="item-num">' + (i + 1) + '.</span> ' +
+    gapHtml(r.t).replace('<input', '<span class="ru-hint">' + esc(r.ru) + '</span> <input') + itemButtons() +
+    '<div class="feedback"></div><div class="answer-reveal">' + esc(gapFull(r.t)) + '</div></div>').join('');
+
+// ================= ROBUST ANSWER MATCHING (contractions) =================
+function expandContractions(s) {
+    return s.replace(/[’‘`]/g, "'")
+        .replace(/\bwon't\b/gi, 'will not').replace(/\bcan't\b/gi, 'cannot')
+        .replace(/n't\b/gi, ' not').replace(/'ll\b/gi, ' will').replace(/'ve\b/gi, ' have')
+        .replace(/'re\b/gi, ' are').replace(/\b(it|that|there|he|she)'s\b/gi, '$1 is');
+}
+function normalize(s) {
+    return expandContractions(s).toLowerCase()
+        .replace(/'/g, '')
+        .replace(/[\.\?!,;:\-—"«»]/g, ' ')
+        .replace(/\s+/g, ' ').trim();
+}
+function matches(value, answers) {
+    // 'd can mean "had" or "would": try every combination
+    let cands = [value];
+    const n = (value.match(/['’]d\b/g) || []).length;
+    if (n) {
+        cands = [];
+        for (let mask = 0; mask < (1 << Math.min(n, 4)); mask++) {
+            let k = 0;
+            cands.push(value.replace(/['’]d\b/g, () => ((mask >> (k++)) & 1) ? ' had' : ' would'));
+        }
+    }
+    const norm = answers.map(normalize);
+    return cands.some(c => norm.includes(normalize(c)));
+}
+</script>
+</body>
+</html>
