@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mikhail Lesson 21.10</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Manrope:wght@400;500;700;800&display=swap">
+<style>
+  /* Layout: one column of tabbed panels; each panel = lead line + stacked cards. Graphite + copper palette. */
+  :root{
+    color-scheme: light;
+    --paper:#F5F3F0; --card:#FFFFFF; --ink:#22201E; --soft:#625C56;
+    --line:#E2DDD7; --chip:#EFEAE4;
+    --acc:#B9531C; --acc-2:#8A6A55; --steel:#33557A;
+    --good:#23703E; --good-bg:#E6F3EA; --bad:#B03A2E; --bad-bg:#FBEAE7;
+    --f-disp:"Newsreader", Georgia, "Times New Roman", serif;
+    --f-body:"Manrope", -apple-system, "Segoe UI", sans-serif;
+    --r:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --paper:#181614; --card:#211E1B; --ink:#EEE9E3; --soft:#B3AAA1;
+      --line:#38322D; --chip:#2B2622;
+      --acc:#F0965F; --acc-2:#C7A58E; --steel:#8FB3DA;
+      --good:#7FD49A; --good-bg:#1A2E22; --bad:#F29A8F; --bad-bg:#352120;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --paper:#181614; --card:#211E1B; --ink:#EEE9E3; --soft:#B3AAA1;
+    --line:#38322D; --chip:#2B2622;
+    --acc:#F0965F; --acc-2:#C7A58E; --steel:#8FB3DA;
+    --good:#7FD49A; --good-bg:#1A2E22; --bad:#F29A8F; --bad-bg:#352120;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.55;}
+  .wrap{max-width:900px; margin:0 auto; padding-inline:16px; padding-block:22px 56px;}
+
+  header.top{display:flex; flex-direction:column; gap:4px; margin-bottom:18px;}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--acc-2); font-weight:800;}
+  h1{font-family:var(--f-disp); font-weight:600; font-size:clamp(26px,5vw,36px); margin:0; line-height:1.1; text-wrap:balance;}
+  .meta{font-size:13.5px; color:var(--soft);}
+
+  nav.tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px; border-bottom:1px solid var(--line); padding-bottom:12px;}
+  .tab{font-family:inherit; font-size:13.5px; font-weight:700; cursor:pointer; padding:8px 15px; border-radius:999px; border:none; background:var(--chip); color:var(--soft);}
+  .tab[aria-selected="true"]{background:var(--acc); color:var(--paper);}
+  .subs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px;}
+  .sub{font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; padding:6px 13px; border-radius:8px; border:1.5px solid var(--line); background:var(--card); color:var(--soft);}
+  .sub[aria-selected="true"]{border-color:var(--steel); color:var(--steel); background:var(--chip);}
+  button:focus-visible,input:focus-visible,select:focus-visible,.vc:focus-visible{outline:2px solid var(--steel); outline-offset:2px;}
+
+  .lead{font-size:15.5px; color:var(--soft); margin:0 0 16px;}
+  .ielts{display:inline-block; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--steel); border:1.5px solid var(--steel); border-radius:6px; padding:1px 7px; margin-right:6px; vertical-align:1px;}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px; margin-bottom:16px;}
+  .card h3{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); margin:0 0 12px; font-weight:800;}
+  .instr{font-size:14.5px; color:var(--soft); margin:-4px 0 14px;}
+
+  .ru{display:none; font-style:italic; color:var(--acc-2); font-size:14.5px;}
+  .ruopen .ru{display:block;}
+  .mini{font-family:inherit; font-size:10.5px; font-weight:800; letter-spacing:.08em; padding:4px 10px; border-radius:999px; cursor:pointer; background:transparent; color:var(--steel); border:1.2px solid var(--steel); white-space:nowrap; vertical-align:middle;}
+  .mini.on{background:var(--steel); color:var(--paper);}
+  .say{color:var(--acc); border-color:var(--acc); padding:4px 9px;}
+
+  /* warm-up */
+  .qs{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; counter-reset:w;}
+  .qs li{counter-increment:w; display:flex; gap:10px; align-items:flex-start;}
+  .qs li::before{content:counter(w); flex:0 0 auto; width:24px; height:24px; margin-top:3px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--acc); font-size:12px; font-weight:800;}
+  .qs .q{font-family:var(--f-disp); font-size:19px;}
+
+  /* grammar theory */
+  .use{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .use li{background:var(--chip); border-radius:11px; padding:12px 15px;}
+  .use .name{font-weight:800; color:var(--acc);}
+  .use .ind{display:block; font-size:13.5px; color:var(--soft); margin-top:3px;}
+  .use .eg{display:block; font-family:var(--f-disp); font-size:16.5px; margin-top:4px;}
+  .sc{display:flex; flex-direction:column; gap:15px;}
+  .scg{border-left:3px solid var(--acc-2); padding-left:13px;}
+  .scg .sign{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); font-weight:800; margin-bottom:6px;}
+  .scg .row{display:flex; gap:12px; flex-wrap:wrap; align-items:baseline; padding:5px 0; border-bottom:1px dashed var(--line);}
+  .scg .row:last-child{border-bottom:none;}
+  .scg .form{min-width:min(250px,100%); font-weight:800; color:var(--acc); font-size:15.5px;}
+  .scg .eg{font-family:var(--f-disp); font-size:16px;}
+  .note{margin-top:13px; background:var(--chip); border-radius:10px; padding:11px 14px; font-size:14.5px; color:var(--soft);}
+  .note b{color:var(--acc);}
+  .spell{width:100%; border-collapse:collapse; font-size:15px;}
+  .spell td,.spell th{padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+  .spell th{font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2);}
+  .spell td:last-child{font-family:var(--f-disp); font-size:16px;}
+  .tscroll{overflow-x:auto;}
+  .irr{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px;}
+  .irr span{background:var(--chip); border-radius:9px; padding:7px 11px; font-size:15px;}
+  .irr b{color:var(--acc);}
+
+  /* exercise items */
+  ol.items{list-style:none; counter-reset:q; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  ol.items > li{counter-increment:q; display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap;}
+  ol.items > li::before{content:counter(q); flex:0 0 auto; width:24px; height:24px; margin-top:4px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--acc); font-size:12px; font-weight:800; font-variant-numeric:tabular-nums;}
+  .qbody{flex:1 1 240px; min-width:0;}
+  .qtext{font-size:16px;}
+  .btns{display:flex; gap:6px; flex:0 0 auto; margin-top:3px; flex-wrap:wrap;}
+  input.gap{font-family:inherit; font-size:15px; width:150px; max-width:100%; padding:4px 9px; border-radius:7px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink);}
+  input.gap.wide{width:100%; margin-top:6px;}
+  .chk{font-family:inherit; font-size:11px; font-weight:800; letter-spacing:.06em; cursor:pointer; padding:5px 12px; border-radius:999px; background:var(--acc); color:var(--paper); border:1.5px solid var(--acc);}
+  .ans{font-family:inherit; font-size:11px; font-weight:800; letter-spacing:.06em; cursor:pointer; padding:5px 12px; border-radius:999px; background:transparent; color:var(--acc); border:1.5px solid var(--acc);}
+  .opts{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;}
+  .opts button{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:5px 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); text-align:left;}
+  .opts button.pick-ok{background:var(--good); border-color:var(--good); color:var(--paper);}
+  .opts button.pick-no{background:var(--bad); border-color:var(--bad); color:var(--paper);}
+  .fb{display:none; margin-top:7px; border-radius:9px; padding:9px 11px; font-size:14.5px; line-height:1.5;}
+  li.done .fb{display:block;}
+  .fb.ok{background:var(--good-bg);} .fb.no{background:var(--bad-bg);} .fb.show{background:var(--chip);}
+  .fb .right{font-weight:800; display:block; margin-bottom:3px;}
+  .fb.ok .right{color:var(--good);} .fb.no .right{color:var(--bad);} .fb.show .right{color:var(--acc);}
+  .fb .rurow{margin-top:6px; display:flex; gap:8px; align-items:flex-start; flex-wrap:wrap;}
+  li.okrow input.gap{border-color:var(--good);} li.norow input.gap{border-color:var(--bad);}
+  .exfoot{margin-top:14px; padding-top:12px; border-top:1px solid var(--line); display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .copy{font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; padding:7px 14px; border-radius:999px; border:1.5px solid var(--acc); background:transparent; color:var(--acc);}
+  .cmsg{font-size:13px; color:var(--soft);} .cmsg.ok{color:var(--good); font-weight:700;}
+  .ci{display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;}
+  .ci button{font-family:inherit; font-size:14px; font-weight:700; cursor:pointer; padding:5px 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink);}
+  .ci button.on{background:var(--acc); border-color:var(--acc); color:var(--paper);}
+
+  /* create sentences */
+  .cues{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; counter-reset:c;}
+  .cues li{counter-increment:c; display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap;}
+  .cues li::before{content:counter(c); flex:0 0 auto; width:24px; height:24px; margin-top:3px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--acc); font-size:12px; font-weight:800;}
+  .cues .cb{flex:1 1 240px; min-width:0;}
+  .cues .sgn{display:inline-grid; place-items:center; width:26px; height:26px; border-radius:7px; background:var(--steel); color:var(--paper); font-weight:800; margin-right:8px;}
+  .cues .cue{font-size:16.5px;}
+  .cues .mod{display:none; margin-top:6px; font-family:var(--f-disp); font-size:17px; color:var(--acc); background:var(--chip); border-radius:8px; padding:5px 11px;}
+  .cues li.open .mod{display:block;}
+
+  /* listening */
+  .player{display:flex; gap:8px; align-items:center; flex-wrap:wrap; background:var(--chip); border-radius:12px; padding:12px 14px; margin-bottom:14px;}
+  .pbtn{font-family:inherit; font-size:14px; font-weight:800; cursor:pointer; padding:8px 16px; border-radius:999px; border:none; background:var(--acc); color:var(--paper);}
+  .pbtn.sec{background:transparent; color:var(--acc); border:1.5px solid var(--acc);}
+  .player select{font-family:inherit; font-size:14px; padding:6px 8px; border-radius:8px; border:1.5px solid var(--line); background:var(--card); color:var(--ink);}
+  .pstat{font-size:13px; color:var(--soft);}
+  .tr-box{display:none; margin-top:12px; background:var(--chip); border-radius:10px; padding:12px 14px; font-size:15px;}
+  .tr-box.open{display:block;}
+  .tr-box p{margin:0 0 6px;}
+  .tr-box b{color:var(--acc);}
+
+  /* vocab cards */
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:11px;}
+  .vc{background:var(--chip); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; display:flex; flex-direction:column; gap:3px;}
+  .vc .en{font-family:var(--f-disp); font-size:20px; font-weight:600; line-height:1.15; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .vc .tr{font-size:13px; color:var(--acc-2);}
+  .vc .df{font-size:14px; color:var(--ink); line-height:1.4; margin-top:3px;}
+  .vc .ex{font-size:13.5px; color:var(--soft); font-style:italic; line-height:1.4;}
+  .vc .rux{display:none; margin-top:7px; padding-top:7px; border-top:1px solid var(--line); font-size:15px; font-weight:800; color:var(--steel);}
+  .vc.flip .rux{display:block;}
+  .vc .tap{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); margin-top:6px;}
+  .vc.flip .tap{display:none;}
+
+  /* speaking */
+  .cuecard{border:2px solid var(--acc); border-radius:12px; padding:14px 18px; background:var(--paper);}
+  .cuecard p{margin:0 0 6px;} .cuecard ul{margin:0 0 8px; padding-left:22px;}
+  .cue-t{font-family:var(--f-disp); font-size:20px; font-weight:600;}
+  .cue-s{color:var(--soft);}
+  .timer{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:14px;}
+  .clock{font-family:var(--f-disp); font-size:30px; font-weight:600; min-width:74px; font-variant-numeric:tabular-nums; color:var(--acc);}
+  .clock.end{color:var(--steel);}
+
+  /* translation */
+  .story{font-size:17px; line-height:2.1;}
+  .story .enx{display:none; color:var(--acc); background:var(--chip); border-radius:6px; padding:2px 8px; font-family:var(--f-disp); font-size:17px;}
+  .story .sw.open .enx{display:inline;}
+  .story .mini{margin:0 6px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">Mikhail · Lesson 1 · 21 October</span>
+    <h1>Past Simple: what happened?</h1>
+    <div class="meta">General English with an IELTS focus</div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="p1">1. Warm-up</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p2">2. Grammar</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p3">3. Listening</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p4">4. Vocabulary</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p5">5. Speaking</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p6">6. Translation · homework</button>
+  </nav>
+
+  <!-- 1. WARM-UP -->
+  <section class="panel" id="p1" role="tabpanel">
+    <p class="lead"><span class="ielts">IELTS Speaking · Part 1</span>Answer + one detail.</p>
+    <div class="card"><h3>Answer the questions</h3><ol class="qs" id="warm"></ol></div>
+  </section>
+
+  <!-- 2. GRAMMAR -->
+  <section class="panel" id="p2" role="tabpanel" hidden>
+    <div class="subs" role="tablist">
+      <button class="sub" aria-selected="true" data-s="s1">Reminder</button>
+      <button class="sub" aria-selected="false" data-s="s2">Exercise 1</button>
+      <button class="sub" aria-selected="false" data-s="s3">Exercise 2</button>
+      <button class="sub" aria-selected="false" data-s="s4">Exercise 3</button>
+      <button class="sub" aria-selected="false" data-s="s5">Exercise 4</button>
+    </div>
+
+    <div class="gsub" id="s1">
+      <div class="card">
+        <h3>When do we use the Past Simple?</h3>
+        <ul class="use">
+          <li><span class="name">A finished action at a finished time in the past</span>
+            <span class="ind">Indicators: yesterday · last week / month / summer / year · two days ago · in 2020 · when I was a child</span>
+            <span class="eg">I bought a bike last summer. We went to the lake two days ago.</span></li>
+          <li><span class="name">A story: one action after another</span>
+            <span class="eg">I got up, had breakfast and rode to the park.</span></li>
+        </ul>
+        <div class="note"><b>Last summer, yesterday, ago → Past Simple.</b> Not <i>We have gone to Sochi last summer</i> ✗ → <b>We went to Sochi last summer.</b> ✓</div>
+      </div>
+      <div class="card">
+        <h3>To be: was / were</h3>
+        <div class="sc">
+          <div class="scg"><div class="sign">+ affirmative</div>
+            <div class="row"><span class="form">I / He / She / It was</span><span class="eg">The museum was closed.</span></div>
+            <div class="row"><span class="form">We / You / They were</span><span class="eg">We were very tired.</span></div></div>
+          <div class="scg"><div class="sign">− negative</div>
+            <div class="row"><span class="form">was not (wasn't) / were not (weren't)</span><span class="eg">I wasn't at home. They weren't at the lecture.</span></div></div>
+          <div class="scg"><div class="sign">? question</div>
+            <div class="row"><span class="form">Was / Were + subject …?</span><span class="eg">Was the exhibition interesting? Were you at the lake?</span></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Other verbs</h3>
+        <div class="sc">
+          <div class="scg"><div class="sign">+ affirmative</div>
+            <div class="row"><span class="form">all persons + V2 (V-ed or irregular)</span><span class="eg">I watched a film. She rode 30 km.</span></div></div>
+          <div class="scg"><div class="sign">− negative</div>
+            <div class="row"><span class="form">all persons + didn't + V1</span><span class="eg">We didn't go to the museum.</span></div></div>
+          <div class="scg"><div class="sign">? question</div>
+            <div class="row"><span class="form">Did + subject + V1 …?</span><span class="eg">Did you see the new car?</span></div>
+            <div class="row"><span class="form">Wh- + did + subject + V1 …?</span><span class="eg">Where did you go last weekend?</span></div></div>
+        </div>
+        <div class="note"><b>Didn't / did → V1.</b> He didn't <i>went</i> ✗ → He didn't <b>go</b> ✓. Did you <i>saw</i> ✗ → Did you <b>see</b> ✓.<br><b>Never was + verb.</b> I <i>was spended</i> ✗ → I <b>spent</b> ✓. <i>Was / were</i> go with adjectives, nouns and places: I was tired. I was at home.</div>
+      </div>
+      <div class="card">
+        <h3>Spelling: -ed</h3>
+        <div class="tscroll"><table class="spell">
+          <tr><th>Rule</th><th>Examples</th></tr>
+          <tr><td>most verbs + ed</td><td>work → worked, watch → watched</td></tr>
+          <tr><td>verb ends in -e + d</td><td>live → lived, decide → decided</td></tr>
+          <tr><td>consonant + y → ied</td><td>study → studied, try → tried (but play → played)</td></tr>
+          <tr><td>short verb: vowel + consonant → double</td><td>stop → stopped, plan → planned</td></tr>
+        </table></div>
+      </div>
+      <div class="card">
+        <h3>Irregular verbs you need often</h3>
+        <div class="irr" id="irr"></div>
+      </div>
+    </div>
+
+    <div class="gsub" id="s2" hidden>
+      <div class="card"><h3>Exercise 1 — make a sentence</h3><p class="instr">Write a Past Simple sentence from the cues: <b>+</b> affirmative, <b>−</b> negative, <b>?</b> question.</p><ol class="items" id="gc"></ol><div class="exfoot" data-for="gc"></div></div>
+    </div>
+    <div class="gsub" id="s3" hidden>
+      <div class="card"><h3>Exercise 2 — a day in the forest</h3><p class="instr">Put the verb in brackets into the Past Simple.</p><ol class="items" id="g2"></ol><div class="exfoot" data-for="g2"></div></div>
+    </div>
+    <div class="gsub" id="s4" hidden>
+      <div class="card"><h3>Exercise 3 — irregular verbs</h3><p class="instr">Write the past form.</p><ol class="items" id="g1"></ol><div class="exfoot" data-for="g1"></div></div>
+    </div>
+    <div class="gsub" id="s5" hidden>
+      <div class="card"><h3>Exercise 4 — correct or incorrect?</h3><p class="instr">Click <b>Correct</b> or <b>Incorrect</b>. If the sentence is incorrect, write the whole correct sentence.</p><ol class="items" id="g3"></ol><div class="exfoot" data-for="g3"></div></div>
+    </div>
+  </section>
+
+  <!-- 3. LISTENING -->
+  <section class="panel" id="p3" role="tabpanel" hidden>
+    <p class="lead"><span class="ielts">IELTS Listening</span>Read the questions first. In the exam you hear the recording only once.</p>
+    <div class="card">
+      <h3>Weekend Projects · a podcast</h3>
+      <p class="instr">Kate talks to Leo, an engineering student, about his summer project.</p>
+      <div class="player" data-rec="L1">
+        <button class="pbtn" type="button" data-act="play">▶ Play</button>
+        <button class="pbtn sec" type="button" data-act="pause">❚❚ Pause</button>
+        <button class="pbtn sec" type="button" data-act="stop">■ Stop</button>
+        <select aria-label="Speed"><option value="0.8">Slow</option><option value="0.95" selected>Normal</option></select>
+        <span class="pstat"></span>
+      </div>
+      <div class="exfoot" style="border-top:none; padding-top:0; margin-top:0"><button class="copy tbtn" type="button" data-tr="tr1">Show transcript</button></div>
+      <div class="tr-box" id="tr1"></div>
+    </div>
+    <div class="card">
+      <h3>Exercise 1 — multiple choice</h3>
+      <p class="instr">Choose the correct answer.</p>
+      <ol class="items" id="l2"></ol><div class="exfoot" data-for="l2"></div>
+    </div>
+    <div class="card">
+      <h3>Exercise 2 — answer the questions</h3>
+      <p class="instr">Write <b>NO MORE THAN THREE WORDS AND/OR A NUMBER</b> for each answer.</p>
+      <ol class="items" id="l1"></ol><div class="exfoot" data-for="l1"></div>
+    </div>
+  </section>
+
+  <!-- 4. VOCABULARY -->
+  <section class="panel" id="p4" role="tabpanel" hidden>
+    <p class="lead">Words from the podcast. Tap a card to see the translation.</p>
+    <div class="card"><h3>Word cards</h3><div class="cards" id="cards"></div></div>
+    <div class="card"><h3>Exercise 1 — choose the word</h3><p class="instr">Click the word that fits the sentence.</p><ol class="items" id="v1"></ol><div class="exfoot" data-for="v1"></div></div>
+    <div class="card"><h3>Exercise 2 — the first letter</h3><p class="instr">Write the whole missing word. The first letter is given.</p><ol class="items" id="v2"></ol><div class="exfoot" data-for="v2"></div></div>
+  </section>
+
+  <!-- 5. SPEAKING -->
+  <section class="panel" id="p5" role="tabpanel" hidden>
+    <p class="lead"><span class="ielts">IELTS Speaking · Part 2</span>1 minute to prepare and make notes, then speak for 1–2 minutes.</p>
+    <div class="card">
+      <h3>Task card</h3>
+      <div class="cuecard">
+        <p class="cue-t">Describe a day you spent outdoors.</p>
+        <p class="cue-s">You should say:</p>
+        <ul>
+          <li>where you went</li>
+          <li>who you were with</li>
+          <li>what you did there</li>
+        </ul>
+        <p class="cue-s">and explain why you remember this day.</p>
+      </div>
+      <div class="timer">
+        <span class="clock" id="clock">1:00</span>
+        <button class="pbtn" type="button" id="tPrep">Preparation 1 min</button>
+        <button class="pbtn" type="button" id="tTalk">Speech 2 min</button>
+        <button class="pbtn sec" type="button" id="tStop">■ Stop</button>
+        <span class="pstat" id="tStat"></span>
+      </div>
+      <div class="note">Past Simple: <b>went, rode, saw, had, was / were</b>. Negatives: <b>didn't + V1</b>.</div>
+    </div>
+    <div class="card">
+      <h3>If we have time</h3>
+      <ol class="qs">
+        <li><span class="q">Why do many people in cities like spending time in nature?</span></li>
+        <li><span class="q">Is cycling popular in your city? Why or why not?</span></li>
+        <li><span class="q">Should cities build more bike lanes?</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 6. TRANSLATION -->
+  <section class="panel" id="p6" role="tabpanel" hidden>
+    <p class="lead">Homework. Translate the story into English. Press EN to compare.</p>
+    <div class="card"><h3>My first car</h3><div class="story" id="tr"></div></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var canSpeak = ("speechSynthesis" in window) && ("SpeechSynthesisUtterance" in window);
+  function voiceGB(){
+    try{
+      var v = window.speechSynthesis.getVoices() || [];
+      return v.filter(function(x){ return /en[-_]GB/i.test(x.lang); })[0] || v.filter(function(x){ return /^en/i.test(x.lang); })[0] || null;
+    }catch(e){ return null; }
+  }
+  if(canSpeak){ try{ window.speechSynthesis.getVoices(); }catch(e){} }
+  function speak(t){
+    if(!canSpeak) return;
+    try{
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var v = voiceGB(); if(v) u.voice = v;
+      u.lang = "en-GB"; u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+  function el(tag, cls, txt){ var d = document.createElement(tag); if(cls) d.className = cls; if(txt !== undefined) d.textContent = txt; return d; }
+  function ruBtn(host){
+    var b = el("button","mini","RUS"); b.type = "button";
+    b.addEventListener("click", function(e){ e.stopPropagation(); var on = host.classList.toggle("ruopen"); b.classList.toggle("on", on); });
+    return b;
+  }
+  function norm(s){ return String(s).toLowerCase().replace(/[’`‘]/g,"'").replace(/£/g," ").replace(/[.,!?;:"«»]/g," ").replace(/\s+/g," ").trim(); }
+  function copyText(text, m){
+    function ok(){ m.textContent = "Скопировано"; m.className = "cmsg ok"; }
+    function fail(){ m.textContent = "Не вышло — выделите ответы вручную"; m.className = "cmsg"; }
+    try{ if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok).catch(fail); else fail(); }catch(e){ fail(); }
+  }
+
+  /* ================= data 21.10 ================= */
+  var WARM = [
+    "Do you work or are you a student?",
+    "What subject do you enjoy most? Why?",
+    "Do you like art? What kind of art do you like?",
+    "When did you last go to a museum or an exhibition?",
+    "Do you prefer mornings or evenings? Why?"
+  ];
+
+  var IRR = [["go","went"],["have","had"],["see","saw"],["buy","bought"],["take","took"],["ride","rode"],["spend","spent"],["make","made"],["get","got"],["come","came"],["do","did"],["think","thought"],["find","found"],["know","knew"],["eat","ate"],["sell","sold"]];
+
+  var CUES = [
+    {q:"( + )  Max / ride / 40 km / yesterday", a:["max rode 40 km yesterday","yesterday max rode 40 km","max rode 40 kilometres yesterday","max rode 40 kilometers yesterday","max rode forty kilometres yesterday","max rode forty kilometers yesterday"], model:"Max rode 40 km yesterday.", en:"ride → rode (irregular).", ru:"ride → rode (неправильный глагол)."},
+    {q:"( − )  Anna / not go / to the exhibition / last Saturday", a:["anna didn't go to the exhibition last saturday","anna did not go to the exhibition last saturday","last saturday anna didn't go to the exhibition","last saturday anna did not go to the exhibition"], model:"Anna didn't go to the exhibition last Saturday.", en:"Negative: didn't + V1 → didn't go.", ru:"Отрицание: didn't + V1 → didn't go."},
+    {q:"( ? )  you / see / the new car / at the show", a:["did you see the new car at the show"], model:"Did you see the new car at the show?", en:"Question: Did + you + V1 (see).", ru:"Вопрос: Did + you + V1 (see)."},
+    {q:"( + )  we / have / a picnic by the lake / two days ago", a:["we had a picnic by the lake two days ago","two days ago we had a picnic by the lake"], model:"We had a picnic by the lake two days ago.", en:"have → had (irregular).", ru:"have → had (неправильный глагол)."},
+    {q:"( − )  the students / not understand / the lecture", a:["the students didn't understand the lecture","the students did not understand the lecture"], model:"The students didn't understand the lecture.", en:"Negative: didn't + V1 → didn't understand.", ru:"Отрицание: didn't + V1 → didn't understand."},
+    {q:"( ? )  where / your friends / go / last summer", a:["where did your friends go last summer"], model:"Where did your friends go last summer?", en:"Wh- + did + subject + V1.", ru:"Wh- + did + подлежащее + V1."},
+    {q:"( + )  I / be / very tired / after the trip", a:["i was very tired after the trip","after the trip i was very tired"], model:"I was very tired after the trip.", en:"I → was. No did with to be.", ru:"I → was. С to be did не нужен."},
+    {q:"( ? )  the museum / be / open / on Monday", a:["was the museum open on monday"], model:"Was the museum open on Monday?", en:"To be question: Was + subject …? No did.", ru:"Вопрос с to be: Was + подлежащее …? Без did."}
+  ];
+
+  var CI = [
+    {s:"I was spended the weekend with my friends.", ok:false, a:["i spent the weekend with my friends"], model:"I spent the weekend with my friends.", en:"No was + verb. Spend is irregular: spend → spent.", ru:"Was с глаголом не ставим. Spend — неправильный: spend → spent."},
+    {s:"We have gone to Sochi last summer.", ok:false, a:["we went to sochi last summer"], model:"We went to Sochi last summer.", en:"Last summer is a finished time → Past Simple: went.", ru:"Last summer — законченное время → Past Simple: went."},
+    {s:"Did you see the exhibition?", ok:true, model:"Correct.", en:"Did + you + V1 (see). Correct!", ru:"Did + you + V1 (see). Всё верно!"},
+    {s:"He didn't went to university yesterday.", ok:false, a:["he didn't go to university yesterday","he did not go to university yesterday"], model:"He didn't go to university yesterday.", en:"After didn't → V1: go, not went.", ru:"После didn't — V1: go, а не went."},
+    {s:"My brother bought a new bike last month.", ok:true, model:"Correct.", en:"buy → bought. Correct!", ru:"buy → bought. Всё верно!"},
+    {s:"Where you went last weekend?", ok:false, a:["where did you go last weekend"], model:"Where did you go last weekend?", en:"Wh- + did + you + V1.", ru:"Wh- + did + you + V1."},
+    {s:"They were at the museum on Sunday.", ok:true, model:"Correct.", en:"They → were. Correct!", ru:"They → were. Всё верно!"},
+    {s:"I didn't was at home.", ok:false, a:["i wasn't at home","i was not at home"], model:"I wasn't at home.", en:"To be has its own negative: wasn't. No didn't.", ru:"У to be своё отрицание: wasn't. Didn't не нужен."}
+  ];
+
+  var EX = {
+    gc: CUES,
+    g1: IRR.slice(0,10).map(function(p){ return {q:p[0] + " →", a:[p[1]], en:p[0] + " → " + p[1] + " (irregular verb)", ru:"Неправильный глагол: " + p[0] + " → " + p[1] + "."}; }),
+    g2:[
+      {q:"Last Saturday my friends and I (decide) __ to go to the forest.", a:["decided"], en:"decide + d → decided.", ru:"decide оканчивается на -e → просто + d."},
+      {q:"We (get) __ up at six o'clock.", a:["got"], en:"get → got (irregular).", ru:"get → got (неправильный)."},
+      {q:"Unfortunately, it (be) __ cold and windy.", a:["was"], en:"It → was.", ru:"It → was."},
+      {q:"We (not / take) __ the bus — we rode our bikes.", a:["didn't take","did not take"], en:"Negative: didn't + V1 → didn't take.", ru:"Отрицание: didn't + V1 → didn't take."},
+      {q:"Kate (stop) __ to take photos of the lake.", a:["stopped"], en:"Short verb: stop → stopped (double p).", ru:"Короткий глагол: stop → stopped (удваиваем p)."},
+      {q:"\"__ any food?\" I asked Tom. (you / bring)", a:["did you bring"], en:"Question: Did + you + V1 → Did you bring…?", ru:"Вопрос: Did + you + V1 → Did you bring…?"},
+      {q:"On the way home we (try) __ a new café.", a:["tried"], en:"Consonant + y → ied: try → tried.", ru:"Согласная + y → ied: try → tried."},
+      {q:"We (not / be) __ tired at all!", a:["weren't","were not"], en:"We → were; negative → weren't.", ru:"We → were; отрицание → weren't."}
+    ],
+    l1:[
+      {q:"What does Leo study?", wide:true, a:["mechanical engineering","engineering"], en:"«…he studies mechanical engineering in Manchester.»", ru:"Он изучает машиностроение."},
+      {q:"How much did Leo pay for the car?", wide:true, a:["900 pounds","nine hundred pounds","900","nine hundred"], en:"«…only nine hundred pounds.»", ru:"Всего девятьсот фунтов."},
+      {q:"Who helped Leo with the repair?", wide:true, a:["his grandad","grandad","his grandfather","grandfather","his granddad","granddad"], en:"«My grandad helped me.»", ru:"Ему помог дедушка."},
+      {q:"Which country did the spare parts come from?", wide:true, a:["germany","from germany"], en:"«In the end, I ordered them from Germany.»", ru:"Запчасти заказал из Германии."}
+    ],
+    l2:[
+      {q:"Why was the car cheap?", opts:["It was very old.","The engine didn't work.","It was a small car."], a:"The engine didn't work.", en:"«It was very cheap… because the engine didn't work.»", ru:"Дешёвая, потому что не работал двигатель."},
+      {q:"Where did the old man keep the car?", opts:["in his garage","in his garden","on the street"], a:"in his garden", en:"«He kept it in his garden for ten years.» The garage was Leo's grandad's.", ru:"В саду. Гараж — у дедушки Лео."},
+      {q:"When did Leo and his grandad work on the car?", opts:["every morning","at weekends","every evening"], a:"every evening", en:"«We worked in his garage every evening after dinner.»", ru:"Каждый вечер после ужина."},
+      {q:"How long did the repair take?", opts:["about two weeks","about two months","ten years"], a:"about two months", en:"«About two months. We finished at the end of August.»", ru:"Около двух месяцев."},
+      {q:"What did Leo and his grandad do the day after the car started?", opts:["They sold it.","They went for a ride.","They took it apart again."], a:"They went for a ride.", en:"«The next day we went for a ride to the Peak District.»", ru:"На следующий день поехали покататься."}
+    ],
+    v1:[
+      {q:"My car isn't new — I bought it __.", opts:["second-hand","apart","proud","spare"], a:"second-hand", en:"second-hand = not new, somebody had it before.", ru:"second-hand — подержанный."},
+      {q:"The car didn't start because there was a problem with the __.", opts:["garage","engine","ride","part"], a:"engine", en:"The engine makes the car move.", ru:"engine — двигатель."},
+      {q:"We keep our bikes and tools in the __.", opts:["engine","ride","garage","repair"], a:"garage", en:"A garage is a building for a car or bikes.", ru:"garage — гараж."},
+      {q:"Can you __ my bike? The wheel is broken.", opts:["repair","ride","sell","proud"], a:"repair", en:"repair = make something work again.", ru:"repair — чинить, ремонтировать."},
+      {q:"This shop sells __ for old cars.", opts:["second-hands","spare parts","garages","rides"], a:"spare parts", en:"spare parts = new pieces for a machine.", ru:"spare parts — запчасти."},
+      {q:"My little brother __ his toy car to see what was inside.", opts:["took apart","went for a ride","was proud of","repaired"], a:"took apart", en:"take apart = separate into pieces.", ru:"take apart — разобрать."},
+      {q:"It was a sunny day, so we __ in the countryside.", opts:["took apart","went for a ride","repaired","were proud"], a:"went for a ride", en:"go for a ride = travel by car or bike for fun.", ru:"go for a ride — поехать покататься."},
+      {q:"She won the competition, and her parents __ her.", opts:["took apart","went for a ride","were proud of","repaired"], a:"were proud of", en:"be proud of somebody = feel happy because of what they did.", ru:"be proud of — гордиться."}
+    ],
+    v2:[
+      {q:"My dad keeps his old car in the g______.", a:["garage","arage"], en:"garage", ru:"гараж"},
+      {q:"The e______ is the heart of a car.", a:["engine","ngine"], en:"engine", ru:"двигатель"},
+      {q:"Mechanics r______ cars every day.", a:["repair","epair","fix"], en:"repair", ru:"чинить, ремонтировать"},
+      {q:"We couldn't find spare p______ for this old model.", a:["parts","arts"], en:"spare parts", ru:"запчасти"},
+      {q:"I took the radio a______, but I couldn't put it back together.", a:["apart","part"], en:"take apart", ru:"разобрать"},
+      {q:"It's cheaper to buy a s______-hand bike.", a:["second","econd","second-hand"], en:"second-hand", ru:"подержанный"},
+      {q:"Let's go for a r______ on our bikes!", a:["ride","ide"], en:"go for a ride", ru:"поехать покататься"},
+      {q:"I'm really p______ of my first car.", a:["proud","roud"], en:"be proud of", ru:"гордиться"}
+    ]
+  };
+
+  var WORDS = [
+    ["second-hand","/ˌsekənd ˈhænd/","not new; somebody owned it before you","He bought a second-hand Mini.","подержанный, б/у"],
+    ["engine","/ˈendʒɪn/","the part of a car that makes it move","The engine didn't work.","двигатель"],
+    ["garage","/ˈɡærɑːʒ/","a building where you keep or repair a car","They worked in his garage.","гараж"],
+    ["repair","/rɪˈpeə/","to make a broken thing work again (also a noun: the repair)","The repair took two months.","чинить; ремонт"],
+    ["spare parts","/ˌspeə ˈpɑːts/","new pieces you buy to replace broken ones in a machine","He ordered spare parts from Germany.","запчасти"],
+    ["take apart","/ˌteɪk əˈpɑːt/","to separate a machine into its pieces. took apart","We took the engine apart.","разобрать (на части)"],
+    ["go for a ride","/ˌɡəʊ fər ə ˈraɪd/","to travel by car or bike for fun. went for a ride","We went for a ride to the mountains.","поехать покататься"],
+    ["be proud of","/bi ˈpraʊd əv/","to feel happy about something you or another person did","I'm proud of that car.","гордиться"]
+  ];
+
+  var REC = {
+    L1:[
+      ["F","Hello and welcome to Weekend Projects! My guest today is Leo. He's twenty, and he studies mechanical engineering in Manchester. Hi, Leo!"],
+      ["M","Hi, Kate. Thanks for having me."],
+      ["F","Leo, last summer you did something unusual. Tell us about it."],
+      ["M","Well, in June I bought a second-hand car, a small red Mini from 1989. It was very cheap, only nine hundred pounds, because the engine didn't work."],
+      ["F","Nine hundred pounds! Where did you find it?"],
+      ["M","On a website. An old man sold it. He kept it in his garden for ten years."],
+      ["F","Did you repair it alone?"],
+      ["M","No, I didn't. My grandad helped me. He was a mechanic for forty years. We worked in his garage every evening after dinner."],
+      ["F","What was the hardest part?"],
+      ["M","The engine. We took it apart, and we found a lot of broken pieces. We needed new spare parts, but they were difficult to find. In the end, I ordered them from Germany."],
+      ["F","How long did the repair take?"],
+      ["M","About two months. We finished at the end of August."],
+      ["F","And did the car start?"],
+      ["M","Yes, the first time! I couldn't believe it. The next day we went for a ride to the Peak District. The weather was perfect, and the views were amazing."],
+      ["F","You must be very proud."],
+      ["M","I am. I'm really proud of that car. And now I know much more about engines than my classmates!"],
+      ["F","Great story. Thanks, Leo!"]
+    ]
+  };
+
+  var TR = [
+    ["Прошлым летом я купил подержанную машину.","Last summer I bought a second-hand car."],
+    ["Она была старая, и двигатель плохо работал.","It was old, and the engine didn't work well."],
+    ["Мы с папой разобрали двигатель в гараже.","My dad and I took the engine apart in the garage."],
+    ["Нам нужны были запчасти, поэтому мы заказали их в интернете.","We needed spare parts, so we ordered them online."],
+    ["Ремонт занял три недели.","The repair took three weeks."],
+    ["Я не знал, как всё починить, но папа мне помог.","I didn't know how to repair everything, but my dad helped me."],
+    ["Когда машина завелась, мы поехали покататься за город.","When the car started, we went for a ride out of town."],
+    ["Я очень гордился собой.","I was very proud of myself."]
+  ];
+
+  /* ================= generic items ================= */
+  function feedback(li, fb, ok, it, shown){
+    li.classList.add("done");
+    li.classList.toggle("okrow", !shown && ok);
+    li.classList.toggle("norow", !shown && !ok);
+    fb.className = "fb " + (shown ? "show" : (ok ? "ok" : "no"));
+    fb.textContent = "";
+    var correct = it.model || (Array.isArray(it.a) ? it.a[0] : it.a);
+    fb.appendChild(el("span","right", shown ? "Answer: " + correct : (ok ? "Correct!" : "Not quite. Correct answer: " + correct)));
+    if(!ok || shown){
+      fb.appendChild(el("span", null, it.en));
+      var row = el("div","rurow"); var host = el("div");
+      host.appendChild(el("span","ru", it.ru));
+      row.appendChild(ruBtn(host)); row.appendChild(host); fb.appendChild(row);
+    }
+  }
+
+  function buildItem(it){
+    var li = el("li"), body = el("div","qbody"), fb = el("div","fb"), btns = el("div","btns");
+    var getVal;
+    if(it.opts){
+      body.appendChild(el("span","qtext", it.q));
+      var g = el("div","opts");
+      it.opts.forEach(function(o){
+        var b = el("button", null, o); b.type = "button";
+        b.addEventListener("click", function(){
+          Array.prototype.forEach.call(g.children, function(x){ x.classList.remove("pick-ok","pick-no"); });
+          var ok = o === it.a; b.classList.add(ok ? "pick-ok" : "pick-no");
+          li.dataset.val = o; feedback(li, fb, ok, it, false);
+        });
+        g.appendChild(b);
+      });
+      body.appendChild(g);
+    } else {
+      var inp = document.createElement("input");
+      inp.className = "gap wide"; inp.type = "text"; inp.placeholder = "…";
+      inp.setAttribute("autocomplete","off"); inp.setAttribute("autocapitalize","off"); inp.setAttribute("spellcheck","false");
+      body.appendChild(el("span","qtext", it.q));
+      body.appendChild(inp);
+      getVal = function(){ return inp.value; };
+      inp.addEventListener("keydown", function(e){ if(e.key === "Enter") chk.click(); });
+      var chk = el("button","chk","CHECK"); chk.type = "button";
+      chk.addEventListener("click", function(){
+        var v = norm(getVal());
+        var ok = !!v && it.a.some(function(k){ return norm(k) === v; });
+        feedback(li, fb, ok, it, false);
+      });
+      btns.appendChild(chk);
+      li._val = getVal;
+    }
+    var an = el("button","ans","ANSWER"); an.type = "button";
+    an.addEventListener("click", function(){ feedback(li, fb, false, it, true); });
+    btns.appendChild(an);
+    body.appendChild(fb); li.appendChild(body); li.appendChild(btns);
+    return li;
+  }
+
+  var LABELS = {gc:"Grammar · Ex 1 (make a sentence)", g2:"Grammar · Ex 2 (a day in the forest)", g1:"Grammar · Ex 3 (irregular verbs)", l2:"Listening · Ex 1 (multiple choice)", l1:"Listening · Ex 2 (questions)", v1:"Vocabulary · Ex 1 (choose the word)", v2:"Vocabulary · Ex 2 (first letter)"};
+  function copyFoot(foot, title, collect){
+    var b = el("button","copy","Скопировать мои ответы"); b.type = "button";
+    var m = el("span","cmsg");
+    b.addEventListener("click", function(){ copyText(["Mikhail · 21.10 · " + title, ""].concat(collect()).join("\n"), m); });
+    foot.appendChild(b); foot.appendChild(m);
+  }
+  Object.keys(EX).forEach(function(id){
+    var ol = document.getElementById(id); if(!ol) return;
+    EX[id].forEach(function(it){ ol.appendChild(buildItem(it)); });
+    copyFoot(document.querySelector('.exfoot[data-for="' + id + '"]'), LABELS[id] || id, function(){
+      return Array.prototype.map.call(ol.children, function(li, i){
+        var v = li._val ? li._val().trim() : (li.dataset.val || "");
+        return (i + 1) + ". " + (v || "—");
+      });
+    });
+  });
+
+  /* ================= grammar ex 3: correct or incorrect ================= */
+  (function(){
+    var ol = document.getElementById("g3"), vals = [];
+    CI.forEach(function(it){
+      var li = el("li"), body = el("div","qbody"), fb = el("div","fb"), btns = el("div","btns");
+      body.appendChild(el("span","qtext", it.s));
+      var ci = el("div","ci"), choice = null;
+      var inp = document.createElement("input");
+      inp.className = "gap wide"; inp.type = "text"; inp.placeholder = "If incorrect, write the correct sentence…";
+      inp.setAttribute("autocomplete","off"); inp.setAttribute("autocapitalize","off"); inp.setAttribute("spellcheck","false");
+      ["Correct","Incorrect"].forEach(function(lab){
+        var b = el("button", null, lab); b.type = "button";
+        b.addEventListener("click", function(){
+          Array.prototype.forEach.call(ci.children, function(x){ x.classList.remove("on"); });
+          b.classList.add("on"); choice = lab; li.classList.remove("done","okrow","norow");
+        });
+        ci.appendChild(b);
+      });
+      body.appendChild(ci); body.appendChild(inp);
+      var chk = el("button","chk","CHECK"); chk.type = "button";
+      chk.addEventListener("click", function(){
+        var ok = it.ok ? choice === "Correct" : (choice === "Incorrect" && it.a.indexOf(norm(inp.value)) > -1);
+        feedback(li, fb, ok, it, false);
+      });
+      var an = el("button","ans","ANSWER"); an.type = "button";
+      an.addEventListener("click", function(){ feedback(li, fb, false, it, true); });
+      btns.appendChild(chk); btns.appendChild(an);
+      body.appendChild(fb); li.appendChild(body); li.appendChild(btns); ol.appendChild(li);
+      vals.push(function(){ return (choice || "—") + (inp.value.trim() ? ": " + inp.value.trim() : ""); });
+    });
+    copyFoot(document.querySelector('.exfoot[data-for="g3"]'), "Grammar · Ex 4 (correct or incorrect)", function(){ return vals.map(function(f, i){ return (i + 1) + ". " + f(); }); });
+  })();
+
+  /* ================= irregular list ================= */
+  (function(){
+    var box = document.getElementById("irr");
+    IRR.forEach(function(p){ var s = el("span"); s.appendChild(document.createTextNode(p[0] + " → ")); s.appendChild(el("b", null, p[1])); box.appendChild(s); });
+  })();
+
+  /* ================= player: play / pause / stop ================= */
+  function voicesEN(){
+    if(!canSpeak) return [];
+    var v = window.speechSynthesis.getVoices() || [];
+    var gb = v.filter(function(x){ return /en[-_]GB/i.test(x.lang); });
+    var en = v.filter(function(x){ return /^en/i.test(x.lang); });
+    return gb.concat(en.filter(function(x){ return gb.indexOf(x) === -1; }));
+  }
+  var cur = null;
+  function resetPauseBtn(c){ if(c && c.pbtn) c.pbtn.textContent = "❚❚ Pause"; }
+  function stopAll(){
+    if(cur){ resetPauseBtn(cur); if(cur.stat.dataset.busy){ cur.stat.textContent = "Stopped"; delete cur.stat.dataset.busy; } }
+    cur = null;
+    if(canSpeak){ try{ window.speechSynthesis.cancel(); }catch(e){} }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".player"), function(p){
+    var key = p.dataset.rec, stat = p.querySelector(".pstat"), sel = p.querySelector("select");
+    var pbtn = p.querySelector('[data-act="pause"]');
+    if(!canSpeak){ stat.textContent = "Audio is not available in this browser. Try Chrome or Edge."; }
+    p.querySelector('[data-act="play"]').addEventListener("click", function(){
+      if(!canSpeak) return;
+      stopAll();
+      var c = {paused:false, waiting:false, stat:stat, pbtn:pbtn}; cur = c;
+      var lines = REC[key], i = 0, vs = voicesEN();
+      var vF = vs[0] || null, vM = vs[1] || vs[0] || null;
+      stat.dataset.busy = "1";
+      function next(){
+        if(cur !== c) return;
+        if(c.paused){ c.waiting = true; return; }
+        c.waiting = false;
+        if(i >= lines.length){ stat.textContent = "Finished"; delete stat.dataset.busy; cur = null; resetPauseBtn(c); return; }
+        var L = lines[i], u = new SpeechSynthesisUtterance(L[1]);
+        u.lang = "en-GB"; u.rate = parseFloat(sel.value) || 0.95;
+        if(L[0] === "M"){ if(vM) u.voice = vM; u.pitch = (vM === vF) ? 0.75 : 1; }
+        else { if(vF) u.voice = vF; u.pitch = (vM === vF) ? 1.15 : 1; }
+        u.onend = function(){ i++; setTimeout(next, 350); };
+        u.onerror = function(){ if(cur !== c) return; i++; setTimeout(next, 100); };
+        stat.textContent = "Playing… " + (i + 1) + " / " + lines.length;
+        window.speechSynthesis.speak(u);
+      }
+      c.next = next; next();
+    });
+    pbtn.addEventListener("click", function(){
+      if(!cur || cur.pbtn !== pbtn) return;
+      var c = cur;
+      if(!c.paused){ c.paused = true; try{ window.speechSynthesis.pause(); }catch(e){} pbtn.textContent = "▶ Resume"; stat.textContent = "Paused"; }
+      else { c.paused = false; try{ window.speechSynthesis.resume(); }catch(e){} pbtn.textContent = "❚❚ Pause"; stat.textContent = "Playing…"; if(c.waiting) c.next(); }
+    });
+    p.querySelector('[data-act="stop"]').addEventListener("click", stopAll);
+  });
+  (function(){
+    var box = document.getElementById("tr1"), names = {F:"Kate", M:"Leo"};
+    REC.L1.forEach(function(L){ var p = el("p"); p.appendChild(el("b", null, names[L[0]] + ": ")); p.appendChild(document.createTextNode(L[1])); box.appendChild(p); });
+    Array.prototype.forEach.call(document.querySelectorAll(".tbtn"), function(b){
+      b.addEventListener("click", function(){ var t = document.getElementById(b.dataset.tr); var on = t.classList.toggle("open"); b.textContent = on ? "Hide transcript" : "Show transcript"; });
+    });
+  })();
+
+  /* ================= warm-up, cards, translation, timer, tabs ================= */
+  WARM.forEach(function(q){ var li = el("li"); li.appendChild(el("span","q", q)); document.getElementById("warm").appendChild(li); });
+  (function(){
+    var cbox = document.getElementById("cards");
+    WORDS.forEach(function(w){
+      var d = el("div","vc"); d.tabIndex = 0; d.setAttribute("role","button");
+      var en = el("span","en"); en.appendChild(document.createTextNode(w[0]));
+      if(canSpeak){
+        var sb = el("button","mini say","▶"); sb.type = "button"; sb.setAttribute("aria-label","Listen");
+        sb.addEventListener("click", function(e){ e.stopPropagation(); speak(w[0]); });
+        en.appendChild(sb);
+      }
+      d.appendChild(en);
+      d.appendChild(el("span","tr", w[1])); d.appendChild(el("span","df", w[2])); d.appendChild(el("span","ex", w[3]));
+      d.appendChild(el("span","rux", w[4])); d.appendChild(el("span","tap","tap for Russian"));
+      function flip(){ d.classList.toggle("flip"); }
+      d.addEventListener("click", flip);
+      d.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); } });
+      cbox.appendChild(d);
+    });
+  })();
+  (function(){
+    var box = document.getElementById("tr");
+    TR.forEach(function(p){
+      var w = el("span","sw");
+      w.appendChild(el("span","r0", p[0]));
+      var b = el("button","mini","EN"); b.type = "button";
+      b.addEventListener("click", function(){ var on = w.classList.toggle("open"); b.classList.toggle("on", on); });
+      w.appendChild(b); w.appendChild(el("span","enx", p[1]));
+      box.appendChild(w); box.appendChild(document.createTextNode(" "));
+    });
+  })();
+  (function(){
+    var clock = document.getElementById("clock"), st = document.getElementById("tStat"), t = null;
+    function show(n){ clock.textContent = Math.floor(n/60) + ":" + ("0" + (n%60)).slice(-2); }
+    function stop(){ if(t){ clearInterval(t); t = null; } }
+    function run(sec, label, done){
+      stop(); clock.classList.remove("end"); var n = sec; show(n); st.textContent = label;
+      t = setInterval(function(){ n--; show(n); if(n <= 0){ stop(); clock.classList.add("end"); st.textContent = done; } }, 1000);
+    }
+    document.getElementById("tPrep").addEventListener("click", function(){ run(60, "Make notes…", "Time to speak!"); });
+    document.getElementById("tTalk").addEventListener("click", function(){ run(120, "Speaking…", "Thank you. Time's up."); });
+    document.getElementById("tStop").addEventListener("click", function(){ stop(); st.textContent = "Stopped"; });
+  })();
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  tabs.forEach(function(t){
+    t.addEventListener("click", function(){
+      tabs.forEach(function(o){ var on = o === t; o.setAttribute("aria-selected", on ? "true" : "false"); document.getElementById(o.dataset.p).hidden = !on; });
+      stopAll();
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  });
+  var subs = Array.prototype.slice.call(document.querySelectorAll(".sub"));
+  subs.forEach(function(s){
+    s.addEventListener("click", function(){
+      subs.forEach(function(o){ var on = o === s; o.setAttribute("aria-selected", on ? "true" : "false"); document.getElementById(o.dataset.s).hidden = !on; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
