@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vitaliy · Translation Workout V</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#f3f4f0; --surface:#ffffff; --surface2:#eceee8; --ink:#1c2230; --muted:#5d6574;
+  --line:#d9dcd3; --accent:#2c5a86; --accent-ink:#ffffff; --mark:#f3d47a;
+  --ok:#2d7a4c; --ok-bg:#e3f1e8; --bad:#b0413a; --bad-bg:#f8e5e3;
+  --serif:"Literata",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#15181f; --surface:#1d212b; --surface2:#252a36; --ink:#e7e9ee; --muted:#9aa2b1;
+    --line:#333a48; --accent:#7fb0e0; --accent-ink:#10141b; --mark:#6b5a24;
+    --ok:#7ccf9c; --ok-bg:#1c3326; --bad:#f09a92; --bad-bg:#3a2020;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#15181f; --surface:#1d212b; --surface2:#252a36; --ink:#e7e9ee; --muted:#9aa2b1;
+  --line:#333a48; --accent:#7fb0e0; --accent-ink:#10141b; --mark:#6b5a24;
+  --ok:#7ccf9c; --ok-bg:#1c3326; --bad:#f09a92; --bad-bg:#3a2020;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding-inline:16px;padding-block:20px 60px}
+header.top .eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+header.top h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,4vw,2rem);margin:2px 0 4px;text-wrap:balance}
+header.top p{margin:0;color:var(--muted);font-size:.95rem}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:6px;overflow-x:auto;padding-block:12px;margin-top:14px;border-bottom:1px solid var(--line);scrollbar-width:thin}
+nav.tabs button{flex:0 0 auto;font:600 .85rem var(--sans);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav.tabs button .n{color:var(--muted);font-weight:500;margin-right:4px;font-variant-numeric:tabular-nums}
+nav.tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+nav.tabs button[aria-selected="true"] .n{color:inherit;opacity:.75}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.panel{padding-top:18px}
+.phead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px;margin-bottom:6px}
+.phead h2{font-family:var(--serif);font-weight:600;font-size:1.35rem;margin:0}
+.meta{font-size:.8rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.instr{margin:0 0 16px;color:var(--muted);max-width:68ch}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.q{display:flex;gap:10px;align-items:flex-start}
+.q .num{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600;min-width:1.6em}
+.q .txt{font-family:var(--serif);font-size:1.05rem;flex:1}
+.sub{color:var(--muted);font-family:var(--serif)}
+.sub.wrongline{color:var(--ink)}
+.lbl{font:700 .72rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.key{font:700 .75rem var(--sans);letter-spacing:.04em;background:var(--mark);color:var(--ink);padding:2px 7px;border-radius:4px;white-space:nowrap}
+.body{padding-left:calc(1.6em + 10px);display:flex;flex-direction:column;gap:8px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.opt{font:500 .95rem var(--serif);text-align:left;border:1px solid var(--line);background:var(--surface2);color:var(--ink);padding:7px 12px;border-radius:6px;cursor:pointer;width:100%}
+.opt:hover{border-color:var(--accent)}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.opts{display:flex;flex-direction:column;gap:6px}
+input.gap{font:500 1rem var(--sans);padding:5px 9px;border:1px solid var(--line);border-radius:6px;background:var(--surface2);color:var(--ink);width:min(100%,260px)}
+input.gap.inl{width:min(100%,190px);margin:2px 2px}
+.ok-f{border-color:var(--ok)!important;background:var(--ok-bg)!important}
+.bad-f{border-color:var(--bad)!important;background:var(--bad-bg)!important}
+textarea{font:1rem var(--sans);width:100%;min-height:58px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface2);color:var(--ink);resize:vertical}
+.btn{font:600 .85rem var(--sans);padding:6px 12px;border-radius:6px;cursor:pointer;border:1px solid var(--accent);background:transparent;color:var(--accent)}
+.btn.solid{background:var(--accent);color:var(--accent-ink)}
+.fb:empty{display:none}
+.fb{font-size:.93rem}
+.good{color:var(--ok);font-weight:600}
+.wrong{color:var(--bad);font-weight:600}
+.ru{color:var(--muted)}
+.model{background:var(--surface2);border-radius:6px;padding:8px 10px;font-family:var(--serif)}
+.model small{display:block;font-family:var(--sans);color:var(--muted);margin-top:4px}
+.inline{font-family:var(--serif);font-size:1.05rem;line-height:2.1}
+.inline i{color:var(--muted)}
+.pool,.built{display:flex;flex-wrap:wrap;gap:6px;min-height:40px;padding:6px;border-radius:8px}
+.built{border:1px dashed var(--line);background:var(--surface2)}
+.built.ok-f,.built.bad-f{border-style:solid}
+.tile{font:500 .98rem var(--serif);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:4px 10px;border-radius:6px;cursor:pointer}
+.tile:hover{border-color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.78rem;background:var(--surface2);border:1px solid var(--line);padding:2px 8px;border-radius:999px;color:var(--muted)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:18px}
+.half{display:flex;flex-direction:column;gap:6px}
+.words{display:flex;flex-wrap:wrap;gap:4px;font-family:var(--serif);font-size:1.05rem}
+.w{border:1px solid transparent;background:none;color:var(--ink);font:inherit;padding:1px 4px;border-radius:4px;cursor:pointer}
+.w:hover{border-color:var(--line);background:var(--surface2)}
+.w.hit{background:var(--bad-bg);color:var(--bad);text-decoration:line-through}
+.w.miss{color:var(--muted)}
+.btn.listen{font-size:.75rem;padding:2px 8px;vertical-align:middle}
+.who{display:inline-block;font:700 .72rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-right:8px}
+.item.alt{margin-left:clamp(0px,4vw,28px)}
+.choice{display:inline-flex;flex-wrap:wrap;gap:4px;margin:0 3px;vertical-align:middle}
+.ch{font:500 .95rem var(--serif);border:1px dashed var(--accent);background:var(--surface2);color:var(--ink);padding:1px 8px;border-radius:5px;cursor:pointer}
+.ch.ok{border-style:solid;border-color:var(--ok);background:var(--ok-bg);color:var(--ok);font-weight:600}
+.ch.bad{border-style:solid;border-color:var(--bad);background:var(--bad-bg);color:var(--bad);text-decoration:line-through}
+.ch.off{opacity:.35;text-decoration:line-through;cursor:default}
+.match{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.match .col{display:flex;flex-direction:column;gap:6px}
+.card{font:1rem var(--serif);text-align:left;border:1px solid var(--line);background:var(--surface2);color:var(--ink);padding:8px 10px;border-radius:8px;cursor:pointer}
+.card:hover{border-color:var(--accent)}
+.card.sel{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.card.ok{border-color:var(--ok);background:var(--ok-bg);color:var(--ok);cursor:default}
+.card.bad{border-color:var(--bad);background:var(--bad-bg)}
+.start{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-family:var(--serif);font-size:1.05rem}
+.lead{font-weight:600}
+input.gap.wide{width:min(100%,520px);flex:1 1 260px}
+.src{display:flex;flex-direction:column;gap:4px;font-family:var(--serif);font-size:1.03rem;line-height:1.7}
+.para{gap:2px 0}
+.found{display:flex;flex-direction:column;gap:4px;font-size:.93rem}
+.found:empty{display:none}
+.pair{font-family:var(--serif)}
+.pair s{color:var(--bad)}
+.art-title{font-family:var(--serif);font-weight:600;font-size:1.15rem;margin:0}
+.dir{font:700 .7rem var(--sans);letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 7px}
+.timerbar{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.clock{font:700 1.4rem var(--sans);font-variant-numeric:tabular-nums;color:var(--accent)}
+.clock.over{color:var(--bad)}
+.speed{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.item.tight{gap:6px;padding:10px 12px}
+.item.tight input.gap{flex:1 1 140px;width:auto;min-width:0}
+.opt.half-w{width:auto;flex:1 1 140px;text-align:center;font-family:var(--sans);font-weight:600}
+.opt.bad-pick{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);font-weight:600}
+.skel{font:600 1rem ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;letter-spacing:.06em;color:var(--accent);background:var(--surface2);border-radius:6px;padding:8px 10px;word-spacing:.2em;overflow-wrap:anywhere}
+.step{display:flex;flex-direction:column;gap:6px}
+.step-l{display:block;margin-top:4px}
+.sub.mt{color:var(--ink);text-decoration:underline wavy var(--bad);text-decoration-thickness:1px;text-underline-offset:4px}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Translation Masterclass · part 6</div>
+    <h1>Translation Workout V</h1>
+    <p>Vitaliy · 22 October · new word list · focus: participles, inversion, impersonal passive · 8 formats · about 90 minutes</p>
+  </header>
+  <nav class="tabs" id="tabs" role="tablist"></nav>
+  <main id="panels"></main>
+</div>
+
+<script>
+/* =========================================================
+   Answer patterns: {a|b} = one of the options, [x] = optional.
+   Checking ignores case, punctuation, contractions and UK/US spelling.
+   ========================================================= */
+
+/* ---------- Format 1: translation traps  {{correct|wrong|wrong}} ---------- */
+const D1=[
+ ["Он очень высокий, а цены здесь высокие.","He is very {{tall|high}}, and prices here are {{high|tall}}.","Человек — tall; цены — high."],
+ ["Его рост — 185 см.","His {{height|growth|high}} is 185 cm.","Рост человека — height. Growth — рост как увеличение."],
+ ["Мне интересна эта книга — она очень интересная.","I am {{interested|interesting}} {{in|by|about}} this book — it is very {{interesting|interested}}.","Interested in — человек; interesting — предмет."],
+ ["Я был впечатлён её работой.","I was {{impressed by|impressive by|impressed of}} her work.","Impressed by/with sth."],
+ ["Это удивительно!","It's {{surprising|surprised|surprisingly}}!","Предмет/ситуация вызывает удивление — surprising."],
+ ["Удивительно, но он ответил на все вопросы.","{{Surprisingly|Surprising|Surprised}}, he {{answered|answered to|answered on}} all the questions.","Наречие в начале — Surprisingly; answer sth без предлога."],
+ ["Он зависим от кофе.","He is {{addicted to|addicted on|addicted from}} coffee.","Be addicted to sth."],
+ ["Я долго ждал.","I waited {{for a long time|a long time ago|since a long time}}.","Долго — for a long time; a long time ago — давно (в прошлом)."],
+ ["Она сделала мне комплимент.","She {{paid me a compliment|did me a compliment|made me compliment}}.","Pay sb a compliment."],
+ ["Можешь меня подвезти?","Can you {{give me a lift|lift me|bring me a lift}}?","Give sb a lift."],
+ ["Цена этого стула слишком высокая.","The {{price of|cost on|price on}} this chair is too {{high|expensive|tall}}.","The price of sth is high (не expensive: дорогим бывает предмет)."],
+ ["Мы приняли решение и нашли выход из ситуации.","We {{made a decision|did a decision|accepted a decision}} and found a {{solution|decision|resolve}}.","Make a decision; solution — выход, решение проблемы."],
+ ["За этот период цены сильно выросли.","{{Over|On|At}} this period, prices {{have grown|have grown up|have raised}} a lot.","Over/during this period; grow — расти (grow up — о человеке, «вырасти, повзрослеть»)."],
+ ["У ребёнка есть воображаемый друг.","The child has an {{imaginary|imaginative|imaginable}} friend.","Imaginary — несуществующий."]
+];
+
+/* ---------- Format 2: match groups ---------- */
+const D2=[
+ ["impersonal passive",[["Говорят, что он известный учёный.","He is said to be a famous scientist."],["Говорят, что он был известным учёным.","He is said to have been a famous scientist."],["Говорят, что сейчас он работает над новым проектом.","He is said to be working on a new project."]]],
+ ["participles",[["Отвечая на вопросы, он нервничал.","Answering the questions, he was nervous."],["Ответив на вопросы, он ушёл.","Having answered the questions, he left."],["Вопросы, заданные студентами, были очень интересными.","The questions asked by the students were very interesting."]]],
+ ["inversion",[["Едва он сел на стул, как зазвонил телефон.","Hardly had he sat down on the chair when the phone rang."],["Только тогда он понял свою ошибку.","Only then did he realise his mistake."],["Ни разу он не сделал мне комплимента.","Not once did he pay me a compliment."]]],
+ ["conditional inversion",[["Если бы я знал цену, я бы не купил этот стул.","Had I known the price, I wouldn't have bought this chair."],["Будь я выше, я бы играл в баскетбол.","Were I taller, I would play basketball."],["Если вам понадобится помощь, позвоните мне.","Should you need any help, call me."]]],
+ ["passive tenses",[["Решение принимается прямо сейчас.","The decision is being made right now."],["Решение уже принято.","The decision has already been made."],["Решение было принято до того, как мы приехали.","The decision had been made before we arrived."]]]
+];
+
+/* ---------- Format 3: two ways ---------- */
+const D3=[
+ ["Говорят, что этот учёный очень знаменит.",
+  ["It is said that…",["it is said that this scientist is very famous"],"It is said that this scientist is very famous."],
+  ["This scientist is said…",["this scientist is said to be very famous"],"This scientist is said to be very famous."]],
+ ["Считается, что картина была написана в XVII веке.",
+  ["It is believed that…",["it is {believed|thought|considered} that the painting was {painted|created|made} in the 17th century"],"It is believed that the painting was painted in the 17th century."],
+  ["The painting is believed…",["the painting is {believed|thought|considered} to have been {painted|created|made} in the 17th century"],"The painting is believed to have been painted in the 17th century."]],
+ ["Я никогда не слышал такой тишины.",
+  ["I have never…",["i have never heard such [a ]silence"],"I have never heard such silence."],
+  ["Never…",["never have i heard such [a ]silence"],"Never have I heard such silence."]],
+ ["Если бы он знал правду, он бы не принял это решение (тогда).",
+  ["If he had…",["if he had known the truth he would not have {made|taken} {this|that|the} decision[ then]"],"If he had known the truth, he wouldn't have made that decision."],
+  ["Had he…",["had he known the truth he would not have {made|taken} {this|that|the} decision[ then]"],"Had he known the truth, he wouldn't have made that decision."]],
+ ["Когда она примерила платье, она поняла, что оно ей мало.",
+  ["Having + V3",["having tried {on the dress|the dress on|it on} she realized [that ]it was too small[ for her]"],"Having tried on the dress, she realised it was too small."],
+  ["After + -ing",["after trying {on the dress|the dress on|it on} she realized [that ]it was too small[ for her]"],"After trying on the dress, she realised it was too small."]],
+ ["Не успел он войти в комнату, как наступила тишина.",
+  ["As soon as…",["as soon as he {entered|came into|walked into|had entered|had come into|had walked into} the room {there was silence|silence fell|it went silent|it became silent|everyone fell silent|everybody fell silent|it went quiet}"],"As soon as he entered the room, there was silence."],
+  ["No sooner…",["no sooner had he {entered|come into|walked into} the room than {there was silence|silence fell|it went silent|it became silent|everyone fell silent|everybody fell silent|it went quiet}"],"No sooner had he entered the room than there was silence."]]
+];
+
+/* ---------- Format 4: build ---------- */
+const D4=[
+ ["Редко встретишь такого интересного человека.","Rarely do you meet such an interesting person.",[]],
+ ["Ни в коем случае не делай ему неискренних комплиментов.","Under no circumstances should you pay him insincere compliments.",[]],
+ ["Он не только высокий, но и очень сильный.","Not only is he tall, but he is also very strong.",[]],
+ ["Говорят, что учёный долгое время был зависим от кофе.","The scientist is said to have been addicted to coffee for a long time.",[]],
+ ["Сидя на старом стуле, он слушал тишину.","Sitting on an old chair, he listened to the silence.",[]],
+ ["Если вы захотите примерить пальто, спросите продавца.","Should you want to try on the coat, ask the shop assistant.",["Should you want to try the coat on, ask the shop assistant."]],
+ ["Они и не подозревали, насколько он знаменит.","Little did they know how famous he was.",[]],
+ ["Только позже я понял, что совершил ошибку.","Only later did I realise that I had made a mistake.",[]]
+];
+
+/* ---------- Format 5: spot & rewrite ---------- */
+const D5=[
+ ["Никогда ещё я не был так впечатлён.","Never I have been so impressed.",[1,2],["never have i been so impressed"],"Never have I been so impressed.","После Never в начале — инверсия: have I been."],
+ ["Говорят, что он вырос в маленькой деревне.","He is said to grow up in a small village.",4,["he is said to have grown up in a small village"],"He is said to have grown up in a small village.","Действие в прошлом → перфектный инфинитив: to have grown up."],
+ ["Ответив на все вопросы, учёный покинул сцену.","Answered all the questions, the scientist left the stage.",0,["having answered all [of ]the questions the scientist left the stage"],"Having answered all the questions, the scientist left the stage.","Действие раньше другого → Having + V3."],
+ ["Мне очень интересна эта тема.","I am very interesting in this topic.",3,["i am very interested in this {topic|subject}"],"I am very interested in this topic.","О человеке — interested in."],
+ ["Если бы я знал цену, я бы не купил этот стул.","Had I knew the price, I wouldn't have bought this chair.",2,["had i known the price i would not have bought this chair"],"Had I known the price, I wouldn't have bought this chair.","Инверсия третьего типа: Had + subject + V3 (known)."],
+ ["Ни в коем случае не подвози незнакомцев.","Under no circumstances you should give strangers a lift.",[3,4],["under no circumstances should you give {strangers a lift|a lift to strangers}"],"Under no circumstances should you give strangers a lift.","После Under no circumstances — инверсия: should you."],
+ ["Считается, что у этой проблемы нет решения.","It is believed that this problem has no decision.",8,["it is believed that this problem has no solution","this problem is believed to have no solution"],"It is believed that this problem has no solution.","Решение проблемы — solution; decision — принятое решение."],
+ ["Он почти всегда вежливо отвечает на вопросы.","He almost always answers to questions politely.",4,["he almost always answers [the ]questions politely","he almost always politely answers [the ]questions"],"He almost always answers questions politely.","Answer sth — без to."]
+];
+
+/* ---------- Format 6: RU → EN ---------- */
+const D6=[
+ ["Ни при каких обстоятельствах не подвози незнакомых людей.",
+  ["under no circumstances should you give {strangers a lift|a lift to strangers|people you do not know a lift|a lift to people you do not know}"],
+  "Under no circumstances should you give strangers a lift.","Инверсия после Under no circumstances; give sb a lift."],
+ ["Ожидается, что цены на билеты вырастут на 10 процентов.",
+  ["{ticket prices|the ticket prices|prices for tickets|the prices for tickets|the prices of tickets} are expected to {rise|grow|go up|increase} by 10 {percent|per cent}","it is expected that {ticket prices|the ticket prices|prices for tickets|the prices for tickets|the prices of tickets} will {rise|grow|go up|increase} by 10 {percent|per cent}"],
+  "Ticket prices are expected to rise by 10 per cent.","Безличный пассив: are expected to + V."],
+ ["Примерив почти всё в магазине, она так ничего и не купила.",
+  ["having tried on almost everything in the {shop|store} she {did not buy anything|bought nothing|still did not buy anything|did not buy anything in the end|did not buy anything after all|ended up buying nothing}"],
+  "Having tried on almost everything in the shop, she didn't buy anything in the end.","Having + V3; try on; almost everything."],
+ ["Будь я выше ростом, я бы играл в баскетбол.",
+  ["were i taller i would play basketball","if i {were|was} taller i would play basketball"],
+  "Were I taller, I would play basketball.","Инверсия второго типа: Were I…; рост — taller (не higher)."],
+ ["Редко я слышал такие неискренние комплименты.",
+  ["{rarely|seldom} have i heard such insincere compliments","i have {rarely|seldom} heard such insincere compliments"],
+  "Rarely have I heard such insincere compliments.","Rarely в начале → инверсия: have I heard."],
+ ["Считается, что он уже долгое время зависим от социальных сетей.",
+  ["he is {believed|thought|considered} to have been addicted to social {media|networks} for a long time","it is {believed|thought|considered} that he has been addicted to social {media|networks} for a long time"],
+  "He is believed to have been addicted to social media for a long time.","Длится до сих пор → to have been; addicted to; for a long time."],
+ ["Мужчины, сидевшие на стульях у двери, спорили на повышенных тонах.",
+  ["the men {sitting|who were sitting|who sat} on [the ]chairs {by|near|next to|at} the door were arguing in raised voices","the men {sitting|who were sitting|who sat} on [the ]chairs {by|near|next to|at} the door argued in raised voices"],
+  "The men sitting on the chairs by the door were arguing in raised voices.","Причастие sitting вместо who were sitting; in raised voices."],
+ ["Я не только был впечатлён красотой этого места, но и удивлён ценой.",
+  ["not only was i impressed {by|with} the beauty of this place but [i was ]also surprised {by|at} the price","not only was i impressed {by|with} the beauty of this place but i was also surprised {by|at} the price"],
+  "Not only was I impressed by the beauty of this place, but I was also surprised by the price.","Not only в начале → инверсия: was I impressed."]
+];
+
+/* ---------- Format 7: upgrade ---------- */
+const D7=[
+ ["Я никогда не пробовал ничего подобного.","I have never tried anything like this.","NEVER",["never have i tried anything like {this|that}"],"Never have I tried anything like this.","Never в начале → инверсия."],
+ ["Говорят, что учёный нашёл решение.","People say the scientist has found a solution.","SAID",["the scientist is said to have found a solution","it is said that the scientist has found a solution"],"The scientist is said to have found a solution.","Безличный пассив + to have + V3."],
+ ["Повзрослев, он стал знаменитым.","He grew up and became famous.","HAVING",["having grown up he became famous"],"Having grown up, he became famous.","Having + V3."],
+ ["Если бы мы пришли раньше, мы бы его увидели.","If we had come earlier, we would have seen him.","HAD",["had we come earlier we would have seen him"],"Had we come earlier, we would have seen him.","Инверсия третьего типа: Had we come…"],
+ ["Едва он сел, как его позвали.","He had just sat down when someone called him.","HARDLY",["hardly had he sat down[ on the chair] when {someone|somebody} called him","hardly had he sat down[ on the chair] when he was called"],"Hardly had he sat down when someone called him.","Hardly had… when — едва… как."],
+ ["Ожидается, что цены вырастут.","Experts think that prices will grow.","EXPECTED",["prices are expected to {grow|rise|go up|increase}","it is expected that prices will {grow|rise|go up|increase}"],"Prices are expected to grow.","Are expected to + V."],
+ ["Только после его ответа мы поняли правду.","We understood the truth only after his answer.","ONLY",["only after his answer did we {understand|realize} the truth"],"Only after his answer did we understand the truth.","Only after… в начале → инверсия: did we understand."],
+ ["Если вдруг тебя нужно будет подвезти, позвони мне.","If you need a lift, call me.","SHOULD",["should you need a lift call me"],"Should you need a lift, call me.","Should you… — «если вдруг»."],
+ ["Девушка, которая сидела на стуле, была дочерью известного учёного.","The girl who was sitting on the chair was the daughter of a famous scientist.","SITTING",["the girl sitting on the chair was {the daughter of a famous scientist|a famous scientist's daughter}"],"The girl sitting on the chair was the daughter of a famous scientist.","Причастие вместо придаточного."]
+];
+
+/* ---------- Format 8: story ---------- */
+const D8=[
+ ["Анна Волкова, известный учёный из Петербурга, долгое время изучала, как растут деревья на севере.",["anna volkova a famous scientist from {st|saint} petersburg {studied|had studied|has studied|had been studying|was studying} how trees grow in the north for a long time","anna volkova a famous scientist from {st|saint} petersburg {studied|had studied|has studied|had been studying|was studying} for a long time how trees grow in the north","for a long time anna volkova a famous scientist from {st|saint} petersburg {studied|had studied|has studied|had been studying|was studying} how trees grow in the north"],"Anna Volkova, a famous scientist from St Petersburg, studied how trees grow in the north for a long time.","famous scientist · grow · for a long time"],
+ ["Говорят, что она почти всегда работала в полной тишине.",["she is said to have almost always worked in {complete|total|absolute} silence","she is said to have worked almost always in {complete|total|absolute} silence","it is said that she almost always worked in {complete|total|absolute} silence"],"She is said to have almost always worked in complete silence.","impersonal passive · almost always · silence"],
+ ["Ни разу за всю карьеру она не приняла решения, не проверив всё несколько раз.",["{never|not once} in her {whole |entire |}career did she make a decision without checking everything {several|a few|many} times"],"Never in her whole career did she make a decision without checking everything several times.","inversion · make a decision"],
+ ["Однажды, получив неожиданные результаты, она поняла, что нашла решение старой проблемы.",["one day having {got|received|obtained} [the ]unexpected results she realized [that ]she had found a solution to {an|the|one} old problem"],"One day, having got unexpected results, she realised that she had found a solution to an old problem.","Having + V3 · solution to"],
+ ["Не успела она опубликовать статью, как ей позвонили журналисты.",["no sooner had she published {the|her} article than [the ]journalists {called|phoned|rang} [her]","hardly had she published {the|her} article when [the ]journalists {called|phoned|rang} [her]"],"No sooner had she published the article than journalists called her.","No sooner… than"],
+ ["Её работа, переведённая на десять языков, впечатлила даже самых известных коллег.",["her {work|paper|article} {translated|which was translated|which had been translated} into 10 languages impressed even {the|her} most famous colleagues","her {work|paper|article} {translated|which was translated|which had been translated} into 10 languages impressed even {the|her} most famous of her colleagues"],"Her work, translated into ten languages, impressed even her most famous colleagues.","Past Participle · impressed"],
+ ["Технически открытие было сделано почти случайно.",["technically the discovery was made almost {by chance|by accident|accidentally}","the discovery was technically made almost {by chance|by accident|accidentally}"],"Technically, the discovery was made almost by chance.","technically · passive"],
+ ["Только тогда она поняла, насколько интересной может быть наука.",["only then did she {realize|understand} how interesting science {can|could} be"],"Only then did she realise how interesting science can be.","Only then · interesting"]
+];
+
+/* ======================= CHECKING ======================= */
+const SPELL={realise:"realize",realised:"realized",neighbour:"neighbor",neighbours:"neighbors",cancelling:"canceling",cancelled:"canceled",quarrelling:"quarreling",favour:"favor",gotten:"got",two:"2",three:"3",four:"4",five:"5",six:"6",seven:"7",nine:"9",eight:"8",ten:"10",fifteenth:"15th",seventeenth:"17th",xvii:"17th",xv:"15th"};
+const spellRe=new RegExp("\\b("+Object.keys(SPELL).join("|")+")\\b","g");
+const PP=/^(been|had|made|got|done|gone|come|left|felt|kept|said|told|stuck|bought|thought|brought|built|sent|spent|lost|met|paid|heard|put|let|set|seen|known|taken|given|written|already|never|just|finished|\w+ed)$/;
+function baseClean(s){return s.toLowerCase().replace(/[’`ʼ]/g,"'").replace(/[-–—]/g," ").replace(/[.,!?;:"“”«»…()]/g," ").replace(/o'clock/g,"oclock").replace(spellRe,m=>SPELL[m]).replace(/\s+/g," ").trim();}
+function normInput(s){
+  s=baseClean(s).replace(/won't/g,"will not").replace(/can't/g,"cannot").replace(/can not/g,"cannot").replace(/n't/g," not").replace(/'ll/g," will").replace(/'re/g," are").replace(/'ve/g," have").replace(/'m/g," am");
+  const t=s.split(" ");
+  for(let i=0;i<t.length;i++){
+    const m=t[i].match(/^(\w+)'(d|s)$/);if(!m)continue;const nx=t[i+1]||"";
+    if(m[2]==="d")t[i]=m[1]+(nx==="better"||PP.test(nx)?" had":" would");
+    else if(/^(due|likely|unlikely|about|expected|said|believed|thought|going|on)$/.test(nx))t[i]=m[1]+" is";
+    else if(["it","that","there","what","who","he","she","where","here"].includes(m[1]))t[i]=m[1]+(/^(been|got|gone|had|come|never)$/.test(nx)?" has":" is");
+  }
+  return t.join(" ").replace(/'/g,"").replace(/\s/g,"");
+}
+function patRe(p){
+  p=baseClean(p.replace(/[{}\[\]|]/g,c=>({"{":"\u0001","}":"\u0002","[":"\u0003","]":"\u0004","|":"\u0005"}[c]))).replace(/'/g,"").replace(/\s/g,"");
+  let r="";for(const c of p){r+=c==="\u0001"?"(?:":c==="\u0002"?")":c==="\u0003"?"(?:":c==="\u0004"?")?":c==="\u0005"?"|":c.replace(/[.*+?^$()\\\/]/g,"\\$&");}
+  return new RegExp("^"+r+"$");
+}
+function matches(input,patterns){const v=normInput(input);if(!v)return null;return patterns.some(p=>patRe(p).test(v));}
+
+/* ======================= HELPERS ======================= */
+const $=(t,a={},...kids)=>{const e=document.createElement(t);for(const k in a){if(k==="class")e.className=a[k];else if(k==="html")e.innerHTML=a[k];else if(k.startsWith("on"))e.addEventListener(k.slice(2),a[k]);else e.setAttribute(k,a[k]);}kids.flat().forEach(c=>c!=null&&e.append(c.nodeType?c:document.createTextNode(c)));return e;};
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const scores={};
+function scoreEl(id,total){const s=$("span",{class:"meta"});scores[id]={ok:new Set(),total,el:s};upd(id);return s;}
+function upd(id){const s=scores[id];s.el.textContent=`${s.ok.size} / ${s.total} correct`;}
+function mark(id,i){scores[id]&&(scores[id].ok.add(i),upd(id));}
+function numRow(i,node){return $("div",{class:"q"},$("span",{class:"num"},String(i+1)),node);}
+const model=(t,n)=>`<div class="model">${esc(t)}${n?`<small>${n}</small>`:""}</div>`;
+function setState(el,st){el.classList.remove("ok-f","bad-f");if(st===true)el.classList.add("ok-f");if(st===false)el.classList.add("bad-f");}
+
+/* ======================= SECTIONS ======================= */
+const SECTIONS=[];
+function section(id,title,mins,instr,build){SECTIONS.push({id,title,mins,instr,build});}
+const good=t=>`<span class="good">Correct.</span>${t?` <span class="ru">${t}</span>`:""}`;
+const bad=t=>`<span class="wrong">Not quite.</span>${t?` <span class="ru">${t}</span>`:""}`;
+function typed(id,i,tag,patterns,hint,label){
+  const inp=$(tag,{class:tag==="input"?"gap wide":"",type:"text",autocomplete:"off",autocapitalize:"off",spellcheck:"false",id:id+"-"+i,"aria-label":label||"Your answer"});
+  const fb=$("div",{class:"fb"});
+  const check=()=>{const r=matches(inp.value,patterns);if(r===null)return;setState(inp,r);fb.innerHTML=r?good(hint):bad(hint?"Подсказка: "+hint:"");if(r)mark(id,i);};
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();check();}});
+  return {inp,fb,check};
+}
+
+section("f1","Translation traps",7,"Read the Russian sentence. In the English translation, choose the correct word in each group.",(list)=>{
+  D1.forEach((q,i)=>{
+    const fb=$("div",{class:"fb"});const line=$("div",{class:"inline txt"});const slots=[];
+    q[1].split(/(\{\{[^}]+\}\})/).forEach(part=>{
+      const m=part.match(/^\{\{([^}]+)\}\}$/);if(!m){line.append(part);return;}
+      const grp=$("span",{class:"choice"});const slot={done:false,btns:[]};
+      shuffle(m[1].split("|").map((o,k)=>[o,k])).forEach(([o,k])=>{const b=$("button",{class:"ch"},o);slot.btns.push([b,k]);b.onclick=()=>{
+        if(slot.done)return;
+        if(k===0){slot.done=true;b.classList.add("ok");slot.btns.forEach(([x,kk])=>{if(kk)x.classList.add("off");});
+          if(slots.every(s=>s.done)){fb.innerHTML=good(q[2]);mark("f1",i);}else fb.innerHTML="";}
+        else{b.classList.add("bad");fb.innerHTML=bad(q[2]);}};grp.append(b);});
+      slots.push(slot);line.append(grp);
+    });
+    const full=q[1].replace(/\{\{([^|}]+)[^}]*\}\}/g,"$1");
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},line,$("div",{class:"row"},$("button",{class:"btn",onclick:()=>{slots.forEach(s=>{s.done=true;s.btns.forEach(([x,k])=>x.classList.add(k?"off":"ok"));});fb.innerHTML=model(full,q[2]);}},"Answer")),fb)));
+  });return D1.length;});
+
+section("f2","Match the translations",8,"Each group has three Russian sentences and three similar English translations. Click a Russian sentence, then its exact translation.",(list)=>{
+  D2.forEach((g,i)=>{
+    const fb=$("div",{class:"fb"});let sel=null,done=0;const ru=[],en=[];
+    g[1].forEach((p,k)=>{const b=$("button",{class:"card ru-card"},p[0]);b.onclick=()=>{if(b.classList.contains("ok"))return;ru.forEach(x=>x.classList.remove("sel"));b.classList.add("sel");sel=k;fb.innerHTML="";};ru.push(b);});
+    const order=shuffle([0,1,2]);
+    order.forEach(k=>{const b=$("button",{class:"card"},g[1][k][1]);b.onclick=()=>{
+      if(b.classList.contains("ok"))return;
+      if(sel===null){fb.innerHTML=`<span class="ru">Сначала выберите русское предложение.</span>`;return;}
+      if(sel===k){b.classList.add("ok");ru[k].classList.remove("sel");ru[k].classList.add("ok");sel=null;done++;fb.innerHTML="";if(done===3){fb.innerHTML=`<span class="good">All matched.</span>`;mark("f2",i);}}
+      else{b.classList.add("bad");setTimeout(()=>b.classList.remove("bad"),700);fb.innerHTML=bad("Сравните время, залог и порядок слов.");}};en[k]=b;});
+    const grid=$("div",{class:"match"},$("div",{class:"col"},...ru),$("div",{class:"col"},...order.map(k=>en[k])));
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},$("span",{class:"key"},g[0]))),$("div",{class:"body"},grid,$("div",{class:"row"},$("button",{class:"btn",onclick:()=>{ru.forEach(x=>{x.classList.remove("sel");x.classList.add("ok");});en.forEach(x=>x.classList.add("ok"));fb.innerHTML=g[1].map(p=>`<div class="pair">${esc(p[0])} → <b>${esc(p[1])}</b></div>`).join("");}},"Answer")),fb)));
+  });return D2.length;});
+
+section("f3","Two ways to say it",12,"Translate each Russian sentence twice, using the two structures given. Both versions must mean the same.",(list)=>{
+  D3.forEach((q,i)=>{
+    const body=$("div",{class:"body"});const ok=[false,false];
+    [q[1],q[2]].forEach((v,k)=>{
+      const fb=$("div",{class:"fb"});const ta=$("textarea",{id:`f3-${i}-${k}`,"aria-label":v[0],spellcheck:"false",style:"min-height:46px"});
+      const check=()=>{const r=matches(ta.value,v[1]);if(r===null)return;setState(ta,r);fb.innerHTML=r?good(""):bad(`Используйте структуру «${esc(v[0])}».`);if(r){ok[k]=true;if(ok[0]&&ok[1])mark("f3",i);}};
+      ta.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();check();}});
+      body.append($("div",{class:"half"},$("div",{},$("span",{class:"key"},v[0])),ta,$("div",{class:"row"},$("button",{class:"btn solid",onclick:check},"Check"),$("button",{class:"btn",onclick:()=>{fb.innerHTML=model(v[2]);}},"Answer")),fb));
+    });
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),body));
+  });return D3.length;});
+
+section("f4","Build the translation",8,"Read the Russian sentence. Click the English words in the correct order. Click a word in the answer line to send it back.",(list)=>{
+  D4.forEach((q,i)=>{
+    const fb=$("div",{class:"fb"});const pool=$("div",{class:"pool"});const built=$("div",{class:"built","aria-label":"Your sentence"});
+    const accepted=[q[1],...q[2]].map(normInput);
+    const check=()=>{if(pool.children.length)return;const v=normInput([...built.children].map(b=>b.textContent).join(" "));const r=accepted.includes(v);setState(built,r);
+      fb.innerHTML=r?good(""):bad("Проверьте порядок слов — особенно после выражения в начале предложения.");if(r)mark("f4",i);};
+    const tile=w=>{const b=$("button",{class:"tile"},w);b.onclick=()=>{if(b.parentNode===pool)built.append(b);else pool.append(b);setState(built,null);fb.innerHTML="";check();};return b;};
+    shuffle(q[1].split(" ")).forEach(w=>pool.append(tile(w)));
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},built,pool,$("div",{class:"row"},$("button",{class:"btn",onclick:()=>{fb.innerHTML=model(q[1]);}},"Answer")),fb)));
+  });return D4.length;});
+
+section("f5","Spot and rewrite",10,"Each English translation has one mistake. First click the wrong word. Then write the whole corrected sentence.",(list)=>{
+  D5.forEach((q,i)=>{
+    const idx=[].concat(q[2]);const step=$("div",{class:"step"});step.hidden=true;const hint=$("div",{class:"fb"});
+    const {inp,fb,check}=typed("f5",i,"textarea",q[3],q[5],"Corrected sentence");
+    step.append(inp,$("div",{class:"row"},$("button",{class:"btn solid",onclick:check},"Check")),fb);
+    const words=$("div",{class:"words"});const ws=q[1].split(" ").map((w,k)=>{const b=$("button",{class:"w"},w);b.onclick=()=>{
+      if(idx.includes(k)){idx.forEach(j=>ws[j].classList.add("hit"));step.hidden=false;hint.innerHTML=`<span class="good">Found it.</span> <span class="ru">Теперь напишите предложение целиком.</span>`;inp.focus();}
+      else{b.classList.add("miss");hint.innerHTML=bad("Это слово употреблено правильно.");}};return b;});
+    words.append(...ws);
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},words,hint,step,$("div",{class:"row"},$("button",{class:"btn",onclick:()=>{idx.forEach(j=>ws[j].classList.add("hit"));step.hidden=false;hint.innerHTML=model(q[4],q[5]);}},"Answer")))));
+  });return D5.length;});
+
+section("f6","RU → EN",15,"Translate the Russian sentences into English. Focus on inversion, participles and impersonal passive. Press Check: the field turns green when the translation is correct.",(list)=>{
+  D6.forEach((q,i)=>{
+    const {inp,fb,check}=typed("f6",i,"textarea",q[1],q[3],"Your translation");
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},inp,$("div",{class:"row"},$("button",{class:"btn solid",onclick:check},"Check"),$("button",{class:"btn",onclick:()=>{fb.innerHTML=model(q[2],q[3]);}},"Answer")),fb)));
+  });return D6.length;});
+
+section("f7","Upgrade the translation",10,"The plain translation is correct but simple. Rewrite it using the word in capitals so that it uses the target structure.",(list)=>{
+  D7.forEach((q,i)=>{
+    const {inp,fb,check}=typed("f7",i,"input",q[3],q[5],"Better translation");
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},$("div",{class:"sub"},$("span",{class:"lbl"},"Plain"),q[1]),$("div",{class:"row"},$("span",{class:"key"},q[2]),inp),$("div",{class:"row"},$("button",{class:"btn solid",onclick:check},"Check"),$("button",{class:"btn",onclick:()=>{fb.innerHTML=model(q[4],q[5]);}},"Answer")),fb)));
+  });return D7.length;});
+
+section("f8","Story: Anna Volkova",15,"Translate the story about one scientist sentence by sentence. The tags show what to use. Press Check: the field turns green when the translation is correct.",(list)=>{
+  D8.forEach((q,i)=>{
+    const {inp,fb,check}=typed("f8",i,"textarea",q[1],"","Your translation");
+    list.append($("div",{class:"item"},numRow(i,$("div",{class:"txt"},q[0])),$("div",{class:"body"},$("div",{class:"chips"},...q[3].split(" · ").map(c=>$("span",{class:"chip"},c))),inp,$("div",{class:"row"},$("button",{class:"btn solid",onclick:check},"Check"),$("button",{class:"btn",onclick:()=>{fb.innerHTML=model(q[2]);}},"Answer")),fb)));
+  });return D8.length;});
+
+/* ======================= RENDER ======================= */
+const tabs=document.getElementById("tabs"),panels=document.getElementById("panels");const tbtn=[],pans=[];
+SECTIONS.forEach((s,idx)=>{
+  const b=$("button",{role:"tab","aria-selected":"false",id:"t-"+s.id},$("span",{class:"n"},String(idx+1)),s.title);b.onclick=()=>show(idx);tabs.append(b);tbtn.push(b);
+  const list=$("div",{class:"list"});const metaWrap=$("div",{style:"display:flex;gap:14px;flex-wrap:wrap"},$("span",{class:"meta"},"Format "+(idx+1)+" · ≈ "+s.mins+" min"));
+  const p=$("section",{class:"panel",role:"tabpanel",id:s.id},$("div",{class:"phead"},$("h2",{},s.title),metaWrap),$("p",{class:"instr"},s.instr),list);
+  const total=s.build(list);if(total)metaWrap.append(scoreEl(s.id,total));
+  const nav=$("div",{class:"foot"});
+  nav.append(idx>0?$("button",{class:"btn",onclick:()=>show(idx-1)},"← "+SECTIONS[idx-1].title):$("span"));
+  if(idx<SECTIONS.length-1)nav.append($("button",{class:"btn solid",onclick:()=>show(idx+1)},SECTIONS[idx+1].title+" →"));
+  p.append(nav);p.hidden=true;panels.append(p);pans.push(p);
+});
+function show(i){tbtn.forEach((b,k)=>b.setAttribute("aria-selected",k===i?"true":"false"));pans.forEach((p,k)=>p.hidden=k!==i);tbtn[i].scrollIntoView({block:"nearest",inline:"nearest"});window.scrollTo({top:0});try{localStorage.setItem("vit-2210-tab",i)}catch(e){}}
+let start=0;try{const v=+localStorage.getItem("vit-2210-tab");if(v>=0&&v<SECTIONS.length)start=v;}catch(e){}
+const hi=SECTIONS.findIndex(s=>s.id===location.hash.slice(1));if(hi>=0)start=hi;
+show(start);
+</script>
+
+</body>
+</html>
