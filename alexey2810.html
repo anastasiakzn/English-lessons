@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Interactive English lesson for Alexey — 28 October 2026">
+<title>Alexey, 28 October</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F7F6;--sheet:#FFFFFF;--ink:#1F2D33;--soft:#5E6E73;
+  --blue:#0E7C7B;--blue-pale:#E6F3F1;--mark:#FFD166;--orange:#E9A23B;--sky:#3E7CC9;
+  --ok:#2E7D5B;--okbg:#E3F1EA;--bad:#B33A3A;--badbg:#F7E4E4;--line:#DCE7E5;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;--sans:"Manrope","Segoe UI",Arial,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{font-size:2.2rem;line-height:1.15;margin:0;font-weight:700}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0;scrollbar-width:thin}
+.tab{font-family:var(--sans);font-weight:600;font-size:.9rem;border:0;background:transparent;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}section.active{display:block}
+h2{font-size:1.55rem;line-height:1.25;margin:0 0 12px}h3{font-size:1.14rem;line-height:1.35;margin:0 0 6px}h4{font-family:var(--sans);font-size:.9rem;margin:0 0 4px;color:var(--blue)}
+.task{font-family:var(--sans);font-size:.93rem;line-height:1.55;color:var(--soft);margin:0 0 14px;max-width:70ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:7px;padding:18px 20px;margin-bottom:14px}
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.84rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:white}.part{display:none}.part.active{display:block}
+.btn{font-family:var(--sans);font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:5px 10px;cursor:pointer;margin:2px 4px 2px 0}.btn:hover{border-color:var(--blue)}.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}.btn:disabled{opacity:.55;cursor:default}
+.hidden{display:none!important}.en{color:var(--blue);font-style:italic}.ru{color:var(--soft);font-family:var(--sans);font-size:.88rem}.hint{font-family:var(--sans);font-size:.84rem;color:var(--soft)}
+.qlist{margin:0;padding-left:1.3em}.qlist li{margin:8px 0}.ttext{font-size:1.06rem;line-height:1.9}.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:5px;padding:12px 14px}.card:nth-child(3n+2){border-left-color:var(--orange)}.card:nth-child(3n){border-left-color:var(--sky)}.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}.card .tr{font-family:var(--sans);font-size:.83rem;color:var(--soft);margin:2px 0 6px}.card .def{font-size:.94rem;margin:0 0 6px}.card .ex2{font-size:.91rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+.dl{padding:13px 0;border-bottom:1px solid var(--line)}.dl:last-child{border-bottom:0}.dl p{margin:0}.fb{font-size:.94rem;min-height:0}.fb .ex{margin:5px 0}.fb.okc{color:var(--ok)}.fb.badc{color:var(--bad)}.score{font-family:var(--sans);font-weight:700;font-size:.92rem;margin:10px 0 0}.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}.copied{font-family:var(--sans);font-size:.84rem;color:var(--ok)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.opts.col{flex-direction:column}.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F5FAF9;border-radius:4px;padding:5px 12px;cursor:pointer;color:var(--ink)}.opt:hover{border-color:var(--blue)}.opt.okc{background:var(--okbg);border-color:var(--ok)}.opt.badc{background:var(--badbg);border-color:var(--bad)}
+input.gap{font-family:var(--serif);font-size:1rem;padding:4px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#F5FAF9;color:var(--ink);width:100%;max-width:100%}
+input.gap:focus{background:#fff}.tag{font-family:var(--sans);font-size:.7rem;font-weight:700;border-radius:3px;padding:2px 5px;color:#fff;background:var(--orange);vertical-align:middle}
+/* warm-up */
+.question-card{border:1px solid var(--line);border-radius:9px;background:linear-gradient(135deg,#fff 0%,#F7FBFA 100%);padding:22px;min-height:230px;display:grid;align-content:center;text-align:center}.question-card .label{display:inline-block;font-family:var(--sans);font-size:.73rem;font-weight:700;letter-spacing:.08em;color:var(--blue);border:1px solid var(--blue);border-radius:999px;padding:3px 10px;justify-self:center;margin-bottom:12px}.question-card .prompt{font-size:1.38rem;line-height:1.35;font-style:italic;min-height:3.1em;max-width:32ch;margin:0 auto 12px}.question-card .micro{font-family:var(--sans);font-size:.86rem;color:var(--soft);min-height:1.4em}
+/* sentence trail */
+.order-bank,.order-answer{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0}.wordtile{font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F5FAF9;color:var(--ink);border-radius:4px;padding:4px 10px;cursor:pointer}.wordtile:hover{border-color:var(--blue)}.wordtile.chosen{background:var(--blue-pale);border-color:var(--blue)}.order-answer{min-height:42px;padding:5px;border:1px dashed #A9C4C0;border-radius:5px;background:#FBFDFD}.order-answer:empty::before{content:"Build your sentence here";font-family:var(--sans);font-size:.8rem;color:var(--soft);padding:2px 4px}.order-answer .wordtile{background:#fff}
+/* grammar theory */
+.theory-lead{border-left:4px solid var(--mark);background:#FFF6DC;padding:11px 14px;margin:0 0 14px}.theory-lead p{margin:0}.verb-groups{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.verb-group{background:#F7F8FD;border-radius:6px;padding:10px 12px;font-size:.95rem}.verb-group b{display:block;font-family:var(--sans);font-size:.79rem;color:#5652A7;margin-bottom:2px}.verb-group:nth-child(2) b{color:var(--blue)}.verb-group:nth-child(3) b{color:#A15E16}.verb-group:nth-child(4) b{color:#3E7CC9}
+.tablewrap{overflow-x:auto}table.grammar-table{border-collapse:collapse;width:100%;min-width:610px;font-size:.95rem}table.grammar-table th{font-family:var(--sans);font-size:.79rem;color:var(--soft);font-weight:600;text-align:left;padding:6px 8px;border-bottom:2px solid var(--line)}table.grammar-table td{vertical-align:top;padding:8px;border-bottom:1px solid var(--line)}table.grammar-table td.bad{color:var(--soft);font-style:italic}table.grammar-table .good{color:var(--ok)}.meanings td:first-child{font-weight:700;white-space:nowrap}.meanings .ru-col{color:var(--soft);font-style:italic}.meaning-note{font-family:var(--sans);font-size:.83rem;color:var(--soft);margin:12px 0 0}
+.oral-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.oral-card{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:5px;padding:12px 14px;background:#fff}.oral-card:nth-child(2n){border-top-color:var(--orange)}.oral-card p{margin:3px 0 8px}.oral-card .clue{font-family:var(--sans);font-size:.86rem;color:var(--soft)}
+.selectrow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.pick{font-family:var(--serif);font-size:1rem;padding:5px 8px;border:1px solid var(--line);border-radius:4px;background:#F5FAF9;color:var(--ink);min-width:190px;max-width:100%}.pick.okc{border-color:var(--ok);background:var(--okbg)}.pick.badc{border-color:var(--bad);background:var(--badbg)}
+/* sorting */
+.sort-board{display:grid;grid-template-columns:1fr 1fr;gap:12px}.sort-deck{grid-column:1/-1;min-height:72px;border:1px dashed #A9C4C0;border-radius:6px;padding:9px;background:#FBFDFD}.sort-deck h4{margin-bottom:7px}.sort-cards{display:flex;flex-wrap:wrap;gap:7px}.sort-card{font-family:var(--serif);font-size:.96rem;text-align:left;border:1px solid var(--line);border-left:4px solid var(--blue);background:#fff;color:var(--ink);border-radius:4px;padding:6px 9px;cursor:pointer}.sort-card:nth-child(3n+2){border-left-color:var(--orange)}.sort-card:nth-child(3n){border-left-color:var(--sky)}.sort-card[aria-pressed="true"]{background:var(--blue);color:#fff;border-color:var(--blue)}.sort-target{min-height:155px;text-align:left;border:2px solid var(--line);background:#fff;border-radius:6px;padding:12px;cursor:pointer}.sort-target:hover{border-color:var(--blue)}.sort-target h4{margin-bottom:7px}.sort-target p{font-family:var(--sans);font-size:.8rem;color:var(--soft);margin:0 0 8px}.placed{font-size:.9rem;padding:6px 0;border-top:1px solid var(--line)}.sort-feedback{font-family:var(--sans);font-size:.86rem;min-height:1.5em;margin:10px 0 0}.sort-feedback.ok{color:var(--ok)}.sort-feedback.bad{color:var(--bad)}
+/* reading & speaking */
+.reading-text p{margin:0 0 12px}.reading-text p:last-child{margin-bottom:0}.cue{border:2px solid var(--blue);border-radius:7px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}.cue ul{margin:6px 0 0;padding-left:1.2em}.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+@media(max-width:680px){.verb-groups{grid-template-columns:repeat(2,1fr)}.oral-grid{grid-template-columns:1fr}.selectrow{grid-template-columns:1fr}.pick{width:100%}}
+@media(max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.sheet{padding:15px}.sort-board{grid-template-columns:1fr}.sort-deck{grid-column:auto}.sort-target{min-height:116px}.verb-groups{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Alexey, lesson 5</h1>
+  <p>Lesson of 28 October 2026</p>
+</header>
+<nav><div class="tabs" role="tablist" id="tabs" aria-label="Lesson sections"></div></nav>
+<main>
+
+<section data-title="Warm-up">
+  <h2>Everyday question cards</h2>
+  <p class="task">Pick a card and answer the question. Use the words on the card if they help.</p>
+  <div class="question-card">
+    <span class="label">TODAY’S QUESTION</span>
+    <p class="prompt" id="warmPrompt">What do you usually do first after you wake up?</p>
+    <p class="micro" id="warmHint">Try to use: wake up · get up</p>
+    <button class="btn solid" id="deal" style="justify-self:center;font-size:1rem;padding:8px 18px">Pick a question</button>
+  </div>
+</section>
+
+<section data-title="Homework check">
+  <h2>Homework check: your sentences</h2>
+  <p class="task">Read your sentences from the last lesson out loud. Check: do you have the right tense, word order and verb form?</p>
+  <div class="sheet" id="hwOwn"></div>
+  <div class="copyrow"><button class="btn" data-copy="hwOwn">Copy my sentences</button><span class="copied"></span></div>
+</section>
+
+<section data-title="Vocabulary">
+  <h2>Vocabulary: everyday travel</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part">
+    <p class="task">Press “Listen” to hear a word and “Tap for Russian” to see the translation. Make up your own sentence with each card.</p>
+    <div class="cards" id="cards"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Sentence trail</h3>
+    <p class="task">Click the tiles to build a correct sentence. Click a tile in your answer to put it back. Then check.</p>
+    <div id="v1"></div>
+    <p class="score" id="v1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Let’s talk</h3>
+    <ol class="qlist">
+      <li>What <b>app</b> do you use most? Does it help you wake up, get to work, or do something else?</li>
+      <li>When you go <b>on holiday</b>, do you prefer a <b>hotel</b> or staying at somebody’s place? What does your choice <b>depend on</b>?</li>
+    </ol>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Travel chat</h3>
+    <p class="task">Choose the best reply to each message. Read the whole mini-dialogue before you choose.</p>
+    <div id="v2"></div>
+    <p class="score" id="v2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Grammar">
+  <h2>Grammar: action or non-action?</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Theory</button><button class="sub">Speak</button><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part">
+    <div class="theory-lead">
+      <p><b>Action verbs</b> show actions: <i>work, watch, cook, run</i>. They can be in the Present Continuous: <i>I’m watching a TV series now.</i></p>
+      <p style="margin-top:8px"><b>Non-action verbs</b> show feelings, thoughts and states. We usually use them only in the <b>Present Simple</b>, even when we talk about now.</p>
+    </div>
+    <div class="verb-groups">
+      <div class="verb-group"><b>Feelings</b>like, love, hate, want, need, prefer</div>
+      <div class="verb-group"><b>Thinking</b>know, understand, believe, remember, forget, mean</div>
+      <div class="verb-group"><b>Having</b>have (= own), own, belong</div>
+      <div class="verb-group"><b>Other</b>seem, cost, depend</div>
+    </div>
+    <div class="sheet tablewrap">
+      <table class="grammar-table">
+        <thead><tr><th>✓ Correct</th><th>✗ Wrong</th></tr></thead>
+        <tbody>
+          <tr><td class="good">I <b>want</b> a coffee now.</td><td class="bad">I’m <b>wanting</b> a coffee now.</td></tr>
+          <tr><td class="good">She <b>doesn’t understand</b> the plot.</td><td class="bad">She <b>isn’t understanding</b> the plot.</td></tr>
+          <tr><td class="good"><b>Do</b> you <b>know</b> his number?</td><td class="bad"><b>Are</b> you <b>knowing</b> his number?</td></tr>
+          <tr><td class="good">It <b>depends</b> on the weather.</td><td class="bad">It’s <b>depending</b> on the weather.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Verbs with two meanings</h3>
+    <p class="task">Some verbs can be action or non-action. It depends on the meaning.</p>
+    <div class="sheet tablewrap">
+      <table class="grammar-table meanings">
+        <thead><tr><th>Verb</th><th>Non-action → only Present Simple</th><th>Action → Present Continuous is OK</th></tr></thead>
+        <tbody>
+          <tr><td>have</td><td><span class="ru-col">иметь:</span> I <b>have</b> a car / a headache / a day off.</td><td><span class="ru-col">в выражениях:</span> have lunch, a shower, a meeting, fun → I’m <b>having</b> lunch.</td></tr>
+          <tr><td>think</td><td><span class="ru-col">считать, полагать:</span> I <b>think</b> it’s a good idea.</td><td><span class="ru-col">думать, размышлять:</span> I’m <b>thinking</b> about my holiday.</td></tr>
+          <tr><td>taste</td><td><span class="ru-col">иметь вкус:</span> This soup <b>tastes</b> great.</td><td><span class="ru-col">пробовать на вкус:</span> The chef is <b>tasting</b> the soup.</td></tr>
+          <tr><td>smell</td><td><span class="ru-col">пахнуть:</span> The flowers <b>smell</b> nice.</td><td><span class="ru-col">нюхать:</span> Why are you <b>smelling</b> the milk?</td></tr>
+          <tr><td>weigh</td><td><span class="ru-col">весить:</span> My bag <b>weighs</b> 5 kilos.</td><td><span class="ru-col">взвешивать:</span> The shop assistant is <b>weighing</b> the apples.</td></tr>
+          <tr><td>look</td><td><span class="ru-col">выглядеть:</span> You <b>look</b> tired.</td><td><span class="ru-col">смотреть:</span> I’m <b>looking</b> at the photos.</td></tr>
+          <tr><td>see</td><td><span class="ru-col">видеть, понимать:</span> I <b>see</b> a bird. I <b>see</b> what you mean.</td><td><span class="ru-col">встречаться с кем-то:</span> She’s <b>seeing</b> a client at the moment.</td></tr>
+        </tbody>
+      </table>
+      <p class="meaning-note"><b>feel</b> (чувствовать себя): both are OK — <i>I feel tired</i> = <i>I’m feeling tired</i>.</p>
+    </div>
+  </div>
+  <div class="part sheet">
+    <h3>Speak: two meanings, two sentences</h3>
+    <p class="task">For each clue, say two sentences: one with a state and one with an action. Open the model only after you speak.</p>
+    <div class="oral-grid" id="oral"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Control room</h3>
+    <p class="task">Choose the verb phrase that completes each message. Focus on the meaning, not only on <i>now</i>.</p>
+    <div id="g1"></div>
+    <p class="score" id="g1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="g1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Context detective</h3>
+    <p class="task">Read the situation and choose the sentence that expresses the intended meaning. A verb can change its meaning, so look at what the person is doing or describing.</p>
+    <div id="g2"></div>
+    <p class="score" id="g2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="g2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Reading">
+  <h2>Reading: a morning in Thailand</h2>
+  <div class="sheet reading-text" id="rtext"></div>
+  <div class="subnav" role="tablist"><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button></div>
+  <div class="part sheet">
+    <h3>Exercise 1. Answer the questions</h3>
+    <p class="task">Read the text and answer in full sentences. Then press “Answer” to compare.</p>
+    <div id="rq"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. TRUE / FALSE / NOT GIVEN</h3>
+    <p class="task">For questions 1–6, choose <b>TRUE</b> if the statement agrees with the text, <b>FALSE</b> if it contradicts the text, or <b>NOT GIVEN</b> if the text does not say.</p>
+    <div id="r2"></div>
+    <p class="score" id="r2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="r2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Speaking">
+  <h2>Speaking</h2>
+  <div class="cue">
+    <p class="topic">Describe an app that you use a lot.</p>
+    <p style="margin:0">You should say:</p>
+    <ul>
+      <li>what the app is</li>
+      <li>when and how often you use it</li>
+      <li>what it helps you do</li>
+      <li>whether other people use it too</li>
+    </ul>
+    <p style="margin:8px 0 0">and explain why the app is useful for you.</p>
+  </div>
+  <div class="sheet">
+    <p class="task" style="margin-bottom:6px">This is like Part 2 of the IELTS Speaking test. Make short notes for one minute, then speak for one to two minutes.</p>
+    <button class="btn solid" id="tPrep">Preparation · 1 min</button><button class="btn solid" id="tTalk">Speech · 2 min</button><button class="btn" id="tStop">■ Stop</button>
+    <div class="clock" id="clock">1:00</div><div class="phase" id="phase"></div>
+  </div>
+  <div class="sheet">
+    <h3>Useful phrases</h3>
+    <ul class="qlist">
+      <li>I’d like to talk about an app called …</li>
+      <li>I use it every day / when I need to …</li>
+      <li>It helps me to … / It takes me only … minutes to …</li>
+      <li>I think it’s useful because …</li>
+      <li>My friends / colleagues also use it, but …</li>
+    </ul>
+  </div>
+  <div class="sheet">
+    <h3>If we have time</h3>
+    <ol class="qlist"><li>Do you think people depend too much on apps today? Why or why not?</li><li>What app would you like to have, but it doesn’t exist yet?</li></ol>
+  </div>
+</section>
+
+<section data-title="Translation">
+  <h2>Translation</h2>
+  <p class="task">Translate the text into English out loud, sentence by sentence. Press “EN” to check yourself.</p>
+  <div class="sheet ttext" id="ttext"></div>
+</section>
+</main>
+
+<script>
+let uid=0;const nid=()=>"x"+(++uid);
+const norm=s=>String(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/[.!?,;:“”"-]/g,"").replace(/\s+/g," ").trim();
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const states={};
+const explain=t=>`<p class="ex">${t}</p>`;
+const mark=s=>s?`${s.v}${s.v==="(answer shown)"?"":s.ok?" ✓":" ✗"}`:"—";
+function scoreLine(id,scoreId,total){const vals=Object.values(states[id]||{});const el=document.getElementById(scoreId);if(el)el.textContent=`Correct on the first try: ${vals.filter(x=>x.ok).length} of ${total}`+(vals.length<total?` (${total-vals.length} left)`:"");}
+
+/* section navigation */
+const sections=[...document.querySelectorAll("main > section")],tabs=document.getElementById("tabs");
+sections.forEach((s,i)=>{const b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=s.dataset.title;b.setAttribute("aria-selected",i===0);if(i===0)s.classList.add("active");b.onclick=()=>{stopSpeech();sections.forEach(x=>x.classList.remove("active"));s.classList.add("active");[...tabs.children].forEach(x=>x.setAttribute("aria-selected","false"));b.setAttribute("aria-selected","true");window.scrollTo(0,0)};tabs.appendChild(b)});
+sections.forEach(s=>{const subs=[...s.querySelectorAll(".sub")],parts=[...s.querySelectorAll(".part")];if(!subs.length)return;const show=k=>{parts.forEach((p,i)=>p.classList.toggle("active",i===k));subs.forEach((b,i)=>b.setAttribute("aria-selected",i===k));};subs.forEach((b,k)=>b.onclick=()=>show(k));show(0)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-toggle]");if(!b)return;const el=document.getElementById(b.dataset.toggle);if(el)el.classList.toggle("hidden")});
+
+/* speech */
+const hasTTS="speechSynthesis" in window;let voice=null;
+function pickVoice(){try{const voices=speechSynthesis.getVoices();voice=voices.find(v=>v.lang==="en-GB")||voices.find(v=>/^en/i.test(v.lang))||null}catch(e){}}
+if(hasTTS){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+function stopSpeech(){if(hasTTS)speechSynthesis.cancel()}
+function say(parts,rate=.9){if(!hasTTS)return;stopSpeech();parts.forEach(text=>{const u=new SpeechSynthesisUtterance(text);u.lang="en-GB";if(voice)u.voice=voice;u.rate=rate;speechSynthesis.speak(u)})}
+
+/* warm-up */
+const warm=[
+  ["What do you usually do first after you wake up?","wake up · get up"],
+  ["How do you usually get to work, and how long does it take?","get to · by car · around"],
+  ["What app do you use every day, and what does it help you do?","app · something · everything"],
+  ["Have you ever been on holiday in Thailand? Where would you like to go?","ever · on holiday · Thailand"],
+  ["What does your holiday plan usually depend on?","depend on · so · still"],
+  ["Do you ever visit friends at their place? What do you usually do there?","ever · somebody’s place · other"]
+];
+let dealt=[];document.getElementById("deal").onclick=()=>{let choices=warm.map((_,i)=>i).filter(i=>!dealt.includes(i));if(!choices.length){dealt=[];choices=warm.map((_,i)=>i)}const k=choices[Math.floor(Math.random()*choices.length)];dealt.push(k);document.getElementById("warmPrompt").textContent=warm[k][0];document.getElementById("warmHint").textContent="Try to use: "+warm[k][1]};
+
+/* homework: transferred Your sentences */
+const own=[
+  ["Present Simple","positive (+)"],["Present Simple","positive (+)"],["Present Simple","negative (−)"],["Present Simple","negative (−)"],["Present Simple","question (?)"],["Present Simple","question (?)"],
+  ["Present Continuous","positive (+)"],["Present Continuous","positive (+)"],["Present Continuous","negative (−)"],["Present Continuous","negative (−)"],["Present Continuous","question (?)"],["Present Continuous","question (?)"]
+];
+document.getElementById("hwOwn").innerHTML=own.map(([tense,type],i)=>`${i===0||i===6?`<h3 style="margin:${i?"20px":"0"} 0 6px">${tense}</h3>`:""}<div class="dl"><p style="margin:0 0 5px"><b>${i+1}.</b> <span class="hint">${type}</span></p><input class="gap" data-i="${i}" aria-label="${tense}, ${type}" autocomplete="off" spellcheck="true"></div>`).join("");
+
+/* vocabulary cards */
+const vocab=[
+  ["an app","æp","a program on a phone or computer","This app helps me wake up at seven."],
+  ["to depend on","dɪˈpend ɒn","to be decided or changed by something","Our plan depends on the weather."],
+  ["to wake up","weɪk ʌp","to stop sleeping","I usually wake up around six."],
+  ["to get up","get ʌp","to leave your bed after you wake up","I wake up at six, but I get up at six fifteen."],
+  ["around","əˈraʊnd","about; approximately","It takes around forty minutes."],
+  ["something","ˈsʌmθɪŋ","a thing, but you do not say exactly what","I want to show you something."],
+  ["some","sʌm","an unspecified amount or number","The hotel has some nice rooms."],
+  ["to somebody’s place","ˈsʌmbədiz pleɪs","to the home or flat of a person","We are going to Anna’s place tonight."],
+  ["ever","ˈevə(r)","at any time; often in questions","Do you ever stay in hotels?"],
+  ["everything","ˈevriθɪŋ","all the things","Everything is ready for the trip."],
+  ["still","stɪl","continuing; not finished or changed","Are you still at work?"],
+  ["to get to","get tuː","to arrive at a place","How do you get to the airport?"],
+  ["on holiday","ɒn ˈhɒlədeɪ","away from work or home for a trip","They are on holiday in Thailand."],
+  ["Thailand","ˈtaɪlænd","a country in South-East Asia","Thailand is warm in winter."],
+  ["so","səʊ","therefore; for this reason","It is raining, so we are staying in."],
+  ["other","ˈʌðə(r)","different; not this one","Let’s try another hotel or some other places."],
+  ["a subcontractor","ˌsʌbkənˈtræktə(r)","a person or company that does part of a project for the main company","The subcontractor is working on the new hotel."],
+  ["It takes me / you / him … to + verb","ɪt teɪks miː / juː / hɪm","use it to say how much time is necessary","It takes me 30 minutes to get to work."],
+  ["by car","baɪ kɑː(r)","in a car","We get to the hotel by car."],
+  ["a hotel","həʊˈtel","a building where visitors pay to stay","They are staying in a small hotel."]
+];
+const rus=["приложение","зависеть от","просыпаться","вставать","около; примерно","что-то","какой-то; немного","к кому-то домой","когда-либо","всё","всё ещё","добираться до","в отпуске","Таиланд","поэтому; так что","другой; другие","субподрядчик","У меня / тебя / него уходит …, чтобы + глагол","на машине","отель"];
+document.getElementById("cards").innerHTML=vocab.map(([w,pron,def,example],i)=>{const id=nid();return `<div class="card"><div class="w">${w}</div><div class="tr">/${pron}/</div><p class="def">${def}</p><p class="ex2">${example}</p><button class="btn" data-say="${i}">▶ Listen</button><button class="btn" data-toggle="${id}">Tap for Russian</button><span id="${id}" class="ru hidden"> ${rus[i]}</span></div>`}).join("");
+document.getElementById("cards").addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(b)say([vocab[+b.dataset.say][0]])});
+
+/* reusable choices */
+function buildChoice(boxId,data,scoreId){states[boxId]={};const box=document.getElementById(boxId);box.innerHTML=data.map((g,i)=>`<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${g.q}</p><div class="opts ${g.col?"col":""}">${g.o.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div><div class="fb"></div><button class="btn ans">Answer</button></div>`).join("");[...box.querySelectorAll(".dl")].forEach(row=>{const i=+row.dataset.i,g=data[i],btns=[...row.querySelectorAll(".opt")],fb=row.querySelector(".fb");const choose=(k,shown=false)=>{const ok=k===g.c;if(states[boxId][i]===undefined){states[boxId][i]={v:shown?"(answer shown)":g.o[k],ok:ok&&!shown};scoreLine(boxId,scoreId,data.length)}btns.forEach(x=>x.classList.remove("okc","badc"));btns[k].classList.add(ok?"okc":"badc");if(ok){fb.className="fb okc";fb.innerHTML=shown?explain(g.en):"<p class=\"ex\">Correct.</p>"}else{fb.className="fb badc";fb.innerHTML=explain(g.en)}};btns.forEach(b=>b.onclick=()=>choose(+b.dataset.k));row.querySelector(".ans").onclick=e=>{choose(g.c,true);e.target.classList.add("hidden")}})}
+
+/* vocabulary 1: sentence trail */
+const trails=[
+  {q:"A morning journey",tokens:["It","takes","me","around","40 minutes","to","get to","work"],a:"It takes me around 40 minutes to get to work.",en:"<i>It takes me around 40 minutes to get to work.</i>"},
+  {q:"A question for a friend",tokens:["Do","you","ever","go","to","your friend’s","place"],a:"Do you ever go to your friend’s place?",en:"<i>Do you ever go to your friend’s place?</i>"},
+  {q:"An alarm",tokens:["This","app","wakes","me","up","around","seven"],a:"This app wakes me up around seven.",en:"<i>This app wakes me up around seven.</i>"},
+  {q:"A fact",tokens:["Everything","depends","on","the","weather"],a:"Everything depends on the weather.",en:"<i>Everything depends on the weather.</i>"},
+  {q:"At the hotel",tokens:["We","are","still","at","the","hotel"],a:"We are still at the hotel.",en:"<i>We are still at the hotel.</i>"},
+  {q:"New pictures",tokens:["The","subcontractor","has","some","other","photos"],a:"The subcontractor has some other photos.",en:"<i>The subcontractor has some other photos.</i>"}
+];
+function buildTrail(){states.v1={};const box=document.getElementById("v1");box.innerHTML=trails.map((g,i)=>`<div class="dl" data-i="${i}"><p><b>${i+1}.</b> <span class="hint">${g.q}</span></p><div class="order-answer" aria-label="Your sentence"></div><div class="order-bank"></div><div class="fb"></div><button class="btn chk">Check</button><button class="btn ans">Answer</button></div>`).join("");[...box.querySelectorAll(".dl")].forEach(row=>{const i=+row.dataset.i,g=trails[i],chosen=[],bankOrder=shuffle(g.tokens.map((_,k)=>k));if(bankOrder.length>1&&bankOrder.every((k,n)=>k===n))bankOrder.push(bankOrder.shift());const answer=row.querySelector(".order-answer"),bank=row.querySelector(".order-bank"),fb=row.querySelector(".fb");function draw(){answer.innerHTML=chosen.map(k=>`<button class="wordtile chosen" data-chosen="${k}">${g.tokens[k]}</button>`).join("");bank.innerHTML=bankOrder.map(k=>chosen.includes(k)?"":`<button class="wordtile" data-bank="${k}">${g.tokens[k]}</button>`).join("")}row.addEventListener("click",e=>{const b=e.target.closest("[data-bank],[data-chosen]");if(!b)return;const k=+(b.dataset.bank??b.dataset.chosen);if(b.dataset.bank!==undefined)chosen.push(k);else chosen.splice(chosen.indexOf(k),1);draw()});row.querySelector(".chk").onclick=()=>{if(!chosen.length)return;const phrase=chosen.map(k=>g.tokens[k]).join(" ");const ok=norm(phrase)===norm(g.a);if(states.v1[i]===undefined){states.v1[i]={v:phrase,ok};scoreLine("v1","v1score",trails.length)}if(ok){fb.className="fb okc";fb.innerHTML="<p class=\"ex\">Correct.</p>"}else{fb.className="fb badc";fb.innerHTML=explain(g.en)}};row.querySelector(".ans").onclick=e=>{chosen.length=0;g.tokens.forEach((_,k)=>chosen.push(k));draw();if(states.v1[i]===undefined){states.v1[i]={v:"(answer shown)",ok:false};scoreLine("v1","v1score",trails.length)}fb.className="fb okc";fb.innerHTML=explain(g.en);e.target.classList.add("hidden")};draw()})}
+buildTrail();
+
+/* vocabulary 2 */
+buildChoice("v2",[
+  {q:"A: What time do you wake up on holiday?",o:["Around eight.","By car.","At a hotel."],c:0,en:"<i>Around eight</i> gives a time."},
+  {q:"A: How do you get to the hotel from the airport?",o:["Everything is ready.","By car.","To my place."],c:1,en:"We travel <i>by car</i>."},
+  {q:"A: Do you want to come to my place this evening?",o:["Yes, I’d love to.","It depends by weather.","I’m Thailand."],c:0,en:"<i>Come to my place</i> means come to my home or flat."},
+  {q:"A: Are you still at the hotel?",o:["Yes, we’re still here.","Yes, I ever am.","Yes, it takes."],c:0,en:"<i>Still</i> means the situation continues."},
+  {q:"A: Why are the plans changing?",o:["We get to the weather.","It depends on the weather.","Everything are other."],c:1,en:"We say <i>depend on</i> something."},
+  {q:"A: Have you ever been to Thailand?",o:["No, I’ve never been there.","No, I don’t still.","No, by car."],c:0,en:"<i>Ever</i> is common in questions; <i>never</i> is a natural short answer."},
+  {q:"A: What can the subcontractor show us?",o:["Some photos of other hotels.","Something by car.","Around holiday."],c:0,en:"<i>Some photos</i> and <i>other hotels</i> are both correct phrases."}
+],"v2score");
+
+/* grammar speaking */
+const oral=[
+  ["have","a car / lunch now","I have a car. / I’m having lunch now."],
+  ["think","a good idea / your holiday now","I think it’s a good idea. / I’m thinking about my holiday now."],
+  ["taste","the soup is delicious / the chef tries it","The soup tastes delicious. / The chef is tasting the soup."],
+  ["smell","the flowers are nice / he checks the milk","The flowers smell nice. / He is smelling the milk."],
+  ["weigh","your bag is 5 kilos / the assistant checks it","My bag weighs 5 kilos. / The assistant is weighing it."],
+  ["look","your friend is tired / she watches photos","You look tired. / She is looking at the photos."]
+];
+document.getElementById("oral").innerHTML=oral.map(([verb,clue,model])=>{const id=nid();return `<div class="oral-card"><h4>${verb}</h4><p class="clue">${clue}</p><button class="btn" data-toggle="${id}">Show model</button><span id="${id}" class="en hidden">${model}</span></div>`}).join("");
+
+/* grammar exercise 1 */
+const control=[
+  {q:"I ___ what you mean.",o:["am understanding","understand","am understand"],c:1,en:"<i>Understand</i> is a non-action verb here: <i>I understand what you mean.</i>"},
+  {q:"The chef ___ the soup now.",o:["tastes","is tasting","is taste"],c:1,en:"The chef is doing an action now: <i>is tasting</i>."},
+  {q:"This hotel room ___ too much.",o:["is costing","costs","is cost"],c:1,en:"Price is a state: <i>This room costs too much.</i>"},
+  {q:"We ___ lunch with the subcontractor right now.",o:["have","are having","are have"],c:1,en:"<i>Have lunch</i> is an activity, so Present Continuous is possible."},
+  {q:"Every plan ___ on the weather.",o:["is depending","depend","depends"],c:2,en:"<i>Depend</i> is normally a non-action verb: <i>depends</i>."},
+  {q:"Look! Nina ___ at the photos.",o:["looks","is looking","is look"],c:1,en:"She is doing the action of looking: <i>is looking at</i>."},
+  {q:"I ___ your idea is good.",o:["am thinking","think","am think"],c:1,en:"<i>I think</i> = I believe / in my opinion."},
+  {q:"I ___ about our holiday at the moment.",o:["think","am thinking","am think"],c:1,en:"<i>Think about</i> means consider, so use Present Continuous here."},
+  {q:"My bag ___ five kilos.",o:["is weighing","weighs","weigh"],c:1,en:"The bag has a weight: <i>weighs</i>."}
+];
+function buildSelect(boxId,data,scoreId){states[boxId]={};const box=document.getElementById(boxId);box.innerHTML=data.map((g,i)=>`<div class="dl" data-i="${i}"><div class="selectrow"><p><b>${i+1}.</b> ${g.q}</p><select class="pick" aria-label="Answer ${i+1}"><option value="">Choose…</option>${g.o.map((o,k)=>`<option value="${k}">${o}</option>`).join("")}</select></div><div class="fb"></div><button class="btn chk">Check</button><button class="btn ans">Answer</button></div>`).join("");[...box.querySelectorAll(".dl")].forEach(row=>{const i=+row.dataset.i,g=data[i],sel=row.querySelector("select"),fb=row.querySelector(".fb");function check(shown=false){let k=shown?g.c:+sel.value;if(Number.isNaN(k))return;const ok=k===g.c;if(states[boxId][i]===undefined){states[boxId][i]={v:shown?"(answer shown)":g.o[k],ok:ok&&!shown};scoreLine(boxId,scoreId,data.length)}sel.value=k;sel.classList.remove("okc","badc");sel.classList.add(ok?"okc":"badc");if(ok){fb.className="fb okc";fb.innerHTML=shown?explain(g.en):"<p class=\"ex\">Correct.</p>"}else{fb.className="fb badc";fb.innerHTML=explain(g.en)}}row.querySelector(".chk").onclick=()=>check();row.querySelector(".ans").onclick=e=>{check(true);e.target.classList.add("hidden")}})}
+buildSelect("g1",control,"g1score");
+
+/* grammar exercise 2: interpret the verb in context */
+buildChoice("g2",[
+  {q:"You want to describe the flavour of the soup.",o:["The soup tastes great.","The chef is tasting the soup."],c:0,en:"<i>Tastes great</i> describes the flavour. The chef is tasting the soup describes an action."},
+  {q:"The chef has a spoon and is trying the soup right now.",o:["The soup tastes great.","The chef is tasting the soup right now."],c:1,en:"The chef is doing the action of trying the soup: <i>is tasting</i>."},
+  {q:"You are giving your opinion about the travel plan.",o:["I think this is a good plan.","I’m thinking about the plan right now."],c:0,en:"Here <i>think</i> means ‘believe / have an opinion’, so use Present Simple."},
+  {q:"You are considering an island trip at this moment.",o:["I think about an island trip now.","I’m thinking about an island trip now."],c:1,en:"Here <i>think about</i> means ‘consider’, an action happening now."},
+  {q:"The flowers have a pleasant smell.",o:["The flowers smell lovely.","The flowers are smelling lovely."],c:0,en:"<i>Smell lovely</i> describes how the flowers are. It is a non-action meaning."},
+  {q:"A shop assistant is using scales to check the apples now.",o:["The apples weigh two kilos.","The shop assistant is weighing the apples."],c:1,en:"The assistant is doing the action of checking the weight: <i>is weighing</i>."},
+  {q:"You are describing the weight of your bag as a fact.",o:["My bag weighs five kilos.","My bag is weighing five kilos."],c:0,en:"<i>Weighs five kilos</i> describes the bag’s state / weight."},
+  {q:"Your friend is having lunch at the hotel restaurant right now.",o:["He has lunch at the hotel restaurant every day.","He’s having lunch at the hotel restaurant now."],c:1,en:"<i>Have lunch</i> describes an activity, so Present Continuous is possible."},
+  {q:"You want to say that your colleague looks tired, not that she is watching something.",o:["She looks tired.","She’s looking at the photos."],c:0,en:"<i>Looks tired</i> describes appearance, so use Present Simple."},
+  {q:"A doctor is meeting a client at this moment.",o:["She sees a client every Monday.","She’s seeing a client at the moment."],c:1,en:"<i>See a client</i> means ‘meet a client’ here, so Present Continuous is possible."}
+],"g2score");
+/* reading */
+const reading=[
+  "Alex is on holiday in Thailand with his friend Anton. They are staying in a small hotel near the sea. Alex usually wakes up around seven, but today he is still in bed at eight. His phone app is not working, so it does not wake him up.",
+  "Anton is at the hotel restaurant. He is having breakfast and looking at a map. He thinks the hotel is in a good place, but he is thinking about a trip to an island. It depends on the weather.",
+  "After breakfast, they get to a small village by car. It takes them about forty minutes to get there. At Anton’s friend’s place, they meet a subcontractor who works on a new hotel. He has some interesting photos, and they look at everything together.",
+  "Later Alex says, “I want to come here again.” Anton smiles. “So do I. This holiday is great.”"
+];
+document.getElementById("rtext").innerHTML=reading.map(p=>`<p>${p}</p>`).join("");
+const rq=[
+  ["Where are Alex and Anton staying?","They are staying in a small hotel near the sea."],
+  ["Why is Alex still in bed at eight?","Because his phone app is not working, so it does not wake him up."],
+  ["What does Anton think about, and what does it depend on?","He is thinking about a trip to an island, and it depends on the weather."],
+  ["How do the friends get to the village, and who do they meet there?","They get there by car, and they meet a subcontractor at Anton’s friend’s place."]
+];
+document.getElementById("rq").innerHTML=rq.map(([q,a],i)=>{const id=nid();return `<div class="dl"><p><b>${i+1}.</b> ${q}</p><button class="btn" data-toggle="${id}">Answer</button><span id="${id}" class="en hidden"> ${a}</span></div>`}).join("");
+buildChoice("r2",[
+  {q:"Alex’s app wakes him up at seven that day.",o:["TRUE","FALSE","NOT GIVEN"],c:1,en:"False: the app is not working, and Alex is still in bed at eight."},
+  {q:"Anton is having breakfast at the hotel restaurant.",o:["TRUE","FALSE","NOT GIVEN"],c:0,en:"True: the text says he is at the hotel restaurant and is having breakfast."},
+  {q:"The friends take a trip to the island by car.",o:["TRUE","FALSE","NOT GIVEN"],c:2,en:"Not given: Anton is thinking about a trip to an island, but the text only says they go to a village by car."},
+  {q:"The weather influences the friends’ plan.",o:["TRUE","FALSE","NOT GIVEN"],c:0,en:"True: the trip to an island depends on the weather."},
+  {q:"The subcontractor works on Alex and Anton’s hotel.",o:["TRUE","FALSE","NOT GIVEN"],c:2,en:"Not given: he works on a new hotel; the text does not say it is their hotel."},
+  {q:"The friends meet the subcontractor at somebody’s place.",o:["TRUE","FALSE","NOT GIVEN"],c:0,en:"True: they meet him at Anton’s friend’s place."}
+],"r2score");
+
+/* translation */
+function enList(id,arr){document.getElementById(id).innerHTML=arr.map(([ru,en])=>{const k=nid();return `<span>${ru}</span> <button class="btn" data-toggle="${k}">EN</button><span id="${k}" class="en enout hidden">${en}</span>`}).join("")}
+enList("ttext",[
+  ["Илья и его жена на этой неделе в отпуске в Таиланде.","Ilya and his wife are on holiday in Thailand this week."],
+  ["Они остановились в небольшом отеле у моря и обычно просыпаются около семи.","They are staying in a small hotel by the sea, and they usually wake up around seven."],
+  ["Сегодня их приложение не работает, поэтому они спрашивают администратора, как добраться до старого города.","Today their app isn’t working, so they are asking the receptionist how to get to the old town."],
+  ["Администратор говорит, что туда ехать на машине около сорока минут.","The receptionist says it takes about forty minutes to get there by car."],
+  ["В старом городе Илья встречается с субподрядчиком, который работает над новым отелем.","In the old town, Ilya is meeting a subcontractor who is working on a new hotel."],
+  ["Субподрядчик показывает ему несколько фотографий и рассказывает о других отелях в этом районе.","The subcontractor is showing him some photos and telling him about other hotels in the area."],
+  ["Жена Ильи всё ещё на соседнем рынке, поэтому он ждёт её в кафе на другой стороне улицы.","Ilya’s wife is still at the nearby market, so he is waiting for her at a café across the street."]
+]);;
+
+/* speaking timer */
+let timerId=null;const clock=document.getElementById("clock"),phase=document.getElementById("phase");const fmt=n=>`${Math.floor(n/60)}:${String(n%60).padStart(2,"0")}`;function stopTimer(){clearInterval(timerId);timerId=null}function runTimer(seconds,label,done){stopTimer();let n=seconds;clock.textContent=fmt(n);phase.textContent=label;timerId=setInterval(()=>{n--;clock.textContent=fmt(n);if(n<=0){stopTimer();phase.textContent=done}},1000)}document.getElementById("tPrep").onclick=()=>runTimer(60,"Preparation: make notes…","Time to speak!");document.getElementById("tTalk").onclick=()=>runTimer(120,"Speaking…","Time’s up. Thank you!");document.getElementById("tStop").onclick=()=>{stopTimer();phase.textContent="Stopped"};
+
+/* copy answers */
+function copyText(text,button){const done=()=>{const s=button.nextElementSibling;s.textContent="Copied";setTimeout(()=>s.textContent="",1800)};const fallback=()=>{const area=document.createElement("textarea");area.value=text;document.body.appendChild(area);area.select();try{document.execCommand("copy");done()}catch(e){}area.remove()};if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).then(done,fallback);else fallback()}
+const titles={v1:"Vocabulary — Exercise 1",v2:"Vocabulary — Exercise 2",g1:"Grammar — Exercise 1",g2:"Grammar — Exercise 2",r2:"Reading — Exercise 2",hwOwn:"Homework check — Your sentences"};
+document.addEventListener("click",e=>{const b=e.target.closest("[data-copy]");if(!b)return;const key=b.dataset.copy;let lines=[];if(key==="hwOwn"){lines=own.map(([tense,type],i)=>`${i+1}. ${tense}, ${type}: ${document.querySelector(`#hwOwn input[data-i=\"${i}\"]`).value.trim()||"—"}`)}else{const n={v1:trails.length,v2:7,g1:control.length,g2:10,r2:6}[key]||0;lines=[...Array(n).keys()].map(i=>`${i+1}. ${mark(states[key]?.[i])}`)}copyText(["Alexey, 28 October — "+titles[key],...lines].join("\n"),b)});
+</script>
+</body>
+</html>
