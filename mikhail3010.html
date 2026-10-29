@@ -1,0 +1,1202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mikhail Lesson 30.10</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Manrope:wght@400;500;700;800&display=swap">
+<style>
+  /* Layout: one column of tabbed panels; each panel = lead line + stacked cards. Graphite + copper palette. */
+  :root{
+    color-scheme: light;
+    --paper:#F5F3F0; --card:#FFFFFF; --ink:#22201E; --soft:#625C56;
+    --line:#E2DDD7; --chip:#EFEAE4;
+    --acc:#B9531C; --acc-2:#8A6A55; --steel:#33557A;
+    --good:#23703E; --good-bg:#E6F3EA; --bad:#B03A2E; --bad-bg:#FBEAE7;
+    --f-disp:"Newsreader", Georgia, "Times New Roman", serif;
+    --f-body:"Manrope", -apple-system, "Segoe UI", sans-serif;
+    --r:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --paper:#181614; --card:#211E1B; --ink:#EEE9E3; --soft:#B3AAA1;
+      --line:#38322D; --chip:#2B2622;
+      --acc:#F0965F; --acc-2:#C7A58E; --steel:#8FB3DA;
+      --good:#7FD49A; --good-bg:#1A2E22; --bad:#F29A8F; --bad-bg:#352120;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --paper:#181614; --card:#211E1B; --ink:#EEE9E3; --soft:#B3AAA1;
+    --line:#38322D; --chip:#2B2622;
+    --acc:#F0965F; --acc-2:#C7A58E; --steel:#8FB3DA;
+    --good:#7FD49A; --good-bg:#1A2E22; --bad:#F29A8F; --bad-bg:#352120;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.55;}
+  .wrap{max-width:900px; margin:0 auto; padding-inline:16px; padding-block:22px 56px;}
+
+  header.top{display:flex; flex-direction:column; gap:4px; margin-bottom:18px;}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--acc-2); font-weight:800;}
+  h1{font-family:var(--f-disp); font-weight:600; font-size:clamp(26px,5vw,36px); margin:0; line-height:1.1; text-wrap:balance;}
+  .meta{font-size:13.5px; color:var(--soft);}
+
+  nav.tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px; border-bottom:1px solid var(--line); padding-bottom:12px;}
+  .tab{font-family:inherit; font-size:13.5px; font-weight:700; cursor:pointer; padding:8px 15px; border-radius:999px; border:none; background:var(--chip); color:var(--soft);}
+  .tab[aria-selected="true"]{background:var(--acc); color:var(--paper);}
+  .subs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px;}
+  .sub{font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; padding:6px 13px; border-radius:8px; border:1.5px solid var(--line); background:var(--card); color:var(--soft);}
+  .sub[aria-selected="true"]{border-color:var(--steel); color:var(--steel); background:var(--chip);}
+  button:focus-visible,input:focus-visible,select:focus-visible,.vc:focus-visible{outline:2px solid var(--steel); outline-offset:2px;}
+
+  .lead{font-size:15.5px; color:var(--soft); margin:0 0 16px;}
+  .ielts{display:inline-block; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--steel); border:1.5px solid var(--steel); border-radius:6px; padding:1px 7px; margin-right:6px; vertical-align:1px;}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px; margin-bottom:16px;}
+  .card h3{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); margin:0 0 12px; font-weight:800;}
+  .instr{font-size:14.5px; color:var(--soft); margin:-4px 0 14px;}
+
+  .ru{display:none; font-style:italic; color:var(--acc-2); font-size:14.5px;}
+  .ruopen .ru{display:block;}
+  .mini{font-family:inherit; font-size:10.5px; font-weight:800; letter-spacing:.08em; padding:4px 10px; border-radius:999px; cursor:pointer; background:transparent; color:var(--steel); border:1.2px solid var(--steel); white-space:nowrap; vertical-align:middle;}
+  .mini.on{background:var(--steel); color:var(--paper);}
+  .say{color:var(--acc); border-color:var(--acc); padding:4px 9px;}
+
+  /* warm-up */
+  .qs{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; counter-reset:w;}
+  .qs li{counter-increment:w; display:flex; gap:10px; align-items:flex-start;}
+  .qs li::before{content:counter(w); flex:0 0 auto; width:24px; height:24px; margin-top:3px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--acc); font-size:12px; font-weight:800;}
+  .qs .q{font-family:var(--f-disp); font-size:19px;}
+
+  /* grammar theory */
+  .use{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .use li{background:var(--chip); border-radius:11px; padding:12px 15px;}
+  .use .name{font-weight:800; color:var(--acc);}
+  .use .ind{display:block; font-size:13.5px; color:var(--soft); margin-top:3px;}
+  .use .eg{display:block; font-family:var(--f-disp); font-size:16.5px; margin-top:4px;}
+  .sc{display:flex; flex-direction:column; gap:15px;}
+  .scg{border-left:3px solid var(--acc-2); padding-left:13px;}
+  .scg .sign{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); font-weight:800; margin-bottom:6px;}
+  .scg .row{display:flex; gap:12px; flex-wrap:wrap; align-items:baseline; padding:5px 0; border-bottom:1px dashed var(--line);}
+  .scg .row:last-child{border-bottom:none;}
+  .scg .form{min-width:min(250px,100%); font-weight:800; color:var(--acc); font-size:15.5px;}
+  .scg .eg{font-family:var(--f-disp); font-size:16px;}
+  .note{margin-top:13px; background:var(--chip); border-radius:10px; padding:11px 14px; font-size:14.5px; color:var(--soft);}
+  .note b{color:var(--acc);}
+  .spell{width:100%; border-collapse:collapse; font-size:15px;}
+  .spell td,.spell th{padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+  .spell th{font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2);}
+  .spell td:last-child{font-family:var(--f-disp); font-size:16px;}
+  .tscroll{overflow-x:auto;}
+  .irr{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px;}
+  .irr span{background:var(--chip); border-radius:9px; padding:7px 11px; font-size:15px;}
+  .irr b{color:var(--acc);}
+
+  /* exercise items */
+  ol.items{list-style:none; counter-reset:q; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  ol.items > li{counter-increment:q; display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap;}
+  ol.items > li::before{content:counter(q); flex:0 0 auto; width:24px; height:24px; margin-top:4px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--acc); font-size:12px; font-weight:800; font-variant-numeric:tabular-nums;}
+  .qbody{flex:1 1 240px; min-width:0;}
+  .qtext{font-size:16px;}
+  .btns{display:flex; gap:6px; flex:0 0 auto; margin-top:3px; flex-wrap:wrap;}
+  input.gap{font-family:inherit; font-size:15px; width:150px; max-width:100%; padding:4px 9px; border-radius:7px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink);}
+  input.gap.wide{width:100%; margin-top:6px;}
+  .chk{font-family:inherit; font-size:11px; font-weight:800; letter-spacing:.06em; cursor:pointer; padding:5px 12px; border-radius:999px; background:var(--acc); color:var(--paper); border:1.5px solid var(--acc);}
+  .ans{font-family:inherit; font-size:11px; font-weight:800; letter-spacing:.06em; cursor:pointer; padding:5px 12px; border-radius:999px; background:transparent; color:var(--acc); border:1.5px solid var(--acc);}
+  .opts{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;}
+  .opts button{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:5px 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); text-align:left;}
+  .opts button.pick-ok{background:var(--good); border-color:var(--good); color:var(--paper);}
+  .opts button.pick-no{background:var(--bad); border-color:var(--bad); color:var(--paper);}
+  .fb{display:none; margin-top:7px; border-radius:9px; padding:9px 11px; font-size:14.5px; line-height:1.5;}
+  li.done .fb{display:block;}
+  .fb.ok{background:var(--good-bg);} .fb.no{background:var(--bad-bg);} .fb.show{background:var(--chip);}
+  .fb .right{font-weight:800; display:block; margin-bottom:3px;}
+  .fb.ok .right{color:var(--good);} .fb.no .right{color:var(--bad);} .fb.show .right{color:var(--acc);}
+  .fb .rurow{margin-top:6px; display:flex; gap:8px; align-items:flex-start; flex-wrap:wrap;}
+  li.okrow input.gap{border-color:var(--good);} li.norow input.gap{border-color:var(--bad);}
+  .exfoot{margin-top:14px; padding-top:12px; border-top:1px solid var(--line); display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .copy{font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; padding:7px 14px; border-radius:999px; border:1.5px solid var(--acc); background:transparent; color:var(--acc);}
+  .cmsg{font-size:13px; color:var(--soft);} .cmsg.ok{color:var(--good); font-weight:700;}
+  .ci{display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;}
+  .ci button{font-family:inherit; font-size:14px; font-weight:700; cursor:pointer; padding:5px 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink);}
+  .ci button.on{background:var(--acc); border-color:var(--acc); color:var(--paper);}
+
+  /* create sentences */
+  .cues{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; counter-reset:c;}
+  .cues li{counter-increment:c; display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap;}
+  .cues li::before{content:counter(c); flex:0 0 auto; width:24px; height:24px; margin-top:3px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--acc); font-size:12px; font-weight:800;}
+  .cues .cb{flex:1 1 240px; min-width:0;}
+  .cues .sgn{display:inline-grid; place-items:center; width:26px; height:26px; border-radius:7px; background:var(--steel); color:var(--paper); font-weight:800; margin-right:8px;}
+  .cues .cue{font-size:16.5px;}
+  .cues .mod{display:none; margin-top:6px; font-family:var(--f-disp); font-size:17px; color:var(--acc); background:var(--chip); border-radius:8px; padding:5px 11px;}
+  .cues li.open .mod{display:block;}
+
+  /* listening */
+  .player{display:flex; gap:8px; align-items:center; flex-wrap:wrap; background:var(--chip); border-radius:12px; padding:12px 14px; margin-bottom:14px;}
+  .pbtn{font-family:inherit; font-size:14px; font-weight:800; cursor:pointer; padding:8px 16px; border-radius:999px; border:none; background:var(--acc); color:var(--paper);}
+  .pbtn.sec{background:transparent; color:var(--acc); border:1.5px solid var(--acc);}
+  .player select{font-family:inherit; font-size:14px; padding:6px 8px; border-radius:8px; border:1.5px solid var(--line); background:var(--card); color:var(--ink);}
+  .pstat{font-size:13px; color:var(--soft);}
+  .tr-box{display:none; margin-top:12px; background:var(--chip); border-radius:10px; padding:12px 14px; font-size:15px;}
+  .tr-box.open{display:block;}
+  .tr-box p{margin:0 0 6px;}
+  .tr-box b{color:var(--acc);}
+
+  /* vocab cards */
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:11px;}
+  .vc{background:var(--chip); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; display:flex; flex-direction:column; gap:3px;}
+  .vc .en{font-family:var(--f-disp); font-size:20px; font-weight:600; line-height:1.15; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .vc .tr{font-size:13px; color:var(--acc-2);}
+  .vc .df{font-size:14px; color:var(--ink); line-height:1.4; margin-top:3px;}
+  .vc .ex{font-size:13.5px; color:var(--soft); font-style:italic; line-height:1.4;}
+  .vc .rux{display:none; margin-top:7px; padding-top:7px; border-top:1px solid var(--line); font-size:15px; font-weight:800; color:var(--steel);}
+  .vc.flip .rux{display:block;}
+  .vc .tap{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); margin-top:6px;}
+  .vc.flip .tap{display:none;}
+
+  /* speaking */
+  .cuecard{border:2px solid var(--acc); border-radius:12px; padding:14px 18px; background:var(--paper);}
+  .cuecard p{margin:0 0 6px;} .cuecard ul{margin:0 0 8px; padding-left:22px;}
+  .cue-t{font-family:var(--f-disp); font-size:20px; font-weight:600;}
+  .cue-s{color:var(--soft);}
+  .timer{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:14px;}
+  .clock{font-family:var(--f-disp); font-size:30px; font-weight:600; min-width:74px; font-variant-numeric:tabular-nums; color:var(--acc);}
+  .clock.end{color:var(--steel);}
+
+  /* translation */
+  .story{font-size:17px; line-height:2.1;}
+  .story .enx{display:none; color:var(--acc); background:var(--chip); border-radius:6px; padding:2px 8px; font-family:var(--f-disp); font-size:17px;}
+  .story .sw.open .enx{display:inline;}
+  .story .mini{margin:0 6px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+
+
+  .vsearch{font-family:inherit; font-size:15px; width:100%; padding:8px 12px; border-radius:9px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); margin-bottom:12px;}
+  .vt{width:100%; border-collapse:collapse; font-size:15px;}
+  .vt th{position:sticky; top:0; background:var(--card); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); text-align:left; padding:8px 10px; border-bottom:2px solid var(--line);}
+  .vt td{padding:7px 10px; border-bottom:1px solid var(--line); vertical-align:top;}
+  .vt td.v1{font-weight:800;}
+  .vt td.v2{font-weight:800; color:var(--acc);}
+  .vt td.v3{color:var(--soft);}
+  .vt td.rus{color:var(--soft); font-size:14px;}
+  .vt tr:nth-child(even) td{background:var(--chip);}
+  .vtwrap{max-height:520px; overflow:auto; border:1px solid var(--line); border-radius:10px;}
+  .vcount{font-size:13px; color:var(--soft); margin-top:8px;}
+  .wo-ans{min-height:42px; border:2px dashed var(--line); border-radius:10px; padding:6px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; background:var(--paper); margin-top:6px;}
+  .wo-bank{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;}
+  .chipw{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:5px 12px; border-radius:999px; border:1.5px solid var(--acc-2); background:var(--card); color:var(--ink);}
+  .wo-ans .chipw{background:var(--acc); color:var(--paper); border-color:var(--acc);}
+  li.okrow .wo-ans{border-color:var(--good);} li.norow .wo-ans{border-color:var(--bad);}
+  .tag{display:inline-grid; place-items:center; min-width:26px; height:24px; padding:0 6px; border-radius:7px; background:var(--steel); color:var(--paper); font-weight:800; font-size:13px; margin-right:8px;}
+  .read{font-size:17px; line-height:2.05;}
+  .read p{margin:0 0 12px;}
+  .read .sent{display:inline;}
+  .read .ru{display:none;}
+  .read .sent.ruopen .ru{display:inline; margin:0 4px;}
+  .read .mini{margin:0 5px;}
+  .read h4{font-family:var(--f-disp); font-size:22px; margin:0 0 10px;}
+
+
+  .wheelbox{display:grid; grid-template-columns:auto 1fr; gap:28px; align-items:center;}
+  .wheelwrap{position:relative; width:260px; height:260px; flex:0 0 auto;}
+  .wheel{width:260px; height:260px; border-radius:50%; border:6px solid var(--card); box-shadow:0 0 0 1px var(--line), 0 6px 18px rgba(34,32,30,.14);
+    background:conic-gradient(#B9531C 0 60deg, #33557A 60deg 120deg, #C99A5B 120deg 180deg, #B9531C 180deg 240deg, #33557A 240deg 300deg, #C99A5B 300deg 360deg);
+    transition:transform 3.2s cubic-bezier(.17,.67,.2,1); position:relative;}
+  .wheel span{position:absolute; left:50%; top:50%; width:0; height:0; font-weight:800; font-size:24px; color:#fff;}
+  .wheel span b{position:absolute; transform:translate(-50%,-50%);}
+  .pointer{position:absolute; left:50%; top:-12px; transform:translateX(-50%); width:0; height:0; border-left:14px solid transparent; border-right:14px solid transparent; border-top:24px solid var(--ink); z-index:2;}
+  .hub{position:absolute; left:50%; top:50%; width:46px; height:46px; transform:translate(-50%,-50%); border-radius:50%; background:var(--card); border:3px solid var(--line);}
+  .wq{font-family:var(--f-disp); font-size:22px; line-height:1.35; min-height:3em; margin:14px 0 0;}
+  .wq .n{font-family:var(--f-body); font-weight:800; color:var(--acc); font-size:13px; letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:4px;}
+  .done-q{font-size:13px; color:var(--soft); margin-top:10px;}
+  @media (max-width:640px){ .wheelbox{grid-template-columns:1fr; justify-items:center; text-align:center;} }
+  @media (prefers-reduced-motion:reduce){ .wheel{transition:none;} }
+  .notes{border:1.5px solid var(--line); border-radius:12px; overflow:hidden;}
+  .notes .fh{background:var(--steel); color:var(--paper); padding:10px 14px; font-weight:800; letter-spacing:.03em;}
+  .notes .nb{padding:14px;}
+  .box{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; border:1.5px dashed var(--acc-2); border-radius:10px; padding:10px;}
+  .box span{background:var(--chip); color:var(--acc); font-weight:700; font-size:14px; padding:3px 10px; border-radius:999px;}
+  .who{font-weight:800; color:var(--steel); margin-right:4px;}
+
+  /* --- extra for 30.10 --- */
+  .qcards{display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:11px;}
+  .qc{position:relative; min-height:118px; border-radius:14px; border:1.5px solid var(--line); background:var(--chip); color:var(--ink); font-family:inherit; cursor:pointer; padding:14px; display:flex; align-items:center; justify-content:center; text-align:center;}
+  .qc .mark{font-family:var(--f-disp); font-size:46px; font-weight:600; color:var(--acc); line-height:1;}
+  .qc .num{position:absolute; top:8px; left:11px; font-size:12px; font-weight:800; color:var(--acc-2);}
+  .qc .qt{display:none; font-family:var(--f-disp); font-size:17.5px; line-height:1.3;}
+  .qc.open{background:var(--card); border-color:var(--acc); border-width:2px;}
+  .qc.open .mark{display:none;}
+  .qc.open .qt{display:block;}
+  .notes{border:1.5px solid var(--line); border-radius:12px; overflow:hidden;}
+  .notes .fh{background:var(--steel); color:var(--paper); padding:10px 14px; font-weight:800; letter-spacing:.03em;}
+  .notes .nb{padding:14px;}
+  .box{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; border:1.5px dashed var(--acc-2); border-radius:10px; padding:10px;}
+  .box span{background:var(--chip); color:var(--acc); font-weight:700; font-size:14px; padding:3px 10px; border-radius:999px;}
+  /* insert-the-word exercise */
+  .ins{display:flex; flex-wrap:wrap; align-items:center; gap:2px; font-size:16.5px; margin-top:4px;}
+  .ins .w{padding:2px 1px;}
+  .ins .slot{font-family:inherit; cursor:pointer; border:none; background:transparent; color:var(--acc-2); font-size:15px; font-weight:800; padding:2px 5px; border-radius:6px; line-height:1;}
+  .ins .slot:hover{background:var(--chip); color:var(--acc);}
+  .ins .slot.put{background:var(--acc); color:var(--paper); padding:2px 9px;}
+  li.okrow .ins .slot.put{background:var(--good);} li.norow .ins .slot.put{background:var(--bad);}
+  .adv{display:inline-block; background:var(--steel); color:var(--paper); font-weight:800; border-radius:7px; padding:2px 10px; margin-right:8px; font-size:14px;}
+  /* homework check */
+  .mine h4{margin:0 0 10px; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2);}
+  .mine .grp{margin-bottom:18px;}
+  .mrow{display:flex; gap:10px; align-items:center; margin-bottom:8px;}
+  .mrow .sg{flex:0 0 auto; width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:var(--chip); color:var(--acc); font-weight:800;}
+  .mrow input{flex:1 1 auto; min-width:0; font-family:inherit; font-size:15px; padding:6px 10px; border-radius:8px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink);}
+  .mrow input.ok{border-color:var(--good);} .mrow input.no{border-color:var(--bad);}
+  .mhint{font-size:13px; color:var(--bad); margin:-4px 0 8px 38px; display:none;}
+  .mhint.on{display:block;}
+  /* listening table */
+  .ttab{width:100%; border-collapse:collapse; font-size:15px;}
+  .ttab th{font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); text-align:left; padding:8px 10px; border-bottom:2px solid var(--line);}
+  .ttab td{padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:middle;}
+  .ttab td.lab{font-weight:800; color:var(--steel); white-space:nowrap;}
+  .ttab input{font-family:inherit; font-size:15px; width:118px; max-width:40vw; padding:4px 8px; border-radius:7px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink);}
+  .ttab input.ok{border-color:var(--good);} .ttab input.no{border-color:var(--bad);}
+  .gn{font-weight:800; color:var(--acc); margin-right:4px;}
+  ol.items.compact > li{gap:8px;}
+  ol.items.compact .qtext{font-size:14.5px; color:var(--soft);}
+  /* map */
+  .mapwrap{border:1.5px solid var(--line); border-radius:12px; padding:10px; background:var(--card); margin-bottom:14px;}
+  .mapwrap svg{display:block; width:100%; height:auto;}
+  .mp-field{fill:var(--chip);} .mp-water{fill:var(--steel); opacity:.35;}
+  .mp-path{fill:var(--line);} .mp-line{stroke:var(--acc-2); stroke-width:1.5; fill:none;}
+  .mp-c{fill:var(--card); stroke:var(--acc); stroke-width:2;}
+  .mp-l{fill:var(--acc); font-family:var(--f-body); font-weight:800; font-size:15px; text-anchor:middle;}
+  .mp-t{fill:var(--soft); font-family:var(--f-body); font-weight:800; font-size:10px; letter-spacing:.1em; text-anchor:middle;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">Mikhail · Lesson 5 · 30 October</span>
+    <h1>Present Perfect Simple</h1>
+    <div class="meta">General English with an IELTS focus</div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="p1">1. Warm-up</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p2">2. Homework check</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p3">3. Grammar</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p4">4. Listening</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p5">5. Vocabulary</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p6">6. Speaking</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p7">7. Translation · homework</button>
+  </nav>
+
+  <!-- 1. WARM-UP -->
+  <section class="panel" id="p1" role="tabpanel">
+    <p class="lead"><span class="ielts">IELTS Speaking · Part 1</span>Open a card and answer the question: answer + one detail.</p>
+    <div class="card"><h3>Pick a card</h3><div class="qcards" id="qcards"></div></div>
+  </section>
+
+  <!-- 2. HOMEWORK CHECK -->
+  <section class="panel" id="p2" role="tabpanel" hidden>
+    <p class="lead">Your 12 sentences from 28.10. Type them here and read them aloud.</p>
+    <div class="card">
+      <h3>Homework · my 12 sentences · Past Simple</h3>
+      <p class="instr">CHECK THE FORM looks at the grammar only: <b>+</b> subject + V2 · <b>−</b> didn't + V1 · <b>?</b> Did + subject + V1? Your teacher checks the rest.</p>
+      <div class="mine" id="mine"></div>
+      <div class="exfoot" id="minefoot"></div>
+    </div>
+  </section>
+
+  <!-- 3. GRAMMAR -->
+  <section class="panel" id="p3" role="tabpanel" hidden>
+    <div class="subs" role="tablist">
+      <button class="sub" aria-selected="true" data-s="s1">Reminder</button>
+      <button class="sub" aria-selected="false" data-s="s2">Irregular verbs</button>
+      <button class="sub" aria-selected="false" data-s="s3">Exercise 1</button>
+      <button class="sub" aria-selected="false" data-s="s4">Exercise 2</button>
+      <button class="sub" aria-selected="false" data-s="s5">Exercise 3</button>
+      <button class="sub" aria-selected="false" data-s="s6">Exercise 4</button>
+    </div>
+
+    <div class="gsub" id="s1">
+      <div class="card">
+        <h3>Present Perfect Simple — when do we use it?</h3>
+        <ul class="use">
+          <li><span class="name">1. A result by now — and the result can still change</span>
+            <span class="eg">I have lost my keys. (I am looking for them now)<br>She has broken her phone. (it doesn't work now)</span></li>
+          <li><span class="name">2. Experience by now — and your experience can still change</span>
+            <span class="ind">Your life is not finished, so you can do it again</span>
+            <span class="eg">I have been to Moscow twice. Have you ever sung in a choir?</span></li>
+          <li><span class="name">3. News and new information</span>
+            <span class="eg">Our choir has won a competition! The technician has arrived.</span></li>
+        </ul>
+        <div class="note"><b>There is always a connection with now.</b><br>
+          <b>I have lost my keys.</b> → I can't open the door <i>now</i>. The situation is still true.<br>
+          <b>I lost my keys yesterday.</b> → Past Simple: only a fact about yesterday. Maybe I found them — there is no connection with now.</div>
+      </div>
+      <div class="card">
+        <h3>The structure</h3>
+        <div class="sc">
+          <div class="scg"><div class="sign">+ affirmative</div>
+            <div class="row"><span class="form">I / you / we / they + have (’ve) + V3</span><span class="eg">I have seen this film.</span></div>
+            <div class="row"><span class="form">he / she / it + has (’s) + V3</span><span class="eg">My cousin has bought a guitar.</span></div></div>
+          <div class="scg"><div class="sign">− negative</div>
+            <div class="row"><span class="form">have not (haven't) + V3</span><span class="eg">I haven't finished my homework.</span></div>
+            <div class="row"><span class="form">has not (hasn't) + V3</span><span class="eg">He hasn't come home.</span></div></div>
+          <div class="scg"><div class="sign">? question</div>
+            <div class="row"><span class="form">Have / Has + subject + V3 …?</span><span class="eg">Have you seen the new film? Has she called you?</span></div>
+            <div class="row"><span class="form">Wh- + have / has + subject + V3 …?</span><span class="eg">What have you done today?</span></div></div>
+        </div>
+        <div class="note"><b>V3 is the third form</b> — the last column of the table: go → went → <b>gone</b>, see → saw → <b>seen</b>, be → was → <b>been</b>.<br>
+          <b>Good news:</b> regular verbs have the same V2 and V3: work → worked → <b>worked</b>, finish → finished → <b>finished</b>.<br>
+          After <i>have / has</i> we never use V2: <i>I have went</i> ✗ → <b>I have gone</b> ✓.</div>
+      </div>
+      <div class="card">
+        <h3>Indicators: where do they go?</h3>
+        <div class="tscroll"><table class="spell">
+          <tr><th>Word</th><th>Meaning</th><th>Place in the sentence</th></tr>
+          <tr><td><b>just</b></td><td>a moment ago</td><td>between have / has and V3<br><b>I have just finished.</b></td></tr>
+          <tr><td><b>already</b></td><td>earlier than expected</td><td>between have / has and V3<br><b>They have already bought the tickets.</b></td></tr>
+          <tr><td><b>never</b></td><td>not once in my life</td><td>between have / has and V3<br><b>I have never been to London.</b></td></tr>
+          <tr><td><b>ever</b></td><td>at any time in your life (in questions)</td><td>between have / has and V3<br><b>Have you ever sung in a choir?</b></td></tr>
+          <tr><td><b>yet</b></td><td>until now (negatives and questions)</td><td>at the end<br><b>He hasn't come yet. Have you finished yet?</b></td></tr>
+          <tr><td><b>for / since</b></td><td>for = how long · since = from when</td><td>at the end<br><b>I have lived here for two years / since 2024.</b></td></tr>
+        </table></div>
+      </div>
+    </div>
+
+    <div class="gsub" id="s2" hidden>
+      <div class="card">
+        <h3>Irregular verbs: three forms</h3>
+        <p class="instr">For the Present Perfect we need the <b>third form (V3)</b> — the last column. Type a verb to find it.</p>
+        <input class="vsearch" id="vsearch" type="search" placeholder="Find a verb: e.g. sing, sung, петь…" autocomplete="off" spellcheck="false">
+        <div class="vtwrap"><table class="vt"><thead><tr><th>V1</th><th>V2 · Past Simple</th><th>V3 · Present Perfect</th><th>Перевод</th></tr></thead><tbody id="vtb"></tbody></table></div>
+        <div class="vcount" id="vcount"></div>
+      </div>
+    </div>
+
+    <div class="gsub" id="s3" hidden>
+      <div class="card"><h3>Exercise 1 — have or has + V3</h3><p class="instr">Put the verb into the Present Perfect. Write the whole form.</p><ol class="items" id="g1"></ol><div class="exfoot" data-for="g1"></div></div>
+    </div>
+    <div class="gsub" id="s4" hidden>
+      <div class="card"><h3>Exercise 2 — find the mistake</h3><p class="instr">Every sentence has one mistake in the Present Perfect. Write the whole correct sentence.</p><ol class="items" id="g2"></ol><div class="exfoot" data-for="g2"></div></div>
+    </div>
+    <div class="gsub" id="s5" hidden>
+      <div class="card"><h3>Exercise 3 — where does the word go?</h3><p class="instr">Click the place in the sentence where the blue word goes.</p><ol class="items" id="g3"></ol><div class="exfoot" data-for="g3"></div></div>
+    </div>
+    <div class="gsub" id="s6" hidden>
+      <div class="card"><h3>Exercise 4 — make the sentence</h3><p class="instr">Write a Present Perfect sentence from the words: <b>+</b> affirmative, <b>−</b> negative, <b>?</b> question.</p><ol class="items" id="g4"></ol><div class="exfoot" data-for="g4"></div></div>
+    </div>
+  </section>
+
+  <!-- 4. LISTENING -->
+  <section class="panel" id="p4" role="tabpanel" hidden>
+    <p class="lead"><span class="ielts">IELTS Listening</span>Read the tasks first. In the exam you hear the recording only once.</p>
+    <div class="card">
+      <h3>Student Radio · the Riverside Choir</h3>
+      <p class="instr">Hannah talks to Greg about his choir and their concert in the park.</p>
+      <div class="player" data-rec="L1">
+        <button class="pbtn" type="button" data-act="play">▶ Play</button>
+        <button class="pbtn sec" type="button" data-act="pause">❚❚ Pause</button>
+        <button class="pbtn sec" type="button" data-act="stop">■ Stop</button>
+        <select aria-label="Speed"><option value="0.8">Slow</option><option value="0.95" selected>Normal</option></select>
+        <span class="pstat"></span>
+      </div>
+      <div class="exfoot" style="border-top:none; padding-top:0; margin-top:0"><button class="copy tbtn" type="button" data-tr="tr1">Show transcript</button></div>
+      <div class="tr-box" id="tr1"></div>
+    </div>
+    <div class="card">
+      <h3>Exercise 1 — complete the table</h3>
+      <p class="instr">Write <b>ONE WORD OR A NUMBER</b> in each gap. This is a typical IELTS table-completion task.</p>
+      <div class="notes"><div class="fh">The Riverside Choir</div><div class="nb">
+        <div class="tscroll"><table class="ttab" id="ttab"></table></div>
+      </div></div>
+      <ol class="items compact" id="l1"></ol>
+      <div class="exfoot" data-for="l1"></div>
+    </div>
+    <div class="card">
+      <h3>Exercise 2 — label the plan</h3>
+      <p class="instr">Greg says how to find the concert. Choose the right letter (A–F) for each place.</p>
+      <div class="mapwrap">
+        <svg viewBox="0 0 320 250" role="img" aria-label="Plan of the park">
+          <rect class="mp-field" x="6" y="6" width="308" height="238" rx="12"/>
+          <rect class="mp-water" x="20" y="16" width="280" height="44" rx="18"/>
+          <text class="mp-t" x="160" y="43">LAKE</text>
+          <rect class="mp-path" x="146" y="70" width="28" height="160" rx="6"/>
+          <text class="mp-t" x="160" y="243">ENTRANCE</text>
+          <circle class="mp-c" cx="85" cy="190" r="17"/><text class="mp-l" x="85" y="196">A</text>
+          <circle class="mp-c" cx="235" cy="190" r="17"/><text class="mp-l" x="235" y="196">B</text>
+          <circle class="mp-c" cx="85" cy="145" r="17"/><text class="mp-l" x="85" y="151">C</text>
+          <circle class="mp-c" cx="235" cy="145" r="17"/><text class="mp-l" x="235" y="151">D</text>
+          <circle class="mp-c" cx="85" cy="95" r="17"/><text class="mp-l" x="85" y="101">E</text>
+          <circle class="mp-c" cx="235" cy="95" r="17"/><text class="mp-l" x="235" y="101">F</text>
+          <path class="mp-line" d="M160 236 L160 232"/>
+        </svg>
+      </div>
+      <ol class="items" id="l2"></ol><div class="exfoot" data-for="l2"></div>
+    </div>
+  </section>
+
+  <!-- 5. VOCABULARY -->
+  <section class="panel" id="p5" role="tabpanel" hidden>
+    <p class="lead">Words for this lesson. Tap a card to see the translation.</p>
+    <div class="card"><h3>Word cards</h3><div class="cards" id="cards"></div></div>
+    <div class="card"><h3>Exercise 1 — one word, two sentences</h3><p class="instr">One word fits both sentences. Write it.</p><ol class="items" id="v1"></ol><div class="exfoot" data-for="v1"></div></div>
+    <div class="card"><h3>Exercise 2 — what is the word?</h3><p class="instr">Read the definition and write the word from the box.</p><div class="box" id="v2box"></div><ol class="items" id="v2"></ol><div class="exfoot" data-for="v2"></div></div>
+  </section>
+
+  <!-- 6. SPEAKING -->
+  <section class="panel" id="p6" role="tabpanel" hidden>
+    <p class="lead"><span class="ielts">IELTS Speaking · Part 2</span>1 minute to prepare and make notes, then speak for 1–2 minutes.</p>
+    <div class="card">
+      <h3>Task card</h3>
+      <div class="cuecard">
+        <p class="cue-t">Describe a useful skill you have learned.</p>
+        <p class="cue-s">You should say:</p>
+        <ul>
+          <li>what the skill is</li>
+          <li>when and where you learned it</li>
+          <li>who helped you</li>
+        </ul>
+        <p class="cue-s">and explain why this skill is useful for you.</p>
+      </div>
+      <div class="timer">
+        <span class="clock" id="clock">1:00</span>
+        <button class="pbtn" type="button" id="tPrep">Preparation 1 min</button>
+        <button class="pbtn" type="button" id="tTalk">Speech 2 min</button>
+        <button class="pbtn sec" type="button" id="tStop">■ Stop</button>
+        <span class="pstat" id="tStat"></span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Your plan and useful phrases</h3>
+      <p class="instr">Four steps — about 30 seconds each. That is enough for two minutes.</p>
+      <ul class="use" id="plan"></ul>
+    </div>
+    <div class="card">
+      <h3>If we have time</h3>
+      <ol class="qs">
+        <li><span class="q">What skills do young people need today?</span></li>
+        <li><span class="q">Is it better to learn practical skills at school or at home?</span></li>
+        <li><span class="q">Have computers changed the way people learn new skills?</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 7. TRANSLATION -->
+  <section class="panel" id="p7" role="tabpanel" hidden>
+    <p class="lead">Homework. Translate the story into English. Press EN to compare.</p>
+    <div class="card"><h3>My cousin's concert</h3><div class="story" id="tr"></div></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var canSpeak = ("speechSynthesis" in window) && ("SpeechSynthesisUtterance" in window);
+  function voiceGB(){
+    try{
+      var v = window.speechSynthesis.getVoices() || [];
+      return v.filter(function(x){ return /en[-_]GB/i.test(x.lang); })[0] || v.filter(function(x){ return /^en/i.test(x.lang); })[0] || null;
+    }catch(e){ return null; }
+  }
+  if(canSpeak){ try{ window.speechSynthesis.getVoices(); }catch(e){} }
+  function speak(t){
+    if(!canSpeak) return;
+    try{
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var v = voiceGB(); if(v) u.voice = v;
+      u.lang = "en-GB"; u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+  function el(tag, cls, txt){ var d = document.createElement(tag); if(cls) d.className = cls; if(txt !== undefined) d.textContent = txt; return d; }
+  function ruBtn(host){
+    var b = el("button","mini","RUS"); b.type = "button";
+    b.addEventListener("click", function(e){ e.stopPropagation(); var on = host.classList.toggle("ruopen"); b.classList.toggle("on", on); });
+    return b;
+  }
+  function norm(s){ return String(s).toLowerCase().replace(/[’`‘]/g,"'").replace(/[.,!?;:"«»]/g," ").replace(/\s+/g," ").trim(); }
+  function withFull(list){
+    var out = [];
+    list.forEach(function(s){
+      out.push(s);
+      out.push(s.replace(/haven't/g,"have not").replace(/hasn't/g,"has not").replace(/didn't/g,"did not"));
+    });
+    return out;
+  }
+  function copyText(text, m){
+    function ok(){ m.textContent = "Скопировано"; m.className = "cmsg ok"; }
+    function fail(){ m.textContent = "Не вышло — выделите ответы вручную"; m.className = "cmsg"; }
+    try{ if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok).catch(fail); else fail(); }catch(e){ fail(); }
+  }
+
+  /* ================= data 30.10 ================= */
+  var WARM = [
+    "Do you have a large family? Tell me about one person in it.",
+    "How often do you take photos? What do you like photographing?",
+    "Do you prefer shopping in a shop or on the Internet? Why?",
+    "Which season do you like best? Why?",
+    "Do you like the area where you live? Why?",
+    "What do you usually do when you are tired after university?"
+  ];
+
+  var VERBS = [
+    ["be","was / were","been","быть"],
+    ["beat","beat","beaten","бить; победить"],
+    ["become","became","become","становиться"],
+    ["begin","began","begun","начинать"],
+    ["bite","bit","bitten","кусать"],
+    ["blow","blew","blown","дуть"],
+    ["break","broke","broken","ломать"],
+    ["bring","brought","brought","приносить"],
+    ["build","built","built","строить"],
+    ["burn","burnt / burned","burnt / burned","гореть, жечь"],
+    ["buy","bought","bought","покупать"],
+    ["catch","caught","caught","ловить"],
+    ["choose","chose","chosen","выбирать"],
+    ["come","came","come","приходить, приезжать"],
+    ["cost","cost","cost","стоить"],
+    ["cut","cut","cut","резать"],
+    ["deal","dealt","dealt","иметь дело (deal with)"],
+    ["dig","dug","dug","копать"],
+    ["do","did","done","делать"],
+    ["draw","drew","drawn","рисовать"],
+    ["dream","dreamt / dreamed","dreamt / dreamed","мечтать; видеть сон"],
+    ["drink","drank","drunk","пить"],
+    ["drive","drove","driven","водить (машину), ехать"],
+    ["eat","ate","eaten","есть"],
+    ["fall","fell","fallen","падать"],
+    ["feed","fed","fed","кормить"],
+    ["feel","felt","felt","чувствовать"],
+    ["fight","fought","fought","драться, бороться"],
+    ["find","found","found","находить"],
+    ["fly","flew","flown","летать"],
+    ["forget","forgot","forgotten","забывать"],
+    ["forgive","forgave","forgiven","прощать"],
+    ["freeze","froze","frozen","замерзать"],
+    ["get","got","got","получать; становиться; добираться"],
+    ["give","gave","given","давать"],
+    ["go","went","gone","идти, ехать"],
+    ["grow","grew","grown","расти; выращивать"],
+    ["hang","hung","hung","вешать, висеть"],
+    ["have","had","had","иметь"],
+    ["hear","heard","heard","слышать"],
+    ["hide","hid","hidden","прятать"],
+    ["hit","hit","hit","ударять"],
+    ["hold","held","held","держать"],
+    ["hurt","hurt","hurt","причинять боль"],
+    ["keep","kept","kept","хранить, держать"],
+    ["know","knew","known","знать"],
+    ["lead","led","led","вести"],
+    ["learn","learnt / learned","learnt / learned","учить, узнавать"],
+    ["leave","left","left","уходить, уезжать; оставлять"],
+    ["lend","lent","lent","одалживать (кому-то)"],
+    ["let","let","let","позволять"],
+    ["lie","lay","lain","лежать"],
+    ["light","lit","lit","зажигать"],
+    ["lose","lost","lost","терять; проигрывать"],
+    ["make","made","made","делать, создавать"],
+    ["mean","meant","meant","значить"],
+    ["meet","met","met","встречать"],
+    ["pay","paid","paid","платить"],
+    ["put","put","put","класть, ставить"],
+    ["read","read","read","читать (V2, V3 звучат как «red»)"],
+    ["ride","rode","ridden","ездить (на велосипеде, верхом)"],
+    ["ring","rang","rung","звонить"],
+    ["rise","rose","risen","подниматься"],
+    ["run","ran","run","бежать"],
+    ["say","said","said","сказать"],
+    ["see","saw","seen","видеть"],
+    ["sell","sold","sold","продавать"],
+    ["send","sent","sent","отправлять"],
+    ["set","set","set","устанавливать"],
+    ["shake","shook","shaken","трясти"],
+    ["shine","shone","shone","светить"],
+    ["shoot","shot","shot","стрелять; снимать (фильм)"],
+    ["show","showed","shown","показывать"],
+    ["shut","shut","shut","закрывать"],
+    ["sing","sang","sung","петь"],
+    ["sit","sat","sat","сидеть"],
+    ["sleep","slept","slept","спать"],
+    ["smell","smelt / smelled","smelt / smelled","пахнуть; нюхать"],
+    ["speak","spoke","spoken","говорить"],
+    ["spend","spent","spent","тратить; проводить (время)"],
+    ["stand","stood","stood","стоять"],
+    ["steal","stole","stolen","красть"],
+    ["swim","swam","swum","плавать"],
+    ["take","took","taken","брать; занимать (время)"],
+    ["teach","taught","taught","учить, преподавать"],
+    ["tear","tore","torn","рвать"],
+    ["tell","told","told","рассказывать, говорить"],
+    ["think","thought","thought","думать"],
+    ["throw","threw","thrown","бросать"],
+    ["understand","understood","understood","понимать"],
+    ["wake","woke","woken","просыпаться; будить"],
+    ["wear","wore","worn","носить (одежду)"],
+    ["win","won","won","побеждать, выигрывать"],
+    ["write","wrote","written","писать"]
+  ];
+
+  var G1 = [
+    ["I __ this film three times. (see)", ["have seen","i have seen"], "have seen", "see → seen. I → have.", "see → seen. I → have."],
+    ["I __ in this city since 2020. (live)", ["have lived","i have lived"], "have lived", "live is regular: lived. I → have.", "live — правильный глагол: lived. I → have."],
+    ["She __ her keys, so she can't open the door. (lose)", ["has lost"], "has lost", "She → has. lose → lost.", "She → has. lose → lost."],
+    ["They __ a big banner above the stage. (hang)", ["have hung"], "have hung", "They → have. hang → hung.", "They → have. hang → hung."],
+    ["I __ in a choir. (never / sing)", ["have never sung","i have never sung"], "have never sung", "never goes between have and V3. sing → sung.", "never ставится между have и V3. sing → sung."],
+    ["The technician __ the microphones yet. (not / check)", ["hasn't checked"], "hasn't checked", "The technician → hasn't. check is regular: checked.", "The technician → hasn't. check — правильный глагол: checked."],
+    ["__ the new song? (you / hear)", ["have you heard"], "Have you heard", "Question: Have + you + V3 (heard).", "Вопрос: Have + you + V3 (heard)."],
+    ["My brother __ his homework. (just / finish)", ["has just finished"], "has just finished", "just goes between has and V3. finish is regular.", "just ставится между has и V3. finish — правильный глагол."],
+    ["We __ the tickets for the event. (already / buy)", ["have already bought"], "have already bought", "already goes between have and V3. buy → bought.", "already ставится между have и V3. buy → bought."],
+    ["__ to Saint Petersburg? (your cousin / be)", ["has your cousin been"], "Has your cousin been", "Your cousin = he / she → Has. be → been.", "Your cousin — это he/she → Has. be → been."]
+  ];
+
+  var G2 = [
+    ["She have lost her keys.", ["she has lost her keys"], "She has lost her keys.", "She → has, not have.", "She → has, а не have."],
+    ["He has went home.", ["he has gone home"], "He has gone home.", "After has we use V3: go → went → gone.", "После has — третья форма: go → went → gone."],
+    ["We has already bought the tickets.", ["we have already bought the tickets"], "We have already bought the tickets.", "We → have.", "We → have."],
+    ["Have you ever saw a choir concert?", ["have you ever seen a choir concert"], "Have you ever seen a choir concert?", "After have we use V3: see → saw → seen.", "После have — третья форма: see → saw → seen."],
+    ["The technician not has checked the microphones.", ["the technician hasn't checked the microphones"], "The technician hasn't checked the microphones.", "Negative: has + not = hasn't, in this order.", "Отрицание: has + not = hasn't, именно в таком порядке."],
+    ["I have never be to Moscow.", ["i have never been to moscow"], "I have never been to Moscow.", "be → was / were → been.", "be → was/were → been."],
+    ["My cousin have just finished school.", ["my cousin has just finished school"], "My cousin has just finished school.", "My cousin = he / she → has.", "My cousin — это he/she → has."],
+    ["Has she wrote the programme?", ["has she written the programme"], "Has she written the programme?", "write → wrote → written.", "write → wrote → written."]
+  ];
+
+  var G3 = [
+    {adv:"just", w:["I","have","finished","my","homework"], p:".", i:2},
+    {adv:"already", w:["They","have","bought","the","tickets"], p:".", i:2},
+    {adv:"yet", w:["The","technician","hasn't","checked","the","microphones"], p:".", i:6},
+    {adv:"ever", w:["Have","you","sung","in","a","choir"], p:"?", i:2},
+    {adv:"never", w:["My","cousin","has","been","to","a","big","event"], p:".", i:3},
+    {adv:"yet", w:["Have","you","seen","the","new","film"], p:"?", i:6},
+    {adv:"already", w:["She","has","hung","the","poster","above","the","door"], p:".", i:2},
+    {adv:"just", w:["Our","choir","has","started","a","new","song"], p:".", i:3}
+  ];
+
+  var G4 = [
+    ["+","I / already / read / this book", ["i have already read this book"], "I have already read this book."],
+    ["−","we / not see / the new film", ["we haven't seen the new film"], "We haven't seen the new film."],
+    ["?","you / ever / be / to London", ["have you ever been to london"], "Have you ever been to London?"],
+    ["+","my cousin / just / send / me a photo", ["my cousin has just sent me a photo"], "My cousin has just sent me a photo."],
+    ["−","the technician / not check / the microphones / yet", ["the technician hasn't checked the microphones yet"], "The technician hasn't checked the microphones yet."],
+    ["?","your choir / win / a competition", ["has your choir won a competition"], "Has your choir won a competition?"],
+    ["+","they / hang / the banner / above the stage", ["they have hung the banner above the stage"], "They have hung the banner above the stage."],
+    ["−","I / never / sing / in front of people", ["i have never sung in front of people"], "I have never sung in front of people."],
+    ["?","what / you / do / today", ["what have you done today"], "What have you done today?"]
+  ];
+
+  var EX = {
+    g1: G1.map(function(r){ return {q:r[0], a:withFull(r[1]), model:r[2], en:r[3], ru:r[4]}; }),
+    g2: G2.map(function(r){ return {q:r[0], a:withFull(r[1]), model:r[2], en:r[3], ru:r[4], wide:true}; }),
+    g4: G4.map(function(r){ return {tag:r[0], q:r[1], a:withFull(r[2]), model:r[3],
+      en:r[0] === "+" ? "have / has + V3." : (r[0] === "−" ? "haven't / hasn't + V3." : "Have / Has + subject + V3?"),
+      ru:r[0] === "+" ? "have / has + V3." : (r[0] === "−" ? "haven't / hasn't + V3." : "Have / Has + подлежащее + V3?")}; }),
+    l2:[
+      {q:"the café", opts:["A","B","C","D","E","F"], a:"A", en:"«The café is on your left, just after the entrance.»", ru:"Кафе — слева сразу после входа."},
+      {q:"the car park", opts:["A","B","C","D","E","F"], a:"B", en:"«Opposite the café, on the right, there's a car park.»", ru:"Парковка — напротив кафе, справа."},
+      {q:"the table with the programmes", opts:["A","B","C","D","E","F"], a:"D", en:"«Halfway along the path, on the right, you'll see our table with the programmes.»", ru:"Столик с программками — на середине дорожки справа."},
+      {q:"the stage", opts:["A","B","C","D","E","F"], a:"F", en:"«At the end of the path, on the right, next to the lake.»", ru:"Сцена — в конце дорожки справа, у озера."},
+      {q:"the big tree where people sit", opts:["A","B","C","D","E","F"], a:"E", en:"«Opposite the stage, on the left, there's a big tree.»", ru:"Большое дерево — напротив сцены, слева."}
+    ],
+    v1:[
+      {q:"The lamp hangs __ the table. · Their flat is __ a small café.", a:["above"], en:"above = higher than something", ru:"above — над, выше"},
+      {q:"This bag __ to my cousin. · This choir __ to the university.", a:["belongs"], en:"belong to = to be owned by somebody", ru:"belong to — принадлежать"},
+      {q:"Can you __ this box upstairs? · I always __ a bottle of water with me.", a:["carry"], en:"carry = take something from one place to another", ru:"carry — нести"},
+      {q:"Our plans __ on the weather. · Many things __ on money.", a:["depend"], en:"depend on = be decided by something", ru:"depend on — зависеть от"},
+      {q:"I __ to music every morning. · Please __ to me!", a:["listen"], en:"listen to (always with to)", ru:"listen to — слушать (всегда с to)"},
+      {q:"There was __ one ticket left. · The concert lasts __ forty minutes.", a:["only"], en:"only = not more than", ru:"only — только"},
+      {q:"I have __ finished my homework. · It's __ a joke, don't worry!", a:["just"], en:"just = a moment ago; also: simply", ru:"just — только что; просто"},
+      {q:"The biggest __ of the year is in June. · We went to a sports __ last week.", a:["event"], en:"event = something that happens, especially organised", ru:"event — событие, мероприятие"}
+    ],
+    v2:[
+      {q:"a group of people who sing together", a:["choir"], en:"choir /ˈkwaɪə/", ru:"хор"},
+      {q:"a person whose job is to check and repair equipment", a:["technician"], en:"technician", ru:"техник, специалист по технике"},
+      {q:"the son or daughter of your uncle or aunt", a:["cousin"], en:"cousin", ru:"двоюродный брат / сестра"},
+      {q:"to put something on a wall or a hook", a:["hang"], en:"hang — hung — hung", ru:"вешать"},
+      {q:"belonging to it — this word has no apostrophe", a:["its"], en:"its (it's = it is)", ru:"его / её (о предмете); it's = it is"},
+      {q:"to like doing something", a:["enjoy"], en:"enjoy + doing: I enjoy singing.", ru:"нравиться делать: enjoy + -ing"},
+      {q:"to feel anxious about a problem", a:["worry"], en:"worry about smth", ru:"волноваться"}
+    ]
+  };
+  var V2BOX = ["choir","technician","cousin","hang","its","enjoy","worry"];
+
+  /* listening table */
+  var TBL = {
+    head:["", "Rehearsals", "Concert"],
+    rows:[
+      ["Day", {pre:"Tuesday and ", n:1}, {t:"Saturday"}],
+      ["Place", {pre:"the hall above the ", n:2}, {pre:"the park, near the ", n:3}],
+      ["Starts at", {n:4, post:" p.m."}, {t:"3 p.m."}],
+      ["Bring", {t:"—"}, {pre:"an ", n:5}]
+    ]
+  };
+  var L1 = [
+    {lab:"Rehearsals · Day", a:["thursday"], en:"«Twice a week — on Tuesday and on Thursday.»", ru:"По вторникам и четвергам."},
+    {lab:"Rehearsals · Place", a:["library"], en:"«In the old hall above the library.»", ru:"В зале над библиотекой."},
+    {lab:"Concert · Place", a:["lake"], en:"«…in the park, near the lake.»", ru:"В парке, у озера."},
+    {lab:"Rehearsals · Starts at", a:["six","6"], en:"«We always start at six p.m.»", ru:"В шесть вечера."},
+    {lab:"Concert · Bring", a:["umbrella"], en:"«Just an umbrella!»", ru:"Зонт."}
+  ];
+
+  var WORDS = [
+    ["above","/əˈbʌv/","in a higher position than something","A paper moon hung above the piano.","над, выше"],
+    ["depend on","/dɪˈpend ɒn/","to be decided by something else. It depends on the weather.","Our plans depend on the weather.","зависеть от"],
+    ["listen to","/ˈlɪsn tuː/","to pay attention to music or sounds — always with to","I listen to music on the bus.","слушать"],
+    ["enjoy doing smth","/ɪnˈdʒɔɪ/","to like doing something. enjoy + verb + -ing","I enjoy singing in a choir.","нравиться что-то делать"],
+    ["its","/ɪts/","belonging to it — no apostrophe! (it's = it is)","The choir and its new conductor.","его, её (о предмете)"],
+    ["only","/ˈəʊnli/","not more than; nothing else","The concert lasts only forty minutes.","только"],
+    ["just","/dʒʌst/","1) a moment ago (I have just finished); 2) simply","It's just a joke.","только что; просто"],
+    ["cousin","/ˈkʌzn/","the son or daughter of your uncle or aunt","My cousin sings in a choir.","двоюродный брат / сестра"],
+    ["belong to","/bɪˈlɒŋ tuː/","to be owned by somebody; to be a member of a group","This bag belongs to Greg.","принадлежать; состоять в"],
+    ["technician","/tekˈnɪʃn/","a person whose job is to check and repair equipment","The technician checked the microphones.","техник"],
+    ["carry","/ˈkæri/","to take something from one place to another","He carried the keyboard to the park.","нести"],
+    ["worry","/ˈwʌri/","to feel anxious about a problem. worry about smth","Don't worry about the rain.","волноваться"],
+    ["choir","/ˈkwaɪə/","a group of people who sing together","She sings in a university choir.","хор"],
+    ["hang","/hæŋ/","to put something on a wall or a hook. hang — hung — hung","They hung a banner above the stage.","вешать; висеть"],
+    ["event","/ɪˈvent/","something that happens, especially something organised","It is the biggest event of the year.","событие, мероприятие"]
+  ];
+
+  var PLAN = [
+    ["1. Start and name the skill (20 sec)", "I'd like to talk about … · The skill I want to describe is … · I have learned how to …"],
+    ["2. When and where you learned it (30 sec)", "I started … two years ago. · At first I wasn't very good at it. · I learned it at home / at school / on the Internet."],
+    ["3. Who helped you and how (40 sec)", "My cousin / my father showed me how to … · First, he … Then I … · After that I tried it myself. · It took me about … months."],
+    ["4. Why it is useful (30 sec)", "The reason why it is useful is that … · Thanks to this skill, I can … · For example, last month I … · That's why I'm quite proud of it."]
+  ];
+
+  var REC = {
+    L1:[
+      ["F","Hello, and welcome to Student Radio. Today I'm talking to Greg about the Riverside Choir. Hi, Greg!"],
+      ["M","Hi, Hannah. Thanks for inviting me."],
+      ["F","So, what exactly is the Riverside Choir?"],
+      ["M","It's a group of about thirty people who sing together. It belongs to our university, but anyone from the town can join."],
+      ["F","And how did you join?"],
+      ["M","My cousin Marta sings in it. She invited me to a concert last year, and I enjoyed listening to them so much that I came to the next rehearsal."],
+      ["F","Do you need to read music?"],
+      ["M","No. Only the conductor reads music. We just listen and repeat."],
+      ["F","When do you rehearse?"],
+      ["M","Twice a week — on Tuesday and on Thursday. We always start at six p.m. and finish at eight."],
+      ["F","And where?"],
+      ["M","In the old hall above the library. There's an old piano there, and its sound is beautiful."],
+      ["F","Now, you have a big concert this Saturday."],
+      ["M","Yes, it's the biggest event of the year for us. It starts at three p.m., in the park, near the lake."],
+      ["F","Do people need tickets?"],
+      ["M","No, it's free. But our technician, Victor, always asks for donations for new microphones."],
+      ["F","What should people bring?"],
+      ["M","Just an umbrella! The concert depends on the weather, and Marta worries about rain every year."],
+      ["F","Good advice. The park is big — how do we find you?"],
+      ["M","Come in through the main entrance and walk along the main path. The café is on your left, just after the entrance. Opposite the café, on the right, there's a car park."],
+      ["F","OK, I know that car park."],
+      ["M","Then walk on. Halfway along the path, on the right, you'll see our table with the programmes. I make them on my computer."],
+      ["F","And where is the stage?"],
+      ["M","At the end of the path, on the right, next to the lake. We have hung a big banner above it, so you can't miss it."],
+      ["F","Where do people sit?"],
+      ["M","Opposite the stage, on the left, there's a big tree. People sit on the grass under it."],
+      ["F","Thanks, Greg. See you on Saturday!"],
+      ["M","Thank you! And if you see me carrying a heavy keyboard, please help me!"]
+    ]
+  };
+
+  var TR = [
+    ["Мой двоюродный брат Марк поёт в хоре, который принадлежит университету.","My cousin Mark sings in a choir that belongs to the university."],
+    ["Он уже пригласил меня на их концерт в парке.","He has already invited me to their concert in the park."],
+    ["Я никогда не был на таком мероприятии.","I have never been to an event like this."],
+    ["Марк попросил меня помочь ему нести клавишные.","Mark has asked me to help him carry the keyboard."],
+    ["Хор уже повесил большой плакат над сценой.","The choir has already hung a big banner above the stage."],
+    ["Техник ещё не проверил микрофоны, поэтому Марк немного волнуется.","The technician hasn't checked the microphones yet, so Mark worries a little."],
+    ["Концерт зависит от погоды, но я только что посмотрел прогноз: дождя не будет.","The concert depends on the weather, but I have just looked at the forecast: there will be no rain."],
+    ["Мне очень нравится слушать живую музыку, поэтому суббота будет отличным днём.","I really enjoy listening to live music, so Saturday will be a great day."]
+  ];
+
+  var HWCHECK = [
+    {sg:"+", n:4, title:"Affirmative: subject + V2", ph:"Last Saturday I went to…"},
+    {sg:"−", n:4, title:"Negative: didn't + V1", ph:"We didn't stay at home…"},
+    {sg:"?", n:4, title:"Questions: Did + subject + V1?", ph:"Did you hear…?"}
+  ];
+
+  /* ================= generic items ================= */
+  function feedback(li, fb, ok, it, shown){
+    li.classList.add("done");
+    li.classList.toggle("okrow", !shown && ok);
+    li.classList.toggle("norow", !shown && !ok);
+    fb.className = "fb " + (shown ? "show" : (ok ? "ok" : "no"));
+    fb.textContent = "";
+    var correct = it.model || (Array.isArray(it.a) ? it.a[0] : it.a);
+    fb.appendChild(el("span","right", shown ? "Answer: " + correct : (ok ? "Correct!" : "Not quite. Correct answer: " + correct)));
+    if(!ok || shown || it.always){
+      fb.appendChild(el("span", null, it.en));
+      var row = el("div","rurow"); var host = el("div");
+      host.appendChild(el("span","ru", it.ru));
+      row.appendChild(ruBtn(host)); row.appendChild(host); fb.appendChild(row);
+    }
+  }
+
+  function buildItem(it){
+    var li = el("li"), body = el("div","qbody"), fb = el("div","fb"), btns = el("div","btns");
+    var getVal = null;
+    var qt = el("span","qtext");
+    if(it.tag) qt.appendChild(el("span","tag", it.tag));
+    qt.appendChild(document.createTextNode(it.q));
+    body.appendChild(qt);
+    if(it.opts){
+      var g = el("div","opts");
+      it.opts.forEach(function(o){
+        var b = el("button", null, o); b.type = "button";
+        b.addEventListener("click", function(){
+          Array.prototype.forEach.call(g.children, function(x){ x.classList.remove("pick-ok","pick-no"); });
+          var ok = o === it.a; b.classList.add(ok ? "pick-ok" : "pick-no");
+          li.dataset.val = o; feedback(li, fb, ok, it, false);
+        });
+        g.appendChild(b);
+      });
+      body.appendChild(g);
+    } else {
+      var inp = document.createElement("input");
+      inp.className = "gap wide"; inp.type = "text"; inp.placeholder = it.tag ? "Write the sentence…" : "…";
+      inp.setAttribute("autocomplete","off"); inp.setAttribute("autocapitalize","off"); inp.setAttribute("spellcheck","false");
+      body.appendChild(inp);
+      getVal = function(){ return inp.value; };
+      inp.addEventListener("keydown", function(e){ if(e.key === "Enter") chk.click(); });
+      var chk = el("button","chk","CHECK"); chk.type = "button";
+      chk.addEventListener("click", function(){
+        var v = norm(getVal());
+        var ok = !!v && it.a.some(function(k){ return norm(k) === v; });
+        feedback(li, fb, ok, it, false);
+      });
+      btns.appendChild(chk);
+      li._val = getVal;
+    }
+    var an = el("button","ans","ANSWER"); an.type = "button";
+    an.addEventListener("click", function(){ feedback(li, fb, false, it, true); });
+    btns.appendChild(an);
+    body.appendChild(fb); li.appendChild(body); li.appendChild(btns);
+    return li;
+  }
+
+  var LABELS = {g1:"Grammar · Ex 1 (have / has + V3)", g2:"Grammar · Ex 2 (find the mistake)", g3:"Grammar · Ex 3 (word order)", g4:"Grammar · Ex 4 (make the sentence)", l1:"Listening · Ex 1 (table)", l2:"Listening · Ex 2 (plan)", v1:"Vocabulary · Ex 1 (one word)", v2:"Vocabulary · Ex 2 (definitions)"};
+  function copyFoot(foot, title, collect){
+    var b = el("button","copy","Скопировать мои ответы"); b.type = "button";
+    var m = el("span","cmsg");
+    b.addEventListener("click", function(){ copyText(["Mikhail · 30.10 · " + title, ""].concat(collect()).join("\n"), m); });
+    foot.appendChild(b); foot.appendChild(m);
+  }
+  Object.keys(EX).forEach(function(id){
+    var ol = document.getElementById(id); if(!ol) return;
+    EX[id].forEach(function(it){ ol.appendChild(buildItem(it)); });
+    copyFoot(document.querySelector('.exfoot[data-for="' + id + '"]'), LABELS[id] || id, function(){
+      return Array.prototype.map.call(ol.children, function(li, i){
+        var v = li._val ? li._val().trim() : (li.dataset.val || "");
+        return (i + 1) + ". " + (v || "—");
+      });
+    });
+  });
+  (function(){ var b = document.getElementById("v2box"); V2BOX.forEach(function(w){ b.appendChild(el("span", null, w)); }); })();
+
+  /* ================= grammar ex 3: insert the word ================= */
+  (function(){
+    var ol = document.getElementById("g3"), vals = [];
+    G3.forEach(function(it){
+      var li = el("li"), body = el("div","qbody"), fb = el("div","fb"), btns = el("div","btns");
+      var head = el("div"); head.appendChild(el("span","adv", it.adv)); body.appendChild(head);
+      var line = el("div","ins"), picked = -1, slots = [];
+      var model = it.w.slice(); model.splice(it.i, 0, it.adv);
+      var modelStr = model.join(" ") + it.p;
+      var info = {model:modelStr, en:"Correct sentence: " + modelStr, ru:"just, already, never, ever — между have и V3; yet — в конце."};
+      function slot(k){
+        var b = el("button","slot","▾"); b.type = "button";
+        b.addEventListener("click", function(){
+          slots.forEach(function(x){ x.classList.remove("put"); x.textContent = "▾"; });
+          b.classList.add("put"); b.textContent = it.adv; picked = k;
+          li.classList.remove("done","okrow","norow");
+        });
+        slots.push(b); return b;
+      }
+      it.w.forEach(function(w, k){
+        line.appendChild(slot(k));
+        line.appendChild(el("span","w", w));
+      });
+      line.appendChild(slot(it.w.length));
+      line.appendChild(el("span","w", it.p));
+      body.appendChild(line);
+      var chk = el("button","chk","CHECK"); chk.type = "button";
+      chk.addEventListener("click", function(){ feedback(li, fb, picked === it.i, info, false); });
+      var an = el("button","ans","ANSWER"); an.type = "button";
+      an.addEventListener("click", function(){ feedback(li, fb, false, info, true); });
+      btns.appendChild(chk); btns.appendChild(an);
+      body.appendChild(fb); li.appendChild(body); li.appendChild(btns); ol.appendChild(li);
+      vals.push(function(){
+        if(picked < 0) return "—";
+        var m = it.w.slice(); m.splice(picked, 0, it.adv); return m.join(" ") + it.p;
+      });
+    });
+    copyFoot(document.querySelector('.exfoot[data-for="g3"]'), LABELS.g3, function(){ return vals.map(function(f, i){ return (i + 1) + ". " + f(); }); });
+  })();
+
+  /* ================= listening ex 1: table completion ================= */
+  (function(){
+    var tab = document.getElementById("ttab"), gaps = {};
+    var thead = el("thead"), hr = el("tr");
+    TBL.head.forEach(function(h){ hr.appendChild(el("th", null, h)); });
+    thead.appendChild(hr); tab.appendChild(thead);
+    var tb = el("tbody");
+    TBL.rows.forEach(function(row){
+      var tr = el("tr");
+      tr.appendChild(el("td","lab", row[0]));
+      row.slice(1).forEach(function(c){
+        var td = el("td");
+        if(c.t !== undefined){ td.appendChild(document.createTextNode(c.t)); }
+        else{
+          if(c.pre) td.appendChild(document.createTextNode(c.pre));
+          td.appendChild(el("span","gn", c.n + ")"));
+          var inp = document.createElement("input"); inp.type = "text"; inp.setAttribute("autocomplete","off"); inp.setAttribute("spellcheck","false");
+          td.appendChild(inp); gaps[c.n] = inp;
+          if(c.post) td.appendChild(document.createTextNode(c.post));
+        }
+        tr.appendChild(td);
+      });
+      tb.appendChild(tr);
+    });
+    tab.appendChild(tb);
+
+    var ol = document.getElementById("l1");
+    L1.forEach(function(it, k){
+      var n = k + 1, inp = gaps[n];
+      var li = el("li"), body = el("div","qbody"), fb = el("div","fb"), btns = el("div","btns");
+      body.appendChild(el("span","qtext", it.lab));
+      var chk = el("button","chk","CHECK"); chk.type = "button";
+      function mark(ok){ inp.classList.toggle("ok", ok); inp.classList.toggle("no", !ok); }
+      chk.addEventListener("click", function(){
+        var v = norm(inp.value);
+        var ok = !!v && it.a.some(function(x){ return norm(x) === v; });
+        mark(ok); feedback(li, fb, ok, it, false);
+      });
+      inp.addEventListener("keydown", function(e){ if(e.key === "Enter") chk.click(); });
+      var an = el("button","ans","ANSWER"); an.type = "button";
+      an.addEventListener("click", function(){ feedback(li, fb, false, it, true); });
+      btns.appendChild(chk); btns.appendChild(an);
+      body.appendChild(fb); li.appendChild(body); li.appendChild(btns); ol.appendChild(li);
+      li._val = function(){ return inp.value; };
+    });
+    copyFoot(document.querySelector('.exfoot[data-for="l1"]'), LABELS.l1, function(){
+      return L1.map(function(it, i){ return (i + 1) + ". " + (gaps[i + 1].value.trim() || "—"); });
+    });
+  })();
+
+  /* ================= homework check: my 12 sentences ================= */
+  (function(){
+    var host = document.getElementById("mine"), all = [];
+    var V2SET = {};
+    VERBS.forEach(function(v){ v[1].split(" / ").forEach(function(f){ V2SET[f] = v[0]; }); });
+    HWCHECK.forEach(function(g){
+      var box = el("div","grp");
+      box.appendChild(el("h4", null, g.sg + "  " + g.title));
+      for(var i = 0; i < g.n; i++){
+        var row = el("div","mrow");
+        row.appendChild(el("span","sg", g.sg));
+        var inp = document.createElement("input"); inp.type = "text"; inp.placeholder = g.ph;
+        inp.setAttribute("autocomplete","off"); inp.setAttribute("spellcheck","false");
+        row.appendChild(inp); box.appendChild(row);
+        var hint = el("div","mhint"); box.appendChild(hint);
+        (function(inp, hint){
+          inp.addEventListener("input", function(){ inp.classList.remove("ok","no"); hint.classList.remove("on"); });
+        })(inp, hint);
+        all.push({inp:inp, hint:hint, sg:g.sg, label:g.title});
+      }
+      host.appendChild(box);
+    });
+    function test(x){
+      var raw = x.inp.value.trim();
+      if(!raw) return "Write a sentence.";
+      var v = " " + norm(raw) + " ";
+      var hasDid = /\b(did|didn't|did not)\b/.test(v);
+      var bad = null;
+      v.replace(/\b(didn't|did not|did)\s+(\w+)/g, function(m, a, w){ if(V2SET[w]) bad = w; return m; });
+      if(bad) return "After did / didn't use the first form: " + bad + " → " + V2SET[bad] + ".";
+      if(x.sg === "?"){
+        if(!/\?$/.test(raw)) return "A question ends with a question mark.";
+        if(!/^(did|was|were|what|where|when|who|why|how|which)\b/i.test(raw)) return "Start with Did…? or Was / Were…? (or a Wh- word).";
+        return "";
+      }
+      if(/\?$/.test(raw)) return "This is not a question: no question mark.";
+      if(x.sg === "−"){
+        if(!/(didn't|did not|wasn't|was not|weren't|were not)\b/.test(v)) return "A negative sentence needs didn't (or wasn't / weren't).";
+        return "";
+      }
+      if(/(didn't|did not|wasn't|was not|weren't|were not)\b/.test(v)) return "This one must be affirmative, without didn't.";
+      if(hasDid) return "An affirmative sentence doesn't need did.";
+      return "";
+    }
+    var foot = document.getElementById("minefoot");
+    var c = el("button","chk","CHECK THE FORM"); c.type = "button";
+    var msg = el("span","cmsg");
+    c.addEventListener("click", function(){
+      var good = 0;
+      all.forEach(function(x){
+        var h = test(x);
+        x.inp.classList.toggle("ok", !h); x.inp.classList.toggle("no", !!h);
+        x.hint.textContent = h; x.hint.classList.toggle("on", !!h);
+        if(!h) good++;
+      });
+      msg.textContent = good + " / 12 look right. Your teacher will check the rest."; msg.className = "cmsg ok";
+    });
+    foot.appendChild(c); foot.appendChild(msg);
+    copyFoot(foot, "My 12 sentences", function(){ return all.map(function(x, i){ return (i + 1) + ". [" + x.sg + "] " + (x.inp.value.trim() || "—"); }); });
+  })();
+
+  /* ================= irregular verbs table ================= */
+  (function(){
+    var tb = document.getElementById("vtb"), cnt = document.getElementById("vcount"), rows = [];
+    VERBS.forEach(function(v){
+      var tr = el("tr");
+      tr.appendChild(el("td","v1", v[0])); tr.appendChild(el("td","v3", v[1]));
+      tr.appendChild(el("td","v2", v[2])); tr.appendChild(el("td","rus", v[3]));
+      tb.appendChild(tr); rows.push({tr:tr, key:(v.join(" ")).toLowerCase()});
+    });
+    function upd(q){
+      q = q.trim().toLowerCase(); var n = 0;
+      rows.forEach(function(r){ var on = !q || r.key.indexOf(q) > -1; r.tr.hidden = !on; if(on) n++; });
+      cnt.textContent = q ? ("Found: " + n) : (VERBS.length + " verbs");
+    }
+    document.getElementById("vsearch").addEventListener("input", function(e){ upd(e.target.value); });
+    upd("");
+  })();
+
+  /* ================= warm-up cards, speaking plan ================= */
+  (function(){
+    var box = document.getElementById("qcards");
+    WARM.forEach(function(q, i){
+      var b = el("button","qc"); b.type = "button";
+      b.appendChild(el("span","num", String(i + 1)));
+      b.appendChild(el("span","mark","?"));
+      b.appendChild(el("span","qt", q));
+      b.addEventListener("click", function(){ b.classList.toggle("open"); });
+      box.appendChild(b);
+    });
+    var plan = document.getElementById("plan");
+    PLAN.forEach(function(p){
+      var li = el("li");
+      li.appendChild(el("span","name", p[0]));
+      li.appendChild(el("span","eg", p[1]));
+      plan.appendChild(li);
+    });
+  })();
+
+  /* ================= player: play / pause / stop ================= */
+  function voicesEN(){
+    if(!canSpeak) return [];
+    var v = window.speechSynthesis.getVoices() || [];
+    var gb = v.filter(function(x){ return /en[-_]GB/i.test(x.lang); });
+    var en = v.filter(function(x){ return /^en/i.test(x.lang); });
+    return gb.concat(en.filter(function(x){ return gb.indexOf(x) === -1; }));
+  }
+  var cur = null;
+  function resetPauseBtn(c){ if(c && c.pbtn) c.pbtn.textContent = "❚❚ Pause"; }
+  function stopAll(){
+    if(cur){ resetPauseBtn(cur); if(cur.stat.dataset.busy){ cur.stat.textContent = "Stopped"; delete cur.stat.dataset.busy; } }
+    cur = null;
+    if(canSpeak){ try{ window.speechSynthesis.cancel(); }catch(e){} }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".player"), function(p){
+    var key = p.dataset.rec, stat = p.querySelector(".pstat"), sel = p.querySelector("select");
+    var pbtn = p.querySelector('[data-act="pause"]');
+    if(!canSpeak){ stat.textContent = "Audio is not available in this browser. Try Chrome or Edge."; }
+    p.querySelector('[data-act="play"]').addEventListener("click", function(){
+      if(!canSpeak) return;
+      stopAll();
+      var c = {paused:false, waiting:false, stat:stat, pbtn:pbtn}; cur = c;
+      var lines = REC[key], i = 0, vs = voicesEN();
+      var vF = vs[0] || null, vM = vs[1] || vs[0] || null;
+      stat.dataset.busy = "1";
+      function next(){
+        if(cur !== c) return;
+        if(c.paused){ c.waiting = true; return; }
+        c.waiting = false;
+        if(i >= lines.length){ stat.textContent = "Finished"; delete stat.dataset.busy; cur = null; resetPauseBtn(c); return; }
+        var L = lines[i], u = new SpeechSynthesisUtterance(L[1]);
+        u.lang = "en-GB"; u.rate = parseFloat(sel.value) || 0.95;
+        if(L[0] === "M"){ if(vM) u.voice = vM; u.pitch = (vM === vF) ? 0.75 : 1; }
+        else { if(vF) u.voice = vF; u.pitch = (vM === vF) ? 1.15 : 1; }
+        u.onend = function(){ i++; setTimeout(next, 350); };
+        u.onerror = function(){ if(cur !== c) return; i++; setTimeout(next, 100); };
+        stat.textContent = "Playing… " + (i + 1) + " / " + lines.length;
+        window.speechSynthesis.speak(u);
+      }
+      c.next = next; next();
+    });
+    pbtn.addEventListener("click", function(){
+      if(!cur || cur.pbtn !== pbtn) return;
+      var c = cur;
+      if(!c.paused){ c.paused = true; try{ window.speechSynthesis.pause(); }catch(e){} pbtn.textContent = "▶ Resume"; stat.textContent = "Paused"; }
+      else { c.paused = false; try{ window.speechSynthesis.resume(); }catch(e){} pbtn.textContent = "❚❚ Pause"; stat.textContent = "Playing…"; if(c.waiting) c.next(); }
+    });
+    p.querySelector('[data-act="stop"]').addEventListener("click", stopAll);
+  });
+  (function(){
+    var box = document.getElementById("tr1"), names = {F:"Hannah", M:"Greg"};
+    REC.L1.forEach(function(L){ var p = el("p"); p.appendChild(el("b", null, names[L[0]] + ": ")); p.appendChild(document.createTextNode(L[1])); box.appendChild(p); });
+    Array.prototype.forEach.call(document.querySelectorAll(".tbtn"), function(b){
+      b.addEventListener("click", function(){ var t = document.getElementById(b.dataset.tr); var on = t.classList.toggle("open"); b.textContent = on ? "Hide transcript" : "Show transcript"; });
+    });
+  })();
+
+  /* ================= cards, translation, timer, tabs ================= */
+  (function(){
+    var box = document.getElementById("tr");
+    TR.forEach(function(p){
+      var w = el("span","sw");
+      w.appendChild(el("span","r0", p[0]));
+      var b = el("button","mini","EN"); b.type = "button";
+      b.addEventListener("click", function(){ var on = w.classList.toggle("open"); b.classList.toggle("on", on); });
+      w.appendChild(b); w.appendChild(el("span","enx", p[1]));
+      box.appendChild(w); box.appendChild(document.createTextNode(" "));
+    });
+  })();
+  (function(){
+    var cbox = document.getElementById("cards");
+    WORDS.forEach(function(w){
+      var d = el("div","vc"); d.tabIndex = 0; d.setAttribute("role","button");
+      var en = el("span","en"); en.appendChild(document.createTextNode(w[0]));
+      if(canSpeak){
+        var sb = el("button","mini say","▶"); sb.type = "button"; sb.setAttribute("aria-label","Listen");
+        sb.addEventListener("click", function(e){ e.stopPropagation(); speak(w[0].replace(/smth/,"something")); });
+        en.appendChild(sb);
+      }
+      d.appendChild(en);
+      d.appendChild(el("span","tr", w[1])); d.appendChild(el("span","df", w[2])); d.appendChild(el("span","ex", w[3]));
+      d.appendChild(el("span","rux", w[4])); d.appendChild(el("span","tap","tap for Russian"));
+      function flip(){ d.classList.toggle("flip"); }
+      d.addEventListener("click", flip);
+      d.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); } });
+      cbox.appendChild(d);
+    });
+  })();
+  (function(){
+    var clock = document.getElementById("clock"), st = document.getElementById("tStat"), t = null;
+    function show(n){ clock.textContent = Math.floor(n/60) + ":" + ("0" + (n%60)).slice(-2); }
+    function stop(){ if(t){ clearInterval(t); t = null; } }
+    function run(sec, label, done){
+      stop(); clock.classList.remove("end"); var n = sec; show(n); st.textContent = label;
+      t = setInterval(function(){ n--; show(n); if(n <= 0){ stop(); clock.classList.add("end"); st.textContent = done; } }, 1000);
+    }
+    document.getElementById("tPrep").addEventListener("click", function(){ run(60, "Make notes…", "Time to speak!"); });
+    document.getElementById("tTalk").addEventListener("click", function(){ run(120, "Speaking…", "Thank you. Time's up."); });
+    document.getElementById("tStop").addEventListener("click", function(){ stop(); st.textContent = "Stopped"; });
+  })();
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  tabs.forEach(function(t){
+    t.addEventListener("click", function(){
+      tabs.forEach(function(o){ var on = o === t; o.setAttribute("aria-selected", on ? "true" : "false"); document.getElementById(o.dataset.p).hidden = !on; });
+      stopAll();
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  });
+  var subs = Array.prototype.slice.call(document.querySelectorAll(".sub"));
+  subs.forEach(function(s){
+    s.addEventListener("click", function(){
+      subs.forEach(function(o){ var on = o === s; o.setAttribute("aria-selected", on ? "true" : "false"); document.getElementById(o.dataset.s).hidden = !on; });
+    });
+  });
+})();
+</script>
+</body>
+</html>

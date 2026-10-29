@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Interactive English lesson for Alexey — 30 October 2026">
+<title>Alexey, 30 October</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F7F6;--sheet:#FFFFFF;--ink:#1F2D33;--soft:#5E6E73;
+  --blue:#0E7C7B;--blue-pale:#E6F3F1;--mark:#FFD166;--orange:#E9A23B;--sky:#3E7CC9;
+  --ok:#2E7D5B;--okbg:#E3F1EA;--bad:#B33A3A;--badbg:#F7E4E4;--line:#DCE7E5;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;--sans:"Manrope","Segoe UI",Arial,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{font-size:2.2rem;line-height:1.15;margin:0;font-weight:700}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0;scrollbar-width:thin}
+.tab{font-family:var(--sans);font-weight:600;font-size:.9rem;border:0;background:transparent;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}section.active{display:block}
+h2{font-size:1.55rem;line-height:1.25;margin:0 0 12px}h3{font-size:1.14rem;line-height:1.35;margin:0 0 6px}h4{font-family:var(--sans);font-size:.9rem;margin:0 0 4px;color:var(--blue)}
+.task{font-family:var(--sans);font-size:.93rem;line-height:1.55;color:var(--soft);margin:0 0 14px;max-width:70ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:7px;padding:18px 20px;margin-bottom:14px}
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.84rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:white}.part{display:none}.part.active{display:block}
+.btn{font-family:var(--sans);font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:5px 10px;cursor:pointer;margin:2px 4px 2px 0}.btn:hover{border-color:var(--blue)}.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}.btn:disabled{opacity:.55;cursor:default}
+.hidden{display:none!important}.en{color:var(--blue);font-style:italic}.ru{color:var(--soft);font-family:var(--sans);font-size:.88rem}.hint{font-family:var(--sans);font-size:.84rem;color:var(--soft)}
+.qlist{margin:0;padding-left:1.3em}.qlist li{margin:8px 0}.ttext{font-size:1.06rem;line-height:1.9}.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:5px;padding:12px 14px}.card:nth-child(3n+2){border-left-color:var(--orange)}.card:nth-child(3n){border-left-color:var(--sky)}.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}.card .tr{font-family:var(--sans);font-size:.83rem;color:var(--soft);margin:2px 0 6px}.card .def{font-size:.94rem;margin:0 0 6px}.card .ex2{font-size:.91rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+.dl{padding:13px 0;border-bottom:1px solid var(--line)}.dl:last-child{border-bottom:0}.dl p{margin:0}.fb{font-size:.94rem;min-height:0}.fb .ex{margin:5px 0}.fb.okc{color:var(--ok)}.fb.badc{color:var(--bad)}.score{font-family:var(--sans);font-weight:700;font-size:.92rem;margin:10px 0 0}.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}.copied{font-family:var(--sans);font-size:.84rem;color:var(--ok)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.opts.col{flex-direction:column}.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F5FAF9;border-radius:4px;padding:5px 12px;cursor:pointer;color:var(--ink)}.opt:hover{border-color:var(--blue)}.opt.okc{background:var(--okbg);border-color:var(--ok)}.opt.badc{background:var(--badbg);border-color:var(--bad)}
+input.gap{font-family:var(--serif);font-size:1rem;padding:4px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#F5FAF9;color:var(--ink);width:100%;max-width:100%}
+input.gap:focus{background:#fff}
+/* warm-up: flip cards */
+.flip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.flip{position:relative;height:158px;padding:0;border:0;background:transparent;cursor:pointer;perspective:900px;font-family:inherit}
+.flip-inner{position:relative;display:block;width:100%;height:100%;transition:transform .55s cubic-bezier(.3,.8,.3,1);transform-style:preserve-3d}
+.flip.open .flip-inner{transform:rotateY(180deg)}
+.flip-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:13px;border:1px solid var(--line);border-radius:9px;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.f-down{background:linear-gradient(140deg,#13918D 0%,var(--blue) 55%,#0A6463 100%);border-color:var(--blue);color:#fff;font-family:var(--sans);font-weight:700;font-size:2.5rem;line-height:1}
+.f-down small{display:block;font-size:.62rem;letter-spacing:.14em;font-weight:600;opacity:.75;margin-top:6px}
+.flip:hover .f-down{filter:brightness(1.08)}
+.f-up{background:var(--sheet);color:var(--ink);font-size:.93rem;line-height:1.45;transform:rotateY(180deg);border-left:4px solid var(--orange)}
+.flip:nth-child(3n+1) .f-up{border-left-color:var(--blue)}
+.flip:nth-child(3n) .f-up{border-left-color:var(--sky)}
+.wu-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 0}
+.wu-count{font-family:var(--sans);font-weight:700;font-size:.88rem;color:var(--blue);margin-left:auto}
+/* grammar theory */
+.theory-lead{border-left:4px solid var(--mark);background:#FFF6DC;padding:11px 14px;margin:0 0 14px}.theory-lead p{margin:0}
+.verb-groups{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.verb-group{background:#F7F8FD;border-radius:6px;padding:10px 12px;font-size:.95rem}.verb-group b{display:block;font-family:var(--sans);font-size:.79rem;color:#5652A7;margin-bottom:2px}.verb-group:nth-child(2) b{color:var(--blue)}.verb-group:nth-child(3) b{color:#A15E16}.verb-group:nth-child(4) b{color:#3E7CC9}
+.tablewrap{overflow-x:auto}table.grammar-table{border-collapse:collapse;width:100%;min-width:610px;font-size:.95rem}table.grammar-table th{font-family:var(--sans);font-size:.79rem;color:var(--soft);font-weight:600;text-align:left;padding:6px 8px;border-bottom:2px solid var(--line)}table.grammar-table td{vertical-align:top;padding:8px;border-bottom:1px solid var(--line)}table.grammar-table td.bad{color:var(--soft);font-style:italic}table.grammar-table .good{color:var(--ok)}
+.meanings td:first-child{font-weight:700;white-space:nowrap}.meanings .ru-col{color:var(--soft);font-style:italic}.meaning-note{font-family:var(--sans);font-size:.83rem;color:var(--soft);margin:12px 0 0}
+.oral-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.oral-card{border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:5px;padding:12px 14px;background:#fff}.oral-card:nth-child(2n){border-top-color:var(--orange)}.oral-card p{margin:3px 0 8px}.oral-card .clue{font-family:var(--sans);font-size:.86rem;color:var(--soft)}
+/* listening + speaking */
+.player{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.reading-text p{margin:0 0 12px}.reading-text p:last-child{margin-bottom:0}
+.cue{border:2px solid var(--blue);border-radius:7px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+@media(max-width:680px){.verb-groups{grid-template-columns:repeat(2,1fr)}.oral-grid{grid-template-columns:1fr}.flip-grid{grid-template-columns:repeat(2,1fr)}.flip{height:180px}.f-up{font-size:.88rem}}
+@media(max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.sheet{padding:15px}.verb-groups{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}.flip-inner{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Alexey, lesson 6</h1>
+  <p>Lesson of 30 October 2026</p>
+</header>
+<nav><div class="tabs" role="tablist" id="tabs" aria-label="Lesson sections"></div></nav>
+<main>
+
+<!-- ======== WARM-UP ======== -->
+<section data-title="Warm-up">
+  <h2>Nine hidden questions</h2>
+  <p class="task">Tap any card to open a question, then answer it out loud in two or three sentences.</p>
+  <div class="flip-grid" id="flipGrid"></div>
+  <div class="wu-bar">
+    <button class="btn solid" id="wuRandom">🎲 Pick one for me</button>
+    <button class="btn" id="wuReset">↺ Shuffle and start again</button>
+    <span class="wu-count" id="wuCount"></span>
+  </div>
+</section>
+
+<!-- ======== HOMEWORK CHECK ======== -->
+<section data-title="Homework check">
+  <h2>Homework check: translation</h2>
+  <p class="task">Read each sentence out loud in English. Then press "EN" to check your translation.</p>
+  <div class="sheet ttext" id="hw"></div>
+</section>
+
+<!-- ======== VOCABULARY ======== -->
+<section data-title="Vocabulary">
+  <h2>Vocabulary: time and mood</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part">
+    <p class="task">Press "Listen" to hear a word and "Tap for Russian" to see the translation. Make up your own sentence with each card.</p>
+    <div class="cards" id="cards"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Definition detective</h3>
+    <p class="task">Read the definition and type the word from this lesson. Spelling counts!</p>
+    <div id="v1"></div>
+    <p class="score" id="v1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Let's talk</h3>
+    <ol class="qlist">
+      <li>What do you usually do <b>in the evening</b> after work? Does it depend on your <b>mood</b>?</li>
+      <li>How do you usually <b>spend</b> your <b>weekend</b>? Do you prefer to stay at home or go <b>somewhere</b>?</li>
+    </ol>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Choose the right word</h3>
+    <p class="task">Read the sentence and choose the word that fits the gap.</p>
+    <div id="v2"></div>
+    <p class="score" id="v2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<!-- ======== GRAMMAR ======== -->
+<section data-title="Grammar">
+  <h2>Grammar: action or non-action?</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Reminder</button><button class="sub">Speak</button><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <!-- Reminder (Theory) -->
+  <div class="part">
+    <div class="theory-lead">
+      <p><b>Action verbs</b> show actions: <i>work, watch, cook, run</i>. They can be in the Present Continuous: <i>I'm watching a TV series now.</i></p>
+      <p style="margin-top:8px"><b>Non-action verbs</b> show feelings, thoughts and states. We usually use them only in the <b>Present Simple</b>, even when we talk about now.</p>
+    </div>
+    <div class="verb-groups">
+      <div class="verb-group"><b>Feelings</b>like, love, hate, want, need, prefer</div>
+      <div class="verb-group"><b>Thinking</b>know, understand, believe, remember, forget, mean</div>
+      <div class="verb-group"><b>Having</b>have (= own), own, belong</div>
+      <div class="verb-group"><b>Other</b>seem, cost, depend</div>
+    </div>
+    <h3>Verbs with two meanings</h3>
+    <p class="task">Some verbs can be action or non-action. It depends on the meaning.</p>
+    <div class="sheet tablewrap">
+      <table class="grammar-table meanings">
+        <thead><tr><th>Verb</th><th>Non-action → only Present Simple</th><th>Action → Present Continuous is OK</th></tr></thead>
+        <tbody>
+          <tr><td>have</td><td><span class="ru-col">иметь:</span> I <b>have</b> a car / a headache / a day off.</td><td><span class="ru-col">в выражениях:</span> have lunch, a shower, a meeting, fun → I'm <b>having</b> lunch.</td></tr>
+          <tr><td>think</td><td><span class="ru-col">считать, полагать:</span> I <b>think</b> it's a good idea.</td><td><span class="ru-col">думать, размышлять:</span> I'm <b>thinking</b> about my holiday.</td></tr>
+          <tr><td>taste</td><td><span class="ru-col">иметь вкус:</span> This soup <b>tastes</b> great.</td><td><span class="ru-col">пробовать на вкус:</span> The chef is <b>tasting</b> the soup.</td></tr>
+          <tr><td>smell</td><td><span class="ru-col">пахнуть:</span> The flowers <b>smell</b> nice.</td><td><span class="ru-col">нюхать:</span> Why are you <b>smelling</b> the milk?</td></tr>
+          <tr><td>weigh</td><td><span class="ru-col">весить:</span> My bag <b>weighs</b> 5 kilos.</td><td><span class="ru-col">взвешивать:</span> The shop assistant is <b>weighing</b> the apples.</td></tr>
+          <tr><td>look</td><td><span class="ru-col">выглядеть:</span> You <b>look</b> tired.</td><td><span class="ru-col">смотреть:</span> I'm <b>looking</b> at the photos.</td></tr>
+          <tr><td>see</td><td><span class="ru-col">видеть, понимать:</span> I <b>see</b> a bird. I <b>see</b> what you mean.</td><td><span class="ru-col">встречаться с кем-то:</span> She's <b>seeing</b> a client at the moment.</td></tr>
+        </tbody>
+      </table>
+      <p class="meaning-note"><b>feel</b> (чувствовать себя): both are OK — <i>I feel tired</i> = <i>I'm feeling tired</i>.</p>
+    </div>
+  </div>
+  <!-- Speak -->
+  <div class="part sheet">
+    <h3>Speak: react to the situation</h3>
+    <p class="task">Read the situation and say one sentence using the correct tense. Open the model only after you speak.</p>
+    <div class="oral-grid" id="oral"></div>
+  </div>
+  <!-- Exercise 1 -->
+  <div class="part sheet">
+    <h3>Exercise 1. Fill in the correct form</h3>
+    <p class="task">Type the correct form of the verb in brackets. Use Present Simple or Present Continuous.</p>
+    <div id="g1"></div>
+    <p class="score" id="g1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="g1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <!-- Exercise 2 -->
+  <div class="part sheet">
+    <h3>Exercise 2. Pick the right sentence</h3>
+    <p class="task">Read the situation. Then choose the sentence that is correct in this context.</p>
+    <div id="g2"></div>
+    <p class="score" id="g2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="g2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<!-- ======== LISTENING ======== -->
+<section data-title="Listening">
+  <h2>Listening: weekend plans</h2>
+  <div class="sheet">
+    <div class="player">
+      <button class="btn solid" id="playL">▶ Play the recording</button>
+      <button class="btn" id="pauseL">Pause</button>
+      <button class="btn" id="stopL">Stop</button>
+    </div>
+    <p class="hint" id="ttsNote" style="margin:8px 0 0"></p>
+    <button class="btn" id="showT" style="margin-top:8px">Show transcript</button>
+    <div id="transcript" class="hidden reading-text" style="margin:12px 0 0"></div>
+  </div>
+  <div class="subnav" role="tablist">
+    <button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Answer the questions</h3>
+    <p class="task">Listen and answer in full sentences. Press "Answer" to compare.</p>
+    <div id="lq"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Complete the notes <span style="font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.06em;color:#fff;background:var(--blue);border-radius:999px;padding:3px 9px;vertical-align:middle">IELTS-STYLE</span></h3>
+    <p class="task">This is a <b>note completion</b> task from the IELTS Listening test. Listen again and write <b>one or two words</b> in each gap. In the real exam, spelling counts, so check your words carefully.</p>
+    <div id="l2"></div>
+    <p class="score" id="l2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="l2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<!-- ======== SPEAKING ======== -->
+<section data-title="Speaking">
+  <h2>Speaking</h2>
+  <div class="cue">
+    <p class="topic">Describe a person you know who has a busy life at the moment.</p>
+    <p style="margin:0">You should say:</p>
+    <ul>
+      <li>who this person is and how you know them</li>
+      <li>what they usually do in the evening and at the weekend</li>
+      <li>what they are working on at the moment</li>
+      <li>how much time they have for themselves</li>
+    </ul>
+    <p style="margin:8px 0 0">and explain what you think about their life now.</p>
+  </div>
+  <div class="sheet">
+    <p class="task" style="margin-bottom:6px">This is Part 2 of the IELTS Speaking test. Make short notes for one minute, then speak for one to two minutes. Use the <b>Present Simple</b> for their usual routine and the <b>Present Continuous</b> for what is happening now.</p>
+    <button class="btn solid" id="tPrep">Preparation · 1 min</button><button class="btn solid" id="tTalk">Speech · 2 min</button><button class="btn" id="tStop">■ Stop</button>
+    <div class="clock" id="clock">1:00</div><div class="phase" id="phase"></div>
+  </div>
+  <div class="sheet">
+    <h3>Useful phrases</h3>
+    <ul class="qlist">
+      <li>I'd like to talk about my … / The person I want to describe is …</li>
+      <li>He usually has dinner at … and in the evening he …</li>
+      <li>At the weekend she normally …</li>
+      <li>At the moment he's working on … / These days she's spending a lot of time …</li>
+      <li>He doesn't have much time for himself, so his mood …</li>
+      <li>I think he needs some space to relax.</li>
+    </ul>
+  </div>
+  <div class="sheet">
+    <h3>If we have time</h3>
+    <ol class="qlist"><li>Do you think your mood depends on how much time you have for yourself?</li><li>Do you prefer to spend your weekends alone or with other people?</li></ol>
+  </div>
+</section>
+
+<!-- ======== TRANSLATION ======== -->
+<section data-title="Translation">
+  <h2>Translation</h2>
+  <p class="task">Translate the text into English out loud, sentence by sentence. Press "EN" to check yourself.</p>
+  <div class="sheet ttext" id="ttext"></div>
+</section>
+
+</main>
+
+<script>
+/* ---------- core helpers ---------- */
+let uid=0;const nid=()=>"x"+(++uid);
+const norm=s=>String(s).toLowerCase().replace(/[''`]/g,"'").replace(/[.!?,;:"""-]/g,"").replace(/\s+/g," ").trim();
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const states={};
+const explain=t=>`<p class="ex">${t}</p>`;
+const mark=s=>s?`${s.v}${s.v==="(answer shown)"?"":s.ok?" ✓":" ✗"}`:"—";
+function scoreLine(id,scoreId,total){const vals=Object.values(states[id]||{});const el=document.getElementById(scoreId);if(el)el.textContent=`Correct on the first try: ${vals.filter(x=>x.ok).length} of ${total}`+(vals.length<total?` (${total-vals.length} left)`:"");}
+
+/* ---------- tabs ---------- */
+const sections=[...document.querySelectorAll("main > section")],tabs=document.getElementById("tabs");
+sections.forEach((s,i)=>{const b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=s.dataset.title;b.setAttribute("aria-selected",i===0);if(i===0)s.classList.add("active");b.onclick=()=>{stopSpeech();sections.forEach(x=>x.classList.remove("active"));s.classList.add("active");[...tabs.children].forEach(x=>x.setAttribute("aria-selected","false"));b.setAttribute("aria-selected","true");window.scrollTo(0,0)};tabs.appendChild(b)});
+sections.forEach(s=>{const subs=[...s.querySelectorAll(".sub")],parts=[...s.querySelectorAll(".part")];if(!subs.length)return;const show=k=>{parts.forEach((p,i)=>p.classList.toggle("active",i===k));subs.forEach((b,i)=>b.setAttribute("aria-selected",i===k));};subs.forEach((b,k)=>b.onclick=()=>show(k));show(0)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-toggle]");if(!b)return;const el=document.getElementById(b.dataset.toggle);if(el)el.classList.toggle("hidden")});
+
+/* ---------- speech ---------- */
+const hasTTS="speechSynthesis" in window;let voice=null;
+function pickVoice(){try{const voices=speechSynthesis.getVoices();voice=voices.find(v=>v.lang==="en-GB")||voices.find(v=>/^en/i.test(v.lang))||null}catch(e){}}
+if(hasTTS){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+function stopSpeech(){if(hasTTS)speechSynthesis.cancel()}
+function say(parts,rate=.9){if(!hasTTS)return;stopSpeech();parts.forEach(text=>{const u=new SpeechSynthesisUtterance(text);u.lang="en-GB";if(voice)u.voice=voice;u.rate=rate;speechSynthesis.speak(u)})}
+
+/* ---------- buildGaps ---------- */
+function buildGaps(boxId,data){
+ states[boxId]={};
+ const box=document.getElementById(boxId);
+ box.innerHTML=data.map((g,i)=>{
+  const inp=`<input class="gap" data-i="${i}" aria-label="Answer ${i+1}" autocomplete="off" spellcheck="false"${g.full?' style="width:100%;margin-top:6px"':""}>`;
+  const body=g.full?`${g.q}<br>${inp}`:g.q.replace("___",inp);
+  return `<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${body}</p><div class="fb"></div><button class="btn chk">Check</button><button class="btn ans">Answer</button></div>`;}).join("");
+ [...box.querySelectorAll(".dl")].forEach(row=>{
+  const i=+row.dataset.i,g=data[i],inp=row.querySelector("input"),fb=row.querySelector(".fb");
+  const check=()=>{const v=norm(inp.value);if(!v)return;const ok=g.a.map(norm).includes(v);
+   if(states[boxId][i]===undefined){states[boxId][i]={v:inp.value.trim(),ok};scoreLine(boxId,boxId+"score",data.length);}
+   inp.classList.remove("okc","badc");
+   if(ok){inp.classList.add("okc");fb.className="fb okc";fb.innerHTML="<p class=\"ex\">Correct.</p>";}
+   else{inp.classList.add("badc");fb.className="fb badc";fb.innerHTML=explain(g.en);}};
+  row.querySelector(".chk").onclick=check;inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+  row.querySelector(".ans").onclick=e=>{if(states[boxId][i]===undefined){states[boxId][i]={v:"(answer shown)",ok:false};scoreLine(boxId,boxId+"score",data.length);}
+   inp.value=g.a[0];inp.classList.remove("badc");inp.classList.add("okc");fb.className="fb okc";fb.innerHTML=explain(g.en);e.target.classList.add("hidden");};
+ });
+}
+
+/* ---------- buildChoice ---------- */
+function buildChoice(boxId,data,scoreId){states[boxId]={};const box=document.getElementById(boxId);box.innerHTML=data.map((g,i)=>`<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${g.q}</p><div class="opts ${g.col?"col":""}">${g.o.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div><div class="fb"></div><button class="btn ans">Answer</button></div>`).join("");[...box.querySelectorAll(".dl")].forEach(row=>{const i=+row.dataset.i,g=data[i],btns=[...row.querySelectorAll(".opt")],fb=row.querySelector(".fb");const choose=(k,shown=false)=>{const ok=k===g.c;if(states[boxId][i]===undefined){states[boxId][i]={v:shown?"(answer shown)":g.o[k],ok:ok&&!shown};scoreLine(boxId,scoreId,data.length)}btns.forEach(x=>x.classList.remove("okc","badc"));btns[k].classList.add(ok?"okc":"badc");if(ok){fb.className="fb okc";fb.innerHTML=shown?explain(g.en):"<p class=\"ex\">Correct.</p>"}else{fb.className="fb badc";fb.innerHTML=explain(g.en)}};btns.forEach(b=>b.onclick=()=>choose(+b.dataset.k));row.querySelector(".ans").onclick=e=>{choose(g.c,true);e.target.classList.add("hidden")}})}
+
+/* ---------- enList ---------- */
+const enList=(id,arr)=>{document.getElementById(id).innerHTML=arr.map(([ru,en])=>{const k=nid();return `<span>${ru}</span> <button class="btn" data-toggle="${k}">EN</button><span id="${k}" class="en enout hidden">${en}</span>`}).join("")};
+
+/* ======== WARM-UP: nine hidden questions ======== */
+const wuQuestions=[
+  "How do you usually spend your weekend?",
+  "What are you working on at the moment? Tell me about it.",
+  "What time do you have dinner? Who do you usually have dinner with?",
+  "How much time do you spend getting to work every day?",
+  "Is your mood better in the morning or in the evening? Why?",
+  "Are you reading or watching anything at the moment?",
+  "Would you like to go to Thailand one day? Why?",
+  "Is there enough space in your flat? What would you change?",
+  "Tell me about something you want to do again this year."
+];
+const flipGrid=document.getElementById("flipGrid"),wuCountEl=document.getElementById("wuCount");
+let wuOrder=[];
+function wuTally(){
+  const open=flipGrid.querySelectorAll(".flip.open").length;
+  wuCountEl.textContent=`Opened: ${open} of ${wuQuestions.length}`;
+}
+function wuBuild(){
+  wuOrder=shuffle(wuQuestions.map((_,i)=>i));
+  flipGrid.innerHTML=wuOrder.map((qi,pos)=>`<button class="flip" data-pos="${pos}" aria-label="Question card ${pos+1}"><span class="flip-inner"><span class="flip-face f-down">?<small>TAP ME</small></span><span class="flip-face f-up">${wuQuestions[qi]}</span></span></button>`).join("");
+  wuTally();
+}
+flipGrid.addEventListener("click",e=>{
+  const b=e.target.closest(".flip");if(!b||b.classList.contains("open"))return;
+  b.classList.add("open");wuTally();
+});
+document.getElementById("wuRandom").onclick=()=>{
+  const closed=[...flipGrid.querySelectorAll(".flip:not(.open)")];
+  if(!closed.length){wuCountEl.textContent="All nine are open. Shuffle to start again.";return;}
+  const pick=closed[Math.floor(Math.random()*closed.length)];
+  pick.classList.add("open");wuTally();
+};
+document.getElementById("wuReset").onclick=wuBuild;
+wuBuild();
+
+/* ======== HOMEWORK CHECK ======== */
+enList("hw",[
+  ["Илья и его жена на этой неделе в отпуске в Таиланде.","Ilya and his wife are on holiday in Thailand this week."],
+  ["Они остановились в небольшом отеле у моря и обычно просыпаются около семи.","They are staying in a small hotel by the sea, and they usually wake up around seven."],
+  ["Сегодня их приложение не работает, поэтому они спрашивают администратора, как добраться до старого города.","Today their app isn't working, so they are asking the receptionist how to get to the old town."],
+  ["Администратор говорит, что туда ехать на машине около сорока минут.","The receptionist says it takes about forty minutes to get there by car."],
+  ["В старом городе Илья встречается с субподрядчиком, который работает над новым отелем.","In the old town, Ilya is meeting a subcontractor who is working on a new hotel."],
+  ["Субподрядчик показывает ему несколько фотографий и рассказывает о других отелях в этом районе.","The subcontractor is showing him some photos and telling him about other hotels in the area."],
+  ["Жена Ильи всё ещё на соседнем рынке, поэтому он ждёт её в кафе на другой стороне улицы.","Ilya's wife is still at the nearby market, so he is waiting for her at a café across the street."]
+]);
+
+/* ======== VOCABULARY ======== */
+const vocab=[
+  ["again","əˈɡen","one more time; once more","Can you say that again, please?"],
+  ["to have dinner","hæv ˈdɪnə(r)","to eat the main evening meal","We usually have dinner at seven."],
+  ["in the evening","ɪn ðə ˈiːvnɪŋ","during the time between afternoon and night","I go to the gym in the evening."],
+  ["weekend","ˌwiːkˈend","Saturday and Sunday","What do you usually do at the weekend?"],
+  ["to spend","spend","to use time doing something","I spend two hours at the gym every day."],
+  ["something","ˈsʌmθɪŋ","a thing that is not known or not named","I want to tell you something."],
+  ["some","sʌm","an amount that is not exact","We need some time to finish."],
+  ["space","speɪs","an area that is empty or available","There is not much space in this room."],
+  ["Thailand","ˈtaɪlænd","a country in South-East Asia","Have you ever been to Thailand?"],
+  ["how much time","haʊ mʌtʃ taɪm","used to ask about the amount of time","How much time do you spend on this?"],
+  ["to know","nəʊ","to have information in your mind","Do you know his phone number?"],
+  ["subcontractor","ˌsʌbkənˈtræktə(r)","a person or company hired to do part of another company's work","The subcontractor is finishing the roof this week."],
+  ["mood","muːd","the way you feel at a particular time","She is in a good mood today."]
+];
+const rus=["снова, опять","ужинать","вечером","выходные","проводить (время); тратить","что-то","некоторый, немного","пространство, место","Таиланд","сколько времени","знать","субподрядчик","настроение"];
+document.getElementById("cards").innerHTML=vocab.map(([w,pron,def,example],i)=>{const id=nid();return `<div class="card"><div class="w">${w}</div><div class="tr">/${pron}/</div><p class="def">${def}</p><p class="ex2">${example}</p><button class="btn" data-say="${i}">▶ Listen</button><button class="btn" data-toggle="${id}">Tap for Russian</button><span id="${id}" class="ru hidden"> ${rus[i]}</span></div>`}).join("");
+document.getElementById("cards").addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(b)say([vocab[+b.dataset.say][0]])});
+
+/* vocab Ex1 — definition detective */
+buildGaps("v1",[
+  {full:1,q:"Once more, one more time.",a:["again"],en:"<i>Again</i> means one more time."},
+  {full:1,q:"Saturday and Sunday.",a:["weekend","the weekend","a weekend"],en:"<i>Weekend</i> is Saturday and Sunday."},
+  {full:1,q:"To use time doing an activity.",a:["to spend","spend"],en:"<i>Spend</i> means to use time on something."},
+  {full:1,q:"The way someone feels right now.",a:["mood","a mood"],en:"<i>Mood</i> is how you feel at a particular time."},
+  {full:1,q:"An area that is empty or available.",a:["space"],en:"<i>Space</i> means an area with room."},
+  {full:1,q:"To have information in your mind.",a:["to know","know"],en:"<i>Know</i> means to have information."},
+  {full:1,q:"A person or company hired to do part of another company's work.",a:["subcontractor","a subcontractor"],en:"A <i>subcontractor</i> does part of the work for the main company."},
+  {full:1,q:"A thing you do not name exactly.",a:["something"],en:"<i>Something</i> is an unspecified thing."}
+]);
+
+/* vocab Ex2 — choose the right word */
+buildChoice("v2",[
+  {q:"We usually ___ at seven o'clock.",o:["have dinner","have mood","have space"],c:0,en:"<i>Have dinner</i> means eat the main evening meal."},
+  {q:"I like jogging ___. It's cooler than in the afternoon.",o:["in the evening","again","how much time"],c:0,en:"<i>In the evening</i> is the time between afternoon and night."},
+  {q:"___ do you need to get to work?",o:["How much time","Something","Some"],c:0,en:"We say <i>how much time</i> to ask about the amount of time."},
+  {q:"I've never been to ___. I hear the beaches are beautiful.",o:["mood","Thailand","subcontractor"],c:1,en:"<i>Thailand</i> is a country in South-East Asia."},
+  {q:"Can we try ___? I didn't understand the first time.",o:["space","again","some"],c:1,en:"<i>Again</i> means one more time."},
+  {q:"We ___ every weekend in the countryside.",o:["know","spend","have dinner"],c:1,en:"<i>Spend time</i> means to use time doing something."},
+  {q:"There isn't enough ___ in this office for another desk.",o:["mood","weekend","space"],c:2,en:"<i>Space</i> means an area that is available."},
+  {q:"He doesn't ___ anything about the new schedule yet.",o:["know","spend","have dinner"],c:0,en:"<i>Know</i> means to have information in your mind."}
+],"v2score");
+
+/* ======== GRAMMAR ======== */
+/* speak: react to the situation */
+const oral=[
+  ["Your friend is eating lunch right now. Tell me what he is doing.","having lunch now","He's having lunch right now."],
+  ["You believe this new café is good. Share your opinion.","opinion about the café","I think this café is good."],
+  ["Describe the pleasant smell of flowers in the room.","the flowers","The flowers smell lovely."],
+  ["You are considering spending the weekend in Thailand.","a possible trip","I'm thinking about spending the weekend in Thailand."],
+  ["Tell me the weight of this bag: 10 kilos.","the bag's weight","This bag weighs ten kilos."],
+  ["Your colleague looks tired today. Say it.","your colleague","You look tired today."]
+];
+document.getElementById("oral").innerHTML=oral.map(([sit,clue,model])=>{const id=nid();return `<div class="oral-card"><p>${sit}</p><p class="clue">Key: ${clue}</p><button class="btn" data-toggle="${id}">Show model</button><span id="${id}" class="en hidden">${model}</span></div>`}).join("");
+
+/* grammar Ex1: fill in the correct form */
+buildGaps("g1",[
+  {q:"The soup ___ (taste) delicious. Don't change anything!",a:["tastes"],en:"<i>Taste</i> = has a flavour → Present Simple: <i>tastes</i>."},
+  {q:"Be quiet! The chef ___ (taste) the new dish right now.",a:["is tasting"],en:"The chef is doing an action → Present Continuous: <i>is tasting</i>."},
+  {q:"I ___ (not/know) where the nearest café is.",a:["don't know","do not know"],en:"<i>Know</i> is a non-action verb → Present Simple: <i>don't know</i>."},
+  {q:"She ___ (have) dinner with the subcontractor at the moment.",a:["is having"],en:"<i>Have dinner</i> = an activity → Present Continuous: <i>is having</i>."},
+  {q:"This flat ___ (cost) too much for my budget.",a:["costs"],en:"<i>Cost</i> is a non-action verb → Present Simple: <i>costs</i>."},
+  {q:"We ___ (think) about spending the weekend in Thailand.",a:["are thinking","'re thinking"],en:"<i>Think about</i> = consider → Present Continuous: <i>are thinking</i>."},
+  {q:"I ___ (think) your mood depends on the weather.",a:["think"],en:"<i>Think</i> = believe → Present Simple: <i>think</i>."},
+  {q:"Look! The foreman ___ (weigh) the materials again.",a:["is weighing"],en:"The foreman is doing the action → Present Continuous: <i>is weighing</i>."}
+]);
+
+/* grammar Ex2: pick the right sentence */
+buildChoice("g2",[
+  {col:1,q:"<i>Your friend is the owner of a large flat in the city centre.</i>",o:["He has a big flat in the city centre.","He is having a big flat in the city centre."],c:0,en:"Here <i>have</i> means <b>own</b> → non-action, so Present Simple: <i>He has a big flat</i>."},
+  {col:1,q:"<i>You call your colleague at seven. She is at the table, eating.</i>",o:["She has dinner at the moment.","She is having dinner at the moment."],c:1,en:"<i>Have dinner</i> is an activity → Present Continuous: <i>She is having dinner</i>."},
+  {col:1,q:"<i>In your opinion, the subcontractor's price is too high.</i>",o:["I think the price is too high.","I am thinking the price is too high."],c:0,en:"<i>Think</i> = believe, have an opinion → non-action, so Present Simple: <i>I think</i>."},
+  {col:1,q:"<i>You haven't decided yet. You are considering a trip to Thailand.</i>",o:["I think about a trip to Thailand.","I'm thinking about a trip to Thailand."],c:1,en:"<i>Think about</i> = consider, turn over in your mind → an action, so Present Continuous: <i>I'm thinking about</i>."},
+  {col:1,q:"<i>Your mum is cooking. The whole kitchen has a wonderful aroma.</i>",o:["Something smells delicious.","Something is smelling delicious."],c:0,en:"<i>Smell</i> = have a smell → non-action, so Present Simple: <i>Something smells delicious</i>."},
+  {col:1,q:"<i>The chef puts his nose over the soup to check it before serving.</i>",o:["The chef smells the soup.","The chef is smelling the soup."],c:1,en:"Here <i>smell</i> = use your nose to check something → an action, so Present Continuous: <i>is smelling</i>."},
+  {col:1,q:"<i>You put your bag on the scales. The number is eight kilos.</i>",o:["My bag weighs eight kilos.","My bag is weighing eight kilos."],c:0,en:"<i>Weigh</i> = have a weight → non-action, so Present Simple: <i>My bag weighs</i>."},
+  {col:1,q:"<i>Your colleague had a very long day and you can see it on his face.</i>",o:["You look tired today.","You are looking tired today."],c:0,en:"<i>Look</i> = appear, seem → non-action, so Present Simple: <i>You look tired</i>."}
+],"g2score");
+
+/* ======== LISTENING ======== */
+const story=[
+  "Nadia: Hi Viktor! What are you doing right now?",
+  "Viktor: I'm having dinner with my family. We usually have dinner around seven in the evening.",
+  "Nadia: Oh, sorry! I just want to ask about the weekend.",
+  "Viktor: No problem. What's up?",
+  "Nadia: Do you know how much time we need to finish the report for the subcontractor?",
+  "Viktor: I think we need about two more days. Why?",
+  "Nadia: I'm thinking about spending the weekend somewhere nice. I need some space to relax.",
+  "Viktor: That sounds great! Where are you thinking?",
+  "Nadia: Something like Thailand would be perfect, but I don't have enough time. Maybe a park or something closer.",
+  "Viktor: I know a nice place outside the city. My mood always gets better when I go there.",
+  "Nadia: Tell me again — what's it called?",
+  "Viktor: Green Valley. You should try it. There's a lot of space, fresh air, and it only takes about forty minutes to get there.",
+  "Nadia: Thanks, Viktor! I'll look at it in the evening. Enjoy your dinner!"
+];
+document.getElementById("transcript").innerHTML=story.map(p=>`<p>${p}</p>`).join("");
+const ttsNote=document.getElementById("ttsNote");
+if(!hasTTS)ttsNote.textContent="This browser can't read the text aloud. Open the page in Chrome, Edge or Safari.";
+const chunks=story.map(s=>s.replace(/^(Nadia|Viktor): /,"")).join(" ").match(/[^.!?]+[.!?]+\s*/g).map(s=>s.trim());
+document.getElementById("playL").onclick=()=>{if(!hasTTS)return;if(!voice)pickVoice();
+  if(!voice&&speechSynthesis.getVoices().length)ttsNote.textContent="This browser has no English voice. Open the page in Chrome, Edge or Safari.";
+  say(chunks,0.85);document.getElementById("pauseL").textContent="Pause";};
+document.getElementById("pauseL").onclick=e=>{if(!hasTTS)return;
+  if(speechSynthesis.paused){speechSynthesis.resume();e.target.textContent="Pause";}else if(speechSynthesis.speaking){speechSynthesis.pause();e.target.textContent="Resume";}};
+document.getElementById("stopL").onclick=()=>{stopSpeech();document.getElementById("pauseL").textContent="Pause";};
+document.getElementById("showT").onclick=e=>{const t=document.getElementById("transcript");t.classList.toggle("hidden");e.target.textContent=t.classList.contains("hidden")?"Show transcript":"Hide transcript";};
+
+/* listening questions */
+const lq=[
+  ["What is Viktor doing when Nadia calls?","He is having dinner with his family."],
+  ["How much time do they need to finish the report?","They need about two more days."],
+  ["Why does Nadia want to go somewhere at the weekend?","Because she needs some space to relax."],
+  ["What place does Viktor recommend?","He recommends Green Valley, a place outside the city."]
+];
+document.getElementById("lq").innerHTML=lq.map(([q,a],i)=>{const id=nid();return `<div class="dl"><p><b>${i+1}.</b> ${q}</p><button class="btn" data-toggle="${id}">Answer</button><span id="${id}" class="en hidden"> ${a}</span></div>`}).join("");
+
+/* listening Ex2 — complete the notes */
+buildGaps("l2",[
+  {q:"Viktor and his family usually have dinner at about ___ in the evening.",a:["seven","7"],en:"Viktor says: <i>around seven in the evening</i>."},
+  {q:"They need about ___ more days to finish the report.",a:["two","2"],en:"Viktor says: <i>about two more days</i>."},
+  {q:"Nadia would like somewhere like Thailand but doesn't have enough ___.",a:["time"],en:"Nadia says: <i>I don't have enough time.</i>"},
+  {q:"Viktor's ___ always gets better when he goes to Green Valley.",a:["mood"],en:"Viktor says: <i>My mood always gets better.</i>"},
+  {q:"It takes about ___ minutes to get to Green Valley.",a:["forty","40"],en:"Viktor says: <i>about forty minutes to get there</i>."}
+]);
+
+/* ======== SPEAKING TIMER ======== */
+let timerId=null;const clock=document.getElementById("clock"),phase=document.getElementById("phase");
+const fmt=n=>`${Math.floor(n/60)}:${String(n%60).padStart(2,"0")}`;
+function stopTimer(){clearInterval(timerId);timerId=null}
+function runTimer(seconds,label,done){stopTimer();let n=seconds;clock.textContent=fmt(n);phase.textContent=label;timerId=setInterval(()=>{n--;clock.textContent=fmt(n);if(n<=0){stopTimer();phase.textContent=done}},1000)}
+document.getElementById("tPrep").onclick=()=>runTimer(60,"Preparation: make notes…","Time to speak!");
+document.getElementById("tTalk").onclick=()=>runTimer(120,"Speaking…","Time's up. Thank you!");
+document.getElementById("tStop").onclick=()=>{stopTimer();phase.textContent="Stopped"};
+
+/* ======== TRANSLATION ======== */
+enList("ttext",[
+  ["Вадим обычно ужинает дома вечером, но сегодня он ужинает в кафе с коллегой.","Vadim usually has dinner at home in the evening, but today he is having dinner at a café with a colleague."],
+  ["Они проводят там немного времени и снова говорят об одной и той же проблеме: субподрядчик не заканчивает работу.","They are spending some time there and they are talking about the same problem again: the subcontractor isn't finishing the work."],
+  ["Коллега не знает, сколько времени нужно, чтобы закончить этот этаж.","The colleague doesn't know how much time they need to finish this floor."],
+  ["Что-то вкусно пахнет — официант несёт им что-то горячее.","Something smells delicious — the waiter is bringing them something hot."],
+  ["В кафе не очень много места, но у Вадима сейчас хорошее настроение.","There isn't much space in the café, but Vadim is in a good mood now."],
+  ["Он думает о выходных: он и его жена хотят поехать в Таиланд.","He is thinking about the weekend: he and his wife want to go to Thailand."],
+  ["Вадим знает, что ему нужно немного отдохнуть, потому что он работает каждые выходные.","Vadim knows that he needs some rest, because he works every weekend."]
+]);
+
+/* ======== COPY ======== */
+function copyText(text,button){const done=()=>{const s=button.nextElementSibling;s.textContent="Copied";setTimeout(()=>s.textContent="",1800)};const fallback=()=>{const area=document.createElement("textarea");area.value=text;document.body.appendChild(area);area.select();try{document.execCommand("copy");done()}catch(e){}area.remove()};if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).then(done,fallback);else fallback()}
+const titles={v1:"Vocabulary — Exercise 1 (Definition detective)",v2:"Vocabulary — Exercise 2 (Choose the right word)",g1:"Grammar — Exercise 1 (Fill in the correct form)",g2:"Grammar — Exercise 2 (Pick the right sentence)",l2:"Listening — Exercise 2 (Complete the notes)"};
+document.addEventListener("click",e=>{const b=e.target.closest("[data-copy]");if(!b)return;const key=b.dataset.copy;
+  const n=document.querySelectorAll(`#${key} > .dl`).length;
+  const lines=[...Array(n).keys()].map(i=>`${i+1}. ${mark(states[key]?.[i])}`);
+  copyText(["Alexey, 30 October — "+(titles[key]||key),...lines].join("\n"),b);
+});
+</script>
+</body>
+</html>
