@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vitaliy: exam prep, vocabulary and grammar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Onest:wght@400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{
+  --bg:#ECEEF2; --paper:#FFFFFF; --ink:#1D2230; --muted:#5E6677; --line:#D6DAE1;
+  --v:#0E6B5C; --v-soft:#E0EFEB; --g:#3A4AA6; --g-soft:#E6E9F7;
+  --ok:#1F8A4C; --ok-soft:#E2F3E8; --bad:#B3261E; --bad-soft:#FBE8E6; --key:#FFF0B3;
+}
+body[data-block="v"]{--acc:var(--v);--acc-soft:var(--v-soft)}
+body[data-block="g"]{--acc:var(--g);--acc-soft:var(--g-soft)}
+*{box-sizing:border-box}
+html,body{margin:0}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{font-family:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+
+.top{max-width:1000px;margin:0 auto;padding:28px 20px 14px;display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
+.top h1{font-family:'Literata',Georgia,serif;font-weight:600;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.12;margin:0}
+.top p{margin:6px 0 0;color:var(--muted)}
+.blocks{display:flex;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:4px;gap:4px}
+.blocks button{border:0;background:none;padding:8px 18px;border-radius:10px;text-align:left;font-weight:600;color:var(--muted)}
+.blocks button small{display:block;font-weight:400;font-size:.78rem}
+.blocks button[aria-pressed="true"]{background:var(--acc);color:#fff}
+
+.tabs{max-width:1000px;margin:0 auto;padding:4px 20px 2px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+.tab{white-space:nowrap;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 14px 6px 6px;font-size:.92rem}
+.tab .n{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--acc-soft);color:var(--acc);font-size:.8rem;font-weight:700;margin-right:8px}
+.tab[aria-selected="true"]{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc);font-weight:600}
+
+.ex{max-width:1000px;margin:14px auto 48px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px 30px}
+.ex-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ex-head h2{font-family:'Literata',Georgia,serif;font-weight:600;font-size:1.65rem;margin:0}
+.time{color:var(--muted);font-size:.9rem;white-space:nowrap}
+.instr{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border-radius:10px;padding:10px 14px;margin-top:12px}
+.instr p{margin:0;flex:1}
+.rus{flex:none;font-size:.72rem;font-weight:700;border:1px solid var(--muted);border-radius:6px;background:var(--paper);padding:2px 8px;color:var(--muted)}
+
+.parts{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:18px 0 0}
+.part{min-width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--paper);font-weight:600;font-size:.9rem;padding:0 8px}
+.part.done{border-color:var(--acc);color:var(--acc)}
+.part[aria-current="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
+.set-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:14px}
+.set-title{font-family:'Literata',Georgia,serif;font-size:1.25rem;font-weight:600;margin:0}
+.score{font-size:.9rem;color:var(--muted)}
+.score b{color:var(--ink)}
+.linkbtn{border:0;background:none;color:var(--muted);text-decoration:underline;font-size:.85rem;padding:0 0 0 10px}
+
+.box{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px;border:1.5px dashed var(--acc);border-radius:12px;margin:12px 0 4px}
+.chip{font-size:.9rem;padding:2px 10px;background:var(--acc-soft);border-radius:999px}
+
+ol.items{list-style:none;counter-reset:q;padding:0;margin:8px 0 0}
+ol.items li{counter-increment:q;display:grid;grid-template-columns:2.1em 1fr auto;gap:6px 14px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
+ol.items li:first-child{border-top:0}
+ol.items li::before{content:counter(q);color:var(--muted);font-variant-numeric:tabular-nums;padding-top:5px;font-size:.9rem}
+.txt{font-family:'Literata',Georgia,serif;font-size:1.06rem;line-height:1.75}
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:96px;padding-top:2px}
+.reveal{grid-column:2 / -1;font-size:.93rem}
+.reveal:empty{display:none}
+
+select,input[type="text"]{font-family:'Onest',system-ui,sans-serif;font-size:.95rem;color:var(--ink);border:0;border-bottom:2px solid var(--acc);background:var(--acc-soft);padding:2px 6px;border-radius:5px 5px 0 0;max-width:100%}
+select{padding-right:2px}
+textarea{display:block;width:100%;font-family:'Onest',system-ui,sans-serif;font-size:.95rem;border:1px solid var(--line);border-radius:8px;padding:6px 10px;margin-top:6px;resize:vertical}
+.ok{border-color:var(--ok)!important;background:var(--ok-soft)!important}
+.bad{border-color:var(--bad)!important;background:var(--bad-soft)!important}
+.key{background:var(--key);padding:1px 7px;border-radius:5px;font-family:'Onest',system-ui,sans-serif;font-size:.9rem;line-height:1.5;display:inline-block}
+.tick{color:var(--ok);font-weight:700}
+.cross{color:var(--bad);font-weight:700}
+.ans{font-size:.84rem;font-weight:600;border:1px solid var(--acc);color:var(--acc);background:var(--paper);border-radius:8px;padding:4px 12px}
+.ans:hover{background:var(--acc-soft)}
+.opts{display:block;font-family:'Onest',system-ui,sans-serif}
+.opt{font-size:.92rem;border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:3px 12px;margin:6px 6px 0 0}
+.opt.chosen{border-color:var(--acc);background:var(--acc-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft);text-decoration:line-through}
+.blank{display:inline-block;width:3.6em;border-bottom:2px solid var(--ink);margin:0 3px;vertical-align:-3px}
+.def{color:var(--ink)}
+.orig{display:block}
+.kw{display:inline-block;font-family:'Onest',system-ui,sans-serif;font-weight:700;letter-spacing:.05em;font-size:.8rem;background:var(--ink);color:#fff;padding:1px 9px;border-radius:5px;margin:6px 0 2px}
+.stem{display:block}
+.ruq{display:block}
+.note{color:var(--muted)}
+.fixrow{display:block;margin-top:8px;font-family:'Onest',system-ui,sans-serif;font-size:.95rem;color:var(--muted)}
+.jumble{display:block;font-style:italic;color:var(--muted)}
+input.wide{width:100%;margin-top:8px;font-family:'Onest',system-ui,sans-serif}
+.why{display:block;margin-top:6px;padding:6px 10px;border-left:3px solid var(--bad);background:#FAFAFB;border-radius:0 6px 6px 0;line-height:1.5}
+.reveal .key + .why{margin-top:6px}
+
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.nav button{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 16px;font-weight:600}
+.nav button.primary{background:var(--acc);border-color:var(--acc);color:#fff}
+.nav button[disabled]{opacity:.35;cursor:default}
+
+@media (max-width:640px){
+  .top{padding:20px 14px 10px}
+  .tabs{padding:4px 14px 2px}
+  .ex{padding:18px 16px;border-radius:14px;margin:10px 8px 40px}
+  ol.items li{grid-template-columns:1.8em 1fr}
+  .side{grid-column:2;flex-direction:row-reverse;justify-content:flex-end;align-items:center;min-width:0}
+}
+@media (prefers-reduced-motion:no-preference){.opt,.ans,.part,.tab{transition:background-color .12s,border-color .12s}}
+</style>
+</head>
+<body data-block="v">
+
+<header class="top">
+  <div>
+    <h1>Exam prep: vocabulary and grammar</h1>
+    <p>Vitaliy</p>
+  </div>
+  <nav class="blocks" aria-label="Blocks">
+    <button data-block="v" aria-pressed="true">Vocabulary<small id="tv"></small></button>
+    <button data-block="g" aria-pressed="false">Grammar<small id="tg"></small></button>
+  </nav>
+</header>
+<nav class="tabs" id="tabs" role="tablist" aria-label="Exercises"></nav>
+<main id="panel"></main>
+
+<script id="data">
+const DATA = [
+
+/* ===================== VOCABULARY ===================== */
+
+{block:`v`, id:`v1`, type:`mc`, min:6, title:`Which meaning here?`,
+ en:`Each word has more than one meaning. Choose the one it has in this sentence.`,
+ sets:[{t:``, items:`
+Rice is a staple of the local diet. | *a basic food eaten regularly / a small metal fastener / a rare delicacy | Staple — и основной продукт питания, и скрепка. Здесь речь о еде.
+Could you handle the complaints while I'm away? | *deal with / touch with your hands / pass on to somebody else | Handle — справляться, заниматься чем-то. Второе значение: ручка или трогать руками.
+"Can we start at nine?" "That's fine by me." | *acceptable, no problem / a payment for breaking a rule / very thin | Fine здесь означает согласие. Другие значения: штраф и тонкий.
+As a student he used to frequent that little café. | *visit it regularly / happen very often / pay for it in advance | Frequent как глагол — часто бывать где-то. Как прилагательное — частый.
+Prices range from ten to fifty pounds. | *vary between two limits / stand in a line / aim at a target | Range from … to … — варьироваться в пределах. Существительное range — ассортимент или диапазон.
+It is illegal to idle your engine outside a school. | *let it run while the car isn't moving / make it go faster / repair it | Idle как глагол — работать на холостом ходу. Как прилагательное — праздный, ленивый.
+All passengers go through security screening. | *checking people for anything dangerous / showing a film to an audience / hiding something from view | Screening — проверка людей или тест. Второе значение относится к показу фильма.
+He relayed the message to the rest of the team. | *passed it on / delayed it / repeated it word for word | Relay — передавать дальше по цепочке.
+I don't agree with everything she says, but she has a point. | *her argument is valid / she has something sharp / she has scored | Have a point — в ее словах есть смысл.
+The project drew a lot of criticism. | *attracted / sketched / pulled physically | Draw здесь означает привлекать, вызывать реакцию.
+Costs have ballooned since the start of the year. | *risen very quickly / been filled with air / fallen slowly | Balloon как глагол — резко расти.
+We're in a bit of a crunch before the deadline. | *a difficult moment with pressure of time / a loud breaking sound / a type of exercise | A crunch — критический момент, когда не хватает времени или денег.`}]},
+
+{block:`v`, id:`v2`, type:`gap`, mode:`type`, min:6, title:`Change the form`,
+ en:`Use the word in capitals to form a word that fits the gap.`,
+ sets:[{t:``, items:`
+The ___ of medical technology has been rapid. (ADVANCE) | advancement | Advance → advancement: существительное с суффиксом -ment.
+We're still waiting for a ___ from the supplier. (RESPOND) | response | Respond → response. Обратите внимание на d в конце корня, оно исчезает.
+The report recommends a sharp ___ in costs. (REDUCE) | reduction | Reduce → reduction: типичная модель для глаголов на -duce.
+The company's ___ into Asia took three years. (EXPAND) | expansion | Expand → expansion: d переходит в s перед -ion.
+The law led to the ___ of certain groups from the vote. (EXCLUDE) | exclusion | Exclude → exclusion.
+My New Year's ___ is to learn Spanish. (RESOLVE) | resolution | Resolve → resolution: обещание самому себе.
+The ___ of the building costs a fortune. (MAINTAIN) | maintenance | Maintain → maintenance. Написание меняется, это слово часто пишут с ошибкой.
+The lecture was about the ___ of language. (EVOLVE) | evolution | Evolve → evolution.
+I don't want any ___ in my private life. (INTERFERE) | interference | Interfere → interference.
+Doctors noted a rapid ___ in her condition. (DETERIORATE) | deterioration | Deteriorate → deterioration.
+The text was completely beyond my ___. (COMPREHEND) | comprehension | Comprehend → comprehension.
+Repetition improves the ___ of new words. (RETAIN) | retention | Retain → retention: запоминание, удержание в памяти.
+Her new book is absolutely ___. (CAPTIVATE) | captivating | Captivate → captivating: захватывающий.
+Online bullying can be extremely ___. (DESTROY) | destructive | Destroy → destructive.
+For some ___ reason, he never replied. (EXPLAIN) | inexplicable | Explain → inexplicable: необъяснимый, с приставкой in-.
+If the pain is ___, see a doctor. (PERSIST) | persistent | Persist → persistent.`}]},
+
+{block:`v`, id:`v3`, type:`gap`, mode:`select`, min:6, title:`Say it less formally`,
+ en:`Replace the formal verb in brackets with a phrasal verb from the box.`,
+ sets:[{t:``, items:`
+It took her a year to ___ the breakup. (recover from) | get over | Get over — пережить, оправиться.
+I've decided to ___ sugar completely. (eliminate from my diet) | cut out | Cut out — исключить из рациона.
+The idea ___ surprisingly quickly. (became popular) | caught on | Catch on — прижиться, войти в моду.
+Thousands of people ___ the fake message. (were deceived by) | fell for | Fall for — попасться на обман.
+It's unhealthy to ___ your feelings. (suppress) | bottle up | Bottle up — держать чувства в себе.
+After work I need an hour to ___. (relax gradually) | wind down | Wind down — расслабиться, сбросить обороты.
+I had to ___ 200 emails after the holiday. (work through a large amount of) | plough through | Plough through — продираться через большой объем.
+Adverts ___ every time I open the app. (appear suddenly) | pop up | Pop up — всплывать, появляться внезапно.
+It took me a week to ___ that cough. (get rid of) | shake off | Shake off — избавиться от болезни или усталости.
+The manager ___ him for arriving late again. (reprimanded) | told off | Tell off — отругать, сделать выговор.`}]},
+
+{block:`v`, id:`v4`, type:`fix`, mode:`type`, label:`Extra word:`, min:6, title:`One word too many`,
+ en:`Each sentence has ONE extra word that should not be there. Type that word.`,
+ sets:[{t:``, items:`
+She is in awe of for his talent. | for | Be in awe OF somebody. Предлог только один.
+He is adept at in negotiating difficult contracts. | in | Adept AT doing something.
+We discussed about the problem for two hours. | about | Discuss — переходный глагол, после него предлог не нужен.
+They are at odds over with the budget again. | with | Be at odds WITH somebody OVER something. Здесь оба предлога подряд стоять не могут.
+The police are investigating of the case. | of | Investigate something, без предлога.
+She has a soft spot for of old black-and-white films. | of | Have a soft spot FOR something.
+Thousands of people fell for on the scam. | on | Fall FOR something.
+Costs have ballooned up since January. | up | Balloon само по себе означает резкий рост.
+Let's touch the base on Monday morning. | the | Touch base — устойчивое выражение без артикля.
+Despite of the rain, we walked all the way home. | of | Despite употребляется без of. С of будет in spite of.
+He denied having taken of the money. | of | Take something, без предлога.
+He told to me the whole truth. | to | Tell somebody something, без to. С to используется say.`}]},
+
+{block:`v`, id:`v5`, type:`gap`, mode:`select`, min:6, title:`At the office`,
+ en:`Complete the conversation with words and phrases from the box.`,
+ sets:[{t:``, items:`
+ANNA: Have you got five minutes? There's something ___ I need to discuss. | pressing | Pressing — срочный, не терпящий отлагательства.
+BEN: Of course, I'm ___. | all ears | Be all ears — я весь внимание.
+ANNA: It's about the launch. This week has been completely ___. | hectic | Hectic — суматошный, напряженный.
+BEN: Tell me about it. I'm ___ with the budget reports. | snowed under | Be snowed under — быть заваленным работой.
+ANNA: Exactly. And all those late calls are really ___. | draining | Draining — выматывающий.
+BEN: So what do we tell the client? ANNA: That's the hard part. We need to ___ that the date has to move. | get across | Get something across — донести мысль.
+BEN: A short written summary might ___ there. | come in handy | Come in handy — пригодиться, оказаться кстати.
+ANNA: Good idea. I'll be ___ most of tomorrow, but I can write it on the train. | on the move | Be on the move — быть в разъездах.
+BEN: Great. Just ___ if anything changes. | keep me posted | Keep somebody posted — держать в курсе.
+ANNA: Will do. Let's hope the meeting is more ___ than the last one. | fruitful | Fruitful — плодотворный, результативный.`}]},
+
+/* ===================== GRAMMAR ===================== */
+
+{block:`g`, id:`g1`, type:`mc`, min:11, title:`Inversion: choose the form`,
+ en:`Choose the correct continuation.`,
+ sets:[{t:``, items:`
+Never ___ such rudeness from a colleague. | *have I encountered / I have encountered / did I have encountered | После never в начале предложения вспомогательный глагол стоит перед подлежащим.
+No sooner ___ than it started to rain. | *had we arrived / we had arrived / did we arrive | No sooner … than всегда с had и инверсией.
+Only when she left ___ how late it was. | *did I realise / I realised / did I realised | После only + придаточное инверсия с did, а смысловой глагол в первой форме.
+Rarely ___ in public these days. | *does he speak / he speaks / does he speaks | В Present Simple инверсию образует does плюс инфинитив без изменений.
+Not until the police arrived ___ calm down. | *did the crowd / the crowd did / the crowd | Not until + обстоятельство требует инверсии в главной части.
+___ you change your mind, just let me know. | *Should / Would / If should | Should в начале заменяет if: should you change = if you change.
+___ I in your position, I'd take the offer. | *Were / Was / If were | Were I = if I were. В этой конструкции всегда were.
+___ known about the delay, we would have waited. | *Had we / We had / If had we | Had we known = if we had known. Одновременно if и инверсию использовать нельзя.
+Not only ___ the competition, she also broke the record. | *did she win / she won / did she won | Not only в начале предложения требует инверсии с did.
+So convincing ___ that nobody questioned it. | *was his argument / his argument was / did his argument be | So + прилагательное в начале: so convincing was his argument.
+Little ___ that the company was about to collapse. | *did they suspect / they suspected / did they suspected | Little did they suspect — они и не подозревали.
+Under no circumstances ___ left unattended. | *should the machine be / the machine should be / should be the machine | Подлежащее встает между should и смысловым глаголом.`}]},
+
+{block:`g`, id:`g2`, type:`fix`, mode:`type`, label:`Correct version:`, min:11, title:`Participles: find the mistake`,
+ en:`Each sentence has one mistake in the participle. Type the corrected words only.`,
+ sets:[{t:``, items:`
+Having been finished the report, she went home. | Having finished | Отчет закончила она сама, поэтому нужна активная форма having finished.
+The woman sat next to me talked all the way to London. | sitting | Определение к woman требует активного причастия sitting, а не формы sat.
+Build in 1920, the house is now protected. | Built | Дом построили, значит нужно пассивное причастие built.
+Having not told the truth, he felt guilty all week. | Not having told | Отрицание ставится перед всей причастной формой.
+Being seen the film twice, I didn't want to go again. | Having seen | Действие произошло раньше, поэтому нужен перфектный оборот having seen.
+The documents signing yesterday are on your desk. | signed | Документы подписали, нужна пассивная форма signed.
+Waken by the noise, the baby started to cry. | Woken | Третья форма глагола wake — woken.
+If leaving untreated, the infection can spread. | If left | If left = if it is left. Нужна пассивная форма.
+She sat by the window, read a magazine. | reading | Сопутствующее действие передается причастием reading.
+Weather permitted, we'll have lunch in the garden. | Weather permitting | Устойчивый оборот weather permitting — если погода позволит.
+Being warned twice already, he finally stopped. | Having been warned | Предупреждали его, и это было раньше, поэтому having been warned.
+The man shouted at the driver was arrested. | shouting | Определение к man требует активного причастия shouting.`}]},
+
+{block:`g`, id:`g3`, type:`kw`, min:13, title:`Mixed conditionals`,
+ en:`Rewrite the facts as one conditional sentence. Use the word given and do not change it.`,
+ sets:[{t:``, items:`
+I didn't study medicine, so I'm not a doctor now. | HAD | ___ medicine, I would be a doctor now. | Had I studied | Инверсия вместо if: had I studied = if I had studied. Результат в настоящем, поэтому would be.
+She's afraid of flying, so she didn't come to Japan with us. | WEREN'T | If she ___ of flying, she would have come to Japan with us. | weren't afraid | Страх постоянный, значит настоящее время. Поездка была в прошлом, значит would have come.
+We invested in this house ten years ago, so we own it now. | HADN'T | If we ___ then, we wouldn't own the house now. | hadn't invested | Условие в прошлом, результат в настоящем.
+He's a careless driver, so he had an accident last week. | WOULDN'T | If he weren't so careless, he ___ an accident last week. | wouldn't have had | Черта характера в настоящем, событие в прошлом.
+I forgot to set the alarm, so I'm late now. | SET | If I ___ the alarm, I wouldn't be late now. | had set | Забыл в прошлом, опаздываю сейчас.
+She doesn't speak German, so she didn't get the job in Berlin. | SPOKE | If she ___ German, she would have got the job in Berlin. | spoke | Умение относится к настоящему, работа была в прошлом.
+They missed the flight, so they're not on the beach now. | WOULD | If they hadn't missed the flight, they ___ on the beach now. | would be | Результат относится к настоящему, поэтому have здесь не нужен.
+I broke my leg, so I'm not running the marathon next week. | BE | If I hadn't broken my leg, I would ___ the marathon next week. | be running | Результат в будущем и в процессе: would be running.
+He isn't organised, so he lost his passport yesterday. | MORE | If he ___, he wouldn't have lost his passport. | were more organised;was more organised | Постоянное свойство плюс конкретная ошибка в прошлом.
+We didn't book early, so we're paying double now. | BOOKED | If we had ___ early, we wouldn't be paying double now. | booked | Прошлое условие, длительный результат в настоящем.`}]},
+
+{block:`g`, id:`g4`, type:`order`, mode:`type`, min:16, title:`Impersonal passive: two ways`,
+ en:`Rewrite each sentence twice, starting as shown. Write the whole sentence.`,
+ sets:[{t:``, items:`
+People say that he owns three restaurants.  →  It is said that … | It is said that he owns three restaurants. | Безличная конструкция: после that идет обычное предложение, инфинитив не нужен.
+People say that he owns three restaurants.  →  He is said … | He is said to own three restaurants. | Он владеет ими сейчас, одновременно с is said, поэтому простой инфинитив to own.
+Police believe the thieves escaped through the window.  →  It is believed that … | It is believed that the thieves escaped through the window. | Время внутри that-придаточного не меняется.
+Police believe the thieves escaped through the window.  →  The thieves are believed … | The thieves are believed to have escaped through the window. | Побег был раньше, чем мнение о нем, поэтому перфектный инфинитив to have escaped.
+Experts think the economy is slowing down.  →  It is thought that … | It is thought that the economy is slowing down. | Безличный вариант, придаточное остается без изменений.
+Experts think the economy is slowing down.  →  The economy is thought … | The economy is thought to be slowing down. | Процесс идет прямо сейчас, поэтому длительный инфинитив to be slowing.
+They reported that the painting had been stolen.  →  It was reported that … | It was reported that the painting had been stolen. | Reporting verb в прошедшем времени, значит was reported.
+They reported that the painting had been stolen.  →  The painting was reported … | The painting was reported to have been stolen. | Кража была раньше сообщения и в пассиве: to have been stolen.
+People expect that the talks will continue.  →  It is expected that … | It is expected that the talks will continue. | В безличной конструкции будущее время сохраняется.
+People expect that the talks will continue.  →  The talks are expected … | The talks are expected to continue. | Будущее действие передается простым инфинитивом, will исчезает.
+Everyone knows that she is writing a new novel.  →  It is known that … | It is known that she is writing a new novel. | Общеизвестно, что… Придаточное не меняется.
+Everyone knows that she is writing a new novel.  →  She is known … | She is known to be writing a new novel. | Работа идет сейчас, поэтому to be writing.
+They allege that he took a bribe in 2019.  →  It is alleged that … | It is alleged that he took a bribe in 2019. | Утверждается, что… Прошедшее время внутри остается.
+They allege that he took a bribe in 2019.  →  He is alleged … | He is alleged to have taken a bribe in 2019. | Взятка была в прошлом, а обвинение звучит сейчас: to have taken.
+Scientists claim that the vaccine is completely safe.  →  It is claimed that … | It is claimed that the vaccine is completely safe. | Безличная конструкция с that.
+Scientists claim that the vaccine is completely safe.  →  The vaccine is claimed … | The vaccine is claimed to be completely safe. | Состояние сейчас, поэтому простой инфинитив to be.`}]},
+
+{block:`g`, id:`g5`, type:`gap`, mode:`type`, min:12, title:`One text, all four`,
+ en:`Read the whole article and write ONE word in each gap.`,
+ sets:[{t:``, items:`
+Rarely ___ a single building divide a small town so completely. | does | Rarely в начале предложения требует инверсии: rarely does a building divide.
+___ in 1850, the old lighthouse stood empty for thirty years. | Built | Пассивное причастие вместо which was built in 1850.
+It was widely ___ that the place was unsafe. | believed;thought | It was widely believed that… — широко распространенное мнение.
+Local people are said ___ have avoided it for years. | to | Личная конструкция: are said to have avoided.
+Not ___ last spring did the council finally make a decision. | until | Not until + обстоятельство, затем инверсия did the council make.
+___ considered all the options, the councillors agreed to sell it. | Having | Перфектное причастие: сначала изучили варианты, потом согласились.
+If a buyer ___ not appeared that summer, the lighthouse would be a ruin today. | had | Смешанный тип: условие в прошлом, результат сейчас.
+"___ I known it was for sale, I'd have made an offer myself," says one resident. | Had | Had I known = if I had known. Инверсия вместо if.
+The building is now ___ to be worth half a million. | thought;said;believed;estimated | Личная конструкция с безличным значением: is thought to be worth.
+___ by local volunteers, the lighthouse reopened last month. | Restored | Пассивное причастие: его отреставрировали волонтеры.
+So popular ___ the café inside that tables are booked weeks ahead. | is | So + прилагательное в начале предложения: so popular is the café.
+Should you ___ to visit this summer, book your table early. | want;wish;plan;decide;intend | Should you want = if you want. После should идет инфинитив без to.`}]}
+];
+
+</script>
+
+<script>
+const tabsEl = document.getElementById('tabs');
+const panel = document.getElementById('panel');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const alts = a => a.split(';').map(x => x.trim()).filter(Boolean);
+const norm = s => String(s || '').toLowerCase().replace(/[’‘`]/g, "'").replace(/\s+/g, ' ').replace(/[.!?,\s]+$/, '').trim();
+const loose = s => norm(s).replace(/[.,!?;:"]/g, '').replace(/\s+/g, ' ').trim();
+const sortKey = s => s.toLowerCase().replace(/^(a|an|the|to)\s+/, '');
+
+DATA.forEach(ex => ex.sets.forEach(s => {
+  s.p = s.items.trim().split('\n').map(l => l.trim()).filter(Boolean).map(l => l.split(/\s+\|\s+/));
+  if (ex.mode === 'select') {
+    const seen = new Set(); s.bank = [];
+    s.p.forEach(it => { const w = alts(it[1])[0]; if (!seen.has(w)) { seen.add(w); s.bank.push(w); } });
+    s.bank.sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
+  }
+}));
+
+const cur = { block: 'v', ex: 0, set: 0 };
+const state = {};
+const exOf = b => DATA.filter(e => e.block === b);
+const byId = Object.fromEntries(DATA.map(e => [e.id, e]));
+const fmtMin = m => m >= 60 ? `about ${Math.floor(m / 60)} h ${m % 60 ? (m % 60) + ' min' : ''}`.trim() : `about ${m} min`;
+document.getElementById('tv').textContent = fmtMin(exOf('v').reduce((a, e) => a + e.min, 0));
+document.getElementById('tg').textContent = fmtMin(exOf('g').reduce((a, e) => a + e.min, 0));
+
+function control(ex, s, it, k) {
+  if (ex.mode === 'select') {
+    return `<select data-k="${k}" aria-label="Answer"><option value="">choose…</option>${s.bank.map(w => `<option>${esc(w)}</option>`).join('')}</select>`;
+  }
+  const ans = ex.type === 'kw' ? it[3] : it[1];
+  const len = Math.max(...alts(ans).map(a => a.length));
+  return `<input type="text" data-k="${k}" aria-label="Answer" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(6, len + 3)}ch">`;
+}
+const fill = (t, ctrl) => t.split('___').map(esc).join(ctrl);
+
+function itemHTML(ex, s, it, k) {
+  let body = '';
+  switch (ex.type) {
+    case 'def': body = `<span class="txt">${control(ex, s, it, k)} <span class="def">${esc(it[0])}</span></span>`; break;
+    case 'gap': body = `<span class="txt">${fill(it[0], control(ex, s, it, k))}</span>`; break;
+    case 'mc': {
+      const opts = it[1].split(' / ');
+      body = `<span class="txt">${fill(it[0], '<span class="blank"></span>')}<span class="opts">${opts.map((o, i) => `<button class="opt" data-k="${k}" data-i="${i}">${esc(o.replace(/^\*/, ''))}</button>`).join('')}</span></span>`;
+      break;
+    }
+    case 'tf': body = `<span class="txt">${esc(it[0])}<span class="opts"><button class="opt" data-k="${k}" data-i="T">${esc(ex.tfT || 'Correct')}</button><button class="opt" data-k="${k}" data-i="F">${esc(ex.tfF || 'Incorrect')}</button></span></span>`; break;
+    case 'kw': body = `<span class="txt"><span class="orig">${esc(it[0])}</span><span class="kw">${esc(it[1])}</span><span class="stem">${fill(it[2], control(ex, s, it, k))}</span></span>`; break;
+    case 'tr': body = `<span class="txt"><span class="ruq">${esc(it[0])}</span><textarea data-k="${k}" rows="2" placeholder="Your translation"></textarea></span>`; break;
+    case 'fix': body = `<span class="txt">${esc(it[0])}<span class="fixrow">${esc(ex.label || 'Correct version:')} ${control(ex, s, it, k)}</span></span>`; break;
+    case 'order': body = `<span class="txt"><span class="jumble">${esc(it[0])}</span><input type="text" class="wide" data-k="${k}" aria-label="Answer" autocomplete="off" autocapitalize="off" spellcheck="false"></span>`; break;
+  }
+  return `<li data-k="${k}">${body}<span class="side"><button class="ans" data-k="${k}">Answer</button><span class="res" aria-live="polite"></span></span><div class="reveal" aria-live="polite"></div></li>`;
+}
+
+function render() {
+  document.body.dataset.block = cur.block;
+  document.querySelectorAll('.blocks button').forEach(b => b.setAttribute('aria-pressed', b.dataset.block === cur.block));
+  const list = exOf(cur.block);
+  tabsEl.innerHTML = list.map((e, i) => `<button class="tab" role="tab" aria-selected="${i === cur.ex}" data-i="${i}"><span class="n">${i + 1}</span>${esc(e.title)}</button>`).join('');
+  const ex = list[cur.ex], s = ex.sets[cur.set], si = cur.set;
+  const keys = s.p.map((_, i) => `${ex.id}-${si}-${i}`);
+  const isLastSet = si === ex.sets.length - 1, isLastEx = cur.ex === list.length - 1;
+  panel.innerHTML = `
+  <section class="ex">
+    <div class="ex-head"><h2>${esc(ex.title)}</h2><span class="time">${fmtMin(ex.min)}</span></div>
+    <div class="instr"><p class="en">${esc(ex.en)}</p></div>
+    ${ex.sets.length > 1 ? `<div class="parts" aria-label="Parts">${ex.sets.map((x, i) => `<button class="part${setDone(ex, i) ? ' done' : ''}" data-i="${i}" aria-current="${i === si}" title="${esc(x.t)}">${i + 1}</button>`).join('')}</div>` : ''}
+    <div class="set-row">${s.t ? `<h3 class="set-title">${esc(s.t)}</h3>` : '<span></span>'}<span class="score" id="score"></span></div>
+    ${s.bank ? `<div class="box">${s.bank.map(w => `<span class="chip">${esc(w)}</span>`).join('')}</div>` : ''}
+    <ol class="items">${s.p.map((it, i) => itemHTML(ex, s, it, keys[i])).join('')}</ol>
+    <div class="nav">
+      <button class="prev" ${si === 0 && cur.ex === 0 ? 'disabled' : ''}>Back</button>
+      <button class="next primary" ${isLastSet && isLastEx ? 'disabled' : ''}>${isLastSet ? 'Next exercise' : 'Next part'}</button>
+    </div>
+  </section>`;
+  keys.forEach(k => {
+    const st = state[k]; if (!st) return;
+    const el = panel.querySelector(`[data-k="${k}"]:is(select,input,textarea)`);
+    if (el && st.v !== undefined) el.value = st.v;
+    if (st.v !== undefined) panel.querySelectorAll(`.opt[data-k="${k}"]`).forEach(b => b.classList.toggle('chosen', b.dataset.i === String(st.v)));
+    if (st.done) check(k);
+  });
+  updateScore();
+}
+
+function setDone(ex, si) {
+  return ex.sets[si].p.every((_, i) => state[`${ex.id}-${si}-${i}`]?.done);
+}
+
+function check(k) {
+  const [id, si, ii] = k.split('-');
+  const ex = byId[id], it = ex.sets[+si].p[+ii];
+  const li = panel.querySelector(`li[data-k="${k}"]`); if (!li) return;
+  const st = state[k] || (state[k] = {}); st.done = true;
+  const res = li.querySelector('.res'), rev = li.querySelector('.reveal');
+  let ok = null;
+  const why = ex.type === 'kw' ? it[4] : it[2];
+  const whyHTML = why ? `<span class="why">${esc(why)}</span>` : '';
+  if (ex.type === 'def' || ex.type === 'gap' || ex.type === 'kw' || ex.type === 'fix' || ex.type === 'order') {
+    const ans = alts(ex.type === 'kw' ? it[3] : it[1]);
+    const cmp = ex.type === 'order' ? loose : norm;
+    ok = ans.some(a => cmp(a) === cmp(st.v));
+    const inp = li.querySelector('select,input');
+    inp.classList.toggle('ok', ok); inp.classList.toggle('bad', !ok);
+    res.innerHTML = ok ? '<span class="tick">✓</span>' : '<span class="cross">✗</span>';
+    rev.innerHTML = ok ? (ans.length > 1 ? `<span class="key">${esc(ans.join('  /  '))}</span>` : '') : `<span class="key">${esc(ans.join('  /  '))}</span>${whyHTML}`;
+  } else if (ex.type === 'mc') {
+    const opts = it[1].split(' / '), right = opts.findIndex(o => o.startsWith('*'));
+    const chosen = st.v === undefined ? -1 : +st.v;
+    ok = chosen === right;
+    li.querySelectorAll('.opt').forEach(b => {
+      const i = +b.dataset.i;
+      b.classList.toggle('right', i === right);
+      b.classList.toggle('wrong', i === chosen && !ok);
+    });
+    res.innerHTML = ok ? '<span class="tick">✓</span>' : '<span class="cross">✗</span>';
+    rev.innerHTML = ok ? '' : whyHTML;
+  } else if (ex.type === 'tf') {
+    const right = it[1];
+    ok = st.v === right;
+    li.querySelectorAll('.opt').forEach(b => {
+      b.classList.toggle('right', b.dataset.i === right);
+      b.classList.toggle('wrong', b.dataset.i === st.v && !ok);
+    });
+    res.innerHTML = ok ? '<span class="tick">✓</span>' : '<span class="cross">✗</span>';
+    rev.innerHTML = ok ? '' : whyHTML;
+  } else if (ex.type === 'tr') {
+    rev.innerHTML = `<span class="key">${esc(it[1])}</span>${whyHTML}`;
+  }
+  st.ok = ok;
+}
+
+function updateScore() {
+  const list = exOf(cur.block), ex = list[cur.ex], si = cur.set, s = ex.sets[si];
+  const el = document.getElementById('score'); if (!el) return;
+  if (ex.type === 'tr') { el.innerHTML = ''; return; }
+  let c = 0, d = 0;
+  s.p.forEach((_, i) => { const st = state[`${ex.id}-${si}-${i}`]; if (st?.done) { d++; if (st.ok) c++; } });
+  el.innerHTML = `Correct: <b>${c}</b> of ${s.p.length}${d ? `<button class="linkbtn" id="reset">Start this part again</button>` : ''}`;
+  const part = panel.querySelector(`.part[data-i="${si}"]`);
+  if (part) part.classList.toggle('done', setDone(ex, si));
+}
+
+function go(dir) {
+  const list = exOf(cur.block), ex = list[cur.ex];
+  if (dir > 0) {
+    if (cur.set < ex.sets.length - 1) cur.set++;
+    else if (cur.ex < list.length - 1) { cur.ex++; cur.set = 0; }
+  } else {
+    if (cur.set > 0) cur.set--;
+    else if (cur.ex > 0) { cur.ex--; cur.set = list[cur.ex].sets.length - 1; }
+  }
+  render(); window.scrollTo({ top: 0 });
+}
+
+document.querySelector('.blocks').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b || b.dataset.block === cur.block) return;
+  cur.block = b.dataset.block; cur.ex = 0; cur.set = 0; render();
+});
+tabsEl.addEventListener('click', e => {
+  const b = e.target.closest('.tab'); if (!b) return;
+  cur.ex = +b.dataset.i; cur.set = 0; render();
+});
+panel.addEventListener('click', e => {
+  const t = e.target;
+  const part = t.closest('.part'); if (part) { cur.set = +part.dataset.i; render(); return; }
+  if (t.closest('.next')) return go(1);
+  if (t.closest('.prev')) return go(-1);
+  if (t.id === 'reset') {
+    const ex = exOf(cur.block)[cur.ex];
+    ex.sets[cur.set].p.forEach((_, i) => delete state[`${ex.id}-${cur.set}-${i}`]);
+    render(); return;
+  }
+  const opt = t.closest('.opt');
+  if (opt) {
+    const k = opt.dataset.k, st = state[k] || (state[k] = {});
+    st.v = opt.dataset.i;
+    panel.querySelectorAll(`.opt[data-k="${k}"]`).forEach(b => b.classList.toggle('chosen', b === opt));
+    if (st.done) { check(k); updateScore(); }
+    return;
+  }
+  const ans = t.closest('.ans');
+  if (ans) { check(ans.dataset.k); updateScore(); }
+});
+const onInput = e => {
+  const k = e.target.dataset.k; if (!k) return;
+  (state[k] || (state[k] = {})).v = e.target.value;
+};
+panel.addEventListener('input', onInput);
+panel.addEventListener('change', onInput);
+panel.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.matches('input[data-k]')) { e.preventDefault(); check(e.target.dataset.k); updateScore(); }
+});
+
+render();
+</script>
+</body>
+</html>
