@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anna, 12 November</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F4F8; --sheet:#FFFFFF; --ink:#1E2B3A; --soft:#5B6878;
+  --blue:#2F5FAF; --mark:#F3D35B; --ok:#2E7D5B; --okbg:#E3F1EA;
+  --bad:#B33A3A; --badbg:#F7E4E4; --line:#D3D9E3;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", "Segoe UI", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{font-weight:700;font-size:2.2rem;line-height:1.15;margin:0}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0}
+.tab{font-family:var(--sans);font-weight:600;font-size:.92rem;border:0;background:none;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}
+section.active{display:block}
+h2{font-size:1.55rem;margin:0 0 12px}
+h3{font-size:1.15rem;margin:0 0 6px}
+.task{font-family:var(--sans);font-size:.95rem;color:var(--soft);margin:0 0 14px;max-width:68ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px}
+button{font-family:var(--sans)}
+.btn{font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:4px 10px;cursor:pointer;margin:2px 4px 2px 0}
+.btn:hover{border-color:var(--blue)}
+.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}
+.hidden{display:none !important}
+.en{color:var(--blue);font-style:italic}
+.ru{color:var(--soft);font-family:var(--sans);font-size:.9rem}
+.qlist{margin:0;padding-left:1.3em}
+.qlist li{margin:8px 0}
+
+/* parts inside a tab */
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.85rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.part{display:none}
+.part.active{display:block}
+
+/* quote */
+.quote{font-size:1.6rem;line-height:1.35;font-style:italic;margin:4px 0 6px;max-width:30ch}
+.src{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 16px}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px}
+.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}
+.card .tr{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:2px 0 6px}
+.card .def{font-size:.95rem;margin:0 0 6px}
+.card .ex2{font-size:.92rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+
+/* rows */
+.dl{padding:12px 0;border-bottom:1px solid var(--line)}
+.dl:last-of-type{border-bottom:0}
+.dl p{margin:0}
+.fb{font-size:.95rem}
+.fb .ex{margin:4px 0}
+.fb.okc{color:var(--ok)}
+.fb.badc{color:var(--bad)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#FBFCFA;border-radius:4px;padding:5px 12px;cursor:pointer;color:var(--ink)}
+.opts.col{flex-direction:column}
+.opt.okc{background:var(--okbg);border-color:var(--ok)}
+.opt.badc{background:var(--badbg);border-color:var(--bad)}
+input.gap{font-family:var(--serif);font-size:1rem;padding:2px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#FBFCFA;color:var(--ink);width:11em;max-width:100%}
+input.gap.okc{border-color:var(--ok);background:var(--okbg)}
+input.gap.badc{border-color:var(--bad);background:var(--badbg)}
+.hint{font-family:var(--sans);font-size:.85rem;color:var(--soft)}
+.bank{font-family:var(--sans);font-size:.9rem;background:#F4F6F2;border-radius:4px;padding:8px 12px;margin:0 0 12px}
+.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}
+.copied{font-family:var(--sans);font-size:.85rem;color:var(--ok)}
+.score{font-family:var(--sans);font-weight:700;font-size:.95rem;margin:10px 0 0}
+
+/* error clinic */
+.item{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.num{font-family:var(--sans);font-weight:700;color:var(--soft);font-size:.9rem;padding-top:4px}
+.chips{margin:0;line-height:2.1}
+.chip{font-family:var(--serif);font-size:1.02rem;color:var(--ink);background:none;border:0;border-bottom:1px dashed #A9B3A8;padding:0 2px;margin:0 2px;cursor:pointer;border-radius:2px}
+.chip:hover{background:#F4F6F2}
+.chip.wrong{background:var(--badbg);border-bottom-color:var(--bad);animation:nudge .25s}
+.chip.hit{background:linear-gradient(transparent 55%, var(--mark) 55%);text-decoration:line-through;text-decoration-color:var(--bad);border-bottom-color:transparent;cursor:default}
+.fix{font-family:var(--sans);font-weight:700;color:var(--ok);margin-left:4px}
+.item .fb,.item .actions{grid-column:2}
+.fixbox{margin-right:6px}
+@keyframes nudge{0%,100%{transform:translateX(0)}30%{transform:translateX(-3px)}70%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.chip.wrong{animation:none}}
+
+/* drill table */
+.tablewrap{overflow-x:auto}
+table.drill{border-collapse:collapse;width:100%;min-width:560px;font-size:.98rem}
+.drill th{font-family:var(--sans);font-size:.82rem;color:var(--soft);text-align:left;font-weight:600;padding:6px 8px;border-bottom:2px solid var(--line)}
+.drill td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.drill td.t{font-weight:600;white-space:nowrap}
+.drill td.m{color:var(--soft);font-style:italic}
+.drill tr.grp td{background:#F4F6F2;font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);padding:4px 8px}
+.base{font-size:1.35rem;font-weight:600;margin:0 0 4px}
+
+/* listening + speaking */
+.player{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cue{border:2px solid var(--blue);border-radius:6px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}
+.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}
+.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}
+.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+.ttext{font-size:1.08rem;line-height:1.9}
+.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+@media (max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.quote{font-size:1.3rem}}
+
+.stat{border-left:4px solid var(--mark);background:#FBF8E8;padding:10px 14px;margin:0 0 16px;font-size:1rem}
+.stat b{font-size:1.5rem;font-family:var(--sans);color:var(--ink)}
+.new{font-family:var(--sans);font-size:.7rem;font-weight:700;color:#fff;background:var(--ok);border-radius:3px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+select.pick{font-family:var(--serif);font-size:1rem;padding:2px 6px;border:1px solid var(--line);border-radius:4px;background:#FBFCFA;color:var(--ink);max-width:100%}
+select.pick.okc{border-color:var(--ok);background:var(--okbg)}
+select.pick.badc{border-color:var(--bad);background:var(--badbg)}
+.endings{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:4px}
+.endings li{font-size:.98rem}
+.endings b{font-family:var(--sans);color:var(--blue);margin-right:6px}
+.verdict{display:inline-flex;gap:6px;margin:6px 0}
+
+.tiles,.built{display:flex;flex-wrap:wrap;gap:6px;min-height:38px;margin:6px 0}
+.built{border-bottom:2px dashed var(--line);padding-bottom:6px}
+.tile{font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F9FC;border-radius:4px;padding:3px 10px;cursor:pointer;color:var(--ink)}
+.tile:hover{border-color:var(--blue)}
+.built.okc{border-bottom-color:var(--ok)}
+.built.badc{border-bottom-color:var(--bad)}
+.cloze{font-size:1.08rem;line-height:2.2}
+.mini{font-size:.75rem;padding:1px 6px}
+.para{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;margin:0 0 12px}
+.para .pl{font-family:var(--sans);font-weight:700;color:var(--blue)}
+.para p{margin:0}
+.dilemma{font-size:1.25rem;font-weight:600;line-height:1.35;margin:0 0 4px}
+.or{font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);letter-spacing:.08em}
+
+.check{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F9FC;border-radius:4px;padding:5px 10px;cursor:pointer}
+.check input{width:16px;height:16px;accent-color:var(--blue)}
+.check.okc{background:var(--okbg);border-color:var(--ok)}
+.check.badc{background:var(--badbg);border-color:var(--bad)}
+.check.miss{border-style:dashed;border-color:var(--ok)}
+.truth{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.truth .opt{font-size:1.05rem;padding:9px 14px}
+.starter{font-size:1.1rem;margin:0 0 4px}
+.starter b{font-family:var(--sans);color:var(--soft);margin-right:6px}
+.given{font-weight:600}
+.evt{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.evt:last-of-type{border-bottom:0}
+
+.wheelbox{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.wheelwrap{position:relative;width:260px;height:260px}
+.wheel{width:260px;height:260px;border-radius:50%;border:6px solid var(--sheet);box-shadow:0 0 0 1px var(--line),0 6px 18px rgba(30,43,58,.12);
+ background:conic-gradient(#2F5FAF 0 60deg,#C9822B 60deg 120deg,#2E7D5B 120deg 180deg,#2F5FAF 180deg 240deg,#C9822B 240deg 300deg,#2E7D5B 300deg 360deg);
+ transition:transform 3.2s cubic-bezier(.17,.67,.2,1);position:relative}
+.wheel span{position:absolute;left:50%;top:50%;width:0;height:0;font-family:var(--sans);font-weight:700;font-size:1.5rem;color:#fff}
+.wheel span b{position:absolute;transform:translate(-50%,-50%)}
+.pointer{position:absolute;left:50%;top:-12px;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid var(--ink);z-index:2}
+.hub{position:absolute;left:50%;top:50%;width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;background:var(--sheet);border:3px solid var(--line)}
+.wq{font-size:1.35rem;line-height:1.35;font-style:italic;min-height:3em;margin:10px 0 0}
+.wq .n{font-family:var(--sans);font-style:normal;font-weight:700;color:var(--blue);font-size:.9rem;display:block;margin-bottom:4px}
+@media (max-width:640px){.wheelbox{grid-template-columns:1fr;justify-items:center;text-align:center}}
+@media (prefers-reduced-motion:reduce){.wheel{transition:none}}
+.dice{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.die{background:var(--sheet);border:2px solid var(--blue);border-radius:10px;padding:12px 10px;text-align:center;min-height:96px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.die:nth-child(2){border-color:#C9822B}.die:nth-child(3){border-color:#2E7D5B}
+.die .dl2{font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--soft)}
+.die b{font-size:1.1rem;line-height:1.3}
+.die.roll b{animation:shake .5s}
+@keyframes shake{0%,100%{transform:none}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.die.roll b{animation:none}}
+@media (max-width:560px){.dice{grid-template-columns:1fr}}
+.pairs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:10px}
+.pcol{display:flex;flex-direction:column;gap:8px}
+.pc{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F9FC;border-radius:6px;padding:8px 12px;cursor:pointer;color:var(--ink);line-height:1.4}
+.pc:hover{border-color:var(--blue)}
+.pc.sel{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue) inset}
+.pc.okc{background:var(--okbg);border-color:var(--ok);cursor:default}
+.pc.badc{background:var(--badbg);border-color:var(--bad)}
+.pcol.left .pc{font-weight:600}
+@media (max-width:560px){.pairs{grid-template-columns:1fr}}
+.line{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.line:last-of-type{border-bottom:0}
+.line .ctl,.line .fb{grid-column:2}
+.ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+
+.stance{border:1px solid var(--line);border-radius:10px;background:var(--sheet);padding:22px 20px}
+.stance .lab{display:inline-block;font-family:var(--sans);font-size:.75rem;font-weight:700;color:#fff;background:var(--blue);border-radius:999px;padding:3px 11px;margin-bottom:12px}
+.stance .stmt{font-size:1.45rem;line-height:1.35;font-weight:600;margin:0 0 20px;max-width:34ch}
+.scale input[type=range]{width:100%;accent-color:var(--blue);height:28px;cursor:pointer}
+.scale .ends{display:grid;grid-template-columns:repeat(5,1fr);text-align:center;margin:0 -6%;font-family:var(--sans);font-size:.82rem;color:var(--soft)}
+.scale .now{font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:8px 0 0;min-height:1.4em}
+.navrow{display:flex;gap:8px;align-items:center;margin-top:14px}
+.navrow .cnt{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin-left:auto}
+.scr{font-family:var(--sans);font-weight:700;letter-spacing:.18em;color:var(--blue);background:#EAF0FA;border-radius:4px;padding:1px 7px}
+.sitgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.sit{position:relative;min-height:150px;border-radius:10px;border:1px solid var(--line);background:var(--sheet);cursor:pointer;text-align:left;font-family:inherit;color:var(--ink);padding:14px;display:flex;flex-direction:column;gap:8px}
+.sit.closed{background:linear-gradient(145deg,#2F5FAF,#24498A);color:#fff;align-items:center;justify-content:center;font-family:var(--sans);font-weight:700;font-size:2rem;border-color:transparent}
+.sit.closed:hover{filter:brightness(1.08)}
+.sit .st{font-size:.98rem;line-height:1.4}
+.sit .str{font-family:var(--sans);font-weight:700;font-size:.85rem;color:#B5701C}
+.sit .exb{margin-top:auto;align-self:flex-start}
+.sit .exs{font-size:.92rem}
+@media (max-width:760px){.sitgrid{grid-template-columns:repeat(2,1fr)}}
+.speaker{font-family:var(--sans);font-weight:700;color:var(--blue)}
+.seg{font-family:var(--serif);font-size:1.05rem;border:0;border-bottom:2px dotted var(--blue);background:none;padding:0 2px;cursor:pointer;color:var(--ink);border-radius:2px}
+.seg.on{background:#FBF0D9;border-bottom-color:#C9822B}
+.seg.okc{background:var(--okbg);border-bottom:2px solid var(--ok)}
+.seg.badc{background:var(--badbg);border-bottom:2px solid var(--bad)}
+.seg.miss{background:var(--badbg);border-bottom:2px dashed var(--bad)}
+.summary{font-size:1.08rem;line-height:2.1}
+.seg2{font:inherit;color:inherit;background:none;border:0;padding:0 1px;margin:0;cursor:pointer;border-radius:3px}
+.seg2:hover{background:#EAF0FA}
+.seg2.on{background:#FBF0D9;box-shadow:0 0 0 1px #C9822B}
+.seg2.okc{background:var(--okbg);box-shadow:0 0 0 1px var(--ok)}
+.seg2.badc{background:var(--badbg);box-shadow:0 0 0 1px var(--bad)}
+.seg2.miss{background:var(--badbg);text-decoration:underline dashed var(--bad)}
+.fixw{font-family:var(--sans);font-weight:700;color:var(--ok);font-size:.88rem;margin-left:3px}
+
+.deal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;perspective:900px}
+.dc{position:relative;height:150px}
+.dc .in{position:absolute;inset:0;transition:transform .6s;transform-style:preserve-3d}
+.dc.open .in{transform:rotateY(180deg)}
+.dc .f,.dc .b{position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px}
+.dc .f{background:repeating-linear-gradient(45deg,#2F5FAF 0 10px,#2A569F 10px 20px);color:#fff;font-family:var(--sans);font-weight:700;font-size:1rem;letter-spacing:.06em}
+.dc .b{background:var(--sheet);border:2px solid var(--blue);transform:rotateY(180deg)}
+.dc:nth-child(2) .b{border-color:#C9822B}.dc:nth-child(3) .b{border-color:#2E7D5B}
+.dc .k{font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--soft);margin-bottom:6px}
+.dc .v{font-size:1.15rem;font-weight:600;line-height:1.3}
+@media (max-width:600px){.deal{grid-template-columns:1fr}.dc{height:110px}}
+@media (prefers-reduced-motion:reduce){.dc .in{transition:none}}
+.rem{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rem .box{background:var(--sheet);border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:6px;padding:14px 16px}
+.rem .box:nth-child(2){border-top-color:#C9822B}
+.rem table{border-collapse:collapse;width:100%;font-size:.95rem}
+.rem td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.rem td:first-child{font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--soft);white-space:nowrap}
+@media (max-width:700px){.rem{grid-template-columns:1fr}}
+.chat{display:flex;flex-direction:column;gap:10px;max-width:560px}
+.bub{align-self:flex-start;background:#EAF0FA;border-radius:16px 16px 16px 4px;padding:10px 14px;font-size:1.05rem;line-height:1.4}
+.bub .from{display:block;font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--blue);margin-bottom:2px}
+.bub .vb{font-family:var(--sans);font-size:.8rem;font-weight:700;color:#B5701C;display:block;margin-top:4px}
+.bub.me{align-self:flex-end;background:var(--okbg);border-radius:16px 16px 4px 16px;font-style:italic}
+.ich{display:inline-flex;flex-wrap:wrap;gap:4px;vertical-align:middle;margin:0 2px}
+.ich .opt{font-size:.92rem;padding:2px 8px}
+.article{font-size:1.06rem;line-height:2.1}
+.article h4{font-family:var(--sans);font-size:.8rem;letter-spacing:.08em;color:var(--soft);margin:0 0 4px}
+.pl2{font-family:var(--sans);font-weight:700;color:var(--blue);margin-right:6px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Anna, lesson 7</h1>
+  <p>Lesson of 12 November 2026 · Market Leader Upper-Intermediate, Unit 2: International marketing</p>
+</header>
+<nav><div class="tabs" role="tablist" id="tabs"></div></nav>
+<main>
+
+<section data-title="Warm-up">
+  <h2>Market it!</h2>
+  <p class="task">Deal the cards and explain how you would market the product.</p>
+  <div class="deal" id="deal">
+    <div class="dc"><div class="in"><div class="f">PRODUCT</div><div class="b"><span class="k">Product</span><span class="v" id="c1"></span></div></div></div>
+    <div class="dc"><div class="in"><div class="f">MARKET</div><div class="b"><span class="k">Market</span><span class="v" id="c2"></span></div></div></div>
+    <div class="dc"><div class="in"><div class="f">FOCUS ON</div><div class="b"><span class="k">Focus on</span><span class="v" id="c3"></span></div></div></div>
+  </div>
+  <button class="btn solid" id="dealBtn" style="font-size:1rem;padding:8px 18px;margin-top:14px">Deal</button>
+</section>
+
+<section data-title="Homework check">
+  <h2>Homework check: translation</h2>
+  <p class="task">Read your translation sentence by sentence and compare it with “EN”.</p>
+  <div class="sheet ttext" id="hwcheck"></div>
+</section>
+
+<section data-title="Vocabulary">
+  <h2>Vocabulary: marketing word partnerships</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part">
+    <p class="task">Nine word partnerships from Unit 2. Read the examples and make up your own sentence for each. Translation is under “RUS”.</p>
+    <div class="cards" id="cards"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Complete the partnership</h3>
+    <p class="task">Choose the word that completes each partnership: <i>brand, customer, market, marketing</i> or <i>product</i>.</p>
+    <div id="v1"></div>
+    <p class="score" id="v1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Let's talk</h3>
+    <ol class="qlist">
+      <li>Which brand do you think has the strongest <b>brand identity</b>? What makes it so recognisable?</li>
+      <li>Is <b>product placement</b> in films and series clever marketing or annoying manipulation?</li>
+    </ol>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Complete the report</h3>
+    <p class="task">Choose the right partnership for each gap. Each one is used once.</p>
+    <div class="article" id="v2"></div>
+    <p class="score" id="v2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Grammar">
+  <h2>Grammar</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Reminder</button><button class="sub">Pass on the gossip</button><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part">
+    <div class="rem">
+      <div class="box">
+        <h3>Noun compounds and noun phrases</h3>
+        <table>
+          <tr><td>noun + noun</td><td>a survey into the market → <b>a market survey</b></td></tr>
+          <tr><td>number + noun</td><td>a trip that lasts three days → <b>a three-day trip</b> (no -s, with a hyphen)</td></tr>
+          <tr><td>owner + 's</td><td>the share of the market of the company → <b>the company's market share</b></td></tr>
+          <tr><td>long phrase</td><td>adverb + adjective / participle + noun + head noun: <b>a highly confidential sales report</b>, <b>an expanding customer base</b></td></tr>
+        </table>
+      </div>
+      <div class="box">
+        <h3>Personal passive</h3>
+        <table>
+          <tr><td>now / future</td><td>The CEO <b>is said to plan</b> changes. The product <b>is expected to launch</b> in May.</td></tr>
+          <tr><td>in progress</td><td>The firm <b>is believed to be negotiating</b> with investors.</td></tr>
+          <tr><td>past</td><td>The brand <b>is thought to have lost</b> customers last year.</td></tr>
+          <tr><td>It … that</td><td><b>It is reported that</b> the deal will be signed soon.</td></tr>
+        </table>
+        <p class="hint" style="margin:8px 0 0">Verbs: say, believe, think, report, expect, know, consider, rumour.</p>
+      </div>
+    </div>
+  </div>
+  <div class="part sheet">
+    <h3>Pass on the gossip</h3>
+    <p class="task">Pass each piece of office gossip on to your boss, using a personal passive with the verb given.</p>
+    <div class="chat" id="chat"></div>
+    <div class="navrow"><button class="btn solid" id="gNext">Next message</button><button class="btn" id="gEx">Example</button><span class="cnt" id="gCnt"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Make it shorter</h3>
+    <p class="task">Replace the phrase in brackets with a noun compound or noun phrase. Keep the first word (<i>a, the, our, this…</i>).</p>
+    <div id="g1"></div>
+    <div class="copyrow"><button class="btn" data-copy="g1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Business news</h3>
+    <p class="task">Click the correct form in each gap.</p>
+    <div class="article" id="g2"></div>
+    <p class="score" id="g2score"></p>
+    <div id="g2fb"></div>
+    <div class="copyrow"><button class="btn" data-copy="g2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Reading">
+  <h2>Reading: a Finnish snack brand goes to Asia</h2>
+  <div class="sheet" id="text"></div>
+  <div class="subnav" role="tablist">
+    <button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Answer the questions</h3>
+    <p class="task">Answer orally, in full sentences.</p>
+    <div id="r1"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Which paragraph…?</h3>
+    <p class="task">Which paragraph (A, B or C) contains this information?</p>
+    <div id="r2"></div>
+    <p class="score" id="r2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="r2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<section data-title="Speaking">
+  <h2>Speaking</h2>
+  <div class="cue">
+    <p class="topic">Describe an advertisement or a marketing campaign that you remember well.</p>
+    <p style="margin:0">You should say:</p>
+    <ul>
+      <li>what product or brand it was for</li>
+      <li>where and when you saw it</li>
+      <li>what made it memorable</li>
+    </ul>
+    <p style="margin:8px 0 0">and explain whether it changed your opinion of the brand.</p>
+  </div>
+  <div class="sheet">
+    <p class="task" style="margin-bottom:6px">Use at least two word partnerships from the unit and one personal passive (<i>The campaign is said to…</i>).</p>
+    <button class="btn solid" id="prep">Preparation 1 min</button><button class="btn solid" id="speech">Speech 2 min</button><button class="btn" id="resetTalk">Reset</button>
+    <div class="clock" id="clock">0:00</div>
+    <div class="phase" id="phase"></div>
+  </div>
+  <div class="sheet">
+    <h3>If we have time</h3>
+    <ol class="qlist">
+      <li>Should global brands adapt their products for each country, or keep them the same everywhere?</li>
+      <li>Can a brand grow too fast for its own good?</li>
+    </ol>
+  </div>
+</section>
+
+<section data-title="Homework">
+  <h2>Homework: translation</h2>
+  <p class="task">Translate the text into English sentence by sentence. Check yourself with “EN”.</p>
+  <div class="sheet ttext" id="hw"></div>
+</section>
+</main>
+<script>
+let uid=0;const nid=()=>"x"+(++uid);
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const sections=[...document.querySelectorAll("main > section")],tabs=document.getElementById("tabs");
+sections.forEach((s,i)=>{
+  const b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=s.dataset.title;
+  b.setAttribute("aria-selected",i===0);if(i===0)s.classList.add("active");
+  b.onclick=()=>{sections.forEach(x=>x.classList.remove("active"));s.classList.add("active");
+    [...tabs.children].forEach(t=>t.setAttribute("aria-selected","false"));b.setAttribute("aria-selected","true");window.scrollTo(0,0);};
+  tabs.appendChild(b);
+});
+sections.forEach(s=>{
+  const subs=[...s.querySelectorAll(".sub")],parts=[...s.querySelectorAll(".part")];if(!subs.length)return;
+  const show=k=>{parts.forEach((p,i)=>p.classList.toggle("active",i===k));subs.forEach((b,i)=>b.setAttribute("aria-selected",i===k));};
+  subs.forEach((b,k)=>b.onclick=()=>show(k));show(0);
+});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-toggle]");if(!b)return;const el=document.getElementById(b.dataset.toggle);if(el)el.classList.toggle("hidden");});
+function explain(en,ru){const id=nid();return `<p class="ex">${en} <button class="btn" data-toggle="${id}">RUS</button></p><p class="ex ru hidden" id="${id}">${ru}</p>`;}
+const norm=s=>s.toLowerCase().replace(/[’‘`]/g,"'").replace(/[.,!?;:"“”]/g,"").replace(/\s+/g," ").trim();
+const states={};
+const markS=s=>s?`${s.v}${s.v==="(answer shown)"?"":(s.ok?" ✓":" ✗")}`:"—";
+const scoreLine=(id,st,n)=>{const v=Object.values(st);document.getElementById(id).textContent=`Correct on the first try: ${v.filter(s=>s.ok).length} of ${n}`+(v.length<n?` (${n-v.length} left)`:"");};
+const enList=(id,arr)=>{document.getElementById(id).innerHTML=arr.map(([r,e])=>{const k=nid();return `<span>${r}</span> <button class="btn" data-toggle="${k}">EN</button><span id="${k}" class="en enout hidden">${e}</span> `;}).join("");};
+
+/* ---------- warm-up: market it ---------- */
+const PROD=["a herbal tea from Karelia","an app for learning English","a reusable coffee cup","a vegan chocolate bar","a smart umbrella that tells you the weather","a children's toothbrush that plays music","a premium dog food","an electric scooter"];
+const MKT=["Japan","Brazil","Germany","the UAE","India","the USA","Kazakhstan","the UK"];
+const FOC=["the brand name","the price","where to sell it","a slogan","a brand ambassador","the packaging","the target customer","the advertising campaign"];
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const cards=[...document.querySelectorAll(".dc")];
+document.getElementById("dealBtn").onclick=e=>{
+ const btn=e.target;btn.disabled=true;cards.forEach(c=>c.classList.remove("open"));
+ const reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+ setTimeout(()=>{document.getElementById("c1").textContent=pick(PROD);document.getElementById("c2").textContent=pick(MKT);document.getElementById("c3").textContent=pick(FOC);
+  cards.forEach((c,i)=>setTimeout(()=>c.classList.add("open"),reduce?0:i*250));setTimeout(()=>{btn.disabled=false;btn.textContent="Deal again";},reduce?50:900);},reduce?0:350);
+};
+
+/* ---------- homework check (5 November) ---------- */
+enList("hwcheck",[
+ ["В этом году я взяла на себя два новых класса и сольную партию в хоре, и поначалу это казалось непосильным.","This year I took on two new classes and a solo part in the choir, and at first it seemed overwhelming."],
+ ["Я едва успевала за своим расписанием и почти не спала.","I could hardly keep up with my schedule and barely slept."],
+ ["Только в октябре я поняла, что так дальше продолжаться не может.","Only in October did I realise that things couldn't go on like this."],
+ ["Поговорив с подругой, я решила найти баланс между работой и отдыхом.","Having talked to a friend, I decided to strike a balance between work and rest."],
+ ["Теперь каждый вечер я выделяю час, чтобы расслабиться, и не проверяю рабочую почту.","Now I set aside an hour every evening to wind down, and I don't check my work emails."],
+ ["Мои ученики такие увлеченные, что я стараюсь использовать каждый урок по максимуму.","My students are so dedicated that I try to make the most of every lesson."],
+ ["Кроме того, я стала лучше чувствовать их настроение.","What's more, I've become more in tune with their mood."],
+ ["Если бы я не изменила свой режим, сейчас я бы чувствовала себя совершенно выжатой.","If I hadn't changed my routine, I would feel completely drained now."]
+]);
+
+/* ---------- vocabulary ---------- */
+const vocab=[
+ ["market penetration","ˌmɑːkɪt ˌpenɪˈtreɪʃn","how many of the possible customers in a market already buy your product; also, entering a new market","Our market penetration in Moscow is still below 5%.","проникновение на рынок, охват рынка"],
+ ["market segmentation","ˌmɑːkɪt ˌseɡmenˈteɪʃn","dividing a market into groups of customers with similar needs","Market segmentation showed that students and parents buy for different reasons.","сегментация рынка"],
+ ["marketing mix","ˈmɑːkɪtɪŋ mɪks","the combination of product, price, place and promotion (the 4 Ps)","We changed the whole marketing mix for the Asian market.","комплекс маркетинга (4P)"],
+ ["product placement","ˈprɒdʌkt ˌpleɪsmənt","showing a brand in a film or TV programme as a form of advertising","The car in the new James Bond film is a classic case of product placement.","продакт-плейсмент, скрытая реклама в фильмах"],
+ ["product portfolio","ˈprɒdʌkt pɔːtˌfəʊliəʊ","all the products that a company makes or sells","The company has a wide product portfolio, from shampoo to frozen food.","продуктовый портфель, ассортимент"],
+ ["customer base","ˈkʌstəmə beɪs","all the people who regularly buy from a company","Our customer base has doubled since we started selling online.","клиентская база"],
+ ["customer retention","ˈkʌstəmə rɪˌtenʃn","keeping existing customers so that they continue to buy from you","Loyalty cards have improved customer retention.","удержание клиентов"],
+ ["brand identity","ˈbrænd aɪˌdentəti","the way a brand presents itself: its name, logo, design and values","Their brand identity is built around Italian craftsmanship.","идентичность бренда, фирменный стиль"],
+ ["brand extension","ˈbrænd ɪkˌstenʃn","using an existing brand name for a new type of product","A chocolate brand launching ice cream is a typical brand extension.","расширение бренда"]
+];
+document.getElementById("cards").innerHTML=vocab.map(([w,t,d,x,r])=>{const id=nid();
+ return `<div class="card"><div class="w">${w}</div><div class="tr">/${t}/</div><p class="def">${d}</p><p class="ex2">${x}</p><button class="btn" data-toggle="${id}">RUS</button> <span id="${id}" class="ru hidden">${r}</span></div>`;}).join("");
+
+/* exercise 1: complete the partnership */
+const W5=["brand","customer","market","marketing","product"];
+const v1=[
+ {q:"Thanks to our new loyalty cards, ___ retention has improved by 15%.",c:1,en:"Keeping existing customers = <i>customer retention</i>.",ru:"Удержание клиентов — customer retention."},
+ {q:"Their ___ identity is instantly recognisable: the green logo, the simple font and the friendly tone.",c:0,en:"Logo, font and tone together form the <i>brand identity</i>.",ru:"Логотип, шрифт и тон вместе — brand identity."},
+ {q:"In a small country, ___ penetration can reach 90% very quickly.",c:2,en:"How much of the market buys the product = <i>market penetration</i>.",ru:"Какая доля рынка покупает продукт — market penetration."},
+ {q:"Price, product, place and promotion together make up the ___ mix.",c:3,en:"The 4 Ps = the <i>marketing mix</i> (not <i>market mix</i>).",ru:"4P — это marketing mix (а не market mix)."},
+ {q:"Our juice appears in two episodes of that new comedy series: it's a clever piece of ___ placement.",c:4,en:"Showing a brand in a TV series = <i>product placement</i>.",ru:"Показ бренда в сериале — product placement."},
+ {q:"The company has a huge ___ portfolio, from shampoo to frozen pizza.",c:4,en:"All the products a company sells = its <i>product portfolio</i>.",ru:"Весь ассортимент компании — product portfolio."},
+ {q:"After the scandal, many loyal buyers left, and our ___ base shrank.",c:1,en:"All the people who regularly buy from you = <i>customer base</i>.",ru:"Все постоянные покупатели — customer base."},
+ {q:"A coffee chain launching its own range of ice cream is a typical ___ extension.",c:0,en:"Using an existing brand name for a new kind of product = <i>brand extension</i>.",ru:"Существующий бренд для нового типа продукта — brand extension."},
+ {q:"Careful ___ segmentation helped us identify three very different groups of buyers.",c:2,en:"Dividing a market into groups = <i>market segmentation</i>.",ru:"Деление рынка на группы — market segmentation."}
+];
+states.v1={};
+document.getElementById("v1").innerHTML=v1.map((m,i)=>`<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${m.q}</p><div class="opts">${W5.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div><div class="fb"></div><button class="btn ans">Answer</button></div>`).join("");
+document.querySelectorAll("#v1 .dl").forEach(row=>{
+ const i=+row.dataset.i,m=v1[i],fb=row.querySelector(".fb");
+ const mark=(k,shown)=>{if(states.v1[i]===undefined){states.v1[i]={v:shown?"(answer shown)":W5[k],ok:!shown&&k===m.c};scoreLine("v1score",states.v1,v1.length);}
+  row.querySelectorAll(".opt").forEach(b=>b.classList.remove("okc","badc"));row.querySelector(`.opt[data-k="${k}"]`).classList.add(k===m.c?"okc":"badc");
+  fb.className="fb "+(k===m.c?"okc":"badc");fb.innerHTML=(k===m.c&&!shown?`<p class="ex">Correct.</p>`:"")+explain(m.en,m.ru);};
+ row.querySelectorAll(".opt").forEach(b=>b.onclick=()=>mark(+b.dataset.k,false));
+ row.querySelector(".ans").onclick=e=>{mark(m.c,true);e.target.classList.add("hidden");};
+});
+
+/* exercise 2: report with dropdowns */
+const T9=vocab.map(v=>v[0]).slice().sort();
+const v2key=["customer base","market penetration","market segmentation","marketing mix","product placement","product portfolio","brand extension","brand identity","customer retention"];
+const v2text=`<h4>QUARTERLY MARKETING REPORT</h4>Our {0} grew by 12% this quarter, mainly thanks to new buyers in Kazan and Yekaterinburg. However, {1} in Moscow is still below 5%, so the capital remains our biggest opportunity. New research on {2} shows that students and young parents behave very differently, so from now on we will treat them as separate groups. To reach them, we are reviewing every part of our {3}, from pricing to promotion. One recent success was {4}: our juice appeared in two episodes of a popular comedy series. We also plan to simplify our {5} by dropping four slow-selling items. The {6} into protein bars has done well, and it has not damaged our {7}, which is still built around fresh, natural ingredients. Finally, a new loyalty app should help with {8}.`;
+states.v2={};
+document.getElementById("v2").innerHTML=v2text.replace(/\{(\d)\}/g,(_,n)=>`<b>${+n+1}</b> <select class="pick" data-n="${n}" aria-label="Gap ${+n+1}"><option value="">…</option>${T9.map(t=>`<option>${t}</option>`).join("")}</select> <button class="btn mini" data-show="${n}">Answer</button>`);
+const v2box=document.getElementById("v2");
+v2box.querySelectorAll("select").forEach(s=>s.onchange=()=>{const n=+s.dataset.n;if(!s.value)return;const ok=s.value===v2key[n];
+ if(states.v2[n]===undefined){states.v2[n]={v:s.value,ok};scoreLine("v2score",states.v2,9);}s.classList.remove("okc","badc");s.classList.add(ok?"okc":"badc");});
+v2box.querySelectorAll("[data-show]").forEach(b=>b.onclick=()=>{const n=+b.dataset.show,s=v2box.querySelector(`select[data-n="${n}"]`);
+ if(states.v2[n]===undefined){states.v2[n]={v:"(answer shown)",ok:false};scoreLine("v2score",states.v2,9);}s.value=v2key[n];s.classList.remove("badc");s.classList.add("okc");b.classList.add("hidden");});
+
+/* ---------- grammar: pass on the gossip ---------- */
+const gossip=[
+ ["Masha","People say that our CEO is planning to retire next year.","say","Our CEO is said to be planning to retire next year."],
+ ["Ilya","Experts believe the brand lost ten per cent of its customers last year.","believe","The brand is believed to have lost ten per cent of its customers last year."],
+ ["Masha","Everyone expects the new product to launch in March.","expect","The new product is expected to launch in March."],
+ ["Ilya","Journalists are reporting that the two companies are discussing a merger right now.","report","The two companies are reported to be discussing a merger."],
+ ["Masha","People think the founder sold all his shares in 2020.","think","The founder is thought to have sold all his shares in 2020."],
+ ["Ilya","Rumour has it that the company is moving its head office to Dubai.","rumour","The company is rumoured to be moving its head office to Dubai."],
+ ["Masha","Everybody knows that our biggest competitor pays its suppliers late.","know","Our biggest competitor is known to pay its suppliers late."],
+ ["Ilya","Analysts consider the last advertising campaign a failure.","consider","The last advertising campaign is considered (to have been) a failure."]
+];
+let gI=-1;const chat=document.getElementById("chat");
+const gShow=()=>{gI++;const [f,t,v]=gossip[gI];chat.innerHTML=`<div class="bub"><span class="from">${f}</span>${t}<span class="vb">Use: ${v}</span></div>`;
+ document.getElementById("gCnt").textContent=`Message ${gI+1} of ${gossip.length}`;document.getElementById("gNext").disabled=gI===gossip.length-1;};
+document.getElementById("gNext").onclick=gShow;
+document.getElementById("gEx").onclick=()=>{const old=chat.querySelector(".me");if(old){old.remove();return;}chat.insertAdjacentHTML("beforeend",`<div class="bub me">${gossip[gI][3]}</div>`);};
+gShow();
+
+/* ---------- grammar 1: make it shorter ---------- */
+const g1=[
+ {q:"Last year we carried out ___ in three regions.",p:"a survey into the market",a:["a market survey"],en:"Noun + noun: <i>a market survey</i>.",ru:"Существительное + существительное: a market survey."},
+ {q:"The sales team went on ___ to Milan.",p:"a trip that lasted three days",a:["a three-day trip","a 3-day trip"],en:"Number + noun used as an adjective: singular, with a hyphen: <i>a three-day trip</i>.",ru:"Число + существительное в роли определения: единственное число, через дефис: a three-day trip."},
+ {q:"Our main goal is to increase ___.",p:"the share of the market that the company has",a:["the company's market share"],en:"Owner + 's + noun compound: <i>the company's market share</i>.",ru:"Владелец + 's + составное существительное: the company's market share."},
+ {q:"Please don't forward ___ to anyone.",p:"this report on sales, which is highly confidential",a:["this highly confidential sales report"],en:"Adverb + adjective + noun + head noun: <i>this highly confidential sales report</i>.",ru:"Наречие + прилагательное + существительное + главное существительное: this highly confidential sales report."},
+ {q:"We are very pleased with ___.",p:"our base of customers, which is expanding",a:["our expanding customer base"],en:"Participle + noun compound: <i>our expanding customer base</i>.",ru:"Причастие + составное существительное: our expanding customer base."},
+ {q:"They signed ___ with a new supplier.",p:"a contract for five years",a:["a five-year contract","a 5-year contract"],en:"<i>A five-year contract</i>: no -s on <i>year</i>.",ru:"A five-year contract — без окончания -s у year."},
+ {q:"The board approved ___ yesterday.",p:"the strategy of the company for marketing",a:["the company's marketing strategy"],en:"<i>The company's marketing strategy</i>.",ru:"The company's marketing strategy."},
+ {q:"Let's organise ___ before the launch.",p:"a session for brainstorming",a:["a brainstorming session"],en:"-ing noun + noun: <i>a brainstorming session</i>.",ru:"Существительное на -ing + существительное: a brainstorming session."}
+];
+states.g1={};
+document.getElementById("g1").innerHTML=g1.map((g,i)=>`<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${g.q.replace("___",`<input class="gap" style="width:min(17em,100%)" aria-label="Phrase ${i+1}" autocomplete="off" spellcheck="false">`)}</p><p class="hint" style="margin:2px 0 0">(${g.p})</p><div class="fb"></div><button class="btn chk">Check</button><button class="btn ans">Answer</button></div>`).join("");
+const nh=s=>norm(s).replace(/\s*-\s*/g,"-");
+document.querySelectorAll("#g1 .dl").forEach(row=>{
+ const i=+row.dataset.i,g=g1[i],inp=row.querySelector("input"),fb=row.querySelector(".fb");
+ const check=()=>{const v=nh(inp.value);if(!v)return;const ok=g.a.map(nh).includes(v);
+  if(states.g1[i]===undefined)states.g1[i]={v:inp.value.trim(),ok};
+  inp.classList.remove("okc","badc");inp.classList.add(ok?"okc":"badc");
+  fb.className="fb "+(ok?"okc":"badc");fb.innerHTML=ok?`<p class="ex">Correct.</p>`:`<p class="ex">Not quite. Try again or press “Answer”.</p>`;};
+ row.querySelector(".chk").onclick=check;inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+ row.querySelector(".ans").onclick=e=>{if(states.g1[i]===undefined)states.g1[i]={v:"(answer shown)",ok:false};
+  inp.value=g.a[0];inp.classList.remove("badc");inp.classList.add("okc");fb.className="fb okc";fb.innerHTML=explain(g.en,g.ru);e.target.classList.add("hidden");};
+});
+
+/* ---------- grammar 2: business news (inline choice) ---------- */
+const g2=[
+ {o:["is said to be considering","is said being considering","says to be considering"],c:0,en:"Something in progress now: <i>is said to be + -ing</i>.",ru:"Действие в процессе сейчас: is said to be + -ing."},
+ {o:["believes to have spent","is believed to spend","is believed to have spent"],c:2,en:"A past action (<i>last year</i>): <i>to have + past participle</i>. The company doesn't believe, people do, so passive.",ru:"Действие в прошлом (last year): to have + причастие. Верит не компания, а люди, поэтому пассив."},
+ {o:["expected to become","was expected to become","was expected becoming"],c:1,en:"<i>Was expected to</i> + infinitive: people expected it in the past.",ru:"Was expected to + инфинитив: этого ожидали в прошлом."},
+ {o:["It reports that","It is reported to","It is reported that"],c:2,en:"Impersonal form: <i>It is reported that</i> + clause.",ru:"Безличная форма: It is reported that + придаточное."},
+ {o:["are thought to have left","are thought to leave","are thought that they left"],c:0,en:"A past action (<i>in October</i>): <i>are thought to have left</i>.",ru:"Действие в прошлом (in October): are thought to have left."},
+ {o:["is rumoured to negotiate","is rumoured to be negotiating","rumours to be negotiating"],c:1,en:"Happening <i>at the moment</i>: <i>is rumoured to be negotiating</i>.",ru:"Происходит прямо сейчас (at the moment): is rumoured to be negotiating."},
+ {o:["It expects that","It is expected to","It is expected that"],c:2,en:"Impersonal form + future: <i>It is expected that a deal will be signed</i>.",ru:"Безличная форма + будущее: It is expected that a deal will be signed."},
+ {o:["is known to have turned down","is known to turn down","knows to have turned down"],c:0,en:"Past actions (<i>in the past</i>): <i>is known to have turned down</i>.",ru:"Действия в прошлом (in the past): is known to have turned down."},
+ {o:["are saying to be","are said to be","are said being"],c:1,en:"A present state: <i>are said to be impressed</i>.",ru:"Состояние в настоящем: are said to be impressed."}
+];
+const g2text=`<h4>BUSINESS NEWS</h4>The chairman of Nordberry {0} a move into the Chinese market. The company {1} over two million euros on market research last year. Its new berry drink {2} a bestseller, but sales have been disappointing. {3} the drink will be withdrawn next month. Two senior managers {4} the company in October. At the moment, the firm {5} with a Korean distributor. {6} a deal will be signed before Christmas. The founder's family {7} several offers from larger companies in the past. Analysts {8} impressed by the brand's customer retention figures.`;
+states.g2={};
+document.getElementById("g2").innerHTML=g2text.replace(/\{(\d)\}/g,(_,n)=>`<b>${+n+1}</b> <span class="ich" data-n="${n}">${g2[n].o.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</span>`);
+const g2fb=document.getElementById("g2fb");
+document.querySelectorAll("#g2 .ich").forEach(box=>{
+ const n=+box.dataset.n,m=g2[n];
+ box.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const k=+b.dataset.k;if(box.dataset.done)return;
+  if(states.g2[n]===undefined){states.g2[n]={v:m.o[k],ok:k===m.c};scoreLine("g2score",states.g2,g2.length);}
+  if(k===m.c){box.dataset.done=1;box.querySelectorAll(".opt").forEach(x=>{if(x!==b)x.remove();});b.classList.add("okc");b.disabled=true;
+   const old=document.getElementById("g2e"+n);if(old)old.remove();}
+  else{b.classList.add("badc");if(!document.getElementById("g2e"+n))g2fb.insertAdjacentHTML("beforeend",`<div class="fb badc" id="g2e${n}"><b>Gap ${n+1}.</b> ${explain(m.en,m.ru)}</div>`);}
+ });
+});
+
+/* ---------- reading ---------- */
+const paras=[
+ ["A","Nordberry, a family-owned Finnish company famous at home for its wild-berry snacks, is said to have spent two years preparing for its first launch in Asia. Its customer base in Finland is loyal but small, and market penetration there is already so high that there is little room left to grow. Real growth, the managers believe, can only come from new markets."],
+ ["B","Before entering Japan and South Korea, Nordberry commissioned a detailed market survey. The results led to careful market segmentation: instead of targeting everyone, the brand now focuses on young urban professionals who care about healthy eating. The marketing mix was adapted too, with smaller packs, higher prices and sales through convenience stores rather than supermarkets. The brand identity, however, has not changed: the Nordic forest, the clean design and the story of the founding family are still at the heart of every campaign."],
+ ["C","Not everything has gone smoothly. A brand extension into berry-flavoured soft drinks is reported to have disappointed, and the company is now thought to be reviewing its product portfolio. Its marketing director remains optimistic, though. Product placement in a popular Korean TV drama has made the brand far more visible, and customer retention figures are said to be the highest in the company's history."]
+];
+document.getElementById("text").innerHTML=paras.map(([l,p])=>`<p style="margin:0 0 12px"><span class="pl2">${l}</span>${p}</p>`).join("");
+const r1=[
+ ["Why did Nordberry decide to look for new markets?","Its customer base in Finland is small and market penetration there is already very high, so there is little room to grow at home."],
+ ["How was the marketing mix adapted for Asian customers?","Nordberry introduced smaller packs and higher prices, and it sells through convenience stores instead of supermarkets."]
+];
+document.getElementById("r1").innerHTML=r1.map(([q,a],i)=>{const id=nid();return `<div class="dl"><p><b>${i+1}.</b> ${q}</p><button class="btn" data-toggle="${id}">Answer</button><span id="${id}" class="en hidden">${a}</span></div>`;}).join("");
+const r2=[
+ {q:"a product that did not sell as well as expected",c:2,en:"Paragraph C: the soft drinks “are reported to have disappointed”.",ru:"Абзац C: напитки, по сообщениям, разочаровали."},
+ {q:"the reason why growth in the home market is limited",c:0,en:"Paragraph A: market penetration in Finland is already very high.",ru:"Абзац A: охват рынка в Финляндии уже очень высокий."},
+ {q:"the group of customers the brand now focuses on",c:1,en:"Paragraph B: young urban professionals who care about healthy eating.",ru:"Абзац B: молодые городские специалисты, следящие за питанием."},
+ {q:"something that stayed the same in the new markets",c:1,en:"Paragraph B: the brand identity has not changed.",ru:"Абзац B: идентичность бренда не изменилась."},
+ {q:"a way in which the brand became better known",c:2,en:"Paragraph C: product placement in a Korean TV drama.",ru:"Абзац C: продакт-плейсмент в корейской дораме."},
+ {q:"how long the company prepared for the launch",c:0,en:"Paragraph A: it spent two years preparing.",ru:"Абзац A: компания готовилась два года."}
+];
+states.r2={};
+document.getElementById("r2").innerHTML=r2.map((m,i)=>`<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${m.q}</p><div class="opts">${["A","B","C"].map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div><div class="fb"></div><button class="btn ans">Answer</button></div>`).join("");
+document.querySelectorAll("#r2 .dl").forEach(row=>{
+ const i=+row.dataset.i,m=r2[i],fb=row.querySelector(".fb");
+ const mark=(k,shown)=>{if(states.r2[i]===undefined){states.r2[i]={v:shown?"(answer shown)":"ABC"[k],ok:!shown&&k===m.c};scoreLine("r2score",states.r2,r2.length);}
+  row.querySelectorAll(".opt").forEach(b=>b.classList.remove("okc","badc"));row.querySelector(`.opt[data-k="${k}"]`).classList.add(k===m.c?"okc":"badc");
+  fb.className="fb "+(k===m.c?"okc":"badc");fb.innerHTML=k===m.c?(shown?"":`<p class="ex">Correct.</p>`)+explain(m.en,m.ru):`<p class="ex">Not this paragraph. Look again.</p>`;};
+ row.querySelectorAll(".opt").forEach(b=>b.onclick=()=>mark(+b.dataset.k,false));
+ row.querySelector(".ans").onclick=e=>{mark(m.c,true);e.target.classList.add("hidden");};
+});
+
+/* ---------- speaking timer ---------- */
+let tId=null;const clock=document.getElementById("clock"),phase=document.getElementById("phase");
+const fmt=s=>`${Math.floor(s/60)}:${String(s%60).padStart(2,"0")}`;
+function run(sec,label){clearInterval(tId);let s=sec;phase.textContent=label;clock.textContent=fmt(s);
+ tId=setInterval(()=>{s--;clock.textContent=fmt(Math.max(s,0));if(s<=0){clearInterval(tId);phase.textContent="Time's up";}},1000);}
+document.getElementById("prep").onclick=()=>run(60,"Preparation");
+document.getElementById("speech").onclick=()=>run(120,"Speech");
+document.getElementById("resetTalk").onclick=()=>{clearInterval(tId);clock.textContent="0:00";phase.textContent="";};
+
+/* ---------- homework ---------- */
+enList("hw",[
+ ["Я работаю в отделе маркетинга небольшой карельской компании, которая производит травяной чай.","I work in the marketing department of a small Karelian company that produces herbal tea."],
+ ["Наша клиентская база в России уже довольно большая.","Our customer base in Russia is already quite large."],
+ ["Однако считается, что проникновение на местный рынок уже достигло своего предела.","However, market penetration in the local market is believed to have reached its limit."],
+ ["Поэтому в прошлом году мы провели исследование рынка в Казахстане.","That's why last year we carried out a market survey in Kazakhstan."],
+ ["Сегментация рынка показала, что наши главные покупатели — женщины от 30 до 45 лет, которые следят за здоровьем.","Market segmentation showed that our main customers are health-conscious women aged 30 to 45."],
+ ["Мы решили не менять идентичность бренда, но адаптировали комплекс маркетинга: упаковку, цены и каналы сбыта.","We decided not to change our brand identity, but we adapted the marketing mix: the packaging, prices and distribution channels."],
+ ["Говорят, что наш главный конкурент тоже готовится выйти на этот рынок.","Our main competitor is said to be preparing to enter this market too."],
+ ["Я уверена, что наша трехлетняя маркетинговая стратегия поможет нам удержать новых клиентов.","I'm sure that our three-year marketing strategy will help us retain our new customers."]
+]);
+
+/* ---------- copy answers ---------- */
+function copyText(t,btn){
+ const done=()=>{const s=btn.nextElementSibling;s.textContent="Copied";setTimeout(()=>s.textContent="",1800);};
+ const fb=()=>{const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();try{document.execCommand("copy");done();}catch(e){}a.remove();};
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,fb);else fb();
+}
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-copy]");if(!b)return;const k=b.dataset.copy;
+ const n={v1:v1.length,v2:9,g1:g1.length,g2:g2.length,r2:r2.length}[k],t={v1:"Vocabulary, exercise 1",v2:"Vocabulary, exercise 2",g1:"Grammar, exercise 1",g2:"Grammar, exercise 2",r2:"Reading, exercise 2"}[k];
+ copyText([t].concat([...Array(n).keys()].map(i=>`${i+1}. ${markS(states[k][i])}`)).join("\n"),b);
+});
+</script>
+</body>
+</html>

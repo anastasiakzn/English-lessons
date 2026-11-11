@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lesson — Svetlana — 12.11.2026</title>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1e3a8a;
+            --primary-light: #eff6ff;
+            --secondary: #0e9f6e;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --badge-bg: #fef3c7;
+            --badge-text: #92400e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 25px 15px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 { color: var(--primary); font-size: 1.85rem; margin-bottom: 8px; }
+        .header-meta { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        .tab-btn {
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #475569;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        .tab-btn:hover { background: #e2e8f0; }
+        .tab-btn.active { background: #1e293b; color: white; border-color: #1e293b; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Section Cards & Titles */
+        .section-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: 1.35rem;
+            color: var(--text-main);
+            margin-bottom: 18px;
+            font-weight: 700;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 5px; height: 22px;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+        .ex-title { margin-bottom: 12px; color: var(--primary); font-size: 1.1rem; }
+        .hint-notice { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        /* Warm-up Box */
+        .warmup-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        .idiom { font-size: 1.3rem; font-weight: 700; color: var(--primary-dark); margin: 6px 0 10px; }
+
+        .action-btn, .btn-check, .player-btn {
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+        .action-btn:hover, .btn-check:hover, .player-btn:hover { background: var(--primary-dark); }
+        .action-btn { margin-top: 10px; }
+
+        .hidden-panel {
+            display: none;
+            color: #1e1b4b;
+            font-size: 0.92rem;
+            margin-top: 12px;
+            padding: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #c7d2fe;
+            line-height: 1.6;
+        }
+
+        .rus-btn {
+            background: #fff; border: 1px solid #cbd5e1; color: #475569; font-size: 0.7rem; font-weight: 700;
+            padding: 1px 6px; border-radius: 4px; cursor: pointer; margin-left: 6px; vertical-align: middle;
+        }
+        .rus-text { display: none; color: #7f1d1d; margin-top: 4px; font-style: italic; font-size: 0.9rem; }
+
+        /* Translation story / Homework */
+        .story-container {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 26px;
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: var(--text-main);
+        }
+        .sentence-wrap { display: inline; }
+        .ru-text { color: var(--text-main); font-weight: 400; }
+        .inline-btn {
+            background: #eef1f6;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            user-select: none;
+            display: inline-block;
+            transition: all 0.2s;
+            vertical-align: middle;
+        }
+        .inline-btn:hover { background: #cbd5e1; }
+        .inline-en {
+            display: none;
+            color: #1d4ed8;
+            font-weight: 600;
+            background-color: #dbeafe;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-left: 4px;
+        }
+
+        /* Grammar Table */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px 0;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .grammar-table th { background-color: var(--primary); color: white; }
+        .tt-ru { font-size: 0.82rem; color: var(--text-muted); }
+        .tt-ex { background: #f8fafc; font-size: 0.92rem; }
+
+        /* Exercises */
+        .item { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; line-height: 2.1; }
+        .item-num { font-weight: 700; color: var(--primary); margin-right: 4px; }
+        
+        .live-input {
+            min-width: 140px;
+            padding: 6px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .live-input.correct {
+            border-color: var(--accent-green) !important;
+            background-color: #ecfdf5 !important;
+            color: #065f46;
+        }
+        .live-input.wrong { border-color: var(--accent-red); background: #fef2f2; }
+        
+        select.match-select {
+            padding: 7px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.93rem;
+            background: #fff;
+            margin: 0 4px;
+            outline: none;
+        }
+        select.match-select.correct { border-color: var(--accent-green); background: #ecfdf5; color: #065f46; }
+        select.match-select.incorrect { border-color: var(--accent-red); background: #fef2f2; color: #991b1b; }
+
+        .btn-peek {
+            background: #e2e8f0;
+            color: #334155;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: background 0.2s;
+            white-space: nowrap;
+            margin-left: 4px;
+        }
+        .btn-peek:hover { background: #cbd5e1; }
+
+        .answer-reveal {
+            display: none;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #065f46;
+            font-weight: 600;
+            margin-top: 6px;
+            padding: 8px 12px;
+            background: #ecfdf5;
+            border-radius: 6px;
+            border: 1px solid #a7f3d0;
+            line-height: 1.6;
+        }
+
+        /* Quiz Buttons (Listening) */
+        .quiz-choices { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+        .choice-btn {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.92rem;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .choice-btn:hover { border-color: var(--primary); }
+        .choice-btn.correct { background-color: var(--accent-green) !important; color: white !important; border-color: var(--accent-green) !important; }
+        .choice-btn.incorrect { background-color: var(--accent-red) !important; color: white !important; border-color: var(--accent-red) !important; }
+
+        /* Vocabulary Flip Cards */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .flip-card { background-color: transparent; height: 185px; perspective: 1000px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .flip-card-front { background-color: #ffffff; color: var(--text-main); }
+        .v-word { font-size: 1.15rem; font-weight: 700; color: var(--primary); }
+        .v-say {
+            margin-top: 6px; background: #f1f5f9; border: 1px solid #cbd5e1;
+            border-radius: 12px; padding: 2px 10px; font-size: 0.8rem; cursor: pointer;
+        }
+        .flip-card-back { background-color: var(--primary); color: white; transform: rotateY(180deg); font-size: 0.86rem; }
+        .v-trans { font-weight: 700; font-size: 1rem; margin-bottom: 6px; }
+        .v-ex { font-size: 0.78rem; font-style: italic; color: #dbeafe; line-height: 1.35; padding: 0 5px; }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>English Interactive Lesson</h1>
+        <div class="header-meta">Student: Svetlana | Date: 12.11.2026 | Focus: Mixed Conditionals & Lab Diagnostics</div>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'warmup')">1 · Warm-up</button>
+        <button class="tab-btn" onclick="openTab(event, 'homework')">2 · Homework Check</button>
+        <button class="tab-btn" onclick="openTab(event, 'listening')">3 · Listening</button>
+        <button class="tab-btn" onclick="openTab(event, 'grammar')">4 · Grammar</button>
+        <button class="tab-btn" onclick="openTab(event, 'vocabulary')">5 · Vocabulary</button>
+        <button class="tab-btn" onclick="openTab(event, 'translation')">6 · Translation</button>
+    </div>
+
+    <!-- 1. WARM-UP -->
+    <div id="warmup" class="tab-content active">
+        <div class="section-card">
+            <h2 class="section-title">1. Professional Warm-up</h2>
+            <div class="warmup-box">
+                <div class="idiom">Turnaround Time & Urgent Diagnostics</div>
+                <p><em>"To meet the growing <strong>need</strong> for <strong>urgent</strong> testing, we must resolve this <strong>challenge</strong> and reduce our <strong>turnaround time</strong>."</em></p>
+                <button class="action-btn" onclick="togglePanel('warmup-hint')">Key Terms & Translation</button>
+                <div id="warmup-hint" class="hidden-panel">
+                    • <strong>the need</strong> — потребность, необходимость<br>
+                    • <strong>urgent</strong> — срочный, неотложный<br>
+                    • <strong>challenge</strong> — сложная задача, вызов<br>
+                    • <strong>turnaround time (TAT)</strong> — время выполнения (цикл от приема пробы до выдачи результата)
+                    <button class="rus-btn" onclick="toggleRus(this)">RUS</button>
+                    <div class="rus-text">«Чтобы удовлетворить растущую потребность в срочных анализах, мы должны решить эту сложную задачу и сократить время выполнения исследований».</div>
+                </div>
+            </div>
+            <p style="font-weight:600;">Discussion Question:</p>
+            <p>What is the main challenge when trying to reduce turnaround time for urgent tests in your laboratory?</p>
+        </div>
+    </div>
+
+    <!-- 2. HOMEWORK CHECK -->
+    <div id="homework" class="tab-content">
+        <div class="section-card">
+            <span class="badge">Homework check</span>
+            <h2 class="section-title">2. Translation Practice (from 23.10)</h2>
+            <p class="hint-notice">💡 Click the <strong>EN</strong> button after each sentence to check your homework translation.</p>
+            <div class="story-container">
+                <div class="sentence-wrap">
+                    <span class="ru-text">В последнее время у меня очень много дел, и я совсем забросила спорт.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">Recently I've had a lot of things to do, and I've completely neglected sport.</span>
+                </div>
+                <div class="sentence-wrap">
+                    <span class="ru-text">Если бы я была более дисциплинированной, я бы записалась в бассейн ещё в сентябре.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">If I were more disciplined, I would have signed up for the swimming pool back in September.</span>
+                </div>
+                <div class="sentence-wrap">
+                    <span class="ru-text">Согласно моему расписанию, свободное время у меня будет только в декабре.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">According to my schedule, I will only have free time in December.</span>
+                </div>
+                <div class="sentence-wrap">
+                    <span class="ru-text">Вчера я наконец встретилась с иностранной коллегой, чей доклад слушала на прошлой конференции.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">Yesterday I finally met a foreign colleague whose talk I had heard at the last conference.</span>
+                </div>
+                <div class="sentence-wrap">
+                    <span class="ru-text">Это та самая коллега, с которой я переписывалась весь год.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">She is the colleague with whom I have been corresponding all year.</span>
+                </div>
+                <div class="sentence-wrap">
+                    <span class="ru-text">Если бы я выучила английский раньше, я бы сейчас свободно с ней общалась.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">If I had learned English earlier, I would talk to her freely now.</span>
+                </div>
+                <div class="sentence-wrap">
+                    <span class="ru-text">Но с каждым уроком я делаю всё меньше ошибок!</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">But with every lesson I make fewer mistakes!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. LISTENING -->
+    <div id="listening" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">3. Listening: The Award Speech</h2>
+            <p class="hint-notice">💡 Listen to the Chief Laboratory Director giving a speech. Then complete Exercise 1 and Exercise 2.</p>
+            
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #cbd5e1;">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; justify-content: center;">
+                    <button class="player-btn" onclick="playAudioStory()">▶ Play</button>
+                    <button class="player-btn" style="background:#f39c12;" onclick="pauseAudioStory()">⏸ Pause</button>
+                    <button class="player-btn" style="background:#d63031;" onclick="stopAudioStory()">⏹ Stop</button>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span class="time-display" id="audio-time">00:00 / 00:26</span>
+                    <div class="progress-bar" onclick="seekAudioStory(event)" style="flex: 1; height: 10px; background: #cbd5e1; border-radius: 5px; cursor: pointer; position: relative;">
+                        <div class="progress-fill" id="audio-progress" style="width: 0%; height: 100%; background: var(--primary); border-radius: 5px;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="action-btn" onclick="togglePanel('audio-transcript')" style="background: #e2e8f0; color: #334155;">Show Transcript</button>
+            
+            <div id="audio-transcript" class="hidden-panel">
+                <strong>Transcript:</strong><br>
+                "Good morning, colleagues! Receiving this medical award is a great honor. However, our main challenge remains the same: the need to optimize our daily workflow. We frequently receive urgent tests that demand immediate attention. If we hadn't introduced the new protocols last year, our turnaround time would still be too slow today. We expect our staff to be highly disciplined to give precise data and get the results to doctors without delays. If our technicians weren't so disciplined, they would have made critical errors during yesterday's peak hours. Thank you for your dedication."
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 1: Multiple Choice</h3>
+            <p class="hint-notice">💡 Choose the correct answer according to the audio.</p>
+            
+            <div class="item">
+                <span class="item-num">1.</span> What did the laboratory recently receive?
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, false)">A) A new batch of automated analyzers</button>
+                    <button class="choice-btn" onclick="checkChoice(this, true)">B) A medical award</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) A financial grant</button>
+                </div>
+            </div>
+            
+            <div class="item">
+                <span class="item-num">2.</span> What is described as their main challenge?
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, true)">A) The need to optimize their daily workflow</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">B) Finding new disciplined staff members</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) Changing the old laboratory location</button>
+                </div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">3.</span> Why is their turnaround time acceptable today?
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, false)">A) Because they bought new centrifuges last week</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">B) Because there are fewer urgent tests now</button>
+                    <button class="choice-btn" onclick="checkChoice(this, true)">C) Because they introduced new protocols last year</button>
+                </div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">4.</span> Why is highly disciplined staff required?
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, false)">A) To keep the laboratory completely silent</button>
+                    <button class="choice-btn" onclick="checkChoice(this, true)">B) To give precise data and get results to doctors on time</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) To attend training seminars every morning</button>
+                </div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">5.</span> What would have happened if the technicians weren't disciplined?
+                <div class="quiz-choices">
+                    <button class="choice-btn" onclick="checkChoice(this, true)">A) They would have made critical errors yesterday.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">B) They wouldn't have received their salary.</button>
+                    <button class="choice-btn" onclick="checkChoice(this, false)">C) The turnaround time would have doubled.</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 2: Dictation (Fill in the Blanks)</h3>
+            <p class="hint-notice">💡 Listen to the audio again and fill in the missing words (use the new vocabulary).</p>
+
+            <div class="item" style="line-height: 2.4;">
+                1. Receiving this medical <input type="text" class="live-input" style="width: 120px;" data-ans="award" oninput="liveGap(this)"> is a great honor.<br>
+                2. However, our main <input type="text" class="live-input" style="width: 140px;" data-ans="challenge" oninput="liveGap(this)"> remains the same: the <input type="text" class="live-input" style="width: 100px;" data-ans="need" oninput="liveGap(this)"> to optimize our daily workflow.<br>
+                3. We frequently receive <input type="text" class="live-input" style="width: 130px;" data-ans="urgent" oninput="liveGap(this)"> tests that demand immediate attention.<br>
+                4. ...our <input type="text" class="live-input" style="width: 180px;" data-ans="turnaround time" oninput="liveGap(this)"> would still be too slow today.<br>
+                5. We expect our staff to be highly <input type="text" class="live-input" style="width: 150px;" data-ans="disciplined" oninput="liveGap(this)"> to <input type="text" class="live-input" style="width: 100px;" data-ans="give" oninput="liveGap(this)"> precise data and <input type="text" class="live-input" style="width: 100px;" data-ans="get" oninput="liveGap(this)"> the results to doctors without delays.
+                <div style="margin-top: 10px;">
+                    <button class="btn-peek" style="margin-left: 0;" onclick="toggleNext(this)">Show answers</button>
+                    <div class="answer-reveal">1. award | 2. challenge, need | 3. urgent | 4. turnaround time | 5. disciplined, give, get</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. GRAMMAR -->
+    <div id="grammar" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">4. Grammar Reminder: Mixed Conditionals</h2>
+            <p>We use <strong>mixed conditionals</strong> when the time of the condition and the time of the result are <strong>different</strong>.</p>
+            <div style="overflow-x:auto;">
+            <table class="grammar-table">
+                <thead>
+                    <tr><th>Type</th><th>Meaning</th><th>If-clause</th><th>Main clause</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Past → Present</strong></td><td>An unreal past action and its result <strong>now</strong><br><span class="tt-ru">Нереальное прошлое → результат в настоящем</span></td><td><strong>If + Past Perfect</strong><br>(had + V3)</td><td><strong>would + V</strong></td></tr>
+                    <tr><td colspan="4" class="tt-ex"><em>Example:</em> <strong>If the clinic had bought</strong> new centrifuges last year, we <strong>wouldn't have</strong> so many problems <strong>now</strong>.<br><span class="tt-ru">(Если бы клиника купила новые центрифуги в прошлом году, у нас сейчас не было бы столько проблем — но не купила, и проблемы есть.)</span></td></tr>
+                    <tr><td><strong>Present → Past</strong></td><td>An unreal present situation (often a permanent quality) and its result in the <strong>past</strong><br><span class="tt-ru">Нереальное настоящее → результат в прошлом</span></td><td><strong>If + Past Simple</strong><br><span class="tt-ru">(If I / he / she <strong>were</strong>…)</span></td><td><strong>would have + V3</strong></td></tr>
+                    <tr><td colspan="4" class="tt-ex"><em>Example:</em> <strong>If she weren't</strong> so busy, she <strong>would have come</strong> to the seminar <strong>last week</strong>.<br><span class="tt-ru">(Если бы она не была такой занятой (вообще), она бы пришла на семинар на прошлой неделе.)</span></td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p class="hint-notice" style="margin-bottom:0;">💡 Look at the time words: <strong>now, today, these days</strong> → present; <strong>yesterday, last year, at the conference</strong> → past.</p>
+        </div>
+
+        <!-- Ex 1: Dropdown selection -->
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 1: Match the Correct Forms</h3>
+            <p class="hint-notice">💡 Select the appropriate verb tense for the second part of the mixed conditional sentence.</p>
+
+            <div class="item">
+                <span class="item-num">1.</span> If the laboratory had upgraded its software last month, we 
+                <select class="match-select" onchange="checkSelect(this, 'would process')">
+                    <option value="">-- select --</option>
+                    <option value="would process">would process</option>
+                    <option value="would have processed">would have processed</option>
+                    <option value="processed">processed</option>
+                </select>
+                urgent tests much faster <strong>now</strong>.
+            </div>
+
+            <div class="item">
+                <span class="item-num">2.</span> If our team leader weren't so disciplined in general, he 
+                <select class="match-select" onchange="checkSelect(this, 'would have forgotten')">
+                    <option value="">-- select --</option>
+                    <option value="would forget">would forget</option>
+                    <option value="had forgotten">had forgotten</option>
+                    <option value="would have forgotten">would have forgotten</option>
+                </select>
+                to submit the report <strong>yesterday</strong>.
+            </div>
+
+            <div class="item">
+                <span class="item-num">3.</span> Svetlana 
+                <select class="match-select" onchange="checkSelect(this, 'would not have')">
+                    <option value="">-- select --</option>
+                    <option value="would not have">would not have</option>
+                    <option value="would not have had">would not have had</option>
+                    <option value="did not have">did not have</option>
+                </select>
+                such a huge challenge <strong>today</strong> if she had prepared the documents on Friday.
+            </div>
+
+            <div class="item">
+                <span class="item-num">4.</span> We 
+                <select class="match-select" onchange="checkSelect(this, 'would have received')">
+                    <option value="">-- select --</option>
+                    <option value="would receive">would receive</option>
+                    <option value="would have received">would have received</option>
+                    <option value="received">received</option>
+                </select>
+                that international award <strong>last year</strong> if our clinical trials were flawless.
+            </div>
+
+            <div class="item">
+                <span class="item-num">5.</span> If the courier hadn't lost the samples yesterday, the turnaround time 
+                <select class="match-select" onchange="checkSelect(this, 'would be')">
+                    <option value="">-- select --</option>
+                    <option value="would be">would be</option>
+                    <option value="would have been">would have been</option>
+                    <option value="was">was</option>
+                </select>
+                perfect <strong>right now</strong>.
+            </div>
+
+            <div class="item">
+                <span class="item-num">6.</span> If I spoke fluent Hebrew, I 
+                <select class="match-select" onchange="checkSelect(this, 'would have understood')">
+                    <option value="">-- select --</option>
+                    <option value="would understand">would understand</option>
+                    <option value="understood">understood</option>
+                    <option value="would have understood">would have understood</option>
+                </select>
+                the medical instructions in Israel <strong>last week</strong>.
+            </div>
+
+            <div class="item">
+                <span class="item-num">7.</span> The patients 
+                <select class="match-select" onchange="checkSelect(this, 'would not be')">
+                    <option value="">-- select --</option>
+                    <option value="would not be">would not be</option>
+                    <option value="would not have been">would not have been</option>
+                    <option value="were not">were not</option>
+                </select>
+                angry <strong>today</strong> if the reception desk had given them the correct forms yesterday.
+            </div>
+        </div>
+
+        <!-- Ex 2: Error Correction (type the fix) -->
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 2: Fix the Mistake</h3>
+            <p class="hint-notice">💡 There is a tense mistake in the <strong>bolded</strong> verb phrase. Type the correct form in the box to make a valid Mixed Conditional.</p>
+            
+            <div class="item">
+                <span class="item-num">1.</span> (Past->Present) If we had missed the deadline, we <strong>will face</strong> a major challenge today.<br>
+                Correct form: <input type="text" class="live-input" style="width:160px; margin-top:8px;" data-ans="would face" oninput="liveGap(this)">
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">would face</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">2.</span> (Present->Past) If she wasn't so highly disciplined, she <strong>wouldn't notice</strong> that error yesterday.<br>
+                Correct form: <input type="text" class="live-input" style="width:200px; margin-top:8px;" data-ans="would not have noticed|wouldn't have noticed" oninput="liveGap(this)">
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">would not have noticed / wouldn't have noticed</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">3.</span> (Past->Present) I <strong>would have been</strong> perfectly fine right now if I had slept better last night.<br>
+                Correct form: <input type="text" class="live-input" style="width:160px; margin-top:8px;" data-ans="would be" oninput="liveGap(this)">
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">would be</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">4.</span> (Present->Past) If they knew how to operate the machine, they <strong>would fix</strong> it before the shift ended.<br>
+                Correct form: <input type="text" class="live-input" style="width:180px; margin-top:8px;" data-ans="would have fixed" oninput="liveGap(this)">
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">would have fixed</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">5.</span> (Past->Present) If the hospital hadn't bought new software, the turnaround time <strong>is</strong> terrible today.<br>
+                Correct form: <input type="text" class="live-input" style="width:160px; margin-top:8px;" data-ans="would be" oninput="liveGap(this)">
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">would be</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">6.</span> (Present->Past) We would have won the industry award last month if our research <strong>had been</strong> more innovative in general. <br><span style="font-size: 0.85rem; color: var(--text-muted);">(Note: The research is generally NOT innovative).</span><br>
+                Correct form: <input type="text" class="live-input" style="width:160px; margin-top:8px;" data-ans="were|was" oninput="liveGap(this)">
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">were (or was)</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">7.</span> (Past->Present) The patients <strong>will get</strong> the right treatment now if the lab had given the results on time.<br>
+                Correct form: <input type="text" class="live-input" style="width:160px; margin-top:8px;" data-ans="would get" oninput="liveGap(this)">
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">would get</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. VOCABULARY -->
+    <div id="vocabulary" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">5. Vocabulary (8 Target Words)</h2>
+            <p class="hint-notice">💡 Click the card to see the translation and an example. Click 🔊 to hear the word.</p>
+            <div class="vocab-grid">
+                
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">award</div>
+                            <div class="v-ipa">/əˈwɔːd/</div>
+                            <div class="v-def">a prize given for an achievement</div>
+                            <button class="v-say" onclick="event.stopPropagation(); say('award')">🔊</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">награда, премия</div>
+                            <div class="v-ex">"The lab received an award for excellent service."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">urgent</div>
+                            <div class="v-ipa">/ˈɜːdʒənt/</div>
+                            <div class="v-def">requiring immediate action or attention</div>
+                            <button class="v-say" onclick="event.stopPropagation(); say('urgent')">🔊</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">срочный, неотложный</div>
+                            <div class="v-ex">"These are urgent blood tests from the ER."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">turnaround time</div>
+                            <div class="v-ipa">/ˈtɜːnəraʊnd taɪm/</div>
+                            <div class="v-def">time taken to complete a process</div>
+                            <button class="v-say" onclick="event.stopPropagation(); say('turnaround time')">🔊</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">время выполнения (цикл)</div>
+                            <div class="v-ex">"We need to reduce our turnaround time."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">challenge</div>
+                            <div class="v-ipa">/ˈtʃælɪndʒ/</div>
+                            <div class="v-def">a demanding or difficult task</div>
+                            <button class="v-say" onclick="event.stopPropagation(); say('challenge')">🔊</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">вызов, сложная задача</div>
+                            <div class="v-ex">"Managing logistics is our biggest challenge."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">the need</div>
+                            <div class="v-ipa">/ðə niːd/</div>
+                            <div class="v-def">a requirement or necessity for something</div>
+                            <button class="v-say" onclick="event.stopPropagation(); say('the need')">🔊</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">потребность, необходимость</div>
+                            <div class="v-ex">"There is a growing need for automated systems."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">to give</div>
+                            <div class="v-ipa">/tə ɡɪv/</div>
+                            <div class="v-def">to provide or supply</div>
+                            <button class="v-say" onclick="event.stopPropagation(); say('to give')">🔊</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">давать, предоставлять</div>
+                            <div class="v-ex">"We must give accurate results to the doctors."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">to get</div>
+                            <div class="v-ipa">/tə ɡet/</div>
+                            <div class="v-def">to obtain, receive, or achieve</div>
+                            <button class="v-say" onclick="event.stopPropagation(); say('to get')">🔊</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">получать, достигать</div>
+                            <div class="v-ex">"Patients need to get proper treatment quickly."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="v-word">disciplined</div>
+                            <div class="v-ipa">/ˈdɪsəplɪnd/</div>
+                            <div class="v-def">showing a controlled form of behavior</div>
+                            <button class="v-say" onclick="event.stopPropagation(); say('disciplined')">🔊</button>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="v-trans">дисциплинированный</div>
+                            <div class="v-ex">"Our staff is highly disciplined and focused."</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 1: Dropdown Match</h3>
+            <p class="hint-notice">💡 Select the correct word to complete the sentence.</p>
+
+            <div class="item">
+                <span class="item-num">1.</span> Winning the quality 
+                <select class="match-select" onchange="checkSelect(this, 'award')">
+                    <option value="">-- select --</option>
+                    <option value="award">award</option>
+                    <option value="challenge">challenge</option>
+                    <option value="the need">the need</option>
+                </select>
+                motivated the entire clinic team.
+            </div>
+
+            <div class="item">
+                <span class="item-num">2.</span> We clearly understand 
+                <select class="match-select" onchange="checkSelect(this, 'the need')">
+                    <option value="">-- select --</option>
+                    <option value="the need">the need</option>
+                    <option value="urgent">urgent</option>
+                    <option value="get">get</option>
+                </select>
+                to update our laboratory protocols.
+            </div>
+
+            <div class="item">
+                <span class="item-num">3.</span> The blood samples from the intensive care unit are extremely 
+                <select class="match-select" onchange="checkSelect(this, 'urgent')">
+                    <option value="">-- select --</option>
+                    <option value="disciplined">disciplined</option>
+                    <option value="urgent">urgent</option>
+                    <option value="give">give</option>
+                </select>
+                .
+            </div>
+
+            <div class="item">
+                <span class="item-num">4.</span> Managing logistics between Moscow and Saint Petersburg is my main 
+                <select class="match-select" onchange="checkSelect(this, 'challenge')">
+                    <option value="">-- select --</option>
+                    <option value="challenge">challenge</option>
+                    <option value="turnaround time">turnaround time</option>
+                    <option value="award">award</option>
+                </select>
+                at work.
+            </div>
+
+            <div class="item">
+                <span class="item-num">5.</span> A highly 
+                <select class="match-select" onchange="checkSelect(this, 'disciplined')">
+                    <option value="">-- select --</option>
+                    <option value="disciplined">disciplined</option>
+                    <option value="urgent">urgent</option>
+                    <option value="turnaround time">turnaround time</option>
+                </select>
+                approach is required when handling biological specimens.
+            </div>
+
+            <div class="item">
+                <span class="item-num">6.</span> We promise to 
+                <select class="match-select" onchange="checkSelect(this, 'give')">
+                    <option value="">-- select --</option>
+                    <option value="get">get</option>
+                    <option value="give">give</option>
+                    <option value="award">award</option>
+                </select>
+                accurate results to the attending physicians.
+            </div>
+
+            <div class="item">
+                <span class="item-num">7.</span> Patients expect to 
+                <select class="match-select" onchange="checkSelect(this, 'get')">
+                    <option value="">-- select --</option>
+                    <option value="get">get</option>
+                    <option value="give">give</option>
+                    <option value="the need">the need</option>
+                </select>
+                their test reports within 24 hours.
+            </div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 2: Type the Word</h3>
+            <p class="hint-notice">💡 Read the sentence and type the missing word from the vocabulary list (<em>award, urgent, turnaround time, challenge, give, get, disciplined</em>).</p>
+            
+            <div class="item">
+                <span class="item-num">1.</span> We upgraded our automated analyzers to reduce the <input type="text" class="live-input" style="width:160px;" data-ans="turnaround time" oninput="liveGap(this)">.
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">turnaround time</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">2.</span> It takes a highly <input type="text" class="live-input" style="width:130px;" data-ans="disciplined" oninput="liveGap(this)"> team to avoid pre-analytical errors.
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">disciplined</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">3.</span> It is crucial to <input type="text" class="live-input" style="width:80px;" data-ans="give" oninput="liveGap(this)"> the doctors precise and accurate data.
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">give</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">4.</span> We want our patients to <input type="text" class="live-input" style="width:80px;" data-ans="get" oninput="liveGap(this)"> the correct treatment without delays.
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">get</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">5.</span> Receiving this prestigious <input type="text" class="live-input" style="width:100px;" data-ans="award" oninput="liveGap(this)"> proves the high quality of our lab.
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">award</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">6.</span> When a patient's condition is critical, the tests become incredibly <input type="text" class="live-input" style="width:100px;" data-ans="urgent" oninput="liveGap(this)">.
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">urgent</div>
+            </div>
+
+            <div class="item">
+                <span class="item-num">7.</span> Staff shortages are the biggest <input type="text" class="live-input" style="width:120px;" data-ans="challenge" oninput="liveGap(this)"> for modern clinical laboratories.
+                <button class="btn-peek" onclick="toggleNext(this)">Answer</button>
+                <div class="answer-reveal">challenge</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. TRANSLATION -->
+    <div id="translation" class="tab-content">
+        <div class="section-card">
+            <span class="badge">Final Task</span>
+            <h2 class="section-title">6. Translation</h2>
+            <p class="hint-notice">💡 Translate the short story into English using the new vocabulary and Mixed Conditionals. Click the <strong>EN</strong> button after each sentence to check.</p>
+            
+            <div class="story-container">
+                <div class="sentence-wrap">
+                    <span class="ru-text">Вчера наша лаборатория получила престижную награду за качество работы.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">Yesterday our laboratory got a prestigious award for work quality.</span>
+                </div>
+                
+                <div class="sentence-wrap">
+                    <span class="ru-text">Потребность сократить время выполнения срочных анализов — это наш главный вызов сегодня.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">The need to reduce the turnaround time for urgent tests is our main challenge today.</span>
+                </div>
+                
+                <div class="sentence-wrap">
+                    <span class="ru-text">Если бы мы не купили новые анализаторы в прошлом году, у нас бы сейчас было много проблем.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">If we hadn't bought new analyzers last year, we would have a lot of problems now.</span>
+                </div>
+                
+                <div class="sentence-wrap">
+                    <span class="ru-text">Очень важно давать точные результаты, чтобы пациенты вовремя получали правильное лечение.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">It is very important to give accurate results so that patients get the right treatment on time.</span>
+                </div>
+                
+                <div class="sentence-wrap">
+                    <span class="ru-text">Если бы наш персонал не был таким дисциплинированным, они бы совершили критическую ошибку на прошлой неделе.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">If our staff weren't so disciplined, they would have made a critical mistake last week.</span>
+                </div>
+
+                <div class="sentence-wrap">
+                    <span class="ru-text">К счастью, мы работаем как один слаженный механизм.</span>
+                    <span class="inline-btn" onclick="toggleInlineEn(this)">EN</span>
+                    <span class="inline-en">Fortunately, we work as one coordinated mechanism.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+        if(window.speechSynthesis) window.speechSynthesis.cancel();
+    }
+
+    function togglePanel(id) {
+        const el = document.getElementById(id);
+        el.style.display = (el.style.display === "block") ? "none" : "block";
+    }
+
+    function toggleNext(btn) {
+        const el = btn.parentElement.querySelector('.answer-reveal');
+        if (el) el.style.display = (el.style.display === "block") ? "none" : "block";
+    }
+
+    function toggleRus(btn) {
+        const el = btn.nextElementSibling;
+        el.style.display = (el.style.display === "block") ? "none" : "block";
+    }
+
+    function toggleInlineEn(btn) {
+        const span = btn.nextElementSibling;
+        const open = span.style.display === "inline";
+        span.style.display = open ? "none" : "inline";
+        btn.style.background = open ? "#eef1f6" : "#1a56db";
+        btn.style.color = open ? "#475569" : "#ffffff";
+    }
+
+    // Checking functions
+    function liveGap(inp) {
+        inp.classList.remove('wrong');
+        const answers = inp.dataset.ans.toLowerCase().split('|');
+        const userVal = inp.value.trim().toLowerCase().replace(/[\.\?!,-]/g, '').replace(/\s+/g, ' ');
+        const isCorrect = answers.some(ans => ans === userVal);
+        inp.classList.toggle('correct', isCorrect);
+    }
+
+    function checkChoice(btn, isCorrect) {
+        const siblings = btn.parentElement.querySelectorAll('.choice-btn');
+        siblings.forEach(b => b.classList.remove('correct', 'incorrect'));
+        btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+    }
+
+    function checkSelect(sel, targetVal) {
+        sel.classList.remove('correct', 'incorrect');
+        if (sel.value === targetVal) {
+            sel.classList.add('correct');
+        } else if (sel.value !== "") {
+            sel.classList.add('incorrect');
+        }
+    }
+
+    // TTS Audio
+    let voicesCache = [];
+    function loadVoices() { voicesCache = window.speechSynthesis ? speechSynthesis.getVoices() : []; }
+    if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+    
+    function say(text) {
+        if (!window.speechSynthesis) return;
+        speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'en-US'; 
+        u.rate = 0.85;
+        const v = voicesCache.find(x => x.lang && x.lang.startsWith('en-US')) || voicesCache.find(x => x.lang && x.lang.startsWith('en'));
+        if (v) u.voice = v;
+        speechSynthesis.speak(u);
+    }
+
+    const storyText = "Good morning, colleagues! Receiving this medical award is a great honor. However, our main challenge remains the same: the need to optimize our daily workflow. We frequently receive urgent tests that demand immediate attention. If we hadn't introduced the new protocols last year, our turnaround time would still be too slow today. We expect our staff to be highly disciplined to give precise data and get the results to doctors without delays. If our technicians weren't so disciplined, they would have made critical errors during yesterday's peak hours. Thank you for your dedication.";
+    
+    let audioUtterance = null;
+    let isPlaying = false;
+    let audioTimer = null;
+    let currentSeconds = 0;
+    const totalEstSeconds = 26;
+
+    function formatTime(sec) {
+        let m = Math.floor(sec / 60);
+        let s = Math.floor(sec % 60);
+        return (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+    }
+
+    function playAudioStory() {
+        let synth = window.speechSynthesis;
+        if (synth.paused) {
+            synth.resume();
+            isPlaying = true;
+            startTimer();
+            return;
+        }
+        if (synth.speaking) {
+            synth.cancel();
+        }
+
+        audioUtterance = new SpeechSynthesisUtterance(storyText);
+        audioUtterance.lang = 'en-US';
+        audioUtterance.rate = 0.85;
+
+        let voices = synth.getVoices();
+        let femaleVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Samantha') || v.name.includes('Google US English')));
+        if (femaleVoice) {
+            audioUtterance.voice = femaleVoice;
+        }
+
+        audioUtterance.onend = function() {
+            stopAudioStory();
+        };
+
+        currentSeconds = 0;
+        synth.speak(audioUtterance);
+        isPlaying = true;
+        startTimer();
+    }
+
+    function pauseAudioStory() {
+        let synth = window.speechSynthesis;
+        if (synth.speaking && !synth.paused) {
+            synth.pause();
+            isPlaying = false;
+            clearInterval(audioTimer);
+        }
+    }
+
+    function stopAudioStory() {
+        let synth = window.speechSynthesis;
+        synth.cancel();
+        isPlaying = false;
+        clearInterval(audioTimer);
+        currentSeconds = 0;
+        updatePlayerUI();
+    }
+
+    function seekAudioStory(e) {
+        let bar = e.currentTarget;
+        let rect = bar.getBoundingClientRect();
+        let clickX = e.clientX - rect.left;
+        let pct = clickX / rect.width;
+        currentSeconds = Math.floor(pct * totalEstSeconds);
+        updatePlayerUI();
+        // Restart speech from approximate position
+        playAudioStory();
+    }
+
+    function startTimer() {
+        clearInterval(audioTimer);
+        audioTimer = setInterval(() => {
+            if (isPlaying && currentSeconds < totalEstSeconds) {
+                currentSeconds++;
+                updatePlayerUI();
+            }
+        }, 1000);
+    }
+
+    function updatePlayerUI() {
+        let pct = Math.min((currentSeconds / totalEstSeconds) * 100, 100);
+        document.getElementById('audio-progress').style.width = pct + '%';
+        document.getElementById('audio-time').innerText = formatTime(currentSeconds) + " / " + formatTime(totalEstSeconds);
+    }
+</script>
+
+</body>
+</html>
