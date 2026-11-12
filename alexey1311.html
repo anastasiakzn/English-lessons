@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Interactive English lesson for Alexey — 13 November">
+<title>Alexey, 13 November</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F7F6;--sheet:#FFFFFF;--ink:#1F2D33;--soft:#5E6E73;
+  --blue:#0E7C7B;--blue-pale:#E6F3F1;--mark:#FFD166;--orange:#E9A23B;--sky:#3E7CC9;
+  --ok:#2E7D5B;--okbg:#E3F1EA;--bad:#B33A3A;--badbg:#F7E4E4;--line:#DCE7E5;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;--sans:"Manrope","Segoe UI",Arial,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{font-size:2.2rem;line-height:1.15;margin:0;font-weight:700}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0;scrollbar-width:thin}
+.tab{font-family:var(--sans);font-weight:600;font-size:.9rem;border:0;background:transparent;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}section.active{display:block}
+h2{font-size:1.55rem;line-height:1.25;margin:0 0 12px}h3{font-size:1.14rem;line-height:1.35;margin:0 0 6px}h4{font-family:var(--sans);font-size:.9rem;margin:0 0 4px;color:var(--blue)}
+.task{font-family:var(--sans);font-size:.93rem;line-height:1.55;color:var(--soft);margin:0 0 14px;max-width:70ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:7px;padding:18px 20px;margin-bottom:14px}
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.84rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:white}.part{display:none}.part.active{display:block}
+.btn{font-family:var(--sans);font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:5px 10px;cursor:pointer;margin:2px 4px 2px 0}.btn:hover{border-color:var(--blue)}.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}.btn:disabled{opacity:.55;cursor:default}
+.hidden{display:none!important}.en{color:var(--blue);font-style:italic}.ru{color:var(--soft);font-family:var(--sans);font-size:.88rem}.hint{font-family:var(--sans);font-size:.84rem;color:var(--soft)}
+.qlist{margin:0;padding-left:1.3em}.qlist li{margin:8px 0}.ttext{font-size:1.06rem;line-height:1.9}.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:12px}.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:5px;padding:12px 14px}.card:nth-child(3n+2){border-left-color:var(--orange)}.card:nth-child(3n){border-left-color:var(--sky)}.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}.card .tr{font-family:var(--sans);font-size:.83rem;color:var(--soft);margin:2px 0 6px}.card .def{font-size:.94rem;margin:0 0 6px}.card .ex2{font-size:.91rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+.dl{padding:13px 0;border-bottom:1px solid var(--line)}.dl:last-child{border-bottom:0}.dl p{margin:0}.fb{font-size:.94rem;min-height:0}.fb .ex{margin:5px 0}.fb.okc{color:var(--ok)}.fb.badc{color:var(--bad)}.score{font-family:var(--sans);font-weight:700;font-size:.92rem;margin:10px 0 0}.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}.copied{font-family:var(--sans);font-size:.84rem;color:var(--ok)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.opts.col{flex-direction:column}.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F5FAF9;border-radius:4px;padding:7px 12px;cursor:pointer;color:var(--ink)}.opt:hover{border-color:var(--blue)}.opt.okc{background:var(--okbg);border-color:var(--ok)}.opt.badc{background:var(--badbg);border-color:var(--bad)}
+.target-word{display:inline-block;font-family:var(--sans);font-size:.82rem;font-weight:700;letter-spacing:.03em;color:#fff;background:var(--blue);border-radius:4px;padding:2px 9px;margin-bottom:2px}
+input.gap{font-family:var(--serif);font-size:1rem;padding:4px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#F5FAF9;color:var(--ink);width:100%;max-width:100%}
+input.gap:focus{background:#fff}
+input.gap.okc{border-color:var(--ok);background:var(--okbg)}input.gap.badc{border-color:var(--bad);background:var(--badbg)}
+input.gap-in{display:inline-block;width:auto;min-width:160px;max-width:100%}
+.bank{font-family:var(--sans);font-size:.86rem;line-height:1.9;color:var(--soft);padding:11px 14px;background:#F7FBFA;border:1px dashed #A9C4C0;border-radius:6px;margin:0 0 16px}
+.tag{display:inline-block;font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.05em;border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:2px}
+.tag.plus{color:var(--ok);border:1px solid var(--ok);background:var(--okbg)}
+.tag.minus{color:var(--bad);border:1px solid var(--bad);background:var(--badbg)}
+.tag.quest{color:#8A5A00;border:1px solid var(--orange);background:#FFF4E0}
+/* warm-up: story chain */
+.story-card{border:1px solid var(--line);border-radius:10px;background:linear-gradient(140deg,#fff 0%,#F6FBFA 100%);padding:24px 22px;box-shadow:0 1px 3px rgba(31,45,51,.05)}
+.story-card .label{display:inline-block;font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.09em;color:#fff;background:var(--blue);border-radius:999px;padding:4px 11px;margin-bottom:13px}
+.opener{font-size:1.02rem;line-height:1.5;color:var(--soft);border-left:3px solid var(--line);padding-left:13px;margin:0 0 18px}
+.twist{font-size:2rem;line-height:1.2;font-weight:700;color:var(--blue);text-align:center;min-height:1.3em;margin:0}
+.twist-sub{font-family:var(--sans);font-size:.9rem;color:var(--soft);text-align:center;margin:8px 0 0;min-height:1.4em}
+.trail{display:flex;flex-wrap:wrap;gap:6px;margin:18px 0 0;justify-content:center}
+.trail span{font-family:var(--sans);font-size:.76rem;font-weight:600;color:var(--soft);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.trail span.now{background:var(--blue);border-color:var(--blue);color:#fff}
+.wu-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 0}
+.wu-count{font-family:var(--sans);font-weight:700;font-size:.88rem;color:var(--blue);margin-left:auto}
+/* grammar theory */
+.theory-lead{border-left:4px solid var(--mark);background:#FFF6DC;padding:11px 14px;margin:0 0 14px}.theory-lead p{margin:0}
+.forms{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.form-box{background:#F7F8FD;border-radius:6px;padding:12px 14px;font-size:.95rem}
+.form-box b.h{display:block;font-family:var(--sans);font-size:.8rem;margin-bottom:5px;color:var(--ok)}
+.form-box:nth-child(2) b.h{color:var(--bad)}.form-box:nth-child(3) b.h{color:#A15E16}
+.form-box .f{font-family:var(--sans);font-size:.82rem;color:var(--soft);display:block;margin-bottom:7px}
+.tablewrap{overflow-x:auto}
+table.grammar-table{border-collapse:collapse;width:100%;min-width:520px;font-size:.95rem}
+table.grammar-table th{font-family:var(--sans);font-size:.79rem;color:var(--soft);font-weight:600;text-align:left;padding:6px 8px;border-bottom:2px solid var(--line)}
+table.grammar-table td{vertical-align:top;padding:7px 8px;border-bottom:1px solid var(--line)}
+.irr{columns:3;column-gap:18px;font-size:.95rem;margin:0}
+.irr span{display:block;break-inside:avoid;padding:2px 0}
+.irr b{color:var(--blue)}
+.meaning-note{font-family:var(--sans);font-size:.83rem;color:var(--soft);margin:12px 0 0}
+/* grammar speak: that's not right */
+.wrong-card{border:1px solid var(--line);border-left:5px solid var(--bad);border-radius:8px;background:var(--sheet);padding:20px 22px}
+.wrong-card .num{font-family:var(--sans);font-size:.74rem;font-weight:700;letter-spacing:.08em;color:var(--bad);margin-bottom:9px;display:block}
+.wrong-stmt{font-size:1.22rem;line-height:1.4;font-weight:600;margin:0}
+.model-box{margin:14px 0 0;padding:12px 15px;border-left:4px solid var(--ok);background:var(--okbg);border-radius:0 5px 5px 0;font-style:italic;color:var(--ok)}
+/* listening */
+.player{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.reading-text p{margin:0 0 12px}.reading-text p:last-child{margin-bottom:0}
+.ielts-tag{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.06em;color:#fff;background:var(--blue);border-radius:999px;padding:3px 9px;vertical-align:middle}
+.limit{font-family:var(--sans);font-size:.8rem;font-weight:700;letter-spacing:.04em;color:var(--blue);background:var(--blue-pale);border:1px dashed var(--blue);border-radius:5px;padding:8px 12px;margin:0 0 14px}
+/* speaking */
+.cue{border:2px solid var(--blue);border-radius:7px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+@media(max-width:680px){.forms{grid-template-columns:1fr}.irr{columns:2}.twist{font-size:1.6rem}.wrong-stmt{font-size:1.08rem}}
+@media(max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.sheet{padding:15px}input.gap-in{min-width:130px}.irr{columns:2}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Alexey, lesson 10</h1>
+  <p>Lesson of 13 November 2026</p>
+</header>
+<nav><div class="tabs" role="tablist" id="tabs" aria-label="Lesson sections"></div></nav>
+<main>
+
+<!-- ======== WARM-UP ======== -->
+<section data-title="Warm-up">
+  <h2>Story chain</h2>
+  <p class="task">Press "Next twist" and continue the story with one sentence in the Past Simple.</p>
+  <div class="story-card">
+    <span class="label" id="sLabel">THE STORY BEGINS</span>
+    <p class="opener" id="sOpener"></p>
+    <p class="twist" id="sTwist">Press "Next twist" to start.</p>
+    <p class="twist-sub" id="sSub"></p>
+    <div class="trail" id="sTrail"></div>
+  </div>
+  <div class="wu-bar">
+    <button class="btn solid" id="sNext">Next twist →</button>
+    <button class="btn" id="sNew">↺ New story</button>
+    <span class="wu-count" id="sCount"></span>
+  </div>
+</section>
+
+<!-- ======== HOMEWORK CHECK ======== -->
+<section data-title="Homework check">
+  <h2>Homework check: translation</h2>
+  <p class="task">Read each sentence out loud in English. Then press "EN" to check your translation.</p>
+  <div class="sheet ttext" id="hw"></div>
+</section>
+
+<!-- ======== VOCABULARY ======== -->
+<section data-title="Vocabulary">
+  <h2>Vocabulary: a cable under the ground</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part">
+    <p class="task">Press "Listen" to hear a word and "Tap for Russian" to see the translation. Make up your own sentence with each card.</p>
+    <div class="cards" id="cards"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Which sentence is right?</h3>
+    <p class="task">Both sentences use the word, but only one of them makes sense. Choose it.</p>
+    <div id="v1"></div>
+    <p class="score" id="v1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Let's talk</h3>
+    <ol class="qlist">
+      <li>Tell me about a problem you <b>solved</b> last month. How long did it take?</li>
+      <li>When did you last <b>ask</b> a colleague <b>for</b> help? What did you ask for?</li>
+    </ol>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Complete the story</h3>
+    <p class="task">These fifteen sentences tell one story. Put one word or phrase from the box into each gap.</p>
+    <p class="bank">colleagues &nbsp;·&nbsp; dig &nbsp;·&nbsp; foundation pit &nbsp;·&nbsp; excavator bucket &nbsp;·&nbsp; cable &nbsp;·&nbsp; people &nbsp;·&nbsp; entrance &nbsp;·&nbsp; fence &nbsp;·&nbsp; flood &nbsp;·&nbsp; over &nbsp;·&nbsp; tire &nbsp;·&nbsp; considered &nbsp;·&nbsp; asked &nbsp;·&nbsp; searched &nbsp;·&nbsp; in the evening</p>
+    <div id="v2"></div>
+    <p class="score" id="v2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<!-- ======== GRAMMAR ======== -->
+<section data-title="Grammar">
+  <h2>Grammar: Past Simple</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Reminder</button><button class="sub">Speak</button><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <!-- Reminder -->
+  <div class="part">
+    <div class="theory-lead">
+      <p>We use the <b>Past Simple</b> for finished actions at a finished time in the past.</p>
+      <p style="margin-top:8px"><b>Signal words:</b> <i>yesterday, last Monday / week / year, two days ago, in 2015, at eleven o'clock, then</i>.</p>
+    </div>
+    <div class="forms">
+      <div class="form-box"><b class="h">+ STATEMENT</b><span class="f">subject + 2nd form</span><i>The excavator <b>dug</b> the pit.</i><br><i>We <b>asked</b> him for help.</i></div>
+      <div class="form-box"><b class="h">− NEGATIVE</b><span class="f">subject + didn't + 1st form</span><i>The cable <b>didn't belong</b> to us.</i><br><i>They <b>didn't find</b> the plan.</i></div>
+      <div class="form-box"><b class="h">? QUESTION</b><span class="f">(question word) + did + subject + 1st form</span><i><b>Did</b> you <b>see</b> the cable?</i><br><i>What <b>did</b> the bucket <b>damage</b>?</i></div>
+    </div>
+    <div class="theory-lead" style="border-left-color:var(--bad);background:var(--badbg)">
+      <p>After <b>did</b> and <b>didn't</b> the verb goes back to the 1st form: <i>didn't <b>dig</b></i>, not <s>didn't dug</s>. &nbsp;<i>Did you <b>find</b> it?</i>, not <s>Did you found it?</s></p>
+    </div>
+    <h3>Regular verbs: + ed</h3>
+    <div class="sheet tablewrap" style="margin-bottom:14px">
+      <table class="grammar-table">
+        <thead><tr><th>Rule</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>most verbs: <b>+ ed</b></td><td>ask → asked &nbsp;·&nbsp; damage → damaged &nbsp;·&nbsp; search → searched</td></tr>
+          <tr><td>consonant + <b>y</b> → <b>ied</b></td><td>carry → carried &nbsp;·&nbsp; try → tried &nbsp;·&nbsp; study → studied</td></tr>
+          <tr><td>short verb, one vowel: <b>double the consonant</b></td><td>stop → stopped &nbsp;·&nbsp; plan → planned</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Irregular verbs for this lesson</h3>
+    <div class="sheet">
+      <p class="irr">
+        <span>be → <b>was / were</b></span><span>dig → <b>dug</b></span><span>find → <b>found</b></span>
+        <span>go → <b>went</b></span><span>have → <b>had</b></span><span>come → <b>came</b></span>
+        <span>say → <b>said</b></span><span>see → <b>saw</b></span><span>take → <b>took</b></span>
+        <span>think → <b>thought</b></span><span>get → <b>got</b></span><span>lose → <b>lost</b></span>
+        <span>break → <b>broke</b></span><span>begin → <b>began</b></span><span>make → <b>made</b></span>
+        <span>do → <b>did</b></span><span>put → <b>put</b></span><span>cut → <b>cut</b></span>
+      </p>
+      <p class="meaning-note"><b>be</b> is special: no <i>did</i>. &nbsp;<i>It <b>was</b> a real flood. It <b>wasn't</b> a real flood. <b>Was</b> it a real flood?</i></p>
+    </div>
+  </div>
+  <!-- Speak -->
+  <div class="part sheet">
+    <h3>Speak: that's not right!</h3>
+    <p class="task">Every sentence on the card is wrong. Correct it out loud: first say what did not happen, then say what happened.</p>
+    <div class="wrong-card">
+      <span class="num" id="wNum">SENTENCE 1 OF 8</span>
+      <p class="wrong-stmt" id="wStmt"></p>
+      <div class="model-box hidden" id="wModel"></div>
+    </div>
+    <div class="wu-bar">
+      <button class="btn" id="wShow">Model answer</button>
+      <button class="btn solid" id="wNext">Next sentence →</button>
+    </div>
+  </div>
+  <!-- Exercise 1 -->
+  <div class="part sheet">
+    <h3>Exercise 1. The incident report</h3>
+    <p class="task">These sentences tell one story. Put the verb in brackets into the Past Simple — positive, negative or question.</p>
+    <div id="g1"></div>
+    <p class="score" id="g1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="g1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <!-- Exercise 2 -->
+  <div class="part sheet">
+    <h3>Exercise 2. Write the question</h3>
+    <p class="task">Read the answer and write the whole question. The part you ask about is in bold.</p>
+    <div id="g2"></div>
+    <p class="score" id="g2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="g2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<!-- ======== LISTENING ======== -->
+<section data-title="Listening">
+  <h2>Listening: the cable nobody knew about</h2>
+  <div class="sheet">
+    <div class="player">
+      <button class="btn solid" id="playL">▶ Play the recording</button>
+      <button class="btn" id="pauseL">Pause</button>
+      <button class="btn" id="stopL">Stop</button>
+    </div>
+    <p class="hint" id="ttsNote" style="margin:8px 0 0"></p>
+    <button class="btn" id="showT" style="margin-top:8px">Show transcript</button>
+    <div id="transcript" class="hidden reading-text" style="margin:12px 0 0"></div>
+  </div>
+  <div class="subnav" role="tablist">
+    <button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Answer the questions</h3>
+    <p class="task">Answer in full sentences. Press "Answer" to compare.</p>
+    <div id="lq"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Multiple choice <span class="ielts-tag">IELTS-STYLE</span></h3>
+    <p class="task">This is a <b>Multiple Choice</b> task from the IELTS Listening test. Choose the correct answer, <b>A</b>, <b>B</b> or <b>C</b>.</p>
+    <p class="limit">In the real exam you hear the recording <b>only once</b>, so read the questions before you listen.</p>
+    <div id="l2"></div>
+    <p class="score" id="l2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="l2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<!-- ======== SPEAKING ======== -->
+<section data-title="Speaking">
+  <h2>Speaking</h2>
+  <div class="cue">
+    <p class="topic">Describe an interesting place you visited.</p>
+    <p style="margin:0">You should say:</p>
+    <ul>
+      <li>where this place was and when you went there</li>
+      <li>who you went with</li>
+      <li>what you did there</li>
+      <li>what you liked most about it</li>
+    </ul>
+    <p style="margin:8px 0 0">and explain why you still remember this place.</p>
+  </div>
+  <div class="sheet">
+    <p class="task" style="margin-bottom:6px">This is Part 2 of the IELTS Speaking test. Make short notes for one minute, then speak for one to two minutes. The whole story is about the past, so use the <b>Past Simple</b>.</p>
+    <button class="btn solid" id="tPrep">Preparation · 1 min</button><button class="btn solid" id="tTalk">Speech · 2 min</button><button class="btn" id="tStop">■ Stop</button>
+    <div class="clock" id="clock">1:00</div><div class="phase" id="phase"></div>
+  </div>
+  <div class="sheet">
+    <h3>Useful phrases</h3>
+    <ul class="qlist">
+      <li>I'd like to talk about … / I went there about three years ago.</li>
+      <li>We travelled there by … and it took us …</li>
+      <li>The first thing I saw was …</li>
+      <li>We spent the whole day … / In the evening we …</li>
+      <li>I didn't expect … , so it was a real surprise.</li>
+      <li>What I liked most was …</li>
+    </ul>
+  </div>
+  <div class="sheet">
+    <h3>If we have time</h3>
+    <ol class="qlist"><li>Did you travel more when you were a student?</li><li>What was the last place you visited for the first time?</li></ol>
+  </div>
+</section>
+
+<!-- ======== TRANSLATION ======== -->
+<section data-title="Translation">
+  <h2>Translation</h2>
+  <p class="task">Translate the text into English out loud, sentence by sentence. Press "EN" to check yourself.</p>
+  <div class="sheet ttext" id="ttext"></div>
+</section>
+
+</main>
+
+<script>
+/* ---------- core helpers ---------- */
+let uid=0;const nid=()=>"x"+(++uid);
+const norm=s=>String(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/[.!?,;:"“”]/g,"").replace(/\s+/g," ").trim();
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const states={},totals={};
+const explain=t=>`<p class="ex">${t}</p>`;
+const mark=s=>s?`${s.v}${s.v==="(answer shown)"?"":s.ok?" ✓":" ✗"}`:"—";
+function scoreLine(id,scoreId,total){const vals=Object.values(states[id]||{});const el=document.getElementById(scoreId);if(el)el.textContent=`Correct on the first try: ${vals.filter(x=>x.ok).length} of ${total}`+(vals.length<total?` (${total-vals.length} left)`:"");}
+
+/* ---------- tabs ---------- */
+const sections=[...document.querySelectorAll("main > section")],tabs=document.getElementById("tabs");
+function leaveSection(){stopSpeech();stopTimer();}
+sections.forEach((s,i)=>{const b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=s.dataset.title;b.setAttribute("aria-selected",i===0);if(i===0)s.classList.add("active");b.onclick=()=>{leaveSection();sections.forEach(x=>x.classList.remove("active"));s.classList.add("active");[...tabs.children].forEach(x=>x.setAttribute("aria-selected","false"));b.setAttribute("aria-selected","true");window.scrollTo(0,0)};tabs.appendChild(b)});
+sections.forEach(s=>{const subs=[...s.querySelectorAll(".sub")],parts=[...s.querySelectorAll(".part")];if(!subs.length)return;const show=k=>{parts.forEach((p,i)=>p.classList.toggle("active",i===k));subs.forEach((b,i)=>b.setAttribute("aria-selected",i===k));};subs.forEach((b,k)=>b.onclick=()=>show(k));show(0)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-toggle]");if(!b)return;const el=document.getElementById(b.dataset.toggle);if(el)el.classList.toggle("hidden")});
+
+/* ---------- speech ---------- */
+const hasTTS="speechSynthesis" in window;let voice=null;
+function pickVoice(){try{const voices=speechSynthesis.getVoices();voice=voices.find(v=>v.lang==="en-GB")||voices.find(v=>/^en/i.test(v.lang))||null}catch(e){}}
+if(hasTTS){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+function stopSpeech(){if(hasTTS)speechSynthesis.cancel()}
+function say(parts,rate=.9){if(!hasTTS)return;stopSpeech();parts.forEach(text=>{const u=new SpeechSynthesisUtterance(text);u.lang="en-GB";if(voice)u.voice=voice;u.rate=rate;speechSynthesis.speak(u)})}
+
+/* ---------- buildGaps ---------- */
+function buildGaps(boxId,data){
+ states[boxId]={};totals[boxId]=data.length;
+ const box=document.getElementById(boxId);
+ box.innerHTML=data.map((g,i)=>{
+  const inp=`<input class="gap${g.full?"":" gap-in"}" data-i="${i}" aria-label="Answer ${i+1}" autocomplete="off" spellcheck="false"${g.full?' style="margin-top:6px"':""}>`;
+  const body=g.full?`${g.q}<br>${inp}`:g.q.replace("___",inp);
+  return `<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${body}</p><div class="fb"></div><button class="btn chk">Check</button><button class="btn ans">Answer</button></div>`;}).join("");
+ [...box.querySelectorAll(".dl")].forEach(row=>{
+  const i=+row.dataset.i,g=data[i],inp=row.querySelector("input"),fb=row.querySelector(".fb");
+  const check=()=>{const v=norm(inp.value);if(!v)return;const ok=g.a.map(norm).includes(v);
+   if(states[boxId][i]===undefined){states[boxId][i]={v:inp.value.trim(),ok};scoreLine(boxId,boxId+"score",data.length);}
+   inp.classList.remove("okc","badc");
+   if(ok){inp.classList.add("okc");fb.className="fb okc";fb.innerHTML='<p class="ex">Correct.</p>';}
+   else{inp.classList.add("badc");fb.className="fb badc";fb.innerHTML=explain(g.en);}};
+  row.querySelector(".chk").onclick=check;inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+  row.querySelector(".ans").onclick=e=>{if(states[boxId][i]===undefined){states[boxId][i]={v:"(answer shown)",ok:false};scoreLine(boxId,boxId+"score",data.length);}
+   inp.value=g.a[0];inp.classList.remove("badc");inp.classList.add("okc");fb.className="fb okc";fb.innerHTML=explain(g.en);e.target.classList.add("hidden");};
+ });
+}
+
+/* ---------- buildChoice ---------- */
+function buildChoice(boxId,data,scoreId){
+ states[boxId]={};totals[boxId]=data.length;
+ const box=document.getElementById(boxId);
+ box.innerHTML=data.map((g,i)=>`<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${g.q}</p><div class="opts ${g.col?"col":""}">${g.o.map((o,k)=>`<button class="opt" data-k="${k}">${o}</button>`).join("")}</div><div class="fb"></div><button class="btn ans">Answer</button></div>`).join("");
+ [...box.querySelectorAll(".dl")].forEach(row=>{
+  const i=+row.dataset.i,g=data[i],btns=[...row.querySelectorAll(".opt")],fb=row.querySelector(".fb");
+  const choose=(k,shown=false)=>{const ok=k===g.c;
+   if(states[boxId][i]===undefined){states[boxId][i]={v:shown?"(answer shown)":g.o[k].replace(/<[^>]+>/g,"").slice(0,60),ok:ok&&!shown};scoreLine(boxId,scoreId,data.length);}
+   btns.forEach(x=>x.classList.remove("okc","badc"));btns[k].classList.add(ok?"okc":"badc");
+   if(ok){fb.className="fb okc";fb.innerHTML=shown?explain(g.en):'<p class="ex">Correct.</p>';}
+   else{fb.className="fb badc";fb.innerHTML=explain(g.en);}};
+  btns.forEach(b=>b.onclick=()=>choose(+b.dataset.k));
+  row.querySelector(".ans").onclick=e=>{choose(g.c,true);e.target.classList.add("hidden")};
+ });
+}
+
+/* ---------- enList ---------- */
+const enList=(id,arr)=>{document.getElementById(id).innerHTML=arr.map(([ru,en])=>{const k=nid();return `<span>${ru}</span> <button class="btn" data-toggle="${k}">EN</button><span id="${k}" class="en enout hidden">${en}</span>`}).join("")};
+
+/* ======== WARM-UP: story chain ======== */
+const openers=[
+  "Last Monday Denis arrived at the site at seven in the morning.",
+  "Last summer Marina found an old metal box in her garage.",
+  "Two weeks ago our team started a new project in another city."
+];
+const twists=[
+  ["Suddenly…","What happened at that moment?"],
+  ["Ten minutes later…","What did they do next?"],
+  ["Unfortunately…","What went wrong?"],
+  ["Luckily…","Who or what helped?"],
+  ["At the same time…","What was happening somewhere else?"],
+  ["In the evening…","How did the day end?"],
+  ["The next morning…","What did they find?"],
+  ["In the end…","How did the story finish?"]
+];
+let sOpener=0,sOrder=shuffle(twists.map((_,i)=>i)),sPos=-1,sStories=0;
+const sTwistEl=document.getElementById("sTwist"),sSubEl=document.getElementById("sSub"),sTrailEl=document.getElementById("sTrail");
+function sTrail(){sTrailEl.innerHTML=sOrder.map((t,k)=>k<=sPos?`<span class="${k===sPos?"now":""}">${twists[t][0].replace("…","")}</span>`:"").join("")}
+function sPaint(){
+  document.getElementById("sOpener").textContent=openers[sOpener];
+  document.getElementById("sCount").textContent=`Twist ${Math.max(sPos+1,0)} of ${twists.length}`;
+  sTrail();
+}
+function sNewStory(){
+  sOpener=(sOpener+1)%openers.length;sOrder=shuffle(twists.map((_,i)=>i));sPos=-1;
+  document.getElementById("sLabel").textContent="THE STORY BEGINS";
+  sTwistEl.textContent="Press “Next twist” to start.";sSubEl.textContent="";sPaint();
+}
+document.getElementById("sNext").onclick=()=>{
+  if(sPos>=twists.length-1){document.getElementById("sLabel").textContent="THE END";
+    sTwistEl.textContent="The story is finished.";sSubEl.textContent="Press “New story” for a new one.";return;}
+  sPos++;const t=twists[sOrder[sPos]];
+  document.getElementById("sLabel").textContent="CONTINUE THE STORY";
+  sTwistEl.textContent=t[0];sSubEl.textContent=t[1];sPaint();
+};
+document.getElementById("sNew").onclick=sNewStory;
+sOpener=Math.floor(Math.random()*openers.length);sPaint();
+
+/* ======== HOMEWORK CHECK (translation from 11 November) ======== */
+enList("hw",[
+  ["В прошлом году наша компания работала над новым отелем, и это был действительно сложный проект.","Last year our company worked on a new hotel, and it was a really challenging project."],
+  ["Мы хотели, чтобы рабочие вырыли большой котлован, но в том районе не было свободного пространства.","We wanted the workers to dig a big foundation pit, but there was no free space in that area."],
+  ["Кроме того, мы узнали о реальной опасности наводнения.","In addition, we found out about a real danger of a flood."],
+  ["Я попросил менеджера о помощи, и мы рассмотрели другое решение.","I asked the manager for help, and we considered another decision."],
+  ["Мы искали хорошие материалы и построили высокое ограждение над входом.","We searched for good materials and built a tall fence over the entrance."],
+  ["Это было очень опасно, поэтому мы ждали там несколько дней.","It was very dangerous, so we waited there for a few days."],
+  ["В итоге высота воды не разрушила нашу работу, и мы успешно закончили стройку.","In the end, the height of the water didn't ruin our work, and we finished the construction successfully."]
+]);
+
+/* ======== VOCABULARY ======== */
+const vocab=[
+  ["to solve a problem","sɒlv","to find the answer to a difficult situation","We solved the problem the same evening."],
+  ["the whole","həʊl","all of something, every part of it","The whole site stopped for two hours."],
+  ["excavator bucket","ˈekskəveɪtə ˈbʌkɪt","the metal part of an excavator that takes the earth","The excavator bucket hit something hard."],
+  ["people","ˈpiːpl","more than one person (plural of <i>person</i>)","A lot of people came out of the offices."],
+  ["to find","faɪnd","to get something that you were looking for","We found the documents at four o’clock."],
+  ["to look for","lʊk fɔː(r)","to try to find something — the process","They looked for the owner all morning."],
+  ["for a long time","fɔː ə lɒŋ taɪm","during many hours, days or years","We waited for a long time."],
+  ["to search for","sɜːtʃ fɔː(r)","to look for something very carefully","They searched for the plan in every room."],
+  ["in the evening","ɪn ði ˈiːvnɪŋ","in the part of the day after work","In the evening a colleague called me."],
+  ["cable","ˈkeɪbl","a thick wire that carries electricity or a signal","The cable was two metres under the ground."],
+  ["to dig","dɪɡ","to make a hole in the ground (dig – dug)","They dug the pit on Monday."],
+  ["to damage","ˈdæmɪdʒ","to break something or make it worse","The bucket damaged the cable."],
+  ["to belong to","bɪˈlɒŋ tə","to be owned by somebody","The cable didn’t belong to our company."],
+  ["so","səʊ","for that reason, therefore","Nobody knew, so we called the engineer."],
+  ["challenging","ˈtʃælɪndʒɪŋ","difficult, but interesting","It was a challenging day."],
+  ["foundation pit","faʊnˈdeɪʃn pɪt","the big hole for the base of a building","The excavator dug the foundation pit."],
+  ["fence","fens","a wall of wood or metal around a place","They put a fence around the site."],
+  ["tire","ˈtaɪə(r)","the rubber ring around a wheel","An old tire lay near the gate."],
+  ["from","frɒm","showing where somebody or something starts","A colleague from another company called."],
+  ["over","ˈəʊvə(r)","above something, or across the top of it","The water went over the old tire."],
+  ["flood","flʌd","a lot of water in a place that is usually dry","There was a flood in the pit after the rain."],
+  ["real","rɪəl","true, not imagined","It wasn’t a real flood — just a little water."],
+  ["to consider","kənˈsɪdə(r)","to think about something carefully before deciding","We considered stopping the work."],
+  ["entrance","ˈentrəns","the place where you go into somewhere","They came through the entrance."],
+  ["to ask somebody for something","ɑːsk","to say that you want somebody to give you something","We asked the engineer for a pump."],
+  ["colleague","ˈkɒliːɡ","a person you work with","My colleague called me in the evening."]
+];
+const rus=["решить проблему","весь, целый","ковш экскаватора","люди","найти","искать","долго","искать, разыскивать","вечером","кабель","копать","повредить","принадлежать","поэтому","сложный, непростой","котлован","ограждение, забор","шина, покрышка","от, из","над, поверх","потоп, наводнение","настоящий, реальный","рассматривать, обдумывать","вход","просить у кого-то что-то","коллега"];
+document.getElementById("cards").innerHTML=vocab.map(([w,pron,def,example],i)=>{const id=nid();return `<div class="card"><div class="w">${w}</div><div class="tr">/${pron}/</div><p class="def">${def}</p><p class="ex2">${example}</p><button class="btn" data-say="${i}">▶ Listen</button><button class="btn" data-toggle="${id}">Tap for Russian</button><span id="${id}" class="ru hidden"> ${rus[i]}</span></div>`}).join("");
+document.getElementById("cards").addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(b)say([vocab[+b.dataset.say][0]])});
+
+/* vocab Ex1 — which sentence is right? */
+buildChoice("v1",[
+  {col:1,q:'<span class="target-word">challenging</span>',
+   o:["The job was challenging, so we needed two extra days.","The job was challenging, so we finished it in ten minutes."],c:0,
+   en:"<i>Challenging</i> = difficult but interesting. A challenging job takes <b>more</b> time and effort, not less."},
+  {col:1,q:'<span class="target-word">the whole</span>',
+   o:["The whole team stayed late — only the driver went home early.","The whole team stayed late — all twelve of us."],c:1,
+   en:"<i>The whole team</i> = every person in the team, with nobody left out."},
+  {col:1,q:'<span class="target-word">to belong to</span>',
+   o:["The excavator belongs to another company, so we can’t use it today.","The excavator belongs to another company, so it is ours now."],c:0,
+   en:"If something <i>belongs to</i> somebody, that person owns it — so it is <b>not</b> yours."},
+  {col:1,q:'<span class="target-word">so</span>',
+   o:["Nobody found the plan, so everything was fine.","Nobody found the plan, so we called the engineer."],c:1,
+   en:"<i>So</i> introduces the <b>result</b>. The result of not finding the plan is a problem, not “everything was fine”."},
+  {col:1,q:'<span class="target-word">to damage</span>',
+   o:["The bucket damaged the cable, so the electricity stopped.","The bucket damaged the cable, so the electricity worked better."],c:0,
+   en:"<i>To damage</i> = to break something or make it worse, so something stops working."},
+  {col:1,q:'<span class="target-word">real</span>',
+   o:["It wasn’t a real flood — the whole street was under water.","It wasn’t a real flood — just a little water in the pit."],c:1,
+   en:"<i>Not a real flood</i> means it only looked like one. A street under water <b>is</b> a real flood."},
+  {col:1,q:'<span class="target-word">for a long time</span>',
+   o:["We searched for the owner for a long time — about two minutes.","We searched for the owner for a long time — about six hours."],c:1,
+   en:"<i>For a long time</i> means many hours or days. Two minutes is a very short time."},
+  {col:1,q:'<span class="target-word">to look for / to find</span>',
+   o:["We looked for the plan all morning and found it at twelve.","We found the plan all morning and looked for it at twelve."],c:0,
+   en:"<i>Look for</i> is the process of trying; <i>find</i> is the result. First you look for something, then you find it."}
+],"v1score");
+
+/* vocab Ex2 — complete the story */
+buildGaps("v2",[
+  {q:"Last Tuesday Maxim and his ___ started work at seven in the morning.",a:["colleagues","colleague"],en:"A <i>colleague</i> is a person you work with."},
+  {q:"The excavator began to ___ a big hole for the new building.",a:["dig"],en:"<i>To dig</i> — to make a hole in the ground."},
+  {q:"By ten o’clock the ___ was already four metres deep.",a:["foundation pit","the foundation pit"],en:"The <i>foundation pit</i> is the big hole for the base of a building."},
+  {q:"Then the ___ hit something hard under the ground.",a:["excavator bucket","the excavator bucket"],en:"The <i>excavator bucket</i> is the metal part that takes the earth."},
+  {q:"It was an old ___ , and the electricity in the street went off.",a:["cable"],en:"A <i>cable</i> is a thick wire that carries electricity."},
+  {q:"A lot of ___ came out of the offices to see what happened.",a:["people"],en:"<i>People</i> is the plural of <i>person</i>."},
+  {q:"Maxim closed the gate at the ___ and asked everybody to stay outside.",a:["entrance","the entrance"],en:"The <i>entrance</i> is the place where you go into somewhere."},
+  {q:"He also checked the ___ around the site.",a:["fence"],en:"A <i>fence</i> is a wall of wood or metal around a place."},
+  {q:"After lunch heavy rain started and there was a small ___ in the pit.",a:["flood"],en:"A <i>flood</i> is a lot of water in a place that is usually dry."},
+  {q:"The water went ___ the stones at the bottom of the pit.",a:["over"],en:"<i>Over</i> — above something, or across the top of it."},
+  {q:"An old ___ near the gate was completely under water.",a:["tire"],en:"A <i>tire</i> is the rubber ring around a wheel."},
+  {q:"Maxim ___ two options: stop the work or call for help.",a:["considered"],en:"<i>To consider</i> — to think about something carefully before deciding."},
+  {q:"He ___ the engineer for a pump.",a:["asked"],en:"<i>To ask somebody for something</i> — to say that you want them to give it to you."},
+  {q:"The team ___ for the cable plan in the office for two hours.",a:["searched"],en:"<i>To search for</i> — to look for something very carefully."},
+  {q:"___ they finally found it and solved the problem.",a:["in the evening"],en:"<i>In the evening</i> — in the part of the day after work."}
+]);
+
+/* ======== GRAMMAR: speak — that’s not right! ======== */
+const wrongCards=[
+  ["Yesterday the workers dug the whole foundation pit with a spoon.",
+   "They didn’t dig it with a spoon. They dug it with an excavator."],
+  ["Last week the excavator bucket damaged the moon.",
+   "It didn’t damage the moon. It damaged a cable under the ground."],
+  ["In the evening the engineer looked for his colleague in the fridge.",
+   "He didn’t look for him in the fridge. He looked for him in the office."],
+  ["The fence around the site belonged to the Queen of England.",
+   "It didn’t belong to the Queen. It belonged to the building company."],
+  ["They solved the whole problem in two seconds.",
+   "They didn’t solve it in two seconds. They solved it in two hours."],
+  ["The flood started because somebody opened a bottle of water.",
+   "It didn’t start because of a bottle. It started because of the heavy rain."],
+  ["The driver asked his colleague for a new tire for his bicycle.",
+   "He didn’t ask for a tire for his bicycle. He asked for a tire for the truck."],
+  ["People came to the entrance from another city on an elephant.",
+   "They didn’t come on an elephant. They came by car."]
+];
+let wIdx=0;
+const wStmt=document.getElementById("wStmt"),wModel=document.getElementById("wModel");
+function wPaint(){
+  document.getElementById("wNum").textContent=`SENTENCE ${wIdx+1} OF ${wrongCards.length}`;
+  wStmt.textContent=wrongCards[wIdx][0];
+  wModel.textContent=wrongCards[wIdx][1];wModel.classList.add("hidden");
+  document.getElementById("wShow").classList.remove("hidden");
+}
+document.getElementById("wShow").onclick=e=>{wModel.classList.remove("hidden");e.target.classList.add("hidden")};
+document.getElementById("wNext").onclick=()=>{wIdx=(wIdx+1)%wrongCards.length;wPaint()};
+wPaint();
+
+/* ======== GRAMMAR Ex1 — the incident report ======== */
+buildGaps("g1",[
+  {q:"Last Monday the excavator ___ (dig) the foundation pit near the fence.",a:["dug"],
+   en:"A finished action at a finished time (<i>last Monday</i>) \u2192 Past Simple. <i>Dig</i> is irregular: dig \u2013 <b>dug</b>."},
+  {q:"At about eleven the excavator bucket ___ (damage) a cable under the ground.",a:["damaged"],
+   en:"A regular verb: damage + <b>-d</b> \u2192 <b>damaged</b>."},
+  {q:"\u201cWhat ___ (the bucket / damage) exactly?\u201d the engineer asked.",a:["did the bucket damage"],
+   en:"Wh- question: question word + <i>did</i> + subject + the 1st form \u2192 <b>What did the bucket damage?</b>"},
+  {q:"The cable ___ (not / belong) to our company.",a:["didn't belong","didn\u2019t belong","did not belong","didnt belong"],
+   en:"Negative: <i>didn\u2019t</i> + the 1st form \u2192 <b>didn\u2019t belong</b>, not <s>didn\u2019t belonged</s>."},
+  {q:"\u201c___ (you / see) it on the old plan?\u201d the manager asked the driver.",a:["did you see"],
+   en:"Question: <i>did</i> + subject + the 1st form \u2192 <b>Did you see\u2026?</b>, not <s>Did you saw?</s>"},
+  {q:"It ___ (be) a really challenging day, but in the evening they solved the problem.",a:["was"],
+   en:"<i>Be</i> is special \u2014 no <i>did</i>: <b>it was</b>."}
+]);
+
+/* ======== GRAMMAR Ex2 — write the question ======== */
+buildGaps("g2",[
+  {full:1,q:"— ___ ? &nbsp;— The bucket damaged <b>a cable</b>. &nbsp;<i>(What)</i>",
+   a:["what did the bucket damage"],
+   en:"Wh- question: <i>What</i> + <b>did</b> + subject + the 1st form → <b>What did the bucket damage?</b>"},
+  {full:1,q:"— ___ ? &nbsp;— They started work <b>at seven o’clock</b>. &nbsp;<i>(What time)</i>",
+   a:["what time did they start work","what time did they start"],
+   en:"<b>What time did they start work?</b> — after <i>did</i> the verb has no ending."},
+  {full:1,q:"— ___ ? &nbsp;— The excavator dug the pit <b>near the fence</b>. &nbsp;<i>(Where)</i>",
+   a:["where did the excavator dig the pit","where did the excavator dig"],
+   en:"<b>Where did the excavator dig the pit?</b> — <i>dug</i> becomes <i>dig</i> after <i>did</i>."},
+  {full:1,q:"— ___ ? &nbsp;— No, the cable <b>didn’t belong</b> to our company. &nbsp;<i>(yes / no question)</i>",
+   a:["did the cable belong to your company","did the cable belong to our company"],
+   en:"A yes/no question starts with <i>did</i>: <b>Did the cable belong to your company?</b>"},
+  {full:1,q:"— ___ ? &nbsp;— <b>A colleague from another company</b> called them. &nbsp;<i>(Who)</i>",
+   a:["who called them"],
+   en:"When <i>who</i> is the subject of the question, we do <b>not</b> use <i>did</i>: <b>Who called them?</b>"},
+  {full:1,q:"— ___ ? &nbsp;— They searched for the plan <b>for two hours</b>. &nbsp;<i>(How long)</i>",
+   a:["how long did they search for the plan","how long did they search"],
+   en:"<b>How long did they search for the plan?</b>"},
+  {full:1,q:"— ___ ? &nbsp;— They stopped the work <b>because of the flood</b>. &nbsp;<i>(Why)</i>",
+   a:["why did they stop the work","why did they stop"],
+   en:"<b>Why did they stop the work?</b> — <i>stopped</i> becomes <i>stop</i> after <i>did</i>."},
+  {full:1,q:"— ___ ? &nbsp;— Yes, it <b>was</b> a really challenging day. &nbsp;<i>(yes / no question)</i>",
+   a:["was it a really challenging day","was it a challenging day"],
+   en:"With <i>be</i> there is no <i>did</i> — just put <i>was</i> first: <b>Was it a really challenging day?</b>"}
+]);
+
+/* ======== LISTENING ======== */
+const story=[
+  "Alina: Denis, what happened on the site yesterday? People say it was a difficult day.",
+  "Denis: It was really challenging. In the morning the excavator dug the foundation pit near the fence, and at about eleven the excavator bucket damaged a cable.",
+  "Alina: A cable? Whose cable was it?",
+  "Denis: That was the problem. Nobody knew. It didn’t belong to our company, so we had to look for the owner.",
+  "Alina: Did you find them?",
+  "Denis: Not immediately. We searched for the documents for a long time, and in the evening a colleague from another company called and said the cable belonged to them.",
+  "Alina: And the whole site stopped?",
+  "Denis: Yes, the whole site. We also had a small flood in the pit after the rain, and the water went over an old tire near the entrance.",
+  "Alina: Was there a real danger?",
+  "Denis: No, it wasn’t a real danger, but we considered stopping the work for two days.",
+  "Alina: And what did you do in the end?",
+  "Denis: We asked the engineer for a pump and solved the problem the same evening.",
+  "Alina: Good. So what did you learn from this?",
+  "Denis: Always ask for the cable plan before you dig."
+];
+document.getElementById("transcript").innerHTML=story.map(p=>`<p>${p}</p>`).join("");
+const ttsNote=document.getElementById("ttsNote");
+if(!hasTTS)ttsNote.textContent="This browser can’t read the text aloud. Open the page in Chrome, Edge or Safari.";
+const chunks=story.map(s=>s.replace(/^(Alina|Denis): /,"")).join(" ").match(/[^.!?]+[.!?]+\s*/g).map(s=>s.trim());
+document.getElementById("playL").onclick=()=>{if(!hasTTS)return;if(!voice)pickVoice();
+  if(!voice&&speechSynthesis.getVoices().length)ttsNote.textContent="This browser has no English voice. Open the page in Chrome, Edge or Safari.";
+  say(chunks,0.85);document.getElementById("pauseL").textContent="Pause";};
+document.getElementById("pauseL").onclick=e=>{if(!hasTTS)return;
+  if(speechSynthesis.paused){speechSynthesis.resume();e.target.textContent="Pause";}
+  else if(speechSynthesis.speaking){speechSynthesis.pause();e.target.textContent="Resume";}};
+document.getElementById("stopL").onclick=()=>{stopSpeech();document.getElementById("pauseL").textContent="Pause";};
+document.getElementById("showT").onclick=e=>{const t=document.getElementById("transcript");t.classList.toggle("hidden");e.target.textContent=t.classList.contains("hidden")?"Show transcript":"Hide transcript";};
+
+/* listening Ex1 — two content questions */
+const lq=[
+  ["What did the excavator bucket damage?","It damaged a cable under the ground, near the fence."],
+  ["How did Denis and his team find the owner of the cable?","In the evening a colleague from another company called and said the cable belonged to them."]
+];
+document.getElementById("lq").innerHTML=lq.map(([q,a],i)=>{const id=nid();return `<div class="dl"><p><b>${i+1}.</b> ${q}</p><button class="btn" data-toggle="${id}">Answer</button><span id="${id}" class="en hidden"> ${a}</span></div>`}).join("");
+
+/* listening Ex2 — IELTS multiple choice */
+buildChoice("l2",[
+  {col:1,q:"The excavator dug the foundation pit",o:["A — near the entrance.","B — near the fence.","C — near the river."],c:1,
+   en:"Denis says: <i>the excavator dug the foundation pit near the fence</i>."},
+  {col:1,q:"The cable",o:["A — belonged to Denis’s company.","B — belonged to another company.","C — belonged to nobody."],c:1,
+   en:"Denis says: <i>It didn’t belong to our company</i>, and later a colleague from another company says the cable belonged to them."},
+  {col:1,q:"They found the owner of the cable",o:["A — immediately.","B — in the evening.","C — the next morning."],c:1,
+   en:"Denis says: <i>Not immediately… and in the evening a colleague… called</i>."},
+  {col:1,q:"The water in the pit appeared after",o:["A — the rain.","B — a broken tube.","C — a flood in the street."],c:0,
+   en:"Denis says: <i>we also had a small flood in the pit after the rain</i>."},
+  {col:1,q:"In the end the team",o:["A — stopped the work for two days.","B — asked the engineer for a pump.","C — changed the whole plan."],c:1,
+   en:"They only <i>considered</i> stopping for two days. What they really did: <i>We asked the engineer for a pump</i>."}
+],"l2score");
+
+/* ======== SPEAKING TIMER ======== */
+let timerId=null;const clock=document.getElementById("clock"),phase=document.getElementById("phase");
+const fmt=n=>`${Math.floor(n/60)}:${String(n%60).padStart(2,"0")}`;
+function stopTimer(){if(timerId){clearInterval(timerId);timerId=null}}
+function runTimer(seconds,label,done){stopTimer();let n=seconds;clock.textContent=fmt(n);phase.textContent=label;timerId=setInterval(()=>{n--;clock.textContent=fmt(n);if(n<=0){stopTimer();phase.textContent=done}},1000)}
+document.getElementById("tPrep").onclick=()=>runTimer(60,"Preparation: make notes…","Time to speak!");
+document.getElementById("tTalk").onclick=()=>runTimer(120,"Speaking…","Time’s up. Thank you!");
+document.getElementById("tStop").onclick=()=>{stopTimer();phase.textContent="Stopped"};
+
+/* ======== TRANSLATION ======== */
+enList("ttext",[
+  ["В прошлый вторник Игорь и его коллеги копали котлован рядом с ограждением.","Last Tuesday Igor and his colleagues dug a foundation pit near the fence."],
+  ["Около одиннадцати ковш экскаватора повредил кабель, и вся площадка остановилась.","At about eleven the excavator bucket damaged a cable, and the whole site stopped."],
+  ["Кабель не принадлежал их компании, поэтому они долго разыскивали владельца и попросили у менеджера помощи.","The cable didn’t belong to their company, so they searched for the owner for a long time and asked the manager for help."],
+  ["Вечером люди из другой компании пришли через вход и сказали, что кабель их.","In the evening people from another company came through the entrance and said that the cable was theirs."],
+  ["После дождя вода поднялась над старой шиной, но настоящего потопа не было.","After the rain the water went over an old tire, but there wasn’t a real flood."],
+  ["Это был сложный день, но Игорь рассмотрел все варианты и решил проблему.","It was a challenging day, but Igor considered all the options and solved the problem."]
+]);
+
+/* ======== COPY ======== */
+function copyText(text,button){const done=()=>{const s=button.nextElementSibling;s.textContent="Copied";setTimeout(()=>s.textContent="",1800)};const fallback=()=>{const area=document.createElement("textarea");area.value=text;document.body.appendChild(area);area.select();try{document.execCommand("copy");done()}catch(e){}area.remove()};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done,fallback);else fallback()}
+const titles={v1:"Vocabulary — Exercise 1 (Which sentence is right?)",v2:"Vocabulary — Exercise 2 (Complete the story)",g1:"Grammar — Exercise 1 (The incident report)",g2:"Grammar — Exercise 2 (Write the question)",l2:"Listening — Exercise 2 (Multiple choice)"};
+document.addEventListener("click",e=>{const b=e.target.closest("[data-copy]");if(!b)return;const key=b.dataset.copy;
+  const n=totals[key]||document.querySelectorAll(`#${key} > .dl`).length;
+  const lines=[...Array(n).keys()].map(i=>`${i+1}. ${mark((states[key]||{})[i])}`);
+  copyText(["Alexey, 13 November — "+(titles[key]||key),...lines].join("\n"),b);
+});
+</script>
+</body>
+</html>
