@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Lesson — Svetlana — 16.11.2026</title>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1e3a8a;
+            --primary-light: #eff6ff;
+            --secondary: #0e9f6e;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --badge-bg: #fef3c7;
+            --badge-text: #92400e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 25px 15px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 { color: var(--primary); font-size: 1.85rem; margin-bottom: 8px; }
+        .header-meta { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        .tab-btn {
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #475569;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        .tab-btn:hover { background: #e2e8f0; }
+        .tab-btn.active { background: #1e293b; color: white; border-color: #1e293b; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Section Cards & Titles */
+        .section-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: 1.35rem;
+            color: var(--text-main);
+            margin-bottom: 18px;
+            font-weight: 700;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 5px; height: 22px;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+        .ex-title { margin-bottom: 12px; color: var(--primary); font-size: 1.1rem; }
+        .hint-notice { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        /* Warm-up Box */
+        .warmup-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        .idiom { font-size: 1.5rem; font-weight: 700; color: var(--primary-dark); margin: 6px 0 10px; }
+
+        .action-btn {
+            background: #e0e7ff;
+            color: #3730a3;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+        .action-btn:hover { background: #c7d2fe; }
+
+        .hidden-panel {
+            display: none;
+            color: #1e1b4b;
+            font-size: 0.92rem;
+            margin-top: 12px;
+            padding: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #c7d2fe;
+            line-height: 1.6;
+        }
+
+        /* Reading text */
+        .reading-text {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px 26px;
+            font-size: 1.02rem;
+            line-height: 1.85;
+            margin-bottom: 26px;
+        }
+        .reading-text h4 { font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 12px; }
+        .reading-text p { margin-bottom: 12px; }
+        .reading-text p:last-child { margin-bottom: 0; }
+        .player-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+            margin-right: 6px;
+        }
+        .player-btn:hover { background-color: var(--primary-dark); }
+
+        /* Quiz Items */
+        .quiz-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 15px;
+        }
+        .quiz-question { font-weight: 600; margin-bottom: 10px; font-size: 0.98rem; }
+        .quiz-choices { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-choices.row { flex-direction: row; flex-wrap: wrap; }
+        .choice-btn {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.92rem;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .choice-btn:hover { border-color: var(--primary); }
+        .choice-btn.correct {
+            background-color: var(--accent-green) !important;
+            color: white !important;
+            border-color: var(--accent-green) !important;
+        }
+        .choice-btn.incorrect {
+            background-color: var(--accent-red) !important;
+            color: white !important;
+            border-color: var(--accent-red) !important;
+        }
+
+        .live-input {
+            min-width: 120px;
+            padding: 6px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .live-input.correct {
+            border-color: var(--accent-green) !important;
+            background-color: #ecfdf5 !important;
+            color: #065f46;
+        }
+        .wide-input { width: 100%; margin-top: 8px; padding: 10px 14px; }
+
+        select.match-select {
+            padding: 7px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.93rem;
+            background: #fff;
+            max-width: 100%;
+            margin-top: 6px;
+        }
+        select.match-select.correct { border-color: var(--accent-green); background: #ecfdf5; color: #065f46; }
+        select.match-select.incorrect { border-color: var(--accent-red); background: #fef2f2; color: #991b1b; }
+
+        .btn-peek {
+            background: #e2e8f0;
+            color: #334155;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: background 0.2s;
+            white-space: nowrap;
+            margin-left: 4px;
+        }
+        .btn-peek:hover { background: #cbd5e1; }
+
+        .answer-reveal {
+            display: none;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #065f46;
+            font-weight: 600;
+            margin-top: 6px;
+            padding: 8px 12px;
+            background: #ecfdf5;
+            border-radius: 6px;
+            border: 1px solid #a7f3d0;
+            line-height: 1.6;
+        }
+
+        /* Grammar Table */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px 0;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .grammar-table th { background-color: var(--primary); color: white; }
+
+        .tip-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 0.93rem;
+            margin-top: 10px;
+        }
+
+        ol.grammar-list { padding-left: 22px; }
+        ol.grammar-list li { margin-bottom: 20px; line-height: 2.1; font-size: 0.98rem; }
+
+        /* Word bank */
+        .word-bank {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 20px;
+        }
+        .word-chip {
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
+            padding: 4px 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        /* Vocabulary Flip Cards */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .flip-card { background-color: transparent; height: 195px; perspective: 1000px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .flip-card-front { background-color: #ffffff; color: var(--text-main); }
+        .v-word { font-size: 1.05rem; font-weight: 700; color: var(--primary); }
+        .v-ipa { font-size: 0.82rem; color: #64748b; margin: 4px 0; }
+        .v-def { font-size: 0.76rem; color: #475569; font-style: italic; margin-top: 3px; }
+        .v-say {
+            margin-top: 6px;
+            background: #f1f5f9; border: 1px solid #cbd5e1;
+            border-radius: 12px; padding: 1px 9px;
+            font-size: 0.78rem; cursor: pointer;
+        }
+        .flip-card-back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 0.86rem;
+        }
+        .v-trans { font-weight: 700; font-size: 0.96rem; margin-bottom: 6px; }
+        .v-ex { font-size: 0.76rem; font-style: italic; color: #dbeafe; line-height: 1.35; }
+        .v-note { font-size: 0.7rem; color: #bfdbfe; margin-top: 5px; }
+
+        /* Homework check */
+        .hw-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
+        .hw-ru { font-weight: 600; font-size: 0.97rem; }
+
+        /* Translation story */
+        .story-container {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 26px;
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: var(--text-main);
+        }
+        .inline-btn {
+            background: #eef1f6;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            user-select: none;
+            display: inline-block;
+            transition: all 0.2s;
+            vertical-align: middle;
+        }
+        .inline-btn:hover { background: #cbd5e1; }
+        .inline-en {
+            display: none;
+            color: #1d4ed8;
+            font-weight: 600;
+            background-color: #dbeafe;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-left: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 1.5rem; }
+            .section-card { padding: 16px; }
+        }
+            /* ---- additions 01.10 ---- */
+        .say-btn {
+            background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 12px;
+            padding: 0 8px; font-size: 0.8rem; cursor: pointer; margin-left: 4px;
+            vertical-align: middle; line-height: 1.6;
+        }
+        .say-btn:hover { background: #e2e8f0; }
+        .ex-card { position: relative; }
+        .item { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; line-height: 2.1; }
+        .item-num { font-weight: 700; color: var(--primary); margin-right: 4px; }
+        .btn-check {
+            background: var(--primary); color: #fff; border: none; padding: 6px 12px;
+            border-radius: 6px; cursor: pointer; font-size: 0.82rem; font-weight: 600; margin-left: 4px;
+        }
+        .btn-check:hover { background: var(--primary-dark); }
+        .feedback { display: none; margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: 0.9rem; line-height: 1.6; }
+        .feedback.ok { display: block; background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+        .feedback.bad { display: block; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+        .rus-btn {
+            background: #fff; border: 1px solid #cbd5e1; color: #475569; font-size: 0.7rem; font-weight: 700;
+            padding: 1px 6px; border-radius: 4px; cursor: pointer; margin-left: 6px; vertical-align: middle;
+        }
+        .rus-text { display: none; color: #7f1d1d; margin-top: 4px; font-style: italic; }
+        .copy-btn {
+            background: #fff; border: 1px dashed var(--primary); color: var(--primary);
+            padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; margin-top: 6px;
+        }
+        .copy-btn:hover { background: var(--primary-light); }
+        .copy-msg { margin-left: 8px; font-size: 0.85rem; color: var(--secondary); font-weight: 600; }
+        .live-input.wrong { border-color: var(--accent-red); background: #fef2f2; }
+
+        /* dialogue */
+        .dialogue-line { margin-bottom: 6px; }
+        .sp { font-weight: 700; color: var(--primary-dark); }
+        .dialogue-line.speaking { background: #fef9c3; border-radius: 4px; }
+        .order-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .order-row select { padding: 5px 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
+        .order-row select.correct { border-color: var(--accent-green); background: #ecfdf5; }
+        .order-row select.incorrect { border-color: var(--accent-red); background: #fef2f2; }
+
+        /* sentence builder */
+        .chip-pool, .chip-answer { display: flex; flex-wrap: wrap; gap: 6px; min-height: 40px; padding: 6px; border-radius: 8px; }
+        .chip-answer { background: #fff; border: 2px dashed #cbd5e1; margin-bottom: 8px; }
+        .chip-answer.correct { border-color: var(--accent-green); background: #ecfdf5; }
+        .chip-answer.incorrect { border-color: var(--accent-red); background: #fef2f2; }
+        .chip {
+            background: #e0e7ff; color: #3730a3; border: none; border-radius: 6px; padding: 4px 10px;
+            font-size: 0.92rem; font-weight: 600; cursor: pointer; line-height: 1.5;
+        }
+        .chip:hover { background: #c7d2fe; }
+        .btn-reset { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.82rem; font-weight: 600; }
+
+        /* spot the mistake */
+        .spot-words { display: flex; flex-wrap: wrap; gap: 5px; }
+        .spot-word {
+            background: #fff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 2px 9px;
+            cursor: pointer; font-size: 0.97rem; line-height: 1.7;
+        }
+        .spot-word:hover { border-color: var(--primary); }
+        .spot-word.found { background: var(--accent-green); color: #fff; border-color: var(--accent-green); text-decoration: line-through; }
+        .spot-word.miss { background: var(--accent-red); color: #fff; border-color: var(--accent-red); }
+        .inline-btn.en { min-width: 30px; text-align: center; }
+        textarea.free { width: 100%; min-height: 70px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.95rem; margin-top: 8px; }
+        .match-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 14px; margin-bottom: 10px; }
+        .match-col { display: flex; flex-direction: column; gap: 8px; }
+        .match-btn { text-align: left; padding: 9px 12px; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; cursor: pointer; font-size: 0.93rem; font-weight: 600; color: var(--primary-dark); }
+        .match-btn.def { font-weight: 400; color: var(--text-main); }
+        .match-btn:hover { border-color: var(--primary); }
+        .match-btn.active { background: #e0e7ff; border-color: var(--primary); }
+        .match-btn.done { background: #ecfdf5; border-color: var(--accent-green); color: #065f46; cursor: default; }
+        .match-btn.miss { background: #fef2f2; border-color: var(--accent-red); }
+        select.match-select { margin: 2px 0; }
+        @media (max-width: 600px) { .match-grid { grid-template-columns: 1fr; } }
+        .tt-ru { font-size: 0.82rem; color: var(--text-muted); }
+        .tt-ex { background: #f8fafc; font-size: 0.92rem; }
+        .inline-ru { display: none; color: #7c2d12; background: #fff7ed; padding: 1px 6px; border-radius: 4px; font-size: 0.9rem; font-style: italic; }
+        .reading-text .rus-btn { margin-left: 2px; margin-right: 2px; }
+        .hw-sentence-block { margin-bottom: 14px; }
+        .hw-sentence-block label { display: block; font-weight: 600; font-size: 0.9rem; color: #475569; margin-bottom: 6px; }
+        .hw-sentence-block input { width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; }
+        .inline-choice { display: inline-flex; flex-wrap: wrap; gap: 3px; align-items: center; background: #f1f5f9; border-radius: 6px; padding: 1px 4px; margin: 0 3px; }
+        .ic-btn { background: #fff; border: 1px solid #cbd5e1; border-radius: 5px; padding: 0 8px; font-size: 0.92rem; cursor: pointer; line-height: 1.8; }
+        .ic-btn:hover { border-color: var(--primary); }
+        .ic-btn.correct { background: var(--accent-green); color: #fff; border-color: var(--accent-green); }
+        .ic-btn.incorrect { background: var(--accent-red); color: #fff; border-color: var(--accent-red); }
+        .ic-sep { color: #94a3b8; }
+        .topic-row { display: block; padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; cursor: pointer; border: 1px solid transparent; }
+        .topic-row input { margin-right: 8px; transform: scale(1.15); }
+        .topic-row.ok { background: #ecfdf5; border-color: #a7f3d0; }
+        .topic-row.bad { background: #fef2f2; border-color: #fecaca; }
+        .notes-card { background: #fffef5; border: 1px solid #fde68a; border-radius: 10px; padding: 14px; }
+        .notes-card .item { background: transparent; border: none; border-bottom: 1px dashed #fde68a; border-radius: 0; margin-bottom: 4px; font-family: 'Segoe Print', 'Comic Sans MS', 'Segoe UI', sans-serif; }
+        .base-word { display: inline-block; background: #e0e7ff; color: #3730a3; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; padding: 1px 8px; border-radius: 4px; margin-left: 6px; }
+        .num-badge { display: inline-block; min-width: 92px; text-align: center; background: var(--primary); color: #fff; font-weight: 700; border-radius: 6px; padding: 3px 10px; margin-right: 8px; }
+        .ru-hint { color: #92400e; font-style: italic; font-size: 0.9rem; }
+        .email-card { background: #fff; border: 1px solid var(--border-color); border-left: 4px solid var(--primary); border-radius: 8px; padding: 20px 22px; line-height: 2.3; font-size: 0.98rem; }
+        .email-card select.match-select { margin: 0 3px; padding: 3px 6px; }
+        .gap-num { display: inline-block; background: var(--primary); color: #fff; font-size: 0.7rem; font-weight: 700; border-radius: 50%; width: 18px; height: 18px; line-height: 18px; text-align: center; vertical-align: middle; }
+        .ref-word { background: #fef3c7; padding: 0 3px; border-radius: 3px; }
+        .two-sent { margin-top: 4px; line-height: 1.8; }
+        .q-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+        .q-card { height: 130px; border-radius: 10px; cursor: pointer; position: relative; }
+        .q-front, .q-back { position: absolute; inset: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; transition: opacity 0.35s; }
+        .q-front { background: var(--primary); color: #fff; font-size: 2rem; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+        .q-front:hover { background: var(--primary-dark); }
+        .q-back { background: var(--primary-light); border: 1px solid #bfdbfe; color: var(--text-main); font-size: 0.98rem; font-weight: 600; opacity: 0; }
+        .q-card.open .q-front { opacity: 0; pointer-events: none; }
+        .q-card.open .q-back { opacity: 1; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>English Interactive Lesson</h1>
+        <div class="header-meta">Student: Svetlana | Date: 16.11.2026 | Focus: Working Abroad &amp; Mixed Conditionals</div>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'warmup')">1 · Warm-up</button>
+        <button class="tab-btn" onclick="openTab(event, 'homework')">2 · Homework Check</button>
+        <button class="tab-btn" onclick="openTab(event, 'reading')">3 · Reading</button>
+        <button class="tab-btn" onclick="openTab(event, 'grammar')">4 · Grammar</button>
+        <button class="tab-btn" onclick="openTab(event, 'vocabulary')">5 · Vocabulary</button>
+        <button class="tab-btn" onclick="openTab(event, 'translation')">6 · Translation</button>
+    </div>
+
+    <!-- TAB 1: WARM-UP -->
+    <div id="warmup" class="tab-content active">
+        <div class="section-card">
+            <h2 class="section-title">1. Professional Warm-up</h2>
+            <div class="warmup-box">
+                <p><em>"Delayed transport and an improper storage temperature can compromise sample stability, especially for analytes such as glucose and potassium."</em></p>
+                <button class="action-btn" onclick="togglePanel('warmup-hint')">Key Terms</button>
+                <div id="warmup-hint" class="hidden-panel">
+                    • <strong>delayed transport</strong> — transport that takes longer than it should<br>
+                    • <strong>improper storage temperature</strong> — keeping samples too warm or too cold<br>
+                    • <strong>to compromise</strong> — to make something weaker or worse in quality<br>
+                    • <strong>sample stability</strong> — the ability of a sample to keep its original properties over time<br>
+                    • <strong>analyte</strong> — a substance measured in a laboratory test
+                    <button class="rus-btn" onclick="toggleRus(this)">RUS</button>
+                    <div class="rus-text">«Задержка транспортировки и неправильная температура хранения могут нарушить стабильность образца, особенно для таких аналитов, как глюкоза и калий». delayed transport — задержка доставки. improper storage temperature — неправильная температура хранения. to compromise — нарушать, ставить под угрозу. sample stability — стабильность образца. analyte — аналит, определяемое вещество.</div>
+                </div>
+            </div>
+            <p style="font-weight:600; margin-bottom: 6px;">Discussion Question:</p>
+            <p>Which analytes, in your experience, are the most sensitive to delays and storage conditions?</p>
+        </div>
+    </div>
+
+    <!-- TAB 2: HOMEWORK CHECK -->
+    <div id="homework" class="tab-content">
+        <div class="section-card">
+            <span class="badge">Homework check · Translation from 12.11</span>
+            <h2 class="section-title">Check Your Translation</h2>
+            <p class="hint-notice">💡 Read your translation of each sentence aloud. Then click the <strong>EN</strong> button after the sentence to compare it with a model version. Other correct variants are possible!</p>
+            <div class="story-container" id="hw-story"></div>
+        </div>
+    </div>
+
+    <!-- TAB 3: READING -->
+    <div id="reading" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">3. Reading: Lessons from a Rural Lab</h2>
+            <p class="hint-notice">💡 Read the blog post by Dr Kate Morrison, a laboratory scientist from Australia.</p>
+            <div class="reading-text" id="reading-text"></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 1: Answer the Questions</h3>
+            <p class="hint-notice">💡 Choose the correct answer to each question.</p>
+            <div id="question-list"></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 2: True, False or Not Given?</h3>
+            <p class="hint-notice">💡 <strong>True</strong> — the text says so. <strong>False</strong> — the text says the opposite. <strong>Not Given</strong> — there is no information about it.</p>
+            <div id="tfng-list"></div>
+        </div>
+    </div>
+
+    <!-- TAB 4: GRAMMAR -->
+    <div id="grammar" class="tab-content">
+        <div class="section-card">
+            <span class="badge">Mixed Conditionals · practice</span>
+            <h3 class="ex-title">Exercise 1: Complete the Mini-Dialogues</h3>
+            <p class="hint-notice">💡 Put the verbs in brackets into the correct form to make mixed conditionals. Look carefully at the time of each part. The field turns green when it is correct.</p>
+            <div id="dlg-gap-list"></div>
+        </div>
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 2: Which Sentence Matches the Situation?</h3>
+            <p class="hint-notice">💡 Read the situation and click the sentence that describes it correctly.</p>
+            <div id="sit-list"></div>
+        </div>
+
+    </div>
+
+    <!-- TAB 5: VOCABULARY -->
+    <div id="vocabulary" class="tab-content">
+        <div class="section-card">
+            <h2 class="section-title">5. Vocabulary (16 Target Units)</h2>
+            <p class="hint-notice">💡 Read the word, its transcription and explanation. Click the card to see the translation and an example. Click 🔊 to hear the word.</p>
+            <div class="vocab-grid" id="vocab-grid"></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 1: Choose the Right Word in the Story</h3>
+            <p class="hint-notice">💡 Read the story and click the correct word in each pair.</p>
+            <div class="email-card" id="story-choice"></div>
+            <div class="feedback" id="story-feedback"></div>
+        </div>
+
+        <div class="section-card">
+            <h3 class="ex-title">Exercise 2: Which Word Fits the Situation?</h3>
+            <p class="hint-notice">💡 Read each situation and choose the word or phrase from today's cards that describes it.</p>
+            <div id="sit-vocab-list"></div>
+        </div>
+    </div>
+
+    <!-- TAB 6: TRANSLATION -->
+    <div id="translation" class="tab-content">
+        <div class="section-card">
+            <span class="badge">Homework</span>
+            <h2 class="section-title">6. Translation</h2>
+            <p class="hint-notice">💡 Translate the short story into English. Click the <strong>EN</strong> button after each sentence to check your translation.</p>
+            <div class="story-container" id="tr-story"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ================= HELPERS =================
+function openTab(evt, tabName) {
+    document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+    stopSpeech();
+}
+function togglePanel(id) {
+    const el = document.getElementById(id);
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+function toggleNext(btn) {
+    const el = btn.parentElement.querySelector('.answer-reveal');
+    if (el) el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+function toggleRus(btn) {
+    const el = btn.nextElementSibling;
+    el.style.display = (el.style.display === "block") ? "none" : "block";
+}
+function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+function escJs(s) { return s.replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+function normalize(s) {
+    return s.toLowerCase()
+        .replace(/[’‘`']/g, '')
+        .replace(/[\.\?!,;:\-—"«»]/g, ' ')
+        .replace(/\s+/g, ' ').trim()
+        .replace(/\bwouldnt\b/g, 'would not').replace(/\bhadnt\b/g, 'had not');
+}
+function matches(value, answers) {
+    const v = normalize(value);
+    return answers.some(a => normalize(a) === v);
+}
+function showFeedback(box, ok, en, ru, okText) {
+    box.className = 'feedback ' + (ok ? 'ok' : 'bad');
+    box.innerHTML = ok ? (okText || '✓ Correct!') :
+        '✗ ' + en + (ru ? ' <button class="rus-btn" onclick="toggleRus(this)">RUS</button><div class="rus-text">' + ru + '</div>' : '');
+}
+function shuffle(arr, seed) {
+    const a = arr.slice(); let s = seed;
+    for (let i = a.length - 1; i > 0; i--) { s = (s * 9301 + 49297) % 233280; const j = Math.floor(s / 233280 * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+}
+
+
+
+// ================= SPEECH (vocabulary words only) =================
+let voicesCache = [];
+function loadVoices() { voicesCache = window.speechSynthesis ? speechSynthesis.getVoices() : []; }
+if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+function say(text) {
+    if (!window.speechSynthesis) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB'; u.rate = 0.85;
+    const v = voicesCache.find(x => x.lang && x.lang.startsWith('en-GB')) || voicesCache.find(x => x.lang && x.lang.startsWith('en'));
+    if (v) u.voice = v;
+    speechSynthesis.speak(u);
+}
+function stopSpeech() { if (window.speechSynthesis) speechSynthesis.cancel(); }
+
+// ================= COMMON =================
+function liveGap(inp) {
+    inp.classList.remove('wrong');
+    inp.classList.toggle('correct', matches(inp.value, inp.dataset.ans.split('|')));
+}
+function checkGap(btn) {
+    const item = btn.closest('.item');
+    let ok = true;
+    item.querySelectorAll('input[data-ans]').forEach(inp => {
+        const good = matches(inp.value, inp.dataset.ans.split('|'));
+        inp.classList.toggle('correct', good); inp.classList.toggle('wrong', !good);
+        if (!good) ok = false;
+    });
+    showFeedback(item.querySelector('.feedback'), ok, item.dataset.en, item.dataset.ru);
+}
+function gapHtml(text) {
+    return esc(text).replace(/\[\[(.+?)\]\]/g, (m, a) => {
+        const w = Math.max(110, a.split('|')[0].length * 10 + 30);
+        return '<input type="text" class="live-input" style="width:' + w + 'px" data-ans="' + esc(a) + '" oninput="liveGap(this)">';
+    });
+}
+function gapFull(text) { return text.replace(/\[\[(.+?)\]\]/g, (m, a) => a.split('|')[0]); }
+function itemButtons() {
+    return ' <button class="btn-check" onclick="checkGap(this)">Check</button><button class="btn-peek" onclick="toggleNext(this)">Answer</button>';
+}
+function toggleInlineEn(btn) {
+    const span = btn.nextElementSibling;
+    const open = span.style.display === "inline";
+    span.style.display = open ? "none" : "inline";
+    btn.style.background = open ? "#eef1f6" : "#1a56db";
+    btn.style.color = open ? "#475569" : "#ffffff";
+}
+function renderStory(id, story) {
+    document.getElementById(id).innerHTML = story.map(([ru, en]) =>
+        esc(ru) + ' <span class="inline-btn en" onclick="toggleInlineEn(this)">EN</span><span class="inline-en">' + esc(en) + '</span> ').join('\n');
+}
+function choiceItem(i, text, options, handler, col) {
+    return '<div class="item"><span class="item-num">' + (i + 1) + '.</span> ' + text +
+        '<div class="quiz-choices' + (col ? '' : ' row') + '" style="margin-top:6px;">' + options.map((o, k) =>
+            '<button class="choice-btn" onclick="' + handler + '(this,' + i + ',' + k + ')">' + esc(o) + '</button>').join('') +
+        '</div><div class="feedback"></div></div>';
+}
+function markChoice(btn, ok) {
+    btn.closest('.item').querySelectorAll('.choice-btn').forEach(c => c.classList.remove('correct', 'incorrect'));
+    btn.classList.add(ok ? 'correct' : 'incorrect');
+    return btn.closest('.item').querySelector('.feedback');
+}
+
+// ================= HOMEWORK CHECK =================
+renderStory('hw-story', [
+    ["Вчера наша лаборатория получила престижную награду за качество работы.", "Yesterday our laboratory got a prestigious award for the quality of its work."],
+    ["Потребность сократить время выполнения срочных анализов — это наш главный вызов сегодня.", "The need to reduce the turnaround time for urgent tests is our main challenge today."],
+    ["Если бы мы не купили новые анализаторы в прошлом году, у нас бы сейчас было много проблем.", "If we hadn't bought new analyzers last year, we would have a lot of problems now."],
+    ["Очень важно давать точные результаты, чтобы пациенты вовремя получали правильное лечение.", "It is very important to give accurate results so that patients get the right treatment on time."],
+    ["Если бы наш персонал не был таким дисциплинированным, они бы совершили критическую ошибку на прошлой неделе.", "If our staff weren't so disciplined, they would have made a critical mistake last week."],
+    ["К счастью, мы работаем как один слаженный механизм.", "Fortunately, we work like a well-oiled machine."]
+]);
+
+// ================= READING =================
+const paragraphs = [
+    "Recently, I spent three months working in a small hospital laboratory in northern India. I'm Australian, and before this trip I had worked only in big city labs, so I wasn't sure how quickly I would adapt to a completely new environment.",
+    "I arrived in Delhi in June and arrived at the hospital two days later, after a long drive on dirt roads. Despite the heat and the dust, the laboratory team was calm and extremely disciplined. Every morning they cleaned all the surfaces, because even a little dirt can contaminate a sample.",
+    "The lab had to meet the needs of more than twenty villages, including several remote mountain areas. Patients often filled in their request forms by hand, and I soon noticed that many labelling errors started at this stage. It turned out that one simple change — a nurse checking every form together with the patient — reduced these errors a lot.",
+    "The last time I spoke to the head of the lab, she told me that the new system was still working. My only regret is that I didn't stay longer. If I hadn't gone to India, I wouldn't know so much about pre-analytical errors now. It would be selfish to keep these lessons to myself, so I have signed up for a conference to share them with colleagues."
+];
+document.getElementById('reading-text').innerHTML = paragraphs.map((p, i) =>
+    '<p><strong style="color:var(--primary)">' + 'ABCD'[i] + '.</strong> ' + esc(p) + '</p>').join('');
+
+const questions = [
+    { q: "Where had the author worked before her trip to India?", o: ["only in big city laboratories", "in rural clinics in Australia", "in a mountain hospital"], a: 0, en: "Look at paragraph A.", ru: "Посмотрите абзац A." },
+    { q: "What did the laboratory team do every morning?", o: ["checked the analyzers", "cleaned all the surfaces", "drove to the villages"], a: 1, en: "Look at the end of paragraph B.", ru: "Посмотрите конец абзаца B." },
+    { q: "How many villages did the laboratory serve?", o: ["about ten", "exactly twenty", "more than twenty"], a: 2, en: "Look at the first sentence of paragraph C.", ru: "Первое предложение абзаца C." },
+    { q: "Where did many labelling errors start?", o: ["when patients filled in their forms by hand", "during sample transport", "inside the analyzer"], a: 0, en: "Read paragraph C again.", ru: "Перечитайте абзац C." },
+    { q: "What is the author going to do now?", o: ["return to India for a year", "share her experience at a conference", "open her own laboratory"], a: 1, en: "Look at the last sentence of the text.", ru: "Посмотрите последнее предложение текста." }
+];
+document.getElementById('question-list').innerHTML = questions.map((q, i) => choiceItem(i, '<strong>' + esc(q.q) + '</strong>', q.o, 'checkQuestion', true)).join('');
+function checkQuestion(btn, i, k) {
+    const q = questions[i], ok = q.a === k;
+    showFeedback(markChoice(btn, ok), ok, q.en, q.ru);
+}
+
+const tfng = [
+    { s: "The author comes from Australia.", a: 0, en: "Look at paragraph A: 'I'm Australian'.", ru: "Абзац A: «I'm Australian»." },
+    { s: "She arrived at the hospital on the same day she arrived in Delhi.", a: 1, en: "She arrived at the hospital two days later.", ru: "Она приехала в больницу через два дня." },
+    { s: "The laboratory had modern automated analyzers.", a: 2, en: "The text says nothing about the analyzers.", ru: "Об анализаторах в тексте ничего не сказано." },
+    { s: "Now a nurse checks every form together with the patient.", a: 0, en: "Look at the end of paragraph C.", ru: "Конец абзаца C." },
+    { s: "The author regrets going to India.", a: 1, en: "She regrets that she didn't stay longer — not that she went.", ru: "Она жалеет, что не осталась дольше, а не о самой поездке." },
+    { s: "The hospital paid for the author's trip.", a: 2, en: "There is no information about who paid for the trip.", ru: "Кто оплатил поездку, в тексте не сказано." },
+    { s: "The author has already presented her experience at a conference.", a: 1, en: "She has only signed up for a conference — she hasn't presented yet.", ru: "Она только записалась на конференцию, еще не выступала." }
+];
+document.getElementById('tfng-list').innerHTML = tfng.map((t, i) => choiceItem(i, esc(t.s), ['True', 'False', 'Not Given'], 'checkTFNG')).join('');
+function checkTFNG(btn, i, k) {
+    const t = tfng[i], ok = t.a === k;
+    showFeedback(markChoice(btn, ok), ok, 'Not quite. ' + t.en, t.ru, '✓ Correct! ' + t.en);
+}
+
+// ================= GRAMMAR =================
+const ruleA = ["Unreal past → result now: If + had + V3, … would + V.", "Нереальное прошлое → результат сейчас: If + had + V3, … would + V."];
+const ruleB = ["Unreal present (general) → result in the past: If + Past Simple, … would have + V3.", "Нереальное настоящее (вообще) → результат в прошлом: If + Past Simple, … would have + V3."];
+const sits = [
+    { sit: "Svetlana didn't learn Hindi. Now she can't read the signs in Delhi.",
+      o: ["If she had learned Hindi, she would be able to read the signs now.", "If she learned Hindi, she would be able to read the signs now.", "If she had learned Hindi, she would have been able to read the signs now."], r: ruleA },
+    { sit: "Kate is a very disciplined person. Last month she didn't miss a single deadline.",
+      o: ["If Kate weren't so disciplined, she would have missed a deadline last month.", "If Kate hadn't been so disciplined, she would miss a deadline now.", "If Kate isn't disciplined, she will miss a deadline last month."], r: ruleB },
+    { sit: "Nobody cleaned the centrifuge yesterday. Now there is dirt inside it.",
+      o: ["If someone had cleaned the centrifuge yesterday, there wouldn't be dirt inside it now.", "If someone had cleaned the centrifuge yesterday, there wouldn't have been dirt inside it now.", "If someone cleaned the centrifuge yesterday, there won't be dirt inside it now."], r: ruleA },
+    { sit: "My colleague is a selfish person. That's why he didn't share his data with us last year.",
+      o: ["If my colleague weren't so selfish, he would have shared his data with us last year.", "If my colleague hadn't been so selfish, he would share his data now.", "If my colleague isn't selfish, he will share his data last year."], r: ruleB },
+    { sit: "I didn't sign up for the course in September. Now I regret it.",
+      o: ["If I had signed up for the course in September, I wouldn't regret it now.", "If I signed up for the course in September, I wouldn't have regretted it now.", "If I had signed up for the course in September, I won't regret it now."], r: ruleA },
+    { sit: "The patient didn't fill in the form correctly. Now the lab can't identify the sample.",
+      o: ["If the patient had filled in the form correctly, the lab would be able to identify the sample now.", "If the patient had filled in the form correctly, the lab would have been able to identify the sample now.", "If the patient fills in the form correctly, the lab will be able to identify the sample now."], r: ruleA },
+    { sit: "Kate doesn't adapt to hot weather easily. That's why she felt ill on her first day in India.",
+      o: ["If Kate adapted to hot weather more easily, she wouldn't have felt ill on her first day.", "If Kate had adapted to hot weather more easily, she wouldn't feel ill on her first day.", "If Kate adapts to hot weather more easily, she won't feel ill on her first day."], r: ruleB }
+];
+const sitOrder = [[1, 0, 2], [2, 1, 0], [0, 2, 1], [1, 2, 0], [2, 0, 1], [0, 1, 2], [2, 0, 1]];
+document.getElementById('sit-list').innerHTML = sits.map((s, i) =>
+    choiceItem(i, '<em>' + esc(s.sit) + '</em>', sitOrder[i].map(k => s.o[k]), 'checkSit', true)).join('');
+function checkSit(btn, i, k) {
+    const s = sits[i], ok = sitOrder[i][k] === 0;
+    showFeedback(markChoice(btn, ok), ok, 'Not this one. Check the time of each part. ' + s.r[0], s.r[1], '✓ Correct! ' + s.r[0]);
+}
+
+const dlgGaps = [
+    { a: "Why are you so tired today?", b: "I went to bed at 2 a.m. If I (go) [[had gone]] to bed earlier, I (not / be) [[wouldn't be|would not be]] so tired now.", r: ruleA },
+    { a: "Why didn't Igor come to the party yesterday?", b: "He's very shy. If he (be) [[were|was]] more confident, he (come) [[would have come]].", r: ruleB },
+    { a: "Do you speak Spanish?", b: "No. If I (study) [[had studied]] it at school, I (speak) [[would speak]] it now.", r: ruleA },
+    { a: "Did you notice the mistake in the report?", b: "No, I'm not a very attentive person. If I (be) [[were|was]] more attentive, I (notice) [[would have noticed]] it.", r: ruleB },
+    { a: "Is the new analyzer working well?", b: "Yes! If we (not / buy) [[hadn't bought|had not bought]] it last year, we (not / meet) [[wouldn't meet|would not meet]] the needs of our patients today.", r: ruleA },
+    { a: "Why did your Australian colleague get lost in Moscow?", b: "He doesn't speak Russian. If he (speak) [[spoke]] Russian, he (not / get) [[wouldn't have got|would not have got]] lost.", r: ruleB }
+];
+document.getElementById('dlg-gap-list').innerHTML = dlgGaps.map((d, i) =>
+    '<div class="item" data-en="' + esc(d.r[0]) + '" data-ru="' + esc(d.r[1]) + '"><span class="item-num">' + (i + 1) + '.</span> — ' + esc(d.a) + '<br>— ' + gapHtml(d.b) + itemButtons() +
+    '<div class="feedback"></div><div class="answer-reveal">— ' + esc(gapFull(d.b).replace(/ \((?:not \/ )?[a-z ]+\)/g, '')) + '</div></div>').join('');
+
+// ================= VOCABULARY =================
+const vocab = [
+    ["to meet the need (for)", "/miːt ðə niːd/", "to provide what is necessary", "удовлетворять потребность", "The new lab meets the needs of twenty villages.", "meet the needs of patients"],
+    ["to arrive in / at", "/əˈraɪv ɪn / æt/", "to reach a place: IN a city or country, AT a building, airport or station", "прибывать, приезжать в", "We arrived in Delhi and then arrived at the hotel.", "NOT arrive to!"],
+    ["to fill in", "/ˌfɪl ˈɪn/", "to write the necessary information on a form", "заполнять (бланк, анкету)", "Please fill in the request form.", "AmE also: fill out"],
+    ["despite (sth)", "/dɪˈspaɪt/", "without being stopped by something; even though there is", "несмотря на", "Despite the rain, the courier came on time.", "despite + noun / -ing (no 'of'!)"],
+    ["dirt", "/dɜːt/", "dust, mud or soil that makes something unclean", "грязь", "There was dirt on the centrifuge.", "adj. dirty · a dirt road — грунтовая дорога"],
+    ["including", "/ɪnˈkluːdɪŋ/", "used to mention one part of a whole group", "включая", "Twenty villages, including three mountain ones.", ""],
+    ["to regret", "/rɪˈɡret/", "to feel sorry about something you did or didn't do", "сожалеть", "I regret that I didn't stay longer.", "regret + -ing: I regret leaving early"],
+    ["Australian", "/ɒˈstreɪliən/", "from or connected with Australia", "австралийский, австралиец", "An Australian colleague visited our poster.", "≠ Austrian (австрийский)"],
+    ["selfish", "/ˈselfɪʃ/", "thinking only about yourself, not about other people", "эгоистичный", "It would be selfish to keep this data to myself.", "opposite: generous"],
+    ["It turned out that…", "/ɪt ˌtɜːnd ˈaʊt ðət/", "used when you learn a surprising fact later", "Оказалось, что…", "It turned out that the form was filled in wrongly.", ""],
+    ["to adapt to", "/əˈdæpt tuː/", "to change your behaviour to suit a new situation", "приспосабливаться, привыкать к", "She quickly adapted to the hot climate.", "≠ adopt — усыновлять, принимать"],
+    ["to notice", "/ˈnəʊtɪs/", "to see or become aware of something", "замечать", "I noticed a mistake in the label.", ""],
+    ["last time", "/ˈlɑːst taɪm/", "on the most recent occasion before now", "в прошлый (последний) раз", "Last time we met, she was in Delhi.", "the last time I saw her…"],
+    ["recently", "/ˈriːsntli/", "not long ago; in the last few weeks", "недавно, в последнее время", "Recently I have read a lot about TAT.", "often with Present Perfect"],
+    ["disciplined", "/ˈdɪsəplɪnd/", "following rules and plans; well-organized", "дисциплинированный", "The lab team was very disciplined.", ""],
+    ["to sign up for", "/ˌsaɪn ˈʌp fɔː/", "to register to take part in something", "записаться на", "I've signed up for an online course.", "sign up for a course / a conference"]
+];
+document.getElementById('vocab-grid').innerHTML = vocab.map(([w, ipa, def, ru, ex, note]) => {
+    const spoken = w.replace(/\s*\(.*?\)/g, '').replace(' / ', ' or ').replace('…', '').replace('sth', 'something');
+    return '<div class="flip-card" onclick="this.classList.toggle(\'flipped\')"><div class="flip-card-inner">' +
+        '<div class="flip-card-front"><div class="v-word">' + esc(w) + '</div><div class="v-ipa">' + ipa + '</div><div class="v-def">' + esc(def) + '</div>' +
+        '<button class="v-say" onclick="event.stopPropagation(); say(\'' + escJs(esc(spoken)) + '\')">🔊</button></div>' +
+        '<div class="flip-card-back"><div class="v-trans">' + esc(ru) + '</div><div class="v-ex">"' + esc(ex) + '"</div>' +
+        (note ? '<div class="v-note">' + esc(note) + '</div>' : '') +
+        '</div></div></div>';
+}).join('');
+
+// Exercise 1: story with inline choices
+const storyParts = [
+    "Last week an ", { o: ["Australian", "Austrian"], en: "Kate is from Sydney, so she is Australian.", ru: "Сидней — Австралия → Australian (Austrian — австрийский)." },
+    " colleague, Dr Kate Morrison from Sydney, visited our lab. She ", { o: ["arrived in", "arrived at"], en: "We arrive IN a city or country.", ru: "arrive in — в город или страну." },
+    " Moscow on Monday and ", { o: ["arrived at", "arrived in"], en: "We arrive AT a building, airport or station.", ru: "arrive at — в здание, аэропорт, на вокзал." },
+    " our university on Tuesday morning. ", { o: ["Despite", "Although"], en: "'Despite' + noun (the cold weather); 'although' needs a full clause.", ru: "Despite + существительное. Although требует целого предложения." },
+    " the cold weather, she wanted to see everything, ", { o: ["including", "included"], en: "'Including' introduces a part of the group.", ru: "including — включая." },
+    " our old storage room. She immediately ", { o: ["noticed", "regretted"], en: "She saw it — 'noticed'.", ru: "Она увидела это — noticed (заметила)." },
+    " that there was a lot of ", { o: ["dirt", "dirty"], en: "After 'a lot of' we need a noun: dirt.", ru: "После a lot of нужно существительное: dirt." },
+    " on the floor. ", { o: ["It turned out", "It turned up"], en: "'It turned out that…' = Оказалось, что…", ru: "It turned out that — оказалось, что." },
+    " that nobody had used the room for years. Kate said our technicians were very ", { o: ["disciplined", "selfish"], en: "This is a compliment — 'disciplined'.", ru: "Это комплимент — disciplined." },
+    ", and now she has ", { o: ["signed up for", "filled in for"], en: "We 'sign up for' a course.", ru: "sign up for a course — записаться на курс." },
+    " our Russian course. I'm sure she will ", { o: ["adapt to", "adopt to"], en: "'Adapt to' = get used to; 'adopt' means something different.", ru: "adapt to — привыкнуть. Adopt — усыновить, принять." },
+    " our winter quickly!"
+];
+let scNo = 0; const scGaps = [];
+document.getElementById('story-choice').innerHTML = storyParts.map(p => {
+    if (typeof p === 'string') return esc(p);
+    const n = scNo++; scGaps.push(p);
+    const opts = [0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1][n] ? p.o.slice().reverse() : p.o.slice();
+    return '<span class="inline-choice" data-n="' + n + '">' + opts.map(o => '<button class="ic-btn" onclick="pickStory(this,' + n + ')">' + esc(o) + '</button>').join('<span class="ic-sep">/</span>') + '</span>';
+}).join('');
+function pickStory(btn, n) {
+    const g = scGaps[n], wrap = btn.parentElement;
+    wrap.querySelectorAll('.ic-btn').forEach(b => b.classList.remove('correct', 'incorrect'));
+    const ok = btn.textContent === g.o[0];
+    btn.classList.add(ok ? 'correct' : 'incorrect');
+    showFeedback(document.getElementById('story-feedback'), ok, g.en, g.ru, '✓ Correct! ' + g.en);
+}
+
+// Exercise 2: situation → word (all 16 cards)
+const vocabOptions = ["to meet the need", "to arrive in", "to arrive at", "to fill in", "despite", "dirt", "including", "to regret", "Australian", "selfish", "It turned out that…", "to adapt to", "to notice", "last time", "recently", "disciplined", "to sign up for"];
+const sitVocab = [
+    { s: "A new clinic opens so that people in the area finally get the tests they require.", a: "to meet the need" },
+    { s: "Your plane lands and you are now in Mumbai.", a: "to arrive in" },
+    { s: "After a taxi ride you reach the conference centre.", a: "to arrive at" },
+    { s: "At registration you write your name, address and date of birth on a form.", a: "to fill in" },
+    { s: "The courier came on time — even though there was heavy snow.", a: "despite" },
+    { s: "After the walk, your shoes are covered in mud and dust.", a: "dirt" },
+    { s: "You bought all the reagents, and you want to mention the expensive ones especially.", a: "including" },
+    { s: "You feel sorry that you didn't ask the speaker a question.", a: "to regret" },
+    { s: "Your new colleague was born and grew up in Melbourne.", a: "Australian" },
+    { s: "A colleague takes the best desk and never shares anything with others.", a: "selfish" },
+    { s: "You thought the analyzer was broken, but later you learned it was just switched off.", a: "It turned out that…" },
+    { s: "After a few weeks in India, you get used to the heat and spicy food.", a: "to adapt to" },
+    { s: "While checking the tubes, you see that one label is missing.", a: "to notice" },
+    { s: "You are describing the most recent occasion when you met a friend.", a: "last time" },
+    { s: "Something happened not long ago — two weeks before today.", a: "recently" },
+    { s: "A student always comes on time, plans her work and follows every rule.", a: "disciplined" },
+    { s: "You register to take part in an online English course.", a: "to sign up for" }
+];
+const optOrder = shuffle(vocabOptions, 37);
+document.getElementById('sit-vocab-list').innerHTML = sitVocab.map((x, i) =>
+    '<div class="item"><span class="item-num">' + (i + 1) + '.</span> ' + esc(x.s) + '<br>' +
+    '<select class="match-select" data-i="' + i + '" onchange="checkSitVocab(this)"><option value="">— choose —</option>' +
+    optOrder.map(o => '<option>' + esc(o) + '</option>').join('') + '</select>' +
+    ' <button class="btn-peek" onclick="toggleNext(this)">Answer</button><div class="feedback"></div><div class="answer-reveal">' + esc(x.a) + '</div></div>').join('');
+function checkSitVocab(sel) {
+    const x = sitVocab[+sel.dataset.i], box = sel.closest('.item').querySelector('.feedback');
+    sel.classList.remove('correct', 'incorrect');
+    if (!sel.value) { box.className = 'feedback'; return; }
+    const ok = sel.value === x.a;
+    sel.classList.add(ok ? 'correct' : 'incorrect');
+    showFeedback(box, ok, 'Not quite. Read the situation again and think about the key idea.', 'Перечитайте ситуацию и подумайте, какое слово передает ее главный смысл.');
+}
+
+// ================= TRANSLATION =================
+renderStory('tr-story', [
+    ["Недавно в нашу лабораторию приехала австралийская коллега.", "Recently an Australian colleague came to our laboratory."],
+    ["Она прилетела в Москву в понедельник, а в университет приехала во вторник утром.", "She arrived in Moscow on Monday and arrived at the university on Tuesday morning."],
+    ["Несмотря на холод, она хотела увидеть все, включая наш старый склад.", "Despite the cold, she wanted to see everything, including our old storage room."],
+    ["Оказалось, что в последний раз она была в России двадцать лет назад.", "It turned out that the last time she had been to Russia was twenty years ago."],
+    ["Если бы она тогда выучила русский, ей сейчас было бы гораздо проще.", "If she had learned Russian then, it would be much easier for her now."],
+    ["Теперь она записалась на наш курс русского языка и быстро привыкает к нашей зиме.", "Now she has signed up for our Russian course and is quickly adapting to our winter."],
+    ["Если бы я не была такой занятой, я бы показала ей весь город в прошлые выходные.", "If I weren't so busy, I would have shown her the whole city last weekend."]
+]);
+
+// ================= ROBUST ANSWER MATCHING (contractions) =================
+function expandContractions(s) {
+    return s.replace(/[’‘`]/g, "'")
+        .replace(/\bwon't\b/gi, 'will not').replace(/\bcan't\b/gi, 'cannot')
+        .replace(/n't\b/gi, ' not').replace(/'ll\b/gi, ' will').replace(/'ve\b/gi, ' have')
+        .replace(/'re\b/gi, ' are').replace(/\b(it|that|there|he|she)'s\b/gi, '$1 is');
+}
+function normalize(s) {
+    return expandContractions(s).toLowerCase()
+        .replace(/'/g, '')
+        .replace(/[\.\?!,;:\-—"«»]/g, ' ')
+        .replace(/\s+/g, ' ').trim();
+}
+function matches(value, answers) {
+    // 'd can mean "had" or "would": try every combination
+    let cands = [value];
+    const n = (value.match(/['’]d\b/g) || []).length;
+    if (n) {
+        cands = [];
+        for (let mask = 0; mask < (1 << Math.min(n, 4)); mask++) {
+            let k = 0;
+            cands.push(value.replace(/['’]d\b/g, () => ((mask >> (k++)) & 1) ? ' had' : ' would'));
+        }
+    }
+    const norm = answers.map(normalize);
+    return cands.some(c => norm.includes(normalize(c)));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>English Lesson — Emma — 16.11.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF6EC; --cream-2:#FDEBDC; --card:#FFFFFF;
+  --ink:#2C2140; --ink-soft:#6B6280;
+  --violet:#6D4AE0; --violet-soft:#EFE9FF;
+  --amber:#F6B93B; --amber-soft:#FDEBC4;
+  --teal:#0E9E8B; --rose:#E2607A; --line:#F0E6DC;
+  color-scheme: light;
+  box-sizing:border-box;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:'Nunito',system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);
+  background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%);background-attachment:fixed;
+  font-size:17px;line-height:1.6}
+h1,h2,h3,h4,h5{font-family:'Baloo 2','Nunito',sans-serif;font-weight:700;line-height:1.2;margin:0}
+.wrap{max-width:880px;margin:0 auto;padding:26px 18px 60px}
+
+.head{display:flex;gap:16px;align-items:center;margin-bottom:16px}
+.badge{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#FFB86B,#F6795B);
+  display:grid;place-items:center;font-size:30px;flex:none;box-shadow:0 8px 18px rgba(246,121,91,.28)}
+.head h1{font-size:32px}
+.head p{margin:3px 0 0;color:var(--ink-soft);font-size:15px}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.tab{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);
+  border-radius:14px;padding:9px 16px;font:inherit;font-weight:700;font-size:14px;color:var(--ink);cursor:pointer}
+.tab i{width:20px;height:20px;border-radius:50%;background:var(--violet-soft);color:var(--violet);
+  font-style:normal;font-size:12px;display:grid;place-items:center;font-weight:800}
+.tab:hover{border-color:var(--violet)}
+.tab.on{background:#241B39;border-color:#241B39;color:#fff}
+.tab.on i{background:rgba(255,255,255,.22);color:#fff}
+
+.page{display:none;background:var(--card);border-radius:24px;padding:28px 26px;
+  box-shadow:0 4px 22px rgba(90,60,30,.07)}
+.page.on{display:block}
+.eyebrow{display:inline-block;background:#E9F1FF;color:#3B7BEA;font-weight:800;font-size:12px;
+  letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:6px 14px;margin-bottom:14px}
+.page h2{font-size:27px;display:flex;align-items:center;gap:10px}
+.page h3{font-size:20px;margin:28px 0 8px}
+.lead{color:var(--ink-soft);font-size:15px;margin:8px 0 0}
+.hint{background:#FFFBF0;border-left:4px solid var(--amber);border-radius:10px;padding:12px 16px;
+  color:#7A6236;font-size:16px;margin:14px 0;line-height:1.5}
+p{margin:10px 0}
+
+.quote{background:linear-gradient(135deg,#F3EEFF,#FFF2E4);border-radius:20px;padding:26px 24px;margin:16px 0 8px;
+  font-family:'Baloo 2',sans-serif;font-size:26px;line-height:1.45;text-align:center}
+.chip{background:#FFE7A8;border-radius:8px;padding:0 6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;align-items:center}
+button{font:inherit;font-weight:800;border-radius:12px;cursor:pointer;border:1px solid transparent;padding:10px 20px}
+.btn-main{background:var(--teal);color:#fff}
+.btn-main:hover{background:#0B8878}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--violet);color:var(--violet)}
+.mini{font-size:13px;padding:4px 11px;border-radius:9px;background:#fff;border:1px solid var(--line);
+  color:var(--ink-soft);font-weight:800;white-space:nowrap}
+.mini:hover{border-color:var(--violet);color:var(--violet)}
+.rus{font-size:11px;letter-spacing:.06em;padding:3px 10px;border-radius:999px;background:#fff;
+  border:1px solid #D9C9A8;color:#A07C3C;font-weight:800;vertical-align:2px;margin-left:8px}
+.rus:hover{border-color:var(--violet);color:var(--violet)}
+.score{font-weight:800;color:var(--teal)}
+.rev{display:none;background:var(--violet-soft);border-radius:12px;padding:10px 14px;margin-top:10px;
+  font-weight:700;color:#4A2FB0;font-size:15px}
+.rev.show{display:block}
+.rev.plain{font-weight:400}
+
+.flow{font-size:18px;line-height:2.1}
+.flow .en{display:none;background:#DFF5EC;color:#0A6B5E;border-radius:8px;padding:3px 10px;font-weight:700}
+.flow .en.show{display:inline}
+
+/* Warm-up Mystery Grid */
+.mystery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:14px 0}
+.mcard{background:#FFFDFA;border:2px dashed #D8C8FF;border-radius:18px;padding:16px;cursor:pointer;transition:all .2s}
+.mcard:hover{border-color:var(--violet);transform:translateY(-2px)}
+.mcard .mhead{display:flex;align-items:center;gap:10px;font-family:'Baloo 2',sans-serif;font-size:19px;color:var(--violet)}
+.mcard .mbody{display:none;margin-top:10px;font-weight:700;color:var(--ink);font-size:16px;background:var(--violet-soft);padding:10px 12px;border-radius:12px}
+.mcard.open{border-style:solid;border-color:var(--violet);background:#fff}
+.mcard.open .mbody{display:block}
+
+.tz-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+  background:#FFFDFA;border:1px solid var(--line);border-radius:14px;padding:11px 16px;margin:8px 0}
+.tz-place{font-weight:800;color:var(--ink)}
+.tz-ideas{display:flex;flex-wrap:wrap;gap:6px}
+.tz-btn{background:#fff;border:1px solid var(--line);color:var(--ink-soft);font-weight:700;
+  font-size:13px;padding:6px 12px;border-radius:999px}
+.tz-btn:hover{border-color:var(--violet)}
+.tz-btn.picked{background:var(--violet-soft);border-color:#CDBCFF;color:#4A2FB0}
+
+ol.tasks{list-style:none;counter-reset:t;padding:0;margin:12px 0 0}
+ol.tasks>li{counter-increment:t;display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px dashed var(--line)}
+ol.tasks>li:last-child{border-bottom:none}
+ol.tasks>li::before{content:counter(t);flex:none;width:26px;height:26px;border-radius:50%;
+  background:var(--violet);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:4px}
+.taskbody{flex:1;min-width:0}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:7px;padding:2px 8px;margin-right:6px;vertical-align:2px}
+.tag.p{background:#DFF5EC;color:#0A6B5E}
+.tag.m{background:#FCE4E9;color:#9E2F45}
+.tag.q{background:var(--violet-soft);color:#4A2FB0}
+input.gap{font:inherit;font-weight:700;color:var(--ink);background:var(--amber-soft);border:none;
+  border-bottom:2px solid var(--amber);border-radius:6px 6px 0 0;padding:3px 8px;width:150px}
+input.gap:focus{outline:2px solid var(--violet);outline-offset:1px}
+input.gap.ok{background:#DFF5EC;border-bottom-color:var(--teal)}
+input.gap.no{background:#FCE4E9;border-bottom-color:var(--rose)}
+input.small{width:92px;text-align:center}
+input.large{width:220px}
+input.xlarge{width:280px}
+.line{display:flex;gap:8px;align-items:center;margin-top:7px}
+.line input.gap{flex:1;width:auto;min-width:0}
+.wordbank{background:#FFFBF0;border-left:4px solid var(--amber);border-radius:10px;padding:12px 15px;margin:12px 0;font-weight:700}
+.chatbox{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin-top:12px}
+.chatbox p{margin:12px 0;font-size:16px}
+.chatbox b{color:var(--violet)}
+.para{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:18px 20px;margin-top:12px;
+  font-size:17px;line-height:2.5}
+
+table.facts{width:100%;border-collapse:collapse;margin:12px 0;font-size:16px}
+table.facts th,table.facts td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+table.facts th{background:var(--violet-soft);color:#4A2FB0;font-weight:800}
+table.facts td.c{text-align:center;font-weight:800}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:16px}
+.vcard{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:16px;cursor:pointer;min-height:110px}
+.vcard .top{display:flex;align-items:flex-start;gap:8px}
+.vcard .w{font-family:'Baloo 2',sans-serif;font-size:19px;font-weight:700;flex:1}
+.vcard .say{flex:none;width:32px;height:32px;border-radius:50%;background:var(--violet);color:#fff;
+  border:none;padding:0;font-size:14px;display:grid;place-items:center}
+.vcard .say:hover{background:#5A38CC}
+.vcard .tr{color:var(--ink-soft);font-size:14px}
+.vcard .back{display:none;margin-top:9px;font-size:15px}
+.vcard.open{background:var(--violet-soft);border-color:#CDBCFF}
+.vcard.open .back{display:block}
+.vcard .def{font-weight:700;color:#4A2FB0}
+.vcard .ex{font-style:italic;color:var(--ink-soft);font-size:14px;margin-top:4px}
+
+.player{background:#241B39;border-radius:20px;padding:18px 20px;color:#fff;margin:16px 0}
+.player .ctrls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.player button{background:rgba(255,255,255,.14);color:#fff;border:none;padding:9px 18px;border-radius:12px}
+.player button:hover{background:rgba(255,255,255,.26)}
+.play{width:38px;height:38px;border-radius:50%;background:var(--violet);color:#fff;border:none;
+  display:grid;place-items:center;font-size:14px;flex:none;padding:0}
+.play:hover{background:#5A38CC}
+
+.q2{margin:18px 0 0}
+.q2 p{font-weight:700;margin:0 0 8px}
+.opts{display:flex;gap:7px;flex-wrap:wrap}
+.opt{text-align:center;background:#fff;border:1px solid var(--line);color:var(--ink);font-weight:800;
+  padding:9px 14px;border-radius:12px;min-width:110px}
+.opt:hover{border-color:var(--violet)}
+.opt.ok{background:#DFF5EC;border-color:var(--teal);color:#0A6B5E}
+.opt.no{background:#FCE4E9;border-color:var(--rose);color:#9E2F45}
+
+.plcard{background:#FFFDFA;border:1px solid var(--line);border-radius:18px;padding:16px 18px;margin:10px 0}
+.plcard h4{font-size:17px;color:var(--violet);margin-bottom:4px}
+.plcard .st{color:var(--ink-soft);font-size:15px;font-style:italic}
+
+.pager{display:flex;justify-content:space-between;gap:10px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+footer{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:26px}
+
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding:18px 13px 48px}
+  .head h1{font-size:25px}
+  .badge{width:52px;height:52px;border-radius:16px;font-size:24px}
+  .page{padding:20px 16px;border-radius:20px}
+  .quote{font-size:20px;padding:20px 16px}
+  .tab{padding:8px 12px;font-size:13px}
+  input.gap{width:130px}
+  input.xlarge{width:100%}
+  table.facts{font-size:15px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="head">
+  <div class="badge">🎧</div>
+  <div>
+    <h1>English lesson — Emma</h1>
+    <p>16.11.2026 · <b>Present Continuous</b> · music, dogs and video calls</p>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab on" data-go="p1"><i>1</i>Warm-up</button>
+  <button class="tab" data-go="p2"><i>2</i>Homework Check</button>
+  <button class="tab" data-go="p3"><i>3</i>Grammar</button>
+  <button class="tab" data-go="p4"><i>4</i>Vocabulary</button>
+  <button class="tab" data-go="p5"><i>5</i>Listening</button>
+  <button class="tab" data-go="p6"><i>6</i>Speaking</button>
+  <button class="tab" data-go="p7"><i>7</i>Translation</button>
+</div>
+
+<!-- 1 WARM-UP -->
+<section class="page on" id="p1">
+  <div class="eyebrow">Warm-up</div>
+  <h2>🕵️‍♀️ Time Zone Detective</h2>
+  <p class="lead">Your family is in different countries! Guess what everyone is doing <b>at this exact moment</b>. Pick an idea or say your own: <b>I think she/he is …ing right now!</b> <button class="rus" data-toggle="#i1">RUS</button></p>
+  <div class="rev plain" id="i1">Твоя семья живет в разных странах! Угадай, что каждый из них делает прямо сейчас. Выбери подсказку или придумай свой вариант в Present Continuous.</div>
+
+  <div class="tz-row">
+    <span class="tz-place">🇬🇧 Sister in London</span>
+    <div class="tz-ideas">
+      <button class="tz-btn">drinking coffee</button>
+      <button class="tz-btn">walking in the city</button>
+      <button class="tz-btn">studying</button>
+    </div>
+  </div>
+  <div class="tz-row">
+    <span class="tz-place">🇷🇺 Sister in St. Petersburg</span>
+    <div class="tz-ideas">
+      <button class="tz-btn">sitting at university</button>
+      <button class="tz-btn">reading a book</button>
+      <button class="tz-btn">talking to friends</button>
+    </div>
+  </div>
+  <div class="tz-row">
+    <span class="tz-place">🇦🇹 Brother in Austria</span>
+    <div class="tz-ideas">
+      <button class="tz-btn">having lunch</button>
+      <button class="tz-btn">listening to music</button>
+      <button class="tz-btn">doing sports</button>
+    </div>
+  </div>
+  <div class="tz-row">
+    <span class="tz-place">🇬🇪 Your two dogs at home</span>
+    <div class="tz-ideas">
+      <button class="tz-btn">sleeping on the floor</button>
+      <button class="tz-btn">waiting for a walk</button>
+      <button class="tz-btn">playing with a toy</button>
+    </div>
+  </div>
+
+  <h3>🎲 Open 4 Mystery Cards</h3>
+  <p class="lead">Tap each card to reveal a secret question and answer it in 1–2 sentences!</p>
+  <div class="mystery-grid">
+    <div class="mcard">
+      <div class="mhead">📦 Mystery Card 1</div>
+      <div class="mbody">Look around your room! Name 2 things that are happening (or not happening) right now.</div>
+    </div>
+    <div class="mcard">
+      <div class="mhead">🎸 Mystery Card 2</div>
+      <div class="mbody">Imagine you are on stage with Pink Floyd right now! What are you wearing and what are you playing?</div>
+    </div>
+    <div class="mcard">
+      <div class="mhead">🐶 Mystery Card 3</div>
+      <div class="mbody">If your dogs could talk, what question are they asking you right now?</div>
+    </div>
+    <div class="mcard">
+      <div class="mhead">📱 Mystery Card 4</div>
+      <div class="mbody">What song or artist are you listening to a lot these days?</div>
+    </div>
+  </div>
+
+  <h3>Phrase of the day</h3>
+  <div class="quote">"At first this guitar solo was hard, but now it's <span class="chip">a piece of cake</span>!"</div>
+  <div class="row">
+    <button class="mini" data-toggle="#ph1">Show translation</button>
+    <button class="btn-ghost" data-speak="At first this guitar solo was hard, but now it's a piece of cake!" data-rate="0.85">🔊 Listen</button>
+  </div>
+  <div class="rev" id="ph1">a piece of cake /ə ˈpiːs əv keɪk/ — проще простого, пара пустяков (букв. «кусочек торта»).<br>
+    <span style="font-weight:400">«Сначала это гитарное соло было сложным, но теперь это проще простого!»</span></div>
+
+  <div class="pager"><span></span><button class="btn-main" data-go="p2">Next: Homework Check →</button></div>
+</section>
+
+<!-- 2 HOMEWORK CHECK -->
+<section class="page" id="p2">
+  <div class="eyebrow">Homework · Check (12.11)</div>
+  <h2>🌍 Translate the text into English</h2>
+  <p class="lead">Read your translation from the last lesson out loud. <button class="rus" data-toggle="#i0">RUS</button></p>
+  <div class="rev plain" id="i0">Переводи вслух предложения с прошлого урока (для проверки). Кнопка English — для самопроверки.</div>
+
+  <div class="flow" style="margin-top:20px;">
+    Прямо сейчас я сижу в своей комнате и пишу это сообщение.
+    <button class="mini" data-rev>English</button> <span class="en">Right now, I am sitting in my room and writing this message.</span>
+    Мой сводный брат не делает домашнее задание сейчас, он выгуливает собак.
+    <button class="mini" data-rev>English</button> <span class="en">My half-brother isn't doing his homework now, he is walking the dogs.</span>
+    Я очень скучаю по своим сестрам, потому что они живут за границей.
+    <button class="mini" data-rev>English</button> <span class="en">I miss my sisters a lot because they live abroad.</span>
+    Мы часто общаемся онлайн, и у нас много общего.
+    <button class="mini" data-rev>English</button> <span class="en">We often chat online and we have a lot in common.</span>
+    Ты слушаешь этот новый трек?
+    <button class="mini" data-rev>English</button> <span class="en">Are you listening to this new track?</span>
+    Он просто потрясающий, и мы без ума от него!
+    <button class="mini" data-rev>English</button> <span class="en">It is just awesome, and we are crazy about it!</span>
+    Я учу эту песню на гитаре, но она не легкая.
+    <button class="mini" data-rev>English</button> <span class="en">I am learning this song on the guitar, but it is not easy.</span>
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p1">← Back</button><button class="btn-main" data-go="p3">Next: Grammar →</button></div>
+</section>
+
+<!-- 3 GRAMMAR -->
+<section class="page" id="p3">
+  <div class="eyebrow">Grammar</div>
+  <h2>⏳ Present Continuous</h2>
+
+  <table class="facts">
+    <tr><th colspan="2">When do we use Present Continuous?</th></tr>
+    <tr>
+      <td><b>1. Unfinished actions which are happening right now.</b><br>
+        <span style="color:var(--ink-soft);font-size:14px">Незаконченные действия прямо сейчас.</span></td>
+      <td>I <b>am playing</b> the guitar <u>now</u>.</td>
+    </tr>
+    <tr>
+      <td><b>2. Unfinished actions around the moment of speaking.</b><br>
+        <span style="color:var(--ink-soft);font-size:14px">Действия в процессе в текущий период.</span></td>
+      <td>I <b>am learning</b> a new track <u>these days</u>.</td>
+    </tr>
+    <tr>
+      <td><b>3. Temporary situations.</b><br>
+        <span style="color:var(--ink-soft);font-size:14px">Временные ситуации.</span></td>
+      <td>My sister <b>is living</b> in London <u>this year</u>.</td>
+    </tr>
+    <tr>
+      <td><b>4. Plans which we are sure about.</b><br>
+        <span style="color:var(--ink-soft);font-size:14px">Запланированные действия (100%).</span></td>
+      <td>We <b>are flying</b> to Austria <u>tomorrow</u>.</td>
+    </tr>
+  </table>
+
+  <div class="hint">
+    <b>🕰 Indicators:</b> <i>now, right now, at the moment, today, these days, this week/year</i>.<br><br>
+    <b>⚠️ Structure:</b> <br>
+    <span class="tag p">+</span> Subject + <b>am / is / are</b> + verb<b>ing</b><br>
+    <span class="tag m">−</span> Subject + <b>am / is / are + not</b> + verb<b>ing</b><br>
+    <span class="tag q">?</span> Question word + <b>am / is / are</b> + Subject + verb<b>ing</b>?<br><br>
+    <b>✍️ Spelling rules:</b><br>
+    • play → play<b>ing</b><br>
+    • mak<s>e</s> → mak<b>ing</b> <i>(немая -e убегает)</i><br>
+    • si<b>t</b> → si<b>tt</b>ing <i>(удвоение согласной после краткой гласной)</i><br>
+    • l<b>ie</b> → l<b>y</b>ing <i>(ie меняется на y)</i>
+  </div>
+
+  <h3>Exercise 1. Look at the table and write the sentence</h3>
+  <p class="lead">What is everyone doing at 5 PM today? ✓ means positive (+), ✗ means negative (−), and ? means write a question. <button class="rus" data-toggle="#i2">RUS</button></p>
+  <div class="rev plain" id="i2">Посмотри на таблицу: галочка (✓) — напиши утверждение (+), крестик (✗) — отрицание (−), знак вопроса (?) — составь вопрос в Present Continuous.</div>
+  <table class="facts">
+    <tr><th>Activity at 5 PM</th><th>Emma</th><th>Half-brother</th><th>The dogs</th></tr>
+    <tr><td>practise new chords</td><td class="c">✓</td><td class="c">✗</td><td class="c">—</td></tr>
+    <tr><td>pack a suitcase</td><td class="c">✗</td><td class="c">?</td><td class="c">—</td></tr>
+    <tr><td>bark at a bird</td><td class="c">—</td><td class="c">—</td><td class="c">✓</td></tr>
+    <tr><td>wear headphones</td><td class="c">?</td><td class="c">✓</td><td class="c">✗</td></tr>
+  </table>
+  <ol class="tasks" data-ex="g1">
+    <li><div class="taskbody"><span class="tag p">+</span> Emma / practise new chords
+      <div class="line"><input class="gap xlarge" data-a="emma is practising new chords|emma is practicing new chords|emma's practising new chords"></div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span> Emma / pack a suitcase
+      <div class="line"><input class="gap xlarge" data-a="emma isn't packing a suitcase|emma is not packing a suitcase"></div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span> her half-brother / pack a suitcase
+      <div class="line"><input class="gap xlarge" data-a="is her half-brother packing a suitcase"></div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span> the dogs / bark at a bird
+      <div class="line"><input class="gap xlarge" data-a="the dogs are barking at a bird"></div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span> the dogs / wear headphones
+      <div class="line"><input class="gap xlarge" data-a="the dogs aren't wearing headphones|the dogs are not wearing headphones"></div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span> her half-brother / wear headphones
+      <div class="line"><input class="gap xlarge" data-a="her half-brother is wearing headphones"></div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span> Emma / wear headphones
+      <div class="line"><input class="gap xlarge" data-a="is emma wearing headphones"></div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g1">Check</button><span class="score" data-score="g1"></span></div>
+
+  <h3>Exercise 2. Family video call</h3>
+  <p class="lead">Open the brackets in Present Continuous (+, − or ?). Include question words (Where, Why) if they are in brackets! <button class="rus" data-toggle="#i3">RUS</button></p>
+  <div class="rev plain" id="i3">Раскрой скобки в Present Continuous (+, − или ?). Если в скобках есть вопросительное слово (Where, Why), обязательно впиши его в ответ!</div>
+  <div class="chatbox" data-ex="g2">
+    <p><b>Sister (London):</b> Hi, Emma! I <input class="gap" data-a="am calling|'m calling"> (call) you from a red bus in London!</p>
+    <p><b>Emma:</b> Awesome! <span class="tag q">?</span> <input class="gap large" data-a="where are you going"> (Where / you / go) right now?</p>
+    <p><b>Sister (London):</b> I <input class="gap" data-a="am meeting|'m meeting"> (meet) my university friends for lunch. It <input class="gap" data-a="isn't raining|is not raining"> (not / rain) here today!</p>
+    <p><b>Brother (Austria):</b> Lucky you! We <input class="gap" data-a="aren't walking|are not walking"> (not / walk) outside because it is very cold in Austria.</p>
+    <p><b>Sister (London):</b> Wait, I hear a loud noise! <span class="tag q">?</span> <input class="gap large" data-a="are the dogs barking"> (the dogs / bark)?</p>
+    <p><b>Emma:</b> Yes! <span class="tag q">?</span> <input class="gap large" data-a="why are they running"> (Why / they / run) around my room?</p>
+  </div>
+  <div class="row"><button class="btn-main" data-check="g2">Check</button><span class="score" data-score="g2"></span></div>
+
+  <h3>Exercise 3. Find and fix the mistake</h3>
+  <p class="lead">Every sentence (+, − or ?) has ONE mistake in Present Continuous. Write the full correct sentence. <button class="rus" data-toggle="#i4">RUS</button></p>
+  <div class="rev plain" id="i4">В каждом предложении (утверждении, отрицании или вопросе) спряталась ОДНА грамматическая ошибка. Напиши предложение целиком правильно.</div>
+  <ol class="tasks" data-ex="g3">
+    <li><div class="taskbody"><span class="tag p">+</span> <s>I playing a Viktor Tsoi song right now.</s>
+      <div class="line"><input class="gap xlarge" data-a="i am playing a viktor tsoi song right now|i'm playing a viktor tsoi song right now"></div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span> <s>My sister doesn't studying at the moment.</s>
+      <div class="line"><input class="gap xlarge" data-a="my sister isn't studying at the moment|my sister is not studying at the moment"></div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span> <s>What you are recording on your phone?</s>
+      <div class="line"><input class="gap xlarge" data-a="what are you recording on your phone"></div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span> <s>Look! The dogs is sitting near the door.</s>
+      <div class="line"><input class="gap xlarge" data-a="look the dogs are sitting near the door"></div></div></li>
+    <li><div class="taskbody"><span class="tag q">?</span> <s>Do they hanging out in the park today?</s>
+      <div class="line"><input class="gap xlarge" data-a="are they hanging out in the park today"></div></div></li>
+    <li><div class="taskbody"><span class="tag m">−</span> <s>We are not take a break right now.</s>
+      <div class="line"><input class="gap xlarge" data-a="we are not taking a break right now|we aren't taking a break right now|we're not taking a break right now"></div></div></li>
+    <li><div class="taskbody"><span class="tag p">+</span> <s>He is makeing dinner in the kitchen.</s>
+      <div class="line"><input class="gap xlarge" data-a="he is making dinner in the kitchen|he's making dinner in the kitchen"></div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g3">Check</button><span class="score" data-score="g3"></span></div>
+
+  <h3>Exercise 4. Choose a verb from the box</h3>
+  <p class="lead">Pick the right verb by meaning and put it into Present Continuous (+, − or ?). <button class="rus" data-toggle="#i5">RUS</button></p>
+  <div class="rev plain" id="i5">Выбери подходящий по смыслу глагол из рамки и поставь его в Present Continuous (обращай внимание на знаки +, − и ?).</div>
+  <div class="wordbank">record · take · fly · sleep · wear · play · bark</div>
+  <ol class="tasks" data-ex="g4">
+    <li><div class="taskbody"><span class="tag p">+</span> Shh! The dogs <input class="gap" data-a="are sleeping"> on the rug right now.</div></li>
+    <li><div class="taskbody"><span class="tag m">−</span> I <input class="gap" data-a="am not wearing|'m not wearing"> my headphones at the moment, so I can hear you.</div></li>
+    <li><div class="taskbody"><span class="tag q">?</span> <input class="gap large" data-a="is she recording"> (she) a new guitar video for her sisters?</div></li>
+    <li><div class="taskbody"><span class="tag p">+</span> We are tired, so we <input class="gap" data-a="are taking|'re taking"> a short break now.</div></li>
+    <li><div class="taskbody"><span class="tag m">−</span> My parents <input class="gap" data-a="aren't flying|are not flying"> to London this week.</div></li>
+    <li><div class="taskbody"><span class="tag q">?</span> Why <input class="gap large" data-a="is the dog barking"> (the dog) so loudly outside?</div></li>
+    <li><div class="taskbody"><span class="tag q">?</span> What song <input class="gap large" data-a="are you playing"> (you) on your guitar right now?</div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="g4">Check</button><span class="score" data-score="g4"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p2">← Back</button><button class="btn-main" data-go="p4">Next: Vocabulary →</button></div>
+</section>
+
+<!-- 4 VOCABULARY -->
+<section class="page" id="p4">
+  <div class="eyebrow">Vocabulary</div>
+  <h2>🃏 Ten words and phrases</h2>
+  <p class="lead">Tap a card for the meaning and an example. Tap 🔊 to hear it. <button class="rus" data-toggle="#i6">RUS</button></p>
+  <div class="rev plain" id="i6">Нажми на карточку — значение по-английски и пример. Кнопка 🔊 — послушать произношение.</div>
+
+  <div class="cards">
+    <div class="vcard">
+      <div class="top"><div class="w">to put on headphones</div><button class="say" data-speak="to put on headphones">🔊</button></div>
+      <div class="tr">/ˌpʊt ɒn ˈhedfəʊnz/</div>
+      <div class="back"><div class="def">to start wearing headphones over your ears</div><div class="ex">I am putting on my headphones to listen to Justin Timberlake.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">a chord</div><button class="say" data-speak="a chord">🔊</button></div>
+      <div class="tr">/kɔːd/</div>
+      <div class="back"><div class="def">three or more musical notes played together on a guitar</div><div class="ex">I am learning a difficult guitar chord today.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to take a break</div><button class="say" data-speak="to take a break">🔊</button></div>
+      <div class="tr">/ˌteɪk ə ˈbreɪk/</div>
+      <div class="back"><div class="def">to stop studying or working for a short rest</div><div class="ex">Let's take a break after this online lesson!</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to hang out (with)</div><button class="say" data-speak="to hang out with friends">🔊</button></div>
+      <div class="tr">/ˌhæŋ ˈaʊt/</div>
+      <div class="back"><div class="def">to spend time relaxing with friends or family</div><div class="ex">My sister is hanging out with her friends in London.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">a video call</div><button class="say" data-speak="a video call">🔊</button></div>
+      <div class="tr">/ə ˈvɪdiəʊ kɔːl/</div>
+      <div class="back"><div class="def">a call where you can see each other on the screen</div><div class="ex">We are having a family video call right now.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to bark</div><button class="say" data-speak="to bark">🔊</button></div>
+      <div class="tr">/bɑːk/</div>
+      <div class="back"><div class="def">the loud sound that a dog makes</div><div class="ex">Why are the dogs barking at the door?</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to pack a suitcase</div><button class="say" data-speak="to pack a suitcase">🔊</button></div>
+      <div class="tr">/ˌpæk ə ˈsuːtkeɪs/</div>
+      <div class="back"><div class="def">to put your clothes into a bag before a trip</div><div class="ex">My brother is packing his suitcase for his trip.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">loud</div><button class="say" data-speak="loud">🔊</button></div>
+      <div class="tr">/laʊd/</div>
+      <div class="back"><div class="def">making a lot of noise; not quiet</div><div class="ex">Is my guitar too loud right now?</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">to record a video</div><button class="say" data-speak="to record a video">🔊</button></div>
+      <div class="tr">/rɪˈkɔːd ə ˈvɪdiəʊ/</div>
+      <div class="back"><div class="def">to film something with a camera or phone</div><div class="ex">She is recording a video of her new song.</div></div></div>
+
+    <div class="vcard">
+      <div class="top"><div class="w">at the moment</div><button class="say" data-speak="at the moment">🔊</button></div>
+      <div class="tr">/æt ðə ˈməʊmənt/</div>
+      <div class="back"><div class="def">right now; at this exact time</div><div class="ex">I am not studying at the moment.</div></div></div>
+  </div>
+
+  <h3>Exercise 1. Complete the sentences</h3>
+  <p class="lead">Fill in the missing words from the box. <button class="rus" data-toggle="#i7">RUS</button></p>
+  <div class="rev plain" id="i7">Вставь подходящие по смыслу слова из рамки.</div>
+  <div class="wordbank">headphones · chords · break · video call · barking · suitcase · loud · recording</div>
+  <ol class="tasks" data-ex="v1">
+    <li><div class="taskbody">My guitar is very <input class="gap small" data-a="loud">, so my parents can hear every note!</div></li>
+    <li><div class="taskbody">I am tired after my online classes. I am taking a <input class="gap small" data-a="break"> now.</div></li>
+    <li><div class="taskbody">Look! The dogs are <input class="gap small" data-a="barking"> because someone is at the gate.</div></li>
+    <li><div class="taskbody">Every Sunday we have a big family <input class="gap" data-a="video call"> with my sisters and brother.</div></li>
+    <li><div class="taskbody">I am learning four new guitar <input class="gap small" data-a="chords"> for a Viktor Tsoi song.</div></li>
+    <li><div class="taskbody">My sister is packing her <input class="gap small" data-a="suitcase"> because she is flying home tomorrow.</div></li>
+    <li><div class="taskbody">He is putting on his <input class="gap" data-a="headphones"> because he wants to listen to music quietly.</div></li>
+    <li><div class="taskbody">Smile! I am <input class="gap small" data-a="recording"> a funny video of our dogs!</div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="v1">Check</button><span class="score" data-score="v1"></span></div>
+
+  <h3>Exercise 2. Choose the right option</h3>
+  <p class="lead">Tap the word or phrase that matches the situation. <button class="rus" data-toggle="#i8">RUS</button></p>
+  <div class="rev plain" id="i8">Нажми на слово или выражение, которое подходит к описанию.</div>
+
+  <div class="q2"><p>1. You stop doing your homework for 15 minutes to drink tea and relax.</p>
+    <div class="opts"><button class="opt">pack a suitcase</button><button class="opt" data-ok>take a break</button><button class="opt">record a video</button></div></div>
+  <div class="q2"><p>2. You and your friends are spending time together in the park.</p>
+    <div class="opts"><button class="opt" data-ok>hang out</button><button class="opt">bark</button><button class="opt">put on headphones</button></div></div>
+  <div class="q2"><p>3. You play three notes together on your guitar.</p>
+    <div class="opts"><button class="opt">a suitcase</button><button class="opt">a video call</button><button class="opt" data-ok>a chord</button></div></div>
+  <div class="q2"><p>4. Another way to say "right now".</p>
+    <div class="opts"><button class="opt" data-ok>at the moment</button><button class="opt">by heart</button><button class="opt">abroad</button></div></div>
+  <div class="q2"><p>5. You want to see your sister's face when you talk to her on the phone.</p>
+    <div class="opts"><button class="opt">a loud track</button><button class="opt" data-ok>a video call</button><button class="opt">headphones</button></div></div>
+  <div class="q2"><p>6. You are getting ready for a trip to Austria and putting T-shirts in your bag.</p>
+    <div class="opts"><button class="opt">taking a break</button><button class="opt">hanging out</button><button class="opt" data-ok>packing a suitcase</button></div></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p3">← Back</button><button class="btn-main" data-go="p5">Next: Listening →</button></div>
+</section>
+
+<!-- 5 LISTENING -->
+<section class="page" id="p5">
+  <div class="eyebrow">Listening</div>
+  <h2>🎧 Saturday Afternoon in Georgia</h2>
+  <p class="lead">Listen to Emma's audio message (about one minute) and do the two tasks. <button class="rus" data-toggle="#i9">RUS</button></p>
+  <div class="rev plain" id="i9">Послушай аудиосообщение Эммы (около одной минуты) и выполни два задания.</div>
+
+  <div class="player" id="player"
+    data-text="Hi guys! It is Saturday afternoon here in Georgia, and I am taking a break from my online lessons. At the moment, we are having a big family video call! My sister in St. Petersburg is showing us her university campus, and my other sister in London is hanging out in a cosy cafe. My brother in Austria isn't talking right now because he is packing his suitcase for a weekend trip. What about our house? My half-brother is in his room. He is putting on his headphones because my guitar is too loud! Right now, I am practising the chords for an awesome song by Viktor Tsoi. At first it was difficult, but now it is a piece of cake! I am also recording a short video of my guitar solo for my sisters. Wait, can you hear that noise? My two dogs are barking at a bird in the garden!">
+    <div class="ctrls">
+      <button data-play>▶ Play</button>
+      <button data-pause>⏸ Pause</button>
+      <button data-stop>⏹ Stop</button>
+    </div>
+  </div>
+
+  <div class="row"><button class="btn-ghost" data-toggle="#transcript">Show transcript</button></div>
+  <div class="rev plain" id="transcript">Hi guys! It is Saturday afternoon here in Georgia, and I am taking a break from my online lessons. At the moment, we are having a big family video call! My sister in St. Petersburg is showing us her university campus, and my other sister in London is hanging out in a cosy cafe. My brother in Austria isn't talking right now because he is packing his suitcase for a weekend trip. What about our house? My half-brother is in his room. He is putting on his headphones because my guitar is too loud! Right now, I am practising the chords for an awesome song by Viktor Tsoi. At first it was difficult, but now it is a piece of cake! I am also recording a short video of my guitar solo for my sisters. Wait, can you hear that noise? My two dogs are barking at a bird in the garden!</div>
+
+  <h3>Task 1. Choose the correct answer</h3>
+  <p class="lead">Tap the right option according to the audio. <button class="rus" data-toggle="#i10">RUS</button></p>
+  <div class="rev plain" id="i10">Выбери правильный ответ по содержанию аудиозаписи.</div>
+
+  <div class="q2"><p>1. What is Emma doing at the beginning of the story?</p>
+    <div class="opts"><button class="opt">Doing maths homework</button><button class="opt" data-ok>Taking a break and having a video call</button><button class="opt">Walking her dogs in the park</button></div></div>
+  <div class="q2"><p>2. What is her sister in St. Petersburg showing the family?</p>
+    <div class="opts"><button class="opt" data-ok>Her university campus</button><button class="opt">A cosy cafe</button><button class="opt">A new guitar</button></div></div>
+  <div class="q2"><p>3. Why isn't her brother in Austria talking right now?</p>
+    <div class="opts"><button class="opt">He is sleeping</button><button class="opt" data-ok>He is packing his suitcase</button><button class="opt">He is at a concert</button></div></div>
+  <div class="q2"><p>4. Why is Emma's half-brother putting on his headphones?</p>
+    <div class="opts"><button class="opt" data-ok>Because Emma's guitar is too loud</button><button class="opt">Because he is watching a horror film</button><button class="opt">Because it is raining outside</button></div></div>
+  <div class="q2"><p>5. Whose song is Emma practising right now?</p>
+    <div class="opts"><button class="opt">Justin Timberlake</button><button class="opt" data-ok>Viktor Tsoi</button><button class="opt">A pop band</button></div></div>
+  <div class="q2"><p>6. Why are the two dogs barking?</p>
+    <div class="opts"><button class="opt">They are hungry</button><button class="opt">They want to go inside</button><button class="opt" data-ok>They see a bird in the garden</button></div></div>
+
+  <h3>Task 2. Listen and write the missing word</h3>
+  <p class="lead">Press ▶, listen to the sentence and write the missing word. <button class="rus" data-toggle="#i11">RUS</button></p>
+  <div class="rev plain" id="i11">Нажми ▶, послушай предложение и впиши одно пропущенное слово.</div>
+  <ol class="tasks" data-ex="d1">
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="I am taking a break from my online lessons.">▶</button>
+      <span>I am taking a <input class="gap small" data-a="break"> from my online lessons.</span></div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="My sister in London is hanging out in a cosy cafe.">▶</button>
+      <span>My sister in London is <input class="gap small" data-a="hanging"> out in a cosy cafe.</span></div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="He is packing his suitcase for a weekend trip.">▶</button>
+      <span>He is packing his <input class="gap small" data-a="suitcase"> for a weekend trip.</span></div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="He is putting on his headphones because my guitar is too loud.">▶</button>
+      <span>He is putting on his <input class="gap" data-a="headphones"> because my guitar is too loud.</span></div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="Right now, I am practising the chords for an awesome song.">▶</button>
+      <span>Right now, I am practising the <input class="gap small" data-a="chords"> for an awesome song.</span></div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="I am also recording a short video for my sisters.">▶</button>
+      <span>I am also <input class="gap small" data-a="recording"> a short video for my sisters.</span></div></div></li>
+    <li><div class="taskbody"><div class="line"><button class="play" data-speak="My two dogs are barking at a bird in the garden.">▶</button>
+      <span>My two dogs are <input class="gap small" data-a="barking"> at a bird in the garden.</span></div></div></li>
+  </ol>
+  <div class="row"><button class="btn-main" data-check="d1">Check</button><span class="score" data-score="d1"></span></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p4">← Back</button><button class="btn-main" data-go="p6">Next: Speaking →</button></div>
+</section>
+
+<!-- 6 SPEAKING -->
+<section class="page" id="p6">
+  <div class="eyebrow">Speaking</div>
+  <h2>💬 Your playlist</h2>
+
+  <h3>1. Three songs</h3>
+  <p class="lead">Tell your teacher about three songs. Use the sentence starters. <button class="rus" data-toggle="#i12">RUS</button></p>
+  <div class="rev plain" id="i12">Расскажи учителю о трех песнях, опираясь на начала предложений. По два-три предложения на каждую.</div>
+
+  <div class="plcard"><h4>🎸 A song I play on the guitar</h4>
+    <div class="st">It is by… · I practise it… times a week · It is (not) easy because…</div></div>
+  <div class="plcard"><h4>❤️ A song I listen to again and again</h4>
+    <div class="st">I am a huge fan of… · The lyrics are… · It is really catchy because…</div></div>
+  <div class="plcard"><h4>🙅 A song that is not my cup of tea</h4>
+    <div class="st">… is not my cup of tea · I don't like it because… · My friends say…</div></div>
+
+  <h3>2. Find three things in common</h3>
+  <p class="lead">Ask your teacher questions and find <b>three</b> things you have in common about music. Then tell the result. <button class="rus" data-toggle="#i13">RUS</button></p>
+  <div class="rev plain" id="i13">Задавай учителю вопросы и найди три совпадения в музыкальных вкусах. Потом скажи результат: We have three things in common: we both…</div>
+  <div class="hint">💡 Your questions: <b>Do you</b> play…? <b>Do you</b> know…? <b>Are you</b> into…? <b>Are you</b> a huge fan of…? <b>Is</b> … your cup of tea?<br>
+    Your answer at the end: <b>We both…</b> · <b>We have three things in common.</b></div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p5">← Back</button><button class="btn-main" data-go="p7">Next: Translation →</button></div>
+</section>
+
+<!-- 7 TRANSLATION -->
+<section class="page" id="p7">
+  <div class="eyebrow">Final task · Translation</div>
+  <h2>✍️ Translate the story</h2>
+  <p class="lead">Translate the text sentence by sentence using Present Continuous (+, −, ?) and new words. <button class="rus" data-toggle="#i14">RUS</button></p>
+  <div class="rev plain" id="i14">Переведи связный рассказ по одному предложению. Кнопка English — только если совсем запуталась.</div>
+
+  <div class="flow" style="margin-top:20px;">
+    В данный момент я делаю перерыв после моих онлайн-уроков.
+    <button class="mini" data-rev>English</button> <span class="en">At the moment, I am taking a break after my online lessons.</span>
+    Я учу новые аккорды на гитаре и записываю видео для моих сестер.
+    <button class="mini" data-rev>English</button> <span class="en">I am learning new chords on the guitar and recording a video for my sisters.</span>
+    Моя гитара слишком громкая сейчас?
+    <button class="mini" data-rev>English</button> <span class="en">Is my guitar too loud right now?</span>
+    Мой сводный брат не слушает меня, потому что он надевает свои наушники.
+    <button class="mini" data-rev>English</button> <span class="en">My half-brother isn't listening to me because he is putting on his headphones.</span>
+    Собаки не спят в комнате, они громко лают в саду.
+    <button class="mini" data-rev>English</button> <span class="en">The dogs aren't sleeping in the room, they are barking loudly in the garden.</span>
+    А мой брат в Австрии сейчас пакует чемодан, потому что завтра он летит домой!
+    <button class="mini" data-rev>English</button> <span class="en">And my brother in Austria is packing his suitcase right now because he is flying home tomorrow!</span>
+  </div>
+
+  <div class="pager"><button class="btn-ghost" data-go="p6">← Back</button><span></span></div>
+</section>
+
+<footer>See you next lesson! 🎸🌼</footer>
+</div>
+
+<script>
+(function(){
+  var synth = window.speechSynthesis;
+
+  var show = function(id){
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.toggle('on', p.id===id); });
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.toggle('on', t.getAttribute('data-go')===id); });
+    if(synth) synth.cancel();
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.addEventListener('click', function(){ show(b.getAttribute('data-go')); });
+  });
+
+  var norm = function(s){
+    return (s||'').toLowerCase().replace(/[‘’ʼ]/g,"'")
+      .replace(/[.,!?;:]/g,'').replace(/\s+/g,' ').trim();
+  };
+  var isOk = function(i){
+    var a=i.getAttribute('data-a');
+    if(!a) return false;
+    var v=norm(i.value);
+    return v!=='' && a.split('|').map(norm).indexOf(v)!==-1;
+  };
+  var mark = function(i){
+    i.classList.remove('ok','no');
+    if(!i.getAttribute('data-a')) return;
+    if(i.value.trim()==='') return;
+    i.classList.add(isOk(i)?'ok':'no');
+  };
+  document.addEventListener('input', function(e){
+    if(e.target.classList && e.target.classList.contains('gap')) mark(e.target);
+  });
+  document.querySelectorAll('[data-check]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var key=b.getAttribute('data-check'), box=document.querySelector('[data-ex="'+key+'"]');
+      if(!box) return;
+      var ins=box.querySelectorAll('input.gap'), good=0;
+      ins.forEach(function(i){ mark(i); if(isOk(i)) good++; });
+      var out=document.querySelector('[data-score="'+key+'"]');
+      if(out){ out.textContent=good+' / '+ins.length+(good===ins.length?'  🎉 Perfect!':'');
+        out.style.color=(good===ins.length)?'#0E9E8B':'#E2607A'; }
+    });
+  });
+  document.querySelectorAll('[data-rev]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var en=b.nextElementSibling;
+      while(en && !(en.classList && en.classList.contains('en'))) en=en.nextElementSibling;
+      if(en) en.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('[data-toggle]').forEach(function(b){
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      var el=document.querySelector(b.getAttribute('data-toggle'));
+      if(el) el.classList.toggle('show');
+    });
+  });
+  document.querySelectorAll('.vcard, .mcard').forEach(function(c){
+    c.addEventListener('click', function(){ c.classList.toggle('open'); });
+  });
+  document.querySelectorAll('.tz-ideas').forEach(function(box){
+    box.querySelectorAll('.tz-btn').forEach(function(b){
+      b.addEventListener('click', function(){
+        box.querySelectorAll('.tz-btn').forEach(function(x){ x.classList.remove('picked'); });
+        b.classList.add('picked');
+      });
+    });
+  });
+  document.querySelectorAll('.opts').forEach(function(box){
+    box.querySelectorAll('.opt').forEach(function(o){
+      o.addEventListener('click', function(){
+        box.querySelectorAll('.opt').forEach(function(x){ x.classList.remove('ok','no'); });
+        if(o.hasAttribute('data-ok')) o.classList.add('ok');
+        else { o.classList.add('no');
+          var r=box.querySelector('[data-ok]'); if(r) r.classList.add('ok'); }
+      });
+    });
+  });
+
+  var enVoice=null;
+  var loadVoice=function(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    enVoice = vs.filter(function(v){ return /en[-_]GB/i.test(v.lang); })[0]
+           || vs.filter(function(v){ return /^en/i.test(v.lang); })[0] || null;
+  };
+  if(synth){ loadVoice(); synth.onvoiceschanged=loadVoice; }
+  document.querySelectorAll('[data-speak]').forEach(function(b){
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(!synth){ alert('Your browser cannot read the text aloud. Please open the page in Chrome.'); return; }
+      synth.cancel();
+      var u=new SpeechSynthesisUtterance(b.getAttribute('data-speak'));
+      u.lang='en-GB'; u.rate=parseFloat(b.getAttribute('data-rate')||'0.8');
+      if(enVoice) u.voice=enVoice;
+      synth.speak(u);
+    });
+  });
+
+  /* story player */
+  var P=document.getElementById('player');
+  if(P && synth){
+    var text=P.getAttribute('data-text');
+    var parts=text.match(/[^.!?]+[.!?]*/g) || [text];
+    var playing=false;
+    var pauseB=P.querySelector('[data-pause]');
+    P.querySelector('[data-play]').addEventListener('click', function(){
+      if(playing && synth.paused){ synth.resume(); pauseB.textContent='⏸ Pause'; return; }
+      if(playing) return;
+      synth.cancel(); playing=true; pauseB.textContent='⏸ Pause';
+      parts.forEach(function(s,idx){
+        var u=new SpeechSynthesisUtterance(s.trim());
+        u.lang='en-GB'; u.rate=0.85; if(enVoice) u.voice=enVoice;
+        if(idx===parts.length-1){ u.onend=function(){ playing=false; pauseB.textContent='⏸ Pause'; }; }
+        synth.speak(u);
+      });
+    });
+    pauseB.addEventListener('click', function(){
+      if(!playing) return;
+      if(synth.paused){ synth.resume(); pauseB.textContent='⏸ Pause'; }
+      else { synth.pause(); pauseB.textContent='▶ Resume'; }
+    });
+    P.querySelector('[data-stop]').addEventListener('click', function(){
+      synth.cancel(); playing=false; pauseB.textContent='⏸ Pause';
+    });
+  }
+  window.addEventListener('beforeunload', function(){ if(synth) synth.cancel(); });
+})();
+</script>
+</body>
+</html>
