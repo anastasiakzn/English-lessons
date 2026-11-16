@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Interactive English lesson for Alexey — 17 November 2026">
+<title>Alexey, 17 November</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F7F6;--sheet:#FFFFFF;--ink:#1F2D33;--soft:#5E6E73;
+  --blue:#0E7C7B;--blue-pale:#E6F3F1;--mark:#FFD166;--orange:#E9A23B;--sky:#3E7CC9;
+  --ok:#2E7D5B;--okbg:#E3F1EA;--bad:#B33A3A;--badbg:#F7E4E4;--line:#DCE7E5;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;--sans:"Manrope","Segoe UI",Arial,sans-serif;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{font-size:2.2rem;line-height:1.15;margin:0;font-weight:700}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0;scrollbar-width:thin}
+.tab{font-family:var(--sans);font-weight:600;font-size:.9rem;border:0;background:transparent;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}section.active{display:block}
+h2{font-size:1.55rem;line-height:1.25;margin:0 0 12px}h3{font-size:1.14rem;line-height:1.35;margin:0 0 6px}h4{font-family:var(--sans);font-size:.9rem;margin:0 0 4px;color:var(--blue)}
+.task{font-family:var(--sans);font-size:.93rem;line-height:1.55;color:var(--soft);margin:0 0 14px;max-width:70ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:7px;padding:18px 20px;margin-bottom:14px}
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.84rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:white}.part{display:none}.part.active{display:block}
+.btn{font-family:var(--sans);font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:5px 10px;cursor:pointer;margin:2px 4px 2px 0}.btn:hover{border-color:var(--blue)}.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}.btn:disabled{opacity:.55;cursor:default}
+.hidden{display:none!important}.en{color:var(--blue);font-style:italic}.ru{color:var(--soft);font-family:var(--sans);font-size:.88rem}.hint{font-family:var(--sans);font-size:.84rem;color:var(--soft)}
+.qlist{margin:0;padding-left:1.3em}.qlist li{margin:8px 0}.ttext{font-size:1.06rem;line-height:1.9}.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:12px}.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:5px;padding:12px 14px}.card:nth-child(3n+2){border-left-color:var(--orange)}.card:nth-child(3n){border-left-color:var(--sky)}.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}.card .tr{font-family:var(--sans);font-size:.83rem;color:var(--soft);margin:2px 0 6px}.card .def{font-size:.94rem;margin:0 0 6px}.card .ex2{font-size:.91rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+.dl{padding:13px 0;border-bottom:1px solid var(--line)}.dl:last-child{border-bottom:0}.dl p{margin:0}.fb{font-size:.94rem;min-height:0}.fb .ex{margin:5px 0}.fb.okc{color:var(--ok)}.fb.badc{color:var(--bad)}.score{font-family:var(--sans);font-weight:700;font-size:.92rem;margin:10px 0 0}.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}.copied{font-family:var(--sans);font-size:.84rem;color:var(--ok)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.opts.col{flex-direction:column}.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F5FAF9;border-radius:4px;padding:7px 12px;cursor:pointer;color:var(--ink)}.opt:hover{border-color:var(--blue)}.opt.okc{background:var(--okbg);border-color:var(--ok)}.opt.badc{background:var(--badbg);border-color:var(--bad)}
+.target-word{display:inline-block;font-family:var(--sans);font-size:.82rem;font-weight:700;letter-spacing:.03em;color:#fff;background:var(--blue);border-radius:4px;padding:2px 9px;margin-right:6px}
+input.gap{font-family:var(--serif);font-size:1rem;padding:4px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#F5FAF9;color:var(--ink);width:100%;max-width:100%}
+input.gap:focus{background:#fff}
+input.gap.okc{border-color:var(--ok);background:var(--okbg)}input.gap.badc{border-color:var(--bad);background:var(--badbg)}
+input.gap-in{display:inline-block;width:auto;min-width:160px;max-width:100%}
+select.gap-sel{font-family:var(--serif);font-size:1rem;padding:4px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#F5FAF9;color:var(--ink);cursor:pointer}
+select.gap-sel.okc{border-color:var(--ok);background:var(--okbg)}select.gap-sel.badc{border-color:var(--bad);background:var(--badbg)}
+.bank{font-family:var(--sans);font-size:.86rem;line-height:1.9;color:var(--soft);padding:11px 14px;background:#F7FBFA;border:1px dashed #A9C4C0;border-radius:6px;margin:0 0 16px}
+.tag{display:inline-block;font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.05em;border-radius:999px;padding:2px 9px;margin-left:6px;vertical-align:2px}
+.tag.plus{color:var(--ok);border:1px solid var(--ok);background:var(--okbg)}
+.tag.minus{color:var(--bad);border:1px solid var(--bad);background:var(--badbg)}
+.tag.quest{color:#8A5A00;border-color:var(--orange);background:#FFF4E0;border:1px solid var(--orange)}
+
+/* warm-up: True or False facts */
+.tf-card{background:var(--sheet);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:14px}
+.tf-head{font-family:var(--sans);font-size:.75rem;font-weight:700;letter-spacing:.07em;color:var(--blue);text-transform:uppercase;margin-bottom:6px}
+.tf-stmt{font-size:1.12rem;font-weight:600;margin:0 0 12px;line-height:1.45}
+.tf-btns{display:flex;gap:8px;margin-bottom:4px}
+.tf-btn{font-family:var(--sans);font-weight:700;font-size:.86rem;border:1px solid var(--line);background:#F5FAF9;color:var(--ink);border-radius:5px;padding:6px 16px;cursor:pointer}
+.tf-btn:hover{border-color:var(--blue)}
+.tf-btn.okc{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.tf-btn.badc{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.tf-reveal{margin-top:12px;padding:12px 15px;border-left:4px solid var(--blue);background:var(--blue-pale);border-radius:0 6px 6px 0;font-size:.96rem}
+.tf-reveal p{margin:0 0 8px}.tf-reveal p:last-child{margin:0}
+.tf-q{font-weight:600;color:var(--ink)}
+
+/* grammar theory */
+.theory-lead{border-left:4px solid var(--mark);background:#FFF6DC;padding:11px 14px;margin:0 0 14px}.theory-lead p{margin:0}
+.forms{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.form-box{background:#F7F8FD;border-radius:6px;padding:12px 14px;font-size:.95rem}
+.form-box b.h{display:block;font-family:var(--sans);font-size:.8rem;margin-bottom:5px;color:var(--ok)}
+.form-box:nth-child(2) b.h{color:var(--bad)}.form-box:nth-child(3) b.h{color:#A15E16}
+.form-box .f{font-family:var(--sans);font-size:.82rem;color:var(--soft);display:block;margin-bottom:7px}
+.tablewrap{overflow-x:auto}
+table.grammar-table{border-collapse:collapse;width:100%;min-width:520px;font-size:.95rem}
+table.grammar-table th{font-family:var(--sans);font-size:.79rem;color:var(--soft);font-weight:600;text-align:left;padding:6px 8px;border-bottom:2px solid var(--line)}
+table.grammar-table td{vertical-align:top;padding:7px 8px;border-bottom:1px solid var(--line)}
+.irr{columns:3;column-gap:18px;font-size:.95rem;margin:0}
+.irr span{display:block;break-inside:avoid;padding:2px 0}
+.irr b{color:var(--blue)}
+.meaning-note{font-family:var(--sans);font-size:.83rem;color:var(--soft);margin:12px 0 0}
+
+/* grammar speak: situation deck */
+.sit-card{border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:8px;background:var(--sheet);padding:20px 22px}
+.sit-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.sit-num{font-family:var(--sans);font-size:.76rem;font-weight:700;letter-spacing:.08em;color:var(--soft)}
+.sit-context{font-size:1.02rem;color:var(--soft);margin:0 0 8px}
+.sit-prompts{font-size:1.24rem;font-weight:700;color:var(--ink);margin:0}
+.model-box{margin:14px 0 0;padding:12px 15px;border-left:4px solid var(--ok);background:var(--okbg);border-radius:0 5px 5px 0;font-style:italic;color:var(--ok)}
+.wu-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0 0}
+.wu-count{font-family:var(--sans);font-weight:700;font-size:.88rem;color:var(--blue);margin-left:auto}
+
+/* reading */
+.reading-text p{margin:0 0 12px}.reading-text p:last-child{margin-bottom:0}
+.ielts-tag{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.06em;color:#fff;background:var(--blue);border-radius:999px;padding:3px 9px;vertical-align:middle}
+.limit{font-family:var(--sans);font-size:.8rem;font-weight:700;letter-spacing:.04em;color:var(--blue);background:var(--blue-pale);border:1px dashed var(--blue);border-radius:5px;padding:8px 12px;margin:0 0 14px}
+
+/* speaking */
+.cue{border:2px solid var(--blue);border-radius:7px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+
+@media(max-width:680px){.forms{grid-template-columns:1fr}.irr{columns:2}.sit-prompts{font-size:1.08rem}}
+@media(max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.sheet{padding:15px}input.gap-in{min-width:130px}.irr{columns:2}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Alexey, lesson 11</h1>
+  <p>Lesson of 17 November 2026</p>
+</header>
+<nav><div class="tabs" role="tablist" id="tabs" aria-label="Lesson sections"></div></nav>
+<main>
+
+<!-- ======== WARM-UP ======== -->
+<section data-title="Warm-up">
+  <h2>Warm-up: True or False?</h2>
+  <p class="task">Read these five facts about famous construction projects and travel. Guess if each statement is <b>True</b> or <b>False</b>, read the explanation, and answer the follow-up question!</p>
+  <div id="warmupBox"></div>
+</section>
+
+<!-- ======== HOMEWORK CHECK ======== -->
+<section data-title="Homework check">
+  <h2>Homework check: translation</h2>
+  <p class="task">Read each sentence from Lesson 10 (13 November) out loud in English. Then press "EN" to check your translation.</p>
+  <div class="sheet ttext" id="hw"></div>
+</section>
+
+<!-- ======== VOCABULARY ======== -->
+<section data-title="Vocabulary">
+  <h2>Vocabulary: on the road and on the site</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part">
+    <p class="task">Press "Listen" to hear a word and "Tap for Russian" to see the translation. Make up your own sentence with each card.</p>
+    <div class="cards" id="cards"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Confusable words in context</h3>
+    <p class="task">Choose the right word or phrase from the dropdown list. Pay attention to grammar and prepositions.</p>
+    <div id="v1"></div>
+    <p class="score" id="v1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <div class="part sheet">
+    <h3>Let's talk</h3>
+    <ol class="qlist">
+      <li>When did you get your <b>driving license</b>? Were you <b>scared of</b> driving in heavy traffic at first?</li>
+      <li>Last year, did you work with any <b>subcontractors</b>? What did they do on your site, and did they finish their work <b>successfully</b>?</li>
+    </ol>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Word builder: first letter &amp; length</h3>
+    <p class="task">Type the missing word or phrase from today's list. The first letter and the number of letters are given in brackets.</p>
+    <div id="v2"></div>
+    <p class="score" id="v2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="v2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<!-- ======== GRAMMAR ======== -->
+<section data-title="Grammar">
+  <h2>Grammar: Past Simple</h2>
+  <div class="subnav" role="tablist">
+    <button class="sub">Reminder</button><button class="sub">Speak</button><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <!-- Reminder -->
+  <div class="part">
+    <div class="theory-lead">
+      <p>We use the <b>Past Simple</b> for finished actions at a finished time in the past.</p>
+      <p style="margin-top:8px"><b>Signal words:</b> <i>yesterday, last Monday / week / year, two days ago, in 2015, at eleven o'clock, then</i>.</p>
+    </div>
+    <div class="forms">
+      <div class="form-box"><b class="h">+ STATEMENT</b><span class="f">subject + 2nd form</span><i>We <b>got to</b> the hotel late.</i><br><i>They <b>described</b> the problem.</i></div>
+      <div class="form-box"><b class="h">− NEGATIVE</b><span class="f">subject + didn't + 1st form</span><i>He <b>didn't find out</b> the truth.</i><br><i>We <b>didn't go</b> home early.</i></div>
+      <div class="form-box"><b class="h">? QUESTION</b><span class="f">(question word) + did + subject + 1st form</span><i>When <b>did</b> you <b>get</b> there?</i><br><i><b>Did</b> they <b>damage</b> the fence?</i></div>
+    </div>
+    <div class="theory-lead" style="border-left-color:var(--bad);background:var(--badbg)">
+      <p>After <b>did</b> and <b>didn't</b> the verb goes back to the 1st form: <i>didn't <b>find</b></i>, not <s>didn't found</s>. &nbsp;<i>Did you <b>go</b> home?</i>, not <s>Did you went home?</s></p>
+    </div>
+    <h3>Regular verbs: + ed</h3>
+    <div class="sheet tablewrap" style="margin-bottom:14px">
+      <table class="grammar-table">
+        <thead><tr><th>Rule</th><th>Examples</th></tr></thead>
+        <tbody>
+          <tr><td>most verbs: <b>+ ed</b></td><td>ask → asked &nbsp;·&nbsp; look → looked &nbsp;·&nbsp; search → searched &nbsp;·&nbsp; consider → considered</td></tr>
+          <tr><td>verb ending in <b>-e</b>: <b>+ d</b></td><td>damage → damaged &nbsp;·&nbsp; describe → described &nbsp;·&nbsp; decide → decided</td></tr>
+          <tr><td>consonant + <b>y</b> → <b>ied</b></td><td>carry → carried &nbsp;·&nbsp; try → tried &nbsp;·&nbsp; study → studied</td></tr>
+          <tr><td>short verb, one vowel: <b>double the consonant</b></td><td>stop → stopped &nbsp;·&nbsp; plan → planned</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Irregular verbs for this lesson</h3>
+    <div class="sheet">
+      <p class="irr">
+        <span>be → <b>was / were</b></span><span>get → <b>got</b></span><span>find → <b>found</b></span>
+        <span>go → <b>went</b></span><span>hang → <b>hung</b></span><span>come → <b>came</b></span>
+        <span>say → <b>said</b></span><span>see → <b>saw</b></span><span>take → <b>took</b></span>
+        <span>think → <b>thought</b></span><span>have → <b>had</b></span><span>lose → <b>lost</b></span>
+        <span>break → <b>broke</b></span><span>begin → <b>began</b></span><span>make → <b>made</b></span>
+        <span>do → <b>did</b></span><span>put → <b>put</b></span><span>leave → <b>left</b></span>
+      </p>
+      <p class="meaning-note"><b>be</b> is special: no <i>did</i>. &nbsp;<i>He <b>was</b> scared of heights. They <b>weren't</b> at the hotel. <b>Were</b> you there?</i></p>
+    </div>
+  </div>
+  <!-- Speak -->
+  <div class="part sheet">
+    <h3>Speak: the inspector's prompt cards</h3>
+    <p class="task">Read the situation on the card and make a full <b>Past Simple</b> sentence out loud using the prompts and the required form (<b>+</b>, <b>−</b>, or <b>?</b>). Press "Model answer" to compare!</p>
+    <div class="sit-card">
+      <div class="sit-top">
+        <span class="sit-num" id="sitNum">CARD 1 OF 8</span>
+        <span class="tag plus" id="sitBadge">+ STATEMENT</span>
+      </div>
+      <p class="sit-context" id="sitCtx"></p>
+      <p class="sit-prompts" id="sitPrompts"></p>
+      <div class="model-box hidden" id="sitModel"></div>
+    </div>
+    <div class="wu-bar">
+      <button class="btn" id="sitShow">Model answer</button>
+      <button class="btn solid" id="sitNext">Next card →</button>
+      <span class="wu-count" id="sitCount"></span>
+    </div>
+  </div>
+  <!-- Exercise 1 -->
+  <div class="part sheet">
+    <h3>Exercise 1. Pick the verb and put it in the Past Simple</h3>
+    <p class="task">Choose the right verb from the box for each sentence and write it in the <b>Past Simple</b>. Pay attention to the negative form (<b>not</b>)!</p>
+    <p class="bank">get to &nbsp;·&nbsp; hang &nbsp;·&nbsp; find out &nbsp;·&nbsp; not damage &nbsp;·&nbsp; go home &nbsp;·&nbsp; want &nbsp;·&nbsp; be scared of</p>
+    <div id="g1"></div>
+    <p class="score" id="g1score"></p>
+    <div class="copyrow"><button class="btn" data-copy="g1">Copy my answers</button><span class="copied"></span></div>
+  </div>
+  <!-- Exercise 2 -->
+  <div class="part sheet">
+    <h3>Exercise 2. Build the sentence from the prompts</h3>
+    <p class="task">Write a complete <b>Past Simple</b> sentence (statement, negative, or question) using the words in brackets. Do not forget prepositions or word order!</p>
+    <div id="g2"></div>
+    <p class="score" id="g2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="g2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<!-- ======== READING ======== -->
+<section data-title="Reading">
+  <h2>Reading: an inspection in the mountains</h2>
+  <div class="sheet reading-text">
+    <p><b>A.</b> Last October I travelled to the mountains to inspect the construction of a small boutique hotel. I got my driving license ten years ago, so I rented a car at the airport and drove there myself. The mountain road was narrow and dangerous, and at some moments I was a little scared of the height. Unfortunately, heavy rain started in the afternoon, so I got to the hotel two hours later than planned.</p>
+    <p><b>B.</b> At the entrance, I met the subcontractors and looked at their work. In addition to the main building, we wanted them to build a high fence around the parking area. They described their progress and showed me the plans that hung on the wall in the site office. At the same time, I noticed a problem: a delivery truck hit the gate in the morning and damaged a section of the new fence.</p>
+    <p><b>C.</b> We searched for extra metal panels in the storage room, but we didn't find any. I asked the local supplier for an urgent delivery, and we considered two different solutions. In the evening, I finally found out that the new panels were already on the way. I didn't go home that night — instead, I went to my colleague's place in a nearby town, and the next day we finished the inspection successfully.</p>
+  </div>
+  <div class="subnav" role="tablist">
+    <button class="sub">Exercise 1</button><button class="sub">Exercise 2</button>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Answer the questions</h3>
+    <p class="task">Answer in full sentences based on the text. Press "Answer" to compare.</p>
+    <div id="rq"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Sentence completion <span class="ielts-tag">IELTS-STYLE</span></h3>
+    <p class="task">Complete the sentences below with words taken directly from the reading passage.</p>
+    <p class="limit">Write <b>NO MORE THAN TWO WORDS</b> from the text for each answer.</p>
+    <div id="r2"></div>
+    <p class="score" id="r2score"></p>
+    <div class="copyrow"><button class="btn" data-copy="r2">Copy my answers</button><span class="copied"></span></div>
+  </div>
+</section>
+
+<!-- ======== SPEAKING ======== -->
+<section data-title="Speaking">
+  <h2>Speaking</h2>
+  <div class="cue">
+    <p class="topic">Describe an interesting place you visited.</p>
+    <p style="margin:0">You should say:</p>
+    <ul>
+      <li>where this place was and when you went there</li>
+      <li>who you went with</li>
+      <li>what you did there</li>
+      <li>what you liked most about it</li>
+    </ul>
+    <p style="margin:8px 0 0">and explain why you still remember this place.</p>
+  </div>
+  <div class="sheet">
+    <p class="task" style="margin-bottom:6px">This is Part 2 of the IELTS Speaking test. Make short notes for one minute, then speak for one to two minutes. The whole story is about the past, so use the <b>Past Simple</b>.</p>
+    <button class="btn solid" id="tPrep">Preparation · 1 min</button><button class="btn solid" id="tTalk">Speech · 2 min</button><button class="btn" id="tStop">■ Stop</button>
+    <div class="clock" id="clock">1:00</div><div class="phase" id="phase"></div>
+  </div>
+  <div class="sheet">
+    <h3>Useful phrases</h3>
+    <ul class="qlist">
+      <li>I'd like to describe … / I went there about … years ago.</li>
+      <li>It took us … hours to get to the hotel / to get there.</li>
+      <li>The first thing we looked at was …</li>
+      <li>In addition, we explored the area around …</li>
+      <li>At the same time, we found out that …</li>
+      <li>What I liked most was …</li>
+    </ul>
+  </div>
+  <div class="sheet">
+    <h3>If we have time</h3>
+    <ol class="qlist"><li>Did you travel more when you were a student?</li><li>What was the last place you visited for the first time?</li></ol>
+  </div>
+</section>
+
+<!-- ======== TRANSLATION ======== -->
+<section data-title="Translation">
+  <h2>Translation</h2>
+  <p class="task">Translate the story into English out loud, sentence by sentence. Press "EN" to check yourself.</p>
+  <div class="sheet ttext" id="ttext"></div>
+</section>
+
+</main>
+
+<script>
+/* ---------- core helpers ---------- */
+let uid=0;const nid=()=>"x"+(++uid);
+const norm=s=>String(s).toLowerCase().replace(/[’‘`]/g,"'").replace(/[.!?,;:"“”]/g,"").replace(/\s+/g," ").trim();
+const states={},totals={};
+const explain=t=>`<p class="ex">${t}</p>`;
+const mark=s=>s?`${s.v}${s.v==="(answer shown)"?"":s.ok?" ✓":" ✗"}`:"—";
+function scoreLine(id,scoreId,total){const vals=Object.values(states[id]||{});const el=document.getElementById(scoreId);if(el)el.textContent=`Correct on the first try: ${vals.filter(x=>x.ok).length} of ${total}`+(vals.length<total?` (${total-vals.length} left)`:"");}
+
+/* ---------- tabs ---------- */
+const sections=[...document.querySelectorAll("main > section")],tabs=document.getElementById("tabs");
+function leaveSection(){stopSpeech();stopTimer();}
+sections.forEach((s,i)=>{const b=document.createElement("button");b.className="tab";b.setAttribute("role","tab");b.textContent=s.dataset.title;b.setAttribute("aria-selected",i===0);if(i===0)s.classList.add("active");b.onclick=()=>{leaveSection();sections.forEach(x=>x.classList.remove("active"));s.classList.add("active");[...tabs.children].forEach(x=>x.setAttribute("aria-selected","false"));b.setAttribute("aria-selected","true");window.scrollTo(0,0)};tabs.appendChild(b)});
+sections.forEach(s=>{const subs=[...s.querySelectorAll(".sub")],parts=[...s.querySelectorAll(".part")];if(!subs.length)return;const show=k=>{parts.forEach((p,i)=>p.classList.toggle("active",i===k));subs.forEach((b,i)=>b.setAttribute("aria-selected",i===k));};subs.forEach((b,k)=>b.onclick=()=>show(k));show(0)});
+document.addEventListener("click",e=>{const b=e.target.closest("[data-toggle]");if(!b)return;const el=document.getElementById(b.dataset.toggle);if(el)el.classList.toggle("hidden")});
+
+/* ---------- speech ---------- */
+const hasTTS="speechSynthesis" in window;let voice=null;
+function pickVoice(){try{const voices=speechSynthesis.getVoices();voice=voices.find(v=>v.lang==="en-GB")||voices.find(v=>/^en/i.test(v.lang))||null}catch(e){}}
+if(hasTTS){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+function stopSpeech(){if(hasTTS)speechSynthesis.cancel()}
+function say(parts,rate=.9){if(!hasTTS)return;stopSpeech();parts.forEach(text=>{const u=new SpeechSynthesisUtterance(text);u.lang="en-GB";if(voice)u.voice=voice;u.rate=rate;speechSynthesis.speak(u)})}
+
+/* ---------- buildGaps ---------- */
+function buildGaps(boxId,data){
+ states[boxId]={};totals[boxId]=data.length;
+ const box=document.getElementById(boxId);
+ box.innerHTML=data.map((g,i)=>{
+  const inp=`<input class="gap${g.full?"":" gap-in"}" data-i="${i}" aria-label="Answer ${i+1}" autocomplete="off" spellcheck="false"${g.full?' style="margin-top:6px"':""}>`;
+  const body=g.full?`${g.q}<br>${inp}`:g.q.replace("___",inp);
+  return `<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${body}</p><div class="fb"></div><button class="btn chk">Check</button><button class="btn ans">Answer</button></div>`;}).join("");
+ [...box.querySelectorAll(".dl")].forEach(row=>{
+  const i=+row.dataset.i,g=data[i],inp=row.querySelector("input"),fb=row.querySelector(".fb");
+  const check=()=>{const v=norm(inp.value);if(!v)return;const ok=g.a.map(norm).includes(v);
+   if(states[boxId][i]===undefined){states[boxId][i]={v:inp.value.trim(),ok};scoreLine(boxId,boxId+"score",data.length);}
+   inp.classList.remove("okc","badc");
+   if(ok){inp.classList.add("okc");fb.className="fb okc";fb.innerHTML='<p class="ex">Correct.</p>';}
+   else{inp.classList.add("badc");fb.className="fb badc";fb.innerHTML=explain(g.en);}};
+  row.querySelector(".chk").onclick=check;inp.addEventListener("keydown",e=>{if(e.key==="Enter")check();});
+  row.querySelector(".ans").onclick=e=>{if(states[boxId][i]===undefined){states[boxId][i]={v:"(answer shown)",ok:false};scoreLine(boxId,boxId+"score",data.length);}
+   inp.value=g.a[0];inp.classList.remove("badc");inp.classList.add("okc");fb.className="fb okc";fb.innerHTML=explain(g.en);e.target.classList.add("hidden");};
+ });
+}
+
+/* ---------- buildSelects ---------- */
+function buildSelects(boxId,data,scoreId){
+ states[boxId]={};totals[boxId]=data.length;
+ const box=document.getElementById(boxId);
+ box.innerHTML=data.map((g,i)=>{
+  const opts=g.opts.map(o=>`<option value="${o}">${o}</option>`).join("");
+  const sel=`<select class="gap-sel" aria-label="Select answer ${i+1}"><option value="">— choose —</option>${opts}</select>`;
+  return `<div class="dl" data-i="${i}"><p><b>${i+1}.</b> ${g.q.replace("___",sel)}</p><div class="fb"></div><button class="btn ans">Answer</button></div>`;
+ }).join("");
+ [...box.querySelectorAll(".dl")].forEach(row=>{
+  const i=+row.dataset.i,g=data[i],sel=row.querySelector("select"),fb=row.querySelector(".fb");
+  const check=(shown=false)=>{
+   const v=sel.value;if(!v)return;const ok=v===g.a;
+   if(states[boxId][i]===undefined){states[boxId][i]={v:shown?"(answer shown)":v,ok:ok&&!shown};scoreLine(boxId,scoreId,data.length);}
+   sel.classList.remove("okc","badc");sel.classList.add(ok?"okc":"badc");
+   if(ok){fb.className="fb okc";fb.innerHTML=shown?explain(g.en):'<p class="ex">Correct.</p>';}
+   else{fb.className="fb badc";fb.innerHTML=explain(g.en);}
+  };
+  sel.onchange=()=>check(false);
+  row.querySelector(".ans").onclick=e=>{sel.value=g.a;check(true);e.target.classList.add("hidden");};
+ });
+}
+
+/* ---------- enList ---------- */
+const enList=(id,arr)=>{document.getElementById(id).innerHTML=arr.map(([ru,en])=>{const k=nid();return `<span>${ru}</span> <button class="btn" data-toggle="${k}">EN</button><span id="${k}" class="en enout hidden">${en}</span>`}).join("")};
+
+/* ======== WARM-UP: 5 True or False Facts ======== */
+const tfFacts=[
+  {
+    tag:"Fact 1 · Construction & History",
+    stmt:"When engineers built the Empire State Building in New York in 1930, the whole construction took only 410 days (1 year and 45 days).",
+    ans:true,
+    info:"<b>It is TRUE!</b> Over 3,400 workers built the 381-metre tower in just 410 days. At their fastest speed, they built four and a half floors every week.",
+    q:"💬 Question: What was the fastest construction project you worked on?"
+  },
+  {
+    tag:"Fact 2 · World Hotels",
+    stmt:"In 1989, builders in Sweden constructed the world's first hotel made completely of glass and sand.",
+    ans:false,
+    info:"<b>It is FALSE!</b> In 1989, builders in Jukkasjärvi, Sweden constructed the world's first hotel made completely of <b>ice and snow</b> (the Icehotel). Every winter they build it again from river ice.",
+    q:"💬 Question: What was the most unusual hotel or place where you stayed during a trip?"
+  },
+  {
+    tag:"Fact 3 · Roads & Driving",
+    stmt:"In 1906, the world's first mandatory driving license with a practical driving test appeared in Australia.",
+    ans:false,
+    info:"<b>It is FALSE!</b> The first mandatory national driving license with a test appeared in <b>France (1899)</b> and <b>Prussia / Germany (1903)</b>. In the UK, drivers didn't even take a driving test until 1935!",
+    q:"💬 Question: Was it difficult to pass your driving test when you got your driving license?"
+  },
+  {
+    tag:"Fact 4 · Famous Towers",
+    stmt:"When Gustave Eiffel built the Eiffel Tower in Paris in 1889, many famous French writers and architects hated it and wanted the city to demolish it.",
+    ans:true,
+    info:"<b>It is TRUE!</b> They called the tower a 'giant black factory chimney' and thought it damaged the beauty of Paris. Fortunately, the city kept it because the radio antenna on top was very useful.",
+    q:"💬 Question: Did you ever see a famous building on a trip that looked very different from its photos?"
+  },
+  {
+    tag:"Fact 5 · Giant Fences",
+    stmt:"In the early 1900s, Australians built a wire fence over 5,600 kilometres long — longer than the road from Moscow to Lisbon.",
+    ans:true,
+    info:"<b>It is TRUE!</b> It is called the Dingo Fence. Workers built it between 1880 and 1885 to protect sheep areas in southern Australia, and it is still the longest fence in the world.",
+    q:"💬 Question: How long did your longest car or train journey take?"
+  }
+];
+const warmupBox=document.getElementById("warmupBox");
+warmupBox.innerHTML=tfFacts.map((f,i)=>`
+  <div class="tf-card" data-i="${i}">
+    <div class="tf-head">${f.tag}</div>
+    <p class="tf-stmt">${f.stmt}</p>
+    <div class="tf-btns">
+      <button class="tf-btn" data-val="true">True</button>
+      <button class="tf-btn" data-val="false">False</button>
+    </div>
+    <div class="tf-reveal hidden">
+      <p>${f.info}</p>
+      <p class="tf-q">${f.q}</p>
+    </div>
+  </div>
+`).join("");
+warmupBox.addEventListener("click",e=>{
+  const b=e.target.closest(".tf-btn");if(!b)return;
+  const card=b.closest(".tf-card"),i=+card.dataset.i,f=tfFacts[i];
+  const chosen=(b.dataset.val==="true");
+  const btns=[...card.querySelectorAll(".tf-btn")];
+  btns.forEach(x=>x.classList.remove("okc","badc"));
+  b.classList.add(chosen===f.ans?"okc":"badc");
+  card.querySelector(".tf-reveal").classList.remove("hidden");
+});
+
+/* ======== HOMEWORK CHECK (translation from 13 November) ======== */
+enList("hw",[
+  ["В прошлый вторник Игорь и его коллеги копали котлован рядом с ограждением.","Last Tuesday Igor and his colleagues dug a foundation pit near the fence."],
+  ["Около одиннадцати ковш экскаватора повредил кабель, и вся площадка остановилась.","At about eleven the excavator bucket damaged a cable, and the whole site stopped."],
+  ["Кабель не принадлежал их компании, поэтому они долго разыскивали владельца и попросили у менеджера помощи.","The cable didn’t belong to their company, so they searched for the owner for a long time and asked the manager for help."],
+  ["Вечером люди из другой компании пришли через вход и сказали, что кабель их.","In the evening people from another company came through the entrance and said that the cable was theirs."],
+  ["После дождя вода поднялась над старой шиной, но настоящего потопа не было.","After the rain the water went over an old tire, but there wasn’t a real flood."],
+  ["Это был сложный день, но Игорь рассмотрел все варианты и решил проблему.","It was a challenging day, but Igor considered all the options and solved the problem."]
+]);
+
+/* ======== VOCABULARY ======== */
+const vocab=[
+  ["unfortunately","ʌnˈfɔːtʃənətli","used to say that something sad or disappointing happened","Unfortunately, the rain damaged the materials."],
+  ["at the same time","æt ðə seɪm taɪm","happening together at one moment","Two trucks arrived at the entrance at the same time."],
+  ["to somebody’s place","tə ˈsʌmbədiz pleɪs","to somebody’s home or flat","After work we went to my friend’s place."],
+  ["to get (to)","ɡet tə","to arrive at a place (get – got)","We got to the hotel at ten in the evening."],
+  ["there","ðeə(r)","in or to that place (no preposition ‘to’ before it!)","We drove there early in the morning."],
+  ["driving license","ˈdraɪvɪŋ ˈlaɪsns","an official document that lets you drive a car","I got my driving license six years ago."],
+  ["to be scared of","bi ˈskeəd əv","to feel afraid of something or somebody","The new worker was scared of the height."],
+  ["them","ðem","object pronoun for ‘they’ (after a verb or preposition)","I called the subcontractors and asked them for the plan."],
+  ["their","ðeə(r)","belonging to them (always before a noun)","Their office is near the construction site."],
+  ["they","ðeɪ","subject pronoun (before a verb)","They finished the work on time."],
+  ["these","ðiːz","plural of ‘this’ — used before plural nouns","These drawings belong to our subcontractor."],
+  ["to hang","hæŋ","to put something on a hook or wall (hang – hung)","He hung his jacket near the entrance."],
+  ["to look at","lʊk æt","to turn your eyes towards something to see it","We looked at the new schedule."],
+  ["to go home","ɡəʊ həʊm","to return to your house (no ‘to’!)","I went home at eight o’clock yesterday."],
+  ["hotel","həʊˈtel","a building where travellers pay to stay","We stayed at a small hotel near the sea."],
+  ["want somebody to do something","wɒnt","to wish that another person does an action","The manager wanted us to check the fence."],
+  ["area","ˈeəriə","a part of a town, region or site","This area of the site is closed today."],
+  ["in addition","ɪn əˈdɪʃn","moreover; as an extra fact or thing","In addition, we replaced the old gate."],
+  ["to find out","faɪnd aʊt","to discover a fact or piece of information","We found out who damaged the cable."],
+  ["to ask somebody for something","ɑːsk","to say that you want somebody to give you something","He asked the engineer for advice."],
+  ["to consider","kənˈsɪdə(r)","to think carefully about options before deciding","We considered three different subcontractors."],
+  ["decision","dɪˈsɪʒn","a choice you make after thinking","It was a difficult decision for the team."],
+  ["to describe","dɪˈskraɪb","to say what something or somebody is like","Can you describe the problem in detail?"],
+  ["to find","faɪnd","to discover an object or place (find – found)","I found my keys in the car."],
+  ["to look for","lʊk fɔː(r)","to try to find something","They looked for the missing documents."],
+  ["to search for","sɜːtʃ fɔː(r)","to look for something very carefully in many places","We searched for a good hotel for an hour."],
+  ["high","haɪ","measuring a long way from bottom to top (for walls, fences, mountains)","They built a high fence around the area."],
+  ["height","haɪt","the noun showing how high or tall something is","What is the height of this fence?"],
+  ["fence","fens","a barrier made of wood or metal around an area","A truck damaged the metal fence."],
+  ["entrance","ˈentrəns","the door or gate where you go inside","Meet me at the main entrance."],
+  ["dangerous","ˈdeɪndʒərəs","able or likely to cause harm (adjective)","Driving without lights at night is dangerous."],
+  ["danger","ˈdeɪndʒə(r)","the possibility that someone may be hurt (noun)","There was a real danger of a rockfall."],
+  ["construction","kənˈstrʌkʃn","the process of building something large","The construction of the bridge took two years."],
+  ["successfully","səkˈsesfəli","in a way that achieves the result you wanted","We completed the first stage successfully."],
+  ["to damage","ˈdæmɪdʒ","to harm or break something physically","The storm damaged the roof of the hotel."],
+  ["subcontractor","ˈsʌbkənˌtræktə(r)","a company or person hired by a main contractor to do part of a job","The subcontractor promised to finish by Friday."]
+];
+const rus=[
+  "к сожалению","в то же время, одновременно","к кому-то домой (в гости)","добираться (до)","там, туда",
+  "водительские права","бояться (чего-то / кого-то)","их, им (объектное)","их (притяжательное)","они",
+  "эти","вешать, висеть (hang – hung)","смотреть на","идти / ехать домой","отель, гостиница",
+  "хотеть, чтобы кто-то сделал что-то","район, участок, зона","кроме того, в дополнение","узнать, выяснить (информацию)","просить у кого-то что-то",
+  "рассматривать, обдумывать","решение","описывать","найти (предмет, место)","искать",
+  "тщательно искать, разыскивать","высокий (забор, стена, гора)","высота, рост","ограждение, забор","вход",
+  "опасный","опасность","строительство, стройка","успешно","повредить","субподрядчик"
+];
+document.getElementById("cards").innerHTML=vocab.map(([w,pron,def,example],i)=>{const id=nid();return `<div class="card"><div class="w">${w}</div><div class="tr">/${pron}/</div><p class="def">${def}</p><p class="ex2">${example}</p><button class="btn" data-say="${i}">▶ Listen</button><button class="btn" data-toggle="${id}">Tap for Russian</button><span id="${id}" class="ru hidden"> ${rus[i]}</span></div>`}).join("");
+document.getElementById("cards").addEventListener("click",e=>{const b=e.target.closest("[data-say]");if(b)say([vocab[+b.dataset.say][0].replace(/\(|\)/g,"")])});
+
+/* vocab Ex1 — Confusable pairs dropdowns */
+buildSelects("v1",[
+  {q:"The subcontractors arrived early: ___ brought all the tools in a van.",opts:["they","them","their"],a:"they",
+   en:"Before a verb as the subject we use <b>they</b> (они)."},
+  {q:"I met the subcontractors at the entrance and showed ___ the construction area.",opts:["they","them","their"],a:"them",
+   en:"After a verb (<i>showed who?</i>) we use the object pronoun <b>them</b> (им / их)."},
+  {q:"The workers left ___ equipment near the high fence.",opts:["they","them","their"],a:"their",
+   en:"Before a noun (<i>equipment</i>) we use the possessive <b>their</b> (их)."},
+  {q:"We ___ my driving license in the car, right under the seat.",opts:["found","found out","looked at"],a:"found",
+   en:"We use <b>find</b> (found) for a physical object that was lost."},
+  {q:"In the evening we ___ the phone number of the new subcontractor.",opts:["found","found out","looked at"],a:"found out",
+   en:"We use <b>find out</b> when we discover information or a fact."},
+  {q:"Please ___ these photos of the hotel entrance — do you see the crack?",opts:["look at","look for","find out"],a:"look at",
+   en:"<b>Look at</b> = direct your eyes to see something."},
+  {q:"The road to the mountain hotel was very ___ because of the ice.",opts:["danger","dangerous","high"],a:"dangerous",
+   en:"After <i>was very…</i> we need the adjective <b>dangerous</b> (опасный). <i>Danger</i> is a noun."},
+  {q:"The fence around the site is three metres in ___.",opts:["high","height","tall"],a:"height",
+   en:"After the preposition <i>in</i> we need the noun <b>height</b> (высота): <i>three metres in height</i>."},
+  {q:"It was late, so after we visited my friend's place we went straight ___.",opts:["home","to home","to there"],a:"home",
+   en:"With <b>home</b> and <b>there</b> we never use <i>to</i>: <i>go home, go there</i> (but <i>get to the hotel, go to a friend's place</i>)."},
+  {q:"The site manager wanted ___ the damaged fence before Friday.",opts:["they repair","them to repair","that they repair"],a:"them to repair",
+   en:"In English the structure is <b>want + somebody (them) + to do something</b>."}
+],"v1score");
+
+/* vocab Ex2 — Word builder: first letter & length */
+buildGaps("v2",[
+  {q:"A company hired by the main contractor to do part of the building work: <span class=\"target-word\">s… (13 letters)</span> ___",
+   a:["subcontractor"],en:"<b>subcontractor</b> — субподрядчик."},
+  {q:"The official document you need to drive a car legally: <span class=\"target-word\">d… l… (2 words: 7, 7)</span> ___",
+   a:["driving license","driving licence"],en:"<b>driving license</b> — водительские права."},
+  {q:"Sadly; used when something disappointing happens: <span class=\"target-word\">u… (13 letters)</span> ___",
+   a:["unfortunately"],en:"<b>unfortunately</b> — к сожалению."},
+  {q:"In a way that achieves the result you wanted: <span class=\"target-word\">s… (12 letters)</span> ___",
+   a:["successfully"],en:"<b>successfully</b> — успешно."},
+  {q:"To say what something looks like or what happened in detail: <span class=\"target-word\">to d… (8 letters)</span> ___",
+   a:["describe","to describe"],en:"<b>describe</b> — описывать."},
+  {q:"The process of building bridges, hotels, roads or houses: <span class=\"target-word\">c… (12 letters)</span> ___",
+   a:["construction"],en:"<b>construction</b> — строительство."},
+  {q:"Happening together at the exact same moment: <span class=\"target-word\">a… t… s… t… (4 words)</span> ___",
+   a:["at the same time"],en:"<b>at the same time</b> — в то же время, одновременно."},
+  {q:"Moreover; used to add one more fact to what you just said: <span class=\"target-word\">i… a… (2 words)</span> ___",
+   a:["in addition"],en:"<b>in addition</b> — кроме того, в дополнение."}
+]);
+
+/* ======== GRAMMAR: Speak — The Inspector's Prompt Cards ======== */
+const sitCards=[
+  {f:"+",label:"+ STATEMENT",ctx:"Situation 1: You arrived at the mountain hotel late at night.",
+   p:"We / get to / the hotel / at eleven o'clock",
+   m:"We got to the hotel at eleven o'clock."},
+  {f:"−",label:"− NEGATIVE",ctx:"Situation 2: The storm was strong, but the new fence stayed safe.",
+   p:"The wind / not damage / the high fence / near the entrance",
+   m:"The wind didn't damage the high fence near the entrance."},
+  {f:"?",label:"? QUESTION",ctx:"Situation 3: Ask your colleague about the cause of the problem.",
+   p:"When / you / find out / about the danger / ?",
+   m:"When did you find out about the danger?"},
+  {f:"+",label:"+ STATEMENT",ctx:"Situation 4: Talk about the drawings in the site office.",
+   p:"The engineer / hang / these drawings / on the wall",
+   m:"The engineer hung these drawings on the wall."},
+  {f:"−",label:"− NEGATIVE",ctx:"Situation 5: Explain what you did after a long workday.",
+   p:"I / not go home / — / I / go to / my friend's place",
+   m:"I didn't go home — I went to my friend's place."},
+  {f:"?",label:"? QUESTION",ctx:"Situation 6: Ask about the new workers on the roof.",
+   p:"Be / the workers / scared of / the height / ?",
+   m:"Were the workers scared of the height?"},
+  {f:"+",label:"+ STATEMENT",ctx:"Situation 7: Give an instruction you had for the subcontractors yesterday.",
+   p:"We / want / them / to finish / the construction / on Friday",
+   m:"We wanted them to finish the construction on Friday."},
+  {f:"?",label:"? QUESTION",ctx:"Situation 8: Ask the subcontractor about the missing tools.",
+   p:"Where / they / search for / their equipment / ?",
+   m:"Where did they search for their equipment?"}
+];
+let sitIdx=0;
+const sitNum=document.getElementById("sitNum"),sitBadge=document.getElementById("sitBadge"),
+      sitCtx=document.getElementById("sitCtx"),sitPrompts=document.getElementById("sitPrompts"),
+      sitModel=document.getElementById("sitModel"),sitShow=document.getElementById("sitShow");
+function sitPaint(){
+  const c=sitCards[sitIdx];
+  sitNum.textContent=`CARD ${sitIdx+1} OF ${sitCards.length}`;
+  sitBadge.textContent=c.label;
+  sitBadge.className="tag "+(c.f==="+"?"plus":c.f==="−"?"minus":"quest");
+  sitCtx.textContent=c.ctx;
+  sitPrompts.textContent=c.p;
+  sitModel.textContent=c.m;
+  sitModel.classList.add("hidden");
+  sitShow.classList.remove("hidden");
+}
+sitShow.onclick=()=>{sitModel.classList.remove("hidden");sitShow.classList.add("hidden");};
+document.getElementById("sitNext").onclick=()=>{sitIdx=(sitIdx+1)%sitCards.length;sitPaint();};
+sitPaint();
+
+/* ======== GRAMMAR Ex1 — 7 items: Pick the verb & put in Past Simple ======== */
+buildGaps("g1",[
+  {q:"Last Friday we ___ the mountain hotel at midnight because the road was dangerous.",a:["got to"],
+   en:"<i>get to</i> (добираться до) in the Past Simple is <b>got to</b>."},
+  {q:"The engineer entered the office and ___ his coat on the hook behind the door.",a:["hung"],
+   en:"<i>hang</i> is an irregular verb: hang – <b>hung</b>."},
+  {q:"Luckily, the falling branch ___ the high fence around the construction site. <i>(negative)</i>",
+   a:["didn't damage","did not damage","didnt damage"],
+   en:"Negative Past Simple: <b>didn't damage</b> (verb in the 1st form)."},
+  {q:"Yesterday I ___ the phone number of the new subcontractor.",a:["found out"],
+   en:"To discover information = <i>find out</i> → <b>found out</b>."},
+  {q:"It was very late, so I didn't go to my friend's place — I ___ straight after work.",a:["went home"],
+   en:"<i>go home</i> in the Past Simple is <b>went home</b> (no <i>to</i>)."},
+  {q:"The manager ___ the subcontractors to finish the entrance before Monday.",a:["wanted"],
+   en:"<i>want somebody to do something</i> → <b>wanted</b>."},
+  {q:"When I started driving, I ___ busy intersections and narrow streets.",a:["was scared of"],
+   en:"With <i>I</i>, <i>be scared of</i> becomes <b>was scared of</b>."}
+]);
+
+/* ======== GRAMMAR Ex2 — Build the sentence from the prompts ======== */
+buildGaps("g2",[
+  {full:1,q:"(we / get to / the hotel / at nine o'clock) <span class=\"tag plus\">+ statement</span>",
+   a:["we got to the hotel at nine o'clock","we got to the hotel at 9 o'clock"],
+   en:"<i>get</i> → <b>got</b>: <b>We got to the hotel at nine o'clock.</b>"},
+  {full:1,q:"(the truck / not damage / the entrance) <span class=\"tag minus\">− negative</span>",
+   a:["the truck didn't damage the entrance","the truck did not damage the entrance","the truck didnt damage the entrance"],
+   en:"Negative Past Simple: <i>didn't</i> + 1st form → <b>The truck didn't damage the entrance.</b>"},
+  {full:1,q:"(when / you / get / your driving license / ?) <span class=\"tag quest\">? question</span>",
+   a:["when did you get your driving license","when did you get your driving licence"],
+   en:"Question word + <i>did</i> + subject + 1st form → <b>When did you get your driving license?</b>"},
+  {full:1,q:"(they / hang / the drawings / on the wall) <span class=\"tag plus\">+ statement</span>",
+   a:["they hung the drawings on the wall"],
+   en:"<i>hang</i> → <b>hung</b>: <b>They hung the drawings on the wall.</b>"},
+  {full:1,q:"(he / not go home / after the meeting) <span class=\"tag minus\">− negative</span>",
+   a:["he didn't go home after the meeting","he did not go home after the meeting","he didnt go home after the meeting"],
+   en:"No <i>to</i> before <i>home</i>: <b>He didn't go home after the meeting.</b>"},
+  {full:1,q:"(how / you / find out / about this problem / ?) <span class=\"tag quest\">? question</span>",
+   a:["how did you find out about this problem"],
+   en:"<b>How did you find out about this problem?</b>"},
+  {full:1,q:"(the manager / want / them / to build / a high fence) <span class=\"tag plus\">+ statement</span>",
+   a:["the manager wanted them to build a high fence"],
+   en:"<i>want somebody to do something</i> → <b>The manager wanted them to build a high fence.</b>"},
+  {full:1,q:"(be / the new worker / scared of / the height / ?) <span class=\"tag quest\">? question</span>",
+   a:["was the new worker scared of the height"],
+   en:"With <i>be</i> we put <b>Was</b> before the subject (no <i>did</i>): <b>Was the new worker scared of the height?</b>"}
+]);
+
+/* ======== READING ======== */
+const rq=[
+  ["Why did the author get to the mountain hotel two hours later than planned?","Because heavy rain started in the afternoon (and the mountain road was narrow and dangerous)."],
+  ["Where did the author stay that night instead of going home?","He went to his colleague's place in a nearby town."]
+];
+document.getElementById("rq").innerHTML=rq.map(([q,a],i)=>{const id=nid();return `<div class="dl"><p><b>${i+1}.</b> ${q}</p><button class="btn" data-toggle="${id}">Answer</button><span id="${id}" class="en hidden"> ${a}</span></div>`}).join("");
+
+/* Reading Ex 2 — IELTS Sentence Completion (NO MORE THAN TWO WORDS) */
+buildGaps("r2",[
+  {q:"The author rented a car at the airport because he got his ___ ten years ago.",
+   a:["driving license","driving licence"],
+   en:"Paragraph A: <i>I got my driving license ten years ago, so I rented a car…</i>"},
+  {q:"On the narrow mountain road, the author felt slightly scared of the ___.",
+   a:["height"],
+   en:"Paragraph A: <i>…at some moments I was a little scared of the height.</i>"},
+  {q:"Besides the main building, the team wanted the subcontractors to build a ___ around the parking area.",
+   a:["high fence","fence"],
+   en:"Paragraph B: <i>…we wanted them to build a high fence around the parking area.</i>"},
+  {q:"The plans for the project hung on the wall inside the ___.",
+   a:["site office","office"],
+   en:"Paragraph B: <i>…showed me the plans that hung on the wall in the site office.</i>"},
+  {q:"In the morning, a delivery truck hit the gate and damaged part of the ___.",
+   a:["new fence","fence"],
+   en:"Paragraph B: <i>…a delivery truck hit the gate in the morning and damaged a section of the new fence.</i>"},
+  {q:"The team did not find any extra ___ in the storage room.",
+   a:["metal panels","panels"],
+   en:"Paragraph C: <i>We searched for extra metal panels in the storage room, but we didn't find any.</i>"}
+]);
+
+/* ======== SPEAKING TIMER ======== */
+let timerId=null;const clock=document.getElementById("clock"),phase=document.getElementById("phase");
+const fmt=n=>`${Math.floor(n/60)}:${String(n%60).padStart(2,"0")}`;
+function stopTimer(){if(timerId){clearInterval(timerId);timerId=null}}
+function runTimer(seconds,label,done){stopTimer();let n=seconds;clock.textContent=fmt(n);phase.textContent=label;timerId=setInterval(()=>{n--;clock.textContent=fmt(n);if(n<=0){stopTimer();phase.textContent=done}},1000)}
+document.getElementById("tPrep").onclick=()=>runTimer(60,"Preparation: make notes…","Time to speak!");
+document.getElementById("tTalk").onclick=()=>runTimer(120,"Speaking…","Time’s up. Thank you!");
+document.getElementById("tStop").onclick=()=>{stopTimer();phase.textContent="Stopped"};
+
+/* ======== TRANSLATION (6 sentences, pure Past Simple) ======== */
+enList("ttext",[
+  ["В прошлую пятницу я поехал в другой район, чтобы посмотреть на строительство нового отеля.","Last Friday I drove to another area to look at the construction of a new hotel."],
+  ["К сожалению, дорога была опасной, поэтому я добрался туда только вечером.","Unfortunately, the road was dangerous, so I got there only in the evening."],
+  ["У входа меня ждали субподрядчики: они описали свою работу и показали эти чертежи на стене.","At the entrance the subcontractors waited for me: they described their work and showed these drawings on the wall."],
+  ["В то же время грузовик задел ворота и повредил высокий забор рядом с отелем.","At the same time, a truck hit the gate and damaged the high fence near the hotel."],
+  ["Я хотел, чтобы они быстро его починили, и мы успешно решили эту проблему.","I wanted them to fix it quickly, and we solved this problem successfully."],
+  ["Было уже поздно, поэтому я не поехал домой, а отправился к своему другу.","It was already late, so I didn't go home, but went to my friend's place."]
+]);
+
+/* ======== COPY ======== */
+function copyText(text,button){const done=()=>{const s=button.nextElementSibling;s.textContent="Copied";setTimeout(()=>s.textContent="",1800)};const fallback=()=>{const area=document.createElement("textarea");area.value=text;document.body.appendChild(area);area.select();try{document.execCommand("copy");done()}catch(e){}area.remove()};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done,fallback);else fallback()}
+const titles={v1:"Vocabulary — Exercise 1 (Confusable words)",v2:"Vocabulary — Exercise 2 (Word builder)",g1:"Grammar — Exercise 1 (Verb bank in the Past)",g2:"Grammar — Exercise 2 (Build the sentence)",r2:"Reading — Exercise 2 (Sentence completion)"};
+document.addEventListener("click",e=>{const b=e.target.closest("[data-copy]");if(!b)return;const key=b.dataset.copy;
+  const n=totals[key]||document.querySelectorAll(`#${key} > .dl`).length;
+  const lines=[...Array(n).keys()].map(i=>`${i+1}. ${mark((states[key]||{})[i])}`);
+  copyText(["Alexey, 17 November — "+(titles[key]||key),...lines].join("\n"),b);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1089 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mikhail Lesson 17.11</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Manrope:wght@400;500;700;800&display=swap">
+<style>
+  /* Layout: one column of tabbed panels; each panel = lead line + stacked cards. Graphite + copper palette. */
+  :root{
+    color-scheme: light;
+    --paper:#F5F3F0; --card:#FFFFFF; --ink:#22201E; --soft:#625C56;
+    --line:#E2DDD7; --chip:#EFEAE4;
+    --acc:#B9531C; --acc-2:#8A6A55; --steel:#33557A;
+    --good:#23703E; --good-bg:#E6F3EA; --bad:#B03A2E; --bad-bg:#FBEAE7;
+    --f-disp:"Newsreader", Georgia, "Times New Roman", serif;
+    --f-body:"Manrope", -apple-system, "Segoe UI", sans-serif;
+    --r:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --paper:#181614; --card:#211E1B; --ink:#EEE9E3; --soft:#B3AAA1;
+      --line:#38322D; --chip:#2B2622;
+      --acc:#F0965F; --acc-2:#C7A58E; --steel:#8FB3DA;
+      --good:#7FD49A; --good-bg:#1A2E22; --bad:#F29A8F; --bad-bg:#352120;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --paper:#181614; --card:#211E1B; --ink:#EEE9E3; --soft:#B3AAA1;
+    --line:#38322D; --chip:#2B2622;
+    --acc:#F0965F; --acc-2:#C7A58E; --steel:#8FB3DA;
+    --good:#7FD49A; --good-bg:#1A2E22; --bad:#F29A8F; --bad-bg:#352120;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.55;}
+  .wrap{max-width:900px; margin:0 auto; padding-inline:16px; padding-block:22px 56px;}
+
+  header.top{display:flex; flex-direction:column; gap:4px; margin-bottom:18px;}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--acc-2); font-weight:800;}
+  h1{font-family:var(--f-disp); font-weight:600; font-size:clamp(26px,5vw,36px); margin:0; line-height:1.1; text-wrap:balance;}
+  .meta{font-size:13.5px; color:var(--soft);}
+
+  nav.tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px; border-bottom:1px solid var(--line); padding-bottom:12px;}
+  .tab{font-family:inherit; font-size:13.5px; font-weight:700; cursor:pointer; padding:8px 15px; border-radius:999px; border:none; background:var(--chip); color:var(--soft);}
+  .tab[aria-selected="true"]{background:var(--acc); color:var(--paper);}
+  .subs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px;}
+  .sub{font-family:inherit; font-size:13px; font-weight:700; cursor:pointer; padding:6px 13px; border-radius:8px; border:1.5px solid var(--line); background:var(--card); color:var(--soft);}
+  .sub[aria-selected="true"]{border-color:var(--steel); color:var(--steel); background:var(--chip);}
+  button:focus-visible,input:focus-visible,select:focus-visible,.vc:focus-visible{outline:2px solid var(--steel); outline-offset:2px;}
+
+  .lead{font-size:15.5px; color:var(--soft); margin:0 0 16px;}
+  .ielts{display:inline-block; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--steel); border:1.5px solid var(--steel); border-radius:6px; padding:1px 7px; margin-right:6px; vertical-align:1px;}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px; margin-bottom:16px;}
+  .card h3{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); margin:0 0 12px; font-weight:800;}
+  .instr{font-size:14.5px; color:var(--soft); margin:-4px 0 14px;}
+
+  .ru{display:none; font-style:italic; color:var(--acc-2); font-size:14.5px;}
+  .ruopen .ru{display:block;}
+  .mini{font-family:inherit; font-size:10.5px; font-weight:800; letter-spacing:.08em; padding:4px 10px; border-radius:999px; cursor:pointer; background:transparent; color:var(--steel); border:1.2px solid var(--steel); white-space:nowrap; vertical-align:middle;}
+  .mini.on{background:var(--steel); color:var(--paper);}
+  .say{color:var(--acc); border-color:var(--acc); padding:4px 9px;}
+
+  /* warm-up: Interactive Dice Roller */
+  .dicebox{display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:center;}
+  .dcol{display:flex; flex-direction:column; align-items:center; gap:10px;}
+  .die{width:96px; height:96px; border-radius:20px; border:2.5px solid var(--acc); background:var(--paper); color:var(--acc); font-size:58px; line-height:1; display:grid; place-items:center; cursor:pointer; box-shadow:0 6px 16px rgba(34,32,30,.12); user-select:none; transition:transform .25s ease;}
+  .die:hover{transform:scale(1.05);}
+  .die.roll{animation:dspin .45s ease;}
+  @keyframes dspin{
+    0%{transform:rotate(0deg) scale(1);}
+    50%{transform:rotate(180deg) scale(.86);}
+    100%{transform:rotate(360deg) scale(1);}
+  }
+  .drow{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;}
+  .dpip{width:38px; height:38px; border-radius:10px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); font-family:var(--f-disp); font-size:18px; font-weight:600; cursor:pointer; display:grid; place-items:center;}
+  .dpip.used{background:var(--chip); color:var(--acc-2);}
+  .dpip.active{border-color:var(--acc); background:var(--acc); color:var(--paper);}
+  .qpanel{min-height:92px; display:flex; flex-direction:column; justify-content:center; gap:7px; border:2px solid var(--acc); border-radius:14px; padding:16px 18px; background:var(--paper);}
+  .qpanel .n{font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--acc-2);}
+  .qpanel .t{font-family:var(--f-disp); font-size:21px; line-height:1.3;}
+  .fstat{font-size:13px; color:var(--soft); margin-top:10px;}
+  @media (max-width:560px){ .dicebox{grid-template-columns:1fr; justify-items:center;} }
+
+  .qs{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; counter-reset:w;}
+  .qs li{counter-increment:w; display:flex; gap:10px; align-items:flex-start;}
+  .qs li::before{content:counter(w); flex:0 0 auto; width:24px; height:24px; margin-top:3px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--acc); font-size:12px; font-weight:800;}
+  .qs .q{font-family:var(--f-disp); font-size:19px;}
+
+  /* grammar theory */
+  .use{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .use li{background:var(--chip); border-radius:11px; padding:12px 15px;}
+  .use .name{font-weight:800; color:var(--acc);}
+  .use .ind{display:block; font-size:13.5px; color:var(--soft); margin-top:3px;}
+  .use .eg{display:block; font-family:var(--f-disp); font-size:16.5px; margin-top:4px;}
+  .sc{display:flex; flex-direction:column; gap:15px;}
+  .scg{border-left:3px solid var(--acc-2); padding-left:13px;}
+  .scg .sign{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); font-weight:800; margin-bottom:6px;}
+  .scg .row{display:flex; gap:12px; flex-wrap:wrap; align-items:baseline; padding:5px 0; border-bottom:1px dashed var(--line);}
+  .scg .row:last-child{border-bottom:none;}
+  .scg .form{min-width:min(280px,100%); font-weight:800; color:var(--acc); font-size:15.5px;}
+  .scg .eg{font-family:var(--f-disp); font-size:16px;}
+  .note{margin-top:13px; background:var(--chip); border-radius:10px; padding:11px 14px; font-size:14.5px; color:var(--soft);}
+  .note b{color:var(--acc);}
+  .tscroll{overflow-x:auto;}
+
+  /* two-column table */
+  .vs{width:100%; border-collapse:collapse; font-size:15px;}
+  .vs th{font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; padding:9px 10px; text-align:left; border-bottom:2px solid var(--line);}
+  .vs th.pp{color:var(--acc);} .vs th.ps{color:var(--steel);}
+  .vs td{padding:10px; border-bottom:1px solid var(--line); vertical-align:top; width:50%;}
+  .vs td b{display:block; font-family:var(--f-disp); font-size:16.5px; font-weight:600; margin-top:3px;}
+  .vs tr td:first-child{border-right:1px solid var(--line);}
+  .rule{font-size:13.5px; color:var(--soft);}
+
+  /* exercise items */
+  ol.items{list-style:none; counter-reset:q; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  ol.items > li{counter-increment:q; display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap;}
+  ol.items > li::before{content:counter(q); flex:0 0 auto; width:24px; height:24px; margin-top:4px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--acc); font-size:12px; font-weight:800; font-variant-numeric:tabular-nums;}
+  .qbody{flex:1 1 240px; min-width:0;}
+  .qtext{font-size:16px;}
+  .btns{display:flex; gap:6px; flex:0 0 auto; margin-top:3px; flex-wrap:wrap;}
+  input.gap{font-family:inherit; font-size:15px; width:150px; max-width:100%; padding:5px 10px; border-radius:7px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink);}
+  input.gap.wide{width:100%; margin-top:6px;}
+  .chk{font-family:inherit; font-size:11px; font-weight:800; letter-spacing:.06em; cursor:pointer; padding:5px 12px; border-radius:999px; background:var(--acc); color:var(--paper); border:1.5px solid var(--acc);}
+  .ans{font-family:inherit; font-size:11px; font-weight:800; letter-spacing:.06em; cursor:pointer; padding:5px 12px; border-radius:999px; background:transparent; color:var(--acc); border:1.5px solid var(--acc);}
+  .opts{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;}
+  .opts button{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:5px 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); text-align:left;}
+  .opts button.pick-ok{background:var(--good); border-color:var(--good); color:var(--paper);}
+  .opts button.pick-no{background:var(--bad); border-color:var(--bad); color:var(--paper);}
+  .fb{display:none; margin-top:7px; border-radius:9px; padding:9px 11px; font-size:14.5px; line-height:1.5;}
+  li.done .fb{display:block;}
+  .fb.ok{background:var(--good-bg);} .fb.no{background:var(--bad-bg);} .fb.show{background:var(--chip);}
+  .fb .right{font-weight:800; display:block; margin-bottom:3px;}
+  .fb.ok .right{color:var(--good);} .fb.no .right{color:var(--bad);} .fb.show .right{color:var(--acc);}
+  .fb .rurow{margin-top:6px; display:flex; gap:8px; align-items:flex-start; flex-wrap:wrap;}
+  li.okrow input.gap{border-color:var(--good);} li.norow input.gap{border-color:var(--bad);}
+  .exfoot{margin-top:14px; padding-top:12px; border-top:1px solid var(--line); display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .copy{font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; padding:7px 14px; border-radius:999px; border:1.5px solid var(--acc); background:transparent; color:var(--acc);}
+  .cmsg{font-size:13px; color:var(--soft);} .cmsg.ok{color:var(--good); font-weight:700;}
+
+  /* word order chips */
+  .wo-ans{min-height:42px; border:2px dashed var(--line); border-radius:10px; padding:6px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; background:var(--paper); margin-top:6px;}
+  .wo-bank{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;}
+  .chipw{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:5px 12px; border-radius:999px; border:1.5px solid var(--acc-2); background:var(--card); color:var(--ink);}
+  .wo-ans .chipw{background:var(--acc); color:var(--paper); border-color:var(--acc);}
+  li.okrow .wo-ans{border-color:var(--good);} li.norow .wo-ans{border-color:var(--bad);}
+
+  /* reading */
+  .read{font-size:17px; line-height:2.05;}
+  .read p{margin:0 0 14px;}
+  .read h4{font-family:var(--f-disp); font-size:22px; margin:0 0 4px;}
+  .read .pl{display:inline-grid; place-items:center; width:26px; height:26px; border-radius:7px; background:var(--steel); color:var(--paper); font-weight:800; font-size:14px; margin-right:8px; vertical-align:2px;}
+
+  /* vocab cards */
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:11px;}
+  .vc{background:var(--chip); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; display:flex; flex-direction:column; gap:3px;}
+  .vc .en{font-family:var(--f-disp); font-size:20px; font-weight:600; line-height:1.15; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .vc .tr{font-size:13px; color:var(--acc-2);}
+  .vc .df{font-size:14px; color:var(--ink); line-height:1.4; margin-top:3px;}
+  .vc .ex{font-size:13.5px; color:var(--soft); font-style:italic; line-height:1.4;}
+  .vc .rux{display:none; margin-top:7px; padding-top:7px; border-top:1px solid var(--line); font-size:15px; font-weight:800; color:var(--steel);}
+  .vc.flip .rux{display:block;}
+  .vc .tap{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2); margin-top:6px;}
+  .vc.flip .tap{display:none;}
+
+  /* speaking */
+  .cuecard{border:2px solid var(--acc); border-radius:12px; padding:14px 18px; background:var(--paper);}
+  .cuecard p{margin:0 0 6px;} .cuecard ul{margin:0 0 8px; padding-left:22px;}
+  .cue-t{font-family:var(--f-disp); font-size:20px; font-weight:600;}
+  .cue-s{color:var(--soft);}
+  .timer{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:14px;}
+  .clock{font-family:var(--f-disp); font-size:30px; font-weight:600; min-width:74px; font-variant-numeric:tabular-nums; color:var(--acc);}
+  .clock.end{color:var(--steel);}
+  .pbtn{font-family:inherit; font-size:14px; font-weight:800; cursor:pointer; padding:8px 16px; border-radius:999px; border:none; background:var(--acc); color:var(--paper);}
+  .pbtn.sec{background:transparent; color:var(--acc); border:1.5px solid var(--acc);}
+  .pstat{font-size:13px; color:var(--soft); font-weight:700;}
+
+  /* story (translation) */
+  .story{font-size:17px; line-height:2.1;}
+  .story .enx{display:none; color:var(--acc); background:var(--chip); border-radius:6px; padding:2px 8px; font-family:var(--f-disp); font-size:17px;}
+  .story .sw.open .enx{display:inline;}
+  .story .mini{margin:0 6px;}
+
+  /* my 12 sentences (homework check) */
+  .mine h4{margin:0 0 10px; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--acc-2);}
+  .mine .grp{margin-bottom:20px;}
+  .mrow{display:flex; gap:10px; align-items:center; margin-bottom:8px; flex-wrap:wrap;}
+  .mrow .sg{flex:0 0 auto; min-width:138px; height:28px; padding:0 10px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center; background:var(--chip); color:var(--acc); font-size:12px; font-weight:800; letter-spacing:.04em;}
+  .mrow .sg.ps{color:var(--steel);}
+  .mrow input{flex:1 1 240px; min-width:0; font-family:inherit; font-size:15px; padding:7px 11px; border-radius:8px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink);}
+  .mrow input.ok{border-color:var(--good);} .mrow input.no{border-color:var(--bad);}
+  .mhint{font-size:13px; color:var(--bad); margin:-4px 0 8px 148px; display:none;}
+  .mhint.on{display:block;}
+  @media (max-width:560px){
+    .mhint{margin-left:0;}
+    .vs thead{display:none;}
+    .vs td{display:block; width:auto; border-right:none!important;}
+    .vs td::before{content:attr(data-t); display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; font-weight:800; margin-bottom:4px;}
+    .vs td.pp::before{color:var(--acc);} .vs td.ps::before{color:var(--steel);}
+    .vs td.pp{border-bottom:1px dashed var(--line);}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <span class="eyebrow">Mikhail · Lesson 13 · 17 November</span>
+    <h1>Present Perfect Continuous</h1>
+    <div class="meta">General English with an IELTS focus</div>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="p1">1. Warm-up</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p2">2. Homework check</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p3">3. Grammar</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p4">4. Reading</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p5">5. Vocabulary</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p6">6. Speaking</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p7">7. Translation · homework</button>
+  </nav>
+
+  <!-- 1. WARM-UP -->
+  <section class="panel" id="p1" role="tabpanel">
+    <p class="lead"><span class="ielts">IELTS Speaking · Part 1</span>Roll the dice (or click a number 1–6) and answer: answer + one detail.</p>
+    <div class="card">
+      <h3>Roll the dice</h3>
+      <div class="dicebox">
+        <div class="dcol">
+          <div class="die" id="die" role="button" tabindex="0" aria-label="Roll the dice">⚀</div>
+          <button class="pbtn" type="button" id="rollBtn">Roll the dice</button>
+        </div>
+        <div style="width:100%;">
+          <div class="drow" id="pipRow"></div>
+          <div class="qpanel" id="qpanel"></div>
+          <div class="fstat" id="fstat"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. HOMEWORK CHECK -->
+  <section class="panel" id="p2" role="tabpanel" hidden>
+    <p class="lead">Your 12 sentences from 16.11. Type them here and read them aloud.</p>
+    <div class="card">
+      <h3>Homework · my 12 sentences · Past Simple &amp; Present Perfect Simple</h3>
+      <p class="instr">Write <b>4 affirmative (+)</b>, <b>4 negative (−)</b> and <b>4 questions (?)</b> — two in the Past Simple and two in the Present Perfect Simple in each group. Press <b>CHECK THE FORM</b> to check the grammar structure.</p>
+      <div class="mine" id="mine"></div>
+      <div class="exfoot" id="minefoot"></div>
+    </div>
+  </section>
+
+  <!-- 3. GRAMMAR -->
+  <section class="panel" id="p3" role="tabpanel" hidden>
+    <div class="subs" role="tablist">
+      <button class="sub" aria-selected="true" data-s="s1">Theory</button>
+      <button class="sub" aria-selected="false" data-s="s2">Exercise 1</button>
+      <button class="sub" aria-selected="false" data-s="s3">Exercise 2</button>
+      <button class="sub" aria-selected="false" data-s="s4">Exercise 3</button>
+      <button class="sub" aria-selected="false" data-s="s5">Exercise 4</button>
+    </div>
+
+    <div class="gsub" id="s1">
+      <div class="card">
+        <h3>When do we use the Present Perfect Continuous?</h3>
+        <div class="tscroll"><table class="vs">
+          <thead><tr><th class="pp">Situation 1 · Action is still going on</th><th class="ps">Situation 2 · Result now from a process</th></tr></thead>
+          <tr>
+            <td class="pp" data-t="Situation 1">
+              <span class="rule">The action started in the past, <b>is still happening now</b>, and the <b>period of time is mentioned</b>.</span>
+              <b>I have been studying physics for two hours.</b>
+              <span class="rule">I started two hours ago and I am still studying now.</span>
+            </td>
+            <td class="ps" data-t="Situation 2">
+              <span class="rule">We have a <b>visible result now</b>, and we name the <b>process</b> that has led to this result.</span>
+              <b>I am tired because I have been doing a difficult analysis.</b>
+              <span class="rule">Result now: I am tired. Process: doing a difficult analysis.</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="pp" data-t="Situation 1">
+              <b>We have been sitting in this café since two o'clock.</b>
+              <span class="rule">We are still in the café now, and we say how long.</span>
+            </td>
+            <td class="ps" data-t="Situation 2">
+              <b>The courtyard is wet because it has been raining.</b>
+              <span class="rule">Result now: the ground is wet. Process: raining.</span>
+            </td>
+          </tr>
+        </table></div>
+      </div>
+
+      <div class="card">
+        <h3>Indicators (Signal words)</h3>
+        <div class="tscroll"><table class="vs">
+          <thead><tr><th class="pp">Period of time</th><th class="ps">Starting point &amp; recent process</th></tr></thead>
+          <tr>
+            <td class="pp" data-t="Period">
+              <b>for</b> a couple of hours · <b>for</b> three days · <b>for</b> a long time<br>
+              <b>all morning</b> · <b>all day</b> · <b>all week</b><br>
+              <b>How long…?</b> (<i>How long have you been waiting?</i>)
+            </td>
+            <td class="ps" data-t="Starting point &amp; recent">
+              <b>since</b> morning · <b>since</b> seven o'clock · <b>since</b> 2024<br>
+              <b>recently</b> · <b>lately</b> (<i>I have been reading a lot recently.</i>)
+            </td>
+          </tr>
+        </table></div>
+      </div>
+
+      <div class="card">
+        <h3>How we build it · The forms</h3>
+        <div class="sc">
+          <div class="scg">
+            <div class="sign">+ Affirmative</div>
+            <div class="row"><span class="form">I / You / We / They + have been + V-ing</span><span class="eg">We have been talking for a couple of hours.</span></div>
+            <div class="row"><span class="form">He / She / It + has been + V-ing</span><span class="eg">She has been working on the analysis all morning.</span></div>
+          </div>
+          <div class="scg">
+            <div class="sign">− Negative</div>
+            <div class="row"><span class="form">I / You / We / They + haven't been + V-ing</span><span class="eg">People haven't been sitting in the courtyard recently.</span></div>
+            <div class="row"><span class="form">He / She / It + hasn't been + V-ing</span><span class="eg">He hasn't been feeling well lately.</span></div>
+          </div>
+          <div class="scg">
+            <div class="sign">? Questions</div>
+            <div class="row"><span class="form">(Question word) + have + I / you / we / they + been + V-ing?</span><span class="eg">How long have you been living in Georgia?</span></div>
+            <div class="row"><span class="form">(Question word) + has + he / she / it + been + V-ing?</span><span class="eg">What has she been reading all afternoon?</span></div>
+          </div>
+        </div>
+        <div class="note"><b>Spelling of V-ing:</b> <i>write → writing</i> (drop silent <b>-e</b>) · <i>sit → sitting, run → running</i> (double the consonant after a short stressed vowel) · <i>study → studying, play → playing</i>.</div>
+      </div>
+    </div>
+
+    <div class="gsub" id="s2" hidden>
+      <div class="card">
+        <h3>Exercise 1 — open the brackets in the Present Perfect Continuous</h3>
+        <p class="instr">Put the verb in brackets into the Present Perfect Continuous (<b>+</b>, <b>−</b> or <b>?</b>). Notice whether it is Situation 1 (still going on) or Situation 2 (result now).</p>
+        <ol class="items" id="g1"></ol>
+        <div class="exfoot" data-for="g1"></div>
+      </div>
+    </div>
+
+    <div class="gsub" id="s3" hidden>
+      <div class="card">
+        <h3>Exercise 2 — explain the result we see now</h3>
+        <p class="instr">Read the situation (the result now) and write a full sentence in the Present Perfect Continuous using the words in brackets.</p>
+        <ol class="items" id="g2"></ol>
+        <div class="exfoot" data-for="g2"></div>
+      </div>
+    </div>
+
+    <div class="gsub" id="s4" hidden>
+      <div class="card">
+        <h3>Exercise 3 — build the sentence</h3>
+        <p class="instr">Click the words in the right order to make a Present Perfect Continuous sentence (+, − or ?).</p>
+        <ol class="items" id="g3"></ol>
+        <div class="exfoot" data-for="g3"></div>
+      </div>
+    </div>
+
+    <div class="gsub" id="s5" hidden>
+      <div class="card">
+        <h3>Exercise 4 — find and correct the mistake</h3>
+        <p class="instr">Each sentence has a grammar mistake in the verb form. Type the <b>correct verb form</b> (for example: <i>have been waiting</i>).</p>
+        <ol class="items" id="g4"></ol>
+        <div class="exfoot" data-for="g4"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. READING -->
+  <section class="panel" id="p4" role="tabpanel" hidden>
+    <p class="lead"><span class="ielts">IELTS Reading · Academic</span>Read the article and complete both exam tasks.</p>
+    <div class="card"><div class="read" id="read"></div></div>
+    <div class="card">
+      <h3>Exercise 1 — True, False or Not Given</h3>
+      <p class="instr">Do the following statements agree with the information in the passage? Choose <b>TRUE</b>, <b>FALSE</b> or <b>NOT GIVEN</b>.</p>
+      <ol class="items" id="r1"></ol>
+      <div class="exfoot" data-for="r1"></div>
+    </div>
+    <div class="card">
+      <h3>Exercise 2 — complete the summary</h3>
+      <p class="instr">Write <b>ONE WORD ONLY</b> from the passage in each gap.</p>
+      <ol class="items" id="r2"></ol>
+      <div class="exfoot" data-for="r2"></div>
+    </div>
+  </section>
+
+  <!-- 5. VOCABULARY -->
+  <section class="panel" id="p5" role="tabpanel" hidden>
+    <p class="lead">Words and expressions for this lesson. Tap a card to see the Russian translation.</p>
+    <div class="card"><h3>Word cards</h3><div class="cards" id="cards"></div></div>
+    <div class="card">
+      <h3>Exercise 1 — write the missing word or phrase</h3>
+      <p class="instr">Complete each sentence with a word or expression from the cards above.</p>
+      <ol class="items" id="v1"></ol>
+      <div class="exfoot" data-for="v1"></div>
+    </div>
+    <div class="card">
+      <h3>Exercise 2 — grammar and vocabulary traps</h3>
+      <p class="instr">Read the sentence carefully and click the option that is grammatically and lexically correct.</p>
+      <ol class="items" id="v2"></ol>
+      <div class="exfoot" data-for="v2"></div>
+    </div>
+  </section>
+
+  <!-- 6. SPEAKING -->
+  <section class="panel" id="p6" role="tabpanel" hidden>
+    <p class="lead"><span class="ielts">IELTS Speaking · Part 2</span>1 minute to prepare and make notes, then speak for 1–2 minutes.</p>
+    <div class="card">
+      <h3>Task card</h3>
+      <div class="cuecard">
+        <p class="cue-t">Describe a café or a quiet place in your city where you like to spend time or study.</p>
+        <p class="cue-s">You should say:</p>
+        <ul>
+          <li>where this place is and what it looks like (for example, if it has a courtyard)</li>
+          <li>how long you have been going there and how often you visit it</li>
+          <li>what you usually do there (for example, meet people, read or do an analysis)</li>
+        </ul>
+        <p class="cue-s">and explain why you find this place comfortable.</p>
+      </div>
+      <div class="timer">
+        <span class="clock" id="clock">1:00</span>
+        <button class="pbtn" type="button" id="tPrep">Preparation 1 min</button>
+        <button class="pbtn" type="button" id="tTalk">Speech 2 min</button>
+        <button class="pbtn sec" type="button" id="tStop">■ Stop</button>
+        <span class="pstat" id="tStat"></span>
+      </div>
+      <div class="note">Use the new grammar: <b>I have been going to this café for a couple of months…</b> · <b>Recently I have been preparing for my exam there…</b></div>
+    </div>
+    <div class="card">
+      <h3>Your plan and useful phrases</h3>
+      <p class="instr">Four steps — about 30 seconds each. That is enough for two minutes.</p>
+      <ul class="use" id="plan"></ul>
+    </div>
+    <div class="card">
+      <h3>If we have time</h3>
+      <ol class="qs">
+        <li><span class="q">Why do many people prefer working or studying in a café instead of staying at home?</span></li>
+        <li><span class="q">What makes a public place, such as a café or a park courtyard, comfortable for people?</span></li>
+        <li><span class="q">Do you think students in high school grades study differently today compared to ten years ago?</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 7. TRANSLATION · HOMEWORK -->
+  <section class="panel" id="p7" role="tabpanel" hidden>
+    <p class="lead">Homework. Translate the story into English using the Present Perfect Continuous and the words from this lesson. Press EN to compare.</p>
+    <div class="card"><h3>Studying in the courtyard café</h3><div class="story" id="tr"></div></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var canSpeak = ("speechSynthesis" in window) && ("SpeechSynthesisUtterance" in window);
+  function voiceGB(){
+    try{
+      var v = window.speechSynthesis.getVoices() || [];
+      return v.filter(function(x){ return /en[-_]GB/i.test(x.lang); })[0] || v.filter(function(x){ return /^en/i.test(x.lang); })[0] || null;
+    }catch(e){ return null; }
+  }
+  if(canSpeak){ try{ window.speechSynthesis.getVoices(); }catch(e){} }
+  function speak(t){
+    if(!canSpeak) return;
+    try{
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var v = voiceGB(); if(v) u.voice = v;
+      u.lang = "en-GB"; u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+  function el(tag, cls, txt){ var d = document.createElement(tag); if(cls) d.className = cls; if(txt !== undefined) d.textContent = txt; return d; }
+  function ruBtn(host){
+    var b = el("button","mini","RUS"); b.type = "button";
+    b.addEventListener("click", function(e){ e.stopPropagation(); var on = host.classList.toggle("ruopen"); b.classList.toggle("on", on); });
+    return b;
+  }
+  function norm(s){ return String(s).toLowerCase().replace(/[’`‘]/g,"'").replace(/café/g,"cafe").replace(/[.,!?;:"«»]/g," ").replace(/\s+/g," ").trim(); }
+  function shuffle(a){ a = a.slice(); for(var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function withFull(list){
+    var out = [];
+    list.forEach(function(s){
+      out.push(s);
+      out.push(s
+        .replace(/haven't/g,"have not")
+        .replace(/hasn't/g,"has not")
+        .replace(/didn't/g,"did not")
+        .replace(/I've/g,"I have")
+        .replace(/He's/g,"He has")
+        .replace(/She's/g,"She has")
+        .replace(/We've/g,"We have")
+        .replace(/They've/g,"They have"));
+    });
+    return out;
+  }
+  function copyText(text, m){
+    function ok(){ m.textContent = "Скопировано"; m.className = "cmsg ok"; }
+    function fail(){ m.textContent = "Не вышло — выделите ответы вручную"; m.className = "cmsg"; }
+    try{ if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok).catch(fail); else fail(); }catch(e){ fail(); }
+  }
+
+  /* ================= data 17.11 ================= */
+  var WARM = [
+    "How do you usually spend time with your friends when you meet for a couple of hours?",
+    "Have you read a good book or watched an interesting film recently?",
+    "When you were in the tenth or eleventh grade at school, what subject did you enjoy most?",
+    "Where do you prefer to sit when the weather is warm — inside a building or outside in a courtyard?",
+    "What makes a chair, a room or a café comfortable for you?",
+    "Do your friends often ask you to help them with mathematics or physics?"
+  ];
+
+  var VERBS_IRR = [
+    ["be","was / were","been"],
+    ["become","became","become"],
+    ["begin","began","begun"],
+    ["break","broke","broken"],
+    ["bring","brought","brought"],
+    ["build","built","built"],
+    ["buy","bought","bought"],
+    ["choose","chose","chosen"],
+    ["come","came","come"],
+    ["do","did","done"],
+    ["drink","drank","drunk"],
+    ["drive","drove","driven"],
+    ["eat","ate","eaten"],
+    ["fall","fell","fallen"],
+    ["feel","felt","felt"],
+    ["find","found","found"],
+    ["fly","flew","flown"],
+    ["forget","forgot","forgotten"],
+    ["get","got","got"],
+    ["give","gave","given"],
+    ["go","went","gone"],
+    ["grow","grew","grown"],
+    ["have","had","had"],
+    ["hear","heard","heard"],
+    ["keep","kept","kept"],
+    ["know","knew","known"],
+    ["learn","learnt / learned","learnt / learned"],
+    ["leave","left","left"],
+    ["lose","lost","lost"],
+    ["make","made","made"],
+    ["meet","met","met"],
+    ["pay","paid","paid"],
+    ["put","put","put"],
+    ["read","read","read"],
+    ["run","ran","run"],
+    ["say","said","said"],
+    ["see","saw","seen"],
+    ["send","sent","sent"],
+    ["sit","sat","sat"],
+    ["sleep","slept","slept"],
+    ["speak","spoke","spoken"],
+    ["spend","spent","spent"],
+    ["stand","stood","stood"],
+    ["swim","swam","swum"],
+    ["take","took","taken"],
+    ["teach","taught","taught"],
+    ["tell","told","told"],
+    ["think","thought","thought"],
+    ["understand","understood","understood"],
+    ["wear","wore","worn"],
+    ["win","won","won"],
+    ["write","wrote","written"]
+  ];
+
+  var MYS = [
+    {
+      title:"+  Affirmative sentences (2 Past Simple + 2 Present Perfect)",
+      rows:[
+        {sg:"+ Past Simple", t:"ps", ph:"e.g. Yesterday I met my friends in the park."},
+        {sg:"+ Past Simple", t:"ps", ph:"e.g. Two days ago I solved a difficult physics problem."},
+        {sg:"+ Present Perfect", t:"pp", ph:"e.g. I have already made a plan for the weekend."},
+        {sg:"+ Present Perfect", t:"pp", ph:"e.g. My friend has just bought a new telescope."}
+      ]
+    },
+    {
+      title:"−  Negative sentences (2 Past Simple + 2 Present Perfect)",
+      rows:[
+        {sg:"− Past Simple", t:"ps", ph:"e.g. I didn't go to the lecture last Friday."},
+        {sg:"− Past Simple", t:"ps", ph:"e.g. We didn't get bored during the experiment yesterday."},
+        {sg:"− Present Perfect", t:"pp", ph:"e.g. I haven't read this article yet."},
+        {sg:"− Present Perfect", t:"pp", ph:"e.g. She hasn't been to this park this month."}
+      ]
+    },
+    {
+      title:"?  Questions (2 Past Simple + 2 Present Perfect)",
+      rows:[
+        {sg:"? Past Simple", t:"ps", ph:"e.g. When did you arrive in Georgia?"},
+        {sg:"? Past Simple", t:"ps", ph:"e.g. Did you like the plot of the film yesterday?"},
+        {sg:"? Present Perfect", t:"pp", ph:"e.g. Have you ever seen a solar eclipse?"},
+        {sg:"? Present Perfect", t:"pp", ph:"e.g. Has the lecture started yet?"}
+      ]
+    }
+  ];
+
+  var G3_CHIPS = [
+    {words:["I","have","been","doing","this","analysis","for","two","hours"], model:"I have been doing this analysis for two hours."},
+    {words:["We","have","been","sitting","in","the","courtyard","since","noon"], model:"We have been sitting in the courtyard since noon."},
+    {words:["She","hasn't","been","going","to","that","café","recently"], model:"She hasn't been going to that café recently."},
+    {words:["How","long","have","you","been","preparing","for","the","exam"], model:"How long have you been preparing for the exam?"},
+    {words:["People","have","been","talking","about","this","event","all","week"], model:"People have been talking about this event all week."},
+    {words:["He","is","tired","because","he","has","been","running"], model:"He is tired because he has been running."},
+    {words:["They","haven't","been","studying","together","lately"], model:"They haven't been studying together lately."},
+    {words:["What","have","you","been","reading","all","morning"], model:"What have you been reading all morning?"}
+  ];
+
+  var EX = {
+    g1:[
+      {q:"I __ (study) for my IELTS exam for a couple of months.", a:withFull(["have been studying","'ve been studying"]), model:"have been studying", en:"Situation 1: the action started in the past, is still going on, and the period (for a couple of months) is mentioned.", ru:"Ситуация 1: действие началось в прошлом, все еще идет, указан период."},
+      {q:"My eyes are tired because I __ (do) a statistical analysis all morning.", a:withFull(["have been doing","'ve been doing"]), model:"have been doing", en:"Situation 2: visible result now (my eyes are tired) → we explain the process.", ru:"Ситуация 2: результат сейчас (глаза устали) — называем процесс."},
+      {q:"We __ (sit) in this comfortable courtyard since two o'clock.", a:withFull(["have been sitting","'ve been sitting"]), model:"have been sitting", en:"Situation 1: still sitting here now + since two o'clock (note double t: sitting).", ru:"Ситуация 1: все еще сидим здесь + с двух часов (удвоение t: sitting)."},
+      {q:"The grass in the courtyard is wet because it __ (rain) for a couple of hours.", a:withFull(["has been raining"]), model:"has been raining", en:"Situation 2: result now (the grass is wet) from the process of raining.", ru:"Ситуация 2: результат сейчас (трава мокрая) от процесса дождя."},
+      {q:"He __ (not / sleep) well recently because of the noise in the street.", a:withFull(["hasn't been sleeping","has not been sleeping"]), model:"hasn't been sleeping", en:"Negative Present Perfect Continuous with recently: hasn't been + V-ing.", ru:"Отрицание в Present Perfect Continuous с recently: hasn't been + V-ing."},
+      {q:"How long __ (you / wait) for your friends outside the café?", a:withFull(["have you been waiting"]), model:"have you been waiting", en:"Question with How long: Have + you + been + V-ing?", ru:"Вопрос с How long: Have + you + been + V-ing?"},
+      {q:"Students in the eleventh grade __ (prepare) for their physics test all week.", a:withFull(["have been preparing"]), model:"have been preparing", en:"Situation 1: plural subject (students) → have been preparing (drop -e in prepare).", ru:"Множественное число (students) → have been preparing."},
+      {q:"Why are your hands covered in chalk? — I __ (write) formulas on the board.", a:withFull(["have been writing","'ve been writing"]), model:"have been writing", en:"Situation 2: result now (hands covered in chalk) → process: I have been writing.", ru:"Ситуация 2: результат виден сейчас (руки в мелу) → процесс."}
+    ],
+    g2:[
+      {q:"Result now: Mikhail knows this physics topic very well.  (I / read / articles about it / all week)", a:withFull(["I have been reading articles about it all week","I've been reading articles about it all week"]), model:"I have been reading articles about it all week.", en:"Result now → process in the Present Perfect Continuous.", ru:"Результат сейчас → процесс в Present Perfect Continuous."},
+      {q:"Result now: The table in the café is full of papers.  (we / work / on the analysis / for a couple of hours)", a:withFull(["We have been working on the analysis for a couple of hours","We've been working on the analysis for a couple of hours"]), model:"We have been working on the analysis for a couple of hours.", en:"We + have been working.", ru:"We + have been working."},
+      {q:"Result now: Nina looks very relaxed and happy.  (she / sit / in the quiet courtyard / since three o'clock)", a:withFull(["She has been sitting in the quiet courtyard since three o'clock","She's been sitting in the quiet courtyard since three o'clock"]), model:"She has been sitting in the quiet courtyard since three o'clock.", en:"She + has been sitting.", ru:"She + has been sitting."},
+      {q:"Result now: The floor in the kitchen is clean.  (my brother / clean / it / all morning)", a:withFull(["My brother has been cleaning it all morning"]), model:"My brother has been cleaning it all morning.", en:"My brother (he) + has been cleaning.", ru:"My brother (он) + has been cleaning."},
+      {q:"Result now: They don't want to look at numbers any more today.  (they / count / the results / for four hours)", a:withFull(["They have been counting the results for four hours","They've been counting the results for four hours"]), model:"They have been counting the results for four hours.", en:"They + have been counting.", ru:"They + have been counting."},
+      {q:"Result now: I am out of breath.  (I / run / to the station)", a:withFull(["I have been running to the station","I've been running to the station"]), model:"I have been running to the station.", en:"run → running (double n).", ru:"run → running (удвоение n)."},
+      {q:"Result now: His English sounds much more natural now.  (he / practise / every day / recently)", a:withFull(["He has been practising every day recently","He has been practicing every day recently"]), model:"He has been practising every day recently.", en:"He + has been practising.", ru:"He + has been practising."},
+      {q:"Result now: Why is the teacher looking at us?  (how long / we / talk / so loudly?)", a:withFull(["How long have we been talking so loudly"]), model:"How long have we been talking so loudly?", en:"Question: How long + have + we + been + talking?", ru:"Вопрос: How long + have + we + been + talking?"}
+    ],
+    g4:[
+      {q:"I am studying English for a couple of years. (Type the correct verb form)", a:withFull(["have been studying","'ve been studying"]), model:"have been studying", en:"When the period of time is mentioned (for a couple of years), use have been studying, not am studying.", ru:"Когда указан период времени, используется Present Perfect Continuous, а не Present Continuous."},
+      {q:"She has been worked on this mathematical analysis since Monday.", a:withFull(["has been working"]), model:"has been working", en:"After have / has been we need V-ing (working), not V3.", ru:"После have / has been нужен глагол с -ing (working)."},
+      {q:"How long you have been sitting in this café?", a:withFull(["have you been sitting"]), model:"have you been sitting", en:"In a question, put have / has before the subject: How long have you been sitting…?", ru:"В вопросе have ставится перед подлежащим: have you been sitting."},
+      {q:"People has been waiting in the courtyard for twenty minutes.", a:withFull(["have been waiting"]), model:"have been waiting", en:"People is plural → People have been waiting.", ru:"People — множественное число → have been waiting."},
+      {q:"We haven't been go to that noisy café recently.", a:withFull(["haven't been going","have not been going"]), model:"haven't been going", en:"haven't been + V-ing → haven't been going.", ru:"haven't been + V-ing → haven't been going."},
+      {q:"He is exhausted because he was running all morning (and he has just stopped now).", a:withFull(["has been running"]), model:"has been running", en:"The result is visible right now (he is exhausted) → he has been running.", ru:"Результат виден прямо сейчас → has been running."},
+      {q:"My friend have been asking me to help him with physics all week.", a:withFull(["has been asking"]), model:"has been asking", en:"My friend = he / she → has been asking.", ru:"My friend (он/она) → has been asking."},
+      {q:"What are you doing for the last two hours?", a:withFull(["have you been doing"]), model:"have you been doing", en:"for the last two hours → What have you been doing…?", ru:"С периодом for the last two hours → What have you been doing…?"}
+    ],
+    r1:[
+      {q:"Dr Elena Novak's team has been studying student study habits for a couple of years.", opts:["TRUE","FALSE","NOT GIVEN"], a:"TRUE", en:"Paragraph A: «For the past couple of years, a research team led by Dr Elena Novak has been studying how different environments affect concentration.»", ru:"В абзаце А прямо сказано, что команда изучает это пару лет."},
+      {q:"Students in the tenth grade had better results than students in the eleventh grade.", opts:["TRUE","FALSE","NOT GIVEN"], a:"NOT GIVEN", en:"Paragraph A mentions that both grades took part, but does not compare their scores with each other.", ru:"В тексте не сравниваются баллы 10-го и 11-го классов между собой."},
+      {q:"The researchers asked the students to solve mathematical problems in three different places.", opts:["TRUE","FALSE","NOT GIVEN"], a:"TRUE", en:"Paragraph B: «The researchers asked them to complete a complex mathematical analysis in three places…»", ru:"Исследователи попросили их выполнить анализ в трех разных местах."},
+      {q:"Most participants preferred studying in the noisy street café because of the music.", opts:["TRUE","FALSE","NOT GIVEN"], a:"FALSE", en:"Paragraph B says they got tired quickly in the noisy street café and couldn't focus any more after forty minutes.", ru:"В шумном уличном кафе они быстро уставали и больше не могли концентрироваться."},
+      {q:"Sitting in the green courtyard helped students focus for a longer period of time.", opts:["TRUE","FALSE","NOT GIVEN"], a:"TRUE", en:"Paragraph B: «In the quiet café with a green courtyard… students worked there for over two hours without getting tired.»", ru:"В тихом кафе с зеленым двориком они спокойно работали более двух часов."},
+      {q:"City libraries have been buying more computers instead of comfortable chairs recently.", opts:["TRUE","FALSE","NOT GIVEN"], a:"FALSE", en:"Paragraph C says libraries have been opening courtyard reading zones with comfortable chairs.", ru:"Наоборот, библиотеки открывают зоны во двориках с удобными креслами."}
+    ],
+    r2:[
+      {q:"Dr Novak's team has been studying learners in the tenth and eleventh __.", a:["grade","grades"], en:"Paragraph A: «…120 school students in the tenth and eleventh grade.»", ru:"В десятом и одиннадцатом классе (grade)."},
+      {q:"The researchers asked the students to do a difficult mathematical __.", a:["analysis"], en:"Paragraph B: «…asked them to complete a complex mathematical analysis…»", ru:"Математический анализ (analysis)."},
+      {q:"In a noisy street __, students lost concentration after forty minutes.", a:["cafe","café"], en:"Paragraph B: «In the noisy street café, people were talking loudly…»", ru:"В шумном уличном кафе (café)."},
+      {q:"Students worked best in a quiet place that had a green __ with trees.", a:["courtyard"], en:"Paragraph B: «…a quiet café with a green courtyard.»", ru:"С зеленым внутренним двориком (courtyard)."},
+      {q:"The chairs there were very __, and natural sounds helped the brain relax.", a:["comfortable"], en:"Paragraph B: «The chairs were comfortable, and the gentle background sounds…»", ru:"Удобными (comfortable)."},
+      {q:"Many young __ do not want to study in dark, silent rooms any more.", a:["people"], en:"Paragraph C: «Many young people do not want to sit in dark, silent halls any more…»", ru:"Многие молодые люди (people)."}
+    ],
+    v1:[
+      {q:"There is a quiet little __ near my house where they make great coffee.", a:["cafe","café"], model:"café", en:"a café = a small restaurant where you buy drinks and simple food.", ru:"café — кафе."},
+      {q:"I have been reading a lot of articles about astrophysics __.", a:["recently"], model:"recently", en:"recently = not long ago, during the last few days or weeks.", ru:"recently — в последнее время, недавно."},
+      {q:"We waited for __ minutes, and then the doors opened.", a:["a couple of"], model:"a couple of", en:"a couple of = two or a few.", ru:"a couple of — пара, несколько."},
+      {q:"When I was in the tenth __, our physics teacher showed us an amazing experiment.", a:["grade"], model:"grade", en:"grade = a school year / class level (e.g. the tenth grade).", ru:"grade — класс (год обучения в школе)."},
+      {q:"The courtyard behind the museum has very __ wooden benches.", a:["comfortable"], model:"comfortable", en:"comfortable = pleasant to sit on or be in.", ru:"comfortable — удобный."},
+      {q:"After the long lecture, we went into the __ to breathe fresh air under the trees.", a:["courtyard"], model:"courtyard", en:"a courtyard = an open space surrounded by walls or buildings.", ru:"courtyard — внутренний двор."},
+      {q:"This old café is too noisy — I don't go there __.", a:["any more","anymore"], model:"any more", en:"not … any more = больше не.", ru:"any more — больше не (в отрицательных предложениях)."},
+      {q:"We have been doing a detailed __ of the experimental data all morning.", a:["analysis"], model:"analysis", en:"an analysis = a careful examination of data or a problem.", ru:"analysis — анализ."}
+    ],
+    v2:[
+      {q:"My friend asked __ him with his mathematics homework.", opts:["me to help","me help","to me to help"], a:"me to help", always:true, en:"ask somebody to do something → asked me to help.", ru:"ask smb to do smth — попросить кого-то что-то сделать (с частицей to)."},
+      {q:"A lot of __ been sitting in the café courtyard today.", opts:["people have","people has","peoples have"], a:"people have", always:true, en:"people (= люди) is always plural → people have.", ru:"people (люди) — всегда множественное число → people have."},
+      {q:"I have been waiting for you for __ hours!", opts:["a couple of","a couple","couple of"], a:"a couple of", always:true, en:"Always use 'a couple of + plural noun'.", ru:"Всегда используется связка 'a couple of + существительное во мн. ч.'."},
+      {q:"He used to play computer games a lot, but he doesn't play them __.", opts:["any more","no more","some more"], a:"any more", always:true, en:"With a negative verb (doesn't play), use any more.", ru:"При отрицательном глаголе (doesn't play) используется any more."},
+      {q:"When my cousin was in the __, he won a city mathematics competition.", opts:["ninth grade","grade nine of","ninth class room"], a:"ninth grade", always:true, en:"in the ninth / tenth / eleventh grade = в девятом / десятом / одиннадцатом классе.", ru:"in the ninth grade — в девятом классе."},
+      {q:"The teacher __ the students to write down the formula.", opts:["asked","asked to","told to"], a:"asked", always:true, en:"ask somebody (without 'to' before the person) + to do something.", ru:"После ask перед человеком предлог to не ставится: asked the students to write."},
+      {q:"This armchair is really __ — I have been reading in it all afternoon.", opts:["comfortable","comfort","comfortably"], a:"comfortable", always:true, en:"After the verb 'to be' (is), we need the adjective comfortable.", ru:"После глагола to be нужно прилагательное comfortable."},
+      {q:"__ I have been spending more time outdoors with my friends.", opts:["Recently","Last week","Two days ago"], a:"Recently", always:true, en:"have been spending (Present Perfect Continuous) fits 'Recently', not finished past times.", ru:"С Present Perfect Continuous сочетается Recently (в последнее время)."}
+    ]
+  };
+
+  var WORDS = [
+    ["café","/ˈkæfeɪ/","a small place where you can buy coffee, tea and light food","We met at a small café in the centre.","кафе"],
+    ["recently","/ˈriːsntli/","not long ago; during the last few days, weeks or months","I have been reading a lot about physics recently.","недавно, в последнее время"],
+    ["a couple of","/ə ˈkʌpl əv/","two, or a small number of things or people","We have been waiting for a couple of hours.","пара, несколько"],
+    ["grade","/ɡreɪd/","one of the levels by year in a school (e.g. the tenth grade)","He became interested in maths in the eighth grade.","класс (год обучения в школе)"],
+    ["ask smb to do smth","/ɑːsk/","to say that you would like somebody to do something","She asked me to help her with the analysis.","попросить кого-то сделать что-то"],
+    ["any more","/ˌeni ˈmɔː/","used in negative sentences to say that something has stopped","I don't go to that noisy place any more.","больше не"],
+    ["courtyard","/ˈkɔːtjɑːd/","an open space that is surrounded by buildings or walls","The café has a quiet green courtyard.","внутренний двор, дворик"],
+    ["comfortable","/ˈkʌmftəbl/","nice and pleasant to sit in, wear or stay in","These chairs are very comfortable.","удобный, комфортный"],
+    ["people","/ˈpiːpl/","men, women and children (plural word → people are / have)","A lot of people have been visiting this exhibition.","люди"],
+    ["analysis","/əˈnæləsɪs/","a careful study of data or a subject to understand it","We have been doing a mathematical analysis all morning.","анализ"]
+  ];
+
+  var PLAN = [
+    ["1. Where the place is & how long you have been going there (25 sec)", "I'd like to talk about a quiet café in my city. · I have been going there for a couple of months. · It has a small green courtyard."],
+    ["2. What it looks like & why it is comfortable (35 sec)", "Inside, the chairs and tables are very comfortable. · Even when there are a lot of people, it is never too noisy. · In warm weather, you can sit in the courtyard."],
+    ["3. What you have been doing there recently (35 sec)", "Recently, I have been preparing for my IELTS exam there. · Last week a friend asked me to help him with a mathematical analysis, and we worked there for a couple of hours."],
+    ["4. Conclusion (25 sec)", "I don't study in noisy places any more because this café helps me focus much better."]
+  ];
+
+  var READ = {
+    title:"The Courtyard Café Experiment",
+    sub:"How study environments affect analytical thinking",
+    paras:[
+      ["A","Where is the best place to solve a difficult physics problem? For the past couple of years, a research team led by Dr Elena Novak has been studying how different environments affect concentration. Recently, her team has been working with 120 school students in the tenth and eleventh grade."],
+      ["B","The researchers asked them to complete a complex mathematical analysis in three places: a silent classroom, a noisy street café, and a quiet café with a green courtyard. In the noisy street café, people were talking loudly, and the students could not focus any more after forty minutes. However, in the courtyard café, the results were very different. The chairs were comfortable, and the gentle background sounds of trees and birds helped the brain stay calm. Students worked there for over two hours without getting tired."],
+      ["C","Since the team published its first report, several schools and city libraries have been changing their study spaces. Many young people do not want to sit in dark, silent halls any more. Instead, libraries have been opening courtyard reading zones where students can breathe fresh air and work on their projects comfortably."]
+    ]
+  };
+
+  var TR = [
+    ["В последнее время я готовлюсь к экзамену в маленьком кафе недалеко от моего дома.","Recently I have been preparing for my exam in a small café near my home."],
+    ["У этого кафе есть тихий внутренний дворик, и люди сидят там с самого утра.","This café has a quiet courtyard, and people have been sitting there since morning."],
+    ["Кресла здесь очень удобные, поэтому я больше не занимаюсь в шумных местах.","The armchairs here are very comfortable, so I don't study in noisy places any more."],
+    ["Сегодня мой друг попросил меня помочь ему с математическим анализом.","Today my friend asked me to help him with a mathematical analysis."],
+    ["Мы работаем над этими задачами уже пару часов, и поэтому мы немного устали.","We have been working on these problems for a couple of hours, and that is why we are a bit tired."],
+    ["Когда я учился в десятом классе, я не любил такие длинные расчеты.","When I was in the tenth grade, I didn't like such long calculations."],
+    ["Но в последнее время я решаю их каждый день, и это стало намного интереснее.","But recently I have been solving them every day, and it has become much more interesting."]
+  ];
+
+  /* ================= generic items ================= */
+  function feedback(li, fb, ok, it, shown){
+    li.classList.add("done");
+    li.classList.toggle("okrow", !shown && ok);
+    li.classList.toggle("norow", !shown && !ok);
+    fb.className = "fb " + (shown ? "show" : (ok ? "ok" : "no"));
+    fb.textContent = "";
+    var correct = it.model || (Array.isArray(it.a) ? it.a[0] : it.a);
+    fb.appendChild(el("span","right", shown ? "Answer: " + correct : (ok ? "Correct!" : "Not quite. Correct answer: " + correct)));
+    if(!ok || shown || it.always){
+      if(it.en) fb.appendChild(el("span", null, it.en));
+      if(it.ru){
+        var row = el("div","rurow"); var host = el("div");
+        host.appendChild(el("span","ru", it.ru));
+        row.appendChild(ruBtn(host)); row.appendChild(host); fb.appendChild(row);
+      }
+    }
+  }
+
+  function buildItem(it){
+    var li = el("li"), body = el("div","qbody"), fb = el("div","fb"), btns = el("div","btns");
+    var getVal = null;
+    body.appendChild(el("span","qtext", it.q));
+    if(it.opts){
+      var g = el("div","opts");
+      it.opts.forEach(function(o){
+        var b = el("button", null, o); b.type = "button";
+        b.addEventListener("click", function(){
+          Array.prototype.forEach.call(g.children, function(x){ x.classList.remove("pick-ok","pick-no"); });
+          var ok = o === it.a; b.classList.add(ok ? "pick-ok" : "pick-no");
+          li.dataset.val = o; feedback(li, fb, ok, it, false);
+        });
+        g.appendChild(b);
+      });
+      body.appendChild(g);
+    } else {
+      var inp = document.createElement("input");
+      inp.className = "gap wide"; inp.type = "text"; inp.placeholder = "…";
+      inp.setAttribute("autocomplete","off"); inp.setAttribute("autocapitalize","off"); inp.setAttribute("spellcheck","false");
+      body.appendChild(inp);
+      getVal = function(){ return inp.value; };
+      inp.addEventListener("keydown", function(e){ if(e.key === "Enter") chk.click(); });
+      var chk = el("button","chk","CHECK"); chk.type = "button";
+      chk.addEventListener("click", function(){
+        var v = norm(getVal());
+        var ok = !!v && it.a.some(function(k){ return norm(k) === v; });
+        feedback(li, fb, ok, it, false);
+      });
+      btns.appendChild(chk);
+      li._val = getVal;
+    }
+    var an = el("button","ans","ANSWER"); an.type = "button";
+    an.addEventListener("click", function(){ feedback(li, fb, false, it, true); });
+    btns.appendChild(an);
+    body.appendChild(fb); li.appendChild(body); li.appendChild(btns);
+    return li;
+  }
+
+  var LABELS = {
+    g1:"Grammar · Ex 1 (open the brackets)",
+    g2:"Grammar · Ex 2 (explain the result)",
+    g3:"Grammar · Ex 3 (build the sentence)",
+    g4:"Grammar · Ex 4 (correct the mistake)",
+    r1:"Reading · Ex 1 (True / False / Not Given)",
+    r2:"Reading · Ex 2 (summary completion)",
+    v1:"Vocabulary · Ex 1 (missing word)",
+    v2:"Vocabulary · Ex 2 (grammar & vocab traps)"
+  };
+  function copyFoot(foot, title, collect){
+    if(!foot) return;
+    var b = el("button","copy","Скопировать мои ответы"); b.type = "button";
+    var m = el("span","cmsg");
+    b.addEventListener("click", function(){ copyText(["Mikhail · 17.11 · " + title, ""].concat(collect()).join("\n"), m); });
+    foot.appendChild(b); foot.appendChild(m);
+  }
+  Object.keys(EX).forEach(function(id){
+    var ol = document.getElementById(id); if(!ol) return;
+    EX[id].forEach(function(it){ ol.appendChild(buildItem(it)); });
+    copyFoot(document.querySelector('.exfoot[data-for="' + id + '"]'), LABELS[id] || id, function(){
+      return Array.prototype.map.call(ol.children, function(li, i){
+        var v = li._val ? li._val().trim() : (li.dataset.val || "");
+        return (i + 1) + ". " + (v || "—");
+      });
+    });
+  });
+
+  /* ================= grammar ex 3: word order chips ================= */
+  (function(){
+    var ol = document.getElementById("g3"), vals = [];
+    G3_CHIPS.forEach(function(it){
+      var li = el("li"), body = el("div","qbody"), fb = el("div","fb"), btns = el("div","btns");
+      var ans = el("div","wo-ans"), bank = el("div","wo-bank");
+      shuffle(it.words).forEach(function(w){
+        var c = el("button","chipw", w); c.type = "button";
+        c.addEventListener("click", function(){
+          if(c.parentNode === bank) ans.appendChild(c); else bank.appendChild(c);
+          li.classList.remove("done","okrow","norow");
+        });
+        bank.appendChild(c);
+      });
+      body.appendChild(ans); body.appendChild(bank);
+      var info = {model:it.model, en:"Order: Subject + have / has (+ not) + been + V-ing (or Question word + have / has + subject + been + V-ing?).", ru:"Порядок слов: Подлежащее + have / has + been + V-ing."};
+      function val(){ return Array.prototype.map.call(ans.children, function(c){ return c.textContent; }).join(" "); }
+      var chk = el("button","chk","CHECK"); chk.type = "button";
+      chk.addEventListener("click", function(){ feedback(li, fb, norm(val()) === norm(it.words.join(" ")), info, false); });
+      var an = el("button","ans","ANSWER"); an.type = "button";
+      an.addEventListener("click", function(){ feedback(li, fb, false, info, true); });
+      btns.appendChild(chk); btns.appendChild(an);
+      body.appendChild(fb); li.appendChild(body); li.appendChild(btns); ol.appendChild(li);
+      vals.push(function(){ return val() || "—"; });
+    });
+    copyFoot(document.querySelector('.exfoot[data-for="g3"]'), LABELS.g3, function(){
+      return vals.map(function(f, i){ return (i + 1) + ". " + f(); });
+    });
+  })();
+
+  /* ================= reading passage render ================= */
+  (function(){
+    var box = document.getElementById("read");
+    box.appendChild(el("h4", null, READ.title));
+    box.appendChild(el("div","instr", READ.sub));
+    READ.paras.forEach(function(par){
+      var p = el("p");
+      p.appendChild(el("span","pl", par[0]));
+      p.appendChild(document.createTextNode(par[1]));
+      box.appendChild(p);
+    });
+  })();
+
+  /* ================= homework check: my 12 sentences (6 PS + 6 PP) ================= */
+  (function(){
+    var host = document.getElementById("mine"), all = [];
+    var V2BAD = {};
+    VERBS_IRR.forEach(function(v){
+      if(v[1] === v[2]) return;
+      v[1].split(" / ").forEach(function(form){ V2BAD[form] = v[2]; });
+    });
+    MYS.forEach(function(g){
+      var box = el("div","grp");
+      box.appendChild(el("h4", null, g.title));
+      g.rows.forEach(function(r){
+        var row = el("div","mrow");
+        row.appendChild(el("span","sg " + r.t, r.sg));
+        var inp = document.createElement("input"); inp.type = "text"; inp.placeholder = r.ph;
+        inp.setAttribute("autocomplete","off"); inp.setAttribute("spellcheck","false");
+        row.appendChild(inp); box.appendChild(row);
+        var hint = el("div","mhint"); box.appendChild(hint);
+        (function(inp, hint){
+          inp.addEventListener("input", function(){ inp.classList.remove("ok","no"); hint.classList.remove("on"); });
+        })(inp, hint);
+        all.push({inp:inp, hint:hint, sg:r.sg, t:r.t});
+      });
+      host.appendChild(box);
+    });
+
+    function test(x){
+      var raw = x.inp.value.trim();
+      if(!raw) return "Write a sentence.";
+      var v = " " + norm(raw)
+        .replace(/\bhave not\b/g,"haven't")
+        .replace(/\bhas not\b/g,"hasn't")
+        .replace(/\bdid not\b/g,"didn't")
+        .replace(/\bwas not\b/g,"wasn't")
+        .replace(/\bwere not\b/g,"weren't")
+        .replace(/\bi've\b/g,"i have")
+        .replace(/\bwe've\b/g,"we have")
+        .replace(/\bthey've\b/g,"they have")
+        .replace(/\byou've\b/g,"you have") + " ";
+      var isQ = x.sg.indexOf("?") === 0;
+      var isNeg = x.sg.indexOf("−") === 0;
+
+      if(isQ && !/\?$/.test(raw)) return "A question must end with a question mark (?).";
+      if(!isQ && /\?$/.test(raw)) return "This is not a question — remove the question mark.";
+
+      if(x.t === "pp"){
+        if(/\b(yesterday|ago|last week|last month|last year|last night|in 20\d\d|when i was)\b/.test(v)){
+          return "Do not use finished past time words (yesterday, ago, last…) with the Present Perfect.";
+        }
+        if(/\b(did|didn't|was|were|wasn't|weren't)\b/.test(v)){
+          return "This looks like the Past Simple. Use have / has + V3.";
+        }
+        if(!/\b(have|has|haven't|hasn't)\b/.test(v)){
+          return "Present Perfect needs have / has (or haven't / hasn't) + V3.";
+        }
+        var bad = null;
+        v.replace(/\b(have|has|haven't|hasn't)\s+((just|already|never|ever|not)\s+)?(\w+)/g, function(m, aux, adv, a3, w){
+          if(V2BAD[w]) bad = w;
+          return m;
+        });
+        if(bad) return "After have / has use the third form (V3): " + bad + " → " + V2BAD[bad] + ".";
+        if(isQ && !/^(have|has|what|where|when|who|why|how|which)\b/i.test(raw)){
+          return "Start a Present Perfect question with Have / Has (or a question word + have / has).";
+        }
+        if(isNeg && !/\b(haven't|hasn't|never)\b/.test(v)){
+          return "A negative Present Perfect sentence needs haven't / hasn't (or never).";
+        }
+        if(!isNeg && !isQ && /\b(haven't|hasn't)\b/.test(v)){
+          return "This row is for an affirmative (+) sentence.";
+        }
+        return "";
+      } else {
+        if(/\b(have|has|haven't|hasn't)\b/.test(v)){
+          return "This row is for the Past Simple (V2 / didn't + V1 / Did + subject + V1?), not the Present Perfect.";
+        }
+        if(/\b(yet)\b/.test(v)){
+          return "Yet is a Present Perfect signal word. Use a Past Simple time expression (yesterday, last week, two days ago…).";
+        }
+        if(isQ){
+          if(!/^(did|was|were|what|where|when|who|why|how|which)\b/i.test(raw)){
+            return "Start a Past Simple question with Did / Was / Were (or a question word + did / was / were).";
+          }
+          return "";
+        }
+        if(isNeg){
+          if(!/\b(didn't|wasn't|weren't)\b/.test(v)){
+            return "A negative Past Simple sentence needs didn't + V1 (or wasn't / weren't).";
+          }
+          return "";
+        }
+        if(/\b(didn't|wasn't|weren't)\b/.test(v)){
+          return "This row is for an affirmative (+) sentence.";
+        }
+        return "";
+      }
+    }
+
+    var foot = document.getElementById("minefoot");
+    var c = el("button","chk","CHECK THE FORM"); c.type = "button";
+    var msg = el("span","cmsg");
+    c.addEventListener("click", function(){
+      var good = 0;
+      all.forEach(function(x){
+        var h = test(x);
+        x.inp.classList.toggle("ok", !h); x.inp.classList.toggle("no", !!h);
+        x.hint.textContent = h; x.hint.classList.toggle("on", !!h);
+        if(!h) good++;
+      });
+      msg.textContent = good + " / 12 look right. Your teacher will check the rest."; msg.className = "cmsg ok";
+    });
+    foot.appendChild(c); foot.appendChild(msg);
+    copyFoot(foot, "My 12 sentences (Past Simple & Present Perfect)", function(){
+      return all.map(function(x, i){ return (i + 1) + ". [" + x.sg + "] " + (x.inp.value.trim() || "—"); });
+    });
+  })();
+
+  /* ================= warm-up: Interactive Dice Roller ================= */
+  (function(){
+    var FACES = ["⚀","⚁","⚂","⚃","⚄","⚅"];
+    var die = document.getElementById("die"), rollBtn = document.getElementById("rollBtn");
+    var pipRow = document.getElementById("pipRow"), panel = document.getElementById("qpanel"), stat = document.getElementById("fstat");
+    var seen = {}, pips = [];
+
+    function selectQuestion(idx){
+      die.textContent = FACES[idx];
+      pips.forEach(function(p, k){
+        p.classList.toggle("active", k === idx);
+      });
+      pips[idx].classList.add("used");
+      seen[idx] = 1;
+      panel.textContent = "";
+      panel.appendChild(el("span","n", "Question " + (idx + 1) + " · " + FACES[idx]));
+      panel.appendChild(el("span","t", WARM[idx]));
+      stat.textContent = Object.keys(seen).length + " / " + WARM.length + " questions answered";
+    }
+
+    WARM.forEach(function(_, i){
+      var b = el("button","dpip", String(i + 1)); b.type = "button";
+      b.addEventListener("click", function(){ selectQuestion(i); });
+      pips.push(b); pipRow.appendChild(b);
+    });
+
+    function roll(){
+      die.classList.remove("roll");
+      void die.offsetWidth;
+      die.classList.add("roll");
+      var unseen = [];
+      for(var i = 0; i < WARM.length; i++){ if(!seen[i]) unseen.push(i); }
+      var pool = unseen.length ? unseen : [0,1,2,3,4,5];
+      var pick = pool[Math.floor(Math.random() * pool.length)];
+      setTimeout(function(){ selectQuestion(pick); }, 260);
+    }
+
+    die.addEventListener("click", roll);
+    die.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); roll(); } });
+    rollBtn.addEventListener("click", roll);
+
+    panel.appendChild(el("span","t","Click “Roll the dice” or choose any number 1–6 above."));
+    stat.textContent = "0 / " + WARM.length + " questions answered";
+
+    var plan = document.getElementById("plan");
+    PLAN.forEach(function(p){
+      var li = el("li");
+      li.appendChild(el("span","name", p[0]));
+      li.appendChild(el("span","eg", p[1]));
+      plan.appendChild(li);
+    });
+  })();
+
+  /* ================= stories, cards, timer, tabs ================= */
+  function story(id, list){
+    var box = document.getElementById(id); if(!box) return;
+    list.forEach(function(p){
+      var w = el("span","sw");
+      w.appendChild(el("span","r0", p[0]));
+      var b = el("button","mini","EN"); b.type = "button";
+      b.addEventListener("click", function(){ var on = w.classList.toggle("open"); b.classList.toggle("on", on); });
+      w.appendChild(b); w.appendChild(el("span","enx", p[1]));
+      box.appendChild(w); box.appendChild(document.createTextNode(" "));
+    });
+  }
+  story("tr", TR);
+
+  (function(){
+    var cbox = document.getElementById("cards");
+    WORDS.forEach(function(w){
+      var d = el("div","vc"); d.tabIndex = 0; d.setAttribute("role","button");
+      var en = el("span","en"); en.appendChild(document.createTextNode(w[0]));
+      if(canSpeak){
+        var sb = el("button","mini say","▶"); sb.type = "button"; sb.setAttribute("aria-label","Listen");
+        sb.addEventListener("click", function(e){ e.stopPropagation(); speak(w[0].replace(/smth/g,"something").replace(/smb/g,"somebody")); });
+        en.appendChild(sb);
+      }
+      d.appendChild(en);
+      if(w[1]) d.appendChild(el("span","tr", w[1]));
+      d.appendChild(el("span","df", w[2]));
+      d.appendChild(el("span","ex", w[3]));
+      d.appendChild(el("span","rux", w[4]));
+      d.appendChild(el("span","tap","tap for Russian"));
+      function flip(){ d.classList.toggle("flip"); }
+      d.addEventListener("click", flip);
+      d.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); } });
+      cbox.appendChild(d);
+    });
+  })();
+
+  (function(){
+    var clock = document.getElementById("clock"), st = document.getElementById("tStat"), t = null;
+    function show(n){ clock.textContent = Math.floor(n/60) + ":" + ("0" + (n%60)).slice(-2); }
+    function stop(){ if(t){ clearInterval(t); t = null; } }
+    function run(sec, label, done){
+      stop(); clock.classList.remove("end"); var n = sec; show(n); st.textContent = label;
+      t = setInterval(function(){ n--; show(n); if(n <= 0){ stop(); clock.classList.add("end"); st.textContent = done; } }, 1000);
+    }
+    document.getElementById("tPrep").addEventListener("click", function(){ run(60, "Make notes…", "Time to speak!"); });
+    document.getElementById("tTalk").addEventListener("click", function(){ run(120, "Speaking…", "Thank you. Time's up."); });
+    document.getElementById("tStop").addEventListener("click", function(){ stop(); st.textContent = "Stopped"; });
+  })();
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  tabs.forEach(function(t){
+    t.addEventListener("click", function(){
+      tabs.forEach(function(o){ var on = o === t; o.setAttribute("aria-selected", on ? "true" : "false"); document.getElementById(o.dataset.p).hidden = !on; });
+      if(canSpeak){ try{ window.speechSynthesis.cancel(); }catch(e){} }
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  });
+  var subs = Array.prototype.slice.call(document.querySelectorAll(".sub"));
+  subs.forEach(function(s){
+    s.addEventListener("click", function(){
+      subs.forEach(function(o){ var on = o === s; o.setAttribute("aria-selected", on ? "true" : "false"); document.getElementById(o.dataset.s).hidden = !on; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
