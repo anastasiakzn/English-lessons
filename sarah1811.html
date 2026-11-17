@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sarah · 18 November 2026</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Manrope:wght@400;500;700;800&display=swap">
+<style>
+  /* Layout: one column of tabbed panels; each panel = lead line + stacked cards. Neva granite palette. */
+  :root{
+    color-scheme: light;
+    --paper:#F2F4F5; --card:#FFFFFF; --ink:#1B2529; --soft:#566469;
+    --line:#D9E0E2; --chip:#E8EEF0;
+    --neva:#1E5A66; --neva-2:#4F7E88; --brick:#A5482F;
+    --good:#23703E; --good-bg:#E6F3EA; --bad:#B03A2E; --bad-bg:#FBEAE7;
+    --f-disp:"Newsreader", Georgia, "Times New Roman", serif;
+    --f-body:"Manrope", -apple-system, "Segoe UI", sans-serif;
+    --r:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --paper:#131A1D; --card:#1B2428; --ink:#E6EDEF; --soft:#A2B1B5;
+      --line:#2E3B40; --chip:#233034;
+      --neva:#8CC7D2; --neva-2:#6FA3AD; --brick:#EE9A80;
+      --good:#7FD49A; --good-bg:#1A2E22; --bad:#F29A8F; --bad-bg:#352120;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --paper:#131A1D; --card:#1B2428; --ink:#E6EDEF; --soft:#A2B1B5;
+    --line:#2E3B40; --chip:#233034;
+    --neva:#8CC7D2; --neva-2:#6FA3AD; --brick:#EE9A80;
+    --good:#7FD49A; --good-bg:#1A2E22; --bad:#F29A8F; --bad-bg:#352120;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.55;}
+  .wrap{max-width:900px; margin:0 auto; padding-inline:16px; padding-block:22px 56px;}
+
+  header.top{display:flex; flex-direction:column; gap:4px; margin-bottom:18px;}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--neva-2); font-weight:800;}
+  h1{font-family:var(--f-disp); font-weight:600; font-size:clamp(26px,5vw,36px); margin:0; line-height:1.1; text-wrap:balance;}
+  .meta{font-size:13.5px; color:var(--soft);}
+
+  nav.tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px; border-bottom:1px solid var(--line); padding-bottom:12px;}
+  .tab{font-family:inherit; font-size:13.5px; font-weight:700; cursor:pointer; padding:8px 15px; border-radius:999px; border:none; background:var(--chip); color:var(--soft);}
+  .tab[aria-selected="true"]{background:var(--neva); color:var(--paper);}
+  button:focus-visible,input:focus-visible,select:focus-visible,.vc:focus-visible{outline:2px solid var(--brick); outline-offset:2px;}
+
+  .lead{font-size:15.5px; color:var(--soft); margin:0 0 16px;}
+  .ielts{display:inline-block; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--brick); border:1.5px solid var(--brick); border-radius:6px; padding:1px 7px; margin-right:6px; vertical-align:1px;}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px; margin-bottom:16px;}
+  .card h3{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--neva-2); margin:0 0 12px; font-weight:800; display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .card h3 em{font-style:italic; text-transform:none; letter-spacing:0;}
+  .instr{font-size:14.5px; color:var(--soft); margin:-4px 0 14px;}
+
+  .ru{display:none; font-style:italic; color:var(--neva-2); font-size:14.5px;}
+  .ruopen .ru{display:block;}
+
+  .mini{font-family:inherit; font-size:10.5px; font-weight:800; letter-spacing:.08em; padding:4px 10px; border-radius:999px; cursor:pointer; background:transparent; color:var(--brick); border:1.2px solid var(--brick); white-space:nowrap; vertical-align:middle;}
+  .mini.on{background:var(--brick); color:var(--paper);}
+  .say{color:var(--neva-2); border-color:var(--neva-2); padding:4px 9px;}
+
+  /* warm-up */
+  .qs{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; counter-reset:w;}
+  .qs li{counter-increment:w; display:flex; gap:10px; align-items:flex-start;}
+  .qs li::before{content:counter(w); flex:0 0 auto; width:24px; height:24px; margin-top:3px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--neva); font-size:12px; font-weight:800;}
+  .qs .q{font-family:var(--f-disp); font-size:19px;}
+  .model{display:grid; grid-template-columns:1fr; gap:10px;}
+  .model .row{background:var(--chip); border-radius:10px; padding:11px 14px;}
+  .model .lab{font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;}
+  .model .lab.w{color:var(--bad);} .model .lab.g{color:var(--good);}
+  .model .t{font-family:var(--f-disp); font-size:17px;}
+
+  /* grammar theory */
+  .use{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .use li{background:var(--chip); border-radius:11px; padding:12px 15px;}
+  .use .name{font-weight:800; color:var(--neva);}
+  .use .ind{display:block; font-size:13.5px; color:var(--soft); margin-top:3px;}
+  .use .eg{display:block; font-family:var(--f-disp); font-size:16.5px; margin-top:4px;}
+  .sc{display:flex; flex-direction:column; gap:15px;}
+  .scg{border-left:3px solid var(--neva-2); padding-left:13px;}
+  .scg .sign{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--neva-2); font-weight:800; margin-bottom:6px;}
+  .scg .row{display:flex; gap:12px; flex-wrap:wrap; align-items:baseline; padding:5px 0; border-bottom:1px dashed var(--line);}
+  .scg .row:last-child{border-bottom:none;}
+  .scg .form{min-width:min(250px,100%); font-weight:800; color:var(--neva); font-size:15.5px;}
+  .scg .eg{font-family:var(--f-disp); font-size:16px;}
+  .note{margin-top:13px; background:var(--chip); border-radius:10px; padding:11px 14px; font-size:14.5px; color:var(--soft);}
+  .note b{color:var(--neva);}
+  .spell{width:100%; border-collapse:collapse; font-size:15px;}
+  .spell td,.spell th{padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+  .spell th{font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--neva-2);}
+  .spell td:last-child{font-family:var(--f-disp); font-size:16px;}
+  .tscroll{overflow-x:auto;}
+
+  /* exercise items */
+  ol.items{list-style:none; counter-reset:q; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  ol.items > li{counter-increment:q; display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap;}
+  ol.items > li::before{content:counter(q); flex:0 0 auto; width:24px; height:24px; margin-top:4px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--neva); font-size:12px; font-weight:800; font-variant-numeric:tabular-nums;}
+  .qbody{flex:1 1 240px; min-width:0;}
+  .qtext{font-size:16px;}
+  .btns{display:flex; gap:6px; flex:0 0 auto; margin-top:3px; flex-wrap:wrap;}
+  input.gap{font-family:inherit; font-size:15px; width:150px; max-width:100%; padding:4px 9px; border-radius:7px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink);}
+  input.gap.wide{width:100%; margin-top:6px;}
+  .chk{font-family:inherit; font-size:11px; font-weight:800; letter-spacing:.06em; cursor:pointer; padding:5px 12px; border-radius:999px; background:var(--neva); color:var(--paper); border:1.5px solid var(--neva);}
+  .ans{font-family:inherit; font-size:11px; font-weight:800; letter-spacing:.06em; cursor:pointer; padding:5px 12px; border-radius:999px; background:transparent; color:var(--neva); border:1.5px solid var(--neva);}
+  .opts{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;}
+  .opts button{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:5px 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); text-align:left;}
+  .opts button.pick-ok{background:var(--good); border-color:var(--good); color:var(--paper);}
+  .opts button.pick-no{background:var(--bad); border-color:var(--bad); color:var(--paper);}
+  .fb{display:none; margin-top:7px; border-radius:9px; padding:9px 11px; font-size:14.5px; line-height:1.5;}
+  li.done .fb{display:block;}
+  .fb.ok{background:var(--good-bg);} .fb.no{background:var(--bad-bg);} .fb.show{background:var(--chip);}
+  .fb .right{font-weight:800; display:block; margin-bottom:3px;}
+  .fb.ok .right{color:var(--good);} .fb.no .right{color:var(--bad);} .fb.show .right{color:var(--neva);}
+  .fb .rurow{margin-top:6px; display:flex; gap:8px; align-items:flex-start; flex-wrap:wrap;}
+  li.okrow input.gap{border-color:var(--good);} li.norow input.gap{border-color:var(--bad);}
+  .exfoot{margin-top:14px; padding-top:12px; border-top:1px solid var(--line); display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .copy{font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; padding:7px 14px; border-radius:999px; border:1.5px solid var(--neva); background:transparent; color:var(--neva);}
+  .cmsg{font-size:13px; color:var(--soft);} .cmsg.ok{color:var(--good); font-weight:700;}
+
+  /* listening */
+  .player{display:flex; gap:8px; align-items:center; flex-wrap:wrap; background:var(--chip); border-radius:12px; padding:12px 14px; margin-bottom:14px;}
+  .pbtn{font-family:inherit; font-size:14px; font-weight:800; cursor:pointer; padding:8px 16px; border-radius:999px; border:none; background:var(--neva); color:var(--paper);}
+  .pbtn.sec{background:transparent; color:var(--neva); border:1.5px solid var(--neva);}
+  .player select{font-family:inherit; font-size:14px; padding:6px 8px; border-radius:8px; border:1.5px solid var(--line); background:var(--card); color:var(--ink);}
+  .pstat{font-size:13px; color:var(--soft);}
+  .form{border:1.5px solid var(--line); border-radius:12px; overflow:hidden;}
+  .form .fh{background:var(--neva); color:var(--paper); padding:10px 14px; font-weight:800; letter-spacing:.04em;}
+  .tr-box{display:none; margin-top:12px; background:var(--chip); border-radius:10px; padding:12px 14px; font-size:15px;}
+  .tr-box.open{display:block;}
+  .tr-box p{margin:0 0 6px;}
+  .tr-box b{color:var(--neva);}
+
+  /* vocab cards */
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:11px;}
+  .vc{background:var(--chip); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; display:flex; flex-direction:column; gap:3px;}
+  .vc .en{font-family:var(--f-disp); font-size:20px; font-weight:600; line-height:1.15; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .vc .tr{font-size:13px; color:var(--neva-2);}
+  .vc .df{font-size:14px; color:var(--ink); line-height:1.4; margin-top:3px;}
+  .vc .ex{font-size:13.5px; color:var(--soft); font-style:italic; line-height:1.4;}
+  .vc .rux{display:none; margin-top:7px; padding-top:7px; border-top:1px solid var(--line); font-size:15px; font-weight:800; color:var(--brick);}
+  .vc.flip .rux{display:block;}
+  .vc .tap{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--neva-2); margin-top:6px;}
+  .vc.flip .tap{display:none;}
+
+  /* translation */
+  .cue{border:2px solid var(--neva); border-radius:12px; padding:14px 18px; background:var(--paper);}
+  .cue p{margin:0 0 6px;} .cue ul{margin:0 0 8px; padding-left:22px;}
+  .cue-t{font-family:var(--f-disp); font-size:20px; font-weight:600;}
+  .cue-s{color:var(--soft);}
+  .timer{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:14px;}
+  .clock{font-family:var(--f-disp); font-size:30px; font-weight:600; min-width:74px; font-variant-numeric:tabular-nums; color:var(--neva);}
+  .clock.end{color:var(--brick);}
+  .phr{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:6px;}
+  .phr b{color:var(--neva);}
+  .story{font-size:17px; line-height:2.1;}
+  .story .enx{display:none; color:var(--neva); background:var(--chip); border-radius:6px; padding:2px 8px; font-family:var(--f-disp); font-size:17px;}
+  .story .sw.open .enx{display:inline;}
+  .story .mini{margin:0 6px;}
+  .tl{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; counter-reset:t;}
+  .tl li{counter-increment:t; display:flex; gap:10px; align-items:flex-start;}
+  .tl li::before{content:counter(t); flex:0 0 auto; width:24px; height:24px; margin-top:3px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--neva); font-size:12px; font-weight:800;}
+  .tl .r0{font-size:16.5px;}
+  .tl .bar{display:inline-flex; gap:6px; margin-left:8px; vertical-align:middle;}
+  .tl .enx{display:none; margin-top:5px; font-family:var(--f-disp); font-size:17px; color:var(--neva);}
+  .tl li.open .enx{display:block;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+  /* --- extra for 05.10 --- */
+  .wo-ans{min-height:42px; border:2px dashed var(--line); border-radius:10px; padding:6px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; background:var(--paper);}
+  .wo-bank{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;}
+  .chipw{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:5px 12px; border-radius:999px; border:1.5px solid var(--neva-2); background:var(--card); color:var(--ink);}
+  .wo-ans .chipw{background:var(--neva); color:var(--paper); border-color:var(--neva);}
+  li.okrow .wo-ans{border-color:var(--good);} li.norow .wo-ans{border-color:var(--bad);}
+  .seltext{font-size:16.5px; line-height:2.3;}
+  .seltext select{font-family:inherit; font-size:15px; padding:2px 6px; border-radius:7px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); max-width:100%;}
+  .seltext select.ok{border-color:var(--good); background:var(--good-bg);}
+  .seltext select.no{border-color:var(--bad); background:var(--bad-bg);}
+  .selfb{display:block; margin-top:10px; font-size:14.5px;}
+  .selfb .rowfb{padding:6px 0; border-bottom:1px dashed var(--line);}
+  .match{display:grid; grid-template-columns:1fr 1fr; gap:10px 16px;}
+  .mcol{display:flex; flex-direction:column; gap:8px; min-width:0;}
+  .mi{font-family:inherit; font-size:15px; text-align:left; cursor:pointer; padding:9px 12px; border-radius:10px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); min-height:46px;}
+  .mi.sel{border-color:var(--neva); background:var(--chip);}
+  .mi.done{border-color:var(--good); background:var(--good-bg); cursor:default;}
+  .mi.flash{border-color:var(--bad); background:var(--bad-bg);}
+  .mi .tag{font-weight:800; color:var(--neva); margin-right:6px;}
+  .mrows{margin-top:14px; display:flex; flex-direction:column; gap:6px;}
+  .mrow{display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:14.5px;}
+  .mrow .mans{display:none; color:var(--neva); font-weight:700;}
+  .mrow.open .mans{display:inline;}
+  .first{font-weight:800; color:var(--neva); letter-spacing:.06em; margin-right:4px;}
+  .story .r0{}
+  .read .sent{display:inline;}
+  .read .ru{display:none;}
+  .read .sent.ruopen .ru{display:inline; margin:0 4px;}
+  .read{font-size:17px; line-height:2.05;}
+  .read .mini{margin:0 5px;}
+  @media (max-width:560px){ .match{grid-template-columns:1fr;} }
+  /* --- extra for 16.11 --- */
+  .bubbles{position:relative; min-height:260px; border-radius:16px; background:var(--chip); overflow:hidden;}
+  .bub{position:absolute; border-radius:50%; border:2px solid var(--neva-2); background:var(--card); color:var(--neva); font-family:var(--f-disp); font-weight:600; cursor:pointer; display:grid; place-items:center; transition:transform .35s ease, opacity .35s ease;}
+  .bub.pop{transform:scale(.25); opacity:.25; cursor:default;}
+  .bub.now{border-color:var(--brick); color:var(--brick);}
+  .bubq{font-family:var(--f-disp); font-size:22px; line-height:1.35; min-height:62px; margin-top:16px;}
+  .bubh{font-size:13px; color:var(--soft); margin-top:8px;}
+  .twocol{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px;}
+  .usebox{background:var(--chip); border-radius:12px; padding:14px;}
+  .usebox h4{margin:0 0 10px; font-size:13px; letter-spacing:.09em; text-transform:uppercase; color:var(--neva); display:flex; gap:8px; align-items:center;}
+  .usebox ol{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:8px; font-size:15px;}
+  .usebox .eg{display:block; font-family:var(--f-disp); font-size:15.5px; color:var(--ink); margin-top:2px;}
+  .usebox .mk{display:block; font-size:12.5px; color:var(--soft);}
+  .forms{width:100%; border-collapse:collapse; font-size:15px; min-width:460px;}
+  .forms th,.forms td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top;}
+  .forms th{background:var(--neva); color:var(--paper); font-size:12px; letter-spacing:.06em; text-transform:uppercase;}
+  .forms td b{color:var(--neva);}
+  .forms .eg{font-family:var(--f-disp);}
+  .pool{display:flex; flex-wrap:wrap; gap:6px; min-height:44px; padding:8px; border:2px dashed var(--line); border-radius:10px;}
+  .chipw{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:6px 12px; border-radius:12px; border:1.5px solid var(--neva-2); background:var(--card); color:var(--ink); text-align:left;}
+  .chipw.sel{background:var(--neva); color:var(--paper); border-color:var(--neva);}
+  .chipw.ok{background:var(--good-bg); border-color:var(--good); color:var(--good);}
+  .chipw.no{background:var(--bad-bg); border-color:var(--bad); color:var(--bad);}
+  .buckets{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin-top:12px;}
+  .bucket{border:2px solid var(--line); border-radius:12px; padding:10px; min-height:110px; background:var(--paper); cursor:pointer; display:flex; flex-direction:column; gap:6px;}
+  .bucket .bh{font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--neva-2);}
+  .bucket .bw{display:flex; flex-direction:column; gap:6px;}
+  .seltext{font-size:16.5px; line-height:2.3;}
+  .seltext select{font-family:inherit; font-size:15px; padding:2px 6px; border-radius:7px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); max-width:100%;}
+  .seltext select.ok, .seltext input.ok{border-color:var(--good); background:var(--good-bg);}
+  .seltext select.no, .seltext input.no{border-color:var(--bad); background:var(--bad-bg);}
+  .seltext input.gap{width:150px;}
+  .seltext .gn{font-size:11px; font-weight:800; color:var(--neva-2); vertical-align:super; margin-right:2px;}
+  .selfb{display:block; margin-top:10px; font-size:14.5px;}
+  .selfb .rowfb{padding:6px 0; border-bottom:1px dashed var(--line);}
+  .email{background:var(--paper); border:1px solid var(--line); border-left:4px solid var(--brick); border-radius:10px; padding:14px 18px;}
+  .tag2{display:inline-block; font-family:var(--f-body); font-weight:800; font-size:13px; color:var(--brick); border:1.5px solid var(--brick); border-radius:6px; width:26px; text-align:center; margin-right:8px;}
+  .prompt{font-size:13.5px; color:var(--soft); display:block; margin-top:2px;}
+  .reply{font-family:var(--f-disp); font-size:16.5px; margin-top:4px;}
+  .twelve{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px;}
+  .twelve div{background:var(--chip); border-radius:10px; padding:12px 14px;}
+  .twelve b{display:block; color:var(--neva); margin-bottom:4px;}
+  .plan{display:flex; flex-direction:column; gap:10px; margin:0; padding:0; list-style:none; counter-reset:pl;}
+  .plan li{counter-increment:pl; display:flex; gap:10px; align-items:flex-start;}
+  .plan li::before{content:counter(pl); flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:var(--brick); color:var(--paper); font-size:12px; font-weight:800; display:grid; place-items:center; margin-top:2px;}
+  .plan .pt{font-weight:800; color:var(--neva); display:block;}
+  .plan .px{font-family:var(--f-disp); font-size:16px;}
+  .phr{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:6px;}
+  .phr b{color:var(--neva);}
+
+/* Only additional controls needed for the new tasks; base design is unchanged. */
+.panel[hidden]{display:none!important}
+.reading-copy{font-size:16px;line-height:1.8}
+.reading-copy p{margin:0 0 14px}
+.reading-copy .para-label{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;margin-right:8px;background:var(--chip);color:var(--neva);font-size:12px;font-weight:800}
+.headbank{padding:12px 16px;background:var(--chip);border-radius:10px;margin:8px 0 16px}
+.headbank ol{margin:5px 0 0;padding-left:20px;font-size:14.5px;line-height:1.9}
+.readline{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.readline label{font-weight:800;color:var(--neva);min-width:112px}
+.readline select{background:var(--paper);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;font-family:inherit;font-size:14px}
+.readline .fb{width:100%}
+.flagitem{padding:13px 0;border-bottom:1px dashed var(--line)}
+.flagitem p{margin:0 0 7px;font-size:15.5px}
+.flagitem .opts{display:flex;flex-wrap:wrap;gap:6px}
+.flagitem .fb{margin-top:8px}
+.seltext.email{white-space:pre-line;line-height:2.4}
+.seltext.email select{margin:0 3px}
+.word-pool{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.wordchip{font-family:inherit;font-size:13.5px;font-weight:700;padding:7px 12px;border-radius:12px;cursor:pointer;border:1.5px solid var(--neva-2);background:var(--card);color:var(--ink)}
+.wordchip.sel{background:var(--neva);color:var(--paper)}
+.wordchip.used{opacity:.38;pointer-events:none}
+.cloze-box{padding:15px 18px;background:var(--chip);border-radius:12px;line-height:2.6;font-size:16px}
+.cloze-slot{font-family:inherit;font-size:13px;min-width:52px;max-width:100%;background:var(--card);border:1.5px dashed var(--neva-2);border-radius:8px;padding:7px 10px;cursor:pointer;color:var(--neva);margin:0 3px}
+.cloze-slot.filled{border-style:solid;background:var(--card);font-weight:800}
+.cloze-slot.correct{border-color:var(--good);color:var(--good);background:var(--good-bg)}
+.cloze-slot.incorrect{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
+.sctext{font-size:12px;color:var(--soft)}
+.footnotes{font-size:12px;color:var(--soft);margin-top:18px}
+@media(max-width:560px){.readline label{min-width:70px}.readline select{flex:1;min-width:0}.reading-copy{font-size:15px}}
+
+  /* Warm-up · topic tickets (18 November): a new visual instead of bubbles. */
+  .warm-intro{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:15px;border-bottom:1px solid var(--line);padding-bottom:13px}
+  .warm-intro .mark{font-size:11px;letter-spacing:.13em;font-weight:800;color:var(--brick)}
+  .warm-intro .tagline{font-size:12px;color:var(--soft)}
+  .warm-tickets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .warm-ticket{font-family:var(--f-body);position:relative;min-height:176px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:15px 15px 13px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:10px;overflow:hidden;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .warm-ticket:nth-child(3n+2){background:var(--chip)}
+  .warm-ticket:hover{transform:translateY(-2px);border-color:var(--neva-2);box-shadow:0 5px 15px rgba(0,0,0,.06)}
+  .warm-ticket[aria-expanded="true"]{border-color:var(--neva-2);background:var(--card)}
+  .warm-ticket .ticket-top{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--neva-2)}
+  .warm-ticket .ticket-num{font-family:var(--f-disp);font-size:37px;line-height:1;color:var(--neva);font-weight:500}
+  .warm-ticket .ticket-topic{font-family:var(--f-disp);font-size:21px;line-height:1.16;font-weight:500;flex:1}
+  .warm-ticket .ticket-divider{border-top:1px dashed var(--neva-2);width:100%;opacity:.7}
+  .warm-ticket .ticket-action{color:var(--brick);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .warm-ticket .ticket-question{display:none;font-family:var(--f-disp);font-size:19px;line-height:1.22;flex:1}
+  .warm-ticket[aria-expanded="true"] .ticket-num,.warm-ticket[aria-expanded="true"] .ticket-topic{display:none}
+  .warm-ticket[aria-expanded="true"] .ticket-question{display:block}
+  .warm-bottom{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap}
+  .warm-count{font-weight:800;font-size:13px;color:var(--neva)}
+  .warm-progress{display:flex;gap:5px}
+  .warm-progress span{height:7px;width:25px;border-radius:999px;background:var(--line)}
+  .warm-progress span.done{background:var(--neva-2)}
+  @media(max-width:760px){.warm-tickets{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:480px){.warm-tickets{grid-template-columns:1fr}.warm-ticket{min-height:133px}.warm-ticket .ticket-topic{font-size:20px}}
+</style></head>
+<body><div class="wrap">
+<header class="top"><span class="eyebrow">18 November 2026</span><h1>Present Simple or Present Continuous?</h1><div class="meta">General English with an IELTS focus</div></header>
+<nav class="tabs" role="tablist">
+ <button class="tab" role="tab" aria-selected="true" data-p="p1">1. Warm-up</button>
+ <button class="tab" role="tab" aria-selected="false" data-p="p2">2. Homework check</button>
+ <button class="tab" role="tab" aria-selected="false" data-p="p3">3. Grammar</button>
+ <button class="tab" role="tab" aria-selected="false" data-p="p4">4. Reading</button>
+ <button class="tab" role="tab" aria-selected="false" data-p="p5">5. Vocabulary</button>
+ <button class="tab" role="tab" aria-selected="false" data-p="p6">6. Speaking</button>
+ <button class="tab" role="tab" aria-selected="false" data-p="p7">7. Translation · homework</button>
+</nav>
+<section class="panel" id="p1" role="tabpanel">
+<p class="lead"><span class="ielts">IELTS Speaking · Part 1</span>Choose a topic ticket. Give a direct answer and add one detail — a reason, an example or a personal experience.</p>
+<div class="card">
+<h3>Six questions · topic tickets</h3>
+<div class="warm-intro"><span class="mark">SPEAKING PRACTICE / 01</span><span class="tagline">Open any card to reveal its question</span></div>
+<div class="warm-tickets" id="warmTickets"></div>
+<div class="warm-bottom"><span class="warm-count" id="warmCount" aria-live="polite">0 / 6 revealed</span><div class="warm-progress" id="warmProgress" aria-hidden="true"></div></div>
+<div class="note"><b>Remember:</b> answer the question first, then add a little more. For example: <i>"Yes, I do. I usually… because…"</i></div>
+</div>
+</section>
+<section class="panel" id="p2" role="tabpanel" hidden>
+<p class="lead">Homework check. Translate the story from 16 November aloud, sentence by sentence. Press EN to check.</p>
+<div class="card"><h3>Translation · 16 November</h3><div class="story" id="hwtrans"></div></div>
+</section>
+<section class="panel" id="p3" role="tabpanel" hidden>
+<p class="lead">Two tenses, one lesson. Review the theory from our last lesson, then practise in four different ways.</p>
+<div class="card"><h3>Reminder — when do we use each tense?</h3><div class="twocol"><div class="usebox" id="usePS"><h4>Present Simple</h4></div><div class="usebox" id="usePC"><h4>Present Continuous</h4></div></div></div>
+<div class="card"><h3>Form</h3><div class="tscroll"><table class="forms" id="formTbl"></table></div></div>
+<div class="card"><h3>Indicators — words that help you choose</h3><div class="twocol"><div class="usebox"><h4>Present Simple</h4><div id="indPS" style="font-size:15.5px;line-height:1.9"></div></div><div class="usebox"><h4>Present Continuous</h4><div id="indPC" style="font-size:15.5px;line-height:1.9"></div></div></div><div class="note">Meaning matters more than a signal word: <b>nowadays</b> often introduces general trends; <b>these days</b> can refer to a temporary situation.</div></div>
+<div class="card"><h3>Exercise 1 — choose the correct pair</h3><p class="instr">Read the whole situation. Each option contains <b>two</b> verb forms. Choose the pair that fits both meanings.</p><ol class="items" id="g1"></ol><div class="exfoot"><span class="cmsg" id="g1score"></span></div></div>
+<div class="card"><h3>Exercise 2 — messages from the PR team</h3><p class="instr">Complete each message using Present Simple or Present Continuous. Include the auxiliary where necessary.</p><ol class="items" id="g2"></ol><div class="exfoot"><span class="cmsg" id="g2score"></span></div></div>
+<div class="card"><h3>Exercise 3 — an email from the museum</h3><p class="instr">Choose the correct form for each gap in the email.</p><div class="seltext email" id="g3text"></div><div class="exfoot"><button type="button" class="chk" id="g3Check">CHECK</button><button type="button" class="ans" id="g3Answer">ANSWER</button><span class="cmsg" id="g3score"></span></div><div class="selfb" id="g3Feedback"></div></div>
+<div class="card"><h3>Exercise 4 — edit the PR copy</h3><p class="instr">Each sentence has one grammar mistake. Write the whole corrected sentence.</p><ol class="items" id="g4"></ol><div class="exfoot"><span class="cmsg" id="g4score"></span></div></div>
+</section>
+<section class="panel" id="p4" role="tabpanel" hidden>
+<p class="lead"><span class="ielts">IELTS Academic · Reading</span>Short practice passage. Read for meaning, not just individual words.</p>
+<div class="card"><h3>How museums connect with students</h3><p class="instr">Approximately 250 words · Suggested reading time: 5–6 minutes · 7 questions</p>
+<div class="reading-copy">
+<p><span class="para-label">A</span> A museum can own an impressive collection and still struggle to attract university students. Posters and notices may announce an exhibition, yet these methods largely send information in one direction. Some museums now regard communication as a conversation rather than a series of announcements. They invite questions and encourage visitors to share opinions. For public relations staff, success is not simply making people aware of a show; it is helping them feel that the institution is a place they can return to.</p>
+<p><span class="para-label">B</span> Before designing a campaign, teams may interview students or use short questionnaires. One group might think museum tickets are too expensive, while another has never heard about the programme. Staff sometimes discover that opening hours, rather than admission prices, are the real obstacle. Research does not guarantee more visitors, but it helps teams avoid assumptions. It can also influence when events are held and which messages appear online.</p>
+<p><span class="para-label">C</span> Digital posts can introduce staff, show preparations and invite questions. However, posting every day does not automatically build trust; people may stop responding if their comments are ignored. Museums sometimes work with student societies to organise discussions or guided visits. After an event, they can ask participants how they heard about it and whether they want to come back. Likes and video views provide useful signals, but they cannot reveal on their own whether a visitor feels more welcome. In other words, online activity needs to be connected with real experiences and thoughtful follow-up.</p>
+</div></div>
+<div class="card"><h3>Task 1 — matching headings</h3><p class="instr">Match headings <b>i–v</b> to paragraphs <b>A–C</b>. There are two extra headings.</p><div class="headbank"><b>List of headings</b><ol type="i" id="headList"></ol></div><div id="headingRows"></div><div class="exfoot"><button class="chk" type="button" id="headingCheck">CHECK</button><button class="ans" type="button" id="headingAnswer">ANSWER</button><span class="cmsg" id="headingScore"></span></div></div>
+<div class="card"><h3>Task 2 — true / false / not given</h3><p class="instr">TRUE — the passage agrees · FALSE — the passage contradicts · NOT GIVEN — no information is provided.</p><div id="flagRows"></div><div class="exfoot"><button class="chk" type="button" id="flagCheck">CHECK</button><button class="ans" type="button" id="flagAnswer">ANSWER</button><span class="cmsg" id="flagScore"></span></div></div>
+</section>
+<section class="panel" id="p5" role="tabpanel" hidden>
+<p class="lead">Nine useful words and expressions. Tap a card for the translation. Tap ▶ to hear the pronunciation.</p>
+<div class="card"><h3>Word cards</h3><div class="cards" id="cards"></div></div>
+<div class="card"><h3>Exercise 1 — choose the best expression in context</h3><p class="instr">Complete each real-life situation. Choose the option that makes the sentence sound natural.</p><ol class="items" id="v1"></ol><div class="exfoot"><span class="cmsg" id="v1score"></span></div></div>
+<div class="card"><h3>Exercise 2 — the student PR project</h3><p class="instr">Choose a phrase from the bank, then tap a gap to place it in the story. Each phrase is used once. Tap a filled gap to return it to the bank.</p><div class="word-pool" id="wordPool"></div><div class="cloze-box" id="vCloze"></div><div class="exfoot"><button class="chk" type="button" id="vCheck">CHECK</button><button class="ans" type="button" id="vAnswer">ANSWER</button><button class="copy" type="button" id="vReset">Reset</button><span class="cmsg" id="vScore"></span></div></div>
+</section>
+<section class="panel" id="p6" role="tabpanel" hidden>
+<p class="lead"><span class="ielts">IELTS Speaking · Part 2</span>1 minute to prepare and make notes, then speak for 1–2 minutes.</p>
+<div class="card"><h3>Task card</h3><div class="cue"><p class="cue-t">Describe an advertisement or public campaign that you remember well.</p><p class="cue-s">You should say:</p><ul><li>where and when you saw it</li><li>what product, service or idea it promoted</li><li>who you think it was aimed at</li></ul><p class="cue-s">and explain why it made an impression on you.</p></div>
+<div class="timer"><span class="clock" id="clock">1:00</span><button class="pbtn" type="button" id="tPrep">Preparation 1 min</button><button class="pbtn" type="button" id="tTalk">Speech 2 min</button><button class="pbtn sec" type="button" id="tStop">■ Stop</button><span class="pstat" id="tStat"></span></div>
+<div class="note">Useful contrast: <b>Present Simple</b> for what a company generally does, and <b>Present Continuous</b> for a campaign it is running now.</div></div>
+<div class="card"><h3>Plan your answer</h3><ol class="plan" id="splan"></ol></div>
+<div class="card"><h3>Linking words and useful phrases</h3><ul class="phr" id="sphr"></ul></div>
+<div class="card"><h3>If we have time</h3><ol class="qs"><li><span class="q">Why do some advertisements become memorable?</span></li><li><span class="q">Do companies need different messages for young and older audiences?</span></li><li><span class="q">How is social media changing the relationship between organisations and the public?</span></li></ol></div>
+</section>
+<section class="panel" id="p7" role="tabpanel" hidden>
+<p class="lead">Homework. Translate the connected story aloud, sentence by sentence. Press EN to check yourself.</p>
+<div class="card"><h3>Translation</h3><div class="story" id="trans"></div></div>
+</section>
+</div>
+<script>
+(function(){
+'use strict';
+const $=(s,p=document)=>p.querySelector(s), $$=(s,p=document)=>Array.from(p.querySelectorAll(s));
+function el(tag,cls,t){const n=document.createElement(tag);if(cls)n.className=cls;if(t!==undefined)n.textContent=t;return n;}
+function norm(v){return String(v||'').toLowerCase().replace(/[‘’`]/g,"'").replace(/[.,!?;:—“”«»]/g,' ').replace(/\s+/g,' ').trim();}
+function shuffle(a){let b=a.slice();for(let i=b.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[b[j],b[i]]=[b[i],b[j]];}return b;}
+function score(id,n,total){const s=$('#'+id);s.textContent=n+' / '+total+(n===total?' · Excellent!':'');s.style.color=n===total?'var(--good)':'var(--neva-2)';}
+// Same tab system as Sarah's 16 November file.
+const tabs=$$('.tab');tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(o=>{let on=o===t;o.setAttribute('aria-selected',on?'true':'false');$('#'+o.dataset.p).hidden=!on;});window.scrollTo({top:0,behavior:'smooth'});}));
+// Warm-up: original animated bubble presentation, different questions.
+const WARM=[
+  {topic:'Study habits',q:'Do you prefer studying alone or with other people?'},
+  {topic:'Social media',q:'How often do you use social media?'},
+  {topic:'Advertising',q:'What kind of advertisements usually catch your attention?'},
+  {topic:'University',q:'Are you working on any university projects at the moment?'},
+  {topic:'Exploring',q:'Do you enjoy visiting new places?'},
+  {topic:'Future plans',q:'What would you like to study after your bachelor’s degree?'}
+];
+(function(){
+  const host=$('#warmTickets'),counter=$('#warmCount'),progress=$('#warmProgress');
+  const marks=[];
+  for(let i=0;i<WARM.length;i++){const m=el('span');progress.append(m);marks.push(m);}
+  const tickets=shuffle(WARM);
+  let seen=0;
+  tickets.forEach((item,i)=>{
+    const b=el('button','warm-ticket');b.type='button';b.setAttribute('aria-expanded','false');
+    b.setAttribute('aria-label','Reveal question about '+item.topic);
+    const top=el('span','ticket-top');top.append(el('span',null,'IELTS / PART 1'),el('span',null,String(i+1).padStart(2,'0')+' / 06'));
+    const num=el('span','ticket-num',String(i+1).padStart(2,'0'));
+    const topic=el('span','ticket-topic',item.topic);
+    const question=el('span','ticket-question',item.q);
+    const sep=el('span','ticket-divider');
+    const action=el('span','ticket-action','REVEAL QUESTION  +');
+    b.append(top,num,topic,question,sep,action);
+    let visited=false;
+    b.addEventListener('click',()=>{
+      const opening=b.getAttribute('aria-expanded')!=='true';
+      b.setAttribute('aria-expanded',opening?'true':'false');
+      b.setAttribute('aria-label',(opening?'Hide':'Reveal')+' question about '+item.topic);
+      action.textContent=opening?'CLOSE QUESTION  −':'REVEAL QUESTION  +';
+      if(!visited){visited=true;seen++;marks[i].classList.add('done');counter.textContent=seen+' / '+WARM.length+' revealed'+(seen===WARM.length?' · all done!':'');}
+    });
+    host.append(b);
+  });
+})();
+// Translation exactly in original inline story presentation.
+function story(id,pairs){const host=$('#'+id);pairs.forEach(([ru,en])=>{let w=el('span','sw');w.append(el('span','r0',ru));const b=el('button','mini','EN');b.type='button';b.setAttribute('aria-label','Show English translation');b.addEventListener('click',()=>{let on=w.classList.toggle('open');b.classList.toggle('on',on);});w.append(b,el('span','enx',en));host.append(w,document.createTextNode(' '));});}
+story('hwtrans',[["Я учусь на третьем курсе и интересуюсь искусством.", "I'm a third-year student, and I'm interested in art."], ["Обычно я хожу в музей два или три раза в год.", "I usually go to the museum two or three times a year."], ["Но в этом месяце я хожу туда каждую неделю: там новая выставка.", "But this month I'm going there every week: there's a new exhibition."], ["Молодой художник из Франции работает с галереей три недели.", "A young artist from France is working with the gallery for three weeks."], ["Он говорит по-французски, поэтому экскурсии ведет гид.", "He speaks French, so a guide gives the tours."], ["Сейчас я готовлюсь к презентации о музеях.", "Right now I'm preparing for a presentation about museums."], ["В наши дни многие компании запускают свои проекты онлайн.", "Nowadays many companies launch their projects online."], ["А ты часто ходишь на выставки?", "And do you often go to exhibitions?"]]);
+story('trans',[
+  ["Я изучаю PR и хотела бы работать в международной компании.", "I study PR and would like to work for an international company."],
+  ["В наши дни компании часто запускают проекты онлайн.", "Nowadays, companies often launch projects online."],
+  ["На этой неделе наша группа готовит кампанию для музея.", "This week our group is preparing a campaign for a museum."],
+  ["Обычно я делаю презентацию раз в месяц, но сейчас готовлю одну для директора.", "I usually make a presentation once a month, but right now I'm preparing one for the director."],
+  ["В субботу мы организуем экскурсию для студентов.", "We're organising an excursion for students on Saturday."],
+  ["Такая работа мне по душе, но из-за проекта сегодня я поздно прихожу домой.", "This kind of work is my cup of tea, but I'm coming home late today because of the project."],
+  ["Ты хотел(а) бы присоединиться к нашей команде?", "Would you like to join our team?"]
+]);
+// Reminder from original, unchanged content.
+const PS=[["Facts and things that are always true", "My sister lives in France."], ["Habits and routines", "I make a presentation every month."], ["Scientific facts", "Water boils at 100 degrees."], ["Timetables — trains, lectures, films", "The gallery opens at ten."]], PC=[["An action at the moment of speaking", "Look! She is making a presentation."], ["An action around now", "These days I'm preparing for my exams."], ["A temporary situation", "This month our company is working from home."], ["Plans we are sure about", "We're launching the campaign on Friday."]];
+function fillUses(id,a){const ol=el('ol');a.forEach(([name,example])=>{let li=el('li');li.append(document.createTextNode(name),el('span','eg',example));ol.append(li);});$('#'+id).append(ol);}fillUses('usePS',PS);fillUses('usePC',PC);
+const F={"head": ["", "Present Simple", "Present Continuous"], "rows": [["+", "I / we / you / they <b>work</b><br>he / she / it <b>works</b><br><span class=\"eg\">She works in a museum.</span>", "am / is / are + V-<b>ing</b><br><span class=\"eg\">She is working in a museum this month.</span>"], ["−", "<b>don't</b> / <b>doesn't</b> + V<br><span class=\"eg\">She doesn't work on Sundays.</span>", "am / is / are + <b>not</b> + V-ing<br><span class=\"eg\">She isn't working today.</span>"], ["?", "<b>Do</b> / <b>Does</b> + subject + V<br><span class=\"eg\">Does she work here?</span>", "<b>Am</b> / <b>Is</b> / <b>Are</b> + subject + V-ing<br><span class=\"eg\">Is she working now?</span>"]]},table=$('#formTbl'),thead=el('thead'),tr=el('tr');F.head.forEach(t=>tr.append(el('th',null,t)));thead.append(tr);table.append(thead);const tbody=el('tbody');F.rows.forEach(row=>{const tr=el('tr');row.forEach((v,i)=>{const td=el('td');if(i)td.innerHTML=v;else td.innerHTML='<b style="font-size:18px">'+v+'</b>';tr.append(td);});tbody.append(tr);});table.append(tbody);
+$('#indPS').textContent="always · usually · often · sometimes · rarely · never · every day · twice a week · on Mondays · nowadays";$('#indPC').textContent="now · right now · at the moment · today · this week · these days · this month · tonight · tomorrow · Look! · Listen!";
+// Source-style individual task feedback: CHECK/ANSWER + short reason.
+function setFeedback(fb,correct,show,answer,why){fb.className='fb '+(show?'show':correct?'ok':'no');fb.textContent='';fb.append(el('span','right',(show?'Answer: ':correct?'Correct! ':'Not quite. Answer: ')+(show||!correct?answer:'')),document.createTextNode(why?' '+why:''));fb.parentElement.parentElement.classList.add('done');}
+function buildItems(id,items){const host=$('#'+id);let correctCount=0,stats=[];items.forEach((item,i)=>{const li=el('li'),body=el('div','qbody'),text=el('div','qtext',item.q),fb=el('div','fb'),btns=el('div','btns');body.append(text);let getValue,buttons=[];
+ if(item.opts){const opts=el('div','opts');let picked='';item.opts.forEach(label=>{const b=el('button',null,label);b.type='button';buttons.push(b);b.addEventListener('click',()=>{picked=label;buttons.forEach(x=>x.classList.remove('pick-ok','pick-no'));b.classList.add(label===item.a?'pick-ok':'pick-no');setFeedback(fb,label===item.a,false,item.a,item.why);update();});opts.append(b);});body.append(opts);getValue=()=>picked;}
+ else{const inp=el('input','gap wide');inp.type='text';inp.autocomplete='off';inp.spellcheck=false;inp.placeholder='Write your answer…';inp.setAttribute('aria-label','Answer '+(i+1));body.append(inp);getValue=()=>inp.value;inp.addEventListener('keydown',e=>{if(e.key==='Enter')check.click();});const check=el('button','chk','CHECK');check.type='button';check.addEventListener('click',()=>{let ok=accepted().some(a=>norm(getValue())===norm(a))&&norm(getValue())!=='';setFeedback(fb,ok,false,item.model||accepted()[0],item.why);li.classList.toggle('okrow',ok);li.classList.toggle('norow',!ok);update();});btns.append(check);}
+ const accepted=()=>Array.isArray(item.a)?item.a:[item.a];const answer=el('button','ans','ANSWER');answer.type='button';answer.addEventListener('click',()=>{setFeedback(fb,false,true,item.model||accepted()[0],item.why);update();});btns.append(answer);body.append(fb);li.append(body,btns);host.append(li);stats.push({li,getValue,accepted});
+ });function update(){let c=stats.filter(s=>norm(s.getValue())!==''&&s.accepted().some(a=>norm(a)===norm(s.getValue()))).length;score(id+'score',c,items.length);} }
+buildItems('g1',[{"q": "Our agency usually ___ local charities, but this month it ___ a national museum.", "opts": ["works with / is advising", "is working with / advises", "works with / advises"], "a": "works with / is advising", "why": "Usual client work versus a temporary assignment this month."}, {"q": "I ___ what you mean, but I ___ that this campaign is effective.", "opts": ["am understanding / do not think", "understand / do not think", "understand / am not thinking"], "a": "understand / do not think", "why": "Understand and think (= believe) are generally state verbs here."}, {"q": "The gallery normally ___ at 10:00, but its staff ___ a private event early tomorrow.", "opts": ["opens / are hosting", "is opening / host", "opens / host"], "a": "opens / are hosting", "why": "A regular schedule versus a confirmed special arrangement."}, {"q": "Sara usually ___ the client brief, but today another student ___ that task.", "opts": ["is writing / handles", "writes / is handling", "writes / handles"], "a": "writes / is handling", "why": "Usually is routine; today is a temporary exception."}, {"q": "We ___ the results yet, so our analyst ___ the responses again this afternoon.", "opts": ["don't know / is checking", "aren't knowing / checks", "don't know / checks"], "a": "don't know / is checking", "why": "Know is a state; the checking is a temporary activity."}, {"q": "Why ___ the campaign ___ so much interest this week? It normally ___ little attention.", "opts": ["does / attract / is receiving", "is / attracting / receives", "is / attract / receives"], "a": "is / attracting / receives", "why": "An unusual ongoing trend this week versus the normal situation."}, {"q": "The conference programme ___ a Q&A every Friday, but we ___ one this week because the guest is ill.", "opts": ["includes / aren't holding", "is including / don't hold", "includes / don't hold"], "a": "includes / aren't holding", "why": "A regular programme versus a temporary cancellation."}, {"q": "Our lecturer ___ the same examples every year, but this semester she ___ new case studies from PR agencies.", "opts": ["uses / is introducing", "is using / introduces", "uses / introduces"], "a": "uses / is introducing", "why": "The annual habit contrasts with a current semester-long change."}]);buildItems('g2',[{"q": "“I ___ (study) public relations at university.”", "a": ["study"], "why": "A fact about the speaker."}, {"q": "“Right now our team ___ (prepare) a campaign for a museum.”", "a": ["is preparing", "'s preparing"], "why": "Right now → Present Continuous."}, {"q": "“The company ___ (not / send) press releases on Sundays.”", "a": ["doesn't send", "does not send"], "why": "Regular practice → does not + base verb."}, {"q": "“___ (you / work) on a new project this month?”", "a": ["are you working"], "why": "A temporary project this month."}, {"q": "“She usually ___ (make) presentations for the client.”", "a": ["makes"], "why": "She + usually → makes."}, {"q": "“We ___ (not / launch) the app this week; the design is not ready.”", "a": ["aren't launching", "are not launching"], "why": "A current short-term plan, negative."}, {"q": "“What time ___ (the lecture / start) every Tuesday?”", "a": ["does the lecture start"], "why": "A timetable → does + subject + base verb."}, {"q": "“Listen! The journalist ___ (ask) the director a question.”", "a": ["is asking", "'s asking"], "why": "Listen! → an action happening now."}]);buildItems('g4',[{"q": "Our company launch a new website every autumn.", "a": ["our company launches a new website every autumn"], "model": "Our company launches a new website every autumn.", "why": "A routine; company = it → launches."}, {"q": "Listen! The spokesperson talks to reporters outside.", "a": ["listen the spokesperson is talking to reporters outside"], "model": "Listen! The spokesperson is talking to reporters outside.", "why": "Listen! → is talking."}, {"q": "Does your course includes public relations research?", "a": ["does your course include public relations research"], "model": "Does your course include public relations research?", "why": "After does, use the base verb."}, {"q": "The museum doesn’t opens at ten on Sundays.", "a": ["the museum doesn't open at ten on sundays", "the museum does not open at ten on sundays"], "model": "The museum doesn't open at ten on Sundays.", "why": "A timetable → doesn’t + base verb."}, {"q": "We are usually making presentations on Fridays.", "a": ["we usually make presentations on fridays"], "model": "We usually make presentations on Fridays.", "why": "A regular activity → Present Simple."}, {"q": "Why the team is working late this week?", "a": ["why is the team working late this week"], "model": "Why is the team working late this week?", "why": "Question word + is + subject + verb-ing."}, {"q": "She doesn’t preparing for the event at the moment.", "a": ["she isn't preparing for the event at the moment", "she is not preparing for the event at the moment"], "model": "She isn't preparing for the event at the moment.", "why": "Present Continuous negative: is not + -ing."}, {"q": "The next bus is leaving at 8 a.m. every weekday.", "a": ["the next bus leaves at 8 am every weekday"], "model": "The next bus leaves at 8 a.m. every weekday.", "why": "A timetable → Present Simple."}]);buildItems('v1',[{"q": "This kind of work is definitely ___ — I love finding creative ways to reach new audiences.", "opts": ["my cup of tea", "a museum", "an excursion"], "a": "my cup of tea", "why": "My cup of tea = something I enjoy doing."}, {"q": "My last seminar finishes late, so I rarely ___ before 7 p.m.", "opts": ["launch a campaign", "come home", "make a presentation"], "a": "come home", "why": "Come home means return to where you live."}, {"q": "I have twenty slides and a meeting with the client tomorrow. I need to ___.", "opts": ["come home", "make a presentation", "launch a company"], "a": "make a presentation", "why": "Presenting slides to a client is making/giving a presentation."}, {"q": "The master’s programme sounds perfect. I ___ to apply next year.", "opts": ["would like", "nowadays", "excursion"], "a": "would like", "why": "Would like to + verb = a polite wish or intention."}, {"q": "For her assignment, she interviews visitors to the local ___ about their favourite exhibits.", "opts": ["company", "museum", "launch"], "a": "museum", "why": "People see exhibits in a museum."}, {"q": "Her internship is with a PR ___ that manages communication for charities.", "opts": ["company", "excursion", "museum"], "a": "company", "why": "A company can provide public relations services."}, {"q": "___, students often discover events through social media rather than printed posters.", "opts": ["Would like", "Nowadays", "Come home"], "a": "Nowadays", "why": "Nowadays = in modern times."}, {"q": "The brand plans to ___ a new awareness campaign at the start of December.", "opts": ["come home", "go on an excursion", "launch"], "a": "launch", "why": "To launch a campaign = introduce/start it publicly."}, {"q": "The class is going on an ___ to a historical town as part of a cultural studies course.", "opts": ["excursion", "company", "presentation"], "a": "excursion", "why": "An excursion is a short organised educational or leisure trip."}]);
+// Grammar exercise 3: selectable verbs in a PR team email, unchanged from the previous version.
+const G3={"parts": ["Dear team,\n\nOur museum ", " a small exhibition every spring. This year we ", " a new digital programme to attract students. Our PR officer usually ", " the press releases, but today she ", " interviews with visitors. The museum ", " on Mondays, so we ", " public events on those days. I ", " a presentation for our partners at the moment. By the way, ", " the university group ", " us on Thursday?\n\nBest wishes,\nAlex"], "a": ["organises", "are launching", "writes", "is recording", "doesn't open", "don't hold", "am making", "is", "joining"], "o": [["organises", "is organising", "organise"], ["launch", "are launching", "launches"], ["writes", "is writing", "write"], ["records", "is recording", "record"], ["doesn't open", "isn't opening", "don't open"], ["don't hold", "aren't holding", "isn't holding"], ["make", "am making", "makes"], ["do", "does", "is"], ["joins", "join", "joining"]]},g3inputs=[];G3.parts.forEach((p,i)=>{$('#g3text').append(document.createTextNode(p));if(i<G3.a.length){const s=el('select');s.append(new Option('…',''));shuffle(G3.o[i]).forEach(v=>s.append(new Option(v,v)));s.setAttribute('aria-label','Email gap '+(i+1));$('#g3text').append(s);g3inputs.push(s);}});
+function checkG3(show){let c=0,wrong=[];g3inputs.forEach((s,i)=>{let ok=norm(s.value)===norm(G3.a[i]);if(ok)c++;s.classList.remove('ok','no');if(s.value)s.classList.add(ok?'ok':'no');if(show||!ok)wrong.push((i+1)+'. '+G3.a[i]);});score('g3score',c,g3inputs.length);$('#g3Feedback').textContent=(show?'Answers: ':'Review: ')+wrong.join(' · ');}
+$('#g3Check').addEventListener('click',()=>checkG3(false));$('#g3Answer').addEventListener('click',()=>checkG3(true));
+// Short IELTS-style reading exercises: 3 headings + 4 T/F/NG.
+const heads=["Communication as a relationship", "Ticket discounts for every student", "Researching obstacles before a campaign", "The history of museum buildings", "Combining digital messages with real experiences"];heads.forEach(t=>$('#headList').append(el('li',null,t)));const headingSels=[];
+'ABC'.split('').forEach((name,i)=>{const row=el('div','readline'),label=el('label',null,'Paragraph '+name),sel=el('select');sel.append(new Option('Choose a heading…',''));heads.forEach((h,k)=>sel.append(new Option(['i','ii','iii','iv','v'][k],String(k+1))));label.htmlFor='heading'+name;sel.id='heading'+name;row.append(label,sel);$('#headingRows').append(row);headingSels.push(sel);});
+function gradeHeadings(show){let good=0,answers=[];headingSels.forEach((sel,i)=>{let ok=Number(sel.value)===[1, 3, 5][i];if(ok)good++;sel.classList.remove('ok','no');if(sel.value)sel.classList.add(ok?'ok':'no');if(show||!ok)answers.push('Paragraph '+'ABC'[i]+' — '+['i','ii','iii','iv','v'][[1, 3, 5][i]-1]);});score('headingScore',good,3);$('#headingScore').title=answers.join(' · ');if(show||good!==3){const pre=$('#headingHint');if(pre)pre.remove();const p=el('p','note',answers.join(' · '));p.id='headingHint';$('#headingRows').append(p);}}
+$('#headingCheck').addEventListener('click',()=>gradeHeadings(false));$('#headingAnswer').addEventListener('click',()=>gradeHeadings(true));
+const flags=[{"q": "Posters can announce an exhibition without creating much two-way conversation.", "a": "TRUE", "why": "Paragraph A says such methods largely send information in one direction."}, {"q": "Audience research guarantees an increase in visitor numbers.", "a": "FALSE", "why": "Paragraph B says research does not guarantee more visitors."}, {"q": "The museums described pay less for university partnerships than for online advertisements.", "a": "NOT GIVEN", "why": "The text does not compare partnership and advertising costs."}, {"q": "Museums can ask participants how they found out about an event.", "a": "TRUE", "why": "Paragraph C explicitly mentions asking how visitors heard about it."}],flagStates=[];flags.forEach((item,i)=>{let row=el('div','flagitem'),p=el('p',null,(i+1)+'. '+item.q),opts=el('div','opts'),fb=el('div','fb'),state={value:'',buttons:[],fb,item};['TRUE','FALSE','NOT GIVEN'].forEach(v=>{let b=el('button',null,v);b.type='button';state.buttons.push(b);b.addEventListener('click',()=>{state.value=v;state.buttons.forEach(q=>q.classList.remove('pick-ok','pick-no'));b.classList.add('pick-ok');fb.classList.remove('show');});opts.append(b);});row.append(p,opts,fb);$('#flagRows').append(row);flagStates.push(state);});
+function gradeFlags(show){let good=0;flagStates.forEach(s=>{let ok=s.value===s.item.a;if(ok)good++;s.buttons.forEach(b=>{b.classList.remove('pick-ok','pick-no');if(show&&b.textContent===s.item.a)b.classList.add('pick-ok');else if(s.value===b.textContent)b.classList.add(ok?'pick-ok':'pick-no');});s.fb.className='fb show';s.fb.textContent=(ok&&!show?'Correct. ':s.item.a+' — ')+s.item.why;});score('flagScore',good,flags.length);}
+$('#flagCheck').addEventListener('click',()=>gradeFlags(false));$('#flagAnswer').addEventListener('click',()=>gradeFlags(true));
+// Vocabulary cards: unchanged flip-card experience from the original lesson.
+let voice=null;function loadVoices(){if(!('speechSynthesis'in window))return;const all=speechSynthesis.getVoices();voice=all.find(v=>/en[-_]GB/i.test(v.lang))||all.find(v=>/^en/i.test(v.lang))||null;}if('speechSynthesis'in window){loadVoices();speechSynthesis.addEventListener?.('voiceschanged',loadVoices);}
+function speak(v){if(!('speechSynthesis'in window))return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(v);u.lang='en-GB';u.rate=.88;if(voice)u.voice=voice;speechSynthesis.speak(u);}catch(e){}}
+const WORDS=[["my cup of tea", "/maɪ ˌkʌp əv ˈtiː/", "something I enjoy or find interesting; often used with not", "Designing campaigns is my cup of tea.", "то, что мне по душе; моё"], ["to come home", "/tə ˌkʌm ˈhəʊm/", "to arrive back at the place where you live", "I usually come home at six.", "приходить домой"], ["to make a presentation", "/tə ˌmeɪk ə ˌprezənˈteɪʃn/", "to prepare and present information to an audience; also: give a presentation", "I make a presentation once a month.", "делать презентацию"], ["would like", "/wʊd ˈlaɪk/", "a polite way to say that you want something; would like to + verb", "I'd like to study PR abroad.", "хотел(а) бы"], ["museum", "/mjuˈziːəm/", "a place where objects of art, history or science are displayed", "The museum opens at ten.", "музей"], ["company", "/ˈkʌmpəni/", "an organisation that sells products or services", "This company works with universities.", "компания, фирма"], ["nowadays", "/ˈnaʊədeɪz/", "in the present time, compared with the past", "Nowadays organisations communicate online.", "в наши дни, сейчас"], ["to launch", "/tə ˈlɔːntʃ/", "to introduce a new product, service, event or campaign", "We're going to launch a project soon.", "запускать, представлять"], ["excursion", "/ɪkˈskɜːʃn/", "a short organised trip for learning or pleasure; for a museum visit, guided tour is often more natural", "Our class is going on an excursion.", "экскурсия, организованная поездка"]];WORDS.forEach(w=>{let d=el('div','vc');d.tabIndex=0;d.setAttribute('role','button');const en=el('span','en',w[0]),b=el('button','mini say','▶');b.type='button';b.setAttribute('aria-label','Listen to '+w[0]);b.addEventListener('click',e=>{e.stopPropagation();speak(w[0].replace(/^to /,''));});en.append(b);d.append(en,el('span','tr',w[1]),el('span','df',w[2]),el('span','ex',w[3]),el('span','rux',w[4]),el('span','tap','tap for Russian'));function flip(){d.classList.toggle('flip');}d.addEventListener('click',flip);d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip();}});$('#cards').append(d);});
+// Vocabulary: original previous version's interactive cloze story.
+const poolWords=["would like", "company", "Nowadays", "launch", "museum", "make a presentation", "excursion", "my cup of tea", "come home"],clozeParts=["I am studying public relations, and I ", " to work for a creative ", " after graduation. ", ", many organisations communicate directly with their audiences. This week, our university team is preparing to ", " a campaign for a local ", ". Tomorrow, we need to ", " about our ideas. On Saturday, we are organising an ", " for first-year students. Museum communication is definitely ", "! After our team meetings, I normally ", " and relax."];let selected=null,slots=[];
+function buildCloze(){const bank=$('#wordPool'),box=$('#vCloze');bank.replaceChildren();box.replaceChildren();slots=[];selected=null;poolWords.forEach((w,i)=>{const c=el('button','wordchip',w);c.type='button';c.dataset.idx=i;c.addEventListener('click',()=>{if(c.classList.contains('used'))return;$$('.wordchip',bank).forEach(x=>x.classList.remove('sel'));selected=i;c.classList.add('sel');});bank.append(c);});clozeParts.forEach((p,i)=>{box.append(document.createTextNode(p));if(i<poolWords.length){const s=el('button','cloze-slot',(i+1)+' +');s.type='button';s.dataset.word='';s.addEventListener('click',()=>{if(s.dataset.word!==''){let old=Number(s.dataset.word),chip=bank.querySelector('[data-idx="'+old+'"]');chip.classList.remove('used','sel');s.dataset.word='';s.textContent=(i+1)+' +';s.className='cloze-slot';return;}if(selected===null)return;const chip=bank.querySelector('[data-idx="'+selected+'"]');s.dataset.word=String(selected);s.textContent=poolWords[selected];s.className='cloze-slot filled';chip.classList.add('used');chip.classList.remove('sel');selected=null;});box.append(s);slots.push(s);}});$('#vScore').textContent='';}
+function gradeCloze(show){let c=0,a=[];slots.forEach((s,i)=>{let val=s.dataset.word===''?null:Number(s.dataset.word),ok=val===i;if(ok)c++;s.classList.remove('correct','incorrect');if(val!==null)s.classList.add(ok?'correct':'incorrect');if(show&&!ok)a.push((i+1)+'. '+poolWords[i]);});score('vScore',c,slots.length);if(show&&a.length)$('#vScore').textContent+=' · '+a.join('; ');}
+buildCloze();$('#vCheck').addEventListener('click',()=>gradeCloze(false));$('#vAnswer').addEventListener('click',()=>gradeCloze(true));$('#vReset').addEventListener('click',buildCloze);
+// Speaking plan + timer in same layout as source.
+[["Start — identify the campaign", "I'd like to talk about an advertisement I saw …"], ["Where and when you saw it", "I first noticed it on … / I was scrolling through … when …"], ["What it promoted", "The company was launching … / The main message was …"], ["Who it targeted", "I think it was aimed at … because …"], ["Why it stood out", "What made it memorable was … / It really caught my attention because …"]].forEach(([t,s])=>{const li=el('li'),d=el('div');d.append(el('span','pt',t),el('span','px',s));li.append(d);$('#splan').append(li);});
+[["Starting", "I'd like to talk about… · The first thing that comes to mind is…"], ["Adding detail", "What’s more… · Another thing I noticed was…"], ["Explaining impact", "It caught my attention because… · I found it effective because…"], ["Giving an example", "For instance… · A good example of this is…"], ["Being natural", "To be honest… · In fact… · As far as I remember…"], ["Finishing", "Overall, it left a strong impression on me. · That's why I still remember it."]].forEach(([t,s])=>{const li=el('li');li.append(el('b',null,t+': '),document.createTextNode(s));$('#sphr').append(li);});
+let timer=null;function showTime(n){$('#clock').textContent=Math.floor(n/60)+':'+String(n%60).padStart(2,'0');}function stopTimer(){clearInterval(timer);timer=null;}
+function goTimer(n,start,end){stopTimer();showTime(n);$('#clock').classList.remove('end');$('#tStat').textContent=start;timer=setInterval(()=>{n--;showTime(n);if(n<=0){stopTimer();$('#clock').classList.add('end');$('#tStat').textContent=end;}},1000);}
+$('#tPrep').addEventListener('click',()=>goTimer(60,'Make notes…','Time to speak!'));$('#tTalk').addEventListener('click',()=>goTimer(120,'Speaking…','Thank you. Time is up.'));$('#tStop').addEventListener('click',()=>{stopTimer();$('#tStat').textContent='Stopped';});
+})();
+</script></body></html>
