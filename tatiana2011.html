@@ -1,0 +1,517 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tatiana · 20 November 2026</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><style>
+
+:root{
+  --paper:#F2F4F8; --sheet:#FFFFFF; --ink:#1E2B3A; --soft:#5B6878;
+  --blue:#2F5FAF; --mark:#F3D35B; --ok:#2E7D5B; --okbg:#E3F1EA;
+  --bad:#B33A3A; --badbg:#F7E4E4; --line:#D3D9E3;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", "Segoe UI", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{font-weight:700;font-size:2.2rem;line-height:1.15;margin:0}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0}
+.tab{font-family:var(--sans);font-weight:600;font-size:.92rem;border:0;background:none;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}
+section.active{display:block}
+h2{font-size:1.55rem;margin:0 0 12px}
+h3{font-size:1.15rem;margin:0 0 6px}
+.task{font-family:var(--sans);font-size:.95rem;color:var(--soft);margin:0 0 14px;max-width:68ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px}
+button{font-family:var(--sans)}
+.btn{font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:4px 10px;cursor:pointer;margin:2px 4px 2px 0}
+.btn:hover{border-color:var(--blue)}
+.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}
+.hidden{display:none !important}
+.en{color:var(--blue);font-style:italic}
+.ru{color:var(--soft);font-family:var(--sans);font-size:.9rem}
+.qlist{margin:0;padding-left:1.3em}
+.qlist li{margin:8px 0}
+
+/* parts inside a tab */
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.85rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.part{display:none}
+.part.active{display:block}
+
+/* quote */
+.quote{font-size:1.6rem;line-height:1.35;font-style:italic;margin:4px 0 6px;max-width:30ch}
+.src{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 16px}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px}
+.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}
+.card .tr{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:2px 0 6px}
+.card .pronrow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:2px 0 8px}
+.card .pronrow .tr{margin:0}
+.card .pronounce{font-size:.77rem;margin:0;padding:3px 8px;min-height:29px}
+.card .pronounce.speaking{background:var(--blue);border-color:var(--blue);color:white}
+#vocabVoiceStatus:empty{display:none}
+.card .def{font-size:.95rem;margin:0 0 6px}
+.card .ex2{font-size:.92rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+
+/* rows */
+.dl{padding:12px 0;border-bottom:1px solid var(--line)}
+.dl:last-of-type{border-bottom:0}
+.dl p{margin:0}
+.fb{font-size:.95rem}
+.fb .ex{margin:4px 0}
+.fb.okc{color:var(--ok)}
+.fb.badc{color:var(--bad)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#FBFCFA;border-radius:4px;padding:5px 12px;cursor:pointer;color:var(--ink)}
+.opts.col{flex-direction:column}
+.opt.okc{background:var(--okbg);border-color:var(--ok)}
+.opt.badc{background:var(--badbg);border-color:var(--bad)}
+input.gap{font-family:var(--serif);font-size:1rem;padding:2px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#FBFCFA;color:var(--ink);width:11em;max-width:100%}
+input.gap.okc{border-color:var(--ok);background:var(--okbg)}
+input.gap.badc{border-color:var(--bad);background:var(--badbg)}
+.hint{font-family:var(--sans);font-size:.85rem;color:var(--soft)}
+.bank{font-family:var(--sans);font-size:.9rem;background:#F4F6F2;border-radius:4px;padding:8px 12px;margin:0 0 12px}
+.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}
+.copied{font-family:var(--sans);font-size:.85rem;color:var(--ok)}
+.score{font-family:var(--sans);font-weight:700;font-size:.95rem;margin:10px 0 0}
+
+/* error clinic */
+.item{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.num{font-family:var(--sans);font-weight:700;color:var(--soft);font-size:.9rem;padding-top:4px}
+.chips{margin:0;line-height:2.1}
+.chip{font-family:var(--serif);font-size:1.02rem;color:var(--ink);background:none;border:0;border-bottom:1px dashed #A9B3A8;padding:0 2px;margin:0 2px;cursor:pointer;border-radius:2px}
+.chip:hover{background:#F4F6F2}
+.chip.wrong{background:var(--badbg);border-bottom-color:var(--bad);animation:nudge .25s}
+.chip.hit{background:linear-gradient(transparent 55%, var(--mark) 55%);text-decoration:line-through;text-decoration-color:var(--bad);border-bottom-color:transparent;cursor:default}
+.fix{font-family:var(--sans);font-weight:700;color:var(--ok);margin-left:4px}
+.item .fb,.item .actions{grid-column:2}
+.fixbox{margin-right:6px}
+@keyframes nudge{0%,100%{transform:translateX(0)}30%{transform:translateX(-3px)}70%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.chip.wrong{animation:none}}
+
+/* drill table */
+.tablewrap{overflow-x:auto}
+table.drill{border-collapse:collapse;width:100%;min-width:560px;font-size:.98rem}
+.drill th{font-family:var(--sans);font-size:.82rem;color:var(--soft);text-align:left;font-weight:600;padding:6px 8px;border-bottom:2px solid var(--line)}
+.drill td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.drill td.t{font-weight:600;white-space:nowrap}
+.drill td.m{color:var(--soft);font-style:italic}
+.drill tr.grp td{background:#F4F6F2;font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);padding:4px 8px}
+.base{font-size:1.35rem;font-weight:600;margin:0 0 4px}
+
+/* listening + speaking */
+.player{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cue{border:2px solid var(--blue);border-radius:6px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}
+.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}
+.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}
+.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+.ttext{font-size:1.08rem;line-height:1.9}
+.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+@media (max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.quote{font-size:1.3rem}}
+
+.stat{border-left:4px solid var(--mark);background:#FBF8E8;padding:10px 14px;margin:0 0 16px;font-size:1rem}
+.stat b{font-size:1.5rem;font-family:var(--sans);color:var(--ink)}
+.new{font-family:var(--sans);font-size:.7rem;font-weight:700;color:#fff;background:var(--ok);border-radius:3px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+select.pick{font-family:var(--serif);font-size:1rem;padding:2px 6px;border:1px solid var(--line);border-radius:4px;background:#FBFCFA;color:var(--ink);max-width:100%}
+select.pick.okc{border-color:var(--ok);background:var(--okbg)}
+select.pick.badc{border-color:var(--bad);background:var(--badbg)}
+.endings{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:4px}
+.endings li{font-size:.98rem}
+.endings b{font-family:var(--sans);color:var(--blue);margin-right:6px}
+.verdict{display:inline-flex;gap:6px;margin:6px 0}
+
+.tiles,.built{display:flex;flex-wrap:wrap;gap:6px;min-height:38px;margin:6px 0}
+.built{border-bottom:2px dashed var(--line);padding-bottom:6px}
+.tile{font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F9FC;border-radius:4px;padding:3px 10px;cursor:pointer;color:var(--ink)}
+.tile:hover{border-color:var(--blue)}
+.built.okc{border-bottom-color:var(--ok)}
+.built.badc{border-bottom-color:var(--bad)}
+.cloze{font-size:1.08rem;line-height:2.2}
+.mini{font-size:.75rem;padding:1px 6px}
+.para{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;margin:0 0 12px}
+.para .pl{font-family:var(--sans);font-weight:700;color:var(--blue)}
+.para p{margin:0}
+.dilemma{font-size:1.25rem;font-weight:600;line-height:1.35;margin:0 0 4px}
+.or{font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);letter-spacing:.08em}
+
+.check{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F9FC;border-radius:4px;padding:5px 10px;cursor:pointer}
+.check input{width:16px;height:16px;accent-color:var(--blue)}
+.check.okc{background:var(--okbg);border-color:var(--ok)}
+.check.badc{background:var(--badbg);border-color:var(--bad)}
+.check.miss{border-style:dashed;border-color:var(--ok)}
+.truth{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+.truth .opt{font-size:1.05rem;padding:9px 14px}
+.starter{font-size:1.1rem;margin:0 0 4px}
+.starter b{font-family:var(--sans);color:var(--soft);margin-right:6px}
+.given{font-weight:600}
+.evt{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+.evt:last-of-type{border-bottom:0}
+
+.wheelbox{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.wheelwrap{position:relative;width:260px;height:260px}
+.wheel{width:260px;height:260px;border-radius:50%;border:6px solid var(--sheet);box-shadow:0 0 0 1px var(--line),0 6px 18px rgba(30,43,58,.12);
+ background:conic-gradient(#2F5FAF 0 60deg,#C9822B 60deg 120deg,#2E7D5B 120deg 180deg,#2F5FAF 180deg 240deg,#C9822B 240deg 300deg,#2E7D5B 300deg 360deg);
+ transition:transform 3.2s cubic-bezier(.17,.67,.2,1);position:relative}
+.wheel span{position:absolute;left:50%;top:50%;width:0;height:0;font-family:var(--sans);font-weight:700;font-size:1.5rem;color:#fff}
+.wheel span b{position:absolute;transform:translate(-50%,-50%)}
+.pointer{position:absolute;left:50%;top:-12px;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid var(--ink);z-index:2}
+.hub{position:absolute;left:50%;top:50%;width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;background:var(--sheet);border:3px solid var(--line)}
+.wq{font-size:1.35rem;line-height:1.35;font-style:italic;min-height:3em;margin:10px 0 0}
+.wq .n{font-family:var(--sans);font-style:normal;font-weight:700;color:var(--blue);font-size:.9rem;display:block;margin-bottom:4px}
+@media (max-width:640px){.wheelbox{grid-template-columns:1fr;justify-items:center;text-align:center}}
+@media (prefers-reduced-motion:reduce){.wheel{transition:none}}
+.dice{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.die{background:var(--sheet);border:2px solid var(--blue);border-radius:10px;padding:12px 10px;text-align:center;min-height:96px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.die:nth-child(2){border-color:#C9822B}.die:nth-child(3){border-color:#2E7D5B}
+.die .dl2{font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--soft)}
+.die b{font-size:1.1rem;line-height:1.3}
+.die.roll b{animation:shake .5s}
+@keyframes shake{0%,100%{transform:none}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.die.roll b{animation:none}}
+@media (max-width:560px){.dice{grid-template-columns:1fr}}
+.pairs{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:10px}
+.pcol{display:flex;flex-direction:column;gap:8px}
+.pc{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F9FC;border-radius:6px;padding:8px 12px;cursor:pointer;color:var(--ink);line-height:1.4}
+.pc:hover{border-color:var(--blue)}
+.pc.sel{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue) inset}
+.pc.okc{background:var(--okbg);border-color:var(--ok);cursor:default}
+.pc.badc{background:var(--badbg);border-color:var(--bad)}
+.pcol.left .pc{font-weight:600}
+@media (max-width:560px){.pairs{grid-template-columns:1fr}}
+.line{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.line:last-of-type{border-bottom:0}
+.line .ctl,.line .fb{grid-column:2}
+.ctl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+
+.stance{border:1px solid var(--line);border-radius:10px;background:var(--sheet);padding:22px 20px}
+.stance .lab{display:inline-block;font-family:var(--sans);font-size:.75rem;font-weight:700;color:#fff;background:var(--blue);border-radius:999px;padding:3px 11px;margin-bottom:12px}
+.stance .stmt{font-size:1.45rem;line-height:1.35;font-weight:600;margin:0 0 20px;max-width:34ch}
+.scale input[type=range]{width:100%;accent-color:var(--blue);height:28px;cursor:pointer}
+.scale .ends{display:grid;grid-template-columns:repeat(5,1fr);text-align:center;margin:0 -6%;font-family:var(--sans);font-size:.82rem;color:var(--soft)}
+.scale .now{font-family:var(--sans);font-weight:700;font-size:1.05rem;margin:8px 0 0;min-height:1.4em}
+.navrow{display:flex;gap:8px;align-items:center;margin-top:14px}
+.navrow .cnt{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin-left:auto}
+.scr{font-family:var(--sans);font-weight:700;letter-spacing:.18em;color:var(--blue);background:#EAF0FA;border-radius:4px;padding:1px 7px}
+.sitgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.sit{position:relative;min-height:150px;border-radius:10px;border:1px solid var(--line);background:var(--sheet);cursor:pointer;text-align:left;font-family:inherit;color:var(--ink);padding:14px;display:flex;flex-direction:column;gap:8px}
+.sit.closed{background:linear-gradient(145deg,#2F5FAF,#24498A);color:#fff;align-items:center;justify-content:center;font-family:var(--sans);font-weight:700;font-size:2rem;border-color:transparent}
+.sit.closed:hover{filter:brightness(1.08)}
+.sit .st{font-size:.98rem;line-height:1.4}
+.sit .str{font-family:var(--sans);font-weight:700;font-size:.85rem;color:#B5701C}
+.sit .exb{margin-top:auto;align-self:flex-start}
+.sit .exs{font-size:.92rem}
+@media (max-width:760px){.sitgrid{grid-template-columns:repeat(2,1fr)}}
+.speaker{font-family:var(--sans);font-weight:700;color:var(--blue)}
+.seg{font-family:var(--serif);font-size:1.05rem;border:0;border-bottom:2px dotted var(--blue);background:none;padding:0 2px;cursor:pointer;color:var(--ink);border-radius:2px}
+.seg.on{background:#FBF0D9;border-bottom-color:#C9822B}
+.seg.okc{background:var(--okbg);border-bottom:2px solid var(--ok)}
+.seg.badc{background:var(--badbg);border-bottom:2px solid var(--bad)}
+.seg.miss{background:var(--badbg);border-bottom:2px dashed var(--bad)}
+.summary{font-size:1.08rem;line-height:2.1}
+.seg2{font:inherit;color:inherit;background:none;border:0;padding:0 1px;margin:0;cursor:pointer;border-radius:3px}
+.seg2:hover{background:#EAF0FA}
+.seg2.on{background:#FBF0D9;box-shadow:0 0 0 1px #C9822B}
+.seg2.okc{background:var(--okbg);box-shadow:0 0 0 1px var(--ok)}
+.seg2.badc{background:var(--badbg);box-shadow:0 0 0 1px var(--bad)}
+.seg2.miss{background:var(--badbg);text-decoration:underline dashed var(--bad)}
+.fixw{font-family:var(--sans);font-weight:700;color:var(--ok);font-size:.88rem;margin-left:3px}
+
+.deal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;perspective:900px}
+.dc{position:relative;height:150px}
+.dc .in{position:absolute;inset:0;transition:transform .6s;transform-style:preserve-3d}
+.dc.open .in{transform:rotateY(180deg)}
+.dc .f,.dc .b{position:absolute;inset:0;border-radius:12px;backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px}
+.dc .f{background:repeating-linear-gradient(45deg,#2F5FAF 0 10px,#2A569F 10px 20px);color:#fff;font-family:var(--sans);font-weight:700;font-size:1rem;letter-spacing:.06em}
+.dc .b{background:var(--sheet);border:2px solid var(--blue);transform:rotateY(180deg)}
+.dc:nth-child(2) .b{border-color:#C9822B}.dc:nth-child(3) .b{border-color:#2E7D5B}
+.dc .k{font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--soft);margin-bottom:6px}
+.dc .v{font-size:1.15rem;font-weight:600;line-height:1.3}
+@media (max-width:600px){.deal{grid-template-columns:1fr}.dc{height:110px}}
+@media (prefers-reduced-motion:reduce){.dc .in{transition:none}}
+.rem{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rem .box{background:var(--sheet);border:1px solid var(--line);border-top:4px solid var(--blue);border-radius:6px;padding:14px 16px}
+.rem .box:nth-child(2){border-top-color:#C9822B}
+.rem table{border-collapse:collapse;width:100%;font-size:.95rem}
+.rem td{padding:5px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.rem td:first-child{font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--soft);white-space:nowrap}
+@media (max-width:700px){.rem{grid-template-columns:1fr}}
+.chat{display:flex;flex-direction:column;gap:10px;max-width:560px}
+.bub{align-self:flex-start;background:#EAF0FA;border-radius:16px 16px 16px 4px;padding:10px 14px;font-size:1.05rem;line-height:1.4}
+.bub .from{display:block;font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--blue);margin-bottom:2px}
+.bub .vb{font-family:var(--sans);font-size:.8rem;font-weight:700;color:#B5701C;display:block;margin-top:4px}
+.bub.me{align-self:flex-end;background:var(--okbg);border-radius:16px 16px 4px 16px;font-style:italic}
+.ich{display:inline-flex;flex-wrap:wrap;gap:4px;vertical-align:middle;margin:0 2px}
+.ich .opt{font-size:.92rem;padding:2px 8px}
+.article{font-size:1.06rem;line-height:2.1}
+.article h4{font-family:var(--sans);font-size:.8rem;letter-spacing:.08em;color:var(--soft);margin:0 0 4px}
+.pl2{font-family:var(--sans);font-weight:700;color:var(--blue);margin-right:6px}
+
+.pretitle{color:var(--blue);font:700 .77rem var(--sans);letter-spacing:.09em;text-transform:uppercase}
+.case{padding:16px 18px;background:var(--sheet);border:1px solid var(--line);margin-bottom:12px;border-radius:6px}
+.case strong{display:block;font-size:1.2rem;line-height:1.4;margin:6px 0 10px}
+.pill{font:700 .85rem var(--sans);padding:7px 12px;border:1px solid var(--line);border-radius:5px;background:#f5f7fc;color:var(--ink);cursor:pointer;margin:3px 4px 3px 0}
+.pill.selected{background:#eaf0fa;color:var(--blue);border-color:var(--blue)}
+.case-note{border-left:3px solid var(--mark);padding:7px 12px;margin-top:10px;font-size:.96rem}
+.tag{font:700 .64rem var(--sans);padding:2px 6px;background:#eaf0fa;color:var(--blue);border-radius:3px;margin-left:5px}
+.tag.newtag{background:var(--okbg);color:var(--ok)}
+.prompt{background:#f7f9fc;padding:12px 14px;border-left:4px solid var(--blue);border-radius:3px;margin-bottom:10px}
+.feedback{font-size:.92rem;color:var(--soft);margin:8px 0;min-height:1em}.feedback.good{color:var(--ok)}.feedback.bad{color:var(--bad)}
+.answers{display:flex;gap:6px;flex-wrap:wrap;margin:7px 0}
+.answers button{font:400 1rem var(--serif);padding:6px 10px;background:#f7f9fc;border:1px solid var(--line);border-radius:5px;color:var(--ink);cursor:pointer;text-align:left}
+.answers button.hit{border-color:var(--ok);background:var(--okbg)}.answers button.miss{border-color:var(--bad);background:var(--badbg)}
+.score{font:700 .87rem var(--sans);color:var(--blue);margin:9px 0}
+.corrector{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.corrector input{font:1rem var(--serif);padding:7px 9px;border-radius:4px;border:1px solid var(--line);border-bottom:2px solid var(--soft);flex:1;min-width:160px}
+.wrongword{font-weight:700;text-decoration:underline dotted #ba7b1d;text-underline-offset:4px}
+.brief{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:20px}
+.brief .big{font-size:1.3rem;line-height:1.42;font-weight:600;margin:8px 0}
+.sample{font-style:italic;color:var(--ok);border-left:3px solid var(--ok);padding:5px 12px;margin:10px 0}
+.builder{background:#f7f9fc;border:1px dashed var(--line);padding:6px;border-radius:5px;min-height:45px;margin:9px 0}
+.tiles{min-height:34px;display:flex;gap:6px;flex-wrap:wrap}.tiles button{font:1rem var(--serif);padding:5px 10px;background:white;border:1px solid var(--line);border-radius:4px;cursor:pointer;color:var(--ink)}
+.builder .tiles button{background:#eaf0fa;border-color:var(--blue)}
+.audio-box{background:var(--sheet);border:1px solid var(--line);border-top:4px solid var(--blue);padding:16px 20px;border-radius:6px;margin-bottom:15px}
+.audio-box audio{width:100%;display:block;margin:12px 0}
+.audio-box a{color:var(--blue)}.audio-credit{font:.8rem/1.5 var(--sans);color:var(--soft);margin:9px 0 0}
+.dl p{margin:0 0 6px}.answerline{padding:8px 0;border-bottom:1px solid var(--line)}
+@media print{nav,.btn,.answers,.pill,.audio-box audio{display:none!important}section,.part{display:block!important}body{background:#fff}}
+
+.voice-controls{display:flex;flex-wrap:wrap;gap:5px;margin:14px 0 5px}
+.voice-controls .btn{padding:8px 12px;font-size:.86rem}
+.audio-alt{border-top:1px solid var(--line);margin:13px 0 8px;padding-top:9px}
+.audio-alt summary{font:600 .85rem var(--sans);color:var(--blue);cursor:pointer}
+.audio-alt p{margin:8px 0}
+.transcript{margin:12px 0 0!important;font-size:.96rem;line-height:1.6}
+.transcript p{margin:0 0 9px}
+
+/* Tatiana's lesson uses the same Anna visual system. */
+.wouldgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.wouldcard{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:15px 16px}
+.wouldcard .pretitle{margin-bottom:8px}
+.wouldcard .wcq{font-weight:700;font-size:1.1rem;line-height:1.4;margin:0 0 10px}
+.wouldoptions{display:flex;flex-wrap:wrap;gap:7px}
+.wouldoptions .opt{flex:1;min-width:135px}
+.wouldoptions .opt.sel{background:#EAF0FA;border-color:var(--blue);color:var(--blue);font-weight:700}
+.dice.grid5{grid-template-columns:repeat(6,minmax(0,1fr))}
+.dice.grid5 .die{grid-column:span 2;min-height:92px}
+.dice.grid5 .die:nth-child(4),.dice.grid5 .die:nth-child(5){grid-column:span 3}
+.die .dl2{font-size:.72rem;letter-spacing:.03em;text-transform:uppercase}
+.die b{font-size:1.12rem;overflow-wrap:anywhere}
+.die:nth-child(4){border-color:#C9822B}.die:nth-child(5){border-color:#2E7D5B}
+.dicehint{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin-top:8px}
+.mcitem{border-bottom:1px solid var(--line);padding:12px 0}
+.mcitem:last-of-type{border-bottom:0}
+.mcitem .question{margin:0 0 5px;font-size:1.07rem}
+.mcitem .qn{font-family:var(--sans);font-size:.82rem;font-weight:700;color:var(--blue);margin-right:8px}
+.mcitem .opt.chosen{border-color:var(--blue);background:#EAF0FA}
+textarea.fixinput{width:100%;resize:vertical;min-height:54px;background:#FBFCFA;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font:1rem var(--serif);color:var(--ink)}
+.gapselect{font:1rem var(--serif);max-width:100%;width:240px;border:1px solid var(--line);border-radius:4px;padding:5px 8px;background:#FBFCFA;color:var(--ink)}
+.gapselect.okc{border-color:var(--ok);background:var(--okbg)}
+.gapselect.badc{border-color:var(--bad);background:var(--badbg)}
+.gaplabel{font-weight:600}
+.widecopy{white-space:pre-wrap}
+.rureveal{display:inline-block;margin-left:6px;vertical-align:middle}
+.card .partofspeech{font-family:var(--sans);font-size:.75rem;color:var(--soft);font-weight:600;margin-left:5px}
+.card .def{font-size:.95rem}
+.card .ex2{font-size:.92rem}
+.reader{font-size:1.07rem;line-height:1.85}
+.reader p{margin:0 0 14px}
+.questionlist>div{padding:12px 0;border-bottom:1px solid var(--line)}
+.questionlist>div:last-child{border-bottom:0}
+.questionlist strong{font-family:var(--sans);color:var(--blue);font-size:.85rem;margin-right:8px}
+.smallwords{color:var(--soft);font-size:.85rem;font-family:var(--sans)}
+@media(max-width:640px){.wouldgrid{grid-template-columns:1fr}.dice.grid5{grid-template-columns:repeat(2,minmax(0,1fr))}.dice.grid5 .die,.dice.grid5 .die:nth-child(4),.dice.grid5 .die:nth-child(5){grid-column:span 1}}
+@media(max-width:420px){.dice.grid5{grid-template-columns:1fr}.dice.grid5 .die,.dice.grid5 .die:nth-child(4),.dice.grid5 .die:nth-child(5){grid-column:span 1}}
+</style></head><body>
+<header><h1>Tatiana, lesson 1</h1><p>20 November 2026</p></header>
+<nav><div class="tabs" id="tabs" role="tablist"></div></nav>
+<main>
+<section data-title="Warm-up">
+  <h2>Would you rather?</h2>
+  <p class="task">Choose one option and explain your choice in two or three sentences.</p>
+  <div id="warm" class="wouldgrid"></div>
+</section>
+<section data-title="Grammar">
+  <h2>Grammar</h2>
+  <div class="subnav" role="tablist"><button class="sub">Speaking</button><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button></div>
+  <div class="part">
+    <p class="task">Use the words and details to make a full sentence aloud. Pay attention to the sentence type and tense.</p>
+    <div id="dice" class="dice grid5" aria-live="polite"></div>
+    <div class="navrow"><button id="newDice" class="btn solid">New combination</button><button id="showDice" class="btn">Sample answer</button><span id="diceCount" class="cnt"></span></div>
+    <div id="diceAnswer" class="sample hidden"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Choose the correct option</h3>
+    <p class="task">Choose the most natural grammatical form.</p>
+    <div id="g1"></div><div class="score" id="g1score"></div>
+    <button class="btn" data-copy="g1">Copy my answers</button>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Find and correct the mistake</h3>
+    <p class="task">Each sentence contains one grammar mistake. Rewrite it correctly, then compare with the model answer.</p>
+    <div id="g2"></div>
+    <button class="btn" id="allFix">Show all model answers</button>
+  </div>
+</section>
+<section data-title="Vocabulary">
+  <h2>Vocabulary</h2>
+  <div class="subnav" role="tablist"><button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button><button class="sub">Discussion</button></div>
+  <div class="part">
+    <p class="task">Read the definition and example. Listen to the pronunciation, then tap Russian if needed.</p>
+    <p id="vocabVoiceStatus" role="status" aria-live="polite" class="hint"></p>
+    <div class="cards" id="vwords"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 1. Complete the sentences</h3>
+    <p class="task">Choose a word or expression from the list. Use each one once.</p>
+    <div class="bank" id="wordbank"></div>
+    <div id="v1"></div><div class="score" id="v1score" role="status" aria-live="polite"></div>
+    <button class="btn" id="resetVocab">Try again</button>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. Choose the best word</h3>
+    <p class="task">Read each situation and choose the word that best describes it.</p>
+    <div id="v2"></div><div class="score" id="v2score" role="status" aria-live="polite"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Discussion</h3>
+    <p class="task">Answer the questions using today's vocabulary.</p>
+    <ol class="qlist" id="vdiscussion"></ol>
+  </div>
+</section>
+<section data-title="Reading">
+  <h2>Reading: an unexpected change of plan</h2>
+  <div class="sheet reader" id="readingText"></div>
+  <div class="subnav" role="tablist"><button class="sub">Exercise 1</button><button class="sub">Exercise 2</button></div>
+  <div class="part sheet">
+    <h3>Exercise 1. Answer the questions</h3>
+    <p class="task">Read the text and answer the two questions in your own words.</p>
+    <div id="readingQuestions" class="questionlist"></div>
+  </div>
+  <div class="part sheet">
+    <h3>Exercise 2. True, false or not given?</h3>
+    <p class="task">Use only the information in the text. Choose True, False or Not given.</p>
+    <div id="readingTF"></div><div class="score" id="rscore"></div>
+  </div>
+</section>
+<section data-title="Speaking">
+  <h2>Speaking</h2>
+  <div class="cue">
+    <p class="topic">Describe a time when you had to explain something to another person.</p>
+    <p style="margin:0">You should say:</p>
+    <ul><li>who you were talking to</li><li>what you needed to explain</li><li>how you made your explanation clear</li><li>how the person reacted</li></ul>
+    <p style="margin:8px 0 0">and explain what you learned from this experience.</p>
+  </div>
+  <div class="sheet">
+    <button class="btn solid" id="prep">Preparation 1 min</button>
+    <button class="btn solid" id="speech">Speech 2 min</button>
+    <button class="btn" id="resetTalk">Reset</button>
+    <div class="clock" id="clock">0:00</div><div class="phase" id="phase"></div>
+  </div>
+</section>
+<section data-title="Translation">
+  <h2>Translation</h2>
+  <p class="task">Translate this connected text into English. Check each sentence with “EN”.</p>
+  <div class="sheet ttext" id="translation"></div>
+</section>
+</main>
+<script type="application/json" id="data">{"warm":[["spend a month in a country where you don't speak the language","take an intensive language course at home"],["perform in front of a large audience","sing for a small group of people you know"],["learn a difficult skill by yourself","learn it with a teacher who gives regular feedback"],["have a flexible schedule with unpredictable days","follow the same routine every week"],["teach a very enthusiastic but noisy group","teach a quiet group that rarely asks questions"],["be able to speak every language fluently","be able to play every musical instrument"]],"dice":[["I","practise","every weekend","affirmative","Present Simple","I practise every weekend."],["she","prepare","for the concert now","negative","Present Continuous","She isn't preparing for the concert now."],["they","visit","the museum last Saturday","question","Past Simple","Did they visit the museum last Saturday?"],["your friend","work","online every day","question","Present Simple","Does your friend work online every day?"],["we","discuss","the idea at 7 p.m. yesterday","affirmative","Past Continuous","We were discussing the idea at 7 p.m. yesterday."],["he","finish","the course yet","negative","Present Perfect","He hasn't finished the course yet."],["you","see","that performance before","question","Present Perfect","Have you seen that performance before?"],["she","teach","English for three years","affirmative","Present Perfect Continuous","She has been teaching English for three years."],["we","start","a new project next month","affirmative","be going to","We are going to start a new project next month."],["the students","receive","the results tomorrow","question","Future Simple","Will the students receive the results tomorrow?"],["I","complete","the task before the meeting began","affirmative","Past Perfect","I had completed the task before the meeting began."],["he","read","the instructions before the lesson started","negative","Past Perfect","He hadn't read the instructions before the lesson started."],["they","wait","for an hour when the bus arrived","affirmative","Past Perfect Continuous","They had been waiting for an hour when the bus arrived."],["the teacher","explain","the rules when I entered","question","Past Continuous","Was the teacher explaining the rules when I entered?"],["you","learn","English since childhood","affirmative","Present Perfect Continuous","You have been learning English since childhood."],["the group","rehearse","tomorrow evening (fixed arrangement)","affirmative","Present Continuous (future)","The group is rehearsing tomorrow evening."],["he","attend","the seminar next week","negative","Future Simple","He won't attend the seminar next week."],["she","try","a different approach recently","affirmative","Present Perfect","She has tried a different approach recently."]],"g1":[["My sister usually ___ at a language school.",["work","works","is work"],1],["We ___ a wonderful performance last Sunday.",["have seen","saw","see"],1],["If it ___ tomorrow, we'll practise indoors.",["rains","will rain","rained"],0],["I ___ for this concert for weeks, but I still feel nervous.",["have been preparing","prepared","am preparing"],0],["By the time the guests arrived, the musicians ___ the sound check.",["had completed","have completed","complete"],0],["The workshop ___ by an experienced teacher next month.",["will be led","will lead","has led"],0],["If I ___ more confident, I'd volunteer to lead the group.",["were","will be","am"],0],["You ___ bring a notebook; all the materials will be provided.",["don't have to","mustn't","shouldn't"],0],["She suggested ___ the activity in smaller groups.",["doing","to do","do"],0],["The student ___ question surprised everyone received helpful feedback.",["whose","who","which"],0],["I wish I ___ more time to prepare this week.",["had","have","would have"],0],["She asked whether I ___ worked with children before.",["had","have","was"],0],["If she had followed the instructions, she ___ the mistake.",["would avoid","would have avoided","will have avoided"],1],["Despite ___ nervous at first, she gave an engaging presentation.",["being","be","to be"],0],["The lights are off and the doors are locked. They ___ have left already.",["can","must","should"],1]],"g2":[["She don't enjoy speaking in public.","She doesn't enjoy speaking in public."],["I live in Moscow since 2020.","I have lived in Moscow since 2020. / I have been living in Moscow since 2020."],["I have seen her yesterday.","I saw her yesterday."],["If it will rain tomorrow, we'll stay inside.","If it rains tomorrow, we'll stay inside."],["I look forward to meet the new students.","I look forward to meeting the new students."],["The lesson was prepare by the teacher.","The lesson was prepared by the teacher."],["If I would have more time, I'd practise every day.","If I had more time, I'd practise every day."],["She asked me where did I live.","She asked me where I lived."]],"vocab":[{"word":"encourage","pos":"verb","ipa":"ɪnˈkʌrɪdʒ","definition":"To give somebody confidence or support to do something.","example":"The teacher encouraged the quieter students to share their ideas.","ru":"поддерживать, подбадривать"},{"word":"adapt","pos":"verb","ipa":"əˈdæpt","definition":"To change something to make it suitable for a new situation.","example":"We had to adapt the activity for a younger group.","ru":"адаптировать, приспосабливать"},{"word":"overcome","pos":"verb","ipa":"ˌəʊvəˈkʌm","definition":"To successfully deal with a difficulty or fear.","example":"She gradually overcame her fear of public speaking.","ru":"преодолеть"},{"word":"confidence","pos":"noun","ipa":"ˈkɒnfɪdəns","definition":"The feeling that you can do something successfully.","example":"Her confidence grew after the first few lessons.","ru":"уверенность в себе"},{"word":"feedback","pos":"noun","ipa":"ˈfiːdbæk","definition":"Comments that help someone understand what they did well or could improve.","example":"The students gave useful feedback after the workshop.","ru":"обратная связь"},{"word":"approach","pos":"noun","ipa":"əˈprəʊtʃ","definition":"A particular way of doing or thinking about something.","example":"Her approach to teaching is practical and flexible.","ru":"подход, метод"},{"word":"engaging","pos":"adjective","ipa":"ɪnˈɡeɪdʒɪŋ","definition":"Interesting enough to keep people's attention.","example":"An engaging story made the whole group listen carefully.","ru":"увлекательный, интересный"},{"word":"hesitant","pos":"adjective","ipa":"ˈhezɪtənt","definition":"Unsure about doing something or slow to decide.","example":"At first, he was hesitant to ask questions.","ru":"нерешительный, сомневающийся"},{"word":"supportive","pos":"adjective","ipa":"səˈpɔːtɪv","definition":"Helpful and encouraging when somebody needs support.","example":"The atmosphere was friendly and supportive.","ru":"поддерживающий, доброжелательный"},{"word":"manageable","pos":"adjective","ipa":"ˈmænɪdʒəbl","definition":"Not too difficult to deal with or complete.","example":"Breaking the project into smaller tasks made it manageable.","ru":"посильный, выполнимый"}],"v1":[["The trainer was very ___; she never made us feel silly for asking questions.","supportive"],["We need to ___ the lesson for a group of eight-year-olds.","adapt"],["Her ___ improved after she led several workshops.","confidence"],["The instructions were clear and the task felt ___ rather than overwhelming.","manageable"],["A good teacher gives constructive ___ after an activity.","feedback"],["Several participants were ___ to speak in front of the group.","hesitant"],["Stories and games can make lessons more ___ for children.","engaging"],["She tried a different ___ to explaining the rules.","approach"],["My friends always ___ me to try new things.","encourage"],["He worked hard to ___ his fear of making mistakes.","overcome"]],"v2":[["Some learners seem nervous about answering. The tutor tells them they can improve with practice. The tutor wants to…",["encourage","adapt","overcome"],0],["A game is too complicated for seven-year-olds. The teacher changes the rules to suit their age. She needs to…",["overcome","adapt","encourage"],1],["After several rehearsals, Leo is no longer afraid to sing alone. He has managed to…",["adapt","encourage","overcome"],2],["Maria has practised many times and now believes she can lead the workshop. She has gained…",["feedback","confidence","approach"],1],["A tutor explains what a student did well and what needs improvement. This is…",["confidence","approach","feedback"],2],["Two teachers explain the same grammar rule in different ways. Each uses a different…",["approach","feedback","confidence"],0],["The children pay attention because the story is lively and interesting. It is…",["supportive","engaging","hesitant"],1],["Olga knows the answer, but she is unsure whether to raise her hand. She feels…",["manageable","supportive","hesitant"],2],["A classmate patiently helps someone who is struggling and never laughs at mistakes. The classmate is…",["supportive","engaging","hesitant"],0],["A big project feels less difficult when it is divided into three short tasks. It becomes…",["hesitant","manageable","engaging"],1]],"reading":["When Nina agreed to lead a storytelling workshop at her local community centre, she felt excited but hesitant. She had written stories for years but had never taught a group. To make the session manageable, she planned a forty-minute presentation and prepared handouts.","Ten minutes in, a participant asked whether they could try an activity instead of listening to more explanations. Nina worried that changing the plan would make her look unprepared. But the group seemed interested, so she adapted her approach and invited everyone to create stories in pairs.","Daniel was hesitant to read his work aloud. Nina encouraged him to share one sentence with his partner first. He gradually contributed more, and the others gave supportive comments. The unplanned activity was more engaging than Nina had expected.","The next day, Nina received positive feedback: people had enjoyed exchanging ideas. Nobody registered for another workshop that day, although two people asked when the next one would take place. Nina still values preparation, but she now leaves room for unexpected questions. She realised that confidence can come from responding well when a plan changes."],"readq":[["Why did Nina decide to change the plan she had prepared?","A participant suggested an activity, and Nina noticed the group was interested in working together."],["How did Nina help Daniel feel more comfortable?","She invited Daniel to share one sentence with his partner rather than speaking to the whole group."]],"readtf":[["Nina originally planned to begin with a long presentation.","True","She had planned a forty-minute presentation."],["Nina suggested working in pairs before anyone else mentioned activities.","False","A participant suggested trying an activity first."],["Nina had taken a teacher-training course before the workshop.","Not given","The text does not mention any teacher-training course."],["Daniel became more willing to participate during the pair activity.","True","Daniel gradually contributed more during the activity."],["Everyone in the group signed up for the next workshop.","False","Nobody registered for another workshop that day."]],"translation":[["Недавно я решила провести небольшой мастер-класс для друзей.","Recently, I decided to run a small workshop for my friends."],["Сначала я сомневалась, что смогу объяснить всё достаточно понятно.","At first, I doubted whether I would be able to explain everything clearly enough."],["Чтобы участникам было легче, я адаптировала задания и выбрала более простой подход.","To make things easier for the participants, I adapted the activities and chose a simpler approach."],["Некоторые участники не решались задавать вопросы, поэтому я старалась их подбодрить.","Some participants were hesitant to ask questions, so I tried to encourage them."],["После занятия я получила полезную обратную связь, и это придало мне уверенности.","After the workshop, I received useful feedback, which gave me more confidence."],["Если я снова проведу такое занятие, я постараюсь сделать его ещё более увлекательным.","If I run another workshop like this, I'll try to make it even more engaging."]],"vdiscussion":["What kind of feedback would help a hesitant learner gain confidence?","How would you adapt an activity to make it more engaging and manageable for children?"]}</script><script>(()=>{'use strict';
+const $=(s,p=document)=>p.querySelector(s), $$=(s,p=document)=>Array.from(p.querySelectorAll(s));
+const esc=x=>String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const data=JSON.parse($('#data').textContent);
+const sections=$$('main > section'),tabs=$('#tabs');
+sections.forEach((section,i)=>{const b=document.createElement('button');b.type='button';b.className='tab';b.textContent=section.dataset.title;b.setAttribute('aria-selected',i===0?'true':'false');b.onclick=()=>{sections.forEach(x=>x.classList.remove('active'));section.classList.add('active');$$('.tab').forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');window.scrollTo(0,0);};tabs.appendChild(b);section.classList.toggle('active',i===0);});
+sections.forEach(section=>{let nav=$$('.sub',section),parts=$$('.part',section);nav.forEach((b,i)=>{b.setAttribute('aria-selected',i===0?'true':'false');b.onclick=()=>{parts.forEach((p,k)=>p.classList.toggle('active',k===i));nav.forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');};});if(parts.length)parts[0].classList.add('active');});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-toggle]');if(!b)return;const node=$('#'+b.dataset.toggle);if(!node)return;node.classList.toggle('hidden');if(b.hasAttribute('data-rus'))b.textContent=node.classList.contains('hidden')?'Tap Russian':'Hide Russian';else if(b.hasAttribute('data-model'))b.textContent=node.classList.contains('hidden')?'Show model answer':'Hide model answer';else if(b.hasAttribute('data-vanswer'))b.textContent=node.classList.contains('hidden')?'Answer':'Hide answer';});
+let uid=0;function nextId(prefix){uid++;return prefix+uid}
+function bilingual(target,rows){$(target).innerHTML=rows.map(([ru,en])=>{let key=nextId('en');return `<span>${esc(ru)}</span> <button type="button" class="btn" data-toggle="${key}">EN</button><span class="en enout hidden" id="${key}">${esc(en)}</span> `;}).join('');}
+bilingual('#translation',data.translation);
+// Warm-up: two choices in Anna's small blue-outline cards.
+$('#warm').innerHTML=data.warm.map((w,i)=>`<div class="wouldcard"><div class="pretitle">${String(i+1).padStart(2,'0')}</div><p class="wcq">Would you rather…</p><div class="wouldoptions"><button type="button" class="opt">${esc(w[0])}</button><button type="button" class="opt">${esc(w[1])}</button></div></div>`).join('');
+$$('.wouldcard').forEach(card=>$$('.opt',card).forEach(b=>b.onclick=()=>{$$('.opt',card).forEach(x=>x.classList.remove('sel'));b.classList.add('sel');}));
+// Grammar speaking drill: ordered set with shuffled cycles, always grammatical.
+let queue=[],drawn=0, current=null;
+function shuffle(){queue=data.dice.map((_,i)=>i);for(let i=queue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[queue[i],queue[j]]=[queue[j],queue[i]];}}
+function draw(){if(!queue.length)shuffle();current=data.dice[queue.pop()];drawn++;const fields=['Subject','Verb','Details','Sentence type','Tense'];$('#dice').innerHTML=current.slice(0,5).map((v,i)=>`<div class="die"><div class="dl2">${fields[i]}</div><b>${esc(v)}</b></div>`).join('');$('#diceCount').textContent=drawn+' / '+data.dice.length;$('#diceAnswer').textContent=current[5];$('#diceAnswer').classList.add('hidden');$('#showDice').textContent='Sample answer';}
+$('#newDice').onclick=draw;$('#showDice').onclick=()=>{$('#diceAnswer').classList.toggle('hidden');$('#showDice').textContent=$('#diceAnswer').classList.contains('hidden')?'Sample answer':'Hide sample';};draw();
+// Grammar Ex 1: multiple choice.
+const firstTry={};
+$('#g1').innerHTML=data.g1.map((q,i)=>`<div class="mcitem"><p class="question"><span class="qn">${i+1}.</span>${esc(q[0])}</p><div class="opts">${q[1].map((opt,j)=>`<button type="button" class="opt" data-g1="${i}" data-o="${j}">${esc(opt)}</button>`).join('')}</div><div class="fb" id="g1fb${i}" aria-live="polite"></div></div>`).join('');
+function updateG1(){const attempted=Object.keys(firstTry).length;const correct=Object.values(firstTry).filter(x=>x).length;$('#g1score').textContent=`Correct on first try: ${correct} / ${data.g1.length}`+(attempted<data.g1.length?` · ${data.g1.length-attempted} left`:'');}
+$$('[data-g1]').forEach(b=>b.onclick=()=>{const i=+b.dataset.g1,j=+b.dataset.o,good=j===data.g1[i][2];if(!(i in firstTry))firstTry[i]=good;const wrap=b.closest('.mcitem');$$('.opt',wrap).forEach(x=>x.classList.remove('chosen','okc','badc'));b.classList.add('chosen',good?'okc':'badc');const fb=$('#g1fb'+i);fb.className='fb '+(good?'okc':'badc');fb.textContent=good?'Correct':`Try again. Think about the context.`;updateG1();});updateG1();
+// Grammar Ex 2: model corrections.
+$('#g2').innerHTML=data.g2.map((q,i)=>{const key=nextId('gfix');return `<div class="item"><div class="num">${i+1}.</div><div><p style="margin:0 0 8px">${esc(q[0])}</p><textarea class="fixinput" rows="2" aria-label="Correct sentence ${i+1}" placeholder="Write the corrected sentence"></textarea><div><button type="button" class="btn" data-toggle="${key}" data-model="1">Show model answer</button></div><div id="${key}" class="sample hidden">${esc(q[1])}</div></div></div>`;}).join('');
+$('#allFix').onclick=()=>{$$('#g2 .sample').forEach(x=>x.classList.remove('hidden'));$$('[data-model]').forEach(b=>b.textContent='Hide model answer');};
+// Vocabulary: English definition and example always visible, translation only on tap.
+$('#vwords').innerHTML=data.vocab.map((v,i)=>{let id=nextId('rus');return `<div class="card"><div class="w">${esc(v.word)} <span class="partofspeech">${esc(v.pos)}</span></div><div class="pronrow"><span class="tr">/${esc(v.ipa)}/</span><button type="button" class="btn pronounce" data-say="${i}" aria-label="Listen to ${esc(v.word)}">🔊 Listen</button></div><p class="def">${esc(v.definition)}</p><p class="ex2">${esc(v.example)}</p><button type="button" class="btn" data-rus="1" data-toggle="${id}">Tap Russian</button><span class="ru hidden rureveal" id="${id}">${esc(v.ru)}</span></div>`;}).join('');
+function say(term){const st=$('#vocabVoiceStatus');if(!('speechSynthesis' in window)){st.textContent='Speech is unavailable in this browser.';return;}try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(term);const voices=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));voices.sort((a,b)=>{const rank=v=>/natural|neural|online/i.test(v.name)?2:/google|microsoft/i.test(v.name)?1:0;return rank(b)-rank(a)});u.voice=voices.find(v=>v.lang==='en-GB')||voices[0]||null;u.lang='en-GB';u.rate=.85;u.onstart=()=>{st.textContent='Playing: '+term};u.onend=()=>{st.textContent=''};u.onerror=()=>{st.textContent='Could not play pronunciation on this device.'};speechSynthesis.speak(u);}catch(e){st.textContent='Could not play pronunciation on this device.';}}
+$$('[data-say]').forEach(btn=>btn.onclick=()=>say(data.vocab[+btn.dataset.say].word));
+$('#wordbank').textContent=data.vocab.map(v=>v.word).join('   ·   ');
+// Exercise 1: every selection is checked immediately; no bulk-check button.
+const v1First={};
+function v1Score(){
+  const tried=Object.keys(v1First).length;
+  const correct=Object.values(v1First).filter(Boolean).length;
+  $('#v1score').textContent=`Correct on first try: ${correct} / ${data.v1.length}`+(tried<data.v1.length?` · ${data.v1.length-tried} left`:'');
+}
+function buildV1(){
+  for(const k of Object.keys(v1First))delete v1First[k];
+  $('#v1').innerHTML=data.v1.map((q,i)=>`<div class="dl"><p><b>${i+1}.</b> ${esc(q[0])}</p><select class="gapselect" aria-label="Word for sentence ${i+1}" data-v="${i}"><option value="">Choose…</option>${data.vocab.map(v=>`<option value="${esc(v.word)}">${esc(v.word)}</option>`).join('')}</select> <button type="button" class="btn" data-vanswer="1" data-toggle="v1answer${i}" aria-controls="v1answer${i}">Answer</button><div class="sample hidden" id="v1answer${i}">${esc(q[1])}</div><div class="fb" id="vfb${i}" role="status" aria-live="polite"></div></div>`).join('');
+  $$('[data-v]').forEach(sel=>sel.onchange=()=>{
+    const i=+sel.dataset.v,ans=sel.value,good=ans===data.v1[i][1],fb=$('#vfb'+i);
+    sel.classList.remove('okc','badc');
+    if(!ans){fb.className='fb';fb.textContent='';return;}
+    if(!(i in v1First))v1First[i]=good;
+    sel.classList.add(good?'okc':'badc');
+    fb.className='fb '+(good?'okc':'badc');
+    fb.textContent=good?'Correct!':'Not quite. Try another word.';
+    v1Score();
+  });
+  v1Score();
+}
+$('#resetVocab').onclick=buildV1;
+buildV1();
+
+// Exercise 2: distinct format — short real-life contexts, 3-choice options.
+const v2First={};
+$('#v2').innerHTML=data.v2.map((q,i)=>`<div class="mcitem"><p class="question"><span class="qn">${i+1}.</span>${esc(q[0])}</p><div class="opts">${q[1].map((choice,j)=>`<button type="button" class="opt" data-v2="${i}" data-v2o="${j}" aria-pressed="false">${esc(choice)}</button>`).join('')}</div><div class="fb" id="v2fb${i}" role="status" aria-live="polite"></div></div>`).join('');
+function v2Score(){
+  const tried=Object.keys(v2First).length;
+  const correct=Object.values(v2First).filter(Boolean).length;
+  $('#v2score').textContent=`Correct on first try: ${correct} / ${data.v2.length}`+(tried<data.v2.length?` · ${data.v2.length-tried} left`:'');
+}
+$$('[data-v2]').forEach(btn=>btn.onclick=()=>{
+  const i=+btn.dataset.v2,chosen=+btn.dataset.v2o,good=chosen===data.v2[i][2];
+  if(!(i in v2First))v2First[i]=good;
+  const row=btn.closest('.mcitem');
+  $$('.opt',row).forEach(b=>{b.classList.remove('okc','badc');b.setAttribute('aria-pressed','false');});
+  btn.classList.add(good?'okc':'badc');btn.setAttribute('aria-pressed','true');
+  const fb=$('#v2fb'+i);fb.className='fb '+(good?'okc':'badc');
+  fb.textContent=good?'Correct!':'Not quite. Try another option.';
+  v2Score();
+});
+v2Score();
+$('#vdiscussion').innerHTML=data.vdiscussion.map(q=>`<li>${esc(q)}</li>`).join('');
+// Reading: two oral questions then true / false / not given.
+$('#readingText').innerHTML=data.reading.map(p=>`<p>${esc(p)}</p>`).join('');
+$('#readingQuestions').innerHTML=data.readq.map((q,i)=>{const id=nextId('readModel');return `<div><strong>${i+1}.</strong>${esc(q[0])}<div><button class="btn" type="button" data-toggle="${id}" data-model="1">Show model answer</button><div class="sample hidden" id="${id}">${esc(q[1])}</div></div></div>`;}).join('');
+const rFirst={};$('#readingTF').innerHTML=data.readtf.map((q,i)=>`<div class="mcitem"><p class="question"><span class="qn">${i+1}.</span>${esc(q[0])}</p><div class="opts">${['True','False','Not given'].map(x=>`<button type="button" class="opt" data-r="${i}" data-val="${x}">${x}</button>`).join('')}</div><div class="fb" id="rfb${i}"></div></div>`).join('');
+function readingScore(){const correct=Object.values(rFirst).filter(Boolean).length;const attempted=Object.keys(rFirst).length;$('#rscore').textContent=`Correct on first try: ${correct} / ${data.readtf.length}`+(attempted<data.readtf.length?` · ${data.readtf.length-attempted} left`:'');}
+$$('[data-r]').forEach(b=>b.onclick=()=>{const i=+b.dataset.r,ans=b.dataset.val,good=ans===data.readtf[i][1];if(!(i in rFirst))rFirst[i]=good;const wrap=b.closest('.mcitem');$$('.opt',wrap).forEach(x=>x.classList.remove('chosen','okc','badc'));b.classList.add('chosen',good?'okc':'badc');const fb=$('#rfb'+i);fb.className='fb '+(good?'okc':'badc');fb.textContent=good?'Correct. '+data.readtf[i][2]:'Check the text and try again.';readingScore();});readingScore();
+// Speaking: exact Anna cue-card and two distinct timers.
+let timer=null,seconds=0;function showTime(){const m=Math.floor(seconds/60),s=seconds%60;$('#clock').textContent=m+':'+String(s).padStart(2,'0');}
+function stopTimer(){if(timer){clearInterval(timer);timer=null;}}
+function startTime(duration,phase){stopTimer();seconds=duration;$('#phase').textContent=phase;showTime();timer=setInterval(()=>{seconds=Math.max(0,seconds-1);showTime();if(seconds===0){stopTimer();$('#phase').textContent=phase+' finished';}},1000);}
+$('#prep').onclick=()=>startTime(60,'Preparation');$('#speech').onclick=()=>startTime(120,'Speaking');$('#resetTalk').onclick=()=>{stopTimer();seconds=0;showTime();$('#phase').textContent='';};
+// Anna's copy-answer control for Grammar Exercise 1.
+document.addEventListener('click',e=>{const b=e.target.closest('[data-copy]');if(!b)return;let lines=data.g1.map((q,i)=>{const picked=$(`#g1 .mcitem:nth-child(${i+1}) .opt.chosen`);return `${i+1}. ${q[0]} — ${picked?picked.textContent:'(not answered)'}`;}).join('\n');const complete=()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy my answers',1400);};if(navigator.clipboard?.writeText){navigator.clipboard.writeText(lines).then(complete).catch(()=>fallbackCopy(lines,complete));}else fallbackCopy(lines,complete);});
+function fallbackCopy(text,done){const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.append(ta);ta.select();try{document.execCommand('copy');done();}catch(e){}ta.remove();}
+})();</script></body></html>
