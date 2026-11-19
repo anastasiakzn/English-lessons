@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Present Simple & Present Continuous — 20 November</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap">
+<style>
+  :root{
+    color-scheme: light;
+    --paper:#F6F5F8; --card:#FFFFFF; --ink:#241C2B; --ink-soft:#5B5266;
+    --line:#E0DCE6; --plum:#4A2C4D; --plum-soft:#7A5A7D; --gold:#8F6512;
+    --good:#2A7340; --good-bg:#E9F4ED; --bad:#AE3434; --bad-bg:#FAEBEB;
+    --chip:#F0ECF3; --r:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --paper:#17141B; --card:#211C28; --ink:#EDE8F2; --ink-soft:#AFA5BC;
+      --line:#352E3E; --plum:#D9B6DC; --plum-soft:#A98FAD; --gold:#E0B454;
+      --good:#78CE92; --good-bg:#1B2E22; --bad:#F09292; --bad-bg:#31201F;
+      --chip:#2B2433;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --paper:#17141B; --card:#211C28; --ink:#EDE8F2; --ink-soft:#AFA5BC;
+    --line:#352E3E; --plum:#D9B6DC; --plum-soft:#A98FAD; --gold:#E0B454;
+    --good:#78CE92; --good-bg:#1B2E22; --bad:#F09292; --bad-bg:#31201F;
+    --chip:#2B2433;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px; line-height:1.55;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding-inline:16px; padding-block:22px 48px;}
+
+  header.top{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:18px;}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--plum-soft); font-weight:700;}
+  h1{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:clamp(25px,5vw,35px); margin:0; line-height:1.1; text-wrap:balance;}
+  .meta{font-size:13px; color:var(--ink-soft); margin-top:4px;}
+  .rusbtn{
+    font-family:inherit; font-size:12px; font-weight:700; letter-spacing:.08em;
+    padding:7px 13px; border-radius:999px; cursor:pointer;
+    background:transparent; color:var(--plum); border:1.5px solid var(--plum);
+  }
+  .rusbtn[aria-pressed="true"]{background:var(--plum); color:var(--paper);}
+
+  nav.tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px; border-bottom:1px solid var(--line); padding-bottom:12px;}
+  .tab{
+    font-family:inherit; font-size:13px; font-weight:700; cursor:pointer;
+    padding:8px 14px; border-radius:999px; border:1px solid transparent;
+    background:var(--chip); color:var(--ink-soft);
+  }
+  .tab[aria-selected="true"]{background:var(--plum); color:var(--paper);}
+  .tab:focus-visible,button:focus-visible,input:focus-visible,.vc:focus-visible,.det-case:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+
+  .panel[hidden]{display:none!important}
+  .lead{font-size:15px; color:var(--ink-soft); margin:0 0 18px;}
+
+  .ru{display:none; font-style:italic; color:var(--plum-soft); font-size:14.5px;}
+  .ruopen .ru, body.showrus .ru{display:block;}
+  .ru.inl{display:none}
+  .ruopen .ru.inl, body.showrus .ru.inl{display:inline;}
+
+  .mini{
+    font-family:inherit; font-size:10.5px; font-weight:700; letter-spacing:.09em;
+    padding:4px 10px; border-radius:999px; cursor:pointer; vertical-align:middle;
+    background:transparent; color:var(--gold); border:1.2px solid var(--gold);
+    white-space:nowrap;
+  }
+  .mini.on{background:var(--gold); color:var(--paper);}
+  .say{border-color:var(--plum-soft); color:var(--plum-soft); padding:4px 9px;}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px; margin-bottom:16px;}
+  .card h3{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--plum-soft); margin:0 0 12px; font-weight:700; display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
+  .card h3 em{font-style:italic; text-transform:none; letter-spacing:0;}
+
+  .qtext.serif{font-family:"Fraunces",Georgia,serif; font-size:17px;}
+
+  .bank{background:var(--chip); border-radius:10px; padding:10px 14px; margin-bottom:14px; font-size:15px;}
+  .bank b{color:var(--plum); font-family:"Fraunces",Georgia,serif;}
+
+  .use{display:flex; flex-direction:column; gap:11px; margin:0; padding:0; list-style:none;}
+  .use li{background:var(--chip); border-radius:11px; padding:13px 15px;}
+  .use .head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+  .use .num{font-size:11px; letter-spacing:.12em; color:var(--plum-soft); font-weight:700;}
+  .use .name{font-weight:700; color:var(--plum); font-size:16px;}
+  .use .eg{display:block; margin-top:6px; font-family:"Fraunces",Georgia,serif; font-size:16px;}
+  .use .ind{display:block; margin-top:5px; font-size:13.5px; color:var(--ink-soft);}
+  .use .ru{margin-top:8px; padding-top:8px; border-top:1px solid var(--line);}
+  .use .bar{display:inline-flex; gap:6px; margin-left:8px; vertical-align:middle;}
+
+  .sc{display:flex; flex-direction:column; gap:15px;}
+  .scg{border-left:3px solid var(--plum-soft); padding-left:13px;}
+  .scg .sign{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--plum-soft); font-weight:700; margin-bottom:7px;}
+  .scg .sign .ru{display:none; font-style:italic; text-transform:none; letter-spacing:0; font-size:13px;}
+  .ruopen .scg .sign .ru, body.showrus .scg .sign .ru{display:inline;}
+  .scg .row{padding:5px 0; border-bottom:1px dashed var(--line);}
+  .scg .row:last-child{border-bottom:none;}
+  .scg .line{display:flex; gap:12px; flex-wrap:wrap; align-items:baseline;}
+  .scg .form{flex:0 0 auto; min-width:240px; font-weight:700; color:var(--plum); font-size:15.5px;}
+  .scg .eg{font-family:"Fraunces",Georgia,serif; font-size:15.5px; color:var(--ink);}
+  .scg .ru{margin-top:3px; font-size:14px;}
+  .note{margin-top:13px; background:var(--chip); border-radius:10px; padding:11px 14px; font-size:14.5px; color:var(--ink-soft);}
+  .note b{color:var(--plum);}
+  .note .ru{margin-top:7px;}
+
+  ol.items{list-style:none; counter-reset:q; margin:0; padding:0; display:flex; flex-direction:column; gap:13px;}
+  ol.items > li{counter-increment:q; display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap;}
+  ol.items > li::before{
+    content:counter(q); flex:0 0 auto; width:23px; height:23px; margin-top:4px;
+    display:grid; place-items:center; border-radius:50%;
+    background:var(--chip); color:var(--plum); font-size:12px; font-weight:700;
+    font-variant-numeric:tabular-nums;
+  }
+  .qbody{flex:1 1 240px; min-width:0;}
+  .qtext{font-size:16px;}
+  .qtext.src{font-family:"Fraunces",Georgia,serif; font-size:17px;}
+  .qtext .bar{display:inline-flex; gap:6px; margin-left:8px; vertical-align:middle;}
+  .btns{display:flex; gap:6px; flex:0 0 auto; margin-top:3px;}
+  input.gap{
+    font-family:inherit; font-size:15px; width:165px; max-width:100%;
+    padding:4px 9px; border-radius:7px; border:1.5px solid var(--line);
+    background:var(--paper); color:var(--ink);
+  }
+  input.gap.wide{width:100%; margin-top:6px;}
+  .chk{
+    font-family:inherit; font-size:11px; font-weight:700; letter-spacing:.06em; cursor:pointer;
+    padding:5px 12px; border-radius:999px;
+    background:transparent; color:var(--plum); border:1.5px solid var(--plum);
+  }
+  .ruq{margin-top:5px;}
+  .fb{display:none; margin-top:7px; border-radius:9px; padding:9px 11px; font-size:14.5px; line-height:1.5;}
+  li.done .fb{display:block;}
+  .fb.ok{background:var(--good-bg); color:var(--good); font-weight:700;}
+  .fb.no{background:var(--bad-bg); color:var(--ink);}
+  .fb .right{color:var(--bad); font-weight:700; display:block; margin-bottom:4px;}
+  .fb.ok .right{color:var(--good);}
+  .fb .ru{margin-top:4px;}
+  li.done.okrow input.gap{border-color:var(--good);}
+  li.done.norow input.gap{border-color:var(--bad);}
+
+  .opts{display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;}
+  .opts button{
+    font-family:inherit; font-size:14px; font-weight:700; cursor:pointer;
+    padding:5px 15px; border-radius:999px; border:1.5px solid var(--line);
+    background:var(--paper); color:var(--ink-soft);
+  }
+  .opts button[aria-pressed="true"]{border-color:var(--plum); background:var(--plum); color:var(--paper);}
+
+  .exfoot{margin-top:14px; padding-top:12px; border-top:1px solid var(--line); display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .copy{font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; padding:7px 14px; border-radius:999px; border:none; background:var(--plum); color:var(--paper);}
+  .cmsg{font-size:13px; color:var(--ink-soft);}
+  .cmsg.ok{color:var(--good); font-weight:700;}
+
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:11px;}
+  .vc{
+    background:var(--chip); border:1px solid var(--line); border-radius:12px;
+    padding:13px 14px; cursor:pointer; text-align:left;
+    display:flex; flex-direction:column; gap:3px;
+  }
+  .vc .en{font-family:"Fraunces",Georgia,serif; font-size:19px; font-weight:600; line-height:1.15; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .vc .tr{font-size:13px; color:var(--plum-soft);}
+  .vc .df{font-size:13.5px; color:var(--ink-soft); line-height:1.4; margin-top:3px;}
+  .vc .rux{display:none; margin-top:7px; padding-top:7px; border-top:1px solid var(--line); font-size:15px; font-weight:700; color:var(--plum);}
+  .vc.flip .rux{display:block;}
+  .vc .tap{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--plum-soft); margin-top:7px;}
+  .vc.flip .tap{display:none;}
+
+  .play{
+    font-family:inherit; font-size:14px; font-weight:700; cursor:pointer;
+    padding:9px 20px; border-radius:999px; border:none;
+    background:var(--plum); color:var(--paper);
+  }
+  .play.ghost{background:transparent; color:var(--plum); border:1.5px solid var(--plum);}
+  .hint{font-size:13.5px; color:var(--ink-soft); margin-top:10px;}
+  .sent{margin-bottom:8px;}
+  .sent .en{font-size:16.5px; line-height:1.6;}
+  .sent .bar{display:inline-flex; gap:6px; margin-left:8px; vertical-align:middle;}
+
+  .tp{font-size:15.5px; line-height:2.15; color:var(--ink-soft); font-weight:400; margin:0;}
+  .ts{cursor:pointer; border-radius:5px; padding:1px 3px;}
+  .ts:hover{background:var(--chip);}
+  .ts.open{background:var(--chip);}
+  .ts:focus-visible{outline:2px solid var(--gold); outline-offset:1px;}
+  .tsen{display:none; color:var(--plum); font-family:"Fraunces",Georgia,serif; font-weight:600;}
+  .ts.open .tsen{display:inline;}
+  .tsay{
+    font-family:inherit; font-size:9px; line-height:1; padding:3px 7px; margin:0 3px;
+    border-radius:999px; background:transparent; color:var(--plum-soft);
+    border:1px solid var(--line); cursor:pointer; vertical-align:middle;
+  }
+  .tpbar{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px; padding-top:14px; border-top:1px solid var(--line);}
+
+  .tl{display:flex; flex-direction:column; gap:15px; margin:0; padding:0; list-style:none; counter-reset:t;}
+  .tl li{counter-increment:t; display:flex; gap:10px; align-items:flex-start;}
+  .tl li::before{
+    content:counter(t); flex:0 0 auto; width:23px; height:23px; margin-top:3px;
+    display:grid; place-items:center; border-radius:50%;
+    background:var(--chip); color:var(--plum); font-size:12px; font-weight:700;
+  }
+  .tl .ru0{font-size:16px;}
+  .tl .bar{display:inline-flex; gap:6px; margin-left:8px; vertical-align:middle;}
+  .tl .enx{display:none; margin-top:6px; font-family:"Fraunces",Georgia,serif; font-size:16.5px; color:var(--plum); line-height:1.5;}
+  .tl li.open .enx{display:block;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+
+  /* New Warm-up Visual: Detective Case Strips (Split Habit vs. Surprise) */
+  .det-list{display:flex; flex-direction:column; gap:10px;}
+  .det-case{
+    background:var(--paper); border:1.5px solid var(--line); border-left:4px solid var(--gold);
+    border-radius:12px; padding:12px 15px; cursor:pointer;
+    display:flex; align-items:center; gap:14px; transition:border-color .15s, background .15s;
+  }
+  .det-case:hover{border-color:var(--plum-soft); background:var(--chip);}
+  .det-case.open{cursor:default; background:var(--chip); border-left-color:var(--plum); align-items:flex-start;}
+  .det-case.highlight{box-shadow:0 0 0 3px var(--gold);}
+  .det-badge{
+    flex:0 0 auto; width:46px; height:46px; border-radius:12px;
+    background:var(--card); border:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+  .det-badge .emo{font-size:21px; line-height:1;}
+  .det-badge .num{font-size:9.5px; font-weight:700; letter-spacing:.08em; color:var(--gold); margin-top:2px;}
+  .det-main{flex:1 1 auto; min-width:0;}
+  .det-top{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .det-title{font-family:"Fraunces",Georgia,serif; font-size:17px; font-weight:600; color:var(--plum);}
+  .det-cta{
+    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--gold); background:var(--card); border:1px solid var(--gold);
+    padding:4px 11px; border-radius:999px;
+  }
+  .det-case.open .det-cta{display:none;}
+  .det-body{display:none; margin-top:8px;}
+  .det-case.open .det-body{display:block;}
+  .det-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:8px; margin-top:4px;}
+  .det-pill{
+    background:var(--card); border:1px solid var(--line); border-radius:9px; padding:8px 11px;
+    font-size:14.5px; line-height:1.4;
+  }
+  .det-pill .tag{
+    display:inline-block; font-size:10px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    padding:2px 7px; border-radius:6px; margin-bottom:4px;
+  }
+  .det-pill.ps .tag{background:var(--chip); color:var(--plum);}
+  .det-pill.pc .tag{background:var(--good-bg); color:var(--good);}
+  .det-q{margin-top:8px; font-family:"Fraunces",Georgia,serif; font-size:16px; color:var(--ink); display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .det-case .ru{margin-top:6px; font-size:14px;}
+  .det-case:not(.open) .ru{display:none !important;}
+  .pickbar{margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <span class="eyebrow">Mini-group · 20 November</span>
+      <h1>Present Simple &amp; Present Continuous · city &amp; shopping</h1>
+      <div class="meta">Tuesday &amp; Friday, 12:00–12:50</div>
+    </div>
+    <button class="rusbtn" id="rusbtn" aria-pressed="false">RUS</button>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-p="p1">Warm-up</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p2">Homework</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p3">Grammar</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p4">Vocabulary</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p5">Reading</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p6">Speaking</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="p7">Translation</button>
+  </nav>
+
+  <!-- 1. Warm-up -->
+  <section class="panel" id="p1" role="tabpanel">
+    <p class="lead">Friday Detective! Choose two cases each (or press <b>Random case</b>). Open the file, compare what the person <b>usually does</b> (Present Simple) with <b>today's surprise</b> (Present Continuous), and answer the question!
+      <span class="ru inl">Пятничный детектив! Выберите по два досье каждая (или нажмите Random case). Откройте карточку, сравните обычную привычку (Present Simple) с сегодняшним сюрпризом (Present Continuous) и ответьте на вопрос!</span></p>
+    <div class="card">
+      <h3>Habit vs. Today's Surprise — 8 Detective Files</h3>
+      <div class="det-list" id="warmupCases"></div>
+      <div class="note"><b>Pattern:</b> <i>Usually she … (Present Simple), but today she is … (Present Continuous)!</i>
+        <div class="ru">Образец ответа: Usually she … (обычно она…), but today she is … (но сегодня она…)!</div></div>
+      <div class="pickbar">
+        <button class="play" id="warmrandom" type="button">🎲 Open random case</button>
+        <button class="play ghost" id="warmreset" type="button">Close all cases</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Homework -->
+  <section class="panel" id="p2" role="tabpanel" hidden>
+    <p class="lead">Last lesson's translation (from 17 November). Say it out loud, then press EN to check yourself.
+      <span class="ru inl">Домашний перевод с прошлого занятия (от 17 ноября). Скажите вслух, потом нажмите EN и проверьте себя.</span></p>
+    <div class="card"><h3>Homework check</h3><ol class="tl" id="hw"></ol></div>
+  </section>
+
+  <!-- 3. Grammar -->
+  <section class="panel" id="p3" role="tabpanel" hidden>
+    <p class="lead">Let's review the rules for <b>Present Continuous</b> and <b>Present Simple</b> (action verbs only), then complete four new exercises (8 items each).
+      <span class="ru inl">Повторяем правила для Present Continuous и Present Simple (только глаголы действия), затем выполняем четыре новых упражнения (по 8 пунктов в каждом).</span></p>
+
+    <div class="card" id="usesPC">
+      <h3>When do we use the Present Continuous? — Four situations</h3>
+    </div>
+
+    <div class="card" id="usesPS">
+      <h3>When do we use the Present Simple? — Four situations</h3>
+    </div>
+
+    <div class="card" id="scPC">
+      <h3>Present Continuous — Structure &amp; Indicators</h3>
+    </div>
+
+    <div class="card" id="scPS">
+      <h3>Present Simple — Structure &amp; Indicators</h3>
+    </div>
+
+    <div class="card">
+      <h3>Exercise 1 — fix the mistake. Write the full sentence</h3>
+      <div class="bank">Each sentence has one mistake in the tense or helper verb (do/does vs. am/is/are). Write the whole sentence correctly.<div class="ru">В каждом предложении одна ошибка во времени или вспомогательном глаголе (do/does вместо am/is/are или наоборот). Напишите предложение целиком правильно.</div></div>
+      <ol class="items" id="g1"></ol>
+      <div class="exfoot" data-for="g1"></div>
+    </div>
+
+    <div class="card">
+      <h3>Exercise 2 — open the brackets (+, − or ?)</h3>
+      <div class="bank">Put the verb into <b>Present Simple</b> or <b>Present Continuous</b>. Watch out for negatives and questions!<div class="ru">Поставьте глагол в Present Simple или Present Continuous. Будьте внимательны в отрицаниях и вопросах!</div></div>
+      <ol class="items" id="g2"></ol>
+      <div class="exfoot" data-for="g2"></div>
+    </div>
+
+    <div class="card">
+      <h3>Exercise 3 — complete the story: Friday at the Ivanovs' home</h3>
+      <div class="bank">Read the whole story about Katya's family in Petrozavodsk and put the verbs into <b>Present Simple</b> or <b>Present Continuous</b>.<div class="ru">Прочитайте историю о семье Кати в Петрозаводске и поставьте глаголы в Present Simple или Present Continuous.</div></div>
+      <ol class="items" id="g3"></ol>
+      <div class="exfoot" data-for="g3"></div>
+    </div>
+
+    <div class="card">
+      <h3>Exercise 4 — Present Simple or Present Continuous? Choose the right form</h3>
+      <div class="bank">Look at the context and time words: <b>habit / fact / timetable</b> (Present Simple) vs. <b>right now / today / this week / sure plan</b> (Present Continuous).<div class="ru">Смотрите на смысл и слова-индикаторы: привычка / факт / расписание (Present Simple) или прямо сейчас / сегодня / на этой неделе / точный план (Present Continuous).</div></div>
+      <ol class="items" id="g4"></ol>
+      <div class="exfoot" data-for="g4"></div>
+    </div>
+  </section>
+
+  <!-- 4. Vocabulary -->
+  <section class="panel" id="p4" role="tabpanel" hidden>
+    <p class="lead">Ten useful phrases for shopping, cafés &amp; city errands. Tap a card to see the Russian translation.
+      <span class="ru inl">Десять полезных фраз для покупок, кафе и городских дел. Нажмите на карточку, чтобы увидеть перевод.</span></p>
+    <div class="card"><h3>Word cards</h3><div class="cards" id="cards"></div></div>
+    <div class="card">
+      <h3>Exercise 1 — choose the right phrase</h3>
+      <div class="bank">Read the situation and choose the best phrase.<div class="ru">Прочитайте ситуацию и выберите подходящую фразу.</div></div>
+      <ol class="items" id="v1"></ol>
+      <div class="exfoot" data-for="v1"></div>
+    </div>
+    <div class="card">
+      <h3>Exercise 2 — complete the sentences</h3>
+      <div class="bank">Words &amp; phrases: <b>shopping list · grocery shopping · trying on · pay by card · the bill · leave a tip · takeaway · parcel</b><div class="ru">Вставьте подходящее по смыслу слово или фразу из списка (каждое — по одному разу).</div></div>
+      <ol class="items" id="v2"></ol>
+      <div class="exfoot" data-for="v2"></div>
+    </div>
+  </section>
+
+  <!-- 5. Reading -->
+  <section class="panel" id="p5" role="tabpanel" hidden>
+    <p class="lead">Read the text — two sentences each. Press ▶ to hear a sentence, RUS to see the translation. Then answer the 4 questions and do Exercise 2.
+      <span class="ru inl">Читаем текст — по два предложения каждая. ▶ — послушать, RUS — перевод. Затем отвечаем на 4 вопроса и выполняем второе упражнение.</span></p>
+    <div class="card"><h3>A Busy Friday in Petrozavodsk</h3><div id="lis1"></div></div>
+    <div class="card">
+      <h3>Exercise 1 — answer the 4 questions</h3>
+      <div class="bank">Write your answer in the line below (a full sentence or the main idea), then press <b>CHECK</b>.<div class="ru">Впишите ответ в строчку (полным предложением или кратко) и нажмите CHECK для автоматической проверки.</div></div>
+      <ol class="items" id="r1"></ol>
+      <div class="exfoot" data-for="r1"></div>
+    </div>
+    <div class="card">
+      <h3>Exercise 2 — true, false or not in the text?</h3>
+      <div class="bank"><b>Not in the text</b> = the text doesn't say it.<div class="ru">Not in the text — в тексте об этом ничего не сказано.</div></div>
+      <ol class="items" id="r2"></ol>
+      <div class="exfoot" data-for="r2"></div>
+    </div>
+  </section>
+
+  <!-- 6. Speaking -->
+  <section class="panel" id="p6" role="tabpanel" hidden>
+    <p class="lead">Ask one question in the <b>Present Simple</b> and one question in the <b>Present Continuous</b> on any topic you like!
+      <span class="ru inl">Задайте один вопрос в Present Simple и один вопрос в Present Continuous на абсолютно любую тему!</span></p>
+    <div class="card">
+      <h3>Two questions — Present Simple &amp; Present Continuous</h3>
+      <div class="bank">
+        Ask any two questions you want: one about <b>regular life / habits</b> (Present Simple) and one about <b>right now / this week / plans</b> (Present Continuous). Answer with a full sentence!
+        <div class="ru">Придумайте и задайте два любых вопроса: один — про обычную жизнь и привычки (Present Simple), второй — про то, что происходит сейчас, на этой неделе или в планах (Present Continuous). Отвечаем полным предложением!</div>
+      </div>
+      <div class="note">
+        <b>Examples:</b><br><br>
+        <b>1. Present Simple (usually / every day / often):</b><br>
+        — <i>What do you usually do on Friday evening?</i><br>
+        — <i>I usually cook dinner and watch a film with my husband.</i><br><br>
+        <b>2. Present Continuous (now / today / this week / tonight):</b><br>
+        — <i>What are you doing after our lesson today?</i><br>
+        — <i>After our lesson I am going for a walk with my children.</i>
+        <div class="ru">
+          <b>Примеры:</b><br><br>
+          <b>1. Present Simple (обычно / каждый день / часто):</b><br>
+          — What do you usually do on Friday evening? (Что ты обычно делаешь в пятницу вечером?)<br>
+          — I usually cook dinner and watch a film with my husband. (Обычно я готовлю ужин и смотрю фильм с мужем.)<br><br>
+          <b>2. Present Continuous (сейчас / сегодня / на этой неделе / вечером):</b><br>
+          — What are you doing after our lesson today? (Что ты делаешь сегодня после нашего урока?)<br>
+          — After our lesson I am going for a walk with my children. (После урока я иду гулять с детьми.)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Translation -->
+  <section class="panel" id="p7" role="tabpanel" hidden>
+    <p class="lead">Translate the story out loud using Present Simple, Present Continuous, and our new shopping &amp; city phrases. Tap a sentence or press Show all in English to check.
+      <span class="ru inl">Переведите историю вслух, используя Present Simple, Present Continuous и новые фразы о покупках и делах в городе. Нажмите на предложение или кнопку ниже для проверки.</span></p>
+    <div class="card"><h3>Translation</h3><div id="trans"></div></div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var canSpeak = ("speechSynthesis" in window) && ("SpeechSynthesisUtterance" in window);
+  var femaleVoice = null;
+  function pickVoice(){
+    try{
+      var vs = window.speechSynthesis.getVoices() || [];
+      var en = vs.filter(function(v){ return /^en[-_]/i.test(v.lang); });
+      var female = /female|woman|serena|kate|stephanie|martha|libby|sonia|hazel|susan|samantha|karen|moira|tessa|fiona|victoria|allison|ava|zira|aria|jenny|emma|amy|joanna|salli|kimberly/i;
+      var male = /\bmale\b|daniel|arthur|oliver|george|ryan|thomas|alex|fred|rishi|aaron|guy|david|mark|james/i;
+      var gb = en.filter(function(v){ return /en[-_]gb/i.test(v.lang); });
+      femaleVoice =
+        gb.filter(function(v){ return female.test(v.name) && !/\bmale\b/i.test(v.name.replace(/female/i, "")); })[0] ||
+        en.filter(function(v){ return female.test(v.name) && !/\bmale\b/i.test(v.name.replace(/female/i, "")); })[0] ||
+        gb.filter(function(v){ return !male.test(v.name); })[0] ||
+        en.filter(function(v){ return !male.test(v.name); })[0] ||
+        null;
+    }catch(e){ femaleVoice = null; }
+  }
+  if(canSpeak){
+    pickVoice();
+    try{ window.speechSynthesis.addEventListener("voiceschanged", pickVoice); }catch(e){}
+  }
+  function speak(t, rate){
+    if(!canSpeak) return;
+    try{
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      if(!femaleVoice) pickVoice();
+      if(femaleVoice){ u.voice = femaleVoice; u.lang = femaleVoice.lang; }
+      else { u.lang = "en-GB"; u.pitch = 1.25; }
+      u.rate = rate || 0.85;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+  function sayBtn(text, rate, label){
+    if(!canSpeak) return null;
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "mini say";
+    b.textContent = label || "▶";
+    b.setAttribute("aria-label", label || "Listen");
+    b.addEventListener("click", function(e){ e.stopPropagation(); speak(text, rate || 0.85); });
+    return b;
+  }
+  function ruBtn(host){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "mini"; b.textContent = "RUS";
+    b.addEventListener("click", function(e){
+      e.stopPropagation();
+      var on = host.classList.toggle("ruopen");
+      b.classList.toggle("on", on);
+    });
+    return b;
+  }
+  function el(tag, cls, txt){
+    var d = document.createElement(tag);
+    if(cls) d.className = cls;
+    if(txt !== undefined) d.textContent = txt;
+    return d;
+  }
+
+  /* ================= DATA ================= */
+
+  var WARMUP_CASES = [
+    {
+      num:"01", emoji:"🍳", title:"Friday dinner",
+      habit:"Usually Lena cooks soup on Friday.",
+      today:"Today she is ordering pizza!",
+      question:"What about you?",
+      ru:"Обычно Лена варит суп в пятницу, но сегодня она заказывает пиццу! А как у вас?"
+    },
+    {
+      num:"02", emoji:"👟", title:"Morning shoes",
+      habit:"Usually Igor wears business shoes to work.",
+      today:"Today he is wearing trainers!",
+      question:"What are you wearing today?",
+      ru:"Обычно Игорь носит на работу туфли, но сегодня он в кроссовках! А во что вы одеты сегодня?"
+    },
+    {
+      num:"03", emoji:"📚", title:"Evening reading",
+      habit:"Usually Masha reads fairy tales to her son.",
+      today:"This week she is reading a detective novel!",
+      question:"What are you reading these days?",
+      ru:"Обычно Маша читает сыну сказки, но на этой неделе она читает детектив! А что вы читаете сейчас?"
+    },
+    {
+      num:"04", emoji:"🚗", title:"Morning commute",
+      habit:"Usually Olga drives to the office.",
+      today:"Today she is taking a taxi!",
+      question:"How do you usually get around town?",
+      ru:"Обычно Оля ездит в офис на машине, но сегодня она едет на такси! А на чем вы обычно ездите по городу?"
+    },
+    {
+      num:"05", emoji:"🍰", title:"Sweet treat",
+      habit:"Usually Sveta drinks tea without sugar.",
+      today:"Right now she is eating a big chocolate cake!",
+      question:"What do you usually drink with dessert?",
+      ru:"Обычно Света пьет чай без сахара, но прямо сейчас она ест большой шоколадный торт! А что вы обычно пьете к десерту?"
+    },
+    {
+      num:"06", emoji:"🧘‍♀️", title:"Sport & rest",
+      habit:"Usually Vera goes to the swimming pool on Fridays.",
+      today:"Tonight she is staying at home and relaxing!",
+      question:"What do you usually do on Friday evening?",
+      ru:"Обычно Вера ходит в бассейн по пятницам, но сегодня вечером она остается дома и отдыхает! А что вы обычно делаете в пятницу вечером?"
+    },
+    {
+      num:"07", emoji:"🛍️", title:"Grocery & mall shopping",
+      habit:"Usually Dasha buys food in a small shop near home.",
+      today:"Today she is shopping in a huge mall!",
+      question:"Where do you usually buy groceries?",
+      ru:"Обычно Даша покупает продукты в маленьком магазине у дома, но сегодня она ходит по огромному торговому центру! Где вы обычно покупаете продукты?"
+    },
+    {
+      num:"08", emoji:"✈️", title:"Weekend plans",
+      habit:"Usually Ira stays in Petrozavodsk at weekends.",
+      today:"Tomorrow she is taking a train to St. Petersburg!",
+      question:"What are you doing this weekend?",
+      ru:"Обычно Ира остается в Петрозаводске на выходных, но завтра она едет на поезде в Санкт-Петербург! А что вы делаете в эти выходные?"
+    }
+  ];
+
+  /* Homework transferred verbatim from 17 November (lesson-13-v2.html) */
+  var HOMEWORK = [
+    ["Обычно мы путешествуем летом, но на этой неделе мы отдыхаем в Сочи.","We usually travel in summer, but this week we are staying in Sochi."],
+    ["Мы всегда бронируем отель рядом с морем.","We always book a hotel near the sea."],
+    ["Дома я обычно готовлю каждое утро, но здесь мы пробуем местную еду в кафе.","At home I usually cook every morning, but here we are trying local food in cafés."],
+    ["Прямо сейчас мои дети покупают сувениры для бабушки.","Right now my children are buying souvenirs for Grandma."],
+    ["Сегодня днем мы идем осматривать достопримечательности в центре города.","This afternoon we are going sightseeing in the city centre."],
+    ["Вечером мы собираем чемоданы, потому что завтра улетаем домой.","Tonight we are packing our suitcases because we are flying home tomorrow."],
+    ["Наш рейс отправляется завтра в 11:30 утра по расписанию.","Our flight leaves at 11:30 tomorrow morning."],
+    ["А как вы обычно проводите отпуск со своей семьей?","And how do you usually spend your holidays with your family?"]
+  ];
+
+  /* 4 Situations for Present Continuous */
+  var USES_PC = [
+    {num:"1",
+     name:"Unfinished action at the moment of speaking",
+     nameRu:"Незаконченное действие в момент речи",
+     eg:"Look! The children are playing in the garden.",
+     egRu:"Смотри! Дети играют в саду.",
+     ind:"now · right now · at the moment · Look! · Listen!",
+     ru:"Действие идет прямо сейчас, пока мы говорим, и еще не закончилось."},
+    {num:"2",
+     name:"Unfinished action around the moment of speaking",
+     nameRu:"Незаконченное действие вокруг момента речи",
+     eg:"I am reading a very good book.",
+     egRu:"Я читаю очень хорошую книгу.",
+     ind:"this week · these days · at the moment",
+     ru:"Прямо в эту секунду я книгу не держу в руках — но я ее начала и еще не закончила. Действие идет в этот период."},
+    {num:"3",
+     name:"Temporary situation",
+     nameRu:"Временная ситуация",
+     eg:"My mother is staying with us this week.",
+     egRu:"На этой неделе моя мама живет у нас.",
+     ind:"this week · this month · today",
+     ru:"Так не всегда, а только сейчас, временно. Обычно мама живет у себя."},
+    {num:"4",
+     name:"Plans which we are sure about",
+     nameRu:"Планы, в которых мы уверены",
+     eg:"We are going to the cinema tonight.",
+     egRu:"Вечером мы идем в кино.",
+     ind:"tonight · tomorrow · on Saturday · at seven",
+     ru:"Точный личный план на ближайшее будущее: время и место уже решены."}
+  ];
+
+  /* 4 Situations for Present Simple */
+  var USES_PS = [
+    {num:"01",
+     name:"Regular actions and facts in general",
+     nameRu:"Обычные действия и факты в целом",
+     eg:"I live in Petrozavodsk. My sister works at a school.",
+     egRu:"Я живу в Петрозаводске. Моя сестра работает в школе.",
+     ind:"",
+     ru:"То, что происходит постоянно, вообще в жизни, а не только на этой неделе."},
+    {num:"02",
+     name:"Repeated actions",
+     nameRu:"Повторяющиеся действия и привычки",
+     eg:"I go to the pool twice a week. She often reads in the evening.",
+     egRu:"Я хожу в бассейн дважды в неделю. Она часто читает по вечерам.",
+     ind:"Indicators: every day · usually · often · sometimes · seldom · never · twice a week · on Mondays",
+     ru:"Регулярные действия, которые повторяются с определенной частотой."},
+    {num:"03",
+     name:"Scientific facts",
+     nameRu:"Законы природы и научные факты",
+     eg:"Water boils at 100 degrees. The sun rises in the east.",
+     egRu:"Вода кипит при 100 градусах. Солнце встает на востоке.",
+     ind:"",
+     ru:"Общеизвестные истины и законы природы, которые никогда не меняются."},
+    {num:"04",
+     name:"Timetables — films, performances, flights, trains, buses",
+     nameRu:"Расписания — фильмы, спектакли, рейсы, поезда, автобусы",
+     eg:"The train leaves at 7:30 tomorrow. The film starts at eight tonight.",
+     egRu:"Поезд отправляется завтра в 7:30. Фильм начинается сегодня в восемь вечера.",
+     ind:"",
+     ru:"Даже если речь о завтрашнем дне, для официального расписания транспорта и сеансов используется Present Simple."}
+  ];
+
+  /* Structures & Indicators for both tenses */
+  var SCHEMES = [
+    {host:"scPC",
+     note:"Indicators: now · right now · at the moment · Look! · Listen! · today · this week · this month · these days · tonight · tomorrow · on Saturday",
+     noteRu:"Главное: в Present Continuous у глагола всегда две части — am / is / are + глагол с -ing. Используем для действий прямо сейчас, временных ситуаций и точных личных планов.",
+     groups:[
+       {sign:"+ \u00a0affirmative", signRu:"— утверждение", rows:[
+         {form:"subject + am / is / are + V-ing", formRu:"подлежащее + am / is / are + глагол с -ing", eg:"I am cooking dinner now.", egRu:"Я сейчас готовлю ужин."},
+         {form:"She is cooking · They are cooking", formRu:"Она готовит · Они готовят", eg:"She is staying at a hotel this week.", egRu:"На этой неделе она живет в отеле."}
+       ]},
+       {sign:"\u2212 \u00a0negative", signRu:"— отрицание", rows:[
+         {form:"subject + am / is / are + not + V-ing", formRu:"подлежащее + am / is / are + not + глагол с -ing", eg:"I am not working today.", egRu:"Я сегодня не работаю."},
+         {form:"She isn't working · They aren't working", formRu:"Она не работает · Они не работают", eg:"The children aren't sleeping right now.", egRu:"Дети сейчас не спят."}
+       ]},
+       {sign:"? \u00a0question", signRu:"— вопрос", rows:[
+         {form:"am / is / are + subject + V-ing ?", formRu:"am / is / are + подлежащее + глагол с -ing ?", eg:"Are you packing your suitcase?", egRu:"Ты собираешь чемодан?"},
+         {form:"question word + am / is / are + subject + V-ing ?", formRu:"вопр. слово + am / is / are + подлежащее + глагол с -ing ?", eg:"What are you cooking tonight?", egRu:"Что ты готовишь сегодня вечером?"}
+       ]}
+     ]},
+    {host:"scPS",
+     note:"Indicators: every day / week / year · usually · always · often · sometimes · seldom · never · twice a week · on Mondays · at weekends",
+     noteRu:"Главное: в Present Simple для he / she / it в утверждении добавляем -s (-es), а в отрицаниях и вопросах приходят помощники do / does (и окончание -s у основного глагола исчезает!).",
+     groups:[
+       {sign:"+ \u00a0affirmative", signRu:"— утверждение", rows:[
+         {form:"I / you / we / they + V1", formRu:"I / you / we / they + глагол в 1-й форме", eg:"We travel every summer.", egRu:"Мы путешествуем каждое лето."},
+         {form:"he / she / it + V-s (-es)", formRu:"he / she / it + глагол с окончанием -s (-es)", eg:"She works at a school. The train leaves at 7:30.", egRu:"Она работает в школе. Поезд отправляется в 7:30."}
+       ]},
+       {sign:"\u2212 \u00a0negative", signRu:"— отрицание", rows:[
+         {form:"I / you / we / they + don't + V1", formRu:"I / you / we / they + don't + глагол без окончаний", eg:"I don't drink coffee in the evening.", egRu:"Я не пью кофе вечером."},
+         {form:"he / she / it + doesn't + V1", formRu:"he / she / it + doesn't + глагол без -s!", eg:"He doesn't work on Sundays.", egRu:"Он не работает по воскресеньям."}
+       ]},
+       {sign:"? \u00a0question", signRu:"— вопрос", rows:[
+         {form:"Do + I / you / we / they + V1 ?", formRu:"Do + I / you / we / they + глагол ?", eg:"Do you go to the pool twice a week?", egRu:"Ты ходишь в бассейн два раза в неделю?"},
+         {form:"Does + he / she / it + V1 ?", formRu:"Does + he / she / it + глагол без -s ?", eg:"What time does the flight leave?", egRu:"Во сколько вылетает рейс?"}
+       ]}
+     ]}
+  ];
+
+  /* Vocabulary: 10 Shopping, Cafés & City Errands phrases */
+  var WORDS = [
+    ["make a shopping list","/ˌmeɪk ə ˈʃɒpɪŋ lɪst/","to write down the things you need to buy","составлять список покупок"],
+    ["do the grocery shopping","/ˌduː ðə ˈɡrəʊsəri ʃɒpɪŋ/","to buy food and everyday things for home","покупать продукты"],
+    ["try something on","/ˌtraɪ ˈsʌmθɪŋ ɒn/","to put on clothes or shoes in a shop to check the size","примерять (одежду / обувь)"],
+    ["pay by card","/ˌpeɪ baɪ ˈkɑːd/","to use a bank card or phone instead of cash","платить картой"],
+    ["ask for the bill","/ˌɑːsk fə ðə ˈbɪl/","to ask the waiter how much your meal costs","попросить счёт (в кафе)"],
+    ["leave a tip","/ˌliːv ə ˈtɪp/","to give extra money to a waiter for good service","оставить чаевые"],
+    ["order takeaway","/ˌɔːdə ˈteɪkəweɪ/","to buy cooked food from a café to eat at home","заказывать еду навынос / с доставкой"],
+    ["pick up a parcel","/ˌpɪk ʌp ə ˈpɑːsl/","to collect a package from a delivery point","забрать посылку"],
+    ["wait in a queue","/ˌweɪt ɪn ə ˈkjuː/","to stand in a line of people waiting for their turn","стоять в очереди"],
+    ["look for a discount","/ˌlʊk fər ə ˈdɪskaʊnt/","to try to find a lower price or a sale","искать скидку"]
+  ];
+
+  /* Reading Text: A Busy Friday in Petrozavodsk */
+  var STORY1 = [
+    ["Anna lives in Petrozavodsk with her husband and two children, and she usually works from home on Fridays.","Анна живет в Петрозаводске с мужем и двумя детьми, и по пятницам она обычно работает из дома."],
+    ["Every Friday afternoon she makes a shopping list and does the grocery shopping at the local supermarket.","Каждую пятницу днем она составляет список покупок и покупает продукты в ближайшем супермаркете."],
+    ["However, today is her sister's birthday, so Anna isn't working at all!","Однако сегодня день рождения ее сестры, поэтому Анна совсем не работает!"],
+    ["Right now she is walking around a shopping centre and looking for a nice present.","Прямо сейчас она гуляет по торговому центру и ищет хороший подарок."],
+    ["In a clothes shop she is trying on a warm wool scarf and a green sweater.","В магазине одежды она примеряет теплый шерстяной шарф и зеленый свитер."],
+    ["After that, she is picking up a parcel with flowers from the delivery point on the first floor.","После этого она забирает посылку с цветами из пункта выдачи на первом этаже."],
+    ["Tonight the whole family is celebrating at a cosy café in the centre, and they are ordering a big berry cake.","Сегодня вечером вся семья празднует в уютном кафе в центре, и они заказывают большой ягодный торт."],
+    ["The last bus to their district leaves at 22:30, so they are taking a taxi home after dinner.","Последний автобус в их район отправляется в 22:30, поэтому после ужина они поедут домой на такси."]
+  ];
+
+  /* Grammar Exercises: g1 and g4 swapped so Exercise 1 is 'fix the mistake' and Exercise 4 is 'choose the right form' */
+  var EX = {
+    g1:[
+      {"src": "She go to the swimming pool twice a week.", "a": ["she goes to the swimming pool twice a week"], "model": "She goes to the swimming pool twice a week.", "rus": "Она ходит в бассейн дважды в неделю.", "en": "She + Present Simple needs -es: goes.", "ru": "После she в Present Simple нужно окончание -es: She goes."},
+      {"src": "Look! The children play in the snow.", "a": ["look it is playing", "look! the children are playing in the snow", "look the children are playing in the snow", "the children are playing in the snow"], "model": "Look! The children are playing in the snow.", "rus": "Смотри! Дети играют в снегу.", "en": "Look! = right now → are playing.", "ru": "Look! — прямо сейчас → are playing."},
+      {"src": "Do you cooking dinner right now?", "a": ["are you cooking dinner right now"], "model": "Are you cooking dinner right now?", "rus": "Ты сейчас готовишь ужин?", "en": "Right now + V-ing needs Are, not Do.", "ru": "С глаголом с -ing нужен помощник Are: Are you cooking dinner right now?"},
+      {"src": "The film is starting at 19:00 tonight.", "a": ["the film starts at 19:00 tonight", "the film starts at 19 tonight"], "model": "The film starts at 19:00 tonight.", "rus": "Фильм начинается сегодня в 19:00.", "en": "Cinema timetable → Present Simple: starts.", "ru": "Расписание сеанса в кино — Present Simple: starts."},
+      {"src": "My husband doesn't working on Saturdays.", "a": ["my husband doesn't work on saturdays", "my husband does not work on saturdays"], "model": "My husband doesn't work on Saturdays.", "rus": "Мой муж не работает по субботам.", "en": "After doesn't use base verb without -ing: work.", "ru": "После doesn't ставим начальную форму глагола без -ing: doesn't work."},
+      {"src": "We usually are staying at a hotel near the sea.", "a": ["we usually stay at a hotel near the sea"], "model": "We usually stay at a hotel near the sea.", "rus": "Мы обычно останавливаемся в отеле у моря.", "en": "Usually = repeated habit → We usually stay.", "ru": "Usually — регулярная привычка, нужен Present Simple: We usually stay."},
+      {"src": "Where does she going tomorrow evening?", "a": ["where is she going tomorrow evening", "where's she going tomorrow evening"], "model": "Where is she going tomorrow evening?", "rus": "Куда она идет завтра вечером?", "en": "Tomorrow evening + V-ing needs is, not does.", "ru": "С глаголом с -ing нужен помощник is: Where is she going tomorrow evening?"},
+      {"src": "The sun is rising in the east.", "a": ["the sun rises in the east"], "model": "The sun rises in the east.", "rus": "Солнце встает на востоке.", "en": "Scientific / natural fact → Present Simple: rises.", "ru": "Закон природы — всегда Present Simple: rises."}
+    ],
+    g2:[
+      {"serif": true, "q": "Listen! Someone __ (knock) on the front door.", "a": ["is knocking", "'s knocking"], "rus": "Послушай! Кто-то стучит во входную дверь.", "en": "Listen! → right now → is knocking.", "ru": "Listen! — прямо сейчас → is knocking."},
+      {"serif": true, "q": "How often __ (you / go) to the gym?", "a": ["do you go"], "rus": "Как часто ты ходишь в спортзал?", "en": "How often → Present Simple question: do you go.", "ru": "Вопрос о регулярности (How often) → do you go."},
+      {"serif": true, "q": "My sister __ (stay) at our flat this month while her house is painted.", "a": ["is staying", "'s staying"], "rus": "Моя сестра живет в нашей квартире в этом месяце, пока в ее доме красят стены.", "en": "This month (temporary situation) → is staying.", "ru": "Временная ситуация (this month) → is staying."},
+      {"serif": true, "q": "I __ (not / work) tomorrow — it's my day off!", "a": ["am not working", "'m not working"], "rus": "Я завтра не работаю — у меня выходной!", "en": "Tomorrow (sure plan / arrangement) → am not working.", "ru": "Точный план на завтра → am not working."},
+      {"serif": true, "q": "What time __ (the train / arrive) in Petrozavodsk?", "a": ["does the train arrive"], "rus": "Во сколько поезд прибывает в Петрозаводск?", "en": "Train timetable → Present Simple: does the train arrive.", "ru": "Расписание поезда — Present Simple: does the train arrive."},
+      {"serif": true, "q": "My children __ (not / watch) cartoons right now — they are drawing.", "a": ["aren't watching", "are not watching", "'re not watching"], "rus": "Мои дети прямо сейчас не смотрят мультики — они рисуют.", "en": "Right now → Present Continuous negative: aren't watching.", "ru": "Прямо сейчас (right now) → aren't watching."},
+      {"serif": true, "q": "Where __ (your husband / work)? — At an IT company.", "a": ["does your husband work"], "rus": "Где работает твой муж? — В IT-компании.", "en": "Permanent fact in general → does your husband work.", "ru": "Постоянный факт о работе — Present Simple: does your husband work."},
+      {"serif": true, "q": "Why __ (you / pack) a big suitcase? Are you going on a trip?", "a": ["are you packing"], "rus": "Почему ты собираешь большой чемодан? Ты едешь в поездку?", "en": "Action happening around now → are you packing.", "ru": "Действие в процессе прямо сейчас → are you packing."}
+    ],
+    g3:[
+      {"serif": true, "q": "Katya and her family __ (live) in a cosy flat in Petrozavodsk.", "a": ["live"], "rus": "Катя и ее семья живут в уютной квартире в Петрозаводске.", "en": "Permanent fact → Present Simple: live.", "ru": "Постоянный факт — Present Simple: live."},
+      {"serif": true, "q": "On Fridays Katya usually __ (finish) work at five o'clock.", "a": ["finishes"], "rus": "По пятницам Катя обычно заканчивает работу в пять часов.", "en": "Usually / on Fridays + she → finishes.", "ru": "Обычно по пятницам (она) → finishes."},
+      {"serif": true, "q": "Then she often __ (take) her son to his swimming lesson.", "a": ["takes"], "rus": "Затем она часто отводит сына на занятие по плаванию.", "en": "Often + she → takes.", "ru": "Регулярное действие (often + она) → takes."},
+      {"serif": true, "q": "However, this Friday is different: her son __ (not / go) to the pool today.", "a": ["isn't going", "is not going", "'s not going"], "rus": "Однако эта пятница особенная: ее сын сегодня не идет в бассейн.", "en": "Today (temporary change) → isn't going.", "ru": "Сегодня (разовое изменение плана) → isn't going."},
+      {"serif": true, "q": "Right now Katya __ (bake) a carrot cake in the kitchen.", "a": ["is baking", "'s baking"], "rus": "Прямо сейчас Катя печет морковный торт на кухне.", "en": "Right now → is baking.", "ru": "Прямо сейчас → is baking."},
+      {"serif": true, "q": "Her husband __ (clean) the living room because their friends are coming soon.", "a": ["is cleaning", "'s cleaning"], "rus": "Ее муж убирается в гостиной, потому что скоро придут их друзья.", "en": "Happening now → is cleaning.", "ru": "Происходит прямо сейчас → is cleaning."},
+      {"serif": true, "q": "'What __ (you / do) in the kitchen, Mum?' asks her little son.", "a": ["are you doing"], "rus": "«Что ты делаешь на кухне, мама?» — спрашивает ее маленький сын.", "en": "Right now → What are you doing?", "ru": "Прямо сейчас → What are you doing?"},
+      {"serif": true, "q": "Their guests __ (arrive) at seven o'clock tonight.", "a": ["are arriving", "'re arriving"], "rus": "Их гости приходят сегодня в семь вечера.", "en": "Sure plan for tonight → are arriving.", "ru": "Точный план на сегодняшний вечер → are arriving."}
+    ],
+    g4:[
+      {"serif": true, "q": "Be quiet! The baby ___ in the bedroom right now.", "choice": ["sleeps", "is sleeping", "sleep"], "a": ["is sleeping"], "rus": "Тише! Малыш сейчас спит в спальне.", "en": "Right now → happening at the moment: is sleeping.", "ru": "Right now — действие происходит прямо сейчас: is sleeping."},
+      {"serif": true, "q": "My husband usually ___ breakfast for the kids on Saturdays.", "choice": ["cooks", "is cooking", "cook"], "a": ["cooks"], "rus": "Мой муж обычно готовит завтрак для детей по субботам.", "en": "Usually / on Saturdays → repeated action: cooks.", "ru": "Обычная привычка по субботам — Present Simple: cooks."},
+      {"serif": true, "q": "Hurry up! Our bus ___ at 18:15 according to the timetable.", "choice": ["leaves", "is leaving", "leave"], "a": ["leaves"], "rus": "Поторопись! Наш автобус отправляется в 18:15 по расписанию.", "en": "Timetables → Present Simple: leaves.", "ru": "Расписание транспорта — всегда Present Simple: leaves."},
+      {"serif": true, "q": "I ___ a very interesting book about Finland this week.", "choice": ["read", "am reading", "reads"], "a": ["am reading"], "rus": "На этой неделе я читаю очень интересную книгу о Финляндии.", "en": "This week (unfinished action around now) → am reading.", "ru": "Незаконное действие в этот период (this week) — am reading."},
+      {"serif": true, "q": "Water ___ at 100 degrees Celsius.", "choice": ["boils", "is boiling", "boil"], "a": ["boils"], "rus": "Вода кипит при 100 градусах Цельсия.", "en": "Scientific fact → Present Simple: boils.", "ru": "Научный факт — всегда Present Simple: boils."},
+      {"serif": true, "q": "We ___ to St. Petersburg tomorrow morning — we already have the tickets!", "choice": ["go", "are going", "goes"], "a": ["are going"], "rus": "Мы едем в Санкт-Петербург завтра утром — у нас уже есть билеты!", "en": "Sure personal plan for tomorrow → are going.", "ru": "Точный план на завтра — Present Continuous: are going."},
+      {"serif": true, "q": "She ___ coffee in the evening because she goes to bed early.", "choice": ["doesn't drink", "isn't drinking", "don't drink"], "a": ["doesn't drink"], "rus": "Она не пьет кофе вечером, потому что рано ложится спать.", "en": "General habit → Present Simple negative: doesn't drink.", "ru": "Постоянная привычка — Present Simple: doesn't drink."},
+      {"serif": true, "q": "Look out of the window! It ___ heavily again.", "choice": ["snows", "is snowing", "snow"], "a": ["is snowing"], "rus": "Посмотри в окно! Снова идет сильный снег.", "en": "Look! → happening right now: is snowing.", "ru": "Look! — действие происходит прямо сейчас: is snowing."}
+    ],
+    v1:[
+      {"serif": true, "q": "Before I go to the supermarket, I always ___ so I don't forget anything.", "choice": ["make a shopping list", "ask for the bill", "leave a tip"], "a": ["make a shopping list"], "rus": "Перед походом в супермаркет я всегда составляю список покупок, чтобы ничего не забыть.", "en": "Write down what you need to buy → make a shopping list.", "ru": "Составить список покупок — make a shopping list."},
+      {"serif": true, "q": "We finished our coffee and dessert. Let's ___ and go home.", "choice": ["ask for the bill", "try them on", "pick up a parcel"], "a": ["ask for the bill"], "rus": "Мы допили кофе и съели десерт. Давай попросим счёт и пойдем домой.", "en": "Ask the waiter to pay → ask for the bill.", "ru": "Попросить счёт в кафе — ask for the bill."},
+      {"serif": true, "q": "I don't have any cash in my wallet today. Can I ___ ?", "choice": ["pay by card", "wait in a queue", "order takeaway"], "a": ["pay by card"], "rus": "У меня сегодня нет наличных в кошельке. Можно оплатить картой?", "en": "Use a bank card instead of cash → pay by card.", "ru": "Оплатить картой — pay by card."},
+      {"serif": true, "q": "This coat is very nice! Go to the fitting room and ___ .", "choice": ["try it on", "leave a tip", "look for a discount"], "a": ["try it on"], "rus": "Это пальто очень красивое! Иди в примерочную и примерь его.", "en": "Check the size of clothes → try it on.", "ru": "Примерить одежду — try it on."},
+      {"serif": true, "q": "I'm too tired to cook tonight. Let's ___ from our favourite sushi café!", "choice": ["order takeaway", "do the grocery shopping", "wait in a queue"], "a": ["order takeaway"], "rus": "Я слишком устала, чтобы готовить сегодня вечером. Давай закажем еду навынос из нашего любимого суши-кафе!", "en": "Order food from a café to eat at home → order takeaway.", "ru": "Заказать еду навынос / с доставкой — order takeaway."},
+      {"serif": true, "q": "After work I'm going to the post office to ___ from Moscow.", "choice": ["pick up a parcel", "ask for the bill", "pay by card"], "a": ["pick up a parcel"], "rus": "После работы я иду на почту, чтобы забрать посылку из Москвы.", "en": "Collect a package → pick up a parcel.", "ru": "Забрать посылку — pick up a parcel."},
+      {"serif": true, "q": "There are ten people in front of us at the cash desk — we are ___ .", "choice": ["waiting in a queue", "trying on", "leaving a tip"], "a": ["waiting in a queue"], "rus": "Перед нами десять человек на кассе — мы стоим в очереди.", "en": "Stand in a line → wait in a queue.", "ru": "Стоять в очереди — wait in a queue."},
+      {"serif": true, "q": "The waiter was very friendly and fast, so we are ___ .", "choice": ["leaving a tip", "making a shopping list", "picking up a parcel"], "a": ["leaving a tip"], "rus": "Официант был очень дружелюбным и быстрым, поэтому мы оставляем чаевые.", "en": "Give extra money for good service → leave a tip.", "ru": "Оставить чаевые — leave a tip."}
+    ],
+    v2:[
+      {"serif": true, "q": "Every Saturday morning my husband and I do the __ at the big supermarket.", "a": ["grocery shopping"], "rus": "Каждое субботнее утро мы с мужем покупаем продукты в большом супермаркете.", "en": "Do the grocery shopping.", "ru": "Покупать продукты — do the grocery shopping."},
+      {"serif": true, "q": "Look at Marina in the mirror — she is __ a red dress.", "a": ["trying on"], "rus": "Посмотри на Марину в зеркале — она примеряет красное платье.", "en": "She is trying on a red dress.", "ru": "Примерять — trying on."},
+      {"serif": true, "q": "I never carry cash — I always __ when I buy food or clothes.", "a": ["pay by card"], "rus": "Я никогда не ношу наличные — я всегда плачу картой, когда покупаю еду или одежду.", "en": "Pay by card.", "ru": "Платить картой — pay by card."},
+      {"serif": true, "q": "Excuse me, could you bring us __ , please? We are ready to pay.", "a": ["the bill"], "rus": "Извините, не могли бы вы принести нам счёт, пожалуйста? Мы готовы оплатить.", "en": "The bill.", "ru": "Счёт — the bill."},
+      {"serif": true, "q": "On Fridays we don't cook at home — we usually order __ from a Thai café.", "a": ["takeaway"], "rus": "По пятницам мы не готовим дома — мы обычно заказываем еду навынос из тайского кафе.", "en": "Order takeaway.", "ru": "Еда навынос / с доставкой — takeaway."},
+      {"serif": true, "q": "I am going to the delivery point right now to pick up a __ for my son.", "a": ["parcel"], "rus": "Я прямо сейчас иду в пункт выдачи, чтобы забрать посылку для сына.", "en": "Pick up a parcel.", "ru": "Посылка — parcel."},
+      {"serif": true, "q": "Before we go to the shop, let's write milk, bread, and apples on our __ .", "a": ["shopping list"], "rus": "Перед тем как идти в магазин, давай запишем молоко, хлеб и яблоки в наш список покупок.", "en": "Shopping list.", "ru": "Список покупок — shopping list."},
+      {"serif": true, "q": "In this restaurant service isn't included, so people usually __ of 10%.", "a": ["leave a tip"], "rus": "В этом ресторане обслуживание не включено, поэтому люди обычно оставляют чаевые 10%.", "en": "Leave a tip.", "ru": "Оставить чаевые — leave a tip."}
+    ],
+    r1:[
+      {"serif": true, "speakQ": true, "q": "What does Anna usually do on Friday afternoons?", "a": ["She usually makes a shopping list and does the grocery shopping.", "shopping list", "grocery shopping", "supermarket"], "model": "She usually makes a shopping list and does the grocery shopping at the local supermarket.", "mode": "has", "rus": "Что Анна обычно делает по пятницам днем?", "en": "She usually makes a shopping list and does the grocery shopping.", "ru": "Обычно она составляет список покупок и покупает продукты в супермаркете."},
+      {"serif": true, "speakQ": true, "q": "Why isn't Anna working today?", "a": ["Because today is her sister's birthday.", "sister's birthday", "birthday", "sister"], "model": "Because today is her sister's birthday.", "mode": "has", "rus": "Почему Анна сегодня не работает?", "en": "Because today is her sister's birthday.", "ru": "Потому что сегодня день рождения ее сестры."},
+      {"serif": true, "speakQ": true, "q": "What is she trying on in the clothes shop?", "a": ["She is trying on a warm wool scarf and a green sweater.", "scarf", "sweater"], "model": "She is trying on a warm wool scarf and a green sweater.", "mode": "has", "rus": "Что она примеряет в магазине одежды?", "en": "She is trying on a warm wool scarf and a green sweater.", "ru": "Она примеряет теплый шерстяной шарф и зеленый свитер."},
+      {"serif": true, "speakQ": true, "q": "Where is the family celebrating tonight?", "a": ["They are celebrating at a cosy café in the centre.", "café", "cafe", "centre"], "model": "They are celebrating at a cosy café in the centre.", "mode": "has", "rus": "Где семья празднует сегодня вечером?", "en": "They are celebrating at a cosy café in the centre.", "ru": "В уютном кафе в центре города."}
+    ],
+    r2:[
+      {"serif": true, "q": "Anna lives in Petrozavodsk with her husband and two children.", "choice": ["True", "False", "Not in the text"], "a": ["true"], "rus": "Анна живет в Петрозаводске с мужем и двумя детьми.", "en": "True — sentence 1.", "ru": "Верно — первое предложение."},
+      {"serif": true, "q": "Anna usually works in a bank on Fridays.", "choice": ["True", "False", "Not in the text"], "a": ["false"], "rus": "По пятницам Анна обычно работает в банке.", "en": "False — she usually works from home on Fridays.", "ru": "Неверно — по пятницам она обычно работает из дома."},
+      {"serif": true, "q": "Anna's sister is thirty years old today.", "choice": ["True", "False", "Not in the text"], "a": ["not in the text"], "rus": "Сестре Анны сегодня исполняется тридцать лет.", "en": "Not in the text — the text says it's her birthday, not her age.", "ru": "В тексте не указано — сказано про день рождения, но не про возраст."},
+      {"serif": true, "q": "In the clothes shop Anna is trying on a green sweater.", "choice": ["True", "False", "Not in the text"], "a": ["true"], "rus": "В магазине одежды Анна примеряет зеленый свитер.", "en": "True — sentence 5.", "ru": "Верно — пятое предложение."},
+      {"serif": true, "q": "She is picking up a parcel with books from the delivery point.", "choice": ["True", "False", "Not in the text"], "a": ["false"], "rus": "Она забирает из пункта выдачи посылку с книгами.", "en": "False — the parcel is with flowers.", "ru": "Неверно — посылка с цветами."},
+      {"serif": true, "q": "Anna always pays by card in shops.", "choice": ["True", "False", "Not in the text"], "a": ["not in the text"], "rus": "Анна всегда платит картой в магазинах.", "en": "Not in the text — the text doesn't mention how she pays.", "ru": "В тексте об этом не сказано."},
+      {"serif": true, "q": "Tonight they are ordering a big berry cake at the café.", "choice": ["True", "False", "Not in the text"], "a": ["true"], "rus": "Сегодня вечером они заказывают в кафе большой ягодный торт.", "en": "True — sentence 7.", "ru": "Верно — седьмое предложение."},
+      {"serif": true, "q": "The last bus to their district leaves at 23:30.", "choice": ["True", "False", "Not in the text"], "a": ["false"], "rus": "Последний автобус в их район отправляется в 23:30.", "en": "False — it leaves at 22:30.", "ru": "Неверно — он отправляется в 22:30."}
+    ]
+  };
+
+  var TRANS = [
+    ["По пятницам я обычно составляю список покупок и покупаю продукты рядом с домом.","On Fridays I usually make a shopping list and do the grocery shopping near home."],
+    ["Я всегда плачу картой и часто ищу скидки в супермаркете.","I always pay by card and often look for discounts at the supermarket."],
+    ["Однако сегодня особенный день — мы с подругой идем в торговый центр.","However, today is a special day — my friend and I are going to the shopping centre."],
+    ["Прямо сейчас я примеряю теплое пальто, а она ждет меня рядом.","Right now I am trying on a warm coat, and she is waiting for me nearby."],
+    ["В магазине много людей, поэтому мы стоим в очереди на кассу.","There are a lot of people in the shop, so we are waiting in a queue at the cash desk."],
+    ["После магазина я забираю посылку из пункта выдачи.","After the shop I am picking up a parcel from the delivery point."],
+    ["Вечером мы не готовим ужин — мы заказываем еду навынос из нашего любимого кафе.","In the evening we aren't cooking dinner — we are ordering takeaway from our favourite café."],
+    ["Наш автобус отправляется в девять вечера, поэтому мы возвращаемся домой не поздно.","Our bus leaves at nine in the evening, so we aren't coming home late."]
+  ];
+
+  /* ================= BUILD ================= */
+
+  function norm(s){
+    return String(s).toLowerCase().replace(/[’`]/g,"'").replace(/[.,!?;:—–-]+$/g,"").replace(/\s+/g," ").trim();
+  }
+  function multiline(host, text){
+    text.split("\n").forEach(function(line, i){
+      if(i) host.appendChild(document.createElement("br"));
+      host.appendChild(document.createTextNode(line));
+    });
+  }
+
+  /* Build Warm-up Detective Case Strips (Distinct Split Visual) */
+  (function(){
+    var host = document.getElementById("warmupCases");
+    if(!host) return;
+    WARMUP_CASES.forEach(function(c){
+      var row = el("div","det-case");
+      row.tabIndex = 0;
+      row.setAttribute("role","button");
+
+      var badge = el("div","det-badge");
+      badge.appendChild(el("span","emo", c.emoji));
+      badge.appendChild(el("span","num", "#" + c.num));
+      row.appendChild(badge);
+
+      var main = el("div","det-main");
+      var top = el("div","det-top");
+      top.appendChild(el("span","det-title", "Case " + c.num + " · " + c.title));
+      top.appendChild(el("span","det-cta", "Open file"));
+      main.appendChild(top);
+
+      var body = el("div","det-body");
+      var grid = el("div","det-grid");
+
+      var p1 = el("div","det-pill ps");
+      p1.appendChild(el("span","tag","Usually · Present Simple"));
+      p1.appendChild(el("div", null, c.habit));
+      grid.appendChild(p1);
+
+      var p2 = el("div","det-pill pc");
+      p2.appendChild(el("span","tag","Today · Present Continuous"));
+      p2.appendChild(el("div", null, c.today));
+      grid.appendChild(p2);
+
+      body.appendChild(grid);
+
+      var qline = el("div","det-q");
+      qline.appendChild(el("span", null, "💬 " + c.question));
+      var fullText = c.habit + " " + c.today + " " + c.question;
+      var sb = sayBtn(fullText);
+      if(sb) qline.appendChild(sb);
+      qline.appendChild(ruBtn(row));
+      body.appendChild(qline);
+      body.appendChild(el("div","ru", c.ru));
+
+      main.appendChild(body);
+      row.appendChild(main);
+
+      function open(){ row.classList.add("open"); }
+      row.addEventListener("click", open);
+      row.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); open(); } });
+      host.appendChild(row);
+    });
+
+    var rb = document.getElementById("warmreset");
+    if(rb){
+      rb.addEventListener("click", function(){
+        Array.prototype.forEach.call(host.children, function(d){ d.classList.remove("open","ruopen","highlight"); });
+      });
+    }
+
+    var rnd = document.getElementById("warmrandom");
+    if(rnd){
+      rnd.addEventListener("click", function(){
+        var closed = Array.prototype.filter.call(host.children, function(d){ return !d.classList.contains("open"); });
+        var pool = closed.length ? closed : Array.prototype.slice.call(host.children);
+        var chosen = pool[Math.floor(Math.random() * pool.length)];
+        Array.prototype.forEach.call(host.children, function(d){ d.classList.remove("highlight"); });
+        chosen.classList.add("open","highlight");
+        chosen.scrollIntoView({behavior:"smooth", block:"nearest"});
+      });
+    }
+  })();
+
+  /* Build Grammar 4+4 Situations */
+  function renderUses(hostId, list){
+    var host = document.getElementById(hostId);
+    if(!host) return;
+    host.querySelector("h3").appendChild(ruBtn(host));
+    var ul = el("ul","use");
+    list.forEach(function(u){
+      var li = el("li");
+      var head = el("div","head");
+      head.appendChild(el("span","num", u.num));
+      head.appendChild(el("span","name", u.name));
+      head.appendChild(ruBtn(li));
+      li.appendChild(head);
+      var eg = el("span","eg");
+      eg.appendChild(document.createTextNode(u.eg));
+      var sb = sayBtn(u.eg);
+      if(sb){ var bar = el("span","bar"); bar.appendChild(sb); eg.appendChild(bar); }
+      li.appendChild(eg);
+      if(u.ind) li.appendChild(el("span","ind", u.ind));
+      var ru = el("div","ru");
+      ru.appendChild(el("b", null, u.nameRu));
+      ru.appendChild(document.createElement("br"));
+      ru.appendChild(document.createTextNode(u.eg + " — " + u.egRu));
+      ru.appendChild(document.createElement("br"));
+      ru.appendChild(document.createTextNode(u.ru));
+      li.appendChild(ru);
+      ul.appendChild(li);
+    });
+    host.appendChild(ul);
+  }
+  renderUses("usesPC", USES_PC);
+  renderUses("usesPS", USES_PS);
+
+  /* Build Grammar Structures & Indicators */
+  SCHEMES.forEach(function(sch){
+    var host = document.getElementById(sch.host);
+    if(!host) return;
+    host.querySelector("h3").appendChild(ruBtn(host));
+    var sc = el("div","sc");
+    sch.groups.forEach(function(g){
+      var box = el("div","scg");
+      var sign = el("div","sign");
+      sign.appendChild(document.createTextNode(g.sign));
+      sign.appendChild(el("span","ru", " " + g.signRu));
+      box.appendChild(sign);
+      g.rows.forEach(function(r){
+        var row = el("div","row");
+        var line = el("div","line");
+        line.appendChild(el("span","form", r.form));
+        line.appendChild(el("span","eg", r.eg));
+        row.appendChild(line);
+        row.appendChild(el("div","ru", r.formRu + " · " + r.egRu));
+        box.appendChild(row);
+      });
+      sc.appendChild(box);
+    });
+    host.appendChild(sc);
+    var note = el("div","note");
+    if(sch.note) note.appendChild(document.createTextNode(sch.note));
+    var nru = el("div","ru");
+    multiline(nru, sch.noteRu);
+    note.appendChild(nru);
+    host.appendChild(note);
+  });
+
+  /* Build Exercise Items */
+  function buildItem(it){
+    var li = el("li");
+    var body = el("div","qbody");
+    var opts = it.tf ? ["true","false"] : (it.choice || null);
+    if(it.emoji) body.appendChild(el("span","emo", it.emoji));
+
+    if(opts){
+      body.appendChild(el("span","qtext" + (it.serif ? " serif" : ""), it.q));
+      var g = el("div", "opts");
+      opts.forEach(function(v){
+        var label = it.tf ? (v === "true" ? "True" : "False") : v;
+        var b = el("button", null, label);
+        b.type = "button"; b.setAttribute("aria-pressed","false");
+        b.addEventListener("click", function(){
+          Array.prototype.forEach.call(g.querySelectorAll("button"), function(o){ o.setAttribute("aria-pressed","false"); });
+          b.setAttribute("aria-pressed","true");
+          li.dataset.val = v;
+        });
+        g.appendChild(b);
+      });
+      body.appendChild(g);
+    } else if(it.src !== undefined){
+      body.appendChild(el("div","qtext src", it.src));
+      var inp0 = document.createElement("input");
+      inp0.className = "gap wide"; inp0.type = "text"; inp0.placeholder = "…";
+      inp0.setAttribute("autocomplete","off"); inp0.setAttribute("autocapitalize","off");
+      body.appendChild(inp0);
+    } else {
+      var parts = it.q.split("__");
+      var wrap = el("span","qtext" + (it.serif ? " serif" : ""));
+      var inp = document.createElement("input");
+      inp.className = "gap"; inp.type = "text"; inp.placeholder = "…";
+      inp.setAttribute("autocomplete","off"); inp.setAttribute("autocapitalize","off");
+      if(parts.length > 1){
+        wrap.appendChild(document.createTextNode(parts[0]));
+        wrap.appendChild(inp);
+        wrap.appendChild(document.createTextNode(parts[1]));
+        body.appendChild(wrap);
+      } else {
+        wrap.appendChild(document.createTextNode(it.q));
+        if(it.speakQ){
+          var sbq = sayBtn(it.q);
+          if(sbq){
+            var barq = el("span","bar");
+            barq.appendChild(sbq);
+            wrap.appendChild(barq);
+          }
+        }
+        body.appendChild(wrap);
+        inp.classList.add("wide");
+        body.appendChild(inp);
+      }
+      if(it.wide) inp.classList.add("wide");
+    }
+
+    if(it.rus) body.appendChild(el("span","ru ruq", it.rus));
+    var fb = el("div","fb");
+    body.appendChild(fb);
+
+    var btns = el("div","btns");
+    var chk = el("button","chk","CHECK");
+    chk.type = "button";
+    btns.appendChild(chk);
+    btns.appendChild(ruBtn(li));
+
+    chk.addEventListener("click", function(){
+      var field = body.querySelector("input.gap");
+      var val = field ? field.value : (li.dataset.val || "");
+      var v = norm(val), ok;
+      var cleanPunc = function(t){ return norm(t).replace(/[,.!?;:]/g, "").replace(/\s+/g, " ").trim(); };
+      if(!v) ok = false;
+      else if(it.mode === "has") ok = it.a.some(function(k){ return v.indexOf(norm(k)) !== -1; });
+      else ok = it.a.some(function(k){ return cleanPunc(k) === cleanPunc(v); });
+
+      li.classList.add("done");
+      li.classList.toggle("okrow", ok);
+      li.classList.toggle("norow", !ok);
+      fb.className = "fb " + (ok ? "ok" : "no");
+      fb.textContent = "";
+
+      var right = el("span","right");
+      if(ok){
+        right.textContent = it.model ? "Correct — " + it.model : "Correct!";
+      } else {
+        var shown = it.model ? it.model : it.a[0];
+        if(it.tf) shown = (it.a[0] === "true" ? "True" : "False");
+        else if(it.src !== undefined || it.wide) shown = shown.charAt(0).toUpperCase() + shown.slice(1);
+        right.textContent = shown;
+      }
+      fb.appendChild(right);
+      fb.appendChild(el("span", null, it.en));
+      fb.appendChild(el("span","ru", it.ru));
+    });
+
+    li.appendChild(body);
+    li.appendChild(btns);
+    return li;
+  }
+
+  var LABELS = {
+    g1:"Grammar · Exercise 1 (fix the mistake)",
+    g2:"Grammar · Exercise 2 (open the brackets)",
+    g3:"Grammar · Exercise 3 (Friday at the Ivanovs' home)",
+    g4:"Grammar · Exercise 4 (choose the form)",
+    v1:"Vocabulary · Exercise 1 (choose the phrase)",
+    v2:"Vocabulary · Exercise 2 (complete the sentences)",
+    r1:"Reading · Exercise 1 (answer the questions)",
+    r2:"Reading · Exercise 2 (true, false, not in the text)"
+  };
+  Object.keys(EX).forEach(function(id){
+    var ol = document.getElementById(id);
+    if(!ol) return;
+    EX[id].forEach(function(it){ ol.appendChild(buildItem(it)); });
+    var foot = document.querySelector('.exfoot[data-for="' + id + '"]');
+    if(!foot) return;
+    var b = el("button","copy","Скопировать мои ответы");
+    b.type = "button";
+    var m = el("span","cmsg");
+    b.addEventListener("click", function(){
+      var out = [LABELS[id] || id, ""];
+      Array.prototype.forEach.call(ol.children, function(li, i){
+        var inp = li.querySelector("input.gap");
+        var v = inp ? inp.value.trim() : (li.dataset.val || "");
+        out.push((i + 1) + ". " + (v || "—"));
+      });
+      var text = out.join("\n");
+      function ok(){ m.textContent = "Скопировано"; m.className = "cmsg ok"; }
+      function fail(){ m.textContent = "Не вышло — выделите вручную"; m.className = "cmsg"; }
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(ok).catch(fail);
+      } else fail();
+    });
+    foot.appendChild(b); foot.appendChild(m);
+  });
+
+  /* Build Vocabulary Cards */
+  var box = document.getElementById("cards");
+  WORDS.forEach(function(w){
+    var d = el("div","vc");
+    d.tabIndex = 0; d.setAttribute("role","button");
+    var en = el("span","en");
+    en.appendChild(document.createTextNode(w[0]));
+    var sb = sayBtn(w[0]);
+    if(sb) en.appendChild(sb);
+    d.appendChild(en);
+    d.appendChild(el("span","tr", w[1]));
+    d.appendChild(el("span","df", w[2]));
+    d.appendChild(el("span","rux", w[3]));
+    d.appendChild(el("span","tap","tap for Russian"));
+    function flip(){ d.classList.toggle("flip"); }
+    d.addEventListener("click", flip);
+    d.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); } });
+    box.appendChild(d);
+  });
+
+  /* Build Reading Story */
+  function story(hostId, data){
+    var host = document.getElementById(hostId);
+    var full = data.map(function(s){ return s[0]; }).join(" ");
+
+    data.forEach(function(s){
+      var d = el("div","sent");
+      var en = el("span","en", s[0]);
+      var b = el("span","bar");
+      var sb = sayBtn(s[0]);
+      if(sb) b.appendChild(sb);
+      b.appendChild(ruBtn(d));
+      en.appendChild(b);
+      d.appendChild(en);
+      d.appendChild(el("div","ru", s[1]));
+      host.appendChild(d);
+    });
+
+    if(canSpeak){
+      var bar = el("div","tpbar");
+      var b1 = el("button","play ghost","▶ Listen to all");
+      b1.type = "button";
+      b1.addEventListener("click", function(){ speak(full, 0.85); });
+      var bp = el("button","play ghost","⏸ Pause");
+      bp.type = "button";
+      bp.addEventListener("click", function(){
+        try{
+          if(window.speechSynthesis.paused){ window.speechSynthesis.resume(); bp.textContent = "⏸ Pause"; }
+          else if(window.speechSynthesis.speaking){ window.speechSynthesis.pause(); bp.textContent = "▶ Resume"; }
+        }catch(e){}
+      });
+      var bs = el("button","play ghost","⏹ Stop");
+      bs.type = "button";
+      bs.addEventListener("click", function(){
+        try{ window.speechSynthesis.cancel(); }catch(e){}
+        bp.textContent = "⏸ Pause";
+      });
+      bar.appendChild(b1); bar.appendChild(bp); bar.appendChild(bs);
+      host.appendChild(bar);
+    }
+  }
+  story("lis1", STORY1);
+
+  /* Homework Check List */
+  function transList(hostId, data){
+    var tlOl = document.getElementById(hostId);
+    data.forEach(function(p){
+      var li = el("li");
+      var wrap = el("div");
+      var r = el("span","ru0", p[0]);
+      var bar = el("span","bar");
+      var b = el("button","mini","EN");
+      b.type = "button";
+      b.addEventListener("click", function(){
+        var on = li.classList.toggle("open");
+        b.classList.toggle("on", on);
+      });
+      bar.appendChild(b);
+      var sb = sayBtn(p[1]);
+      if(sb) bar.appendChild(sb);
+      r.appendChild(bar);
+      wrap.appendChild(r);
+      wrap.appendChild(el("div","enx", p[1]));
+      li.appendChild(wrap);
+      tlOl.appendChild(li);
+    });
+  }
+  transList("hw", HOMEWORK);
+
+  /* Translation Story (Section 7) */
+  (function(){
+    var host = document.getElementById("trans");
+    var p = el("p","tp");
+
+    TRANS.forEach(function(pair, i){
+      var sp = el("span","ts");
+      sp.tabIndex = 0;
+      sp.setAttribute("role","button");
+      sp.appendChild(document.createTextNode(pair[0]));
+
+      if(canSpeak){
+        var say = el("button","tsay","▶");
+        say.type = "button";
+        say.setAttribute("aria-label","Listen to this sentence");
+        say.addEventListener("click", function(e){ e.stopPropagation(); speak(pair[1], 0.85); });
+        sp.appendChild(say);
+      }
+      sp.appendChild(el("span","tsen", " → " + pair[1]));
+
+      function toggle(){ sp.classList.toggle("open"); }
+      sp.addEventListener("click", toggle);
+      sp.addEventListener("keydown", function(e){
+        if(e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle(); }
+      });
+
+      p.appendChild(sp);
+      if(i < TRANS.length - 1) p.appendChild(document.createTextNode(" "));
+    });
+    host.appendChild(p);
+
+    var bar = el("div","tpbar");
+    var all = TRANS.map(function(x){ return x[1]; }).join(" ");
+
+    var bAll = el("button","play ghost","Show all in English");
+    bAll.type = "button";
+    bAll.addEventListener("click", function(){
+      var spans = p.querySelectorAll(".ts");
+      var anyClosed = Array.prototype.some.call(spans, function(x){ return !x.classList.contains("open"); });
+      Array.prototype.forEach.call(spans, function(x){ x.classList.toggle("open", anyClosed); });
+      bAll.textContent = anyClosed ? "Hide English" : "Show all in English";
+    });
+    bar.appendChild(bAll);
+
+    if(canSpeak){
+      var bl = el("button","play ghost","▶ Listen to all");
+      bl.type = "button";
+      bl.addEventListener("click", function(){ speak(all, 0.85); });
+      var bst = el("button","play ghost","⏹ Stop");
+      bst.type = "button";
+      bst.addEventListener("click", function(){ try{ window.speechSynthesis.cancel(); }catch(e){} });
+      bar.appendChild(bl); bar.appendChild(bst);
+    }
+    host.appendChild(bar);
+    host.appendChild(el("div","hint","Нажмите на предложение, чтобы увидеть перевод. ▶ — послушать именно его."));
+  })();
+
+  /* Tab Switching */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  tabs.forEach(function(t){
+    t.addEventListener("click", function(){
+      tabs.forEach(function(o){
+        var on = o === t;
+        o.setAttribute("aria-selected", on ? "true" : "false");
+        document.getElementById(o.dataset.p).hidden = !on;
+      });
+      if(canSpeak){ try{ window.speechSynthesis.cancel(); }catch(e){} }
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  });
+
+  var rb = document.getElementById("rusbtn");
+  rb.addEventListener("click", function(){
+    var on = rb.getAttribute("aria-pressed") === "true";
+    rb.setAttribute("aria-pressed", on ? "false" : "true");
+    document.body.classList.toggle("showrus", !on);
+  });
+})();
+</script>
+</body>
+</html>
