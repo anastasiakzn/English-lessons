@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zhanna, 23 November</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F5FA; --sheet:#FFFFFF; --ink:#2D3142; --soft:#667085;
+  --blue:#5B5BD6; --mark:#FFD166; --ok:#2E7D5B; --okbg:#E3F1EA;
+  --bad:#B33A3A; --badbg:#F7E4E4; --line:#E2E5EF;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", "Segoe UI", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{color:var(--ink)}
+.card:nth-child(3n+2){border-left-color:#F08A7E}.card:nth-child(3n){border-left-color:#2BB39A}
+header h1{font-weight:700;font-size:2.2rem;line-height:1.15;margin:0}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0}
+.tab{font-family:var(--sans);font-weight:600;font-size:.92rem;border:0;background:none;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}
+section.active{display:block}
+h2{font-size:1.55rem;margin:0 0 12px}
+h3{font-size:1.15rem;margin:0 0 6px}
+.task{font-family:var(--sans);font-size:.95rem;color:var(--soft);margin:0 0 14px;max-width:68ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px}
+button{font-family:var(--sans)}
+.btn{font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:4px 10px;cursor:pointer;margin:2px 4px 2px 0}
+.btn:hover{border-color:var(--blue)}
+.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}
+.hidden{display:none !important}
+.en{color:var(--blue);font-style:italic}
+.ru{color:var(--soft);font-family:var(--sans);font-size:.9rem}
+.qlist{margin:0;padding-left:1.3em}
+.qlist li{margin:8px 0}
+
+/* parts inside a tab */
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.85rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.part{display:none}
+.part.active{display:block}
+
+/* quote */
+.quote{font-size:1.6rem;line-height:1.35;font-style:italic;margin:4px 0 6px;max-width:30ch}
+.src{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 16px}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px}
+.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}
+.card .tr{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:2px 0 6px}
+.card .def{font-size:.95rem;margin:0 0 6px}
+.card .ex2{font-size:.92rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+
+/* rows */
+.dl{padding:12px 0;border-bottom:1px solid var(--line)}
+.dl:last-of-type{border-bottom:0}
+.dl p{margin:0}
+.fb{font-size:.95rem}
+.fb .ex{margin:4px 0}
+.fb.okc{color:var(--ok)}
+.fb.badc{color:var(--bad)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F8FC;border-radius:4px;padding:5px 12px;cursor:pointer;color:var(--ink)}
+.opts.col{flex-direction:column}
+.opt.okc{background:var(--okbg);border-color:var(--ok)}
+.opt.badc{background:var(--badbg);border-color:var(--bad)}
+input.gap{font-family:var(--serif);font-size:1rem;padding:2px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#F7F8FC;color:var(--ink);width:11em;max-width:100%}
+input.gap.okc{border-color:var(--ok);background:var(--okbg)}
+input.gap.badc{border-color:var(--bad);background:var(--badbg)}
+.hint{font-family:var(--sans);font-size:.85rem;color:var(--soft)}
+.bank{font-family:var(--sans);font-size:.9rem;background:#F7F8FC;border-radius:4px;padding:8px 12px;margin:0 0 12px}
+.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}
+.copied{font-family:var(--sans);font-size:.85rem;color:var(--ok)}
+.score{font-family:var(--sans);font-weight:700;font-size:.95rem;margin:10px 0 0}
+
+/* error clinic */
+.item{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.num{font-family:var(--sans);font-weight:700;color:var(--soft);font-size:.9rem;padding-top:4px}
+.chips{margin:0;line-height:2.1}
+.chip{font-family:var(--serif);font-size:1.02rem;color:var(--ink);background:none;border:0;border-bottom:1px dashed #B9BFD6;padding:0 2px;margin:0 2px;cursor:pointer;border-radius:2px}
+.chip:hover{background:#F7F8FC}
+.chip.wrong{background:var(--badbg);border-bottom-color:var(--bad);animation:nudge .25s}
+.chip.hit{background:linear-gradient(transparent 55%, var(--mark) 55%);text-decoration:line-through;text-decoration-color:var(--bad);border-bottom-color:transparent;cursor:default}
+.fix{font-family:var(--sans);font-weight:700;color:var(--ok);margin-left:4px}
+.item .fb,.item .actions{grid-column:2}
+.fixbox{margin-right:6px}
+@keyframes nudge{0%,100%{transform:translateX(0)}30%{transform:translateX(-3px)}70%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.chip.wrong{animation:none}}
+
+/* drill table */
+.tablewrap{overflow-x:auto}
+table.drill{border-collapse:collapse;width:100%;min-width:560px;font-size:.98rem}
+.drill th{font-family:var(--sans);font-size:.82rem;color:var(--soft);text-align:left;font-weight:600;padding:6px 8px;border-bottom:2px solid var(--line)}
+.drill td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.drill td.t{font-weight:600;white-space:nowrap}
+.drill td.m{color:var(--soft);font-style:italic}
+.drill tr.grp td{background:#F7F8FC;font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);padding:4px 8px}
+.base{font-size:1.35rem;font-weight:600;margin:0 0 4px}
+
+/* listening + speaking */
+.player{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cue{border:2px solid var(--blue);border-radius:6px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}
+.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}
+.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}
+.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+.ttext{font-size:1.08rem;line-height:1.9}
+.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+@media (max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.quote{font-size:1.3rem}}
+
+.stat{border-left:4px solid var(--mark);background:#FFF6DC;padding:10px 14px;margin:0 0 16px;font-size:1rem}
+.stat b{font-size:1.5rem;font-family:var(--sans);color:var(--ink)}
+.new{font-family:var(--sans);font-size:.7rem;font-weight:700;color:#fff;background:var(--ok);border-radius:3px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+select.pick{font-family:var(--serif);font-size:1rem;padding:2px 6px;border:1px solid var(--line);border-radius:4px;background:#F7F8FC;color:var(--ink);max-width:100%}
+select.pick.okc{border-color:var(--ok);background:var(--okbg)}
+select.pick.badc{border-color:var(--bad);background:var(--badbg)}
+.endings{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:4px}
+.endings li{font-size:.98rem}
+.endings b{font-family:var(--sans);color:var(--blue);margin-right:6px}
+.verdict{display:inline-flex;gap:6px;margin:6px 0}
+.fixrow{margin:8px 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* lesson 5 additions */
+.wheelbox{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.wheelwrap{position:relative;width:260px;height:260px}
+.wheel{width:260px;height:260px;border-radius:50%;border:6px solid var(--sheet);box-shadow:0 0 0 1px var(--line),0 6px 18px rgba(45,49,66,.12);
+ background:conic-gradient(#5B5BD6 0.00deg 51.43deg,#F08A7E 51.43deg 102.86deg,#2BB39A 102.86deg 154.29deg,#5B5BD6 154.29deg 205.71deg,#F08A7E 205.71deg 257.14deg,#2BB39A 257.14deg 308.57deg,#F2B84B 308.57deg 360.00deg);
+ transition:transform 3.2s cubic-bezier(.17,.67,.2,1);position:relative}
+.wheel span{position:absolute;left:50%;top:50%;width:0;height:0;font-family:var(--sans);font-weight:700;font-size:1.5rem;color:#fff}
+.wheel span b{position:absolute;transform:translate(-50%,-50%)}
+.pointer{position:absolute;left:50%;top:-12px;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid var(--ink);z-index:2}
+.hub{position:absolute;left:50%;top:50%;width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;background:var(--sheet);border:3px solid var(--line)}
+.wq{font-size:1.35rem;line-height:1.35;font-style:italic;min-height:3em;margin:10px 0 0}
+.wq .n{font-family:var(--sans);font-style:normal;font-weight:700;color:var(--blue);font-size:.9rem;display:block;margin-bottom:4px}
+@media (max-width:640px){.wheelbox{grid-template-columns:1fr;justify-items:center;text-align:center}}
+@media (prefers-reduced-motion:reduce){.wheel{transition:none}}
+.dice{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.die{background:var(--sheet);border:2px solid var(--blue);border-radius:10px;padding:12px 10px;text-align:center;min-height:92px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.die:nth-child(2){border-color:#F08A7E}.die:nth-child(3){border-color:#2BB39A}
+.die .dl2{font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.05em}
+.die b{font-size:1.1rem;line-height:1.3}
+.die.roll b{animation:shake .5s}
+@keyframes shake{0%,100%{transform:none}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.die.roll b{animation:none}}
+@media (max-width:560px){.dice{grid-template-columns:1fr}}
+.chipbank{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.chipbank span{font-family:var(--sans);font-size:.9rem;background:#EEF0FB;border-radius:999px;padding:3px 12px}
+.groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:12px 0}
+.groups div{background:#F7F8FC;border-radius:6px;padding:10px 12px;font-size:.95rem}
+.groups b{font-family:var(--sans);font-size:.8rem;color:var(--blue);display:block;margin-bottom:2px}
+/* lesson 6 additions */
+.mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mcard{position:relative;min-height:110px;border:0;padding:0;background:none;cursor:pointer;font-family:var(--sans);perspective:800px}
+.mcard .side{position:absolute;inset:0;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;backface-visibility:hidden;transition:transform .45s}
+.mcard .front{background:linear-gradient(135deg,#5B5BD6,#8A7BF0);color:#fff;font-size:2rem;font-weight:700}
+.mcard .back{background:var(--sheet);border:2px solid var(--blue);color:var(--ink);font-family:var(--serif);font-size:1rem;line-height:1.35;transform:rotateY(180deg)}
+.mcard.open .front{transform:rotateY(180deg)}
+.mcard.open .back{transform:rotateY(360deg)}
+.mcard .num{position:absolute;top:6px;left:10px;font-size:.75rem;font-weight:700;color:var(--blue);opacity:.7}
+@media (max-width:560px){.mcards{grid-template-columns:repeat(2,1fr)}.mcard{min-height:130px}}
+@media (prefers-reduced-motion:reduce){.mcard .side{transition:none}}
+.form{border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.form .fr{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
+.form .fr:last-child{border-bottom:0}
+.form .fl{font-family:var(--sans);font-weight:600;font-size:.88rem;color:var(--soft);background:#F7F8FC;padding:10px 12px;display:flex;align-items:center}
+.form .fv{padding:4px 12px}
+.form .fv .dl{border:0;padding:6px 0}
+@media (max-width:560px){.form .fr{grid-template-columns:1fr}}
+/* lesson 7 additions */
+.emojis{display:flex;flex-wrap:wrap;gap:12px}
+.emoji{font-size:2.2rem;line-height:1;background:var(--sheet);border:2px solid var(--line);border-radius:14px;width:68px;height:68px;cursor:pointer;transition:transform .12s,border-color .12s}
+.emoji:hover{transform:translateY(-3px);border-color:var(--blue)}
+.emoji.on{border-color:var(--blue);background:#EEF0FB}
+.eq{font-family:var(--serif);font-size:1.3rem;line-height:1.35;min-height:2.2em;margin:16px 0 0}
+.eq .n{font-family:var(--sans);font-weight:700;color:var(--blue);font-size:.9rem;display:block;margin-bottom:4px}
+
+
+/* Small interaction-only extensions: Nov 16 palette, typography, scale and geometry retained */
+.tfgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tfcard{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:14px 16px}
+.tfcard:nth-child(3n+2){border-left-color:#F08A7E}.tfcard:nth-child(3n){border-left-color:#2BB39A}
+.tfcard p{font-size:1rem;line-height:1.45;margin:0 0 9px}.tfcard .tficon{font-size:1.55rem;margin-bottom:6px}
+.tfcard .tfresult{font-size:.92rem;line-height:1.45;margin:8px 0 0}
+.tfcard .opt{min-width:72px;text-align:center}.tfcard .opt:disabled{cursor:default}
+.tfcard .opt.selok{background:var(--okbg);border-color:var(--ok)}.tfcard .opt.selbad{background:var(--badbg);border-color:var(--bad)}
+.tfcard .tfresult.correct{color:var(--ok)}.tfcard .tfresult.incorrect{color:var(--bad)}
+.speakingprompts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.speakprompt{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px;background:var(--sheet)}
+.speakprompt:nth-child(3n+2){border-left-color:#F08A7E}.speakprompt:nth-child(3n){border-left-color:#2BB39A}
+.speakprompt .mode{font:700 .76rem var(--sans);color:var(--soft);margin:0 0 6px}.speakprompt .prompt{font-size:1.04rem;margin:0 0 10px}
+.optionline{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}.optionline .opt{max-width:100%}
+.order{padding:13px 0;border-bottom:1px solid var(--line)}.order:last-child{border-bottom:0}
+.order-head{margin:0 0 8px}.order-drop{min-height:49px;border:1px dashed #B9BFD6;border-radius:4px;padding:7px 9px;margin:7px 0 11px;display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.order-bank{display:flex;flex-wrap:wrap;gap:6px}.token{font:600 .86rem var(--sans);border:1px solid var(--line);border-radius:4px;background:#EEF0FB;color:var(--ink);padding:6px 10px;cursor:pointer}.token:disabled{opacity:.32;cursor:default}
+.token.selected{background:var(--blue);border-color:var(--blue);color:#fff}.slotword{font:600 .9rem var(--sans);border:1px solid var(--blue);background:#EEF0FB;color:var(--ink);border-radius:4px;padding:5px 8px;cursor:pointer}
+.slotword.empty{color:var(--blue);border-style:dashed;min-width:83px}.slotword.okc{background:var(--okbg);border-color:var(--ok)}.slotword.badc{background:var(--badbg);border-color:var(--bad)}
+.wordstory{font-size:1.02rem;line-height:2.6}.wordstory .slotword{vertical-align:middle}
+.ieltsform{border:1px solid var(--line);border-radius:5px;padding:14px 16px;background:#F7F8FC}.noterow{display:grid;grid-template-columns:minmax(140px,1fr) minmax(170px,1.5fr);gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}.noterow:last-child{border-bottom:0}
+.noterow label{font:600 .86rem/1.45 var(--sans)}.noterow .gap{width:100%}.noterow .notehelp{font:.76rem var(--sans);color:var(--soft)}
+.listencontrols{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:10px 0}.voicepick{font:.8rem var(--sans);border:1px solid var(--line);border-radius:4px;background:#F7F8FC;color:var(--ink);padding:6px;max-width:100%;width:280px}
+.pillnote{border-left:4px solid var(--mark);background:#FFF6DC;padding:11px 13px;font-size:.94rem;margin-bottom:14px}
+.planlist{list-style:none;counter-reset:step;padding:0;margin:0}.planlist li{counter-increment:step;display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.planlist li:last-child{border-bottom:0}
+.planlist li:before{content:counter(step);background:var(--blue);color:#fff;flex:0 0 25px;height:25px;border-radius:4px;display:grid;place-items:center;font:700 .75rem var(--sans)}.planlist b{display:block;font:.9rem var(--sans);font-weight:700}.planlist em{display:block;font-size:1rem;margin-top:3px;color:var(--soft)}
+.phrasegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.phraseitem{padding:9px 12px;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:4px}.phraseitem b{font:.82rem var(--sans);color:var(--blue)}.phraseitem p{margin:4px 0 0;font-size:.96rem}
+.sentcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.sentgroup{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;background:var(--sheet);padding:12px}.sentgroup:nth-child(2){border-left-color:#F08A7E}.sentgroup:nth-child(3){border-left-color:#2BB39A}
+.sentgroup h3{font-size:1.03rem;margin:0 0 3px}.sentgroup label{display:block;font:.8rem var(--sans);color:var(--soft);margin:9px 0 4px}.sentgroup textarea{width:100%;min-height:66px;resize:vertical;padding:8px 10px;border:1px solid var(--line);border-radius:4px;font:1rem var(--serif);background:#F7F8FC;color:var(--ink)}
+.actionrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+@media(max-width:650px){.tfgrid{grid-template-columns:1fr}.speakingprompts{grid-template-columns:repeat(2,minmax(0,1fr))}.sentcols{grid-template-columns:1fr}}
+@media(max-width:450px){.speakingprompts,.phrasegrid{grid-template-columns:1fr}.noterow{grid-template-columns:1fr;gap:4px}}
+
+
+/* Small functional additions; all original lesson colours, fonts and spacing stay unchanged */
+.landmark-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.landmark-card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:14px 16px}
+.landmark-card:nth-child(3n+2){border-left-color:#F08A7E}.landmark-card:nth-child(3n){border-left-color:#2BB39A}
+.landmark-card .numtag{font:700 .76rem var(--sans);color:var(--soft);letter-spacing:.03em;margin-bottom:6px}
+.landmark-card h3{line-height:1.35;font-size:1.04rem;margin:0 0 10px}
+.landmark-card .options{display:grid;gap:7px}
+.landmark-card .options button{width:100%;text-align:left;font:600 .89rem var(--sans);padding:8px 10px;border:1px solid var(--line);background:#F7F8FC;color:var(--ink);border-radius:4px;cursor:pointer}
+.landmark-card .options button:disabled{cursor:default;opacity:.75}
+.landmark-card .options button.correct{background:var(--okbg);border-color:var(--ok);opacity:1}
+.landmark-card .options button.wrong{background:var(--badbg);border-color:var(--bad);opacity:1}
+.landmark-card .fact{margin:9px 0 0;font-size:.95rem;color:var(--soft)}
+.match-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px}
+.match-scene{display:flex;align-items:flex-start;gap:8px;text-align:left;width:100%;border:1px solid var(--line);border-radius:4px;background:#F7F8FC;color:var(--ink);padding:10px;margin:0 0 7px;cursor:pointer;font:1rem var(--serif);line-height:1.45}
+.match-scene .match-no{flex:0 0 23px;font:.8rem var(--sans);color:var(--blue);font-weight:700}
+.match-scene.on{border:2px solid var(--blue);padding:9px;background:#EEF0FB}
+.match-scene .picked{font:700 .85rem var(--sans);color:var(--blue);display:block;margin-top:4px}
+.match-scene.okc{background:var(--okbg);border-color:var(--ok)}.match-scene.badc{background:var(--badbg);border-color:var(--bad)}
+.match-bank{display:flex;flex-direction:column;gap:7px}
+.match-bank button{font:600 .89rem var(--sans);border-radius:4px;border:1px solid var(--line);padding:9px 10px;background:var(--sheet);color:var(--blue);text-align:left;cursor:pointer}
+.match-bank button:disabled{opacity:.4;cursor:default}
+.match-bank button.on{background:var(--blue);color:white}
+.mistake{font-size:1.04rem;line-height:1.6;margin:0 0 8px}
+.mistake strong{background:linear-gradient(transparent 50%,var(--mark) 50%)}
+.mistake input{width:17em;max-width:100%}
+.mistake .comment{font: .85rem var(--sans);margin-top:6px;color:var(--soft)}
+.twouse{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.twouse .use{background:#F7F8FC;border:1px solid var(--line);border-radius:4px;padding:14px}
+.twouse h3{color:var(--blue);margin:0 0 8px}
+.twouse p{margin:0 0 9px}
+.twouse p:last-child{margin:0}
+.time-banner{border-left:4px solid var(--mark);background:#FFF6DC;padding:12px 14px;margin:12px 0;font-size:1rem}
+.time-banner b{font-size:1rem;font-family:var(--serif)}
+.formtbl{width:100%;border-collapse:collapse;font-size:.97rem}.formtbl th,.formtbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+.formtbl th{font:700 .8rem var(--sans);color:var(--soft)}
+.quizline{padding:12px 0;border-bottom:1px solid var(--line)}.quizline:last-child{border:0}
+.quizline .label{font:700 .8rem var(--sans);color:var(--soft)}
+.quizline p{margin:5px 0 8px}
+.quizline .options{display:flex;flex-wrap:wrap;gap:6px}
+.quizline .options button{font:1rem var(--serif);padding:6px 12px;background:#F7F8FC;color:var(--ink);border-radius:4px;border:1px solid var(--line);cursor:pointer}
+.quizline .options button.correct{background:var(--okbg);border-color:var(--ok)}
+.quizline .options button.wrong{background:var(--badbg);border-color:var(--bad)}
+.quizline .feedback{font-size:.89rem;margin-top:7px;color:var(--soft)}
+.clozetext{font-size:1.09rem;line-height:2.65}.clozetext input{width:11.5em;max-width:90%;font-size:1rem}
+.reading-text p{font-size:1.04rem;line-height:1.75;margin:0 0 14px}.reading-text p:last-child{margin:0}
+.reading-text .para{font:700 .9rem var(--sans);color:var(--blue);margin-right:8px}
+.heading-row{display:grid;grid-template-columns:60px minmax(0,1fr);gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.heading-row:last-child{border-bottom:0}.heading-row label{font:700 .95rem var(--sans);color:var(--blue)}
+.heading-row select{max-width:100%;min-width:0;overflow:hidden;padding:8px;font: .95rem var(--sans);background:#F7F8FC;border:1px solid var(--line);border-radius:4px;color:var(--ink)}
+.heading-row select.okc{background:var(--okbg);border-color:var(--ok)}.heading-row select.badc{background:var(--badbg);border-color:var(--bad)}
+@media(max-width:650px){.landmark-grid,.twouse,.match-layout{grid-template-columns:1fr}.match-bank{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.formtbl{font-size:.88rem}}
+@media(max-width:420px){.match-bank{grid-template-columns:1fr}.heading-row{grid-template-columns:34px minmax(0,1fr)}}
+</style></head>
+<body><header><h1>Zhanna, lesson 13</h1><p>Lesson of 23 November 2026</p></header>
+<nav><div class="tabs" role="tablist" id="tabs"></div></nav><main><section data-title="Warm-up"><h2>Where in the world?</h2>
+<p class="task">Four easy questions about famous places and fun facts. Choose A, B or C, then discover something interesting!</p>
+<div class="landmark-grid" id="landmarkQuiz"></div><p class="score" id="landmarkScore" aria-live="polite"></p>
+<div class="actionrow"><button class="btn" id="warmReset">Play again</button></div>
+<div class="sheet" style="margin-top:14px"><b>One quick question:</b> Which of these places would you like to visit first, and why? <span class="hint">(2–3 sentences.)</span></div></section>
+<section data-title="Homework check"><h2>Homework check: Your sentences</h2>
+<p class="task">Your homework from 18 November: 12 original sentences in the <b>Past Simple</b> — four affirmative, four negative and four questions. Read them aloud and check the form together.</p>
+<div class="sentcols" id="sentences"></div>
+<div class="actionrow"><button class="btn solid" id="sentCopy">Copy my 12 sentences</button><button class="btn" id="sentClear">Clear all</button><span class="copied" id="sentMessage"></span></div></section>
+<section data-title="Vocabulary"><h2>Vocabulary</h2>
+<div class="subnav" role="tablist"><button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button></div>
+<div class="part"><p class="task">Listen to the word, read its meaning and example, then tap to see the Russian translation.</p><div class="cards" id="cards"></div></div>
+<div class="part sheet"><h3>Exercise 1. Match the situation</h3><p class="task">Choose a situation on the left, then match it with the correct word or phrase. Each situation uses the word in context.</p>
+<div class="match-layout"><div id="matchScenes"></div><div class="match-bank" id="matchBank"></div></div><div class="actionrow"><button class="btn solid" id="matchCheck">Check my answers</button><button class="btn" id="matchReset">Try again</button><button class="btn" id="matchShow">Answers</button></div><p class="score" id="matchScore" aria-live="polite"></p></div>
+<div class="part sheet"><h3>Discussion</h3><p class="task">Answer each question in two or three sentences.</p><div id="discussion"></div></div>
+<div class="part sheet"><h3>Exercise 2. Fix the mix-up</h3><p class="task">One word is wrong in every sentence. Replace the highlighted word with the correct vocabulary word. Type your answer in English.</p><div id="wordClinic"></div>
+<div class="actionrow"><button class="btn solid" id="clinicCheck">Check my answers</button><button class="btn" id="clinicReset">Try again</button><button class="btn" id="clinicShow">Answers</button></div><p class="score" id="clinicScore" aria-live="polite"></p></div></section>
+<section data-title="Grammar"><h2>Grammar: Past Continuous</h2>
+<div class="subnav" role="tablist"><button class="sub">Theory</button><button class="sub">Exercise 1 · Speak</button><button class="sub">Exercise 2 · Choose</button><button class="sub">Exercise 3 · Story</button></div>
+<div class="part sheet"><h3>When do we use Past Continuous?</h3>
+<div class="twouse"><div class="use"><h3>1. An action in progress at a specific moment in the past</h3>
+<p>We use the Past Continuous for an <b>unfinished action at a concrete moment in the past</b>.</p>
+<p><b>A specific time:</b> I <b>was checking</b> the website <b>at two o’clock yesterday</b>.</p>
+<p><b>Another action in the Past Simple:</b> <b>When my mother came home</b>, I <b>was doing</b> homework.</p>
+<p class="hint">The Past Simple action tells us <b>when</b> the longer action was in progress.</p></div>
+<div class="use"><h3>2. Two actions happening at the same time</h3>
+<p>We use the Past Continuous for <b>two simultaneous processes</b> in the past.</p>
+<p><b>While</b> my husband <b>was cooking</b> dinner, I <b>was watching</b> TV.</p>
+<p><b>While</b> the guide <b>was speaking</b> English, the tourists <b>were taking</b> photos.</p>
+<p class="hint">Both actions were in progress at the same time.</p></div></div>
+<div class="time-banner"><b>Remember:</b> “Yesterday” alone does not tell us the exact moment. Compare: <em>I watched a film yesterday</em> (a completed action) and <em>I was watching a film at 8 p.m. yesterday</em> (an action in progress at a specific time).</div>
+<h3 style="margin-top:20px">Indicators</h3><div class="chipbank"><span>at 2 o’clock yesterday</span><span>at that moment</span><span>when + Past Simple</span><span>while + Past Continuous</span></div>
+<h3 style="margin-top:18px">How do we form it?</h3>
+<div class="tablewrap"><table class="formtbl"><thead><tr><th>Form</th><th>Structure</th><th>Example</th></tr></thead>
+<tbody><tr><td><b>+</b> Affirmative</td><td>subject + <b>was / were</b> + verb<b>-ing</b></td><td>She <b>was working</b>.</td></tr>
+<tr><td><b>−</b> Negative</td><td>subject + <b>wasn't / weren't</b> + verb<b>-ing</b></td><td>They <b>weren't sleeping</b>.</td></tr>
+<tr><td><b>?</b> Yes/No question</td><td><b>Was / Were</b> + subject + verb<b>-ing</b>?</td><td><b>Were</b> you <b>reading</b>?</td></tr>
+<tr><td><b>?</b> Wh- question</td><td>question word + <b>was / were</b> + subject + verb<b>-ing</b>?</td><td>What <b>were</b> you <b>doing</b>?</td></tr></tbody></table></div>
+<p class="hint" style="margin:12px 0 0"><b>Was:</b> I, he, she, it. <b>Were:</b> you, we, they. When we make a negative or a question, we do <b>not</b> use did. Example: <i>Were you checking?</i> ✓</p></div>
+<div class="part sheet"><h3>Exercise 1. What was happening?</h3><p class="task">Make each Past Continuous sentence aloud. Use the prompt and press “Example” after answering.</p><div class="speakingprompts" id="talkCards"></div></div>
+<div class="part sheet"><h3>Exercise 2. Choose the correct form</h3><p class="task">Read the situation and choose the best verb form. The answer is checked immediately.</p><div id="grammarChoose"></div><p class="score" id="grammarChooseScore" aria-live="polite"></p><div class="actionrow"><button class="btn" id="chooseReset">Try again</button></div></div>
+<div class="part sheet"><h3>Exercise 3. A busy afternoon</h3><p class="task">Complete the story using Past Simple or Past Continuous. Answers turn <b>green</b> when correct and <b>red</b> when they need another try, as you type.</p>
+<div id="grammarStory" class="clozetext"></div><div class="actionrow"><button class="btn solid" id="grammarStoryCheck">Check my story</button><button class="btn" id="grammarStoryReset">Try again</button><button class="btn" id="grammarStoryShow">Answers</button></div><p class="score" id="grammarStoryScore" aria-live="polite"></p></div></section>
+<section data-title="Reading"><h2>Reading: The travel evening</h2>
+<p class="task">Read this short story about an event organiser in Warsaw. Pay attention to what people <i>were doing</i> at different moments.</p>
+<div class="sheet reading-text" id="readingText"></div>
+<div class="subnav" role="tablist"><button class="sub">Exercise 1</button><button class="sub">Exercise 2 · IELTS</button></div>
+<div class="part sheet"><h3>Exercise 1. Answer the questions</h3><p class="task">Answer each question in one or two sentences. Press “Answer” to compare.</p><div id="readingQ"></div></div>
+<div class="part sheet"><h3>Exercise 2. IELTS Reading — Matching Headings</h3><p class="task">Choose the best heading for each paragraph (A–D). There are <b>six headings</b>, so two will not be used.</p>
+<div class="sheet" style="background:#F7F8FC" id="headingBank"></div><div id="headingChoices"></div>
+<div class="actionrow"><button class="btn solid" id="headCheck">Check my answers</button><button class="btn" id="headReset">Try again</button><button class="btn" id="headShow">Answers</button></div><p class="score" id="headScore" aria-live="polite"></p></div></section>
+<section data-title="Speaking">
+<h2>Speaking</h2>
+<p class="task">IELTS Speaking Part 2 · One minute to prepare, then speak for 1–2 minutes. Use Past Simple to describe your experience.</p>
+<div class="cue">
+<p class="topic">Describe a film or cartoon you watched and enjoyed.</p>
+<p style="margin:0">You should say:</p>
+<ul><li>what you watched and when</li><li>who you watched it with</li><li>what happened in the story</li></ul>
+<p style="margin:8px 0 0">and explain why you enjoyed it.</p>
+</div>
+<div class="sheet">
+<h3>Plan your answer</h3><p class="task">Follow these five steps to build a 1–2 minute answer. The examples are just a guide, not a text to memorise.</p>
+<ol class="planlist" id="plan"></ol>
+</div>
+<div class="sheet"><h3>Linking words and useful phrases</h3><div class="phrasegrid" id="phrases"></div></div>
+<div class="sheet">
+<p class="task" style="margin-bottom:6px">One minute to prepare (key words only). Then speak for up to two minutes.</p>
+<button class="btn solid" id="tPrep">Preparation · 1 min</button><button class="btn solid" id="tTalk">Speech · 2 min</button><button class="btn" id="tStop">■ Stop</button>
+<div class="clock" id="clock">1:00</div><div class="phase" id="phase"></div>
+</div>
+<div class="sheet"><h3>If we have time</h3><ol class="qlist"><li>Did you watch cartoons more often when you were younger?</li><li>What was the last film you recommended to a friend?</li></ol></div>
+</section>
+<section data-title="Translation"><h2>Translation</h2><p class="task">Translate this short connected story into English aloud, sentence by sentence. Try to use the Past Continuous and today's vocabulary. Press “EN” to check.</p>
+<div class="sheet ttext" id="translationText"></div></section></main><script>(()=>{
+'use strict';
+const $=(s,root=document)=>root.querySelector(s), $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
+const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s||'').toLowerCase().replace(/[’‘`]/g,"'").replace(/\s+/g,' ').replace(/[.!?;,]+$/,'').trim();
+let uid=0;const newId=()=>`zh${++uid}`;
+function copyText(t,button){const done=()=>{const el=button.nextElementSibling;if(el)el.textContent='Copied!';setTimeout(()=>{if(el)el.textContent='';},2000);};const fallback=()=>{const tmp=document.createElement('textarea');tmp.value=t;document.body.appendChild(tmp);tmp.select();try{document.execCommand('copy');done();}catch(e){}tmp.remove();};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,fallback);else fallback();}
+// Tabs, subtabs, reveal buttons — exactly the same navigation as 16/18 November.
+const sections=$$('main > section'),tabs=$('#tabs');
+sections.forEach((section,i)=>{const btn=document.createElement('button');btn.className='tab';btn.setAttribute('role','tab');btn.setAttribute('aria-selected',String(i===0));btn.textContent=section.dataset.title;if(!i)section.classList.add('active');btn.onclick=()=>{if('speechSynthesis'in window)window.speechSynthesis.cancel();sections.forEach(s=>s.classList.remove('active'));section.classList.add('active');$$('.tab',tabs).forEach(b=>b.setAttribute('aria-selected','false'));btn.setAttribute('aria-selected','true');window.scrollTo(0,0);};tabs.appendChild(btn);});
+sections.forEach(section=>{const sub=$$('.sub',section),part=$$('.part',section);if(!sub.length)return;sub.forEach((btn,i)=>btn.onclick=()=>{part.forEach((p,k)=>p.classList.toggle('active',k===i));sub.forEach((s,k)=>s.setAttribute('aria-selected',String(k===i)));});sub[0].click();});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-toggle]');if(!b)return;const item=document.getElementById(b.dataset.toggle);if(item)item.classList.toggle('hidden');});
+
+/* WARM-UP — landmark and country quiz */
+const landmarks=[
+ {q:'In which city can you see the Eiffel Tower?',o:['London','Paris','Rome'],a:1,why:'The Eiffel Tower is in Paris, France. Fun fact: it can become a little taller in hot weather!'},
+ {q:'What do visitors often throw into the Trevi Fountain in Rome?',o:['A coin','A flower','A key'],a:0,why:'People throw a coin into the fountain. According to a popular legend, it means they will return to Rome one day.'},
+ {q:'What colour are the famous double-decker buses in London?',o:['Green','Blue','Red'],a:2,why:'Many of London’s famous double-decker buses are bright red. They are a well-known symbol of the city.'},
+ {q:'Which animal is on the coat of arms of Australia?',o:['A panda','A kangaroo','A tiger'],a:1,why:'A kangaroo and an emu are on Australia’s coat of arms. Both animals are native to Australia.'}
+];
+let landmarkAnswers=Array(landmarks.length).fill(null);
+function drawLandmarks(){ $('#landmarkQuiz').innerHTML=landmarks.map((it,i)=>`<div class="landmark-card"><div class="numtag">PLACE ${i+1} / ${landmarks.length}</div><h3>${safe(it.q)}</h3><div class="options">${it.o.map((opt,k)=>{const answered=landmarkAnswers[i]!==null;return `<button data-place="${i}" data-choice="${k}" ${answered?'disabled':''} class="${answered&&k===it.a?'correct':answered&&k===landmarkAnswers[i]?'wrong':''}">${'ABC'[k]}. ${safe(opt)}</button>`;}).join('')}</div>${landmarkAnswers[i]===null?'':`<p class="fact">${landmarkAnswers[i]===it.a?'✓ Correct!':'The right answer is '+safe(it.o[it.a])+'.'} ${safe(it.why)}</p>`}</div>`).join('');let n=landmarkAnswers.filter(a=>a!==null).length;$('#landmarkScore').textContent=n?`${landmarkAnswers.reduce((n,a,i)=>n+(a===landmarks[i].a),0)} correct out of ${n} answered${n===landmarks.length?' — quiz complete!':''}`:'';}
+$('#landmarkQuiz').onclick=e=>{const btn=e.target.closest('[data-place]');if(!btn)return;const i=+btn.dataset.place;if(landmarkAnswers[i]!==null)return;landmarkAnswers[i]=+btn.dataset.choice;drawLandmarks();};$('#warmReset').onclick=()=>{landmarkAnswers.fill(null);drawLandmarks();};drawLandmarks();
+
+/* HOMEWORK — same Past Simple “Your sentences” work from 18 November. */
+const hwGroups=[['+ Affirmative','I visited a new city yesterday.'],['− Negative',"I didn’t watch a film last night."],['? Questions','Did you work yesterday?']];
+$('#sentences').innerHTML=hwGroups.map(([name,example],g)=>`<div class="sentgroup"><h3>${safe(name)}</h3><p class="hint">Example: ${safe(example)}</p>${Array.from({length:4},(_,j)=>{const i=g*4+j;return `<label for="sent${i}">Sentence ${i+1}</label><textarea id="sent${i}" data-sent="${i}" rows="2" placeholder="Your sentence from 18 November…" spellcheck="true"></textarea>`;}).join('')}</div>`).join('');
+const allSent=()=>$$('[data-sent]');try{const saved=JSON.parse(localStorage.getItem('zhanna1811-pastsimple')||'[]');if(Array.isArray(saved))allSent().forEach((t,i)=>t.value=saved[i]||'');}catch(e){}
+$('#sentences').addEventListener('input',()=>{try{localStorage.setItem('zhanna1811-pastsimple',JSON.stringify(allSent().map(t=>t.value)));}catch(e){}});
+$('#sentCopy').onclick=()=>{copyText(['Zhanna · 18 November · Your sentences — Past Simple',...allSent().map((t,i)=>`${i+1}. ${t.value.trim()||'—'}`)].join('\n'),$('#sentCopy'));};
+$('#sentClear').onclick=()=>{if(!confirm('Clear all 12 sentences?'))return;allSent().forEach(t=>t.value='');try{localStorage.removeItem('zhanna1811-pastsimple');}catch(e){}$('#sentMessage').textContent='Cleared';setTimeout(()=>$('#sentMessage').textContent='',2000);};
+
+/* VOCABULARY: word cards exactly like 16 November, with English definition/example and hidden Russian. */
+const vocab=[
+ ['topic','ˈtɒpɪk','the subject you talk or write about','The topic of our event was travel.','тема'],
+ ['island','ˈaɪlənd','land with water all around it','They visited a small island last summer.','остров'],
+ ['rat','ræt','a small animal with a long tail','A pet rat escaped from its cage.','крыса'],
+ ['to escape','ɪˈskeɪp','to get away from a place you cannot or do not want to stay in','The little rat escaped through an open door.','сбежать, выбраться'],
+ ['palace','ˈpælɪs','a large building where a king, queen or other royal person lives or lived','We visited a beautiful old palace in Warsaw.','дворец'],
+ ['after that','ˈɑːftə ðæt','later, after something has happened','We checked the tickets. After that, we went inside.','после этого'],
+ ['then','ðen','next, or after something else','First we had lunch, then we visited the museum.','затем, потом'],
+ ['Beijing','beɪˈdʒɪŋ','the capital city of China','She took photos in Beijing last year.','Пекин'],
+ ['Warsaw','ˈwɔːsɔː','the capital city of Poland','We were walking through Warsaw at six o’clock.','Варшава'],
+ ['to speak English','spiːk ˈɪŋɡlɪʃ','to use English to talk to people','The guide was speaking English with the tourists.','говорить по-английски'],
+ ['just','dʒʌst','simply; only','I just wanted to help.','просто'],
+ ['to require','rɪˈkwaɪə','to need something or make something necessary','This type of work requires a lot of time.','требовать'],
+ ['good','ɡʊd','of high quality; enjoyable; not bad (adjective)','It was a good film.','хороший, хорошо (о качестве)'],
+ ['well','wel','in a good or successful way (adverb)','She speaks English well.','хорошо (как выполняется действие)'],
+ ['to check','tʃek','to look carefully to make sure something is correct','I was checking the website at two o’clock.','проверять'],
+ ['to ask smb to do smth','ɑːsk ˈsʌmbədi tə duː ˈsʌmθɪŋ','to tell someone politely that you want them to do something','My manager asked me to check the photos.','попросить кого-то что-то сделать'],
+ ['tired','ˈtaɪəd','needing rest or sleep','We were tired after a long day.','уставший'],
+ ['busy','ˈbɪzi','having a lot to do and little free time','She was busy preparing for the event.','занятой']
+];
+$('#cards').innerHTML=vocab.map(([word,ipa,definition,example,ru],i)=>{const id=newId();return `<div class="card"><div class="w">${safe(word)}</div><div class="tr">/${safe(ipa)}/</div><p class="def">${safe(definition)}</p><p class="ex2">${safe(example)}</p><button class="btn" data-say="${i}">▶ Listen</button><button class="btn" data-toggle="${id}">Tap for Russian</button> <span class="ru hidden" id="${id}">${safe(ru)}</span></div>`;}).join('');
+let voice=null;
+function selectVoice(){if(!('speechSynthesis'in window))return;const voices=speechSynthesis.getVoices();voice=voices.find(v=>v.lang==='en-GB'&&/natural|premium|online/i.test(v.name))||voices.find(v=>v.lang==='en-GB')||voices.find(v=>/^en/i.test(v.lang))||null;}
+if('speechSynthesis'in window){selectVoice();speechSynthesis.addEventListener?.('voiceschanged',selectVoice);}
+$('#cards').onclick=e=>{const b=e.target.closest('[data-say]');if(!b||!('speechSynthesis'in window))return;selectVoice();speechSynthesis.cancel();const ut=new SpeechSynthesisUtterance(vocab[+b.dataset.say][0]);ut.lang='en-GB';if(voice)ut.voice=voice;ut.rate=.86;speechSynthesis.speak(ut);};
+
+// Exercise 1: match a complete situational clue to a vocabulary word/phrase.
+const matchItems=[
+ ['At 8 p.m., Mia was still answering work emails. She had no free time.','busy'],
+ ['After walking around the city all day, Ben went straight to bed.','tired'],
+ ['We walked through the large royal rooms and gardens.','palace'],
+ ['Our boat stopped at a beautiful place surrounded by water.','island'],
+ ['The little pet got out of its cage through the open door.','to escape'],
+ ['We looked at the ticket dates again to make sure they were correct.','to check'],
+ ['The manager wanted Anna to send the photos before lunch.','to ask smb to do smth'],
+ ['The tour guide talked in English with visitors from London.','to speak English']
+];
+const matchOrder=['to check','tired','to speak English','island','busy','to escape','palace','to ask smb to do smth'];
+let matchSlots=Array(matchItems.length).fill(null),matchFocus=null,matchChecked=false;
+function drawMatch(){const used=matchSlots.filter(Boolean);$('#matchScenes').innerHTML=matchItems.map(([scene,correct],i)=>`<button class="match-scene ${matchFocus===i?'on':''} ${matchChecked?(matchSlots[i]===correct?'okc':'badc'):''}" data-scene="${i}"><span class="match-no">${i+1}.</span><span>${safe(scene)}${matchSlots[i]?`<span class="picked">↳ ${safe(matchSlots[i])}</span>`:''}</span></button>`).join('');$('#matchBank').innerHTML=matchOrder.map(word=>`<button data-match-word="${safe(word)}" ${used.includes(word)&&matchSlots[matchFocus]!==word?'disabled':''}>${safe(word)}</button>`).join('');}
+$('#matchScenes').onclick=e=>{const b=e.target.closest('[data-scene]');if(!b)return;const i=+b.dataset.scene;if(matchFocus===i&&matchSlots[i]){matchSlots[i]=null;matchFocus=null;}else matchFocus=i;matchChecked=false;$('#matchScore').textContent='';drawMatch();};
+$('#matchBank').onclick=e=>{const b=e.target.closest('[data-match-word]');if(!b||matchFocus===null)return;matchSlots[matchFocus]=b.dataset.matchWord;matchFocus=null;matchChecked=false;$('#matchScore').textContent='';drawMatch();};
+$('#matchCheck').onclick=()=>{matchChecked=true;const count=matchSlots.filter((v,i)=>v===matchItems[i][1]).length;$('#matchScore').textContent=`${count} / ${matchItems.length} correct. ${count===matchItems.length?'Great work!':'Change the highlighted matches and try again.'}`;drawMatch();};
+$('#matchReset').onclick=()=>{matchSlots.fill(null);matchFocus=null;matchChecked=false;$('#matchScore').textContent='';drawMatch();};
+$('#matchShow').onclick=()=>{matchSlots=matchItems.map(x=>x[1]);matchFocus=null;matchChecked=true;$('#matchScore').textContent='Answers shown.';drawMatch();};drawMatch();
+
+// Short questions include vocabulary directly in their wording; no word banks after questions.
+const discussion=[
+ 'Do you usually feel <b>busy</b> when you organise an event?',
+ 'What place would you like to visit in <b>Beijing</b>? Why?'
+];
+$('#discussion').innerHTML=discussion.map((q,i)=>`<div class="dl"><p><b>${i+1}.</b> ${q}</p></div>`).join('');
+
+// Exercise 2: one vocabulary mix-up per sentence. English-only answer and feedback.
+const clinic=[
+ {start:'The tour guide explained everything very ',wrong:'good',end:'.',a:['well'],why:'Use “well” to describe how somebody does something.'},
+ {start:'The food at the event was very ',wrong:'well',end:'.',a:['good'],why:'Use the adjective “good” to describe food.'},
+ {start:'Our boat stopped at a small ',wrong:'palace',end:' in the middle of the sea.',a:['island'],why:'An island has water all around it.'},
+ {start:'We visited an old ',wrong:'rat',end:' with large rooms and royal paintings.',a:['palace'],why:'A palace is a grand royal building.'},
+ {start:'The little rat ',wrong:'checked',end:' from its cage while we were sleeping.',a:['escaped'],why:'“Escaped” is the Past Simple form of “escape”.'},
+ {start:'Please ',wrong:'escape',end:' the date on your ticket before you travel.',a:['check'],why:'“Check” means make sure something is correct.'},
+ {start:'After the long flight, I was ',wrong:'busy',end:', so I went straight to bed.',a:['tired'],why:'“Tired” means needing sleep or rest.'},
+ {start:'At the meeting, our main ',wrong:'island',end:' was travel safety.',a:['topic'],why:'A topic is the subject of a discussion.'}
+];
+$('#wordClinic').innerHTML=clinic.map((c,i)=>`<div class="dl mistake"><p><b>${i+1}.</b> ${safe(c.start)}<strong>${safe(c.wrong)}</strong>${safe(c.end)}</p><label class="hint" for="clinic${i}">Replace <b>${safe(c.wrong)}</b> with:</label> <input class="gap" id="clinic${i}" type="text" autocomplete="off" spellcheck="false" aria-label="Correction ${i+1}"><p class="comment" id="clinicFeedback${i}"></p></div>`).join('');
+function checkClinic(){let count=0;clinic.forEach((c,i)=>{let input=$('#clinic'+i),good=c.a.some(v=>norm(v)===norm(input.value));if(good)count++;input.classList.toggle('okc',good);input.classList.toggle('badc',!good);$('#clinicFeedback'+i).textContent=good?'✓ Correct':input.value.trim()?'Try another word.':'Write a word first.';});$('#clinicScore').textContent=`${count} / ${clinic.length} correct.`;}
+$('#clinicCheck').onclick=checkClinic;$('#clinicReset').onclick=()=>{clinic.forEach((c,i)=>{const input=$('#clinic'+i);input.value='';input.classList.remove('okc','badc');$('#clinicFeedback'+i).textContent='';});$('#clinicScore').textContent='';};
+$('#clinicShow').onclick=()=>{clinic.forEach((c,i)=>{const input=$('#clinic'+i);input.value=c.a[0];input.classList.remove('badc');input.classList.add('okc');$('#clinicFeedback'+i).textContent=c.why;});$('#clinicScore').textContent='Answers shown.';};
+
+/* GRAMMAR — Past Continuous: first speak, then two different auto-checked formats. */
+const speakPrompts=[
+ ['+','At 2 p.m. yesterday / I / check the website','I was checking the website at 2 p.m. yesterday.'],
+ ['+','At 8 p.m. last night / we / watch a film','We were watching a film at 8 p.m. last night.'],
+ ['+','When my friend called / I / work on a design','I was working on a design when my friend called.'],
+ ['−','At midnight / she / not sleep','She wasn’t sleeping at midnight.'],
+ ['−','When the guide arrived / they / not listen','They weren’t listening when the guide arrived.'],
+ ['?','you / prepare for the event / at 9 a.m.?','Were you preparing for the event at 9 a.m.?'],
+ ['?','what / you / do / at 6 o’clock yesterday?','What were you doing at 6 o’clock yesterday?'],
+ ['two actions','While I / check the tickets / he / speak English','While I was checking the tickets, he was speaking English.']
+];
+$('#talkCards').innerHTML=speakPrompts.map(([type,prompt,example])=>{let id=newId();return `<div class="speakprompt"><p class="mode">${safe(type==='+'?'+ Affirmative':type==='−'?'− Negative':type==='?'?'? Question':'Two simultaneous actions')}</p><p class="prompt">${safe(prompt)}</p><button class="btn" data-toggle="${id}">Example</button><p class="en hidden" id="${id}">${safe(example)}</p></div>`;}).join('');
+const grammarChoose=[
+ {q:'At 8 p.m. yesterday, I ___ the event timetable.',o:['was checking','checked','were checking'],c:0,why:'“At 8 p.m. yesterday” shows a specific moment in the past.'},
+ {q:'When the client called, we ___ an event.',o:['plan','were planning','planned'],c:1,why:'Planning was in progress when the call happened.'},
+ {q:'While Maria ___ English, I was taking notes.',o:['spoke','were speaking','was speaking'],c:2,why:'Both actions were happening at the same time.'},
+ {q:'At that moment, everybody ___ on their laptops.',o:['was working','were working','worked'],c:0,why:'“Everybody” takes was, not were.'},
+ {q:'I ___ dinner when my brother arrived.',o:['cooked','was cooking','were cooking'],c:1,why:'Cooking was in progress when he arrived.'},
+ {q:'___ you watching TV at nine last night?',o:['Did','Was','Were'],c:2,why:'We use “Were you ... -ing?” to ask about an action in progress.'},
+ {q:'She ___ working when we called.',o:["wasn’t","didn’t","weren’t"],c:0,why:'She + wasn’t + verb-ing.'},
+ {q:'While Ben was cooking dinner, I ___ the website.',o:['checked','am checking','was checking'],c:2,why:'Two simultaneous processes in the past use Past Continuous.'}
+];
+let grammarFirst=Array(grammarChoose.length).fill(null),grammarCurrent=Array(grammarChoose.length).fill(null);
+function drawGrammarChoose(){ $('#grammarChoose').innerHTML=grammarChoose.map((q,i)=>`<div class="quizline"><div class="label">${i+1} / ${grammarChoose.length}</div><p>${safe(q.q)}</p><div class="options">${q.o.map((text,k)=>`<button data-grammar-item="${i}" data-grammar-opt="${k}" class="${grammarCurrent[i]===k?(k===q.c?'correct':'wrong'):''}">${safe(text)}</button>`).join('')}</div><div class="feedback">${grammarCurrent[i]===null?'':grammarCurrent[i]===q.c?'✓ Correct! '+safe(q.why):'Not quite — try another form.'}</div></div>`).join('');let filled=grammarFirst.filter(x=>x!==null).length;$('#grammarChooseScore').textContent=filled?`Correct on the first try: ${grammarFirst.reduce((n,x,i)=>n+(x===grammarChoose[i].c),0)} / ${grammarChoose.length}. (${filled} answered)` :'';}
+$('#grammarChoose').onclick=e=>{const b=e.target.closest('[data-grammar-item]');if(!b)return;let i=+b.dataset.grammarItem,k=+b.dataset.grammarOpt;if(grammarFirst[i]===null)grammarFirst[i]=k;grammarCurrent[i]=k;drawGrammarChoose();};
+$('#chooseReset').onclick=()=>{grammarFirst.fill(null);grammarCurrent.fill(null);drawGrammarChoose();};drawGrammarChoose();
+
+// Exercise 3: one complete connected story, Past Continuous and short Past Simple events.
+const grammarStory=[
+ ['Yesterday at three o’clock, I ',' (prepare) for a travel event. My colleague ',['was preparing']],
+ ['',' (check) the tickets while I ',['was checking']],
+ ['',' (design) the website. Suddenly, the manager ',['was designing']],
+ ['',' (call). She ',['called']],
+ ['',' (ask) us to change one photo. While I ',['asked']],
+ ['',' (look) for a better picture, my colleague ',['was looking']],
+ ['',' (speak) English with a guest from Beijing. At six o’clock, we ',['was speaking']],
+ ['',' (finish) the work.', ['finished']]
+];
+function drawGrammarStory(){let sentence='';grammarStory.forEach(([prefix,after],i)=>{sentence+=safe(prefix)+`<input class="gap" type="text" id="gs${i}" aria-label="Verb ${i+1}" autocomplete="off" spellcheck="false" placeholder="${i+1}" />`+safe(after);});$('#grammarStory').innerHTML=`<p>${sentence}</p>`;}
+function checkGrammarStory(){let hit=0,filled=0;grammarStory.forEach((item,i)=>{const input=$('#gs'+i),value=norm(input.value),hasAnswer=value.length>0,ok=hasAnswer&&item[2].some(a=>norm(a)===value);if(hasAnswer)filled++;if(ok)hit++;input.classList.toggle('okc',ok);input.classList.toggle('badc',hasAnswer&&!ok);input.setAttribute('aria-invalid',String(hasAnswer&&!ok));});$('#grammarStoryScore').textContent=filled?`${hit} / ${grammarStory.length} correct${hit===grammarStory.length?' — Well done!':''}`:'';}
+$('#grammarStory').addEventListener('input',e=>{if(e.target.matches('input.gap'))checkGrammarStory();});
+$('#grammarStoryCheck').onclick=checkGrammarStory;$('#grammarStoryReset').onclick=()=>{drawGrammarStory();$('#grammarStoryScore').textContent='';};$('#grammarStoryShow').onclick=()=>{grammarStory.forEach((item,i)=>{const input=$('#gs'+i);input.value=item[2][0];input.classList.add('okc');input.classList.remove('badc');input.setAttribute('aria-invalid','false');});$('#grammarStoryScore').textContent='Answers shown.';};drawGrammarStory();
+
+/* READING — original A2 story + IELTS Reading matching headings. */
+const paragraphs=[
+ 'Last Friday, Mia was preparing for a small travel evening at an old palace in Warsaw. The topic was “Amazing Places”. She wanted the guests to see photos of islands, Beijing and other cities. At four o’clock she was checking the event website because more than fifty guests were coming.',
+ 'While Mia was checking the website, her colleague Daniel was speaking English with a visitor from Beijing. They were talking about the programme and the photos. Daniel asked Mia to change the time of one talk. Mia was busy, but she said yes. She wanted everything to look good.',
+ 'At five o’clock, a small problem appeared. The projector stopped working. While Daniel was talking to a technician, Mia was looking for another screen. She found one in a different room. Then they checked the sound, and everything worked well again.',
+ 'At seven, the guests arrived. One speaker talked about an island where he lived for a year. Another showed pictures of a palace in Beijing. The guests asked questions, and some of them stayed after the talk. At nine, Mia was tired but happy. She wanted to organise another travel evening.'
+];
+$('#readingText').innerHTML=paragraphs.map((p,i)=>`<p><b class="para">${'ABCD'[i]}.</b> ${safe(p)}</p>`).join('');
+const rq=[
+ ['Why was Mia checking the event website at four o’clock?','She was checking it because more than fifty guests were coming to the event.'],
+ ['How did Mia and Daniel solve the projector problem?','Daniel talked to a technician, and Mia found another screen. Then they checked the sound.']
+];
+$('#readingQ').innerHTML=rq.map(([q,a],i)=>{let id=newId();return `<div class="dl"><p><b>${i+1}.</b> ${safe(q)}</p><button class="btn" data-toggle="${id}">Answer</button> <span id="${id}" class="en hidden">${safe(a)}</span></div>`;}).join('');
+const headings=[
+ 'Preparing for the event', 'A change to the programme', 'Solving an unexpected problem', 'The evening itself', 'A holiday on an island', 'Dinner at a restaurant'
+];
+const headCorrect=[0,1,2,3];
+$('#headingBank').innerHTML='<b>Headings</b><div style="margin-top:8px">'+headings.map((v,i)=>`<div><b>${['i','ii','iii','iv','v','vi'][i]}.</b> ${safe(v)}</div>`).join('')+'</div>';
+function resetHeadRows(){ $('#headingChoices').innerHTML=paragraphs.map((p,i)=>`<div class="heading-row"><label for="head${i}">${'ABCD'[i]}</label><select id="head${i}" aria-label="Heading for paragraph ${'ABCD'[i]}"><option value="">Choose a heading…</option>${headings.map((v,k)=>`<option value="${k}">${['i','ii','iii','iv','v','vi'][k]}. ${safe(v)}</option>`).join('')}</select></div>`).join('');}
+$('#headCheck').onclick=()=>{let hits=0;headCorrect.forEach((answer,i)=>{const sel=$('#head'+i);const ok=sel.value!==''&&+sel.value===answer;if(ok)hits++;sel.classList.toggle('okc',ok);sel.classList.toggle('badc',!ok);});$('#headScore').textContent=`${hits} / 4 correct. ${hits===4?'Excellent!':'Check the text and try again.'}`;};
+$('#headReset').onclick=()=>{resetHeadRows();$('#headScore').textContent='';};
+$('#headShow').onclick=()=>{headCorrect.forEach((answer,i)=>{const sel=$('#head'+i);sel.value=String(answer);sel.classList.add('okc');sel.classList.remove('badc');});$('#headScore').textContent='Answers shown.';};resetHeadRows();
+
+/* SPEAKING — exact task card from 18 November, with the same five-step plan and useful phrases. */
+const plan=[
+ ['Start — name the film','I’d like to talk about a cartoon called … I watched it last …'],
+ ['Say when and with whom','I watched it at home / at the cinema with … It was on …'],
+ ['Explain what happened','The story was about … First, the main character … Then … In the end …'],
+ ['Give one detail you remember','My favourite scene was when … It was funny / surprising because …'],
+ ['Explain why you liked it — and finish','I really enjoyed it because … That’s why I’d like to watch it again.']
+];
+const phrases=[
+ ['Starting','I’d like to talk about… · The film I chose was…'],
+ ['Sequencing','First… · Then… · After that… · Finally…'],
+ ['Adding','Also… · Another thing I liked was…'],
+ ['Giving a reason','because… · so… · That’s why…'],
+ ['Giving an example','For example… · My favourite scene was when…'],
+ ['Finishing','In the end… · Overall, I really enjoyed it.']
+];
+$('#plan').innerHTML=plan.map(([title,example])=>`<li><div><b>${safe(title)}</b><em>${safe(example)}</em></div></li>`).join('');
+$('#phrases').innerHTML=phrases.map(([title,example])=>`<div class="phraseitem"><b>${safe(title)}</b><p>${safe(example)}</p></div>`).join('');
+let timer=null;const fmt=n=>Math.floor(n/60)+':'+String(n%60).padStart(2,'0');
+function stopTimer(){if(timer){clearInterval(timer);timer=null;}}
+function runTimer(sec,label,done){stopTimer();let n=sec;$('#clock').textContent=fmt(n);$('#phase').textContent=label;timer=setInterval(()=>{n=Math.max(0,n-1);$('#clock').textContent=fmt(n);if(!n){stopTimer();$('#phase').textContent=done;}},1000);}
+$('#tPrep').onclick=()=>runTimer(60,'Preparation: write key words…','Time to speak!');$('#tTalk').onclick=()=>runTimer(120,'Speaking…','Time is up. Thank you!');$('#tStop').onclick=()=>{stopTimer();$('#phase').textContent='Stopped';};
+
+/* TRANSLATION — connected story with sentence-by-sentence reveal like 16 November. */
+const translation=[
+ ['Вчера мы готовили вечер путешествий в одном из дворцов Варшавы.','Yesterday we were preparing for a travel evening at a palace in Warsaw.'],
+ ['В два часа дня я проверяла фотографии островов для нашего сайта.','At two o’clock in the afternoon, I was checking photos of islands for our website.'],
+ ['В это время мой коллега разговаривал по-английски с гостем из Пекина.','At that moment, my colleague was speaking English with a guest from Beijing.'],
+ ['Когда организатор позвонил, я выбирала главную тему мероприятия.','When the organiser called, I was choosing the main topic of the event.'],
+ ['Он попросил меня ещё раз проверить информацию.','He asked me to check the information again.'],
+ ['После этого мы закончили работу, но я очень устала, потому что весь день была занята.','After that, we finished our work, but I was very tired because I was busy the whole day.']
+];
+$('#translationText').innerHTML=translation.map(([ru,en])=>{const id=newId();return `<span>${safe(ru)}</span> <button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en enout hidden">${safe(en)}</span> `;}).join('');
+})();
+</script></body></html>
