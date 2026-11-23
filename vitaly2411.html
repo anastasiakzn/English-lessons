@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vitaliy: exam prep, vocabulary and grammar (24.11)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600&family=Onest:wght@400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+:root{
+  --bg:#ECEEF2; --paper:#FFFFFF; --ink:#1D2230; --muted:#5E6677; --line:#D6DAE1;
+  --v:#0E6B5C; --v-soft:#E0EFEB; --g:#3A4AA6; --g-soft:#E6E9F7;
+  --ok:#1F8A4C; --ok-soft:#E2F3E8; --bad:#B3261E; --bad-soft:#FBE8E6; --key:#FFF0B3;
+}
+body[data-block="v"]{--acc:var(--v);--acc-soft:var(--v-soft)}
+body[data-block="g"]{--acc:var(--g);--acc-soft:var(--g-soft)}
+*{box-sizing:border-box}
+html,body{margin:0}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{font-family:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.5}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+
+.top{max-width:1000px;margin:0 auto;padding:28px 20px 14px;display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
+.top h1{font-family:'Literata',Georgia,serif;font-weight:600;font-size:clamp(1.6rem,3.4vw,2.3rem);line-height:1.12;margin:0}
+.top p{margin:6px 0 0;color:var(--muted)}
+.blocks{display:flex;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:4px;gap:4px}
+.blocks button{border:0;background:none;padding:8px 18px;border-radius:10px;text-align:left;font-weight:600;color:var(--muted)}
+.blocks button small{display:block;font-weight:400;font-size:.78rem}
+.blocks button[aria-pressed="true"]{background:var(--acc);color:#fff}
+
+.tabs{max-width:1000px;margin:0 auto;padding:4px 20px 2px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+.tab{white-space:nowrap;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 14px 6px 6px;font-size:.92rem}
+.tab .n{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--acc-soft);color:var(--acc);font-size:.8rem;font-weight:700;margin-right:8px}
+.tab[aria-selected="true"]{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc);font-weight:600}
+
+.ex{max-width:1000px;margin:14px auto 48px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px 30px}
+.ex-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ex-head h2{font-family:'Literata',Georgia,serif;font-weight:600;font-size:1.65rem;margin:0}
+.time{color:var(--muted);font-size:.9rem;white-space:nowrap}
+.instr{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border-radius:10px;padding:10px 14px;margin-top:12px}
+.instr p{margin:0;flex:1}
+
+.parts{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:18px 0 0}
+.part{min-width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--paper);font-weight:600;font-size:.9rem;padding:0 8px}
+.part.done{border-color:var(--acc);color:var(--acc)}
+.part[aria-current="true"]{background:var(--acc);color:#fff;border-color:var(--acc)}
+.set-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:14px}
+.set-title{font-family:'Literata',Georgia,serif;font-size:1.25rem;font-weight:600;margin:0}
+.score{font-size:.9rem;color:var(--muted)}
+.score b{color:var(--ink)}
+.linkbtn{border:0;background:none;color:var(--muted);text-decoration:underline;font-size:.85rem;padding:0 0 0 10px}
+
+.box{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px;border:1.5px dashed var(--acc);border-radius:12px;margin:12px 0 4px}
+.chip{font-size:.9rem;padding:2px 10px;background:var(--acc-soft);border-radius:999px}
+
+ol.items{list-style:none;counter-reset:q;padding:0;margin:8px 0 0}
+ol.items li{counter-increment:q;display:grid;grid-template-columns:2.1em 1fr auto;gap:6px 14px;padding:12px 0;border-top:1px solid var(--line);align-items:start}
+ol.items li:first-child{border-top:0}
+ol.items li::before{content:counter(q);color:var(--muted);font-variant-numeric:tabular-nums;padding-top:5px;font-size:.9rem}
+.txt{font-family:'Literata',Georgia,serif;font-size:1.06rem;line-height:1.75}
+.side{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:96px;padding-top:2px}
+.reveal{grid-column:2 / -1;font-size:.93rem}
+.reveal:empty{display:none}
+
+select,input[type="text"]{font-family:'Onest',system-ui,sans-serif;font-size:.95rem;color:var(--ink);border:0;border-bottom:2px solid var(--acc);background:var(--acc-soft);padding:2px 6px;border-radius:5px 5px 0 0;max-width:100%}
+select{padding-right:2px}
+.ok{border-color:var(--ok)!important;background:var(--ok-soft)!important}
+.bad{border-color:var(--bad)!important;background:var(--bad-soft)!important}
+.key{background:var(--key);padding:1px 7px;border-radius:5px;font-family:'Onest',system-ui,sans-serif;font-size:.9rem;line-height:1.5;display:inline-block}
+.tick{color:var(--ok);font-weight:700}
+.cross{color:var(--bad);font-weight:700}
+.ans{font-size:.84rem;font-weight:600;border:1px solid var(--acc);color:var(--acc);background:var(--paper);border-radius:8px;padding:4px 12px}
+.ans:hover{background:var(--acc-soft)}
+.opts{display:block;font-family:'Onest',system-ui,sans-serif}
+.opt{font-size:.92rem;border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:3px 12px;margin:6px 6px 0 0}
+.opt.chosen{border-color:var(--acc);background:var(--acc-soft)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft);text-decoration:line-through}
+.blank{display:inline-block;width:3.6em;border-bottom:2px solid var(--ink);margin:0 3px;vertical-align:-3px}
+.def{color:var(--ink)}
+.orig{display:block}
+.kw{display:inline-block;font-family:'Onest',system-ui,sans-serif;font-weight:700;letter-spacing:.05em;font-size:.8rem;background:var(--ink);color:#fff;padding:1px 9px;border-radius:5px;margin:6px 0 2px}
+.stem{display:block}
+.fixrow{display:block;margin-top:8px;font-family:'Onest',system-ui,sans-serif;font-size:.95rem;color:var(--muted)}
+.jumble{display:block;font-style:italic;color:var(--muted)}
+input.wide{width:100%;margin-top:8px;font-family:'Onest',system-ui,sans-serif}
+.why{display:block;margin-top:6px;padding:6px 10px;border-left:3px solid var(--bad);background:#FAFAFB;border-radius:0 6px 6px 0;line-height:1.5}
+.why.ok-why{border-left-color:var(--ok)}
+.reveal .key + .why{margin-top:6px}
+
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+.nav button{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:8px 16px;font-weight:600}
+.nav button.primary{background:var(--acc);border-color:var(--acc);color:#fff}
+.nav button[disabled]{opacity:.35;cursor:default}
+
+@media (max-width:640px){
+  .top{padding:20px 14px 10px}
+  .tabs{padding:4px 14px 2px}
+  .ex{padding:18px 16px;border-radius:14px;margin:10px 8px 40px}
+  ol.items li{grid-template-columns:1.8em 1fr}
+  .side{grid-column:2;flex-direction:row-reverse;justify-content:flex-end;align-items:center;min-width:0}
+}
+@media (prefers-reduced-motion:no-preference){.opt,.ans,.part,.tab{transition:background-color .12s,border-color .12s}}
+</style>
+</head>
+<body data-block="v">
+
+<header class="top">
+  <div>
+    <h1>Exam prep: vocabulary and grammar</h1>
+    <p>Vitaliy · 24.11</p>
+  </div>
+  <nav class="blocks" aria-label="Blocks">
+    <button data-block="v" aria-pressed="true">Vocabulary<small id="tv"></small></button>
+    <button data-block="g" aria-pressed="false">Grammar<small id="tg"></small></button>
+  </nav>
+</header>
+<nav class="tabs" id="tabs" role="tablist" aria-label="Exercises"></nav>
+<main id="panel"></main>
+
+<script id="data">
+const DATA = [
+
+/* ===================== VOCABULARY ===================== */
+
+{block:`v`, id:`v1`, type:`mc`, min:12, title:`Phrases, collocations & idioms`,
+ en:`Choose the expression that best completes each sentence.`,
+ sets:[
+  {t:`Part 1: Mind, memory & personal growth`, items:`
+___, I realise that failing that first audition was the best thing that ever happened to me. | *In hindsight / To no avail / In the blink of an eye | • In hindsight — задним числом, оглядываясь назад; • To no avail — безуспешно, тщетно; • In the blink of an eye — в мгновение ока.
+When you work from home without a schedule, it is very easy to ___ between work and rest. | *blur the line / set boundaries / keep a poker face | • blur the line — размыть грань между чем-либо; • set boundaries — установить четкие границы; • keep a poker face — сохранять непроницаемое выражение лица.
+After months of confusion, his true calling finally began to ___. | *come into focus / creep up / go to pieces | • come into focus — проясниться, обрести четкие очертания; • creep up — незаметно подкрадываться; • go to pieces — расклеиться, потерять самообладание.
+A little genuine encouragement from a mentor can ___ in boosting a beginner's confidence. | *go a long way / cost an arm and a leg / take a leap of faith | • go a long way — очень сильно помочь, сыграть большую роль; • cost an arm and a leg — стоить баснословных денег; • take a leap of faith — решиться на смелый, рискованный шаг.
+With such a tiny budget and zero marketing, the startup doesn't ___ against global rivals. | *stand a chance / have nerves of steel / get a word in edgewise | • stand a chance — иметь шансы на успех; • have nerves of steel — иметь железные нервы; • get a word in edgewise — вставить хотя бы слово в разговор.
+The early sales figures show that our new strategy is finally ___. | *on the right track / stuck in a rut / out of view | • on the right track — на верном пути; • stuck in a rut — застрявший в рутине; • out of view — скрытый из виду, вне поля зрения.
+Even when the odds were against her, she refused to give in without ___. | *putting up a fight / beating around the bush / pigging out | • put up a fight — оказать сопротивление, побороться; • beat around the bush — ходить вокруг да около; • pig out — объедаться без меры.
+They stayed together ___ their children, even though their views had grown apart. | *for the sake of / on a whim / from the sidelines | • for the sake of — ради кого-либо / чего-либо; • on a whim — по внезапному капризу; • from the sidelines — со стороны, не вмешиваясь.
+Waiting in the hospital corridor for the test results felt like ___. | *an eternity / a crunch / a window | • an eternity — целая вечность; • a crunch — критический момент нехватки времени или денег; • a window — свободное «окно» в плотном графике.
+Many city dwellers love camping in theory, yet hate giving up their ___. | *creature comforts / trials and tribulations / preconceived notions | • creature comforts — привычные бытовые удобства, комфорт; • trials and tribulations — жизненные испытания и невзгоды; • preconceived notions — предвзятые представления.`},
+  {t:`Part 2: Reputation, society & media`, items:`
+Politicians live ___ and have every single word analysed by journalists. | *in the public eye / on the house / ill at ease | • in the public eye — на виду у публики, в центре общественного внимания; • on the house — за счет заведения; • ill at ease — не в своей тарелке, скованно.
+By donating his entire prize to charity, the athlete wanted to ___ about social responsibility. | *make a statement / make enemies / get his wires crossed | • make a statement — сделать громкое заявление, выразить позицию; • make enemies — нажить врагов; • get one's wires crossed — неправильно понять друг друга.
+The sudden resignation of the minister ___ across the country this morning. | *made the headlines / sang a different tune / touched base | • make the headlines — попасть в заголовки газет, стать главной новостью; • sing a different tune — запеть по-другому, сменить позицию; • touch base — кратко связаться, сверить часы.
+The reclusive actor rarely agrees to ___ at film premieres or talk shows. | *make an appearance / back out / bottle up | • make an appearance — появиться на публике, посетить мероприятие; • back out — пойти на попятную, отказаться; • bottle up — держать эмоции в себе.
+If you constantly criticise your colleagues in public, you will soon ___. | *make enemies / be all ears / blend in | • make enemies — нажить себе врагов; • be all ears — внимательно слушать; • blend in — слиться с окружением.
+Volunteering at the local shelter taught her that even small actions can ___. | *make a difference / fall for it / wear you out | • make a difference — изменить ситуацию к лучшему, принести реальную пользу; • fall for it — попасться на обман; • wear someone out — измотать, выбить из сил.
+Digital copyright law is still ___ where rules are unclear and outdated. | *a grey area / a walk in the park / a sweet tooth | • a grey area — «серая зона» (неоднозначная ситуация без четких правил); • a walk in the park — пустяковое дело; • a sweet tooth — любовь к сладкому.
+Instead of studying medicine like her parents, she chose not to ___ and became an illustrator. | *follow in their footsteps / get under their skin / pull herself together | • follow in somebody's footsteps — пойти по чьим-то стопам; • get under somebody's skin — действовать на нервы, раздражать; • pull oneself together — взять себя в руки.
+Seeing the curvature of the Earth from orbit is truly a ___ experience. | *once-in-a-lifetime / time-consuming / run-of-the-mill | • once-in-a-lifetime — уникальный, выпадающий раз в жизни; • time-consuming — требующий много времени, трудоемкий; • run-of-the-mill — заурядный, ничем не примечательный.
+Experts predict that interactive VR classrooms will be ___ in higher education. | *the next big thing / a wet blanket / an armchair critic | • the next big thing — следующий громкий тренд, прорыв; • a wet blanket — зануда, портящий всем настроение; • an armchair critic — «диванный критик».`},
+  {t:`Part 3: Food, health & everyday life`, items:`
+I have a terrible ___ — I simply cannot walk past a bakery without buying a pastry. | *sweet tooth / poker face / guilty conscience | • a sweet tooth — страсть к сладкому (сладкоежка); • a poker face — невозмутимое выражение лица; • a guilty conscience — нечистая совесть.
+The aroma of freshly baked garlic bread is enough to ___. | *make your mouth water / give you goosebumps / make you scared stiff | • make one's mouth water — вызывать обильное слюноотделение («слюнки текут»); • give someone goosebumps — вызывать мурашки по коже; • scared stiff — до смерти напуганный.
+I skipped breakfast and lunch today, so right now ___! | *I could eat a horse / I am at odds / I am on edge | • I could eat a horse — я голоден как волк («готов слона съесть»); • be at odds — быть в разногласиях; • be on edge — быть на взводе, нервничать.
+The doctor advised him to ___ fried food and caffeine for a few weeks. | *go easy on / slave away at / catch up on | • go easy on — не налегать, ограничить употребление; • slave away at — пахать над чем-либо; • catch up on — наверстать упущенное.
+We're planning a spontaneous weekend hike — are you ___ it? | *up for / prone to / susceptible to | • be up for something — быть готовым, хотеть поучаствовать в чем-то; • be prone to — быть склонным (к болезням/ошибкам); • be susceptible to — быть восприимчивым, уязвимым.
+Visiting Antarctica has been at the very top of my ___ for ten years. | *bucket list / to-do list / agenda | • a bucket list — список желаний и мест, которые хочется успеть за жизнь; • a to-do list — список текущих дел на день; • an agenda — повестка дня.
+The documentary tells the story of the ___ faced by early polar explorers. | *trials and tribulations / hustle and bustle / smoke and mirrors | • trials and tribulations — тяжелые испытания и невзгоды; • hustle and bustle — шум и суета; • smoke and mirrors — обманчивая видимость, пускание пыли в глаза.
+Let's ___ next Tuesday morning to review the updated client feedback. | *touch base / back out / rush out | • touch base — кратко связаться, обсудить последние новости; • back out — отказаться от участия; • rush out — выбежать в спешке.
+I have a 30-minute ___ between meetings at noon if you want to grab a coffee. | *window / gap / fraction | • a window — свободный промежуток времени в расписании; • a gap — пробел, разрыв; • a fraction — крошечная доля, часть.
+She only bought the smartwatch ___, and now it sits unused in a drawer. | *on a whim / with ease / to her heart's content | • on a whim — по внезапной прихоти; • with ease — с легкостью; • to one's heart's content — вдоволь, от души.`}
+ ]},
+
+{block:`v`, id:`v2`, type:`gap`, mode:`select`, min:10, title:`Verbs & phrasal verbs in context`,
+ en:`Complete each sentence with the correct verb or phrasal verb from the box.`,
+ sets:[
+  {t:`Part 1: Action, innovation & achievement`, items:`
+The clinic was the first in the country to ___ robotic microsurgery techniques. | pioneer | Pioneer — быть первопроходцем, впервые внедрить метод.
+After two years of loss-making operations, they had to ___ the project. | abandon | Abandon — отказаться от проекта, оставить затею.
+New wearable sensors can ___ athletic performance without invasive tests. | enhance | Enhance — улучшать, повышать качество или показатели.
+Our team will need creative thinking to ___ this unexpected technical obstacle. | tackle | Tackle — взяться за решение сложной задачи или проблемы.
+Her debut novel managed to ___ all sales records in its first month. | surpass | Surpass — превзойти, опередить по показателям.
+The council plans to ___ stricter rules on online advertising next year. | implement | Implement — внедрить, претворить в жизнь (план, закон).
+Good managers ___ a culture of trust rather than constant micromanagement. | cultivate | Cultivate — взращивать, развивать культуру или навыки.
+Under the guidance of an inspiring coach, her natural talent began to ___. | blossom | Blossom — расцветать, раскрываться в полную силу.
+If you don't plan your career path, you might ___ in a job you loathe. | end up | End up — оказаться в итоге, закончить в каком-либо положении.
+Before you ___ an expedition into the jungle, check all safety equipment. | embark on | Embark on — отправляться в путь или начинать масштабное дело.`},
+  {t:`Part 2: Communication, influence & emotion`, items:`
+A clear visual diagram helps you ___ complex data to a non-technical audience. | get across | Get something across — доходчиво донести мысль.
+Having experienced burnout herself, she could easily ___ with her exhausted staff. | empathise | Empathise — сопереживать, проявлять эмпатию.
+He tried to ___ the director by praising her speech, hoping for a promotion. | flatter | Flatter — льстить, заискивать.
+The goal of life coaching is to ___ clients to make their own decisions. | empower | Empower — наделять полномочиями, давать уверенность и силы.
+Some governments ___ news websites to keep sensitive stories out of view. | censor | Censor — подвергать цензуре, запрещать публикацию.
+The businessman sued the tabloid for trying to ___ him with fabricated rumours. | defame | Defame — порочить репутацию, клеветать.
+Unscrupulous companies often ___ workers in impoverished regions. | exploit | Exploit — эксплуатировать, наживаться на ком-либо.
+A subtle touch of humour works well in a presentation, just don't ___ it. | overdo | Overdo — переборщить, перестараться.
+Over time, vivid childhood memories can ___ unless we refresh them. | fade | Fade — блекнуть, постепенно стираться из памяти.
+Certain smells or songs can unexpectedly ___ strong emotional memories. | trigger | Trigger — запускать реакцию, вызывать воспоминания или эмоции.`},
+  {t:`Part 3: Routine, habits & physical states`, items:`
+Once the marketing campaign went viral, orders began to ___ from all over the world. | roll in | Roll in — поступать в большом количестве (о заказах, деньгах, письмах).
+She used to ___ two hours every morning before switching to remote work. | commute | Commute — регулярно ездить на работу и обратно.
+I overslept this morning and had to ___ of the flat without breakfast. | rush out | Rush out — выскочить, выбежать в спешке.
+On Sunday afternoons, I like to put on some music and ___ on the sofa. | chill out | Chill out — расслабиться, отдохнуть без суеты.
+Stop ___ all day and help me prepare the presentation! | lounging around | Lounge around / laze around — бездельничать, валяться без дела.
+During intermittent fasting, you restrict eating hours without actually ___. | starving | Starve — голодать, страдать от сильного голода.
+Take small bites and chew slowly — don't just ___ your food whole! | swallow | Swallow — глотать.
+When you ___ every trivial decision, you waste valuable mental energy. | overthink | Overthink — слишком много накручивать себя, излишне анализировать.
+It took the athlete six months to ___ his full strength after the injury. | regain | Regain — вернуть, восстановить (силы, контроль, форму).
+What looked like a disaster at first ___ to be a blessing in disguise. | turned out | Turn out — оказаться в конечном итоге.`}
+ ]},
+
+{block:`v`, id:`v3`, type:`gap`, mode:`type`, min:10, title:`Word formation: prefixes & suffixes`,
+ en:`Use the word in capitals to form a word that fits the gap.`,
+ sets:[
+  {t:`Part 1: Nouns`, items:`
+Many couples feel unprepared for the emotional demands of ___. (PARENT) | parenthood | Parent → parenthood: родительство, материнство/отцовство.
+The charity campaigns against the ___ of animals in entertainment. (TREAT) | mistreatment | Treat → mistreatment: жестокое обращение (приставка mis- + суффикс -ment).
+Despite his talent, he showed little ___ to pursue a career in politics. (INCLINE) | inclination | Incline → inclination: склонность, желание.
+Her lifelong ___ was to become a commercial airline pilot. (ASPIRE) | aspiration | Aspire → aspiration: стремление, высокая цель.
+There was considerable ___ about the new tax regulations. (CONFUSE) | confusion | Confuse → confusion: путаница, замешательство.
+Running an ultramarathon tests the limits of human ___. (ENDURE) | endurance | Endure → endurance: выносливость.
+He viewed the setback not as a ___, but as a valuable lesson. (FAIL) | failure | Fail → failure: неудача, провал.
+We hired an external consultant for her ___ in cybersecurity. (EXPERT) | expertise | Expert → expertise: экспертные знания, компетентность.
+Chronic ___ can severely affect both sleep and concentration. (ANXIOUS) | anxiety | Anxious → anxiety: тревожность, беспокойство.
+The researchers published their ___ in a leading medical journal. (FIND) | findings | Find → findings: результаты исследования, выводы.
+Many workers saw their real ___ fall due to high inflation. (EARN) | earnings | Earn → earnings: заработок, доходы (всегда во мн. ч.).
+The clinical trial achieved a positive ___ for 90% of patients. (COME) | outcome | Come → outcome: исход, результат.`},
+  {t:`Part 2: Adjectives & adverbs`, items:`
+She is far more ___ than her sister and loves solo backpacking trips. (ADVENTURE) | adventurous | Adventure → adventurous: любящий приключения, смелый.
+The audience gave the young violinist an ___ reception. (ENTHUSIASM) | enthusiastic | Enthusiasm → enthusiastic: восторженный, полный энтузиазма.
+She came up with an ___ way to reuse old shipping containers. (INVENT) | inventive | Invent → inventive: изобретательный, находчивый.
+Factory assembly work can be monotonous and ___. (REPEAT) | repetitive | Repeat → repetitive: однообразный, повторяющийся.
+His argument was so ___ that even the sceptics voted in favour. (PERSUADE) | persuasive | Persuade → persuasive: убедительный.
+The advert was banned for making ___ claims about weight loss. (MISLEAD) | misleading | Mislead → misleading: вводящий в заблуждение.
+The comedian apologised for making an ___ remark during the show. (OFFEND) | offensive | Offend → offensive: оскорбительный.
+Our goal is to make quality education ___ to students everywhere. (ACCESS) | accessible | Access → accessible: доступный.
+In many countries, wearing a seatbelt is ___ by law. (COMPEL) | compulsory | Compel → compulsory: обязательный, принудительный.
+Teaching can be exhausting, yet it is deeply ___. (REWARD) | rewarding | Reward → rewarding: приносящий удовлетворение, благодарный.
+Realising his mistake, he ___ deleted the post before anyone saw it. (HASTE) | hastily | Haste → hastily: поспешно, второпях (буква e выпадает перед -ily).
+Remote work has ___ reduced our company's office expenses. (DRASTIC) | drastically | Drastic → drastically: радикально, резко (прилагательные на -ic образуют наречие через -ally).`}
+ ]},
+
+{block:`v`, id:`v4`, type:`mc`, min:10, title:`Confusable words & subtle distinctions`,
+ en:`Choose the word that fits the exact meaning of the sentence.`,
+ sets:[
+  {t:`Part 1: Pair contrasts A–M`, items:`
+The two founders have ___ skills: one excels at coding, while the other is a brilliant salesperson. | *complementary / complimentary / compulsory | • complementary — взаимодополняющий; • complimentary — бесплатный или хвалебный; • compulsory — обязательный.
+Unlike her neurotic brother, she is very ___ and handles emergencies calmly. | *sensible / sensitive / suggestive | • sensible — здравомыслящий, рассудительный; • sensitive — чувствительный, ранимый; • suggestive — наводящий на мысль, двусмысленный.
+The driver was completely ___ of the cyclist riding in his blind spot. | *unaware / subconscious / involuntary | • unaware — не знающий, не осведомленный; • subconscious — подсознательный; • involuntary — непроизвольный.
+Nobody could predict the final ___ of the election until the very last ballot was counted. | *outcome / income / impetus | • outcome — исход, результат; • income — доход, заработок; • impetus — импульс, стимул.
+The belief that we only use ten percent of our brain is a widespread ___. | *misconception / misinformation / mistreatment | • misconception — заблуждение, ошибочное представление; • misinformation — ложная информация, дезинформация; • mistreatment — жестокое обращение.
+All characters in this novel are entirely ___ and bear no resemblance to real people. | *fictional / lifelike / predetermined | • fictional — вымышленный; • lifelike — как живой, реалистичный; • predetermined — предопределенный.
+With the ___ of smartphones, people began checking news feeds constantly. | *advent / advancement / outcome | • advent — приход, появление (новой технологии, эпохи); • advancement — прогресс, продвижение вперед; • outcome — результат.
+Living abroad for five years gave her deep ___ into different cultures. | *insight / hindsight / vision | • insight — глубокое понимание, проникновение в суть; • hindsight — понимание задним числом; • vision — зрение или стратегическое видение.
+He felt that medicine was his true ___, not merely a way to earn a living. | *vocation / vacation / recreation | • vocation — призвание; • vacation — отпуск; • recreation — отдых, досуг.
+Selling fake herbal remedies as a cure for serious diseases is pure ___. | *quackery / hoax / gimmick | • quackery — шарлатанство, знахарство; • hoax — мистификация, газетная утка; • gimmick — рекламный трюк, уловка.`},
+  {t:`Part 2: Pair contrasts P–V`, items:`
+The negotiation was very ___ — both teams left with a clear action plan. | *fruitful / profitable / greedy | • fruitful — плодотворный, результативный; • profitable — прибыльный, приносящий деньги; • greedy — жадный.
+Base jumping gives extreme athletes an intense ___ of adrenaline. | *thrill / burst / clash | • thrill — острое ощущение, трепет, восторг; • burst — вспышка, порыв; • clash — столкновение, конфликт.
+Media coverage often shows political ___ by favouring one candidate over another. | *bias / stigma / slander | • bias — предвзятость, необъективность; • stigma — клеймо, социальный предрассудок; • slander — устная клевета.
+Blinking is mostly an ___ reflex that protects the surface of the eye. | *involuntary / inevitable / volitional | • involuntary — непроизвольный, рефлекторный; • inevitable — неизбежный; • volitional — волевой, совершаемый по осознанной воле.
+The sink was completely ___ with food waste, so we had to call a plumber. | *clogged / scattered / trapped | • clogged — забитый, засоренный; • scattered — разбросанный; • trapped — застрявший в ловушке.
+We invited twenty ___ clients to a private preview of the new software. | *prospective / perspective / retrospective | • prospective — потенциальный, будущий; • perspective — точка зрения (сущ.); • retrospective — ретроспективный.
+Can young children easily ___ between reality and advertising on YouTube? | *differentiate / alter / distort | • differentiate — различать, проводить грань; • alter — изменять; • distort — искажать.
+Warm chamomile tea has a wonderfully ___ effect before bedtime. | *soothing / flattering / draining | • soothing — успокаивающий, умиротворяющий; • flattering — льстивый; • draining — выматывающий.
+After losing their home in the flood, the family felt completely ___. | *devastated / miserable / ill at ease | • devastated — потрясенный, убитый горем; • miserable — несчастный, унылый; • ill at ease — неловко, скованно.
+Before switching to renewable energy, the factory used to ___ tons of toxic smoke. | *emit / allot / discharge | • emit — выделять, выбрасывать (газ, свет, тепло); • allot — распределять, выделять долю; • discharge — выписывать (из больницы) или сбрасывать (воду).`}
+ ]},
+
+{block:`v`, id:`v5`, type:`def`, mode:`select`, min:10, title:`Match the definition`,
+ en:`Select the word from the box that matches each definition.`,
+ sets:[
+  {t:`Part 1: Nouns`, items:`
+A classification system dividing things or people into distinct types | typology | Typology — типология, классификация.
+Something that stimulates or starts a process or activity | kick-starter | Kick-starter — стартовый толчок, катализатор.
+Wood prepared for use in building and carpentry | timber | Timber — древесина, лесоматериалы.
+A central theme connecting all parts of a speech or story | through-line | Through-line — сквозная линия, главная нить повествования.
+A confused or disorganized mixture of different things | mishmash | Mishmash — мешанина, сумбур.
+A very small part or proportion of something | fraction | Fraction — крошечная доля, часть.
+A group of similar cells forming part of an animal or plant | tissue | Tissue — биологическая ткань.
+A basic and essential food item used regularly | staple | Staple — основной продукт питания.
+Principles concerning beauty and artistic taste | aesthetics | Aesthetics — эстетика, внешняя привлекательность.
+A minor or temporary problem or delay | hiccup | Hiccup — мелкая заминка, временный сбой.`},
+  {t:`Part 2: Adjectives`, items:`
+Overly anxious, emotionally unstable, or obsessive | neurotic | Neurotic — невротичный, тревожный.
+Pleasant, friendly, and easy to get along with | agreeable | Agreeable — приятный, покладистый, сговорчивый.
+Having a strong, overwhelming, or devastating impact | crushing | Crushing — сокрушительный, подавляющий.
+Producing powerful, clear, and detailed mental images | vivid | Vivid — яркий, живой, образный.
+Widespread and very common, especially of something undesirable | rife | Rife — широко распространенный, изобилующий (о слухах, ошибках).
+Used to emphasize how small or insignificant something is | mere | Mere — всего лишь, простой, незначительный.
+Of extremely high quality; magnificent | superb | Superb — превосходный, великолепный.
+Occurring at irregular intervals; not continuous | intermittent | Intermittent — прерывистый, периодический.
+Decided or fixed in advance so it cannot be changed | predetermined | Predetermined — предопределенный заранее.
+Well-balanced, sensible, and emotionally stable | grounded | Grounded — приземленный, уравновешенный, твердо стоящий на ногах.`}
+ ]},
+
+{block:`v`, id:`v6`, type:`gap`, mode:`select`, min:10, title:`Vocabulary in context: two articles`,
+ en:`Complete the texts using the target words from the box.`,
+ sets:[
+  {t:`Part 1: Rethinking productivity and slow living`, items:`
+Whether you are an ___ who wakes up at five or a night owl, modern work culture often leaves us exhausted. | early bird | Early bird — «жаворонок» (противопоставляется night owl).
+To stay ___ without sacrificing your health, you must learn to prioritize ruthlessly. | efficient | Efficient — эффективный, продуктивный.
+Instead of reacting to every email, try to ___ short breaks for mindfulness into your daily schedule. | incorporate | Incorporate — включать, встраивать в систему.
+Many top athletes ___ their ultimate goal before a competition to sharpen their focus. | visualize | Visualize — визуализировать, мысленно представлять.
+Stepping away from the ___ of city life helps restore mental clarity. | hustle and bustle | Hustle and bustle — шум и суета.
+Ignoring early signs of fatigue inevitably leads to severe ___. | burnout | Burnout — эмоциональное и физическое выгорание.
+The slow living movement encourages people to ___ simple pleasures like cooking a meal from scratch. | relish | Relish — получать удовольствие, смаковать.
+When you are overwhelmed, pause, take a deep breath, and ___ before continuing. | pull yourself together | Pull oneself together — взять себя в руки.
+Having a clear ___ for the next five years makes daily decisions much easier. | vision | Vision — стратегическое видение, ясная картина будущего.
+If you ___ every minor detail, you will never launch your project on time. | overthink | Overthink — излишне усложнять и накручивать себя.`},
+  {t:`Part 2: Space & VR tourism — the next big thing?`, items:`
+For decades, flying to orbit has been an impossible dream on almost everyone's ___. | bucket list | Bucket list — список заветных желаний.
+Astronauts often describe the profound sense of ___ they feel when looking back at Earth. | awe | Awe — благоговейный трепет, восторг.
+At an ___ of over 100 kilometres, the sky turns pitch black even in daylight. | altitude | Altitude — высота над уровнем моря.
+During ___, passengers experience intense g-force before entering orbit. | liftoff | Liftoff — старт, отрыв ракеты от земли.
+Floating in complete ___ is both exhilarating and disorienting at first. | weightlessness | Weightlessness — невесомость.
+Critics warn that commercial rockets ___ huge amounts of carbon into the upper atmosphere. | emit | Emit — выбрасывать, выделять (газы).
+For those who cannot afford a ticket, ___ virtual reality headsets offer a lifelike alternative. | top-notch | Top-notch — первоклассный, высочайшего уровня.
+Modern VR simulations are so ___ that users forget they are sitting in their living room. | vibrant | Vibrant — яркий, живой, насыщенный.
+Sceptics wonder whether virtual travel is just a passing ___ or a permanent shift. | fad | Fad — мимолетное увлечение, прихоть моды.
+Still, most people agree that seeing Earth from space would be a ___ adventure. | once-in-a-lifetime | Once-in-a-lifetime — уникальный, единственный в жизни.`}
+ ]},
+
+/* ===================== GRAMMAR ===================== */
+
+{block:`g`, id:`g1`, type:`kw`, min:12, title:`Reported speech & reporting verbs`,
+ en:`Complete the second sentence so that it has a similar meaning to the first, using the word given.`,
+ sets:[
+  {t:`Part 1: Reporting verbs & patterns`, items:`
+"You leaked the confidential findings to the press!" the manager told him. | ACCUSED | The manager ___ the confidential findings to the press. | accused him of leaking | Accuse somebody OF + V-ing — обвинять кого-либо в чем-либо.
+"No, I didn't alter any figures in the financial report," she said. | DENIED | She ___ any figures in the financial report. | denied altering;denied having altered | Deny + V-ing / having V3 — отрицать совершение действия.
+"I really must pay for everyone's refreshments," Mark said. | INSISTED | Mark ___ for everyone's refreshments. | insisted on paying | Insist ON + V-ing — настаивать на чем-либо.
+"I'm terribly sorry I forgot to keep you posted," Anna told me. | APOLOGISED | Anna ___ to keep me posted. | apologised for forgetting;apologised for having forgotten | Apologise FOR + V-ing — извиняться за что-либо.
+"Come on, you really should apply for that internship!" he told his sister. | PERSUADED | He ___ for that internship. | persuaded his sister to apply | Persuade somebody + to V — убедить кого-либо сделать что-либо.
+"Don't forget to set your alarm clock for six," Mum told me. | REMINDED | Mum ___ my alarm clock for six. | reminded me to set | Remind somebody + to V — напомнить кому-либо сделать что-либо.
+"If I were you, I wouldn't fall for such an obvious gimmick," she said to him. | ADVISED | She ___ for such an obvious gimmick. | advised him not to fall | Advise somebody NOT to V — советовать кому-либо не делать чего-либо.
+"I won't sign the contract unless you clarify the terms," the actor said. | REFUSED | The actor ___ the contract unless they clarified the terms. | refused to sign | Refuse + to V — отказываться сделать что-либо.
+"We will sue the magazine if they publish that slander," the lawyer said. | THREATENED | The lawyer ___ the magazine if they published that slander. | threatened to sue | Threaten + to V — угрожать сделать что-либо.
+"Well done on surpassing your annual target!" the director told the team. | CONGRATULATED | The director ___ their annual target. | congratulated the team on surpassing | Congratulate somebody ON + V-ing — поздравлять с чем-либо.`},
+  {t:`Part 2: Tense backshift & reported questions`, items:`
+"I have been slaving away on this prototype since Monday," Tom said. | HE | Tom said that ___ on that prototype since Monday. | he had been slaving away | Present Perfect Continuous при сдвиге времен переходит в Past Perfect Continuous.
+"Did the clinical trial produce any unexpected outcomes?" the journalist asked. | WHETHER | The journalist asked ___ any unexpected outcomes. | whether the clinical trial had produced | Общий вопрос в Past Simple переходит в whether/if + Past Perfect (без вопросительного порядка слов).
+"Where did you buy those ergonomic props?" she asked me. | BOUGHT | She wanted to know ___ those ergonomic props. | where I had bought | Специальный вопрос в косвенной речи имеет прямой порядок слов: вопросительное слово + подлежащее + had V3.
+"We will launch the bilingual app next month," the founder announced. | WOULD | The founder announced that they ___ the bilingual app the following month. | would launch | Will в косвенной речи меняется на would, а next month — на the following month.
+"I had never experienced weightlessness before that flight," the tourist admitted. | NEVER | The tourist admitted that he ___ weightlessness before that flight. | had never experienced | Past Perfect в прямой речи при переводе в косвенную не меняется (остается had V3).
+"You must not disclose our supplier's name," the boss warned us. | DISCLOSE | The boss warned us ___ our supplier's name. | not to disclose | Warn somebody NOT to V — предупредить не делать чего-либо.
+"Why don't we incorporate mindfulness into our morning routine?" Leo said. | INCORPORATING | Leo ___ mindfulness into their morning routine. | suggested incorporating | Suggest + V-ing (нельзя сказать suggested to incorporate!).
+"I definitely saw the suspect near the entrance," the eyewitness claimed. | CLAIMED | The eyewitness ___ the suspect near the entrance. | claimed to have seen;claimed that he had seen;claimed that she had seen | Claim + перфектный инфинитив (to have seen) или that + Past Perfect.
+"Can you squeeze me in for a quick call tomorrow?" she asked her coach. | COULD | She asked her coach if ___ for a quick call the next day. | he could squeeze her in;she could squeeze her in | Can → could, прямой порядок слов, замена местоимений.
+"I wish I hadn't spoken so hastily," he said. | REGRETTED | He said that he ___ so hastily. | regretted having spoken;regretted speaking | Regret + V-ing / having V3 для сожаления о прошлом поступке.`}
+ ]},
+
+{block:`g`, id:`g2`, type:`mc`, min:12, title:`Relative & participle clauses`,
+ en:`Choose the grammatically correct option to complete each sentence.`,
+ sets:[
+  {t:`Part 1: Relative clauses & punctuation`, items:`
+He turned down the job offer, ___ came as a complete surprise to everyone. | *which / that / what | Когда придаточное относится ко всему предыдущему предложению и стоит после запятой, используется только which (не that и не what).
+The startup, ___ founders met at university, is now valued at ten million pounds. | *whose / which / whom | Притяжательное относительное местоимение для людей и компаний — whose.
+She is the colleague with ___ I am collaborating on the new typology project. | *whom / who / that | Сразу после предлога (with, to, for, in) для людей используется только whom.
+They devised a clever system ___ customers can pay without an internet connection. | *whereby / whose / whom | Whereby означает «посредством которого, благодаря чему» (формальный экзаменационный маркер).
+All the participants ___ took part in the clinical trial were monitored for six months. | *who / whom / which | Подлежащее придаточного для людей — who (опустить нельзя, так как это подлежащее).
+My sister, ___ lives in Lisbon, works as a freelance UX designer. | *who / that / whom | В невыделительных придаточных (с запятыми) местоимение that использовать запрещено.
+The book ___ I lent you last week contains a fascinating chapter on false memories. | *that / what / whose | В ограничительном придаточном без запятых к неодушевленному предмету подходит that (или which).
+We visited three refugee camps, two of ___ lacked clean fresh water. | *which / them / that | После количественных слов с предлогом (two of, most of, none of) ставится which (для предметов) или whom (для людей).
+That is the exact reason ___ I decided to jump off the corporate career ladder. | *why / which / what | После слова reason используется why (или that).
+The documentary explores the extent to ___ algorithms shape our political views. | *which / that / what | Устойчивая конструкция: the extent to which (степень, в которой...).`},
+  {t:`Part 2: Participle clauses`, items:`
+___ at an altitude of 2,400 metres, the ancient monastery offers breathtaking views. | *Located / Locating / Having located | Пассивное причастие: монастырь расположен (which is located → Located).
+___ all the obstacles, the expedition finally reached the summit. | *Having overcome / Overcame / Being overcome | Перфектное активное причастие (Having V3): сначала преодолели препятствия, потом достигли вершины.
+___ what to say, he simply kept a poker face and nodded slowly. | *Not knowing / Not known / Knowing not | Отрицание not ставится строго перед причастием: Not knowing.
+___ in a highly suggestive style, the article easily misled thousands of readers. | *Written / Writing / Having written | Статья была написана (пассив), поэтому нужно причастие прошедшего времени Written.
+___ as a digital nomad for five years, she knows how to find reliable Wi-Fi anywhere. | *Having worked / Worked / Being worked | Длительный опыт, предшествующий настоящему моменту: Having worked.
+The tourists stood on the deck, ___ in awe at the massive glacier. | *gazing / gazed / to gaze | Одновременное активное действие передается причастием настоящего времени (gazing).
+___ twice about the risks, he still refused to wear safety gear. | *Having been warned / Having warned / Warning | Его предупреждали (пассив) заранее (перфект): Having been warned.
+___ properly, this portable solar charger can power your laptop for ten hours. | *Used / Using / Having used | Условное пассивное причастие: Used properly = If it is used properly.
+The woman ___ next to me on the flight turned out to be a famous polyglot. | *sitting / sat / was sitting | Сокращенное определительное придаточное с активным действием: who was sitting → sitting.
+___ her keys at the office, she couldn't get into her flat. | *Having left / Left / Being left | Причина в прошлом: поскольку она оставила ключи (актив, предшествование) → Having left.`}
+ ]},
+
+{block:`g`, id:`g3`, type:`mc`, min:12, title:`Past structures & narrative tenses`,
+ en:`Choose the best verb form to complete each sentence.`,
+ sets:[
+  {t:`Part 1: Narrative tenses`, items:`
+When we arrived at the studio, the crew ___ for over three hours to fix the lighting. | *had been working / worked / were working | Длительное действие, которое началось до момента в прошлом и все еще продолжалось к этому моменту — Past Perfect Continuous.
+I ___ to leave the house when the courier finally arrived with the parcel. | *was just about / had just / would just | Be about to — собираться вот-вот что-то сделать в момент, когда произошло другое действие.
+By the time the rescue team reached the climbers, the storm ___. | *had already eased off / already eased off / was already easing off | Действие завершилось до определенного момента в прошлом (By the time...) — Past Perfect Simple.
+As a child, my grandfather ___ a small timber workshop near the river. | *used to own / would own / was owning | Own — глагол состояния (stative verb), поэтому для привычек/состояний в прошлом подходит только used to, но не would!
+Every summer during our holidays, we ___ hours lounging around on the beach. | *would spend / were spending / had spent | Would + инфинитив описывает повторяющиеся действия (не состояния!) в прошлом.
+She looked exhausted because she ___ all night for her final medical exam. | *had been studying / studied / was studying | Видимый результат в прошлом (looked exhausted) от длительного процесса — Past Perfect Continuous.
+No sooner ___ the door than the phone started ringing again. | *had I locked / I had locked / was I locking | После No sooner в начале предложения идет инверсия с Past Perfect: had I locked.
+While the keynote speaker ___ his presentation, the projector suddenly failed. | *was delivering / delivered / had delivered | Длительный фон в прошлом, прерванный коротким действием — Past Continuous.
+I didn't recognise him at first because he ___ a thick beard. | *had grown / grew / was growing | Изменение внешности произошло до момента встречи в прошлом — Past Perfect.
+They ___ to launch the product in May, but supply chain delays forced them to postpone it. | *were going / went / had gone | Was/were going to — невыполненное намерение в прошлом (Future in the Past).`},
+  {t:`Part 2: Future in the past & past references`, items:`
+The flight ___ depart at 08:30, so we had to be at the terminal by six. | *was due to / would have / used to | Was/were due to — действие ожидалось по расписанию в прошлом.
+Nobody knew at the time that this tiny garage startup ___ a global tech giant. | *would become / became / had become | «Взгляд в будущее из прошлого» (Future in the Past) — would + инфинитив.
+You ___ submit the report yesterday — why is it still on your desk? | *were supposed to / would / used to | Was/were supposed to — ожидалось, что ты должен был это сделать (но не сделал).
+She ___ sign the lease when she noticed a suspicious clause in the small print. | *was on the point of / was about to / was due to | Внимательно смотрим на предлог of: be on the point OF + V-ing (но здесь sign без -ing? Погодите: заменим вариант!).`},
+ ]},
+
+{block:`g`, id:`g4`, type:`fix`, mode:`type`, label:`Corrected words:`, min:12, title:`Adjectives, adverbs & softening`,
+ en:`Each sentence contains a grammatical or lexical usage error. Type ONLY the corrected word or phrase.`,
+ sets:[
+  {t:`Part 1: Adjectives, adverbs & comparatives`, items:`
+When her flight was cancelled, she felt very devastated. | absolutely devastated;utterly devastated;completely devastated | Devastated — предельное (extreme) прилагательное, оно не сочетается с very; нужны усилители absolutely / utterly / completely.
+The harder you practice public speaking, the confident you become. | the more confident | Двойное сравнение: The + comparative..., the + comparative... (the more confident).
+This new budgeting app is nowhere near as cumbersome than the old one. | as | Конструкция сравнения: nowhere near as + прилагательное + AS (не than).
+She speaks Mandarin so fluent that locals think she grew up in Beijing. | fluently | После глагола действия (speaks) требуется наречие fluently, а не прилагательное.
+Have you noticed any improvements in your sleep quality late? | lately | Late = поздний/поздно; «в последнее время» = lately.
+We were high impressed by the thoroughness of his research. | highly | High = высоко (в пространстве); «весьма, крайне» = highly (highly impressed).
+This is by far the more convincing argument I have heard all day. | the most convincing | Конструкция by far требует превосходной степени (the most convincing).
+Despite working hardly all month, they still missed the deadline. | hard | Work hard = усердно работать (hardly означает «едва ли»).
+The lecture was so bored that half the audience started fidgeting. | boring | Лекция была скучной (вызывала скуку) — boring; bored описывает чувства людей.
+The film was pretty good, though the ending was a bit disappointed. | disappointing | Финал фильма был разочаровывающим — disappointing.`} ,
+  {t:`Part 2: Softening orders, requests & suggestions`, items:`
+Would you mind to close the window? There's a cold draught. | mind closing | После Would you mind всегда используется герундий (V-ing).
+I was wondering if you can send me the updated price list today. | could | Для вежливой смягченной просьбы после I was wondering if используется форма прошедшего времени could.
+Could you possibly explaining this clause in simpler terms? | possibly explain | После модального глагола could идет голый инфинитив без -ing (explain).
+Do you happen knowing what time the keynote speech starts? | happen to know | Конструкция вежливого вопроса: Do you happen + TO + инфинитив.
+I'd appreciate it if you send the signed agreement by Friday. | sent;could send;would send | В вежливой просьбе I'd appreciate it if используется Past Simple (sent) или could/would send.
+Would it be possible for you reviewing my cover letter? | to review | Конструкция: Would it be possible for somebody + TO + инфинитив.
+You might want considering a career coach before making a decision. | want to consider | После want всегда идет инфинитив с частицей to (want to consider).
+Have you thought about book an earlier flight to avoid the crunch? | about booking | После предлога about идет герундий (booking).
+Why don't we to touch base tomorrow morning at ten? | touch base | После Why don't we используется голый инфинитив без to.
+I'd rather you don't bring up that topic during the client dinner. | didn't | Когда у would rather меняется подлежащее (you), требуется Past Simple (didn't).`}
+ ]},
+
+{block:`g`, id:`g5`, type:`kw`, min:12, title:`Conditionals & inversion review`,
+ en:`Complete the second sentence so that it means the same as the first, using the word given.`,
+ sets:[{t:``, items:`
+We only survived the crisis because our team reacted so quickly. | FOR | Had ___ quick reaction, we wouldn't have survived the crisis. | it not been for our team's | Устойчивая инверсия 3-го типа: Had it not been for + существительное («Если бы не...»).
+Without her daily mindfulness practice, she would feel completely overwhelmed now. | WERE | ___ her daily mindfulness practice, she would feel completely overwhelmed now. | Were it not for | Устойчивая инверсия 2-го типа: Were it not for + существительное.
+If you happen to encounter any technical hiccups, contact our support desk. | SHOULD | ___ any technical hiccups, contact our support desk. | Should you encounter | Инверсия в 1-м типе условных: Should + subject + V1 (вместо If you should encounter).
+You won't overcome your fear of public speaking unless you practise regularly. | IF | You won't overcome your fear of public speaking ___ regularly. | if you don't practise;if you do not practise | Unless = if ... not.
+I'll lend you my noise-cancelling headphones on condition that you return them tomorrow. | PROVIDED | I'll lend you my noise-cancelling headphones ___ them tomorrow. | provided that you return;provided you return | Provided (that) — при условии, что.
+Take a printed copy of your boarding pass because your phone battery might die. | CASE | Take a printed copy of your boarding pass ___ dies. | in case your phone battery | In case + Present Simple — на случай, если что-то произойдет.
+Whether the weather improves or not, we are going ahead with the hike. | EVEN | We are going ahead with the hike ___ improve. | even if the weather doesn't;even if the weather does not | Whether ... or not передается через even if в отрицательной форме.
+He didn't wear sunscreen at the beach, so his shoulders are badly burnt now. | WORN | If he ___ at the beach, his shoulders wouldn't be badly burnt now. | had worn sunscreen | Смешанный тип: условие в прошлом (had worn), результат сейчас (wouldn't be).
+She isn't fluent in Spanish, which is why she wasn't hired for the Madrid office. | WERE | If she ___ Spanish, she would have been hired for the Madrid office. | were fluent in;was fluent in | Смешанный тип: постоянное свойство в настоящем (were fluent), результат в прошлом (would have been hired).
+If they hadn't invested in renewable timber, their company would be loss-making today. | NOT | Had ___ in renewable timber, their company would be loss-making today. | they not invested | Отрицательная инверсия в 3-м/смешанном типе: Had + subject + NOT + V3 (слитное hadn't перед подлежащим не ставится!).
+I didn't know you were allergic to nuts, so I made a walnut cake. | KNOWN | ___ you were allergic to nuts, I wouldn't have made a walnut cake. | Had I known | Инверсия вместо If I had known.
+If we don't set clear boundaries now, work will spill over into our weekend. | UNLESS | Work will spill over into our weekend ___ clear boundaries now. | unless we set | Unless + утвердительный глагол в Present Simple.`}]},
+
+{block:`g`, id:`g6`, type:`gap`, mode:`type`, min:12, title:`All grammar in context`,
+ en:`Read each text and write ONE grammatical word in each gap.`,
+ sets:[
+  {t:`Part 1: The psychology of false memories`, items:`
+Most people assume their memory works like a video camera, ___ is far from the truth. | which | Относительное местоимение после запятой, относящееся ко всей предыдущей мысли — which.
+In fact, every time we recall an event, we reconstruct it, ___ makes it vulnerable to distortion. | which | Снова комментарий ко всему предложению после запятой — which.
+Psychologists have shown that leading questions can alter ___ eyewitnesses remember about an accident. | what | Союзное слово what (= the thing that) после глагола remember.
+In one famous experiment, participants were persuaded ___ believe they had taken a hot-air balloon ride as children. | to | Конструкция persuade somebody + TO + инфинитив.
+___ seen doctored childhood photos, nearly half the subjects invented vivid details of the fictional trip. | Having | Перфектное причастие (Having seen) показывает предшествующее действие.
+The researchers insisted ___ repeating the study to confirm their findings. | on | Устойчивое управление глагола: insist ON + V-ing.
+If those participants ___ not been shown fake photos, they would never have created those memories. | had | Третий тип условного предложения: условие в прошлом (If ... had not been shown).
+___ it not for modern brain imaging, scientists would know far less about how memories are stored. | Were | Устойчивая инверсия 2-го типа: Were it not for...
+Furthermore, the ___ emotionally charged an event is, the more confident we feel about recalling it accurately. | more | Двойное сравнение: The more..., the more...
+Yet confidence is ___ near as reliable a predictor of accuracy as we tend to think. | nowhere | Устойчивая сравнительная конструкция: nowhere near as ... as.`} ,
+  {t:`Part 2: Rethinking the career ladder`, items:`
+For generations, graduates were told ___ climbing a single corporate ladder was the only path to success. | that | Косвенная речь после глагола told: told (that)...
+Today, however, a growing number of professionals ___ choosing to abandon traditional nine-to-five roles. | are | Выражение a number of + сущ. во мн. ч. требует глагола во множественном числе (are).
+___ spent a decade slaving away in finance, my colleague decided to retrain as a landscape architect. | Having | Перфектное причастие (Having spent) — сначала провел 10 лет, потом решил переучиться.
+At first, her parents were sceptical and asked her ___ she was sure about giving up a stable income. | whether;if | Косвенный общий вопрос вводится через whether или if.
+She admitted ___ felt stuck in a rut for years before finally taking a leap of faith. | having | Admit + герундий (having felt) для действия, предшествовавшего признанию.
+___ you to ask her today, she would tell you it was the best decision of her life. | Were | Инверсия во 2-м типе условных: Were you to ask = If you asked.
+Of course, switching careers takes perseverance, ___ you have substantial savings to fall back on. | unless | По смыслу: «если только у вас нет солидных сбережений» — unless.
+You had ___ assess your skills gap thoroughly before handing in your notice. | better | Конструкция совета с предупреждением: had better + инфинитив без to.
+It is high time companies got used ___ evaluating staff by their output rather than hours spent at a desk. | to | Конструкция get used to + V-ing.
+After all, whether you work from a corporate office ___ a remote cabin, meaningful work is what truly matters. | or | Конструкция альтернативного условия: whether ... or ...`}
+ ]}
+
+];
+
+/* Fix item 10 in g3 Part 2 cleanly */
+DATA.find(x => x.id === 'g3').sets[1].items = `
+The flight ___ depart at 08:30, so we had to be at the terminal by six. | *was due to / would have / used to | Was/were due to — действие ожидалось по расписанию в прошлом.
+Nobody knew at the time that this tiny garage startup ___ a global tech giant. | *would become / became / had become | «Взгляд в будущее из прошлого» (Future in the Past) — would + инфинитив.
+You ___ submit the report yesterday — why is it still on your desk? | *were supposed to / would / used to | Was/were supposed to — ожидалось, что ты должен был это сделать (но не сделал).
+She ___ signing the lease when she noticed a suspicious clause in the small print. | *was on the point of / was about to / was due to | После предлога of требуется герундий (signing): be on the point of + V-ing.
+When I lived in Rome, I ___ a tiny flat overlooking a noisy piazza. | *used to have / would have / was having | Have в значении «владеть/иметь» — глагол состояния, поэтому используется used to, а не would.
+We ___ call you last night, but our phone battery died on the train. | *had meant to / would have / were due | Had meant to — собирались, намеревались сделать в прошлом, но не смогли.
+If I had known how draining the commute would be, I ___ the flat in the suburbs. | *wouldn't have rented / didn't rent / wouldn't rent | Третий тип условных (нереальное прошлое): wouldn't have + V3.
+By the time the firefighters arrived, the blaze ___ to the neighbouring warehouse. | *had already spread / already spread / was already spreading | Действие завершилось до определенного момента в прошлом — Past Perfect.
+Every time we visited my aunt, she ___ a batch of her famous cinnamon buns. | *would bake / was baking / had baked | Повторяющееся регулярное действие в прошлом — would + инфинитив.
+The conference ___ take place in June, but it was postponed until autumn. | *was to / would have / used to | Was/were to + инфинитив — запланированное событие в прошлом (официальный стиль).`;
+</script>
+
+<script>
+const tabsEl = document.getElementById('tabs');
+const panel = document.getElementById('panel');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const alts = a => a.split(';').map(x => x.trim()).filter(Boolean);
+const norm = s => String(s || '').toLowerCase().replace(/[’‘`]/g, "'").replace(/\s+/g, ' ').replace(/[.!?,\s]+$/, '').trim();
+const loose = s => norm(s).replace(/[.,!?;:"]/g, '').replace(/\s+/g, ' ').trim();
+const sortKey = s => s.toLowerCase().replace(/^(a|an|the|to)\s+/, '');
+
+DATA.forEach(ex => ex.sets.forEach(s => {
+  s.p = s.items.trim().split('\n').map(l => l.trim()).filter(Boolean).map(l => l.split(/\s+\|\s+/));
+  if (ex.mode === 'select') {
+    const seen = new Set(); s.bank = [];
+    s.p.forEach(it => { const w = alts(it[1])[0]; if (!seen.has(w)) { seen.add(w); s.bank.push(w); } });
+    s.bank.sort((a, b) => sortKey(a).localeCompare(sortKey(b)));
+  }
+}));
+
+const cur = { block: 'v', ex: 0, set: 0 };
+const state = {};
+const exOf = b => DATA.filter(e => e.block === b);
+const byId = Object.fromEntries(DATA.map(e => [e.id, e]));
+const fmtMin = m => m >= 60 ? `about ${Math.floor(m / 60)} h ${m % 60 ? (m % 60) + ' min' : ''}`.trim() : `about ${m} min`;
+document.getElementById('tv').textContent = fmtMin(exOf('v').reduce((a, e) => a + e.min, 0));
+document.getElementById('tg').textContent = fmtMin(exOf('g').reduce((a, e) => a + e.min, 0));
+
+function control(ex, s, it, k) {
+  if (ex.mode === 'select') {
+    return `<select data-k="${k}" aria-label="Answer"><option value="">choose…</option>${s.bank.map(w => `<option>${esc(w)}</option>`).join('')}</select>`;
+  }
+  const ans = ex.type === 'kw' ? it[3] : it[1];
+  const len = Math.max(...alts(ans).map(a => a.length));
+  return `<input type="text" data-k="${k}" aria-label="Answer" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(6, len + 3)}ch">`;
+}
+const fill = (t, ctrl) => t.split('___').map(esc).join(ctrl);
+
+function itemHTML(ex, s, it, k) {
+  let body = '';
+  switch (ex.type) {
+    case 'def': body = `<span class="txt">${control(ex, s, it, k)} <span class="def">${esc(it[0])}</span></span>`; break;
+    case 'gap': body = `<span class="txt">${fill(it[0], control(ex, s, it, k))}</span>`; break;
+    case 'mc': {
+      const opts = it[1].split(' / ');
+      body = `<span class="txt">${fill(it[0], '<span class="blank"></span>')}<span class="opts">${opts.map((o, i) => `<button class="opt" data-k="${k}" data-i="${i}">${esc(o.replace(/^\*/, ''))}</button>`).join('')}</span></span>`;
+      break;
+    }
+    case 'tf': body = `<span class="txt">${esc(it[0])}<span class="opts"><button class="opt" data-k="${k}" data-i="T">${esc(ex.tfT || 'Correct')}</button><button class="opt" data-k="${k}" data-i="F">${esc(ex.tfF || 'Incorrect')}</button></span></span>`; break;
+    case 'kw': body = `<span class="txt"><span class="orig">${esc(it[0])}</span><span class="kw">${esc(it[1])}</span><span class="stem">${fill(it[2], control(ex, s, it, k))}</span></span>`; break;
+    case 'fix': body = `<span class="txt">${esc(it[0])}<span class="fixrow">${esc(ex.label || 'Correct version:')} ${control(ex, s, it, k)}</span></span>`; break;
+    case 'order': body = `<span class="txt"><span class="jumble">${esc(it[0])}</span><input type="text" class="wide" data-k="${k}" aria-label="Answer" autocomplete="off" autocapitalize="off" spellcheck="false"></span>`; break;
+  }
+  return `<li data-k="${k}">${body}<span class="side"><button class="ans" data-k="${k}">Answer</button><span class="res" aria-live="polite"></span></span><div class="reveal" aria-live="polite"></div></li>`;
+}
+
+function render() {
+  document.body.dataset.block = cur.block;
+  document.querySelectorAll('.blocks button').forEach(b => b.setAttribute('aria-pressed', b.dataset.block === cur.block));
+  const list = exOf(cur.block);
+  tabsEl.innerHTML = list.map((e, i) => `<button class="tab" role="tab" aria-selected="${i === cur.ex}" data-i="${i}"><span class="n">${i + 1}</span>${esc(e.title)}</button>`).join('');
+  const ex = list[cur.ex], s = ex.sets[cur.set], si = cur.set;
+  const keys = s.p.map((_, i) => `${ex.id}-${si}-${i}`);
+  const isLastSet = si === ex.sets.length - 1, isLastEx = cur.ex === list.length - 1;
+  panel.innerHTML = `
+  <section class="ex">
+    <div class="ex-head"><h2>${esc(ex.title)}</h2><span class="time">${fmtMin(ex.min)}</span></div>
+    <div class="instr"><p class="en">${esc(ex.en)}</p></div>
+    ${ex.sets.length > 1 ? `<div class="parts" aria-label="Parts">${ex.sets.map((x, i) => `<button class="part${setDone(ex, i) ? ' done' : ''}" data-i="${i}" aria-current="${i === si}" title="${esc(x.t)}">${i + 1}</button>`).join('')}</div>` : ''}
+    <div class="set-row">${s.t ? `<h3 class="set-title">${esc(s.t)}</h3>` : '<span></span>'}<span class="score" id="score"></span></div>
+    ${s.bank ? `<div class="box">${s.bank.map(w => `<span class="chip">${esc(w)}</span>`).join('')}</div>` : ''}
+    <ol class="items">${s.p.map((it, i) => itemHTML(ex, s, it, keys[i])).join('')}</ol>
+    <div class="nav">
+      <button class="prev" ${si === 0 && cur.ex === 0 ? 'disabled' : ''}>Back</button>
+      <button class="next primary" ${isLastSet && isLastEx ? 'disabled' : ''}>${isLastSet ? 'Next exercise' : 'Next part'}</button>
+    </div>
+  </section>`;
+  keys.forEach(k => {
+    const st = state[k]; if (!st) return;
+    const el = panel.querySelector(`[data-k="${k}"]:is(select,input,textarea)`);
+    if (el && st.v !== undefined) el.value = st.v;
+    if (st.v !== undefined) panel.querySelectorAll(`.opt[data-k="${k}"]`).forEach(b => b.classList.toggle('chosen', b.dataset.i === String(st.v)));
+    if (st.done) check(k);
+  });
+  updateScore();
+}
+
+function setDone(ex, si) {
+  return ex.sets[si].p.every((_, i) => state[`${ex.id}-${si}-${i}`]?.done);
+}
+
+function check(k) {
+  const [id, si, ii] = k.split('-');
+  const ex = byId[id], it = ex.sets[+si].p[+ii];
+  const li = panel.querySelector(`li[data-k="${k}"]`); if (!li) return;
+  const st = state[k] || (state[k] = {}); st.done = true;
+  const res = li.querySelector('.res'), rev = li.querySelector('.reveal');
+  let ok = null;
+  const why = ex.type === 'kw' ? it[4] : it[2];
+  if (ex.type === 'def' || ex.type === 'gap' || ex.type === 'kw' || ex.type === 'fix' || ex.type === 'order') {
+    const ans = alts(ex.type === 'kw' ? it[3] : it[1]);
+    const cmp = ex.type === 'order' ? loose : norm;
+    ok = ans.some(a => cmp(a) === cmp(st.v));
+    const whyHTML = why ? `<span class="why${ok ? ' ok-why' : ''}">${esc(why)}</span>` : '';
+    const inp = li.querySelector('select,input');
+    inp.classList.toggle('ok', ok); inp.classList.toggle('bad', !ok);
+    res.innerHTML = ok ? '<span class="tick">✓</span>' : '<span class="cross">✗</span>';
+    rev.innerHTML = ok ? (ans.length > 1 ? `<span class="key">${esc(ans.join('  /  '))}</span>` : '') : `<span class="key">${esc(ans.join('  /  '))}</span>${whyHTML}`;
+  } else if (ex.type === 'mc') {
+    const opts = it[1].split(' / '), right = opts.findIndex(o => o.startsWith('*'));
+    const chosen = st.v === undefined ? -1 : +st.v;
+    ok = chosen === right;
+    const whyHTML = why ? `<span class="why${ok ? ' ok-why' : ''}">${esc(why)}</span>` : '';
+    li.querySelectorAll('.opt').forEach(b => {
+      const i = +b.dataset.i;
+      b.classList.toggle('right', i === right);
+      b.classList.toggle('wrong', i === chosen && !ok);
+    });
+    res.innerHTML = ok ? '<span class="tick">✓</span>' : '<span class="cross">✗</span>';
+    rev.innerHTML = (ok && ex.block !== 'v') ? '' : whyHTML;
+  } else if (ex.type === 'tf') {
+    const right = it[1];
+    ok = st.v === right;
+    const whyHTML = why ? `<span class="why${ok ? ' ok-why' : ''}">${esc(why)}</span>` : '';
+    li.querySelectorAll('.opt').forEach(b => {
+      b.classList.toggle('right', b.dataset.i === right);
+      b.classList.toggle('wrong', b.dataset.i === st.v && !ok);
+    });
+    res.innerHTML = ok ? '<span class="tick">✓</span>' : '<span class="cross">✗</span>';
+    rev.innerHTML = ok ? '' : whyHTML;
+  }
+  st.ok = ok;
+}
+
+function updateScore() {
+  const list = exOf(cur.block), ex = list[cur.ex], si = cur.set, s = ex.sets[si];
+  const el = document.getElementById('score'); if (!el) return;
+  let c = 0, d = 0;
+  s.p.forEach((_, i) => { const st = state[`${ex.id}-${si}-${i}`]; if (st?.done) { d++; if (st.ok) c++; } });
+  el.innerHTML = `Correct: <b>${c}</b> of ${s.p.length}${d ? `<button class="linkbtn" id="reset">Start this part again</button>` : ''}`;
+  const part = panel.querySelector(`.part[data-i="${si}"]`);
+  if (part) part.classList.toggle('done', setDone(ex, si));
+}
+
+function go(dir) {
+  const list = exOf(cur.block), ex = list[cur.ex];
+  if (dir > 0) {
+    if (cur.set < ex.sets.length - 1) cur.set++;
+    else if (cur.ex < list.length - 1) { cur.ex++; cur.set = 0; }
+  } else {
+    if (cur.set > 0) cur.set--;
+    else if (cur.ex > 0) { cur.ex--; cur.set = list[cur.ex].sets.length - 1; }
+  }
+  render(); window.scrollTo({ top: 0 });
+}
+
+document.querySelector('.blocks').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b || b.dataset.block === cur.block) return;
+  cur.block = b.dataset.block; cur.ex = 0; cur.set = 0; render();
+});
+tabsEl.addEventListener('click', e => {
+  const b = e.target.closest('.tab'); if (!b) return;
+  cur.ex = +b.dataset.i; cur.set = 0; render();
+});
+panel.addEventListener('click', e => {
+  const t = e.target;
+  const part = t.closest('.part'); if (part) { cur.set = +part.dataset.i; render(); return; }
+  if (t.closest('.next')) return go(1);
+  if (t.closest('.prev')) return go(-1);
+  if (t.id === 'reset') {
+    const ex = exOf(cur.block)[cur.ex];
+    ex.sets[cur.set].p.forEach((_, i) => delete state[`${ex.id}-${cur.set}-${i}`]);
+    render(); return;
+  }
+  const opt = t.closest('.opt');
+  if (opt) {
+    const k = opt.dataset.k, st = state[k] || (state[k] = {});
+    st.v = opt.dataset.i;
+    panel.querySelectorAll(`.opt[data-k="${k}"]`).forEach(b => b.classList.toggle('chosen', b === opt));
+    if (st.done) { check(k); updateScore(); }
+    return;
+  }
+  const ans = t.closest('.ans');
+  if (ans) { check(ans.dataset.k); updateScore(); }
+});
+const onInput = e => {
+  const k = e.target.dataset.k; if (!k) return;
+  (state[k] || (state[k] = {})).v = e.target.value;
+};
+panel.addEventListener('input', onInput);
+panel.addEventListener('change', onInput);
+panel.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.matches('input[data-k]')) { e.preventDefault(); check(e.target.dataset.k); updateScore(); }
+});
+
+render();
+</script>
+</body>
+</html>
