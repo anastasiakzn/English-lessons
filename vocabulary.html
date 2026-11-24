@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini-group · Vocabulary Flashcard Bank</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;700&display=swap">
+<style>
+  :root{
+    color-scheme: light;
+    --paper:#F6F5F8; --card:#FFFFFF; --ink:#241C2B; --ink-soft:#5B5266;
+    --line:#E0DCE6; --plum:#4A2C4D; --plum-soft:#7A5A7D; --gold:#8F6512;
+    --good:#2A7340; --good-bg:#E9F4ED; --bad:#AE3434; --bad-bg:#FAEBEB;
+    --chip:#F0ECF3; --r:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --paper:#17141B; --card:#211C28; --ink:#EDE8F2; --ink-soft:#AFA5BC;
+      --line:#352E3E; --plum:#D9B6DC; --plum-soft:#A98FAD; --gold:#E0B454;
+      --good:#78CE92; --good-bg:#1B2E22; --bad:#F09292; --bad-bg:#31201F;
+      --chip:#2B2433;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --paper:#17141B; --card:#211C28; --ink:#EDE8F2; --ink-soft:#AFA5BC;
+    --line:#352E3E; --plum:#D9B6DC; --plum-soft:#A98FAD; --gold:#E0B454;
+    --good:#78CE92; --good-bg:#1B2E22; --bad:#F09292; --bad-bg:#31201F;
+    --chip:#2B2433;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px; line-height:1.55;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding-inline:16px; padding-block:22px 56px;}
+
+  header.top{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:18px;}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--plum-soft); font-weight:700;}
+  h1{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:clamp(25px,5vw,35px); margin:0; line-height:1.1; text-wrap:balance;}
+  .meta{font-size:13px; color:var(--ink-soft); margin-top:4px;}
+  .top-actions{display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
+
+  .rusbtn{
+    font-family:inherit; font-size:12px; font-weight:700; letter-spacing:.06em;
+    padding:7px 13px; border-radius:999px; cursor:pointer;
+    background:transparent; color:var(--plum); border:1.5px solid var(--plum);
+  }
+  .rusbtn[aria-pressed="true"]{background:var(--plum); color:var(--paper);}
+
+  /* Toolbar */
+  .toolbar{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--r);
+    padding:14px 16px; margin-bottom:16px; display:flex; flex-direction:column; gap:12px;
+  }
+  .controls-row{display:flex; gap:8px; flex-wrap:wrap; align-items:center; justify-content:space-between;}
+  .search-box{flex:1 1 230px; position:relative;}
+  .search-box input{
+    width:100%; font-family:inherit; font-size:15px;
+    padding:8px 34px 8px 13px; border-radius:999px;
+    border:1.5px solid var(--line); background:var(--paper); color:var(--ink);
+  }
+  .search-clear{
+    position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    border:none; background:transparent; color:var(--ink-soft); font-size:15px;
+    cursor:pointer; display:none; padding:2px 6px;
+  }
+  .search-clear.show{display:block;}
+
+  .btn-group{display:flex; gap:7px; flex-wrap:wrap; align-items:center;}
+  .pill-btn{
+    font-family:inherit; font-size:12.5px; font-weight:700; cursor:pointer;
+    padding:7px 13px; border-radius:999px; border:1.5px solid var(--plum);
+    background:transparent; color:var(--plum); white-space:nowrap;
+  }
+  .pill-btn.solid{background:var(--plum); color:var(--paper);}
+  .pill-btn.gold{border-color:var(--gold); color:var(--gold);}
+  .pill-btn.gold.solid{background:var(--gold); color:var(--paper);}
+
+  /* Topic Filter Chips */
+  .topics{display:flex; gap:6px; flex-wrap:wrap; padding-top:6px; border-top:1px solid var(--line);}
+  .tchip{
+    font-family:inherit; font-size:12.5px; font-weight:700; cursor:pointer;
+    padding:6px 12px; border-radius:999px; border:1px solid transparent;
+    background:var(--chip); color:var(--ink-soft); display:inline-flex; align-items:center; gap:6px;
+  }
+  .tchip .cnt{
+    font-size:11px; padding:1px 6px; border-radius:999px;
+    background:var(--card); color:var(--plum-soft);
+  }
+  .tchip[aria-pressed="true"]{background:var(--plum); color:var(--paper);}
+  .tchip[aria-pressed="true"] .cnt{background:rgba(255,255,255,.22); color:var(--paper);}
+
+  .status-bar{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;
+    font-size:13.5px; color:var(--ink-soft); margin-bottom:12px; padding-inline:4px;
+  }
+  .status-bar b{color:var(--plum);}
+
+  [hidden]{display:none!important}
+
+  /* Grid View Cards */
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(265px,1fr)); gap:13px;}
+  .vc{
+    background:var(--card); border:1px solid var(--line); border-radius:13px;
+    padding:14px 15px; cursor:pointer; text-align:left;
+    display:flex; flex-direction:column; gap:4px; position:relative;
+    transition:transform .12s, border-color .15s;
+  }
+  .vc:hover{transform:translateY(-2px); border-color:var(--plum-soft);}
+  .vc.known{border-color:var(--good); background:var(--good-bg);}
+  .vc .tag-row{display:flex; justify-content:space-between; align-items:center; gap:6px; margin-bottom:2px;}
+  .vc .ltag{font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--plum-soft); font-weight:700;}
+  .vc .en{font-family:"Fraunces",Georgia,serif; font-size:19.5px; font-weight:600; line-height:1.2; display:flex; gap:8px; align-items:center; flex-wrap:wrap; color:var(--ink);}
+  .vc .tr{font-size:13px; color:var(--plum-soft);}
+  .vc .df{font-size:13.5px; color:var(--ink-soft); line-height:1.4; margin-top:2px;}
+
+  /* Example box inside card */
+  .vc .exbox{
+    margin-top:6px; padding:7px 10px; border-radius:9px;
+    background:var(--chip); border-left:2.5px solid var(--plum-soft);
+    font-size:13.5px; line-height:1.4; color:var(--ink);
+    display:flex; align-items:flex-start; justify-content:space-between; gap:6px;
+  }
+  .vc.known .exbox{background:var(--card);}
+  .vc .exbox em{font-style:italic;}
+
+  .vc .rux{display:none; margin-top:7px; padding-top:7px; border-top:1px solid var(--line); font-size:15.5px; font-weight:700; color:var(--plum);}
+  .vc.flip .rux, body.showrus .vc .rux{display:block;}
+  .vc .tap{font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--plum-soft); margin-top:6px;}
+  .vc.flip .tap, body.showrus .vc .tap{display:none;}
+
+  .mini{
+    font-family:inherit; font-size:10.5px; font-weight:700; letter-spacing:.09em;
+    padding:4px 9px; border-radius:999px; cursor:pointer; vertical-align:middle;
+    background:transparent; color:var(--plum-soft); border:1.2px solid var(--plum-soft);
+    white-space:nowrap; flex:0 0 auto;
+  }
+  .mini:hover{background:var(--chip);}
+  .mini.ex-say{padding:2px 7px; font-size:9.5px;}
+  .mini.know-btn{border-color:var(--line); color:var(--ink-soft); padding:2px 8px; font-size:10px; letter-spacing:.03em;}
+  .vc.known .mini.know-btn{border-color:var(--good); color:var(--good); background:var(--card);}
+
+  /* Focus Study Mode (1 card at a time) */
+  .study-wrap{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:24px 20px; max-width:580px; margin:10px auto 0; text-align:center;
+  }
+  .study-progress{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--plum-soft); font-weight:700; margin-bottom:14px;}
+  .study-card{
+    background:var(--chip); border:1.5px solid var(--line); border-radius:16px;
+    padding:26px 22px; min-height:240px; cursor:pointer;
+    display:flex; flex-direction:column; justify-content:center; align-items:center; gap:8px;
+  }
+  .study-card.known{border-color:var(--good); background:var(--good-bg);}
+  .study-topic{font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--plum-soft); font-weight:700;}
+  .study-en{font-family:"Fraunces",Georgia,serif; font-size:clamp(26px,5vw,34px); font-weight:600; color:var(--ink); line-height:1.2;}
+  .study-tr{font-size:15px; color:var(--plum-soft);}
+  .study-df{font-size:15px; color:var(--ink-soft); max-width:440px; margin-top:2px;}
+  .study-ex{
+    margin-top:8px; padding:10px 14px; border-radius:11px;
+    background:var(--card); border:1px solid var(--line);
+    font-size:15px; font-style:italic; color:var(--ink);
+    display:inline-flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;
+  }
+  .study-ru{
+    display:none; margin-top:12px; padding-top:12px; border-top:1px solid var(--line);
+    font-size:19px; font-weight:700; color:var(--plum); width:100%;
+  }
+  .study-card.flip .study-ru, body.showrus .study-card .study-ru{display:block;}
+  .study-tap{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--plum-soft); margin-top:10px;}
+  .study-card.flip .study-tap, body.showrus .study-card .study-tap{display:none;}
+  .study-nav{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px;}
+
+  .empty{text-align:center; padding:36px 16px; color:var(--ink-soft); font-size:15px;}
+  .tab:focus-visible,button:focus-visible,input:focus-visible,.vc:focus-visible,.study-card:focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <span class="eyebrow">Mini-group · Petrozavodsk</span>
+      <h1>Vocabulary Flashcard Bank</h1>
+      <div class="meta" id="subtitleMeta">База карточек с примерами · Уроки 1–15 (Октябрь – Ноябрь)</div>
+    </div>
+    <div class="top-actions">
+      <button class="rusbtn" id="rusbtn" aria-pressed="false">SHOW ALL RUS · Перевод всех</button>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="controls-row">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Поиск на английском или русском…" autocomplete="off">
+        <button type="button" class="search-clear" id="searchClear" aria-label="Clear search">✕</button>
+      </div>
+      <div class="btn-group">
+        <button type="button" class="pill-btn solid" id="modeGridBtn">Grid view · Сетка</button>
+        <button type="button" class="pill-btn" id="modeStudyBtn">1-card drill · По одной</button>
+        <button type="button" class="pill-btn gold" id="shuffleBtn">🔀 Shuffle · Перемешать</button>
+        <button type="button" class="pill-btn" id="onlyUnlearnedBtn" aria-pressed="false">To practice only · Невыученные</button>
+      </div>
+    </div>
+    <div class="topics" id="topicBar" role="group" aria-label="Filter by lesson topic"></div>
+  </div>
+
+  <div class="status-bar">
+    <span id="countInfo">Showing <b>0</b> cards</span>
+    <span>Нажмите на карточку для перевода · <b>▶</b> — озвучить слово или пример</span>
+  </div>
+
+  <div id="gridContainer" class="cards"></div>
+  <div id="studyContainer" hidden></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* =====================================================================
+     COURSE FLASHCARD DATABASE (Lessons 1–15 · with examples!)
+     To add new words from future lessons, append objects to DECK below:
+     { "en": "...", "tr": "/.../", "df": "...", "ru": "...", "ex": "...", "lesson": "Lesson 16 · ...", "topic": "14. ..." }
+     ===================================================================== */
+  var DECK = [
+  {
+    "en": "family",
+    "tr": "/ˈfæməli/",
+    "df": "the people you live with: parents and children",
+    "ru": "семья",
+    "lesson": "Lesson 1 · 6 Oct",
+    "topic": "1. Family & Daily Basics",
+    "ex": "My family is very friendly, and we spend weekends together."
+  },
+  {
+    "en": "husband",
+    "tr": "/ˈhʌzbənd/",
+    "df": "the man a woman is married to",
+    "ru": "муж",
+    "lesson": "Lesson 1 · 6 Oct",
+    "topic": "1. Family & Daily Basics",
+    "ex": "My husband works in an office and comes home at six."
+  },
+  {
+    "en": "daughter",
+    "tr": "/ˈdɔːtə/",
+    "df": "somebody's female child",
+    "ru": "дочь",
+    "lesson": "Lesson 1 · 6 Oct",
+    "topic": "1. Family & Daily Basics",
+    "ex": "Our daughter is five years old and goes to kindergarten."
+  },
+  {
+    "en": "son",
+    "tr": "/sʌn/",
+    "df": "somebody's male child",
+    "ru": "сын",
+    "lesson": "Lesson 1 · 6 Oct",
+    "topic": "1. Family & Daily Basics",
+    "ex": "My son loves playing football with his friends."
+  },
+  {
+    "en": "tired",
+    "tr": "/ˈtaɪəd/",
+    "df": "feeling that you need rest or sleep",
+    "ru": "уставший, уставшая",
+    "lesson": "Lesson 1 · 6 Oct",
+    "topic": "1. Family & Daily Basics",
+    "ex": "In the evening I am usually tired after work."
+  },
+  {
+    "en": "busy",
+    "tr": "/ˈbɪzi/",
+    "df": "having a lot of things to do",
+    "ru": "занятый, занятая",
+    "lesson": "Lesson 1 · 6 Oct",
+    "topic": "1. Family & Daily Basics",
+    "ex": "She is very busy on Monday mornings."
+  },
+  {
+    "en": "usually",
+    "tr": "/ˈjuːʒuəli/",
+    "df": "most of the time; almost always",
+    "ru": "обычно",
+    "lesson": "Lesson 1 · 6 Oct",
+    "topic": "1. Family & Daily Basics",
+    "ex": "I usually drink a cup of tea before breakfast."
+  },
+  {
+    "en": "twice a week",
+    "tr": "/ˌtwaɪs ə ˈwiːk/",
+    "df": "two times in one week",
+    "ru": "два раза в неделю",
+    "lesson": "Lesson 1 · 6 Oct",
+    "topic": "1. Family & Daily Basics",
+    "ex": "We have English lessons online twice a week."
+  },
+  {
+    "en": "at home",
+    "tr": "/ət ˈhəʊm/",
+    "df": "in the place where you live",
+    "ru": "дома",
+    "lesson": "Lesson 1 · 6 Oct",
+    "topic": "1. Family & Daily Basics",
+    "ex": "On Sunday evenings we are always at home."
+  },
+  {
+    "en": "get up",
+    "tr": "/ˌɡet ˈʌp/",
+    "df": "to leave your bed in the morning",
+    "ru": "вставать",
+    "lesson": "Lesson 1 · 6 Oct",
+    "topic": "1. Family & Daily Basics",
+    "ex": "I get up at seven o'clock on weekdays."
+  },
+  {
+    "en": "work",
+    "tr": "/wɜːk/",
+    "df": "to do a job for money",
+    "ru": "работать",
+    "lesson": "Lesson 2 · 9 Oct",
+    "topic": "2. Actions & Week",
+    "ex": "My sister works at a school in Petrozavodsk."
+  },
+  {
+    "en": "cook",
+    "tr": "/kʊk/",
+    "df": "to make food",
+    "ru": "готовить",
+    "lesson": "Lesson 2 · 9 Oct",
+    "topic": "2. Actions & Week",
+    "ex": "I am cooking soup in the kitchen right now."
+  },
+  {
+    "en": "clean",
+    "tr": "/kliːn/",
+    "df": "to make something free from dirt",
+    "ru": "убирать",
+    "lesson": "Lesson 2 · 9 Oct",
+    "topic": "2. Actions & Week",
+    "ex": "We clean our flat every Saturday morning."
+  },
+  {
+    "en": "walk",
+    "tr": "/wɔːk/",
+    "df": "to go somewhere on foot",
+    "ru": "гулять, ходить пешком",
+    "lesson": "Lesson 2 · 9 Oct",
+    "topic": "2. Actions & Week",
+    "ex": "We often walk in the park with the children."
+  },
+  {
+    "en": "kindergarten",
+    "tr": "/ˈkɪndəɡɑːtn/",
+    "df": "a school for very young children",
+    "ru": "детский сад",
+    "lesson": "Lesson 2 · 9 Oct",
+    "topic": "2. Actions & Week",
+    "ex": "My little daughter goes to kindergarten at eight."
+  },
+  {
+    "en": "weekend",
+    "tr": "/ˌwiːkˈend/",
+    "df": "Saturday and Sunday",
+    "ru": "выходные",
+    "lesson": "Lesson 2 · 9 Oct",
+    "topic": "2. Actions & Week",
+    "ex": "What are you doing this weekend?"
+  },
+  {
+    "en": "always",
+    "tr": "/ˈɔːlweɪz/",
+    "df": "every time, without exception",
+    "ru": "всегда",
+    "lesson": "Lesson 2 · 9 Oct",
+    "topic": "2. Actions & Week",
+    "ex": "She always makes a shopping list before going to the shop."
+  },
+  {
+    "en": "never",
+    "tr": "/ˈnevə/",
+    "df": "not at any time",
+    "ru": "никогда",
+    "lesson": "Lesson 2 · 9 Oct",
+    "topic": "2. Actions & Week",
+    "ex": "I never drink coffee late in the evening."
+  },
+  {
+    "en": "sometimes",
+    "tr": "/ˈsʌmtaɪmz/",
+    "df": "on some occasions, not often",
+    "ru": "иногда",
+    "lesson": "Lesson 2 · 9 Oct",
+    "topic": "2. Actions & Week",
+    "ex": "Sometimes we order pizza on Friday night."
+  },
+  {
+    "en": "together",
+    "tr": "/təˈɡeðə/",
+    "df": "with each other",
+    "ru": "вместе",
+    "lesson": "Lesson 2 · 9 Oct",
+    "topic": "2. Actions & Week",
+    "ex": "In the evening we cook dinner and watch a film together."
+  },
+  {
+    "en": "flat",
+    "tr": "/flæt/",
+    "df": "the rooms where you live",
+    "ru": "квартира",
+    "lesson": "Lesson 3 · 13 Oct",
+    "topic": "3. Life & Work",
+    "ex": "They live in a cosy flat in the city centre."
+  },
+  {
+    "en": "shop",
+    "tr": "/ʃɒp/",
+    "df": "a place where you buy things",
+    "ru": "магазин",
+    "lesson": "Lesson 3 · 13 Oct",
+    "topic": "3. Life & Work",
+    "ex": "There is a small food shop next to our house."
+  },
+  {
+    "en": "friend",
+    "tr": "/frend/",
+    "df": "a person you know well and like",
+    "ru": "друг, подруга",
+    "lesson": "Lesson 3 · 13 Oct",
+    "topic": "3. Life & Work",
+    "ex": "I am meeting my best friend at a café tonight."
+  },
+  {
+    "en": "book",
+    "tr": "/bʊk/",
+    "df": "pages with a story to read",
+    "ru": "книга",
+    "lesson": "Lesson 3 · 13 Oct",
+    "topic": "3. Life & Work",
+    "ex": "I am reading a very interesting book this week."
+  },
+  {
+    "en": "early",
+    "tr": "/ˈɜːli/",
+    "df": "before the usual time",
+    "ru": "рано",
+    "lesson": "Lesson 3 · 13 Oct",
+    "topic": "3. Life & Work",
+    "ex": "My husband gets up early at six o'clock."
+  },
+  {
+    "en": "late",
+    "tr": "/leɪt/",
+    "df": "after the usual time",
+    "ru": "поздно",
+    "lesson": "Lesson 3 · 13 Oct",
+    "topic": "3. Life & Work",
+    "ex": "Don't go to bed too late tonight!"
+  },
+  {
+    "en": "help",
+    "tr": "/help/",
+    "df": "to do something useful for somebody",
+    "ru": "помогать",
+    "lesson": "Lesson 3 · 13 Oct",
+    "topic": "3. Life & Work",
+    "ex": "My children often help me in the kitchen."
+  },
+  {
+    "en": "free time",
+    "tr": "/ˌfriː ˈtaɪm/",
+    "df": "time when you do not work",
+    "ru": "свободное время",
+    "lesson": "Lesson 3 · 13 Oct",
+    "topic": "3. Life & Work",
+    "ex": "In my free time I like reading and doing yoga."
+  },
+  {
+    "en": "often",
+    "tr": "/ˈɒfn/",
+    "df": "many times",
+    "ru": "часто",
+    "lesson": "Lesson 3 · 13 Oct",
+    "topic": "3. Life & Work",
+    "ex": "We often visit our parents on Sundays."
+  },
+  {
+    "en": "after work",
+    "tr": "/ˌɑːftə ˈwɜːk/",
+    "df": "when the working day is finished",
+    "ru": "после работы",
+    "lesson": "Lesson 3 · 13 Oct",
+    "topic": "3. Life & Work",
+    "ex": "After work I pick up my son from school."
+  },
+  {
+    "en": "chores",
+    "tr": "/tʃɔːz/",
+    "df": "small jobs you do at home",
+    "ru": "домашние дела",
+    "lesson": "Lesson 4 · 16 Oct",
+    "topic": "4. Home & Chores",
+    "ex": "I do most of the daily chores in the morning."
+  },
+  {
+    "en": "tidy up",
+    "tr": "/ˌtaɪdi ˈʌp/",
+    "df": "to put things back in their place",
+    "ru": "убирать, раскладывать по местам",
+    "lesson": "Lesson 4 · 16 Oct",
+    "topic": "4. Home & Chores",
+    "ex": "The children are tidying up their toys right now."
+  },
+  {
+    "en": "laundry",
+    "tr": "/ˈlɔːndri/",
+    "df": "clothes that you need to wash",
+    "ru": "стирка, грязное бельё",
+    "lesson": "Lesson 4 · 16 Oct",
+    "topic": "4. Home & Chores",
+    "ex": "I usually do the laundry twice a week."
+  },
+  {
+    "en": "the washing-up",
+    "tr": "/ˌwɒʃɪŋ ˈʌp/",
+    "df": "the dirty plates and cups after a meal",
+    "ru": "грязная посуда (do the washing-up — мыть посуду)",
+    "lesson": "Lesson 4 · 16 Oct",
+    "topic": "4. Home & Chores",
+    "ex": "My husband always does the washing-up after dinner."
+  },
+  {
+    "en": "nap",
+    "tr": "/næp/",
+    "df": "a short sleep in the day",
+    "ru": "дневной сон",
+    "lesson": "Lesson 4 · 16 Oct",
+    "topic": "4. Home & Chores",
+    "ex": "The baby is having a short nap in the afternoon."
+  },
+  {
+    "en": "errand",
+    "tr": "/ˈerənd/",
+    "df": "a short trip to buy something or do a small job",
+    "ru": "дело, поручение (run errands — бегать по делам)",
+    "lesson": "Lesson 4 · 16 Oct",
+    "topic": "4. Home & Chores",
+    "ex": "I am running a few errands in the city centre today."
+  },
+  {
+    "en": "pick up",
+    "tr": "/ˌpɪk ˈʌp/",
+    "df": "to go and collect somebody",
+    "ru": "забирать (из садика, из школы)",
+    "lesson": "Lesson 4 · 16 Oct",
+    "topic": "4. Home & Chores",
+    "ex": "I pick up my daughter from kindergarten at five."
+  },
+  {
+    "en": "drop off",
+    "tr": "/ˌdrɒp ˈɒf/",
+    "df": "to take somebody to a place and leave them there",
+    "ru": "отвозить, завозить",
+    "lesson": "Lesson 4 · 16 Oct",
+    "topic": "4. Home & Chores",
+    "ex": "My husband drops our son off at school every morning."
+  },
+  {
+    "en": "take a break",
+    "tr": "/ˌteɪk ə ˈbreɪk/",
+    "df": "to stop working for a short time",
+    "ru": "сделать перерыв",
+    "lesson": "Lesson 4 · 16 Oct",
+    "topic": "4. Home & Chores",
+    "ex": "You are working too hard — let's take a break and have tea!"
+  },
+  {
+    "en": "on my own",
+    "tr": "/ˌɒn maɪ ˈəʊn/",
+    "df": "alone, with nobody to help",
+    "ru": "сама, без помощи",
+    "lesson": "Lesson 4 · 16 Oct",
+    "topic": "4. Home & Chores",
+    "ex": "I don't do everything on my own; my family helps me."
+  },
+  {
+    "en": "have breakfast",
+    "tr": "/hæv ˈbrekfəst/",
+    "df": "to eat in the morning",
+    "ru": "завтракать",
+    "lesson": "Lesson 5 · 20 Oct",
+    "topic": "5. Meals & Routines",
+    "ex": "We always have breakfast together at half past seven."
+  },
+  {
+    "en": "have lunch",
+    "tr": "/hæv lʌntʃ/",
+    "df": "to eat in the middle of the day",
+    "ru": "обедать",
+    "lesson": "Lesson 5 · 20 Oct",
+    "topic": "5. Meals & Routines",
+    "ex": "I usually have lunch at one o'clock at work."
+  },
+  {
+    "en": "have dinner",
+    "tr": "/hæv ˈdɪnə/",
+    "df": "to eat in the evening",
+    "ru": "ужинать",
+    "lesson": "Lesson 5 · 20 Oct",
+    "topic": "5. Meals & Routines",
+    "ex": "Tonight we are having dinner at a family café."
+  },
+  {
+    "en": "skip breakfast",
+    "tr": "/skɪp/",
+    "df": "to not eat in the morning",
+    "ru": "пропускать завтрак",
+    "lesson": "Lesson 5 · 20 Oct",
+    "topic": "5. Meals & Routines",
+    "ex": "Never skip breakfast — it gives you energy for the day!"
+  },
+  {
+    "en": "make dinner",
+    "tr": "/meɪk/",
+    "df": "to cook the evening meal",
+    "ru": "готовить ужин",
+    "lesson": "Lesson 5 · 20 Oct",
+    "topic": "5. Meals & Routines",
+    "ex": "Who is making dinner in your family tonight?"
+  },
+  {
+    "en": "a snack",
+    "tr": "/snæk/",
+    "df": "a small quick meal",
+    "ru": "перекус",
+    "lesson": "Lesson 5 · 20 Oct",
+    "topic": "5. Meals & Routines",
+    "ex": "My son always takes an apple to school for a snack."
+  },
+  {
+    "en": "hungry",
+    "tr": "/ˈhʌŋɡri/",
+    "df": "when you want to eat",
+    "ru": "голодный",
+    "lesson": "Lesson 5 · 20 Oct",
+    "topic": "5. Meals & Routines",
+    "ex": "Are you hungry? Dinner is almost ready!"
+  },
+  {
+    "en": "home-made",
+    "tr": "/ˌhəʊm ˈmeɪd/",
+    "df": "made at home, not bought in a shop",
+    "ru": "домашний",
+    "lesson": "Lesson 5 · 20 Oct",
+    "topic": "5. Meals & Routines",
+    "ex": "My children love my mum's home-made apple cake."
+  },
+  {
+    "en": "do the grocery shopping",
+    "tr": "/ˈɡrəʊsəri/",
+    "df": "to buy food for the house",
+    "ru": "покупать продукты",
+    "lesson": "Lesson 5 · 20 Oct",
+    "topic": "5. Meals & Routines",
+    "ex": "Every Friday afternoon we do the grocery shopping."
+  },
+  {
+    "en": "favourite",
+    "tr": "/ˈfeɪvərɪt/",
+    "df": "that you like best",
+    "ru": "любимый",
+    "lesson": "Lesson 5 · 20 Oct",
+    "topic": "5. Meals & Routines",
+    "ex": "Berry cake is my daughter's favourite dessert."
+  },
+  {
+    "en": "bread",
+    "tr": "/bred/",
+    "df": "you make sandwiches with it",
+    "ru": "хлеб",
+    "lesson": "Lesson 6 · 23 Oct",
+    "topic": "6. Food & Table",
+    "ex": "My husband is baking fresh bread in the kitchen."
+  },
+  {
+    "en": "milk",
+    "tr": "/mɪlk/",
+    "df": "a white drink from a cow",
+    "ru": "молоко",
+    "lesson": "Lesson 6 · 23 Oct",
+    "topic": "6. Food & Table",
+    "ex": "My children drink a glass of warm milk before bed."
+  },
+  {
+    "en": "soup",
+    "tr": "/suːp/",
+    "df": "hot food you eat with a spoon",
+    "ru": "суп",
+    "lesson": "Lesson 6 · 23 Oct",
+    "topic": "6. Food & Table",
+    "ex": "I am making chicken soup with vegetables for lunch."
+  },
+  {
+    "en": "meat",
+    "tr": "/miːt/",
+    "df": "food from an animal",
+    "ru": "мясо",
+    "lesson": "Lesson 6 · 23 Oct",
+    "topic": "6. Food & Table",
+    "ex": "We don't eat meat every day — sometimes we have fish."
+  },
+  {
+    "en": "fish",
+    "tr": "/fɪʃ/",
+    "df": "an animal that lives in water",
+    "ru": "рыба",
+    "lesson": "Lesson 6 · 23 Oct",
+    "topic": "6. Food & Table",
+    "ex": "Fresh fish from Lake Onega is very tasty."
+  },
+  {
+    "en": "vegetables",
+    "tr": "/ˈvedʒtəbəlz/",
+    "df": "potatoes, carrots, tomatoes",
+    "ru": "овощи",
+    "lesson": "Lesson 6 · 23 Oct",
+    "topic": "6. Food & Table",
+    "ex": "I always buy fresh vegetables at the market."
+  },
+  {
+    "en": "fruit",
+    "tr": "/fruːt/",
+    "df": "apples, bananas, oranges",
+    "ru": "фрукты",
+    "lesson": "Lesson 6 · 23 Oct",
+    "topic": "6. Food & Table",
+    "ex": "We eat a lot of fruit — apples, bananas, and oranges."
+  },
+  {
+    "en": "eggs",
+    "tr": "/eɡz/",
+    "df": "they come from a chicken",
+    "ru": "яйца",
+    "lesson": "Lesson 6 · 23 Oct",
+    "topic": "6. Food & Table",
+    "ex": "I usually cook two eggs for breakfast."
+  },
+  {
+    "en": "cheese",
+    "tr": "/tʃiːz/",
+    "df": "a yellow food made from milk",
+    "ru": "сыр",
+    "lesson": "Lesson 6 · 23 Oct",
+    "topic": "6. Food & Table",
+    "ex": "Do you like tea with a cheese sandwich?"
+  },
+  {
+    "en": "sweets",
+    "tr": "/swiːts/",
+    "df": "small sweet things children love",
+    "ru": "сладости",
+    "lesson": "Lesson 6 · 23 Oct",
+    "topic": "6. Food & Table",
+    "ex": "Children love sweets, especially chocolate."
+  },
+  {
+    "en": "a market",
+    "tr": "/ˈmɑːkɪt/",
+    "df": "an open place where people sell food",
+    "ru": "рынок",
+    "lesson": "Lesson 7 · 27 Oct",
+    "topic": "7. Market & Money",
+    "ex": "On Saturdays we buy fresh vegetables at the market."
+  },
+  {
+    "en": "cheap",
+    "tr": "/tʃiːp/",
+    "df": "it costs little money",
+    "ru": "дешёвый",
+    "lesson": "Lesson 7 · 27 Oct",
+    "topic": "7. Market & Money",
+    "ex": "Apples at the market are very cheap in autumn."
+  },
+  {
+    "en": "expensive",
+    "tr": "/ɪkˈspensɪv/",
+    "df": "it costs a lot of money",
+    "ru": "дорогой",
+    "lesson": "Lesson 7 · 27 Oct",
+    "topic": "7. Market & Money",
+    "ex": "This coat is nice, but it is too expensive."
+  },
+  {
+    "en": "fresh",
+    "tr": "/freʃ/",
+    "df": "not old — from today",
+    "ru": "свежий",
+    "lesson": "Lesson 7 · 27 Oct",
+    "topic": "7. Market & Money",
+    "ex": "These tomatoes are from today — they are very fresh."
+  },
+  {
+    "en": "a bag",
+    "tr": "/bæɡ/",
+    "df": "you put your shopping in it",
+    "ru": "сумка, пакет",
+    "lesson": "Lesson 7 · 27 Oct",
+    "topic": "7. Market & Money",
+    "ex": "I always take a big shopping bag to the supermarket."
+  },
+  {
+    "en": "a kilo",
+    "tr": "/ˈkiːləʊ/",
+    "df": "one thousand grams",
+    "ru": "килограмм",
+    "lesson": "Lesson 7 · 27 Oct",
+    "topic": "7. Market & Money",
+    "ex": "Can I have a kilo of red apples, please?"
+  },
+  {
+    "en": "a bottle",
+    "tr": "/ˈbɒtl/",
+    "df": "you buy milk or water in it",
+    "ru": "бутылка",
+    "lesson": "Lesson 7 · 27 Oct",
+    "topic": "7. Market & Money",
+    "ex": "Please buy a bottle of milk on your way home."
+  },
+  {
+    "en": "to pay",
+    "tr": "/peɪ/",
+    "df": "to give money for something",
+    "ru": "платить",
+    "lesson": "Lesson 7 · 27 Oct",
+    "topic": "7. Market & Money",
+    "ex": "How would you like to pay — by card or in cash?"
+  },
+  {
+    "en": "money",
+    "tr": "/ˈmʌni/",
+    "df": "you pay with it",
+    "ru": "деньги",
+    "lesson": "Lesson 7 · 27 Oct",
+    "topic": "7. Market & Money",
+    "ex": "I don't carry much paper money in my wallet."
+  },
+  {
+    "en": "cash",
+    "tr": "/kæʃ/",
+    "df": "notes and coins, not a card",
+    "ru": "наличные",
+    "lesson": "Lesson 7 · 27 Oct",
+    "topic": "7. Market & Money",
+    "ex": "Our card machine isn't working, so I am paying in cash."
+  },
+  {
+    "en": "wear",
+    "tr": "/weə/",
+    "df": "to have clothes on your body",
+    "ru": "носить, быть одетой во что-то",
+    "lesson": "Lesson 10 · 6 Nov",
+    "topic": "8. Clothes & Winter",
+    "ex": "In winter we wear warm coats, hats, and gloves."
+  },
+  {
+    "en": "put on",
+    "tr": "/ˌpʊt ˈɒn/",
+    "df": "to start wearing something",
+    "ru": "надевать",
+    "lesson": "Lesson 10 · 6 Nov",
+    "topic": "8. Clothes & Winter",
+    "ex": "Put on your warm scarf — it is freezing outside!"
+  },
+  {
+    "en": "take off",
+    "tr": "/ˌteɪk ˈɒf/",
+    "df": "to stop wearing something",
+    "ru": "снимать",
+    "lesson": "Lesson 10 · 6 Nov",
+    "topic": "8. Clothes & Winter",
+    "ex": "Come in and take off your wet boots."
+  },
+  {
+    "en": "a coat",
+    "tr": "/kəʊt/",
+    "df": "you wear it outside when it is cold",
+    "ru": "пальто",
+    "lesson": "Lesson 10 · 6 Nov",
+    "topic": "8. Clothes & Winter",
+    "ex": "She is trying on a warm winter coat in the shop."
+  },
+  {
+    "en": "a sweater",
+    "tr": "/ˈswetə/",
+    "df": "a warm top with long sleeves",
+    "ru": "свитер",
+    "lesson": "Lesson 10 · 6 Nov",
+    "topic": "8. Clothes & Winter",
+    "ex": "He is wearing a green wool sweater today."
+  },
+  {
+    "en": "a dress",
+    "tr": "/dres/",
+    "df": "a skirt and a top together, in one piece",
+    "ru": "платье",
+    "lesson": "Lesson 10 · 6 Nov",
+    "topic": "8. Clothes & Winter",
+    "ex": "She is wearing a beautiful blue dress to the party."
+  },
+  {
+    "en": "a scarf",
+    "tr": "/skɑːf/",
+    "df": "you wear it around your neck",
+    "ru": "шарф",
+    "lesson": "Lesson 10 · 6 Nov",
+    "topic": "8. Clothes & Winter",
+    "ex": "My mum is knitting a red scarf for my daughter."
+  },
+  {
+    "en": "a hat",
+    "tr": "/hæt/",
+    "df": "you wear it on your head",
+    "ru": "шапка, шляпа",
+    "lesson": "Lesson 10 · 6 Nov",
+    "topic": "8. Clothes & Winter",
+    "ex": "Don't forget your hat — it is very windy today!"
+  },
+  {
+    "en": "gloves",
+    "tr": "/ɡlʌvz/",
+    "df": "you wear them on your hands",
+    "ru": "перчатки",
+    "lesson": "Lesson 10 · 6 Nov",
+    "topic": "8. Clothes & Winter",
+    "ex": "I can't find my warm gloves in my bag."
+  },
+  {
+    "en": "boots",
+    "tr": "/buːts/",
+    "df": "warm shoes for winter",
+    "ru": "сапоги, ботинки",
+    "lesson": "Lesson 10 · 6 Nov",
+    "topic": "8. Clothes & Winter",
+    "ex": "We are going to the shop to buy new winter boots."
+  },
+  {
+    "en": "the weather",
+    "tr": "/ðə ˈweðə/",
+    "df": "sun, rain, snow, wind — is it nice outside?",
+    "ru": "погода",
+    "lesson": "Lesson 11 · 10 Nov",
+    "topic": "9. Weather & Seasons",
+    "ex": "What is the weather like in Petrozavodsk today?"
+  },
+  {
+    "en": "sunny",
+    "tr": "/ˈsʌni/",
+    "df": "with a lot of sun",
+    "ru": "солнечный",
+    "lesson": "Lesson 11 · 10 Nov",
+    "topic": "9. Weather & Seasons",
+    "ex": "It is cold today, but the sky is blue and sunny."
+  },
+  {
+    "en": "cloudy",
+    "tr": "/ˈklaʊdi/",
+    "df": "the sky is grey, no sun",
+    "ru": "облачный, пасмурный",
+    "lesson": "Lesson 11 · 10 Nov",
+    "topic": "9. Weather & Seasons",
+    "ex": "It isn't raining right now, it is just cloudy."
+  },
+  {
+    "en": "windy",
+    "tr": "/ˈwɪndi/",
+    "df": "with a lot of wind",
+    "ru": "ветреный",
+    "lesson": "Lesson 11 · 10 Nov",
+    "topic": "9. Weather & Seasons",
+    "ex": "Hold your hat! It is very windy near the lake."
+  },
+  {
+    "en": "rain",
+    "tr": "/reɪn/",
+    "df": "water from the sky (it is raining)",
+    "ru": "дождь (идет дождь)",
+    "lesson": "Lesson 11 · 10 Nov",
+    "topic": "9. Weather & Seasons",
+    "ex": "Take an umbrella — it is raining outside."
+  },
+  {
+    "en": "snow",
+    "tr": "/snəʊ/",
+    "df": "white and cold, from the sky (it is snowing)",
+    "ru": "снег (идет снег)",
+    "lesson": "Lesson 11 · 10 Nov",
+    "topic": "9. Weather & Seasons",
+    "ex": "Look out of the window! It is snowing heavily."
+  },
+  {
+    "en": "freezing",
+    "tr": "/ˈfriːzɪŋ/",
+    "df": "very, very cold",
+    "ru": "очень холодно, мороз",
+    "lesson": "Lesson 11 · 10 Nov",
+    "topic": "9. Weather & Seasons",
+    "ex": "It is minus twenty today — it is freezing!"
+  },
+  {
+    "en": "slippery",
+    "tr": "/ˈslɪpəri/",
+    "df": "there is ice and you can fall",
+    "ru": "скользкий",
+    "lesson": "Lesson 11 · 10 Nov",
+    "topic": "9. Weather & Seasons",
+    "ex": "Walk carefully, the roads are very slippery today."
+  },
+  {
+    "en": "an umbrella",
+    "tr": "/ʌmˈbrelə/",
+    "df": "you open it when it is raining",
+    "ru": "зонт",
+    "lesson": "Lesson 11 · 10 Nov",
+    "topic": "9. Weather & Seasons",
+    "ex": "I always keep a small umbrella in my bag."
+  },
+  {
+    "en": "wet",
+    "tr": "/wet/",
+    "df": "with water on it — not dry",
+    "ru": "мокрый",
+    "lesson": "Lesson 11 · 10 Nov",
+    "topic": "9. Weather & Seasons",
+    "ex": "My shoes are wet because I walked in the rain."
+  },
+  {
+    "en": "a hobby",
+    "tr": "/ˈhɒbi/",
+    "df": "something you like doing in your free time",
+    "ru": "хобби",
+    "lesson": "Lesson 12 · 13 Nov",
+    "topic": "10. Free Time & Hobbies",
+    "ex": "Baking cakes is my husband's new hobby."
+  },
+  {
+    "en": "relax",
+    "tr": "/rɪˈlæks/",
+    "df": "to rest and do nothing difficult",
+    "ru": "отдыхать, расслабляться",
+    "lesson": "Lesson 12 · 13 Nov",
+    "topic": "10. Free Time & Hobbies",
+    "ex": "On Friday evenings I like to stay at home and relax."
+  },
+  {
+    "en": "knit",
+    "tr": "/nɪt/",
+    "df": "to make a scarf or a sweater by hand",
+    "ru": "вязать",
+    "lesson": "Lesson 12 · 13 Nov",
+    "topic": "10. Free Time & Hobbies",
+    "ex": "My grandma knits warm socks for the whole family."
+  },
+  {
+    "en": "bake",
+    "tr": "/beɪk/",
+    "df": "to make cakes or bread in the oven",
+    "ru": "печь",
+    "lesson": "Lesson 12 · 13 Nov",
+    "topic": "10. Free Time & Hobbies",
+    "ex": "We are baking a carrot cake for Sunday dinner."
+  },
+  {
+    "en": "draw",
+    "tr": "/drɔː/",
+    "df": "to make a picture with a pencil",
+    "ru": "рисовать",
+    "lesson": "Lesson 12 · 13 Nov",
+    "topic": "10. Free Time & Hobbies",
+    "ex": "My daughter is sitting at the table and drawing a cat."
+  },
+  {
+    "en": "take photos",
+    "tr": "/ˌteɪk ˈfəʊtəʊz/",
+    "df": "to make pictures with a camera or a phone",
+    "ru": "фотографировать",
+    "lesson": "Lesson 12 · 13 Nov",
+    "topic": "10. Free Time & Hobbies",
+    "ex": "Grandpa is taking photos of the children in the park."
+  },
+  {
+    "en": "play board games",
+    "tr": "/ˈbɔːd ɡeɪmz/",
+    "df": "games on a table, like chess or Monopoly",
+    "ru": "играть в настольные игры",
+    "lesson": "Lesson 12 · 13 Nov",
+    "topic": "10. Free Time & Hobbies",
+    "ex": "In the evening we often play board games together."
+  },
+  {
+    "en": "go for a walk",
+    "tr": "/ˌɡəʊ fər ə ˈwɔːk/",
+    "df": "to walk outside for fun",
+    "ru": "ходить на прогулку, гулять",
+    "lesson": "Lesson 12 · 13 Nov",
+    "topic": "10. Free Time & Hobbies",
+    "ex": "After our lesson I am going for a walk with my son."
+  },
+  {
+    "en": "do yoga",
+    "tr": "/ˌduː ˈjəʊɡə/",
+    "df": "exercises for your body and mind",
+    "ru": "заниматься йогой",
+    "lesson": "Lesson 12 · 13 Nov",
+    "topic": "10. Free Time & Hobbies",
+    "ex": "She does yoga twice a week to relax."
+  },
+  {
+    "en": "book a hotel",
+    "tr": "/ˌbʊk ə həʊˈtel/",
+    "df": "to reserve a room before your trip",
+    "ru": "бронировать отель",
+    "lesson": "Lesson 13 · 17 Nov",
+    "topic": "11. Travelling & Holidays",
+    "ex": "We always book a hotel near the sea in advance."
+  },
+  {
+    "en": "pack a suitcase",
+    "tr": "/ˌpæk ə ˈsuːtkeɪs/",
+    "df": "to put your clothes into a bag for a trip",
+    "ru": "собирать чемодан",
+    "lesson": "Lesson 13 · 17 Nov",
+    "topic": "11. Travelling & Holidays",
+    "ex": "Tonight we are packing our suitcases for our trip."
+  },
+  {
+    "en": "check in",
+    "tr": "/ˌtʃek ˈɪn/",
+    "df": "to show your passport and get your room key or ticket",
+    "ru": "регистрироваться (в аэропорту / отеле)",
+    "lesson": "Lesson 13 · 17 Nov",
+    "topic": "11. Travelling & Holidays",
+    "ex": "You can check in online before you go to the airport."
+  },
+  {
+    "en": "a flight",
+    "tr": "/ə flaɪt/",
+    "df": "a journey on a plane",
+    "ru": "рейс, перелет",
+    "lesson": "Lesson 13 · 17 Nov",
+    "topic": "11. Travelling & Holidays",
+    "ex": "Our flight to Sochi leaves at six o'clock tomorrow."
+  },
+  {
+    "en": "a boarding pass",
+    "tr": "/ə ˈbɔːdɪŋ pɑːs/",
+    "df": "the ticket you show when you get on a plane",
+    "ru": "посадочный талон",
+    "lesson": "Lesson 13 · 17 Nov",
+    "topic": "11. Travelling & Holidays",
+    "ex": "Show your passport and boarding pass at the gate."
+  },
+  {
+    "en": "board a plane",
+    "tr": "/ˌbɔːd ə ˈpleɪn/",
+    "df": "to get on a plane before it flies",
+    "ru": "садиться в самолет",
+    "lesson": "Lesson 13 · 17 Nov",
+    "topic": "11. Travelling & Holidays",
+    "ex": "Listen! Passengers are boarding the plane now."
+  },
+  {
+    "en": "stay at a hotel",
+    "tr": "/ˌsteɪ ət ə həʊˈtel/",
+    "df": "to live in a hotel while you are on holiday",
+    "ru": "останавливаться (жить) в отеле",
+    "lesson": "Lesson 13 · 17 Nov",
+    "topic": "11. Travelling & Holidays",
+    "ex": "This week we are staying at a cosy hotel in Kaliningrad."
+  },
+  {
+    "en": "go sightseeing",
+    "tr": "/ˌɡəʊ ˈsaɪtsiːɪŋ/",
+    "df": "to walk around a new city and look at famous places",
+    "ru": "осматривать достопримечательности",
+    "lesson": "Lesson 13 · 17 Nov",
+    "topic": "11. Travelling & Holidays",
+    "ex": "Every afternoon we go sightseeing in the old town."
+  },
+  {
+    "en": "buy souvenirs",
+    "tr": "/ˌbaɪ ˌsuːvəˈnɪəz/",
+    "df": "to buy small gifts from a trip for family and friends",
+    "ru": "покупать сувениры",
+    "lesson": "Lesson 13 · 17 Nov",
+    "topic": "11. Travelling & Holidays",
+    "ex": "The children are buying souvenirs for Grandma."
+  },
+  {
+    "en": "try local food",
+    "tr": "/ˌtraɪ ˈləʊkəl fuːd/",
+    "df": "to eat dishes from the place you are visiting",
+    "ru": "пробовать местную еду",
+    "lesson": "Lesson 13 · 17 Nov",
+    "topic": "11. Travelling & Holidays",
+    "ex": "On holiday we always try local food in small cafés."
+  },
+  {
+    "en": "make a shopping list",
+    "tr": "/ˌmeɪk ə ˈʃɒpɪŋ lɪst/",
+    "df": "to write down the things you need to buy",
+    "ru": "составлять список покупок",
+    "lesson": "Lesson 14 · 20 Nov",
+    "topic": "12. City & Shopping Errands",
+    "ex": "I always make a shopping list so I don't forget anything."
+  },
+  {
+    "en": "try something on",
+    "tr": "/ˌtraɪ ˈsʌmθɪŋ ɒn/",
+    "df": "to put on clothes or shoes in a shop to check the size",
+    "ru": "примерять (одежду / обувь)",
+    "lesson": "Lesson 14 · 20 Nov",
+    "topic": "12. City & Shopping Errands",
+    "ex": "Go to the fitting room and try this sweater on."
+  },
+  {
+    "en": "pay by card",
+    "tr": "/ˌpeɪ baɪ ˈkɑːd/",
+    "df": "to use a bank card or phone instead of cash",
+    "ru": "платить картой",
+    "lesson": "Lesson 14 · 20 Nov",
+    "topic": "12. City & Shopping Errands",
+    "ex": "I never carry cash — I always pay by card."
+  },
+  {
+    "en": "ask for the bill",
+    "tr": "/ˌɑːsk fə ðə ˈbɪl/",
+    "df": "to ask the waiter how much your meal costs",
+    "ru": "попросить счёт (в кафе)",
+    "lesson": "Lesson 14 · 20 Nov",
+    "topic": "12. City & Shopping Errands",
+    "ex": "We are ready to go — let's ask for the bill."
+  },
+  {
+    "en": "leave a tip",
+    "tr": "/ˌliːv ə ˈtɪp/",
+    "df": "to give extra money to a waiter for good service",
+    "ru": "оставить чаевые",
+    "lesson": "Lesson 14 · 20 Nov",
+    "topic": "12. City & Shopping Errands",
+    "ex": "The waiter was very friendly, so we are leaving a tip."
+  },
+  {
+    "en": "order takeaway",
+    "tr": "/ˌɔːdə ˈteɪkəweɪ/",
+    "df": "to buy cooked food from a café to eat at home",
+    "ru": "заказывать еду навынос / с доставкой",
+    "lesson": "Lesson 14 · 20 Nov",
+    "topic": "12. City & Shopping Errands",
+    "ex": "I'm tired tonight, so let's order takeaway from our favourite café."
+  },
+  {
+    "en": "pick up a parcel",
+    "tr": "/ˌpɪk ʌp ə ˈpɑːsl/",
+    "df": "to collect a package from a delivery point",
+    "ru": "забрать посылку",
+    "lesson": "Lesson 14 · 20 Nov",
+    "topic": "12. City & Shopping Errands",
+    "ex": "After work I am picking up a parcel from the delivery point."
+  },
+  {
+    "en": "wait in a queue",
+    "tr": "/ˌweɪt ɪn ə ˈkjuː/",
+    "df": "to stand in a line of people waiting for their turn",
+    "ru": "стоять в очереди",
+    "lesson": "Lesson 14 · 20 Nov",
+    "topic": "12. City & Shopping Errands",
+    "ex": "There are ten people ahead of us — we are waiting in a queue."
+  },
+  {
+    "en": "look for a discount",
+    "tr": "/ˌlʊk fər ə ˈdɪskaʊnt/",
+    "df": "to try to find a lower price or a sale",
+    "ru": "искать скидку",
+    "lesson": "Lesson 14 · 20 Nov",
+    "topic": "12. City & Shopping Errands",
+    "ex": "She always looks for a discount when she shops online."
+  },
+  {
+    "en": "book a table",
+    "tr": "/ˌbʊk ə ˈteɪbl/",
+    "df": "to reserve a table at a café or restaurant in advance",
+    "ru": "бронировать столик",
+    "lesson": "Lesson 15 · 24 Nov",
+    "topic": "13. Café & Family Dinner",
+    "ex": "Let's book a table for four people for Friday evening."
+  },
+  {
+    "en": "look at the menu",
+    "tr": "/ˌlʊk ət ðə ˈmenjuː/",
+    "df": "to read the list of dishes and drinks in a café",
+    "ru": "смотреть меню",
+    "lesson": "Lesson 15 · 24 Nov",
+    "topic": "13. Café & Family Dinner",
+    "ex": "We are sitting at the table and looking at the menu."
+  },
+  {
+    "en": "order a dish",
+    "tr": "/ˌɔːdər ə ˈdɪʃ/",
+    "df": "to tell the waiter what food you want to eat",
+    "ru": "заказывать блюдо",
+    "lesson": "Lesson 15 · 24 Nov",
+    "topic": "13. Café & Family Dinner",
+    "ex": "My husband is ordering a big steak and salad."
+  },
+  {
+    "en": "wait for the waiter",
+    "tr": "/ˌweɪt fə ðə ˈweɪtə/",
+    "df": "to sit at your table until the waiter comes",
+    "ru": "ждать официанта",
+    "lesson": "Lesson 15 · 24 Nov",
+    "topic": "13. Café & Family Dinner",
+    "ex": "We are waiting for the waiter to order our tea."
+  },
+  {
+    "en": "serve the food",
+    "tr": "/ˌsɜːv ðə ˈfuːd/",
+    "df": "to bring plates of food to the table",
+    "ru": "подавать еду",
+    "lesson": "Lesson 15 · 24 Nov",
+    "topic": "13. Café & Family Dinner",
+    "ex": "Look, the waiter is coming and serving our food!"
+  },
+  {
+    "en": "share a dessert",
+    "tr": "/ˌʃeər ə dɪˈzɜːt/",
+    "df": "to eat one sweet dish together with family or friends",
+    "ru": "делить десерт на двоих / всех",
+    "lesson": "Lesson 15 · 24 Nov",
+    "topic": "13. Café & Family Dinner",
+    "ex": "The cake is huge — let's share a dessert!"
+  },
+  {
+    "en": "pay in cash",
+    "tr": "/ˌpeɪ ɪn ˈkæʃ/",
+    "df": "to pay with paper money and coins",
+    "ru": "платить наличными",
+    "lesson": "Lesson 15 · 24 Nov",
+    "topic": "13. Café & Family Dinner",
+    "ex": "Today I am paying in cash because I left my card at home."
+  },
+  {
+    "en": "leave a review",
+    "tr": "/ˌliːv ə rɪˈvjuː/",
+    "df": "to write a short opinion online about a café or hotel",
+    "ru": "оставлять отзыв",
+    "lesson": "Lesson 15 · 24 Nov",
+    "topic": "13. Café & Family Dinner",
+    "ex": "If we like the café, we always leave a good review online."
+  },
+  {
+    "en": "cook from a recipe",
+    "tr": "/ˌkʊk frəm ə ˈresəpi/",
+    "df": "to prepare food using step-by-step instructions",
+    "ru": "готовить по рецепту",
+    "lesson": "Lesson 15 · 24 Nov",
+    "topic": "13. Café & Family Dinner",
+    "ex": "On Sundays I cook dinner from a new recipe."
+  },
+  {
+    "en": "set the table",
+    "tr": "/ˌset ðə ˈteɪbl/",
+    "df": "to put plates, forks, spoons, and glasses on the table",
+    "ru": "накрывать на стол",
+    "lesson": "Lesson 15 · 24 Nov",
+    "topic": "13. Café & Family Dinner",
+    "ex": "Dinner is ready! Can you set the table, please?"
+  }
+];
+
+  DECK.forEach(function(item, idx){ item.id = idx; });
+
+  /* Speech Synthesis (female UK voice preference matching all lessons) */
+  var canSpeak = ("speechSynthesis" in window) && ("SpeechSynthesisUtterance" in window);
+  var femaleVoice = null;
+  function pickVoice(){
+    try{
+      var vs = window.speechSynthesis.getVoices() || [];
+      var en = vs.filter(function(v){ return /^en[-_]/i.test(v.lang); });
+      var female = /female|woman|serena|kate|stephanie|martha|libby|sonia|hazel|susan|samantha|karen|moira|tessa|fiona|victoria|allison|ava|zira|aria|jenny|emma|amy|joanna|salli|kimberly/i;
+      var male = /\bmale\b|daniel|arthur|oliver|george|ryan|thomas|alex|fred|rishi|aaron|guy|david|mark|james/i;
+      var gb = en.filter(function(v){ return /en[-_]gb/i.test(v.lang); });
+      femaleVoice =
+        gb.filter(function(v){ return female.test(v.name) && !/\bmale\b/i.test(v.name.replace(/female/i, "")); })[0] ||
+        en.filter(function(v){ return female.test(v.name) && !/\bmale\b/i.test(v.name.replace(/female/i, "")); })[0] ||
+        gb.filter(function(v){ return !male.test(v.name); })[0] ||
+        en.filter(function(v){ return !male.test(v.name); })[0] ||
+        null;
+    }catch(e){ femaleVoice = null; }
+  }
+  if(canSpeak){
+    pickVoice();
+    try{ window.speechSynthesis.addEventListener("voiceschanged", pickVoice); }catch(e){}
+  }
+  function speak(t, rate){
+    if(!canSpeak) return;
+    try{
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      if(!femaleVoice) pickVoice();
+      if(femaleVoice){ u.voice = femaleVoice; u.lang = femaleVoice.lang; }
+      else { u.lang = "en-GB"; u.pitch = 1.25; }
+      u.rate = rate || 0.85;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+  function sayBtn(text, extraCls){
+    if(!canSpeak) return null;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "mini" + (extraCls ? " " + extraCls : "");
+    b.textContent = "▶";
+    b.setAttribute("aria-label", "Listen");
+    b.addEventListener("click", function(e){ e.stopPropagation(); speak(text, 0.85); });
+    return b;
+  }
+  function el(tag, cls, txt){
+    var d = document.createElement(tag);
+    if(cls) d.className = cls;
+    if(txt !== undefined) d.textContent = txt;
+    return d;
+  }
+
+  /* Local storage for "Learned" progress */
+  var STORAGE_KEY = "petrozavodsk_moms_vocab_known_v1";
+  var knownMap = {};
+  try{
+    knownMap = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}") || {};
+  }catch(e){ knownMap = {}; }
+  function saveKnown(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(knownMap)); }catch(e){}
+  }
+  function isKnown(item){ return !!knownMap[item.en.toLowerCase()]; }
+  function toggleKnown(item){
+    var k = item.en.toLowerCase();
+    if(knownMap[k]) delete knownMap[k];
+    else knownMap[k] = true;
+    saveKnown();
+  }
+
+  /* State */
+  var currentOrder = DECK.slice();
+  var activeTopic = "ALL";
+  var searchQuery = "";
+  var onlyUnlearned = false;
+  var viewMode = "grid";
+  var studyIdx = 0;
+
+  /* Build Topic Filter Chips */
+  var topicBar = document.getElementById("topicBar");
+  var topicCounts = {};
+  var topicList = [];
+  DECK.forEach(function(item){
+    if(!topicCounts[item.topic]){
+      topicCounts[item.topic] = 0;
+      topicList.push(item.topic);
+    }
+    topicCounts[item.topic]++;
+  });
+
+  function renderTopicChips(){
+    topicBar.innerHTML = "";
+    var allBtn = el("button", "tchip");
+    allBtn.type = "button";
+    allBtn.setAttribute("aria-pressed", activeTopic === "ALL" ? "true" : "false");
+    allBtn.appendChild(document.createTextNode("All topics · Все темы "));
+    allBtn.appendChild(el("span", "cnt", String(DECK.length)));
+    allBtn.addEventListener("click", function(){
+      activeTopic = "ALL"; studyIdx = 0; renderTopicChips(); renderView();
+    });
+    topicBar.appendChild(allBtn);
+
+    topicList.forEach(function(tp){
+      var b = el("button", "tchip");
+      b.type = "button";
+      b.setAttribute("aria-pressed", activeTopic === tp ? "true" : "false");
+      b.appendChild(document.createTextNode(tp + " "));
+      b.appendChild(el("span", "cnt", String(topicCounts[tp])));
+      b.addEventListener("click", function(){
+        activeTopic = tp; studyIdx = 0; renderTopicChips(); renderView();
+      });
+      topicBar.appendChild(b);
+    });
+  }
+
+  function getFiltered(){
+    var q = searchQuery.trim().toLowerCase();
+    return currentOrder.filter(function(item){
+      if(activeTopic !== "ALL" && item.topic !== activeTopic) return false;
+      if(onlyUnlearned && isKnown(item)) return false;
+      if(q){
+        var hay = (item.en + " " + item.ru + " " + item.df + " " + (item.ex || "") + " " + item.lesson).toLowerCase();
+        if(hay.indexOf(q) === -1) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderGrid(list){
+    var grid = document.getElementById("gridContainer");
+    grid.innerHTML = "";
+    if(!list.length){
+      grid.appendChild(el("div", "empty", "Ничего не найдено. Попробуйте очистить поиск или выбрать другую тему."));
+      return;
+    }
+    list.forEach(function(w){
+      var d = el("div", "vc" + (isKnown(w) ? " known" : ""));
+      d.tabIndex = 0; d.setAttribute("role", "button");
+
+      var tagRow = el("div", "tag-row");
+      tagRow.appendChild(el("span", "ltag", w.lesson));
+      var kb = el("button", "mini know-btn", isKnown(w) ? "✓ Выучено" : "Отметить выученным");
+      kb.type = "button";
+      kb.addEventListener("click", function(e){
+        e.stopPropagation();
+        toggleKnown(w);
+        renderView();
+      });
+      tagRow.appendChild(kb);
+      d.appendChild(tagRow);
+
+      var en = el("span", "en");
+      en.appendChild(document.createTextNode(w.en));
+      var sb = sayBtn(w.en);
+      if(sb) en.appendChild(sb);
+      d.appendChild(en);
+
+      d.appendChild(el("span", "tr", w.tr));
+      d.appendChild(el("span", "df", w.df));
+
+      if(w.ex){
+        var exBox = el("div", "exbox");
+        var exTxt = el("em", null, w.ex);
+        exBox.appendChild(exTxt);
+        var sbEx = sayBtn(w.ex, "ex-say");
+        if(sbEx) exBox.appendChild(sbEx);
+        d.appendChild(exBox);
+      }
+
+      d.appendChild(el("span", "rux", w.ru));
+      d.appendChild(el("span", "tap", "нажмите, чтобы увидеть перевод"));
+
+      function flip(){ d.classList.toggle("flip"); }
+      d.addEventListener("click", flip);
+      d.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); } });
+      grid.appendChild(d);
+    });
+  }
+
+  function renderStudy(list){
+    var host = document.getElementById("studyContainer");
+    host.innerHTML = "";
+    if(!list.length){
+      host.appendChild(el("div", "empty", "В этой подборке нет карточек. Выберите другую тему или отключите фильтр «Невыученные»."));
+      return;
+    }
+    if(studyIdx >= list.length) studyIdx = 0;
+    if(studyIdx < 0) studyIdx = list.length - 1;
+    var w = list[studyIdx];
+
+    var wrap = el("div", "study-wrap");
+    wrap.appendChild(el("div", "study-progress", "Карточка " + (studyIdx + 1) + " из " + list.length + " · " + w.lesson));
+
+    var card = el("div", "study-card" + (isKnown(w) ? " known" : ""));
+    card.tabIndex = 0; card.setAttribute("role", "button");
+    card.appendChild(el("div", "study-topic", w.topic));
+
+    var enRow = el("div", "study-en");
+    enRow.appendChild(document.createTextNode(w.en + " "));
+    var sb = sayBtn(w.en);
+    if(sb) enRow.appendChild(sb);
+    card.appendChild(enRow);
+
+    card.appendChild(el("div", "study-tr", w.tr));
+    card.appendChild(el("div", "study-df", w.df));
+
+    if(w.ex){
+      var exDiv = el("div", "study-ex");
+      exDiv.appendChild(document.createTextNode(w.ex));
+      var sbEx = sayBtn(w.ex, "ex-say");
+      if(sbEx) exDiv.appendChild(sbEx);
+      card.appendChild(exDiv);
+    }
+
+    card.appendChild(el("div", "study-ru", w.ru));
+    card.appendChild(el("div", "study-tap", "Нажмите на карточку, чтобы увидеть перевод"));
+
+    function flip(){ card.classList.toggle("flip"); }
+    card.addEventListener("click", flip);
+    card.addEventListener("keydown", function(e){ if(e.key === "Enter" || e.key === " "){ e.preventDefault(); flip(); } });
+    wrap.appendChild(card);
+
+    var nav = el("div", "study-nav");
+    var prev = el("button", "pill-btn", "← Назад");
+    prev.type = "button";
+    prev.addEventListener("click", function(){ studyIdx = (studyIdx - 1 + list.length) % list.length; renderStudy(list); });
+
+    var knowBtn = el("button", "pill-btn gold" + (isKnown(w) ? " solid" : ""), isKnown(w) ? "✓ Выучено" : "✓ Отметить выученным");
+    knowBtn.type = "button";
+    knowBtn.addEventListener("click", function(){
+      toggleKnown(w);
+      renderView();
+    });
+
+    var next = el("button", "pill-btn solid", "Дальше →");
+    next.type = "button";
+    next.addEventListener("click", function(){ studyIdx = (studyIdx + 1) % list.length; renderStudy(list); });
+
+    nav.appendChild(prev);
+    nav.appendChild(knowBtn);
+    nav.appendChild(next);
+    wrap.appendChild(nav);
+    host.appendChild(wrap);
+  }
+
+  function renderView(){
+    var list = getFiltered();
+    var learnedTotal = DECK.filter(isKnown).length;
+    document.getElementById("countInfo").innerHTML =
+      "Показано <b>" + list.length + "</b> из " + DECK.length + " карточек · Выучено: <b>" + learnedTotal + "</b>";
+
+    var gridEl = document.getElementById("gridContainer");
+    var studyEl = document.getElementById("studyContainer");
+    if(viewMode === "grid"){
+      gridEl.hidden = false;
+      studyEl.hidden = true;
+      renderGrid(list);
+    } else {
+      gridEl.hidden = true;
+      studyEl.hidden = false;
+      renderStudy(list);
+    }
+  }
+
+  /* Controls */
+  var searchInput = document.getElementById("searchInput");
+  var searchClear = document.getElementById("searchClear");
+  searchInput.addEventListener("input", function(){
+    searchQuery = searchInput.value;
+    searchClear.classList.toggle("show", searchQuery.length > 0);
+    studyIdx = 0;
+    renderView();
+  });
+  searchClear.addEventListener("click", function(){
+    searchInput.value = "";
+    searchQuery = "";
+    searchClear.classList.remove("show");
+    studyIdx = 0;
+    renderView();
+  });
+
+  var modeGridBtn = document.getElementById("modeGridBtn");
+  var modeStudyBtn = document.getElementById("modeStudyBtn");
+  modeGridBtn.addEventListener("click", function(){
+    viewMode = "grid";
+    modeGridBtn.classList.add("solid");
+    modeStudyBtn.classList.remove("solid");
+    renderView();
+  });
+  modeStudyBtn.addEventListener("click", function(){
+    viewMode = "study";
+    modeStudyBtn.classList.add("solid");
+    modeGridBtn.classList.remove("solid");
+    renderView();
+  });
+
+  document.getElementById("shuffleBtn").addEventListener("click", function(){
+    for(var i = currentOrder.length - 1; i > 0; i--){
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = currentOrder[i]; currentOrder[i] = currentOrder[j]; currentOrder[j] = tmp;
+    }
+    studyIdx = 0;
+    renderView();
+  });
+
+  var onlyUnlearnedBtn = document.getElementById("onlyUnlearnedBtn");
+  onlyUnlearnedBtn.addEventListener("click", function(){
+    onlyUnlearned = !onlyUnlearned;
+    onlyUnlearnedBtn.setAttribute("aria-pressed", onlyUnlearned ? "true" : "false");
+    onlyUnlearnedBtn.classList.toggle("solid", onlyUnlearned);
+    studyIdx = 0;
+    renderView();
+  });
+
+  var rb = document.getElementById("rusbtn");
+  rb.addEventListener("click", function(){
+    var on = rb.getAttribute("aria-pressed") === "true";
+    rb.setAttribute("aria-pressed", on ? "false" : "true");
+    rb.textContent = on ? "SHOW ALL RUS · Перевод всех" : "HIDE ALL RUS · Скрыть перевод";
+    document.body.classList.toggle("showrus", !on);
+  });
+
+  renderTopicChips();
+  renderView();
+})();
+</script>
+</body>
+</html>

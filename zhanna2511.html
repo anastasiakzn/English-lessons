@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zhanna, 25 November</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F5FA; --sheet:#FFFFFF; --ink:#2D3142; --soft:#667085;
+  --blue:#5B5BD6; --mark:#FFD166; --ok:#2E7D5B; --okbg:#E3F1EA;
+  --bad:#B33A3A; --badbg:#F7E4E4; --line:#E2E5EF;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", "Segoe UI", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{color:var(--ink)}
+.card:nth-child(3n+2){border-left-color:#F08A7E}.card:nth-child(3n){border-left-color:#2BB39A}
+header h1{font-weight:700;font-size:2.2rem;line-height:1.15;margin:0}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0}
+.tab{font-family:var(--sans);font-weight:600;font-size:.92rem;border:0;background:none;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}
+section.active{display:block}
+h2{font-size:1.55rem;margin:0 0 12px}
+h3{font-size:1.15rem;margin:0 0 6px}
+.task{font-family:var(--sans);font-size:.95rem;color:var(--soft);margin:0 0 14px;max-width:68ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px}
+button{font-family:var(--sans)}
+.btn{font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:4px 10px;cursor:pointer;margin:2px 4px 2px 0}
+.btn:hover{border-color:var(--blue)}
+.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}
+.hidden{display:none !important}
+.en{color:var(--blue);font-style:italic}
+.ru{color:var(--soft);font-family:var(--sans);font-size:.9rem}
+.qlist{margin:0;padding-left:1.3em}
+.qlist li{margin:8px 0}
+
+/* parts inside a tab */
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.85rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.part{display:none}
+.part.active{display:block}
+
+/* quote */
+.quote{font-size:1.6rem;line-height:1.35;font-style:italic;margin:4px 0 6px;max-width:30ch}
+.src{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 16px}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px}
+.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}
+.card .tr{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:2px 0 6px}
+.card .def{font-size:.95rem;margin:0 0 6px}
+.card .ex2{font-size:.92rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+
+/* rows */
+.dl{padding:12px 0;border-bottom:1px solid var(--line)}
+.dl:last-of-type{border-bottom:0}
+.dl p{margin:0}
+.fb{font-size:.95rem}
+.fb .ex{margin:4px 0}
+.fb.okc{color:var(--ok)}
+.fb.badc{color:var(--bad)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F8FC;border-radius:4px;padding:5px 12px;cursor:pointer;color:var(--ink)}
+.opts.col{flex-direction:column}
+.opt.okc{background:var(--okbg);border-color:var(--ok)}
+.opt.badc{background:var(--badbg);border-color:var(--bad)}
+input.gap{font-family:var(--serif);font-size:1rem;padding:2px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#F7F8FC;color:var(--ink);width:11em;max-width:100%}
+input.gap.okc{border-color:var(--ok);background:var(--okbg)}
+input.gap.badc{border-color:var(--bad);background:var(--badbg)}
+.hint{font-family:var(--sans);font-size:.85rem;color:var(--soft)}
+.bank{font-family:var(--sans);font-size:.9rem;background:#F7F8FC;border-radius:4px;padding:8px 12px;margin:0 0 12px}
+.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}
+.copied{font-family:var(--sans);font-size:.85rem;color:var(--ok)}
+.score{font-family:var(--sans);font-weight:700;font-size:.95rem;margin:10px 0 0}
+
+/* error clinic */
+.item{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.num{font-family:var(--sans);font-weight:700;color:var(--soft);font-size:.9rem;padding-top:4px}
+.chips{margin:0;line-height:2.1}
+.chip{font-family:var(--serif);font-size:1.02rem;color:var(--ink);background:none;border:0;border-bottom:1px dashed #B9BFD6;padding:0 2px;margin:0 2px;cursor:pointer;border-radius:2px}
+.chip:hover{background:#F7F8FC}
+.chip.wrong{background:var(--badbg);border-bottom-color:var(--bad);animation:nudge .25s}
+.chip.hit{background:linear-gradient(transparent 55%, var(--mark) 55%);text-decoration:line-through;text-decoration-color:var(--bad);border-bottom-color:transparent;cursor:default}
+.fix{font-family:var(--sans);font-weight:700;color:var(--ok);margin-left:4px}
+.item .fb,.item .actions{grid-column:2}
+.fixbox{margin-right:6px}
+@keyframes nudge{0%,100%{transform:translateX(0)}30%{transform:translateX(-3px)}70%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.chip.wrong{animation:none}}
+
+/* drill table */
+.tablewrap{overflow-x:auto}
+table.drill{border-collapse:collapse;width:100%;min-width:560px;font-size:.98rem}
+.drill th{font-family:var(--sans);font-size:.82rem;color:var(--soft);text-align:left;font-weight:600;padding:6px 8px;border-bottom:2px solid var(--line)}
+.drill td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.drill td.t{font-weight:600;white-space:nowrap}
+.drill td.m{color:var(--soft);font-style:italic}
+.drill tr.grp td{background:#F7F8FC;font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);padding:4px 8px}
+.base{font-size:1.35rem;font-weight:600;margin:0 0 4px}
+
+/* listening + speaking */
+.player{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cue{border:2px solid var(--blue);border-radius:6px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}
+.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}
+.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}
+.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+.ttext{font-size:1.08rem;line-height:1.9}
+.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+@media (max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.quote{font-size:1.3rem}}
+
+.stat{border-left:4px solid var(--mark);background:#FFF6DC;padding:10px 14px;margin:0 0 16px;font-size:1rem}
+.stat b{font-size:1.5rem;font-family:var(--sans);color:var(--ink)}
+.new{font-family:var(--sans);font-size:.7rem;font-weight:700;color:#fff;background:var(--ok);border-radius:3px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+select.pick{font-family:var(--serif);font-size:1rem;padding:2px 6px;border:1px solid var(--line);border-radius:4px;background:#F7F8FC;color:var(--ink);max-width:100%}
+select.pick.okc{border-color:var(--ok);background:var(--okbg)}
+select.pick.badc{border-color:var(--bad);background:var(--badbg)}
+.endings{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:4px}
+.endings li{font-size:.98rem}
+.endings b{font-family:var(--sans);color:var(--blue);margin-right:6px}
+.verdict{display:inline-flex;gap:6px;margin:6px 0}
+.fixrow{margin:8px 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* lesson 5 additions */
+.wheelbox{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.wheelwrap{position:relative;width:260px;height:260px}
+.wheel{width:260px;height:260px;border-radius:50%;border:6px solid var(--sheet);box-shadow:0 0 0 1px var(--line),0 6px 18px rgba(45,49,66,.12);
+ background:conic-gradient(#5B5BD6 0.00deg 51.43deg,#F08A7E 51.43deg 102.86deg,#2BB39A 102.86deg 154.29deg,#5B5BD6 154.29deg 205.71deg,#F08A7E 205.71deg 257.14deg,#2BB39A 257.14deg 308.57deg,#F2B84B 308.57deg 360.00deg);
+ transition:transform 3.2s cubic-bezier(.17,.67,.2,1);position:relative}
+.wheel span{position:absolute;left:50%;top:50%;width:0;height:0;font-family:var(--sans);font-weight:700;font-size:1.5rem;color:#fff}
+.wheel span b{position:absolute;transform:translate(-50%,-50%)}
+.pointer{position:absolute;left:50%;top:-12px;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid var(--ink);z-index:2}
+.hub{position:absolute;left:50%;top:50%;width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;background:var(--sheet);border:3px solid var(--line)}
+.wq{font-size:1.35rem;line-height:1.35;font-style:italic;min-height:3em;margin:10px 0 0}
+.wq .n{font-family:var(--sans);font-style:normal;font-weight:700;color:var(--blue);font-size:.9rem;display:block;margin-bottom:4px}
+@media (max-width:640px){.wheelbox{grid-template-columns:1fr;justify-items:center;text-align:center}}
+@media (prefers-reduced-motion:reduce){.wheel{transition:none}}
+.dice{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.die{background:var(--sheet);border:2px solid var(--blue);border-radius:10px;padding:12px 10px;text-align:center;min-height:92px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.die:nth-child(2){border-color:#F08A7E}.die:nth-child(3){border-color:#2BB39A}
+.die .dl2{font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.05em}
+.die b{font-size:1.1rem;line-height:1.3}
+.die.roll b{animation:shake .5s}
+@keyframes shake{0%,100%{transform:none}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.die.roll b{animation:none}}
+@media (max-width:560px){.dice{grid-template-columns:1fr}}
+.chipbank{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.chipbank span{font-family:var(--sans);font-size:.9rem;background:#EEF0FB;border-radius:999px;padding:3px 12px}
+.groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:12px 0}
+.groups div{background:#F7F8FC;border-radius:6px;padding:10px 12px;font-size:.95rem}
+.groups b{font-family:var(--sans);font-size:.8rem;color:var(--blue);display:block;margin-bottom:2px}
+/* lesson 6 additions */
+.mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mcard{position:relative;min-height:110px;border:0;padding:0;background:none;cursor:pointer;font-family:var(--sans);perspective:800px}
+.mcard .side{position:absolute;inset:0;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;backface-visibility:hidden;transition:transform .45s}
+.mcard .front{background:linear-gradient(135deg,#5B5BD6,#8A7BF0);color:#fff;font-size:2rem;font-weight:700}
+.mcard .back{background:var(--sheet);border:2px solid var(--blue);color:var(--ink);font-family:var(--serif);font-size:1rem;line-height:1.35;transform:rotateY(180deg)}
+.mcard.open .front{transform:rotateY(180deg)}
+.mcard.open .back{transform:rotateY(360deg)}
+.mcard .num{position:absolute;top:6px;left:10px;font-size:.75rem;font-weight:700;color:var(--blue);opacity:.7}
+@media (max-width:560px){.mcards{grid-template-columns:repeat(2,1fr)}.mcard{min-height:130px}}
+@media (prefers-reduced-motion:reduce){.mcard .side{transition:none}}
+.form{border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.form .fr{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
+.form .fr:last-child{border-bottom:0}
+.form .fl{font-family:var(--sans);font-weight:600;font-size:.88rem;color:var(--soft);background:#F7F8FC;padding:10px 12px;display:flex;align-items:center}
+.form .fv{padding:4px 12px}
+.form .fv .dl{border:0;padding:6px 0}
+@media (max-width:560px){.form .fr{grid-template-columns:1fr}}
+/* lesson 7 additions */
+.emojis{display:flex;flex-wrap:wrap;gap:12px}
+.emoji{font-size:2.2rem;line-height:1;background:var(--sheet);border:2px solid var(--line);border-radius:14px;width:68px;height:68px;cursor:pointer;transition:transform .12s,border-color .12s}
+.emoji:hover{transform:translateY(-3px);border-color:var(--blue)}
+.emoji.on{border-color:var(--blue);background:#EEF0FB}
+.eq{font-family:var(--serif);font-size:1.3rem;line-height:1.35;min-height:2.2em;margin:16px 0 0}
+.eq .n{font-family:var(--sans);font-weight:700;color:var(--blue);font-size:.9rem;display:block;margin-bottom:4px}
+
+
+/* Small interaction-only extensions: Nov 16 palette, typography, scale and geometry retained */
+.tfgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tfcard{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:14px 16px}
+.tfcard:nth-child(3n+2){border-left-color:#F08A7E}.tfcard:nth-child(3n){border-left-color:#2BB39A}
+.tfcard p{font-size:1rem;line-height:1.45;margin:0 0 9px}.tfcard .tficon{font-size:1.55rem;margin-bottom:6px}
+.tfcard .tfresult{font-size:.92rem;line-height:1.45;margin:8px 0 0}
+.tfcard .opt{min-width:72px;text-align:center}.tfcard .opt:disabled{cursor:default}
+.tfcard .opt.selok{background:var(--okbg);border-color:var(--ok)}.tfcard .opt.selbad{background:var(--badbg);border-color:var(--bad)}
+.tfcard .tfresult.correct{color:var(--ok)}.tfcard .tfresult.incorrect{color:var(--bad)}
+.speakingprompts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.speakprompt{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px;background:var(--sheet)}
+.speakprompt:nth-child(3n+2){border-left-color:#F08A7E}.speakprompt:nth-child(3n){border-left-color:#2BB39A}
+.speakprompt .mode{font:700 .76rem var(--sans);color:var(--soft);margin:0 0 6px}.speakprompt .prompt{font-size:1.04rem;margin:0 0 10px}
+.optionline{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}.optionline .opt{max-width:100%}
+.order{padding:13px 0;border-bottom:1px solid var(--line)}.order:last-child{border-bottom:0}
+.order-head{margin:0 0 8px}.order-drop{min-height:49px;border:1px dashed #B9BFD6;border-radius:4px;padding:7px 9px;margin:7px 0 11px;display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.order-bank{display:flex;flex-wrap:wrap;gap:6px}.token{font:600 .86rem var(--sans);border:1px solid var(--line);border-radius:4px;background:#EEF0FB;color:var(--ink);padding:6px 10px;cursor:pointer}.token:disabled{opacity:.32;cursor:default}
+.token.selected{background:var(--blue);border-color:var(--blue);color:#fff}.slotword{font:600 .9rem var(--sans);border:1px solid var(--blue);background:#EEF0FB;color:var(--ink);border-radius:4px;padding:5px 8px;cursor:pointer}
+.slotword.empty{color:var(--blue);border-style:dashed;min-width:83px}.slotword.okc{background:var(--okbg);border-color:var(--ok)}.slotword.badc{background:var(--badbg);border-color:var(--bad)}
+.wordstory{font-size:1.02rem;line-height:2.6}.wordstory .slotword{vertical-align:middle}
+.ieltsform{border:1px solid var(--line);border-radius:5px;padding:14px 16px;background:#F7F8FC}.noterow{display:grid;grid-template-columns:minmax(140px,1fr) minmax(170px,1.5fr);gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}.noterow:last-child{border-bottom:0}
+.noterow label{font:600 .86rem/1.45 var(--sans)}.noterow .gap{width:100%}.noterow .notehelp{font:.76rem var(--sans);color:var(--soft)}
+.listencontrols{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:10px 0}.voicepick{font:.8rem var(--sans);border:1px solid var(--line);border-radius:4px;background:#F7F8FC;color:var(--ink);padding:6px;max-width:100%;width:280px}
+.pillnote{border-left:4px solid var(--mark);background:#FFF6DC;padding:11px 13px;font-size:.94rem;margin-bottom:14px}
+.planlist{list-style:none;counter-reset:step;padding:0;margin:0}.planlist li{counter-increment:step;display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.planlist li:last-child{border-bottom:0}
+.planlist li:before{content:counter(step);background:var(--blue);color:#fff;flex:0 0 25px;height:25px;border-radius:4px;display:grid;place-items:center;font:700 .75rem var(--sans)}.planlist b{display:block;font:.9rem var(--sans);font-weight:700}.planlist em{display:block;font-size:1rem;margin-top:3px;color:var(--soft)}
+.phrasegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.phraseitem{padding:9px 12px;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:4px}.phraseitem b{font:.82rem var(--sans);color:var(--blue)}.phraseitem p{margin:4px 0 0;font-size:.96rem}
+.sentcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.sentgroup{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;background:var(--sheet);padding:12px}.sentgroup:nth-child(2){border-left-color:#F08A7E}.sentgroup:nth-child(3){border-left-color:#2BB39A}
+.sentgroup h3{font-size:1.03rem;margin:0 0 3px}.sentgroup label{display:block;font:.8rem var(--sans);color:var(--soft);margin:9px 0 4px}.sentgroup textarea{width:100%;min-height:66px;resize:vertical;padding:8px 10px;border:1px solid var(--line);border-radius:4px;font:1rem var(--serif);background:#F7F8FC;color:var(--ink)}
+.actionrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+@media(max-width:650px){.tfgrid{grid-template-columns:1fr}.speakingprompts{grid-template-columns:repeat(2,minmax(0,1fr))}.sentcols{grid-template-columns:1fr}}
+@media(max-width:450px){.speakingprompts,.phrasegrid{grid-template-columns:1fr}.noterow{grid-template-columns:1fr;gap:4px}}
+
+
+/* Small functional additions; all original lesson colours, fonts and spacing stay unchanged */
+.landmark-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.landmark-card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:14px 16px}
+.landmark-card:nth-child(3n+2){border-left-color:#F08A7E}.landmark-card:nth-child(3n){border-left-color:#2BB39A}
+.landmark-card .numtag{font:700 .76rem var(--sans);color:var(--soft);letter-spacing:.03em;margin-bottom:6px}
+.landmark-card h3{line-height:1.35;font-size:1.04rem;margin:0 0 10px}
+.landmark-card .options{display:grid;gap:7px}
+.landmark-card .options button{width:100%;text-align:left;font:600 .89rem var(--sans);padding:8px 10px;border:1px solid var(--line);background:#F7F8FC;color:var(--ink);border-radius:4px;cursor:pointer}
+.landmark-card .options button:disabled{cursor:default;opacity:.75}
+.landmark-card .options button.correct{background:var(--okbg);border-color:var(--ok);opacity:1}
+.landmark-card .options button.wrong{background:var(--badbg);border-color:var(--bad);opacity:1}
+.landmark-card .fact{margin:9px 0 0;font-size:.95rem;color:var(--soft)}
+.match-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px}
+.match-scene{display:flex;align-items:flex-start;gap:8px;text-align:left;width:100%;border:1px solid var(--line);border-radius:4px;background:#F7F8FC;color:var(--ink);padding:10px;margin:0 0 7px;cursor:pointer;font:1rem var(--serif);line-height:1.45}
+.match-scene .match-no{flex:0 0 23px;font:.8rem var(--sans);color:var(--blue);font-weight:700}
+.match-scene.on{border:2px solid var(--blue);padding:9px;background:#EEF0FB}
+.match-scene .picked{font:700 .85rem var(--sans);color:var(--blue);display:block;margin-top:4px}
+.match-scene.okc{background:var(--okbg);border-color:var(--ok)}.match-scene.badc{background:var(--badbg);border-color:var(--bad)}
+.match-bank{display:flex;flex-direction:column;gap:7px}
+.match-bank button{font:600 .89rem var(--sans);border-radius:4px;border:1px solid var(--line);padding:9px 10px;background:var(--sheet);color:var(--blue);text-align:left;cursor:pointer}
+.match-bank button:disabled{opacity:.4;cursor:default}
+.match-bank button.on{background:var(--blue);color:white}
+.mistake{font-size:1.04rem;line-height:1.6;margin:0 0 8px}
+.mistake strong{background:linear-gradient(transparent 50%,var(--mark) 50%)}
+.mistake input{width:17em;max-width:100%}
+.mistake .comment{font: .85rem var(--sans);margin-top:6px;color:var(--soft)}
+.twouse{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.twouse .use{background:#F7F8FC;border:1px solid var(--line);border-radius:4px;padding:14px}
+.twouse h3{color:var(--blue);margin:0 0 8px}
+.twouse p{margin:0 0 9px}
+.twouse p:last-child{margin:0}
+.time-banner{border-left:4px solid var(--mark);background:#FFF6DC;padding:12px 14px;margin:12px 0;font-size:1rem}
+.time-banner b{font-size:1rem;font-family:var(--serif)}
+.formtbl{width:100%;border-collapse:collapse;font-size:.97rem}.formtbl th,.formtbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+.formtbl th{font:700 .8rem var(--sans);color:var(--soft)}
+.quizline{padding:12px 0;border-bottom:1px solid var(--line)}.quizline:last-child{border:0}
+.quizline .label{font:700 .8rem var(--sans);color:var(--soft)}
+.quizline p{margin:5px 0 8px}
+.quizline .options{display:flex;flex-wrap:wrap;gap:6px}
+.quizline .options button{font:1rem var(--serif);padding:6px 12px;background:#F7F8FC;color:var(--ink);border-radius:4px;border:1px solid var(--line);cursor:pointer}
+.quizline .options button.correct{background:var(--okbg);border-color:var(--ok)}
+.quizline .options button.wrong{background:var(--badbg);border-color:var(--bad)}
+.quizline .feedback{font-size:.89rem;margin-top:7px;color:var(--soft)}
+.clozetext{font-size:1.09rem;line-height:2.65}.clozetext input{width:11.5em;max-width:90%;font-size:1rem}
+.reading-text p{font-size:1.04rem;line-height:1.75;margin:0 0 14px}.reading-text p:last-child{margin:0}
+.reading-text .para{font:700 .9rem var(--sans);color:var(--blue);margin-right:8px}
+.heading-row{display:grid;grid-template-columns:60px minmax(0,1fr);gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.heading-row:last-child{border-bottom:0}.heading-row label{font:700 .95rem var(--sans);color:var(--blue)}
+.heading-row select{max-width:100%;min-width:0;overflow:hidden;padding:8px;font: .95rem var(--sans);background:#F7F8FC;border:1px solid var(--line);border-radius:4px;color:var(--ink)}
+.heading-row select.okc{background:var(--okbg);border-color:var(--ok)}.heading-row select.badc{background:var(--badbg);border-color:var(--bad)}
+@media(max-width:650px){.landmark-grid,.twouse,.match-layout{grid-template-columns:1fr}.match-bank{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.formtbl{font-size:.88rem}}
+@media(max-width:420px){.match-bank{grid-template-columns:1fr}.heading-row{grid-template-columns:34px minmax(0,1fr)}}
+
+/* Lesson 14: additions use the same palette, type and card components. */
+.dialogue-q{font-size:1.02rem;line-height:1.7;margin:3px 0 10px}
+.dialogue-q b{color:var(--blue)}
+.sentence-bank{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.puzzle-words{display:flex;flex-wrap:wrap;gap:7px;min-height:45px}
+.puzzle-words .word{font-family:var(--serif);font-size:1rem;padding:5px 10px;border-radius:4px;border:1px solid var(--line);color:var(--ink);background:#F7F8FC;cursor:pointer}
+.puzzle-words .word:disabled{opacity:.32;cursor:default}
+.puzzle-answer{min-height:58px;margin:10px 0;padding:8px;border:1.5px dashed #B9BFD6;border-radius:6px;display:flex;align-items:center;flex-wrap:wrap;gap:7px;background:#FCFCFF}
+.puzzle-answer.okc{border-color:var(--ok);background:var(--okbg)}
+.puzzle-answer.badc{border-color:var(--bad);background:var(--badbg)}
+.puzzle-answer .word{background:white;border:1px solid var(--line);border-radius:4px;padding:5px 9px;font-family:var(--serif);font-size:1rem;color:var(--ink);cursor:pointer}
+.puzzle-result{font-family:var(--sans);font-size:.86rem;color:var(--soft);min-height:22px}
+.mini-label{font:.78rem var(--sans);font-weight:700;color:var(--blue);letter-spacing:.04em;text-transform:uppercase}
+.listen-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.listen-actions select{font: .83rem var(--sans);background:#F7F8FC;border:1px solid var(--line);border-radius:4px;padding:6px 8px;color:var(--ink);max-width:100%}
+.listen-status{font:.84rem var(--sans);color:var(--soft);margin:8px 0 0}
+.listen-status.warn{color:var(--bad)}
+.listen-notes{display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0}
+.listen-note{padding:10px 12px;border:1px solid var(--line);border-radius:4px;background:#F9FAFD}
+.listen-note input{width:13em;margin:0 6px}
+.listen-note .fb{font: .82rem var(--sans);margin-top:6px;min-height:18px}
+.listen-note .fb.okc{color:var(--ok)}.listen-note .fb.badc{color:var(--bad)}
+.sentgroup label{font:.82rem var(--sans);color:var(--soft);display:block;margin:8px 0 4px}
+.sentgroup textarea{font:1rem var(--serif);background:#F7F8FC;border:1px solid var(--line);border-radius:4px;padding:8px;width:100%;resize:vertical;min-height:70px;color:var(--ink)}
+.small-feedback{font-family:var(--sans);font-size:.84rem;min-height:18px;margin-top:4px}
+.small-feedback.good{color:var(--ok)}.small-feedback.bad{color:var(--bad)}
+@media(max-width:560px){.listen-actions{align-items:stretch}.listen-actions select{width:100%}.listen-note input{width:10em}.puzzle-words .word{font-size:.93rem}}
+.landmark-card .options button.psych-chosen{background:var(--blue);border-color:var(--blue);color:#fff}
+</style></head><body>
+<header><h1>Zhanna, lesson 14</h1><p>Lesson of 25 November 2026</p></header>
+<nav><div class="tabs" role="tablist" id="tabs"></div></nav><main>
+<section data-title="Warm-up">
+<h2>Everyday psychology · What would you do?</h2>
+<p class="task">Choose the answer that feels more like you, then explain your choice in one or two sentences. There are no right or wrong answers.</p>
+<div class="landmark-grid" id="psychChoices"></div>
+</section>
+
+<section data-title="Homework check"><h2>Homework check: Translation</h2>
+<p class="task">Translation from 23 November. Translate the story into English aloud, sentence by sentence. Press “EN” to check your answer.</p>
+<div class="sheet ttext" id="homeworkText"></div></section>
+
+<section data-title="Vocabulary"><h2>Vocabulary</h2>
+<div class="subnav" role="tablist"><button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button></div>
+<div class="part"><p class="task">Tap “Listen” to hear a word, read its English meaning and example, and tap to see the Russian translation.</p><div class="cards" id="cards"></div></div>
+<div class="part sheet"><h3>Exercise 1. What's the best reply?</h3><p class="task">Read each short dialogue and choose the most natural English reply. Answers are checked immediately.</p><div id="vocabChoices"></div><p class="score" id="vocabScore" aria-live="polite"></p><div class="actionrow"><button class="btn" id="vocabReset">Try again</button></div></div>
+<div class="part sheet"><h3>Discussion</h3><p class="task">Answer each question in no more than two or three sentences.</p><div id="discussion"></div></div>
+<div class="part sheet"><h3>Exercise 2. A surprising palace tour</h3><p class="task">Complete the short story with words from the box. Use one word or phrase in each gap. Each answer turns green when correct and red if it needs another try.</p><div class="chipbank" id="vocabBank"></div><div id="vocabStory"></div>
+<div class="actionrow"><button class="btn solid" id="vocabStoryCheck">Check my answers</button><button class="btn" id="vocabStoryReset">Try again</button><button class="btn" id="vocabStoryShow">Answers</button></div><p class="score" id="vocabStoryScore" aria-live="polite"></p></div>
+</section>
+
+<section data-title="Grammar"><h2>Grammar: Past Continuous</h2>
+<div class="subnav" role="tablist"><button class="sub">Reminder</button><button class="sub">Exercise 1 · Speak</button><button class="sub">Exercise 2 · Complete</button><button class="sub">Exercise 3 · Order</button></div>
+<div class="part sheet"><h3>Past Continuous — when do we use it?</h3>
+<div class="twouse">
+<div class="use"><h3>1. An unfinished action at a specific moment in the past</h3><p><b>At 7 p.m. yesterday</b>, I <b>was watching</b> a film.</p><p><b>When</b> my friend <b>called</b>, I <b>was working</b> on a website.</p><p class="hint">A <b>specific time</b> or a <b>Past Simple action</b> tells us when the longer action was in progress.</p></div>
+<div class="use"><h3>2. Two simultaneous processes</h3><p><b>While</b> Anna <b>was checking</b> the tickets, I <b>was speaking</b> English with the guests.</p><p class="hint">Both actions were happening at the same time in the past.</p></div></div>
+<div class="time-banner"><b>Remember:</b> <i>Yesterday</i> alone is not a specific moment. Compare: <i>I worked yesterday</i> (completed) and <i>I was working at 6 p.m. yesterday</i> (in progress then).</div>
+<h3>Indicators</h3><div class="chipbank"><span>at 5 o'clock yesterday</span><span>at that moment</span><span>when + Past Simple</span><span>while + Past Continuous</span></div>
+<h3 style="margin-top:16px">Form</h3><div class="tablewrap"><table class="formtbl"><thead><tr><th></th><th>Structure</th><th>Example</th></tr></thead><tbody>
+<tr><td><b>+</b></td><td>subject + <b>was / were</b> + verb<b>-ing</b></td><td>He <b>was working</b>.</td></tr>
+<tr><td><b>−</b></td><td>subject + <b>wasn't / weren't</b> + verb<b>-ing</b></td><td>They <b>weren't talking</b>.</td></tr>
+<tr><td><b>?</b></td><td><b>Was / Were</b> + subject + verb<b>-ing</b>?</td><td><b>Were</b> you <b>reading</b>?</td></tr>
+<tr><td><b>Wh-?</b></td><td>Wh-word + <b>was / were</b> + subject + verb<b>-ing</b>?</td><td>What <b>was</b> she <b>doing</b>?</td></tr>
+</tbody></table></div><p class="hint"><b>Was:</b> I, he, she, it. <b>Were:</b> you, we, they. Do not use <b>did</b> in Past Continuous questions or negatives.</p>
+</div>
+<div class="part sheet"><h3>Exercise 1. One action — four tenses</h3><p class="task">Choose one situation. Say the <b>same action</b> in Present Simple, Present Continuous, Past Simple and Past Continuous. Use the time phrase in each row. Then press “Example” to compare.</p>
+<div class="actionrow" id="tenseSituations" style="margin:0 0 14px"></div>
+<div class="stat" style="margin-bottom:12px"><b style="font-size:1rem">Base idea:</b> <span id="tenseBase"></span></div>
+<div id="tenseRows"></div><p class="hint" style="margin-top:12px">Extra practice: choose another situation and try the four tenses again.</p></div>
+<div class="part sheet"><h3>Exercise 2. Finish the situation</h3><p class="task">Write the verb in Past Continuous. Use the form in brackets. The colour changes as soon as you type.</p><div id="grammarGaps"></div><p class="score" id="grammarGapsScore" aria-live="polite"></p><div class="actionrow"><button class="btn" id="grammarGapsReset">Try again</button></div></div>
+<div class="part sheet"><h3>Exercise 3. Put the words in order</h3><p class="task">Tap the words to build a correct sentence or question in Past Continuous. When you use every word, your answer is checked automatically. Tap a selected word to remove it.</p><div id="grammarPuzzle"></div><p class="score" id="grammarPuzzleScore" aria-live="polite"></p><div class="actionrow"><button class="btn" id="grammarPuzzleReset">Try again</button></div></div>
+</section>
+
+<section data-title="Listening"><h2>Listening: A day on the island</h2>
+<p class="task">Listen to a short travel story, then answer two questions and complete an IELTS-style note-taking task. You can listen more than once for practice.</p>
+<div class="sheet"><h3>Listen to the story</h3><p class="task">Choose an English voice available on your device. Use Play, Pause and Stop. The text stays hidden until you open the transcript.</p>
+<div class="listen-actions"><button class="btn solid" id="listenPlay">▶ Play / Resume</button><button class="btn" id="listenPause">❚❚ Pause</button><button class="btn" id="listenStop">■ Stop</button>
+<select id="listenVoice" aria-label="English voice"><option value="">Default English voice</option></select><select id="listenRate" aria-label="Listening speed"><option value="0.78">Slow</option><option value="0.90" selected>Normal</option><option value="1.0">Fast</option></select></div>
+<p class="listen-status" id="listenStatus" aria-live="polite">Ready to listen.</p><button class="btn" id="listenTranscriptButton" aria-expanded="false">Show transcript</button><div id="listenTranscript" class="hidden reading-text"></div></div>
+<div class="subnav" role="tablist"><button class="sub">Exercise 1</button><button class="sub">Exercise 2 · IELTS</button></div>
+<div class="part sheet"><h3>Exercise 1. Answer the questions</h3><p class="task">Answer in one or two sentences. Check your ideas with the model answers.</p><div id="listeningQ"></div></div>
+<div class="part sheet"><h3>Exercise 2. IELTS Listening — Note Completion</h3><p class="task">Complete the notes. Write <b>ONE WORD ONLY</b> in each gap. The answers are checked as you type.</p><div class="stat" style="font-family:var(--sans);font-size:.9rem"><b style="font-size:1rem">Weekend trip</b><br>Ella and Leo are talking about their weekend trip.</div>
+<div class="listen-notes" id="listeningNotes"></div><p class="score" id="listeningScore" aria-live="polite"></p><div class="actionrow"><button class="btn" id="listeningReset">Try again</button></div></div>
+</section>
+
+<section data-title="Speaking"><h2>Speaking</h2><p class="task">IELTS Speaking Part 2 · Take one minute to prepare, then speak for 1–2 minutes. Use Past Simple and Past Continuous where appropriate.</p>
+<div class="cue"><p class="topic">Describe an event you enjoyed.</p><p style="margin:0">You should say:</p><ul><li>what the event was and when it took place</li><li>who you were with</li><li>what people were doing there</li></ul><p style="margin:8px 0 0">and explain why you enjoyed it.</p></div>
+<div class="sheet"><h3>Plan your answer</h3><p class="task">Use these five steps. The examples are prompts to help you speak naturally.</p><ol class="planlist" id="plan"></ol></div>
+<div class="sheet"><h3>Linking words and useful phrases</h3><div class="phrasegrid" id="phrases"></div></div>
+<div class="sheet"><p class="task" style="margin-bottom:6px">Prepare for one minute (write key words only), then speak for up to two minutes.</p><button class="btn solid" id="tPrep">Preparation · 1 min</button><button class="btn solid" id="tTalk">Speech · 2 min</button><button class="btn" id="tStop">■ Stop</button><div class="clock" id="clock">1:00</div><div class="phase" id="phase"></div></div>
+<div class="sheet"><h3>If we have time</h3><ol class="qlist"><li>Do you prefer big events or small events?</li><li>What were people doing at the last event you visited?</li></ol></div>
+</section>
+<section data-title="Translation"><h2>Translation · Homework</h2><p class="task">Translate this short connected story into English, sentence by sentence. Use <b>Past Simple</b>, <b>Past Continuous</b> and words from this lesson. Press “EN” to check each sentence.</p><div class="sheet ttext" id="translationText"></div></section>
+</main>
+<script>
+(()=>{
+'use strict';
+const $=(s,root=document)=>root.querySelector(s),$$=(s,root=document)=>Array.from(root.querySelectorAll(s));
+const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s||'').toLowerCase().replace(/[’‘`]/g,"'").replace(/\s+/g,' ').replace(/[.!?;,]+$/,'').trim();
+let uid=0;const newId=()=>`z25_${++uid}`;
+function copyText(t,button){const done=()=>{const el=button.nextElementSibling;if(el)el.textContent='Copied!';setTimeout(()=>{if(el)el.textContent='';},1900);};const fallback=()=>{const temp=document.createElement('textarea');temp.value=t;document.body.appendChild(temp);temp.select();try{document.execCommand('copy');done();}catch(e){}temp.remove();};if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(done,fallback);else fallback();}
+const sections=$$('main > section'),tabs=$('#tabs');
+sections.forEach((section,i)=>{const b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.setAttribute('aria-selected',String(i===0));b.textContent=section.dataset.title;if(!i)section.classList.add('active');b.onclick=()=>{if('speechSynthesis'in window)window.speechSynthesis.cancel();sections.forEach(s=>s.classList.remove('active'));section.classList.add('active');$$('.tab',tabs).forEach(btn=>btn.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');if(section.dataset.title!=='Listening')listeningRunning=false;window.scrollTo(0,0);};tabs.appendChild(b);});
+sections.forEach(s=>{const subs=$$('.sub',s),parts=$$('.part',s);if(!subs.length)return;subs.forEach((b,i)=>b.onclick=()=>{parts.forEach((p,j)=>p.classList.toggle('active',i===j));subs.forEach((t,j)=>t.setAttribute('aria-selected',String(j===i)));});subs[0].click();});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-toggle]');if(!b)return;const target=document.getElementById(b.dataset.toggle);if(target)target.classList.toggle('hidden');});
+
+// Warm-up: a psychology conversation, no scores, labels or right/wrong choices.
+const psychQuestions=[
+{q:'You get a message: “We need to talk.” What is your first thought?',o:['Oh no! Is something wrong?','Maybe my friend has good news!'],follow:'Do you sometimes worry about messages like this?'},
+{q:'After a long, busy day, what helps you relax?',o:['Talking to someone','Spending some time alone'],follow:'Why does it help you?'},
+{q:'You need to remember five important things. What do you do?',o:['Make a list','Repeat the things in my head'],follow:'Does it usually work for you?'},
+{q:'A friend tells you about a problem. What do you do first?',o:['Listen carefully','Try to give advice'],follow:'Why do you choose this?'},
+];
+const psychSelected=Array(psychQuestions.length).fill(null);
+function drawPsych(){
+  $('#psychChoices').innerHTML=psychQuestions.map((item,i)=>`<div class="landmark-card"><div class="numtag">QUESTION ${i+1} / ${psychQuestions.length}</div><h3>${safe(item.q)}</h3><div class="options">${item.o.map((option,k)=>`<button data-psych="${i}" data-choice="${k}" aria-pressed="${psychSelected[i]===k}" class="${psychSelected[i]===k?'psych-chosen':''}">${safe(option)}</button>`).join('')}</div>${psychSelected[i]===null?'':`<p class="fact"><b>Let's talk:</b> ${safe(item.follow)}</p>`}</div>`).join('');
+}
+$('#psychChoices').addEventListener('click',e=>{const b=e.target.closest('[data-psych]');if(!b)return;psychSelected[+b.dataset.psych]=+b.dataset.choice;drawPsych();});drawPsych();
+
+// Exact homework text and answers carried from 23 Nov.
+const homework=[
+['Вчера мы готовили вечер путешествий в одном из дворцов Варшавы.','Yesterday we were preparing for a travel evening at a palace in Warsaw.'],
+['В два часа дня я проверяла фотографии островов для нашего сайта.','At two o’clock in the afternoon, I was checking photos of islands for our website.'],
+['В это время мой коллега разговаривал по-английски с гостем из Пекина.','At that moment, my colleague was speaking English with a guest from Beijing.'],
+['Когда организатор позвонил, я выбирала главную тему мероприятия.','When the organiser called, I was choosing the main topic of the event.'],
+['Он попросил меня ещё раз проверить информацию.','He asked me to check the information again.'],
+['После этого мы закончили работу, но я очень устала, потому что весь день была занята.','After that, we finished our work, but I was very tired because I was busy the whole day.']
+];
+$('#homeworkText').innerHTML=homework.map(([r,e])=>{const id=newId();return `<span>${safe(r)}</span> <button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en enout hidden">${safe(e)}</span> `;}).join('');
+
+// Exactly 21 assigned words/phrases, with English examples, IPA, and optional Russian translation.
+const vocab=[
+['current','ˈkʌrənt','happening now; of the present time','My current project is a website for a small café.','текущий, нынешний'],
+['topic','ˈtɒpɪk','a subject that people talk or write about','Our topic today is travel.','тема'],
+['tall','tɔːl','having a great height','There is a tall tower near the old palace.','высокий'],
+['to become','bɪˈkʌm','to begin to be something different','The weather became warmer in the afternoon.','становиться'],
+['to throw','θrəʊ','to move something through the air with your hand','The child threw a ball into the garden.','бросать'],
+['legend','ˈledʒənd','an old story that may not be completely true','The guide told us a legend about the palace.','легенда'],
+['symbol','ˈsɪmbəl','a thing or image that represents an idea or place','The panda is a well-known symbol of China.','символ'],
+['both','bəʊθ','the two people or things together','Both visitors enjoyed the tour.','оба, обе'],
+['to discuss smth','dɪˈskʌs ˈsʌmθɪŋ','to talk about something with another person','We discussed the design at work.','обсуждать что-либо'],
+['land','lænd','the ground, especially when it is not covered by water','After the boat trip, we were happy to be back on land.','суша, земля'],
+['island','ˈaɪlənd','land with water all around it','We spent a day on a small island.','остров'],
+['rat','ræt','a small animal with a long tail','A rat ran across the old garden.','крыса'],
+['to escape','ɪˈskeɪp','to get away from a place or situation','The rat escaped from its cage.','сбежать, выбраться'],
+['palace','ˈpælɪs','a large building connected with kings and queens','They visited a royal palace in the afternoon.','дворец'],
+['good','ɡʊd','of high quality; nice or enjoyable (adjective)','The tour was really good.','хороший'],
+['well','wel','in a successful or satisfactory way (adverb)','The guide spoke English very well.','хорошо'],
+['straight','streɪt','directly, without turning; not curved','Go straight and then turn left.','прямо; прямой'],
+['royal','ˈrɔɪəl','connected with a king or queen','We saw the royal rooms of the palace.','королевский'],
+['surrounded','səˈraʊndɪd','having things or people on every side','The palace was surrounded by trees.','окружённый'],
+['cage','keɪdʒ','a structure of bars or wires for an animal or bird','The bird was sleeping in its cage.','клетка'],
+['to ask smb to do smth','ɑːsk ˈsʌmbədi tə duː ˈsʌmθɪŋ','to ask another person to perform an action','My colleague asked me to check the map.','попросить кого-либо что-то сделать']
+];
+let wordVoice=null;
+const hasSpeech='speechSynthesis'in window;
+function allVoices(){return hasSpeech?window.speechSynthesis.getVoices():[];}
+function chooseWordVoice(){let vs=allVoices();return vs.find(v=>/^en-GB$/i.test(v.lang)&&/natural|online|premium/i.test(v.name))||vs.find(v=>/^en-GB$/i.test(v.lang))||vs.find(v=>/^en/i.test(v.lang)&&/natural|online|premium/i.test(v.name))||vs.find(v=>/^en/i.test(v.lang))||null;}
+function speakWord(w){if(!hasSpeech)return;window.speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(w.replace(/smb/g,'somebody').replace(/smth/g,'something'));u.lang='en-GB';u.voice=chooseWordVoice();u.rate=.88;window.speechSynthesis.speak(u);}
+$('#cards').innerHTML=vocab.map(([w,ipa,d,x,r],i)=>{const id=newId();return `<div class="card"><div class="w">${safe(w)}</div><div class="tr">/${safe(ipa)}/</div><p class="def">${safe(d)}</p><p class="ex2">${safe(x)}</p><button class="btn" data-word="${i}">▶ Listen</button><button class="btn" data-toggle="${id}">Tap for Russian</button> <span class="ru hidden" id="${id}">${safe(r)}</span></div>`;}).join('');
+$('#cards').onclick=e=>{const b=e.target.closest('[data-word]');if(b)speakWord(vocab[+b.dataset.word][0]);};
+
+// Exercise 1: contextual dialogues, short and natural, immediately checked.
+const vocabChoices=[
+{q:'A: What is the main ___ of the meeting?  B: The new website.',o:['cage','topic','rat'],c:1,why:'A topic is the subject of a discussion.'},
+{q:'A: What is your ___ project?  B: I’m designing a café website.',o:['current','royal','straight'],c:0,why:'Current means happening now.'},
+{q:'A: What was that beautiful building?  B: It was a ___ for the king.',o:['cage','palace','symbol'],c:1,why:'A palace is a large royal building.'},
+{q:'A: What did you do when it started raining?  B: We went back to ___.',o:['land','legend','topic'],c:0,why:'Land is dry ground, not water.'},
+{q:'A: What happened to the weather?  B: It began to ___ warmer.',o:['discuss','become','throw'],c:1,why:'Become warmer = start to be warmer.'},
+{q:'A: How did the guide speak English?  B: Very ___.',o:['good','well','royal'],c:1,why:'Well describes how somebody did something.'},
+{q:'A: Which designs do you like?  B: I like ___ of them.',o:['both','land','surrounded'],c:0,why:'Both means the two together.'}
+];
+let vcFirst=Array(vocabChoices.length).fill(null),vcCurrent=Array(vocabChoices.length).fill(null);
+function drawVocabChoices(){$('#vocabChoices').innerHTML=vocabChoices.map((x,i)=>`<div class="quizline"><div class="label">${i+1} / ${vocabChoices.length}</div><p class="dialogue-q">${safe(x.q)}</p><div class="options">${x.o.map((w,k)=>`<button data-vc="${i}" data-opt="${k}" class="${vcCurrent[i]===k?(k===x.c?'correct':'wrong'):''}">${safe(w)}</button>`).join('')}</div><p class="small-feedback ${vcCurrent[i]===null?'':vcCurrent[i]===x.c?'good':'bad'}">${vcCurrent[i]===null?'':vcCurrent[i]===x.c?'✓ Correct. '+safe(x.why):'Try another answer.'}</p></div>`).join('');let n=vcFirst.filter(x=>x!==null).length;$('#vocabScore').textContent=n?`Correct on the first try: ${vcFirst.filter((x,i)=>x===vocabChoices[i].c).length} / ${vocabChoices.length} (${n} answered)`:'';}
+$('#vocabChoices').onclick=e=>{const b=e.target.closest('[data-vc]');if(!b)return;let i=+b.dataset.vc,k=+b.dataset.opt;if(vcFirst[i]===null)vcFirst[i]=k;vcCurrent[i]=k;drawVocabChoices();};$('#vocabReset').onclick=()=>{vcFirst.fill(null);vcCurrent.fill(null);drawVocabChoices();};drawVocabChoices();
+
+const discussion=[
+'What <b>topic</b> do you like to <b>discuss</b> with your friends: films, travel or something else?',
+'What <b>symbol</b> of your city do you like best? Why?'
+];
+$('#discussion').innerHTML=discussion.map((s,i)=>`<div class="dl"><p><b>${i+1}.</b> ${s}</p></div>`).join('');
+
+// Exercise 2: one connected short story; all blanks can be checked independently.
+const v2=[
+{pre:'Our guide took us to a ',after:' palace in the city.',a:['royal']},
+{pre:'The palace had a very ',after:' tower.',a:['tall']},
+{pre:'The old building was ',after:' by a large green garden.',a:['surrounded']},
+{pre:'The guide told us a funny ',after:' about the palace.',a:['legend']},
+{pre:'The story was about a little ',after:' that lived in the kitchen.',a:['rat']},
+{pre:'It was sleeping in a ',after:' when a door opened.',a:['cage']},
+{pre:'The animal tried ',after:' and ran into the garden.',a:['to escape']},
+{pre:'The guide ',after:' close the door behind us.',a:['asked us to']},
+{pre:'At the end of the tour, we walked ',after:' to a café.',a:['straight']}
+];
+const bank=['rat','straight','surrounded','royal','to escape','tall','cage','legend','asked us to'];
+$('#vocabBank').innerHTML=bank.map(w=>`<span>${safe(w)}</span>`).join('');
+function renderV2(){$('#vocabStory').innerHTML=v2.map((x,i)=>`<div class="dl"><p><b>${i+1}.</b> ${safe(x.pre)} <input class="gap" id="v2_${i}" autocomplete="off" spellcheck="false" aria-label="Vocabulary word ${i+1}" /> ${safe(x.after)}</p><div class="small-feedback" id="v2_fb${i}"></div><button class="btn" data-answer-v2="${i}">Answer</button></div>`).join('');$('#vocabStoryScore').textContent='';}
+function checkV2(){let correct=0,done=0;v2.forEach((item,i)=>{const input=$('#v2_'+i),value=norm(input.value),ok=value&&item.a.some(a=>norm(a)===value);if(value)done++;if(ok)correct++;input.classList.toggle('okc',Boolean(ok));input.classList.toggle('badc',Boolean(value&&!ok));const fb=$('#v2_fb'+i);fb.textContent=!value?'':ok?'✓ Correct!':'Not quite — try again.';fb.className='small-feedback '+(!value?'':ok?'good':'bad');});$('#vocabStoryScore').textContent=done?`${correct} / ${v2.length} correct.`:'';}
+$('#vocabStory').addEventListener('input',e=>{if(e.target.matches('input.gap'))checkV2();});
+$('#vocabStory').addEventListener('click',e=>{const b=e.target.closest('[data-answer-v2]');if(!b)return;let i=+b.dataset.answerV2;$('#v2_'+i).value=v2[i].a[0];checkV2();});
+$('#vocabStoryCheck').onclick=checkV2;$('#vocabStoryReset').onclick=renderV2;$('#vocabStoryShow').onclick=()=>{v2.forEach((x,i)=>$('#v2_'+i).value=x.a[0]);checkV2();};renderV2();
+
+// Grammar speaking: one unchanged idea across all four tenses already studied.
+const tenseSets=[
+{label:'At work',base:'she / check / the tickets',answers:[
+['Present Simple','every morning','She checks the tickets every morning.'],
+['Present Continuous','now','She is checking the tickets now.'],
+['Past Simple','yesterday','She checked the tickets yesterday.'],
+['Past Continuous','at 6 p.m. yesterday','She was checking the tickets at 6 p.m. yesterday.']]},
+{label:'Web design',base:'I / work / on a website',answers:[
+['Present Simple','on Mondays','I work on a website on Mondays.'],
+['Present Continuous','now','I am working on a website now.'],
+['Past Simple','yesterday','I worked on a website yesterday.'],
+['Past Continuous','at 6 p.m. yesterday','I was working on a website at 6 p.m. yesterday.']]},
+{label:'Film night',base:'they / watch / a film',answers:[
+['Present Simple','every Friday','They watch a film every Friday.'],
+['Present Continuous','now','They are watching a film now.'],
+['Past Simple','last night','They watched a film last night.'],
+['Past Continuous','at 8 p.m. last night','They were watching a film at 8 p.m. last night.']]}
+];
+let chosenTenseSet=0;
+function drawTenses(){
+  $('#tenseSituations').innerHTML=tenseSets.map((item,i)=>`<button class="btn ${i===chosenTenseSet?'solid':''}" type="button" data-tense="${i}" aria-pressed="${i===chosenTenseSet}">${safe(item.label)}</button>`).join('');
+  const current=tenseSets[chosenTenseSet];$('#tenseBase').textContent=current.base;
+  $('#tenseRows').innerHTML=current.answers.map(([tense,when,answer],i)=>{const id=newId();return `<div class="dl"><p><b>${i+1}. ${safe(tense)}</b> <span class="hint">· ${safe(when)}</span></p><button class="btn" data-toggle="${id}" aria-controls="${id}">Example</button><span id="${id}" class="en hidden">${safe(answer)}</span></div>`;}).join('');
+}
+$('#tenseSituations').onclick=e=>{const b=e.target.closest('[data-tense]');if(!b)return;chosenTenseSet=+b.dataset.tense;drawTenses();};drawTenses();
+
+const grammarGaps=[
+{q:'At 9 p.m. yesterday, I ___ (read) a story about a palace.',a:['was reading']},
+{q:'When the guide arrived, the tourists ___ (take) photos.',a:['were taking']},
+{q:'While Mia was working, her colleagues ___ (discuss) the plans.',a:['were discussing']},
+{q:'The children ___ (not / sleep) when the rain started.',a:["weren't sleeping",'were not sleeping']},
+{q:'___ (you / walk) home at six o’clock yesterday?',a:['Were you walking']},
+{q:'What ___ (the actor / do) when the door opened?',a:['was the actor doing']}
+];
+function renderGaps(){$('#grammarGaps').innerHTML=grammarGaps.map((x,i)=>`<div class="dl"><p><b>${i+1}.</b> ${safe(x.q).replace('___',`<input id="gg${i}" class="gap" autocomplete="off" spellcheck="false" aria-label="Grammar answer ${i+1}" />`)}</p><div class="small-feedback" id="ggfb${i}"></div><button class="btn" data-ggans="${i}">Answer</button></div>`).join('');$('#grammarGapsScore').textContent='';}
+function checkGaps(){let n=0,done=0;grammarGaps.forEach((item,i)=>{let input=$('#gg'+i),value=norm(input.value),ok=value&&item.a.some(a=>norm(a)===value);if(value)done++;if(ok)n++;input.classList.toggle('okc',Boolean(ok));input.classList.toggle('badc',Boolean(value&&!ok));let fb=$('#ggfb'+i);fb.textContent=value?(ok?'✓ Correct!':'Try another form.') : '';fb.className='small-feedback '+(value?(ok?'good':'bad'):'');});$('#grammarGapsScore').textContent=done?`${n} / ${grammarGaps.length} correct.`:'';}
+$('#grammarGaps').addEventListener('input',e=>{if(e.target.matches('input.gap'))checkGaps();});
+$('#grammarGaps').addEventListener('click',e=>{const b=e.target.closest('[data-ggans]');if(!b)return;$('#gg'+b.dataset.ggans).value=grammarGaps[+b.dataset.ggans].a[0];checkGaps();});
+$('#grammarGapsReset').onclick=renderGaps;renderGaps();
+
+// Grammar 3: interactive word-order puzzles (new format compared with 23 Nov story gaps).
+const puzzles=[
+{word:['At eight o’clock,','Mia','was','reading','a legend.'],order:[2,4,0,3,1]},
+{word:['When','the guide','arrived,','we','were','taking','photos.'],order:[3,5,1,6,0,4,2]},
+{word:['While','I','was','working,','my friend','was','watching','a cartoon.'],order:[6,0,4,7,1,5,3,2]},
+{word:['The rats','weren’t','sleeping','at noon.'],order:[2,0,3,1]},
+{word:['Were','both visitors','looking','at the palace?'],order:[1,3,0,2]},
+{word:['What','were','you','doing','when','I','called?'],order:[4,3,6,0,2,5,1]}
+];
+const selected=puzzles.map(()=>[]);
+const originalOrder=puzzles.map(p=>p.order);
+function renderPuzzle(){let n=0,complete=0;$('#grammarPuzzle').innerHTML=puzzles.map((p,i)=>{let s=selected[i],finished=s.length===p.word.length,ok=finished&&s.every((index,k)=>index===k);if(finished)complete++;if(ok)n++;const remaining=originalOrder[i].filter(index=>!s.includes(index));return `<div class="dl"><span class="mini-label">Sentence ${i+1} of ${puzzles.length}</span><div class="puzzle-answer ${finished?(ok?'okc':'badc'):''}" aria-label="Your sentence">${s.length?s.map((index,pos)=>`<button class="word" data-remove="${i}" data-remove-pos="${pos}" title="Remove this word">${safe(p.word[index])}</button>`).join(''):'<span class="hint">Tap words below in the correct order…</span>'}</div><div class="puzzle-words">${remaining.map(index=>`<button class="word" data-puz="${i}" data-puz-word="${index}">${safe(p.word[index])}</button>`).join('')}</div><div class="puzzle-result">${finished?(ok?'✓ Correct — nice word order!':'Not quite. Tap a word above to fix the order.') : ''}</div><div class="actionrow"><button class="btn" data-puz-clear="${i}">Clear</button><button class="btn" data-puz-answer="${i}">Answer</button></div></div>`;}).join('');$('#grammarPuzzleScore').textContent=complete?`${n} / ${puzzles.length} correct (${complete} finished).`:'';}
+$('#grammarPuzzle').onclick=e=>{let b=e.target.closest('[data-puz-word]');if(b){selected[+b.dataset.puz].push(+b.dataset.puzWord);renderPuzzle();return;}b=e.target.closest('[data-remove-pos]');if(b){selected[+b.dataset.remove].splice(+b.dataset.removePos,1);renderPuzzle();return;}b=e.target.closest('[data-puz-clear]');if(b){selected[+b.dataset.puzClear]=[];renderPuzzle();return;}b=e.target.closest('[data-puz-answer]');if(b){selected[+b.dataset.puzAnswer]=puzzles[+b.dataset.puzAnswer].word.map((_,k)=>k);renderPuzzle();}};
+$('#grammarPuzzleReset').onclick=()=>{selected.forEach((_,i)=>selected[i]=[]);renderPuzzle();};renderPuzzle();
+
+// Listening: browser's installed English voices. No bundled low-quality synthesised MP3.
+const listeningSentences=[
+'Last Saturday, Ella visited a small island with her friend Leo.',
+'They wanted to see an old royal palace.',
+'At eleven o’clock, they were walking straight along the main road, and a guide was telling a legend about the palace.',
+'According to the story, a rat escaped from a cage in the royal kitchen many years ago.',
+'Ella didn’t know if the legend was true, but she liked it.',
+'At twelve o’clock, they were taking photos when it started to rain.',
+'Both of them ran into a small shop.',
+'While Leo was buying water, Ella was checking the map on her phone.',
+'She asked him to choose a place for lunch.',
+'They ate at a café near the palace.',
+'In the afternoon, the weather became sunny again, and they went back to the palace.',
+'Ella thought the trip was good, and she spoke English with the guide quite well.'
+];
+$('#listenTranscript').innerHTML=listeningSentences.map(x=>`<p>${safe(x)}</p>`).join('');
+$('#listenTranscriptButton').onclick=()=>{const hidden=$('#listenTranscript').classList.toggle('hidden');$('#listenTranscriptButton').textContent=hidden?'Show transcript':'Hide transcript';$('#listenTranscriptButton').setAttribute('aria-expanded',String(!hidden));};
+let listeningRunning=false,listeningPaused=false,listenSeq=0,listenIndex=0;
+function setListeningStatus(msg,warn=false){$('#listenStatus').textContent=msg;$('#listenStatus').classList.toggle('warn',warn);}
+function populateListeningVoices(){let old=$('#listenVoice').value;let vs=allVoices().filter(v=>/^en/i.test(v.lang));let sorted=[...vs].sort((a,b)=>Number(/natural|online|premium/i.test(b.name))-Number(/natural|online|premium/i.test(a.name)));$('#listenVoice').innerHTML='<option value="">Best available English voice</option>'+sorted.map(v=>`<option value="${safe(v.name+'|'+v.lang)}">${safe(v.name)} (${safe(v.lang)})</option>`).join('');if([...$('#listenVoice').options].some(o=>o.value===old))$('#listenVoice').value=old;}
+if(hasSpeech){populateListeningVoices();window.speechSynthesis.addEventListener?.('voiceschanged',populateListeningVoices);}
+function listenVoice(){let all=allVoices().filter(v=>/^en/i.test(v.lang));let wanted=$('#listenVoice').value;if(wanted){const exact=all.find(v=>v.name+'|'+v.lang===wanted);if(exact)return exact;}return all.find(v=>/natural|online|premium/i.test(v.name))||all.find(v=>v.lang==='en-GB')||all[0]||null;}
+function cancelListening(){listeningRunning=false;listeningPaused=false;listenSeq++;listenIndex=0;if(hasSpeech)window.speechSynthesis.cancel();}
+function speakListening(seq){if(!hasSpeech||!listeningRunning||seq!==listenSeq)return;if(listenIndex>=listeningSentences.length){listeningRunning=false;listeningPaused=false;setListeningStatus('Finished. You can play the story again.');return;}let u=new SpeechSynthesisUtterance(listeningSentences[listenIndex]);u.lang='en-GB';u.rate=Number($('#listenRate').value);const voice=listenVoice();if(voice)u.voice=voice;u.onend=()=>{if(seq!==listenSeq||!listeningRunning)return;listenIndex++;setListeningStatus(`Listening… sentence ${Math.min(listenIndex+1,listeningSentences.length)} of ${listeningSentences.length}`);speakListening(seq);};u.onerror=e=>{if(seq!==listenSeq)return;if(e.error==='canceled'||e.error==='interrupted')return;cancelListening();setListeningStatus('Audio could not play. Try a different English voice or use the transcript.',true);};setListeningStatus(`Listening… sentence ${listenIndex+1} of ${listeningSentences.length}`);window.speechSynthesis.speak(u);}
+$('#listenPlay').onclick=()=>{if(!hasSpeech){setListeningStatus('Your browser does not support audio voices. Use the transcript.',true);return;}if(listeningRunning&&listeningPaused){listeningPaused=false;window.speechSynthesis.resume();setListeningStatus('Playing again…');return;}if(listeningRunning){return;}cancelListening();listenIndex=0;listeningRunning=true;let seq=listenSeq;speakListening(seq);};
+$('#listenPause').onclick=()=>{if(!hasSpeech||!listeningRunning||listeningPaused)return;window.speechSynthesis.pause();listeningPaused=true;setListeningStatus('Paused. Press Play / Resume to continue.');};
+$('#listenStop').onclick=()=>{cancelListening();setListeningStatus('Stopped. Press Play to start again.');};
+$('#listenVoice').onchange=()=>{if(listeningRunning){cancelListening();setListeningStatus('Voice changed. Press Play to start again.');}};
+$('#listenRate').onchange=()=>{if(listeningRunning){cancelListening();setListeningStatus('Speed changed. Press Play to start again.');}};
+
+const lq=[
+['Where did Ella and Leo want to go?','They wanted to see an old royal palace on the island.'],
+['Why did they run into a shop?','They ran into the shop because it started to rain.']
+];
+$('#listeningQ').innerHTML=lq.map(([q,a],i)=>{const id=newId();return `<div class="dl"><p><b>${i+1}.</b> ${safe(q)}</p><button class="btn" data-toggle="${id}">Answer</button> <span id="${id}" class="en hidden">${safe(a)}</span></div>`;}).join('');
+const listeningNotes=[
+['Destination: a small ','', 'island'],
+['At eleven: walking along the main ','', 'road'],
+['An animal in the legend: a ','', 'rat'],
+['At twelve, it started to ','', 'rain'],
+['Leo was buying ',' when Ella was checking the map.', 'water'],
+['After lunch, they went back to the ','', 'palace']
+];
+function renderNotes(){$('#listeningNotes').innerHTML=listeningNotes.map(([pre,after],i)=>`<div class="listen-note"><b>${i+1}.</b> ${safe(pre)}<input class="gap" id="ln${i}" aria-label="Listening note ${i+1}" autocomplete="off" spellcheck="false" />${safe(after)}<div class="fb" id="lnfb${i}"></div><button class="btn" data-lnans="${i}">Answer</button></div>`).join('');$('#listeningScore').textContent='';}
+function checkNotes(){let correct=0,filled=0;listeningNotes.forEach((item,i)=>{let inp=$('#ln'+i),v=norm(inp.value),ok=v===norm(item[2]);if(v)filled++;if(ok)correct++;inp.classList.toggle('okc',ok);inp.classList.toggle('badc',Boolean(v&&!ok));const fb=$('#lnfb'+i);fb.textContent=v?(ok?'✓ Correct':'Try again. Listen for one word.') : '';fb.className='fb '+(v?(ok?'okc':'badc'):'');});$('#listeningScore').textContent=filled?`${correct} / ${listeningNotes.length} correct.`:'';}
+$('#listeningNotes').addEventListener('input',e=>{if(e.target.matches('input.gap'))checkNotes();});$('#listeningNotes').addEventListener('click',e=>{let b=e.target.closest('[data-lnans]');if(!b)return;let i=+b.dataset.lnans;$('#ln'+i).value=listeningNotes[i][2];checkNotes();});$('#listeningReset').onclick=renderNotes;renderNotes();
+
+// Speaking — fresh card with the familiar five-step plan and IELTS timer.
+const plan=[
+['Start — name the event','I’d like to talk about a concert / exhibition / event I went to last …'],
+['Where, when and with whom','It took place in … I went there with …'],
+['What was happening','When we arrived, people were … The organisers were …'],
+['Your favourite moment','Then … happened. My favourite part was …'],
+['Explain why you enjoyed it','I really enjoyed the event because … That’s why I remember it so well.']
+];
+const phrases=[
+['Starting','I’d like to talk about… · The event I chose was…'],
+['Describing the scene','When I arrived, people were… · While we were…, …'],
+['Sequencing','First… · Then… · After that… · Finally…'],
+['Adding','Also… · Another thing I liked was…'],
+['Giving a reason','because… · so… · That’s why…'],
+['Finishing','In the end… · Overall, it was a good day.']
+];
+$('#plan').innerHTML=plan.map(([t,x])=>`<li><div><b>${safe(t)}</b><em>${safe(x)}</em></div></li>`).join('');
+$('#phrases').innerHTML=phrases.map(([t,x])=>`<div class="phraseitem"><b>${safe(t)}</b><p>${safe(x)}</p></div>`).join('');
+let timer=null;const fmt=n=>Math.floor(n/60)+':'+String(n%60).padStart(2,'0');const stopTimer=()=>{if(timer){clearInterval(timer);timer=null;}};
+function runTimer(sec,label,done){stopTimer();let n=sec;$('#clock').textContent=fmt(n);$('#phase').textContent=label;timer=setInterval(()=>{n=Math.max(0,n-1);$('#clock').textContent=fmt(n);if(n===0){stopTimer();$('#phase').textContent=done;}},1000);}
+$('#tPrep').onclick=()=>runTimer(60,'Preparation: write key words…','Time to speak!');$('#tTalk').onclick=()=>runTimer(120,'Speaking…','Time is up. Thank you!');$('#tStop').onclick=()=>{stopTimer();$('#phase').textContent='Stopped';};
+
+// Translation: a short connected story with Past Simple, Past Continuous and assigned vocabulary.
+const translation=[
+['Вчера в два часа дня мы гуляли возле королевского дворца на острове.','At two o’clock yesterday afternoon, we were walking near a royal palace on an island.'],
+['Наш гид рассказывал интересную легенду о крысе.','Our guide was telling an interesting legend about a rat.'],
+['Много лет назад эта крыса сбежала из клетки.','Many years ago, the rat escaped from a cage.'],
+['Пока я проверяла карту, мой друг фотографировал высокую башню.','While I was checking the map, my friend was taking photos of a tall tower.'],
+['Потом мы обсуждали эту историю, и гид попросил нас идти прямо.','Then we discussed the story, and the guide asked us to go straight.'],
+['Экскурсия была хорошей, и гид очень хорошо говорил по-английски.','The tour was good, and the guide spoke English very well.']
+];
+$('#translationText').innerHTML=translation.map(([ru,en])=>{const id=newId();return `<span>${safe(ru)}</span> <button class="btn" data-toggle="${id}">EN</button><span id="${id}" class="en enout hidden">${safe(en)}</span> `;}).join('');
+})();
+</script></body></html>
