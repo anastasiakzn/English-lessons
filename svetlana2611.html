@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>English Lesson — Svetlana — 26.11.2026</title>
+<style>
+
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1e3a8a;
+            --primary-light: #eff6ff;
+            --secondary: #0e9f6e;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --badge-bg: #fef3c7;
+            --badge-text: #92400e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 25px 15px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        h1 { color: var(--primary); font-size: 1.85rem; margin-bottom: 8px; }
+        .header-meta { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+        .tab-btn {
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #475569;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        .tab-btn:hover { background: #e2e8f0; }
+        .tab-btn.active { background: #1e293b; color: white; border-color: #1e293b; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Section Cards & Titles */
+        .section-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: 1.35rem;
+            color: var(--text-main);
+            margin-bottom: 18px;
+            font-weight: 700;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 5px; height: 22px;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+        .ex-title { margin-bottom: 12px; color: var(--primary); font-size: 1.1rem; }
+        .hint-notice { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; }
+
+        .badge {
+            display: inline-block;
+            background-color: var(--badge-bg);
+            color: var(--badge-text);
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        /* Warm-up Box */
+        .warmup-box {
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+        .idiom { font-size: 1.5rem; font-weight: 700; color: var(--primary-dark); margin: 6px 0 10px; }
+
+        .action-btn {
+            background: #e0e7ff;
+            color: #3730a3;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+        .action-btn:hover { background: #c7d2fe; }
+
+        .hidden-panel {
+            display: none;
+            color: #1e1b4b;
+            font-size: 0.92rem;
+            margin-top: 12px;
+            padding: 14px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #c7d2fe;
+            line-height: 1.6;
+        }
+
+        /* Reading text */
+        .reading-text {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px 26px;
+            font-size: 1.02rem;
+            line-height: 1.85;
+            margin-bottom: 26px;
+        }
+        .reading-text h4 { font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 12px; }
+        .reading-text p { margin-bottom: 12px; }
+        .reading-text p:last-child { margin-bottom: 0; }
+        .player-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-bottom: 14px;
+            margin-right: 6px;
+        }
+        .player-btn:hover { background-color: var(--primary-dark); }
+
+        /* Quiz Items */
+        .quiz-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 15px;
+        }
+        .quiz-question { font-weight: 600; margin-bottom: 10px; font-size: 0.98rem; }
+        .quiz-choices { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-choices.row { flex-direction: row; flex-wrap: wrap; }
+        .choice-btn {
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            background: #ffffff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.92rem;
+            text-align: left;
+            transition: all 0.2s;
+        }
+        .choice-btn:hover { border-color: var(--primary); }
+        .choice-btn.correct {
+            background-color: var(--accent-green) !important;
+            color: white !important;
+            border-color: var(--accent-green) !important;
+        }
+        .choice-btn.incorrect {
+            background-color: var(--accent-red) !important;
+            color: white !important;
+            border-color: var(--accent-red) !important;
+        }
+
+        .live-input {
+            min-width: 120px;
+            padding: 6px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .live-input.correct {
+            border-color: var(--accent-green) !important;
+            background-color: #ecfdf5 !important;
+            color: #065f46;
+        }
+        .wide-input { width: 100%; margin-top: 8px; padding: 10px 14px; }
+
+        select.match-select {
+            padding: 7px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.93rem;
+            background: #fff;
+            max-width: 100%;
+            margin-top: 6px;
+        }
+        select.match-select.correct { border-color: var(--accent-green); background: #ecfdf5; color: #065f46; }
+        select.match-select.incorrect { border-color: var(--accent-red); background: #fef2f2; color: #991b1b; }
+
+        .btn-peek {
+            background: #e2e8f0;
+            color: #334155;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: background 0.2s;
+            white-space: nowrap;
+            margin-left: 4px;
+        }
+        .btn-peek:hover { background: #cbd5e1; }
+
+        .answer-reveal {
+            display: none;
+            width: 100%;
+            font-size: 0.9rem;
+            color: #065f46;
+            font-weight: 600;
+            margin-top: 6px;
+            padding: 8px 12px;
+            background: #ecfdf5;
+            border-radius: 6px;
+            border: 1px solid #a7f3d0;
+            line-height: 1.6;
+        }
+
+        /* Grammar Table */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 20px 0;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+        }
+        .grammar-table th, .grammar-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        .grammar-table th { background-color: var(--primary); color: white; }
+
+        .tip-box {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 0.93rem;
+            margin-top: 10px;
+        }
+
+        ol.grammar-list { padding-left: 22px; }
+        ol.grammar-list li { margin-bottom: 20px; line-height: 2.1; font-size: 0.98rem; }
+
+        /* Word bank */
+        .word-bank {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 20px;
+        }
+        .word-chip {
+            background: #fff;
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
+            padding: 4px 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        /* Vocabulary Flip Cards */
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+            gap: 16px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .flip-card { background-color: transparent; height: 195px; perspective: 1000px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+        .flip-card-front { background-color: #ffffff; color: var(--text-main); }
+        .v-word { font-size: 1.05rem; font-weight: 700; color: var(--primary); }
+        .v-ipa { font-size: 0.82rem; color: #64748b; margin: 4px 0; }
+        .v-def { font-size: 0.76rem; color: #475569; font-style: italic; margin-top: 3px; }
+        .v-say {
+            margin-top: 6px;
+            background: #f1f5f9; border: 1px solid #cbd5e1;
+            border-radius: 12px; padding: 1px 9px;
+            font-size: 0.78rem; cursor: pointer;
+        }
+        .flip-card-back {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+            font-size: 0.86rem;
+        }
+        .v-trans { font-weight: 700; font-size: 0.96rem; margin-bottom: 6px; }
+        .v-ex { font-size: 0.76rem; font-style: italic; color: #dbeafe; line-height: 1.35; }
+        .v-note { font-size: 0.7rem; color: #bfdbfe; margin-top: 5px; }
+
+        /* Homework check */
+        .hw-item {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+        }
+        .hw-ru { font-weight: 600; font-size: 0.97rem; }
+
+        /* Translation story */
+        .story-container {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 26px;
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: var(--text-main);
+        }
+        .inline-btn {
+            background: #eef1f6;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+            user-select: none;
+            display: inline-block;
+            transition: all 0.2s;
+            vertical-align: middle;
+        }
+        .inline-btn:hover { background: #cbd5e1; }
+        .inline-en {
+            display: none;
+            color: #1d4ed8;
+            font-weight: 600;
+            background-color: #dbeafe;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-left: 4px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 1.5rem; }
+            .section-card { padding: 16px; }
+        }
+            /* ---- additions 01.10 ---- */
+        .say-btn {
+            background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 12px;
+            padding: 0 8px; font-size: 0.8rem; cursor: pointer; margin-left: 4px;
+            vertical-align: middle; line-height: 1.6;
+        }
+        .say-btn:hover { background: #e2e8f0; }
+        .ex-card { position: relative; }
+        .item { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; line-height: 2.1; }
+        .item-num { font-weight: 700; color: var(--primary); margin-right: 4px; }
+        .btn-check {
+            background: var(--primary); color: #fff; border: none; padding: 6px 12px;
+            border-radius: 6px; cursor: pointer; font-size: 0.82rem; font-weight: 600; margin-left: 4px;
+        }
+        .btn-check:hover { background: var(--primary-dark); }
+        .feedback { display: none; margin-top: 8px; padding: 8px 12px; border-radius: 6px; font-size: 0.9rem; line-height: 1.6; }
+        .feedback.ok { display: block; background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; }
+        .feedback.bad { display: block; background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+        .rus-btn {
+            background: #fff; border: 1px solid #cbd5e1; color: #475569; font-size: 0.7rem; font-weight: 700;
+            padding: 1px 6px; border-radius: 4px; cursor: pointer; margin-left: 6px; vertical-align: middle;
+        }
+        .rus-text { display: none; color: #7f1d1d; margin-top: 4px; font-style: italic; }
+        .copy-btn {
+            background: #fff; border: 1px dashed var(--primary); color: var(--primary);
+            padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; margin-top: 6px;
+        }
+        .copy-btn:hover { background: var(--primary-light); }
+        .copy-msg { margin-left: 8px; font-size: 0.85rem; color: var(--secondary); font-weight: 600; }
+        .live-input.wrong { border-color: var(--accent-red); background: #fef2f2; }
+
+        /* dialogue */
+        .dialogue-line { margin-bottom: 6px; }
+        .sp { font-weight: 700; color: var(--primary-dark); }
+        .dialogue-line.speaking { background: #fef9c3; border-radius: 4px; }
+        .order-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+        .order-row select { padding: 5px 8px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; }
+        .order-row select.correct { border-color: var(--accent-green); background: #ecfdf5; }
+        .order-row select.incorrect { border-color: var(--accent-red); background: #fef2f2; }
+
+        /* sentence builder */
+        .chip-pool, .chip-answer { display: flex; flex-wrap: wrap; gap: 6px; min-height: 40px; padding: 6px; border-radius: 8px; }
+        .chip-answer { background: #fff; border: 2px dashed #cbd5e1; margin-bottom: 8px; }
+        .chip-answer.correct { border-color: var(--accent-green); background: #ecfdf5; }
+        .chip-answer.incorrect { border-color: var(--accent-red); background: #fef2f2; }
+        .chip {
+            background: #e0e7ff; color: #3730a3; border: none; border-radius: 6px; padding: 4px 10px;
+            font-size: 0.92rem; font-weight: 600; cursor: pointer; line-height: 1.5;
+        }
+        .chip:hover { background: #c7d2fe; }
+        .btn-reset { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; padding: 5px 10px; border-radius: 6px; cursor: pointer; font-size: 0.82rem; font-weight: 600; }
+
+        /* spot the mistake */
+        .spot-words { display: flex; flex-wrap: wrap; gap: 5px; }
+        .spot-word {
+            background: #fff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 2px 9px;
+            cursor: pointer; font-size: 0.97rem; line-height: 1.7;
+        }
+        .spot-word:hover { border-color: var(--primary); }
+        .spot-word.found { background: var(--accent-green); color: #fff; border-color: var(--accent-green); text-decoration: line-through; }
+        .spot-word.miss { background: var(--accent-red); color: #fff; border-color: var(--accent-red); }
+        .inline-btn.en { min-width: 30px; text-align: center; }
+        textarea.free { width: 100%; min-height: 70px; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.95rem; margin-top: 8px; }
+        .match-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 14px; margin-bottom: 10px; }
+        .match-col { display: flex; flex-direction: column; gap: 8px; }
+        .match-btn { text-align: left; padding: 9px 12px; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; cursor: pointer; font-size: 0.93rem; font-weight: 600; color: var(--primary-dark); }
+        .match-btn.def { font-weight: 400; color: var(--text-main); }
+        .match-btn:hover { border-color: var(--primary); }
+        .match-btn.active { background: #e0e7ff; border-color: var(--primary); }
+        .match-btn.done { background: #ecfdf5; border-color: var(--accent-green); color: #065f46; cursor: default; }
+        .match-btn.miss { background: #fef2f2; border-color: var(--accent-red); }
+        select.match-select { margin: 2px 0; }
+        @media (max-width: 600px) { .match-grid { grid-template-columns: 1fr; } }
+        .tt-ru { font-size: 0.82rem; color: var(--text-muted); }
+        .tt-ex { background: #f8fafc; font-size: 0.92rem; }
+        .inline-ru { display: none; color: #7c2d12; background: #fff7ed; padding: 1px 6px; border-radius: 4px; font-size: 0.9rem; font-style: italic; }
+        .reading-text .rus-btn { margin-left: 2px; margin-right: 2px; }
+        .hw-sentence-block { margin-bottom: 14px; }
+        .hw-sentence-block label { display: block; font-weight: 600; font-size: 0.9rem; color: #475569; margin-bottom: 6px; }
+        .hw-sentence-block input { width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; }
+        .inline-choice { display: inline-flex; flex-wrap: wrap; gap: 3px; align-items: center; background: #f1f5f9; border-radius: 6px; padding: 1px 4px; margin: 0 3px; }
+        .ic-btn { background: #fff; border: 1px solid #cbd5e1; border-radius: 5px; padding: 0 8px; font-size: 0.92rem; cursor: pointer; line-height: 1.8; }
+        .ic-btn:hover { border-color: var(--primary); }
+        .ic-btn.correct { background: var(--accent-green); color: #fff; border-color: var(--accent-green); }
+        .ic-btn.incorrect { background: var(--accent-red); color: #fff; border-color: var(--accent-red); }
+        .ic-sep { color: #94a3b8; }
+        .topic-row { display: block; padding: 6px 10px; border-radius: 6px; margin-bottom: 4px; cursor: pointer; border: 1px solid transparent; }
+        .topic-row input { margin-right: 8px; transform: scale(1.15); }
+        .topic-row.ok { background: #ecfdf5; border-color: #a7f3d0; }
+        .topic-row.bad { background: #fef2f2; border-color: #fecaca; }
+        .notes-card { background: #fffef5; border: 1px solid #fde68a; border-radius: 10px; padding: 14px; }
+        .notes-card .item { background: transparent; border: none; border-bottom: 1px dashed #fde68a; border-radius: 0; margin-bottom: 4px; font-family: 'Segoe Print', 'Comic Sans MS', 'Segoe UI', sans-serif; }
+        .base-word { display: inline-block; background: #e0e7ff; color: #3730a3; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; padding: 1px 8px; border-radius: 4px; margin-left: 6px; }
+        .num-badge { display: inline-block; min-width: 92px; text-align: center; background: var(--primary); color: #fff; font-weight: 700; border-radius: 6px; padding: 3px 10px; margin-right: 8px; }
+        .ru-hint { color: #92400e; font-style: italic; font-size: 0.9rem; }
+        .email-card { background: #fff; border: 1px solid var(--border-color); border-left: 4px solid var(--primary); border-radius: 8px; padding: 20px 22px; line-height: 2.3; font-size: 0.98rem; }
+        .email-card select.match-select { margin: 0 3px; padding: 3px 6px; }
+        .gap-num { display: inline-block; background: var(--primary); color: #fff; font-size: 0.7rem; font-weight: 700; border-radius: 50%; width: 18px; height: 18px; line-height: 18px; text-align: center; vertical-align: middle; }
+        .ref-word { background: #fef3c7; padding: 0 3px; border-radius: 3px; }
+        .two-sent { margin-top: 4px; line-height: 1.8; }
+        .q-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+        .q-card { height: 130px; border-radius: 10px; cursor: pointer; position: relative; }
+        .q-front, .q-back { position: absolute; inset: 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; transition: opacity 0.35s; }
+        .q-front { background: var(--primary); color: #fff; font-size: 2rem; font-weight: 700; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+        .q-front:hover { background: var(--primary-dark); }
+        .q-back { background: var(--primary-light); border: 1px solid #bfdbfe; color: var(--text-main); font-size: 0.98rem; font-weight: 600; opacity: 0; }
+        .q-card.open .q-front { opacity: 0; pointer-events: none; }
+        .q-card.open .q-back { opacity: 1; }
+    
+
+/* New lesson components; original design retained */
+.player-card {border:1px solid var(--border-color); background:#f8fafc; border-radius:12px; padding:19px 20px; margin-bottom:20px;}
+.audio-bar {width:100%; margin:12px 0; display:block;}
+.speed-btn {border:1px solid #cbd5e1; background:white; color:var(--text-main); font-weight:600; cursor:pointer; padding:6px 12px; border-radius:7px; margin-right:6px;}
+.speed-btn.active {background:var(--primary); color:white; border-color:var(--primary);}
+.timeline-options {display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:10px; margin-top:12px;}
+.timeline-card {background:white; text-align:left; padding:15px 16px; border:1px solid #cbd5e1; border-radius:10px; cursor:pointer; font:inherit; color:inherit; transition:transform .1s,border-color .15s;}
+.timeline-card:hover {border-color:var(--primary); transform:translateY(-1px);}
+.timeline-card:disabled {opacity:.45; cursor:default; transform:none;}
+.timeline-selected {display:flex; flex-wrap:wrap; gap:8px; min-height:60px; padding:12px; border-radius:9px; background:var(--primary-light); border:1px dashed #93c5fd; margin:15px 0 12px;}
+.timeline-pill {border:1px solid #93c5fd; background:#fff; border-radius:20px; color:#1e3a8a; padding:7px 12px; cursor:pointer; font:inherit; font-size:.87rem;}
+.timeline-pill.good {border-color:var(--accent-green); background:#ecfdf5; color:#065f46;}
+.timeline-pill.bad {border-color:var(--accent-red); background:#fef2f2; color:#991b1b;}
+.note-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:10px;}
+.note-box {border:1px solid var(--border-color); border-radius:10px; padding:15px; background:#f8fafc;}
+.note-box label {display:block; font-weight:600; margin-bottom:10px;}
+.note-box input {width:100%; min-width:0;}
+.note-box .answer-reveal {margin-top:8px;}
+.exercise-toolbar {display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin:16px 0 8px;}
+.exercise-toolbar .btn-check {margin-left:0; padding:10px 16px;}
+.exercise-toolbar .btn-reset {padding:10px 14px;}
+.transcript {margin-top:12px; border:1px solid var(--border-color); border-radius:10px; padding:14px 18px; background:#fff;}
+.transcript summary {cursor:pointer; color:var(--primary-dark); font-weight:700;}
+.transcript p {margin-top:12px; line-height:1.75;}
+.transcript strong {color:var(--primary-dark);}
+.grammar-intro {padding:12px 16px; border:1px solid #dbeafe; border-radius:8px; background:#eff6ff; margin-bottom:18px; font-size:.91rem;}
+.correction-card {border:1px solid var(--border-color); border-radius:10px; padding:18px; margin-bottom:12px; background:#f8fafc;}
+.correction-card p {margin-bottom:8px;}
+.correction-card .wide-input {margin:0; max-width:360px;}
+.correction-card .feedback {margin-top:9px;}
+.vocab-bank {display:flex; flex-wrap:wrap; gap:8px; border:1px solid var(--border-color); border-radius:11px; background:#f1f5f9; padding:15px; margin:12px 0 18px;}
+.bank-btn {border:1px solid #bfdbfe; background:white; color:#1e3a8a; padding:8px 11px; font-size:.88rem; font-weight:600; border-radius:18px; cursor:pointer;}
+.bank-btn:hover {border-color:var(--primary);}
+.bank-btn:disabled {opacity:.36; cursor:default;}
+.bank-btn.active {background:#1e3a8a; color:white;}
+.story-gap {border:1px dashed #60a5fa; color:#1d4ed8; min-width:115px; margin:0 4px; padding:4px 9px; border-radius:5px; font-weight:600; cursor:pointer; font:inherit; background:#eff6ff;}
+.story-gap.has-word {border:1px solid #bfdbfe; background:#dbeafe; color:#1e3a8a;}
+.story-gap.good {background:#ecfdf5; border:1px solid #34d399; color:#065f46;}
+.story-gap.bad {background:#fef2f2; border:1px solid #f87171; color:#991b1b;}
+.vocab-story {line-height:2.75; font-size:1.02rem;}
+.vocab-story p {margin-bottom:13px;}
+.word-count {display:inline-block; color:#64748b; font-size:.82rem; font-weight:600; margin-left:9px;}
+.reference-note {font-size:.81rem; color:#64748b; margin-top:15px;}
+.reference-note a {color:var(--primary);}
+@media (max-width:600px){ .vocab-story{line-height:2.8}.story-gap{min-width:80px}.player-card{padding:13px}.timeline-options{grid-template-columns:1fr} }
+
+/* Browser English listening voices — natural voice preferred over robotic backup */
+.tts-voice-controls {border:1px solid #bfdbfe; background:#eff6ff; border-radius:10px; padding:16px 18px; margin:12px 0 8px;}
+.tts-voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:15px;}
+.tts-voice-grid label{font-size:.85rem;color:#1e3a8a;display:flex;flex-direction:column;gap:5px;}
+.tts-voice-grid select{border:1px solid #cbd5e1;background:white;padding:9px 10px;border-radius:7px;color:#1e293b;width:100%;font-size:.86rem;}
+.tts-transport{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:10px;}
+.tts-transport button{border-radius:7px;cursor:pointer;font-size:.88rem;padding:9px 15px;font-weight:600;}
+.tts-transport-main{background:var(--primary);color:white;border:1px solid var(--primary);}
+.tts-transport-main:hover{background:var(--primary-dark);}
+.tts-transport-secondary{background:white;color:#1e3a8a;border:1px solid #bfdbfe;}
+.tts-transport-secondary:hover{background:#dbeafe;}
+.tts-progress{font-size:.83rem;color:#475569;min-height:22px;margin:5px 0 10px;}
+.tts-speed-row{display:flex;gap:5px;align-items:center;flex-wrap:wrap;}
+.tts-backup{margin-top:12px;border:1px dashed #cbd5e1;background:#f8fafc;border-radius:7px;padding:12px 15px;}
+.tts-backup summary{font-size:.85rem;color:#64748b;cursor:pointer;}
+@media(max-width:600px){.tts-voice-grid{grid-template-columns:1fr}.tts-voice-controls{padding:14px 12px}.tts-transport button{flex:1}}
+
+
+
+/* Updated lesson components */
+:root{color-scheme:light}
+.header-meta{margin-top:4px}
+.section-card .ex-title{margin-top:2px}
+.lesson-pill{display:inline-flex;align-items:center;gap:6px;color:#64748b;background:#f1f5f9;border-radius:999px;font-size:.8rem;padding:4px 12px;margin-bottom:14px}
+.warmup-box .professional-line{font-size:1.14rem;line-height:1.8;font-weight:600;color:#1e3a8a}
+.warmup-box button{margin-bottom:0}
+.hw-entry{background:#f8fafc;border:1px solid #e2e8f0;border-radius:9px;padding:14px 17px;margin-bottom:12px}
+.hw-entry .hw-ru{line-height:1.7;font-weight:550}
+.hw-entry .answer-reveal{margin-top:9px;font-weight:500}
+.paragraph-tag{display:inline-flex;justify-content:center;align-items:center;width:27px;height:27px;margin-right:10px;background:#dbeafe;color:#1e40af;border-radius:8px;font-weight:750;flex-shrink:0}
+.paragraph-row{display:flex;margin-bottom:16px;align-items:flex-start}
+.paragraph-row:last-child{margin-bottom:0}
+.paragraph-row>p{margin:0}
+.answer-choices{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.answer-choices>button{min-width:44px;text-align:center}
+.item-feedback{display:none;font-size:.88rem;margin-top:9px;line-height:1.55}
+.item-feedback.ok{display:block;color:#047857}
+.item-feedback.bad{display:block;color:#b91c1c}
+.input-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.input-row .live-input{flex:1;min-width:150px;max-width:350px}
+.item input.correct{border-color:#10b981;background:#ecfdf5;color:#065f46}
+.item input.wrong{border-color:#ef4444;background:#fef2f2}
+.mini-rule{background:#f8fafc;border-left:4px solid #60a5fa;border-radius:7px;padding:14px 17px;margin-bottom:18px}
+.mini-rule strong{color:#1d4ed8}
+.context-label{font-size:.75rem;font-weight:750;letter-spacing:.025em;color:#64748b;text-transform:uppercase;margin-bottom:6px}
+.builder-group{margin-bottom:16px;background:#f8fafc;padding:16px;border-radius:11px;border:1px solid #e2e8f0}
+.builder-group .chip-answer{min-height:48px;align-items:center}
+.builder-group .chip-pool{min-height:40px}
+.builder-group .chip{font-weight:500;font-size:.9rem;white-space:normal;text-align:left}
+.builder-group .chip.selected{background:#dcfce7;color:#065f46}
+.builder-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.builder-feedback{font-size:.85rem;margin-top:6px;display:none}
+.builder-feedback.ok{display:block;color:#047857}
+.builder-feedback.bad{display:block;color:#b91c1c}
+.match-round{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin-bottom:14px}
+.match-columns{display:grid;grid-template-columns: minmax(125px,1fr) minmax(180px,1.7fr);gap:12px;margin-top:10px}
+.match-column{display:flex;flex-direction:column;gap:8px}
+.match-choice{min-height:47px;text-align:left;line-height:1.4;background:#fff;border:1px solid #cbd5e1;border-radius:8px;padding:9px 12px;cursor:pointer;font:inherit;font-size:.9rem;color:#334155}
+.match-choice:hover{border-color:#1a56db}
+.match-choice.active{background:#dbeafe;border-color:#2563eb;color:#1e40af}
+.match-choice.done{background:#dcfce7;border-color:#10b981;color:#065f46;cursor:default}
+.match-choice.wrong{background:#fef2f2;border-color:#f87171}
+.round-status{font-size:.85rem;color:#64748b;margin-top:10px}
+.progress-small{font-size:.82rem;color:#64748b;margin:4px 0 16px}
+.summary-input{width:260px;max-width:100%}
+.writing-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.writing-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:16px}
+.writing-box h4{margin:0 0 5px;color:#1e40af;font-size:1.01rem}
+.writing-box .hint-notice{margin-bottom:8px}
+.sentence-entry{margin:9px 0}
+.sentence-entry label{display:block;font-size:.84rem;font-weight:650;color:#64748b;margin-bottom:5px}
+.sentence-entry textarea{display:block;width:100%;min-height:66px;resize:vertical;font:inherit;font-size:.93rem;padding:10px 12px;border:1px solid #cbd5e1;border-radius:8px;background:#fff}
+.sentence-entry textarea:focus{outline:2px solid #93c5fd}
+.sentence-entry textarea.filled{border-color:#10b981}
+.count-label{color:#64748b;font-size:.84rem;margin-top:10px}
+.footer-note{font-size:.79rem;color:#94a3b8;text-align:center;margin-top:10px}
+@media(max-width:650px){.writing-grid{grid-template-columns:1fr}.match-columns{grid-template-columns:1fr 1.7fr;gap:6px}.match-choice{font-size:.78rem;padding:7px}.reading-text{padding:18px}.section-card{padding:18px}.nav-tabs{gap:5px}.tab-btn{padding:9px 12px}}
+
+
+/* Revisions: translation toggle, context practice, card examples */
+#hw-story{line-height:2.5}
+#hw-story .inline-btn{vertical-align:baseline;margin-left:3px;margin-right:4px}
+#hw-story .inline-en{display:none;line-height:1.5}
+.vocab-grid .flip-card{height:235px}
+.vocab-grid .flip-card-front{padding:14px 11px;gap:4px}
+.vocab-grid .flip-card-front .v-def{font-size:.78rem;line-height:1.36;margin:2px 0}
+.vocab-grid .v-front-example{font-size:.79rem;line-height:1.43;color:#475569;font-style:italic;margin:3px 0}
+.vocab-grid .flip-card-back{gap:14px}
+.vocab-grid .flip-card-back .v-note{font-size:.83rem;color:#dbeafe;line-height:1.55}
+.vocab-mini-story{background:#f8fafc;border:1px solid #e2e8f0;border-radius:11px;padding:17px 20px;margin-bottom:16px}
+.vocab-mini-story h4{color:#1d4ed8;margin:0 0 8px;font-size:1.03rem}
+.vocab-mini-story p{line-height:2.8;font-size:.99rem}
+.vocab-inline-choice{display:inline-flex;flex-wrap:wrap;align-items:center;gap:2px;background:#eff6ff;border:1px solid #bfdbfe;padding:2px 4px;border-radius:7px;vertical-align:middle;line-height:1.9;margin:2px 2px}
+.vocab-context-btn{background:white;border:1px solid #cbd5e1;color:#334155;border-radius:5px;cursor:pointer;font-size:.86rem;padding:3px 7px}
+.vocab-context-btn.correct{background:#059669;color:white;border-color:#059669}
+.vocab-context-btn.incorrect{background:#dc2626;color:white;border-color:#dc2626}
+.vocab-context-btn:hover:not(.correct):not(.incorrect){border-color:#1a56db}
+.vocab-context-sep{color:#94a3b8}
+.vocab-context-mark{font-weight:700;font-size:.85rem;min-width:12px}
+@media(max-width:600px){.vocab-mini-story{padding:14px}.vocab-mini-story p{line-height:2.7}.vocab-grid .flip-card{height:240px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header><h1>English Interactive Lesson</h1><div class="header-meta">Student: Svetlana | Date: <strong>Thursday, 26.11.2026</strong> | Focus: Research English &amp; Mixed Conditionals</div></header>
+<nav class="nav-tabs" aria-label="Lesson sections">
+<button class="tab-btn active" data-tab="warmup" onclick="openTab(this,'warmup')">1 · Warm-up</button>
+<button class="tab-btn" data-tab="homework" onclick="openTab(this,'homework')">2 · Homework Check</button>
+<button class="tab-btn" data-tab="reading" onclick="openTab(this,'reading')">3 · Reading</button>
+<button class="tab-btn" data-tab="grammar" onclick="openTab(this,'grammar')">4 · Grammar</button>
+<button class="tab-btn" data-tab="vocabulary" onclick="openTab(this,'vocabulary')">5 · Vocabulary</button>
+<button class="tab-btn" data-tab="sentences" onclick="openTab(this,'sentences')">6 · Your Sentences</button>
+</nav>
+<section id="warmup" class="tab-content active">
+<div class="section-card"><h2 class="section-title">1. Professional Warm-up</h2>
+<div class="warmup-box"><p class="professional-line">“An unexpected rise in potassium may be connected with haemolysis during sample collection rather than a change in the patient's condition.”</p>
+<button class="action-btn" onclick="togglePanel('warmup-terms')">Key Terms</button>
+<div class="hidden-panel" id="warmup-terms">
+<strong>unexpected rise</strong> — an increase that was not expected<br>
+<strong>potassium</strong> — a chemical element commonly measured in blood<br>
+<strong>to be connected with</strong> — to be related to something<br>
+<strong>haemolysis</strong> — the breaking down of red blood cells<br>
+<strong>sample collection</strong> — taking a biological specimen for testing
+<div style="margin-top:13px"><button class="rus-btn" onclick="togglePanel('warmup-ru')" aria-controls="warmup-ru">RUS</button></div>
+<div class="rus-text" id="warmup-ru" style="display:none;margin-top:12px;line-height:1.8">
+<strong>Перевод предложения:</strong> «Неожиданное повышение уровня калия может быть связано с гемолизом во время взятия образца, а не с изменением состояния пациента».<br>
+<strong>Ключевые слова:</strong> unexpected rise — неожиданное повышение; potassium — калий; to be connected with — быть связанным с; haemolysis — гемолиз; sample collection — взятие образца.
+</div>
+</div></div>
+<p><strong>Discussion question:</strong> What would you check first if a potassium result suddenly went up?</p>
+</div></section>
+<section id="homework" class="tab-content">
+<div class="section-card"><span class="badge">Translation from 23.11</span><h2 class="section-title">2. Homework Check</h2>
+<p class="hint-notice">Read your translation aloud, then press <strong>EN</strong> to compare it with the model. Other natural variants may also be correct.</p>
+<div class="story-container" id="hw-story"></div></div></section>
+<section id="reading" class="tab-content">
+<div class="section-card"><h2 class="section-title">3. Reading: The Overnight Samples</h2>
+<p class="hint-notice">Read this fictional research story. Focus on the main events, causes and findings. Then complete two different reading tasks.</p>
+<div id="reading-text" class="reading-text"></div></div>
+<div class="section-card"><h3 class="ex-title">Exercise 1 — Find the Evidence</h3><p class="hint-notice">Which paragraph (A–C) contains each piece of information? Each answer is checked immediately.</p><div id="reading-find"></div></div>
+<div class="section-card"><h3 class="ex-title">Exercise 2 — Complete the Research Summary</h3><p class="hint-notice">Complete each note using words from the text. A correct answer turns green straight away; use <strong>Answer</strong> if you get stuck.</p><div id="reading-summary"></div></div>
+</section>
+<section id="grammar" class="tab-content">
+<div class="section-card"><span class="badge">Mixed Conditionals · both directions</span><h2 class="section-title">4. Grammar</h2>
+<h3 class="ex-title">Exercise 1 — What Would Be Different?</h3><p class="hint-notice">Read the real situation and choose the correct mixed conditional. The wrong options include common tense mistakes.</p><div id="grammar-mc"></div></div>
+<div class="section-card"><h3 class="ex-title">Exercise 2 — Build the Conditional</h3><p class="hint-notice">Click the chunks in the correct order to build a complete sentence. Click a chunk again to remove it. Check happens as soon as you finish the sentence.</p><div id="grammar-builder"></div></div>
+</section>
+<section id="vocabulary" class="tab-content">
+<div class="section-card"><h2 class="section-title">5. Vocabulary (12 Target Units)</h2>
+<p class="hint-notice">Read the word, English explanation and example on the front. Flip it for the translation and usage note. Use 🔊 to hear the word.</p><div id="vocab-grid" class="vocab-grid"></div></div>
+<div class="section-card"><h3 class="ex-title">Exercise 1 — Words in Context</h3><p class="hint-notice">Read two short stories and select the expression that makes sense in each gap. Each choice is checked immediately.</p><div id="vocab-context"></div></div>
+<div class="section-card"><h3 class="ex-title">Exercise 2 — Lab &amp; Life: Context Challenge</h3><p class="hint-notice">Use the vocabulary in short situations. Type only the missing term or phrase. Correct answers turn green immediately.</p><div id="vocab-cloze"></div></div>
+</section>
+<section id="sentences" class="tab-content">
+<div class="section-card"><span class="badge">Homework · 8 sentences</span><h2 class="section-title">6. Your Sentences</h2>
+<p class="hint-notice">Write <strong>8 original mixed conditional sentences</strong>: four about a past event with a consequence now, and four about a present situation or characteristic with a consequence in the past. You can use work, research and everyday-life contexts.</p>
+<div class="writing-grid">
+<div class="writing-box"><h4>4 · Past → Present</h4><p class="hint-notice">If + Past Perfect, … would + infinitive. <em>What would be different now if something in the past had changed?</em></p><div id="sentences-past"></div><div id="count-past" class="count-label">0 of 4 written</div></div>
+<div class="writing-box"><h4>4 · Present → Past</h4><p class="hint-notice">If + Past Simple, … would have + V3. <em>What would have happened differently in the past if a present situation or habit were different?</em></p><div id="sentences-present"></div><div id="count-present" class="count-label">0 of 4 written</div></div>
+</div><button class="copy-btn" onclick="copySentences()">Copy your 8 sentences</button><span id="copy-status" class="copy-msg" role="status"></span>
+</div></section>
+<div class="footer-note">English Lesson · 26 November 2026</div>
+</div>
+<script>
+const D={"hw":[["Недавно Анна записалась на платный семинар по диагностике.","Recently, Anna signed up for a paid seminar on diagnostics."],["В прошлый раз она стеснялась задавать вопросы коллегам.","Last time, she was too shy to ask her colleagues questions."],["Оказалось, что они обсуждали ошибки на преаналитическом этапе.","It turned out that they were discussing errors in the preanalytical phase."],["Если бы Анна начала практиковать английский раньше, сейчас она говорила бы увереннее.","If Anna had started practising English earlier, she would speak more confidently now."],["Если бы она не была такой занятой, она подготовила бы доклад к прошлой встрече.","If she weren't so busy, she would have prepared a presentation for the last meeting."],["Несмотря на сложную тему, коллеги объяснили, как задержки при перевозке могут снизить точность результатов.","Despite the difficult topic, her colleagues explained how transport delays can decrease the accuracy of results."],["В целом Анна довольна семинаром и хочет поделиться новыми идеями.","On the whole, Anna is happy with the seminar and wants to share new ideas."]],"reading":[["A","At a regional hospital, a team of researchers started a collaborative project on the preanalytical stage of testing. They wanted to understand why some blood samples reached the laboratory later than expected. Every clinic recorded when a sample was collected and when the courier arrived."],["B","One Monday, the team noticed that several samples had been kept overnight at a small clinic. Some potassium results had gone up, and a few samples showed signs of haemolysis. The researchers knew that haemolysis can affect potassium measurements. However, they did not assume that every unusual result had the same cause."],["C","The team compared collection records with time stamps from the delivery system. It turned out that the delays were connected with the courier timetable: the last collection was too early for the clinic's afternoon patients. The researchers recommended a clearer schedule and better instructions for sample handling. Over the following weeks, the number of delayed deliveries went down."]],"readingFind":[["The researchers were careful not to give every unusual result the same explanation.","B","Paragraph B says they did not assume all unusual results had the same cause."],["A change in the delivery schedule was suggested.","C","Paragraph C describes a clearer courier timetable."],["The investigation involved a collaboration between researchers.","A","Paragraph A introduces the collaborative research project."],["The clinics recorded the times of both collection and courier arrival.","A","Paragraph A says each clinic recorded when samples were collected and when the courier arrived."],["Some samples remained at a clinic during the night.","B","Paragraph B describes samples kept overnight."],["The number of delayed samples became lower after the changes.","C","Paragraph C says the number of delayed deliveries went down."]],"readingSummary":[["Some samples had been kept at the clinic ______.",["overnight"],"overnight"],["The researchers noticed unexpected changes in ______ measurements.",["potassium"],"potassium"],["Some samples showed signs of ______.",["haemolysis","hemolysis"],"haemolysis / hemolysis"],["The team checked records and ______ from the delivery system.",["time stamps","timestamps","time-stamps"],"time stamps"],["The delays were connected with the ______ timetable.",["courier","courier's","courier’s"],"courier"],["After the improvements, delayed deliveries went ______.",["down"],"down"]],"grammarMC":[{"type":"Past → present","s":"A technician missed the training course last month. Today she does not know the updated protocol.","o":["If she had attended the course last month, she would know the updated protocol now.","If she attended the course last month, she would have known the updated protocol now.","If she had attended the course last month, she would have known the updated protocol now."],"a":0,"why":"A missed event last month would change her knowledge now."},{"type":"Present → past","s":"Dr Lewis is extremely organised. She submitted the report on time yesterday.","o":["If Dr Lewis had not been so organised, she would submit the report yesterday.","If Dr Lewis were not so organised, she would not have submitted the report on time yesterday.","If Dr Lewis is not so organised, she would not submit the report yesterday."],"a":1,"why":"A present characteristic explains a result yesterday."},{"type":"Past → present","s":"The courier didn't collect the samples yesterday. The laboratory is still waiting for them today.","o":["If the courier collected the samples yesterday, the laboratory would have them now.","If the courier had collected the samples yesterday, the laboratory would have had them yesterday.","If the courier had collected the samples yesterday, the laboratory would have them now."],"a":2,"why":"The collection is unreal past; the consequence is now."},{"type":"Present → past","s":"Maya is usually shy. She did not ask a question at the conference last week.","o":["If Maya were not so shy, she would have asked a question last week.","If Maya had not been so shy, she would ask a question last week.","If Maya were not so shy, she will ask a question last week."],"a":0,"why":"Her current general characteristic explains what did not happen last week."},{"type":"Past → present","s":"I didn't sign up for the seminar in time. There is no place for me on the course now.","o":["If I signed up earlier, I would have a place now.","If I had signed up earlier, I would have had a place now.","If I had signed up earlier, I would have a place on the course now."],"a":2,"why":"A past missed opportunity influences the present."},{"type":"Present → past","s":"The team doesn't have a shared tracking system. It didn't notice Monday's delay.","o":["If the team had a shared tracking system, it would have noticed Monday’s delay.","If the team had had a shared tracking system, it would notice Monday’s delay.","If the team has a shared tracking system, it would have noticed Monday’s delay."],"a":0,"why":"The team lacks a system in general; that explains a missed event on Monday."}],"grammarBuilder":[{"type":"Past → present","chunks":["If","we","had checked","the collection time,","we","would understand","the delay now."]},{"type":"Present → past","chunks":["If","Olivia","were less shy,","she","would have spoken","at the meeting yesterday."]},{"type":"Past → present","chunks":["If","the team","had updated","the timetable,","fewer samples","would be","delayed today."]},{"type":"Present → past","chunks":["If","our clinic","had a backup courier,","we","would have avoided","the delay last night."]},{"type":"Past → present","chunks":["If","I","had studied","laboratory English earlier,","I","would feel","more confident now."]},{"type":"Present → past","chunks":["If","the researcher","were not so busy,","she","would have posted","the summary last week."]},{"type":"Present → past","chunks":["If","Lena","were more confident,","she","would have asked","a question at yesterday’s meeting."]},{"type":"Past → present","chunks":["If","the team","had completed","the training last year,","everyone","would know","the updated procedure now."]}],"vocab":[["to be connected with","/tə bi kəˈnektɪd wɪð/","to be related to something","быть связанным с","The delay may be connected with the courier schedule.","connected with / related to"],["potassium","/pəˈtæsiəm/","a chemical element measured in many blood tests","калий","Haemolysis can affect potassium results.","chemical symbol: K"],["to do sport","/tə duː spɔːt/","to take part in physical exercise or sporting activities","заниматься спортом","She tries to do sport twice a week.","BrE; “play sports” is common in AmE"],["to go up","/tə ɡəʊ ʌp/","to increase or become higher","повышаться, расти","The number of delayed samples went up in May.","go up → went up"],["to go down","/tə ɡəʊ daʊn/","to decrease or become lower","снижаться, уменьшаться","After training, the error rate went down.","go down → went down"],["to post","/tə pəʊst/","to publish information online","публиковать, размещать","She posted the conference summary online.","post a report / an update"],["joint","/dʒɔɪnt/","a part of the body where two bones meet and movement is possible","сустав","The knee is a joint that allows your leg to bend.","a knee joint / a hip joint / joint pain"],["trampoline","/ˈtræmpəliːn/","a piece of equipment used for jumping up and down","батут","Her grandson enjoys jumping on a trampoline.","on a trampoline"],["women","/ˈwɪmɪn/","the plural form of “woman”","женщины","Three women presented their research.","one woman / two women"],["despite","/dɪˈspaɪt/","even though something makes a situation difficult","несмотря на","Despite the delay, the meeting started on time.","despite + noun / -ing (not “despite of”)"],["hemolysis","/hɪˈmɒləsɪs/","the breakdown of red blood cells","гемолиз","Hemolysis may affect the measured potassium level.","also spelled “haemolysis” (BrE)"],["overnight","/ˌəʊvəˈnaɪt/","during the night; from one day until the next","за ночь; на ночь","The clinic kept the samples overnight.","stay overnight / an overnight delivery"]],"vocabDefs":["has a relationship with another cause or event","a chemical element that can be measured in a blood sample","takes part in physical exercise","becomes higher or increases","becomes lower or decreases","publishes something on a website or social platform","a part of the body where two bones meet","equipment with a springy surface for jumping","the plural of woman","in spite of a difficulty or obstacle","the breaking down of red blood cells","during the night, until the next day"],"vocabCloze":[["The lab director wanted to ______ the new research findings on the website.",["post"],"post"],["After the team changed its procedures, the number of errors started to ______.",["go down"],"go down"],["During a busy period, the number of samples can ______.",["go up"],"go up"],["The unexpected result may ______ the collection method.",["be connected with"],"be connected with"],["The knee is a ______ where two bones meet.",["joint"],"joint"],["The samples stayed in the clinic ______ because the courier did not arrive.",["overnight"],"overnight"],["______ the heavy workload, the team finished the project.",["Despite"],"Despite"],["The conference panel included four men and three ______.",["women"],"women"],["The team examined whether ______ might have affected the measured result.",["hemolysis","haemolysis"],"hemolysis / haemolysis"],["Her grandson loves to jump on a ______.",["trampoline"],"trampoline"],["She tries to ______ at the weekend to stay active.",["do sport"],"do sport"],["The laboratory measured the level of ______ in the blood sample.",["potassium"],"potassium"]],"vocabContext":[{"title":"A research update","parts":["Two laboratories started a collaborative project on delayed blood samples. On Monday, they learned that several tubes had been stored ",{"options":["overnight","occasionally"],"answer":"overnight"},". When the samples finally arrived, some ",{"options":["potassium","trampoline"],"answer":"potassium"}," results appeared unusually high. The scientists considered whether ",{"options":["hemolysis","heatwave"],"answer":"hemolysis"}," had affected the measurements. They noticed that some readings seemed ",{"options":["to go up","to go down"],"answer":"to go up"}," after the delay, but they did not assume the changes must ",{"options":["be connected with","be replaced by"],"answer":"be connected with"}," sample handling. After introducing clearer transport instructions, the number of delays began ",{"options":["to go down","to go up"],"answer":"to go down"},". The team decided ",{"options":["to post","to postpone"],"answer":"to post"}," a short update for colleagues."]},{"title":"A message about the weekend","parts":["At the weekend, several ",{"options":["women","woman"],"answer":"women"}," from the university met in a park. ",{"options":["Despite","Because of"],"answer":"Despite"}," the cold weather, they wanted ",{"options":["to do sport","to do research"],"answer":"to do sport"},". One of them brought her children, who spent the afternoon jumping on a ",{"options":["trampoline","treadmill"],"answer":"trampoline"},". After trying the trampoline herself, one woman felt pain in her knee ",{"options":["joint","laboratory"],"answer":"joint"},"."]}]};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function openTab(btn,id){document.querySelectorAll('.tab-content').forEach(t=>t.classList.toggle('active',t.id===id));document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active',b===btn));window.speechSynthesis?.cancel()}
+function togglePanel(id){const el=document.getElementById(id);el.style.display=el.style.display==='block'?'none':'block'}
+function toggleAnswer(btn){const el=btn.parentElement.querySelector('.answer-reveal');if(!el)return;el.style.display=el.style.display==='block'?'none':'block';btn.setAttribute('aria-expanded',el.style.display==='block'?'true':'false')}
+function normalize(t){return String(t).toLowerCase().trim().replace(/[’‘]/g,"'").replace(/[.,!?;:]/g,'').replace(/\s+/g,' ')}
+function fieldStatus(input,answers){const valid=answers.some(x=>normalize(input.value)===normalize(x));input.classList.toggle('correct',valid);input.classList.toggle('wrong',!!input.value.trim()&&!valid&&input.dataset.touched==='yes');return valid}
+function toggleInlineEn(btn){const span=btn.nextElementSibling;const shown=span.style.display==='inline';span.style.display=shown?'none':'inline';btn.setAttribute('aria-expanded',String(!shown));btn.style.background=shown?'#eef1f6':'#1a56db';btn.style.color=shown?'#475569':'white'}
+function renderStory(){document.getElementById('hw-story').innerHTML=D.hw.map(([ru,en])=>`${esc(ru)} <button class="inline-btn en" onclick="toggleInlineEn(this)" aria-expanded="false">EN</button><span class="inline-en">${esc(en)}</span>`).join(' ')}
+function renderReading(){document.getElementById('reading-text').innerHTML=D.reading.map(([letter,text])=>`<div class="paragraph-row"><span class="paragraph-tag">${letter}</span><p>${esc(text)}</p></div>`).join('');
+ document.getElementById('reading-find').innerHTML=D.readingFind.map(([statement,answer,why],i)=>`<div class="item"><div class="context-label">Item ${i+1}</div><div>${esc(statement)}</div><div class="answer-choices">${['A','B','C'].map(letter=>`<button class="choice-btn" onclick="checkFind(this,${i},'${letter}')">${letter}</button>`).join('')}</div><div class="item-feedback"></div></div>`).join('');
+ document.getElementById('reading-summary').innerHTML=D.readingSummary.map(([sentence,answers,display],i)=>`<div class="item"><span class="item-num">${i+1}.</span> ${esc(sentence)}<div class="input-row"><input class="live-input summary-input" id="rs-${i}" autocomplete="off" aria-label="Reading summary answer ${i+1}" oninput="checkText(this,'readingSummary',${i})" onblur="checkTextBlur(this,'readingSummary',${i})"><button class="btn-peek" onclick="toggleAnswer(this)">Answer</button><div class="answer-reveal">${esc(display)}</div></div><div class="item-feedback"></div></div>`).join('')}
+function checkFind(button,i,letter){const item=button.closest('.item');item.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('correct','incorrect'));const [,right,why]=D.readingFind[i];const good=right===letter;button.classList.add(good?'correct':'incorrect');const feedback=item.querySelector('.item-feedback');feedback.className='item-feedback '+(good?'ok':'bad');feedback.textContent=good?`✓ Correct. ${why}`:'Try another paragraph.'}
+function checkText(input,key,i){let answers=D[key][i][1];let good=fieldStatus(input,answers);let fb=input.closest('.item').querySelector('.item-feedback');if(good){fb.className='item-feedback ok';fb.textContent='✓ Correct!'}else if(input.dataset.touched==='yes'&&input.value.trim()){fb.className='item-feedback bad';fb.textContent='Try again.'}else{fb.className='item-feedback';fb.textContent=''}}
+function checkTextBlur(input,key,i){input.dataset.touched='yes';checkText(input,key,i)}
+function renderGrammar(){document.getElementById('grammar-mc').innerHTML=D.grammarMC.map((q,i)=>`<div class="item"><div class="context-label">${i+1}</div><p class="quiz-question">${esc(q.s)}</p><div class="quiz-choices">${q.o.map((v,j)=>`<button class="choice-btn" onclick="checkGrammarMC(this,${i},${j})">${esc(v)}</button>`).join('')}</div><div class="item-feedback"></div></div>`).join('');
+ document.getElementById('grammar-builder').innerHTML=D.grammarBuilder.map((o,i)=>`<div class="builder-group"><div class="context-label">${i+1}</div><div class="hint-notice" style="margin-bottom:7px">Build the sentence:</div><div class="chip-answer" id="builder-answer-${i}"></div><div class="chip-pool" id="builder-pool-${i}"></div><div class="builder-btns"><button class="btn-reset" onclick="resetBuilder(${i})">Start again</button><button class="btn-peek" onclick="revealBuilder(${i})">Answer</button></div><div class="answer-reveal" id="builder-reveal-${i}">${esc(o.chunks.join(' '))}</div><div id="builder-feedback-${i}" class="builder-feedback"></div></div>`).join('');D.grammarBuilder.forEach((_,i)=>drawBuilder(i))}
+function checkGrammarMC(btn,i,j){const q=D.grammarMC[i];const good=q.a===j;const parent=btn.closest('.item');parent.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('correct','incorrect'));btn.classList.add(good?'correct':'incorrect');const fb=parent.querySelector('.item-feedback');fb.className='item-feedback '+(good?'ok':'bad');fb.textContent=good?'✓ Correct. '+q.why:'Not quite. Check which part refers to the past and which part refers to the present.'}
+const chosen={};function orderedIndices(n,i){let a=Array.from({length:n},(_,j)=>j);let seed=i*73+41;for(let k=n-1;k>0;k--){seed=(seed*9301+49297)%233280;let j=Math.floor(seed/233280*(k+1));[a[k],a[j]]=[a[j],a[k]]}if(a.every((v,k)=>v===k)&&n>1)[a[0],a[1]]=[a[1],a[0]];return a}
+const builderOrders=D.grammarBuilder.map((o,i)=>orderedIndices(o.chunks.length,i));
+function drawBuilder(i){const ex=D.grammarBuilder[i];const selected=chosen[i]||[];document.getElementById('builder-answer-'+i).innerHTML=selected.map((id,p)=>`<button class="chip selected" onclick="removeChunk(${i},${p})" title="Remove chunk">${esc(ex.chunks[id])}</button>`).join('');document.getElementById('builder-pool-'+i).innerHTML=builderOrders[i].filter(j=>!selected.includes(j)).map(j=>`<button class="chip" onclick="addChunk(${i},${j})">${esc(ex.chunks[j])}</button>`).join('');const box=document.getElementById('builder-answer-'+i);const fb=document.getElementById('builder-feedback-'+i);box.classList.remove('correct','incorrect');if(selected.length===ex.chunks.length){const good=selected.every((v,k)=>v===k);box.classList.add(good?'correct':'incorrect');fb.className='builder-feedback '+(good?'ok':'bad');fb.textContent=good?'✓ Correctly built!':'Not quite. Click any chunk above to remove it, then try again.'}else{fb.className='builder-feedback';fb.textContent=''}}
+function addChunk(i,j){(chosen[i]??=[]).push(j);drawBuilder(i)}
+function removeChunk(i,index){(chosen[i]??=[]).splice(index,1);drawBuilder(i)}
+function resetBuilder(i){chosen[i]=[];drawBuilder(i)}
+function revealBuilder(i){const e=document.getElementById('builder-reveal-'+i);e.style.display=e.style.display==='block'?'none':'block'}
+function renderVocabulary(){document.getElementById('vocab-grid').innerHTML=D.vocab.map(([word,ipa,def,ru,example,note],i)=>`<div class="flip-card" role="button" tabindex="0" onclick="this.classList.toggle('flipped')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}" aria-label="Flip the card for ${esc(word)}"><div class="flip-card-inner"><div class="flip-card-front"><div class="v-word">${esc(word)}</div><div class="v-ipa">${esc(ipa)}</div><div class="v-def">${esc(def)}</div><div class="v-front-example">${esc(example)}</div><button class="v-say" onclick="event.stopPropagation();sayWord(${i})" aria-label="Pronounce ${esc(word)}">🔊</button></div><div class="flip-card-back"><div class="v-trans">${esc(ru)}</div><div class="v-note">${esc(note)}</div></div></div></div>`).join('');
+ document.getElementById('vocab-context').innerHTML=D.vocabContext.map((story,sectionIndex)=>{
+ let gapId=0;
+ const paragraph=story.parts.map(part=>{
+  if(typeof part==='string')return esc(part);
+  const id=gapId++;
+  return `<span class="vocab-inline-choice" data-section="${sectionIndex}" data-id="${id}">${part.options.map((option,i)=>`<button class="vocab-context-btn" onclick="checkVocabContext(this,${sectionIndex},${id},${i})">${esc(option)}</button>`).join('<span class="vocab-context-sep">/</span>')}<span class="vocab-context-mark" aria-live="polite"></span></span>`;
+ }).join('');
+ return `<div class="vocab-mini-story"><h4>${esc(story.title)}</h4><p>${paragraph}</p></div>`;
+ }).join('');
+ document.getElementById('vocab-cloze').innerHTML=D.vocabCloze.map(([s,a,display],i)=>`<div class="item"><span class="item-num">${i+1}.</span> ${esc(s)}<div class="input-row"><input class="live-input summary-input" autocomplete="off" id="vc-${i}" aria-label="Vocabulary answer ${i+1}" oninput="checkText(this,'vocabCloze',${i})" onblur="checkTextBlur(this,'vocabCloze',${i})"><button class="btn-peek" onclick="toggleAnswer(this)">Answer</button><div class="answer-reveal">${esc(display)}</div></div><div class="item-feedback"></div></div>`).join('')}
+const matchesState=[{w:null,d:null,done:new Set()},{w:null,d:null,done:new Set()},{w:null,d:null,done:new Set()}];
+function drawMatch(g){const state=matchesState[g],ids=[g*4,g*4+1,g*4+2,g*4+3];const order=[ids[2],ids[0],ids[3],ids[1]];document.getElementById('word-column-'+g).innerHTML=ids.map(i=>`<button class="match-choice ${state.done.has(i)?'done':state.w===i?'active':''}" ${state.done.has(i)?'disabled':''} onclick="pickMatch(${g},'w',${i})">${esc(D.vocab[i][0])}</button>`).join('');document.getElementById('def-column-'+g).innerHTML=order.map(i=>`<button class="match-choice ${state.done.has(i)?'done':state.d===i?'active':''}" ${state.done.has(i)?'disabled':''} onclick="pickMatch(${g},'d',${i})">${esc(D.vocabDefs[i])}</button>`).join('');const status=document.getElementById('round-status-'+g);if(state.done.size===4){status.style.color='#047857';status.textContent='✓ All four pairs correct!'}else if(!status.textContent)status.textContent=state.done.size+' of 4 pairs matched'}
+function pickMatch(g,side,id){const state=matchesState[g];if(state.done.has(id))return;state[side]=id;if(state.w!==null&&state.d!==null){if(state.w===state.d){state.done.add(id);state.w=null;state.d=null;document.getElementById('round-status-'+g).textContent='✓ Correct pair! '+state.done.size+' of 4 matched';}else{document.getElementById('round-status-'+g).textContent='Not a match — try another meaning.';state.d=null}}drawMatch(g)}
+function checkVocabContext(btn,section,id,option){
+ const story=D.vocabContext[section];const item=story.parts.filter(v=>typeof v!=='string')[id];
+ const group=btn.closest('.vocab-inline-choice');const good=item.options[option]===item.answer;
+ group.querySelectorAll('.vocab-context-btn').forEach(b=>b.classList.remove('correct','incorrect'));
+ btn.classList.add(good?'correct':'incorrect');
+ const mark=group.querySelector('.vocab-context-mark');mark.textContent=good?' ✓':' ✕';mark.style.color=good?'#059669':'#dc2626';
+}
+function sayWord(i){const text=D.vocab[i][0].replace(/^to /,'').replace(/\s*\(.*?\)/g,'');if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-GB';u.rate=.85;const voices=speechSynthesis.getVoices();u.voice=voices.find(v=>/en-GB/i.test(v.lang)&&/Natural|Google|Microsoft/i.test(v.name))||voices.find(v=>/en-GB/i.test(v.lang))||voices.find(v=>/^en/i.test(v.lang))||null;speechSynthesis.speak(u)}
+function renderSentences(){for(const type of ['past','present']){document.getElementById('sentences-'+type).innerHTML=Array.from({length:4},(_,i)=>`<div class="sentence-entry"><label for="sent-${type}-${i}">Sentence ${i+1}</label><textarea id="sent-${type}-${i}" oninput="countSentences('${type}')" placeholder="Write your own sentence in English..."></textarea></div>`).join('')}}
+function countSentences(type){let count=0;for(let i=0;i<4;i++){const e=document.getElementById(`sent-${type}-${i}`);if(e.value.trim())count++;e.classList.toggle('filled',!!e.value.trim())}document.getElementById('count-'+type).textContent=`${count} of 4 written`}
+async function copySentences(){const list=[...['past','present'].flatMap(type=>Array.from({length:4},(_,i)=>document.getElementById(`sent-${type}-${i}`).value.trim()))];const string='Past → Present:\n'+list.slice(0,4).map((x,i)=>`${i+1}. ${x}`).join('\n')+'\n\nPresent → Past:\n'+list.slice(4).map((x,i)=>`${i+1}. ${x}`).join('\n');const status=document.getElementById('copy-status');try{await navigator.clipboard.writeText(string);status.textContent='✓ Copied'}catch(e){const ta=document.createElement('textarea');document.body.appendChild(ta);ta.value=string;ta.select();try{document.execCommand('copy');status.textContent='✓ Copied'}catch(err){status.textContent='Copy was blocked by this browser'}ta.remove()}}
+renderStory();renderReading();renderGrammar();renderVocabulary();renderSentences();
+</script>
+</body>
+</html>

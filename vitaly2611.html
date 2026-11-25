@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General English · Translation Masterclass (Advanced Structures)</title>
+    <style>
+        :root {
+            --primary: #1e3a5f;
+            --primary-light: #3b6998;
+            --accent: #0d9488;
+            --accent-soft: #ccfbf1;
+            --background: #f1f5f9;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #cbd5e1;
+            --success: #16a34a;
+            --success-bg: #f0fdf4;
+            --error: #dc2626;
+            --error-bg: #fef2f2;
+            --warn: #d97706;
+            --warn-bg: #fffbeb;
+            --nav-bg: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.65;
+            padding-bottom: 70px;
+        }
+
+        nav {
+            background-color: var(--nav-bg);
+            color: #ffffff;
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 2px 12px rgba(15, 23, 42, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.15rem;
+            letter-spacing: 0.8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            background: var(--accent);
+            font-size: 0.72rem;
+            padding: 3px 8px;
+            border-radius: 999px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .progress-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .progress-bar-bg {
+            width: 160px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #14b8a6, #4ade80);
+            transition: width 0.35s ease;
+        }
+
+        .main-container {
+            max-width: 1040px;
+            margin: 28px auto;
+            padding: 0 20px;
+        }
+
+        .tab-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.04);
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 8px;
+        }
+
+        .tablinks {
+            padding: 12px 10px;
+            background: #f8fafc;
+            border: 1px solid transparent;
+            text-align: center;
+            color: var(--text);
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .tablinks:hover {
+            background-color: #e2e8f0;
+        }
+
+        .tablinks.active {
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(30, 58, 95, 0.25);
+        }
+
+        .tabcontent {
+            display: none;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 36px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+            border: 1px solid var(--border);
+            animation: fadeIn 0.25s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 26px;
+            background-color: var(--accent);
+            border-radius: 3px;
+        }
+
+        .instruction {
+            color: var(--text-secondary);
+            font-size: 0.94rem;
+            margin-bottom: 26px;
+            font-weight: 500;
+            background: #f8fafc;
+            padding: 12px 16px;
+            border-left: 4px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .exercise-item {
+            margin-bottom: 22px;
+            background: #ffffff;
+            padding: 20px 22px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: border-color 0.25s;
+        }
+
+        .exercise-item.solved-item {
+            border-color: var(--success);
+            background-color: #fbfffd;
+        }
+
+        .ru-prompt {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 1.04rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .keyword-badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            border: 1px solid #bae6fd;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 2px 9px;
+            border-radius: 6px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        .grammar-tag {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .sentence-line {
+            font-size: 1.05rem;
+            line-height: 2.1;
+            margin: 8px 0 12px 0;
+            color: #0f172a;
+        }
+
+        .interactive-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .text-input {
+            flex: 1;
+            min-width: 240px;
+            padding: 11px 14px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.96rem;
+            outline: none;
+            transition: all 0.25s;
+        }
+
+        .text-input:focus {
+            border-color: var(--primary-light);
+        }
+
+        .inline-input {
+            width: 240px;
+            max-width: 100%;
+            padding: 5px 10px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.98rem;
+            font-weight: 600;
+            outline: none;
+            display: inline-block;
+            margin: 0 4px;
+            transition: all 0.25s;
+        }
+
+        .inline-input:focus {
+            border-color: var(--primary-light);
+        }
+
+        .correct-input {
+            border-color: var(--success) !important;
+            background-color: var(--success-bg) !important;
+            color: #15803d !important;
+        }
+
+        .wrong-select {
+            border-color: var(--error) !important;
+            background-color: var(--error-bg) !important;
+            color: #b91c1c !important;
+        }
+
+        .smart-select {
+            padding: 5px 10px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: #f8fafc;
+            color: var(--text);
+            cursor: pointer;
+            margin: 0 4px;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .smart-select:focus {
+            border-color: var(--primary-light);
+        }
+
+        .btn-action {
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 9px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .btn-action:hover {
+            background-color: var(--primary-light);
+        }
+
+        .ans-block {
+            display: none;
+            font-size: 0.94rem;
+            color: var(--primary);
+            margin-top: 12px;
+            padding: 12px 15px;
+            background: #f0f9ff;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            width: 100%;
+        }
+
+        .ans-block .ans-main {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .ans-block .ans-note {
+            display: block;
+            margin-top: 4px;
+            font-size: 0.86rem;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        /* Click & Fix Error Hunt */
+        .chunk-sentence {
+            font-size: 1.07rem;
+            line-height: 2;
+            padding: 12px 14px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .chunk-btn {
+            display: inline;
+            padding: 3px 6px;
+            margin: 0 1px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+            border-bottom: 2px dotted transparent;
+        }
+
+        .chunk-btn:hover {
+            background: #e2e8f0;
+            border-bottom-color: var(--primary-light);
+        }
+
+        .chunk-btn.chunk-ok-flash {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .chunk-btn.chunk-found {
+            background: var(--warn-bg);
+            color: #92400e;
+            font-weight: 700;
+            border: 1px solid #f59e0b;
+        }
+
+        .chunk-btn.chunk-fixed {
+            background: var(--success-bg);
+            color: #15803d;
+            font-weight: 700;
+            border: 1px solid var(--success);
+        }
+
+        .hunt-feedback {
+            font-size: 0.85rem;
+            font-weight: 600;
+            min-height: 20px;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+
+        .fix-box {
+            display: none;
+            margin-top: 8px;
+        }
+
+        /* Multiple Choice */
+        .quiz-options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin-top: 12px;
+        }
+
+        .quiz-option {
+            padding: 12px 16px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+            color: var(--text);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary-light);
+            background: #f8fafc;
+        }
+
+        .quiz-option.correct {
+            background-color: var(--success) !important;
+            color: #ffffff !important;
+            border-color: var(--success) !important;
+            font-weight: 600;
+        }
+
+        .quiz-option.incorrect {
+            background-color: var(--error) !important;
+            color: #ffffff !important;
+            border-color: var(--error) !important;
+        }
+
+        @media (max-width: 680px) {
+            .tabcontent { padding: 20px; }
+            .inline-input { width: 100%; margin: 6px 0; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo">
+        TRANSLATION MASTERCLASS
+        <span>Inversion · Phrasal Verbs · Impersonal Passive · Clauses</span>
+    </div>
+    <div class="progress-wrap">
+        <span id="score-text">0 / 60 solved</span>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+    </div>
+</nav>
+
+<div class="main-container">
+    <div class="tab-container">
+        <button class="tablinks active" onclick="openTab(event, 'ex1')">1. Key-Word (RU → EN)</button>
+        <button class="tablinks" onclick="openTab(event, 'ex2')">2. Smart Builder (RU → EN)</button>
+        <button class="tablinks" onclick="openTab(event, 'ex3')">3. Click & Fix Error</button>
+        <button class="tablinks" onclick="openTab(event, 'ex4')">4. Nuances (RU → EN)</button>
+        <button class="tablinks" onclick="openTab(event, 'ex5')">5. Full (EN → RU)</button>
+        <button class="tablinks" onclick="openTab(event, 'ex6')">6. Full (RU → EN)</button>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- EXERCISE 1: KEY-WORD TRANSLATION (RU -> EN)               -->
+    <!-- ========================================================= -->
+    <div id="ex1" class="tabcontent" style="display: block;">
+        <h2>Format 1: Key-Word Translation (RU → EN)</h2>
+        <div class="instruction">💡 Translate the missing part of the Russian sentence into English using the <strong>KEY WORD</strong> in blue. Do not change the key word unless a verb form is needed (e.g. <em>WAKE → wakes</em>). The box turns green automatically when correct.</div>
+
+        <div class="exercise-item" data-task-id="t1-1">
+            <div class="ru-prompt">1. Никогда прежде я не читал настолько возмутительного отчёта. <span class="keyword-badge">NEVER</span></div>
+            <div class="sentence-line">
+                <input type="text" class="inline-input" style="width: 260px;" oninput="liveCheck(this, ['Never before have I read', 'Never have I read'])" placeholder="Type translated clause..."> such an outrageous report.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Never before have I read such an outrageous report.</span><span class="ans-note">Inversion: Never (before) + have + subject + V3.</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t1-2">
+            <div class="ru-prompt">2. Говорят, что грабитель покинул Великобританию ещё на прошлой неделе. <span class="keyword-badge">SAID</span></div>
+            <div class="sentence-line">
+                The robber <input type="text" class="inline-input" style="width: 240px;" oninput="liveCheck(this, ['is said to have left'])" placeholder="Type translated clause..."> the UK last week.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">The robber is said to have left the UK last week.</span><span class="ans-note">Impersonal Passive (Complex Subject) + Perfect Infinitive (to have + V3) для действия в прошлом.</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t1-3">
+            <div class="ru-prompt">3. Она была первой, кто предложил мирное разрешение этого напряжения. <span class="keyword-badge">FIRST</span></div>
+            <div class="sentence-line">
+                She was <input type="text" class="inline-input" style="width: 250px;" oninput="liveCheck(this, ['the first to suggest', 'the first person to suggest', 'the first to propose', 'the first person to propose', 'the first to offer', 'the first person to offer'])" placeholder="Type translated clause..."> a peaceful resolution to this tension.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">She was the first (person) to suggest / propose a peaceful resolution to this tension.</span><span class="ans-note">Infinitive Clause после порядковых числительных (the first / the last / the only + to V).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t1-4">
+            <div class="ru-prompt">4. Каждый раз она будит меня рано и заставляет делать работу по дому. <span class="keyword-badge">WAKES / MAKES</span></div>
+            <div class="sentence-line">
+                Every time she <input type="text" class="inline-input" style="width: 300px;" oninput="liveCheck(this, ['wakes me up early and makes me'])" placeholder="Type translated clause..."> do the housework.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Every time she wakes me up early and makes me do the housework.</span><span class="ans-note">Phrasal verb «wake smb up» (местоимение ставится внутрь!) + «make smb do smth» (без to).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t1-5">
+            <div class="ru-prompt">5. Это решение не только способствовало росту, но и привело к снижению расходов. <span class="keyword-badge">NOT ONLY</span></div>
+            <div class="sentence-line">
+                <input type="text" class="inline-input" style="width: 320px;" oninput="liveCheck(this, ['Not only did this decision contribute'])" placeholder="Type translated clause..."> to growth, but it also led to a reduction in costs.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Not only did this decision contribute to growth, but it also led to a reduction in costs.</span><span class="ans-note">Inversion: Not only + did + subject + V1 (contribute to smth).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t1-6">
+            <div class="ru-prompt">6. Пройдя лечение в этой стоматологической клинике, он больше не боится врачей. <span class="keyword-badge">TREATED</span></div>
+            <div class="sentence-line">
+                <input type="text" class="inline-input" style="width: 240px;" oninput="liveCheck(this, ['Having been treated'])" placeholder="Type translated clause..."> at this dental clinic, he is no longer afraid of doctors.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Having been treated at this dental clinic, he is no longer afraid of doctors.</span><span class="ans-note">Passive Perfect Participle Clause (Having been + V3) — действие завершилось до основного и выполнено над подлежащим.</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t1-7">
+            <div class="ru-prompt">7. Считается, что это лекарство имеет необъяснимый разрушительный эффект. <span class="keyword-badge">BELIEVED</span></div>
+            <div class="sentence-line">
+                <input type="text" class="inline-input" style="width: 220px;" oninput="liveCheck(this, ['It is believed that'])" placeholder="Type translated clause..."> this medicine has an inexplicable destructive effect.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">It is believed that this medicine has an inexplicable destructive effect.</span><span class="ans-note">Impersonal Passive: It is believed / thought / reported that...</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t1-8">
+            <div class="ru-prompt">8. Если бы ты надел плотные резиновые сапоги, ты бы сейчас не болел. <span class="keyword-badge">HAD</span></div>
+            <div class="sentence-line">
+                <input type="text" class="inline-input" style="width: 220px;" oninput="liveCheck(this, ['Had you put on', 'Had you worn'])" placeholder="Type translated clause..."> thick rubber boots, you wouldn't be ill now.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Had you put on (or: worn) thick rubber boots, you wouldn't be ill now.</span><span class="ans-note">Inversion in Mixed Conditional (3rd + 2nd): «Had you put on» вместо «If you had put on».</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t1-9">
+            <div class="ru-prompt">9. Мы прибежали на распродажу, но только чтобы обнаружить, что почти всё раскуплено. <span class="keyword-badge">ONLY</span></div>
+            <div class="sentence-line">
+                We rushed to the sale, <input type="text" class="inline-input" style="width: 250px;" oninput="liveCheck(this, ['only to find out that', 'only to discover that', 'only to find that'])" placeholder="Type translated clause..."> almost everything had sold out.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">We rushed to the sale, only to find out that almost everything had sold out.</span><span class="ans-note">Infinitive Clause неожиданного/разочаровывающего результата: «only to + V1» + фразовые глаголы «find out» и «sell out».</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t1-10">
+            <div class="ru-prompt">10. Вместо того чтобы откладывать техническое обслуживание, тебе лучше заняться им немедленно. <span class="keyword-badge">INSTEAD</span></div>
+            <div class="sentence-line">
+                <input type="text" class="inline-input" style="width: 250px;" oninput="liveCheck(this, ['Instead of putting off'])" placeholder="Type translated clause..."> maintenance, you had better deal with it right away.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Instead of putting off maintenance, you had better deal with it right away.</span><span class="ans-note">«Instead of + V-ing» + фразовые глаголы «put off» (откладывать) и «deal with» (разбираться с).</span></div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- EXERCISE 2: SMART DROPDOWN BUILDER (RU -> EN)             -->
+    <!-- ========================================================= -->
+    <div id="ex2" class="tabcontent">
+        <h2>Format 2: Smart Translation Builder (RU → EN)</h2>
+        <div class="instruction">💡 Read the Russian sentence and complete its English translation by selecting the exact grammar & vocabulary chunks from the dropdown menus.</div>
+
+        <div class="exercise-item" data-task-id="t2-1">
+            <div class="ru-prompt">1. Он и не подозревал, что отношение его оппонента к конфликту изменилось за гранью понимания.</div>
+            <div class="sentence-line">
+                <select class="smart-select" onchange="checkSelect(this, 'Little did he know')">
+                    <option value="">-- choose --</option>
+                    <option value="Little he knew">Little he knew</option>
+                    <option value="Little did he know">Little did he know</option>
+                    <option value="Little had he knew">Little had he knew</option>
+                </select>
+                that his
+                <select class="smart-select" onchange="checkSelect(this, 'opponent\'s attitude to')">
+                    <option value="">-- choose --</option>
+                    <option value="opponent's attitude to">opponent's attitude to</option>
+                    <option value="opponent's altitude to">opponent's altitude to</option>
+                    <option value="opponent's response to">opponent's response to</option>
+                </select>
+                the conflict had changed beyond
+                <select class="smart-select" onchange="checkSelect(this, 'comprehension')">
+                    <option value="">-- choose --</option>
+                    <option value="maintenance">maintenance</option>
+                    <option value="exclusion">exclusion</option>
+                    <option value="comprehension">comprehension</option>
+                </select>.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Little did he know that his opponent's attitude to the conflict had changed beyond comprehension.</span><span class="ans-note">Inversion: Little + did + subject + V1. «beyond comprehension» = за гранью понимания.</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t2-2">
+            <div class="ru-prompt">2. Сообщают, что в данный момент комитет в Великобритании обсуждает его исключение из команды.</div>
+            <div class="sentence-line">
+                The committee
+                <select class="smart-select" onchange="checkSelect(this, 'is reported to be discussing')">
+                    <option value="">-- choose --</option>
+                    <option value="is reported to discuss">is reported to discuss</option>
+                    <option value="is reported to be discussing">is reported to be discussing</option>
+                    <option value="is reporting to discuss">is reporting to discuss</option>
+                </select>
+                his
+                <select class="smart-select" onchange="checkSelect(this, 'exclusion')">
+                    <option value="">-- choose --</option>
+                    <option value="reduction">reduction</option>
+                    <option value="resolution">resolution</option>
+                    <option value="exclusion">exclusion</option>
+                </select>
+                from the team in the UK
+                <select class="smart-select" onchange="checkSelect(this, 'at the moment')">
+                    <option value="">-- choose --</option>
+                    <option value="at the moment">at the moment</option>
+                    <option value="in the moment">in the moment</option>
+                    <option value="on the moment">on the moment</option>
+                </select>.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">The committee is reported to be discussing his exclusion from the team in the UK at the moment.</span><span class="ans-note">Impersonal Passive + Continuous Infinitive (to be + V-ing) для процесса «прямо сейчас» (at the moment).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t2-3">
+            <div class="ru-prompt">3. Впервые оставшись в полной тишине, она наконец разобралась в этой идиоме.</div>
+            <div class="sentence-line">
+                <select class="smart-select" onchange="checkSelect(this, 'Left')">
+                    <option value="">-- choose --</option>
+                    <option value="Leaving">Leaving</option>
+                    <option value="Left">Left</option>
+                    <option value="Having left">Having left</option>
+                </select>
+                in complete
+                <select class="smart-select" onchange="checkSelect(this, 'silence')">
+                    <option value="">-- choose --</option>
+                    <option value="silent">silent</option>
+                    <option value="silence">silence</option>
+                    <option value="silently">silently</option>
+                </select>
+                for the first time, she finally
+                <select class="smart-select" onchange="checkSelect(this, 'figured out')">
+                    <option value="">-- choose --</option>
+                    <option value="figured out">figured out</option>
+                    <option value="figured up">figured up</option>
+                    <option value="figured off">figured off</option>
+                </select>
+                this idiom.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Left in complete silence for the first time, she finally figured out this idiom.</span><span class="ans-note">Past Participle Clause (Left = оставленная/оставшись) + «silence» (сущ.) + phrasal verb «figure out» (разобраться/понять).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t2-4">
+            <div class="ru-prompt">4. Редко можно увидеть его без закатанного рукава во время ежедневной работы.</div>
+            <div class="sentence-line">
+                <select class="smart-select" onchange="checkSelect(this, 'Rarely do you see')">
+                    <option value="">-- choose --</option>
+                    <option value="Rarely you see">Rarely you see</option>
+                    <option value="Rarely do you see">Rarely do you see</option>
+                    <option value="Rarely are you see">Rarely are you see</option>
+                </select>
+                him without his
+                <select class="smart-select" onchange="checkSelect(this, 'sleeve')">
+                    <option value="">-- choose --</option>
+                    <option value="sleeve">sleeve</option>
+                    <option value="height">height</option>
+                    <option value="sale">sale</option>
+                </select>
+                <select class="smart-select" onchange="checkSelect(this, 'rolled up')">
+                    <option value="">-- choose --</option>
+                    <option value="rolled off">rolled off</option>
+                    <option value="rolled up">rolled up</option>
+                    <option value="rolled out">rolled out</option>
+                </select>
+                during his daily work.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Rarely do you see him without his sleeve rolled up during his daily work.</span><span class="ans-note">Inversion: Rarely + do + subject + V1. «roll up a sleeve» = закатать рукав.</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t2-5">
+            <div class="ru-prompt">5. Его слишком тошнило (он чувствовал себя слишком плохо), чтобы проглотить это густое лекарство.</div>
+            <div class="sentence-line">
+                He felt too
+                <select class="smart-select" onchange="checkSelect(this, 'sick')">
+                    <option value="">-- choose --</option>
+                    <option value="thick">thick</option>
+                    <option value="sick">sick</option>
+                    <option value="silent">silent</option>
+                </select>
+                <select class="smart-select" onchange="checkSelect(this, 'to swallow')">
+                    <option value="">-- choose --</option>
+                    <option value="swallowing">swallowing</option>
+                    <option value="for swallowing">for swallowing</option>
+                    <option value="to swallow">to swallow</option>
+                </select>
+                the
+                <select class="smart-select" onchange="checkSelect(this, 'thick')">
+                    <option value="">-- choose --</option>
+                    <option value="sick">sick</option>
+                    <option value="thick">thick</option>
+                    <option value="tense">tense</option>
+                </select>
+                medicine.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">He felt too sick to swallow the thick medicine.</span><span class="ans-note">Infinitive Clause «too + adj + to V1» + контраст слов «sick» (больной/тошнит) и «thick» (густой/плотный).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t2-6">
+            <div class="ru-prompt">6. Известно, что год за годом рост этих деревьев достигает огромной высоты.</div>
+            <div class="sentence-line">
+                The
+                <select class="smart-select" onchange="checkSelect(this, 'growth')">
+                    <option value="">-- choose --</option>
+                    <option value="height">height</option>
+                    <option value="growth">growth</option>
+                    <option value="reduction">reduction</option>
+                </select>
+                of these trees
+                <select class="smart-select" onchange="checkSelect(this, 'is known to reach')">
+                    <option value="">-- choose --</option>
+                    <option value="is known to reach">is known to reach</option>
+                    <option value="knows to reach">knows to reach</option>
+                    <option value="is knowing to reach">is knowing to reach</option>
+                </select>
+                an enormous
+                <select class="smart-select" onchange="checkSelect(this, 'height')">
+                    <option value="">-- choose --</option>
+                    <option value="growth">growth</option>
+                    <option value="tension">tension</option>
+                    <option value="height">height</option>
+                </select>
+                year by year.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">The growth of these trees is known to reach an enormous height year by year.</span><span class="ans-note">Impersonal Passive (is known to + V1) + контраст «growth» (рост/развитие) и «height» (высота).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t2-7">
+            <div class="ru-prompt">7. Едва она разбудила его, как от клиента пришёл напряжённый ответ.</div>
+            <div class="sentence-line">
+                <select class="smart-select" onchange="checkSelect(this, 'Hardly had she woken him up')">
+                    <option value="">-- choose --</option>
+                    <option value="Hardly she had woken him up">Hardly she had woken him up</option>
+                    <option value="Hardly had she woken him up">Hardly had she woken him up</option>
+                    <option value="Hardly did she woken him up">Hardly did she woken him up</option>
+                </select>
+                <select class="smart-select" onchange="checkSelect(this, 'when')">
+                    <option value="">-- choose --</option>
+                    <option value="than">than</option>
+                    <option value="when">when</option>
+                    <option value="that">that</option>
+                </select>
+                a
+                <select class="smart-select" onchange="checkSelect(this, 'tense')">
+                    <option value="">-- choose --</option>
+                    <option value="tension">tension</option>
+                    <option value="tense">tense</option>
+                    <option value="thick">thick</option>
+                </select>
+                response arrived from the client.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Hardly had she woken him up when a tense response arrived from the client.</span><span class="ans-note">Inversion: «Hardly had + S + V3 ... when» (с Hardly используется when, а не than!).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t2-8">
+            <div class="ru-prompt">8. Действительно, почти всегда трудно оправиться от разрушительного решения.</div>
+            <div class="sentence-line">
+                <select class="smart-select" onchange="checkSelect(this, 'Indeed')">
+                    <option value="">-- choose --</option>
+                    <option value="Instead">Instead</option>
+                    <option value="Indeed">Indeed</option>
+                    <option value="Technically">Technically</option>
+                </select>,
+                it is
+                <select class="smart-select" onchange="checkSelect(this, 'almost always')">
+                    <option value="">-- choose --</option>
+                    <option value="almost always">almost always</option>
+                    <option value="almost everything">almost everything</option>
+                    <option value="every time">every time</option>
+                </select>
+                hard to
+                <select class="smart-select" onchange="checkSelect(this, 'get over')">
+                    <option value="">-- choose --</option>
+                    <option value="get off">get off</option>
+                    <option value="get over">get over</option>
+                    <option value="get up">get up</option>
+                </select>
+                a destructive decision.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Indeed, it is almost always hard to get over a destructive decision.</span><span class="ans-note">«Indeed» (действительно) vs «Instead» (вместо) + phrasal verb «get over» (оправиться от / пережить).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t2-9">
+            <div class="ru-prompt">9. Не желая спровоцировать спор из-за его резкого тона, она оставалась молчаливой.</div>
+            <div class="sentence-line">
+                <select class="smart-select" onchange="checkSelect(this, 'Not wanting')">
+                    <option value="">-- choose --</option>
+                    <option value="Don't wanting">Don't wanting</option>
+                    <option value="Not wanted">Not wanted</option>
+                    <option value="Not wanting">Not wanting</option>
+                </select>
+                to
+                <select class="smart-select" onchange="checkSelect(this, 'bring about')">
+                    <option value="">-- choose --</option>
+                    <option value="bring about">bring about</option>
+                    <option value="bring off">bring off</option>
+                    <option value="bring down">bring down</option>
+                </select>
+                an argument
+                <select class="smart-select" onchange="checkSelect(this, 'because of')">
+                    <option value="">-- choose --</option>
+                    <option value="because">because</option>
+                    <option value="because of">because of</option>
+                    <option value="although">although</option>
+                </select>
+                his sharp tone, she remained silent.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Not wanting to bring about an argument because of his sharp tone, she remained silent.</span><span class="ans-note">Negative Participle Clause (Not + V-ing) + «bring about» (вызвать/спровоцировать) + «because of + noun».</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t2-10">
+            <div class="ru-prompt">10. Ни при каких обстоятельствах нельзя бросать друга, когда он болен, даже если формально (технически) это не твоя обязанность.</div>
+            <div class="sentence-line">
+                <select class="smart-select" onchange="checkSelect(this, 'Under no circumstances should you')">
+                    <option value="">-- choose --</option>
+                    <option value="Under no circumstances you should">Under no circumstances you should</option>
+                    <option value="Under no circumstances should you">Under no circumstances should you</option>
+                    <option value="Under no circumstances do you should">Under no circumstances do you should</option>
+                </select>
+                <select class="smart-select" onchange="checkSelect(this, 'leave')">
+                    <option value="">-- choose --</option>
+                    <option value="live">live</option>
+                    <option value="leave">leave</option>
+                    <option value="let">let</option>
+                </select>
+                a friend when he is ill, even if
+                <select class="smart-select" onchange="checkSelect(this, 'technically')">
+                    <option value="">-- choose --</option>
+                    <option value="technically">technically</option>
+                    <option value="inexplicably">inexplicably</option>
+                    <option value="daily">daily</option>
+                </select>
+                it is not your duty.
+            </div>
+            <button class="btn-action" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Under no circumstances should you leave a friend when he is ill, even if technically it is not your duty.</span><span class="ans-note">Inversion: Under no circumstances + modal + subject + V1.</span></div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- EXERCISE 3: CLICK & FIX ERROR HUNT (RU -> EN)             -->
+    <!-- ========================================================= -->
+    <div id="ex3" class="tabcontent">
+        <h2>Format 3: Click & Fix the Translation Error</h2>
+        <div class="instruction">💡 Compare the Russian sentence and its English translation. There is <strong>ONE mistake</strong> hidden in the English sentence. <strong>Step 1:</strong> Click the flawed part of the English sentence. <strong>Step 2:</strong> Type the corrected phrase in the box that appears.</div>
+
+        <div class="exercise-item" data-task-id="t3-1">
+            <div class="ru-prompt">1. Только после того отчёта комиссия осознала масштаб сокращения.</div>
+            <div class="chunk-sentence">
+                <span class="chunk-btn" onclick="clickChunk(this, false)">Only after that report</span>
+                <span class="chunk-btn" onclick="clickChunk(this, true)">the committee realised</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">the scale of</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">the reduction.</span>
+            </div>
+            <div class="hunt-feedback">Click the incorrect phrase above.</div>
+            <div class="fix-box">
+                <div class="interactive-row">
+                    <input type="text" class="text-input" oninput="liveCheck(this, ['did the committee realise', 'did the committee realize'])" placeholder="Type the corrected phrase...">
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">did the committee realise</span><span class="ans-note">Inversion после «Only after...» в начале предложения: Only after that report did the committee realise...</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t3-2">
+            <div class="ru-prompt">2. По слухам, грабитель сейчас прячется где-то в Великобритании.</div>
+            <div class="chunk-sentence">
+                <span class="chunk-btn" onclick="clickChunk(this, false)">The robber</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">is rumoured</span>
+                <span class="chunk-btn" onclick="clickChunk(this, true)">hiding</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">somewhere in the UK.</span>
+            </div>
+            <div class="hunt-feedback">Click the incorrect phrase above.</div>
+            <div class="fix-box">
+                <div class="interactive-row">
+                    <input type="text" class="text-input" oninput="liveCheck(this, ['to be hiding'])" placeholder="Type the corrected phrase...">
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">to be hiding</span><span class="ans-note">Impersonal Passive требует инфинитив (здесь Continuous Infinitive «to be hiding» для процесса в данный момент).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t3-3">
+            <div class="ru-prompt">3. Испуганная из-за необъяснимой тишины, она не могла уснуть.</div>
+            <div class="chunk-sentence">
+                <span class="chunk-btn" onclick="clickChunk(this, true)">Scaring</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">because of</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">the inexplicable silence,</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">she couldn't sleep.</span>
+            </div>
+            <div class="hunt-feedback">Click the incorrect phrase above.</div>
+            <div class="fix-box">
+                <div class="interactive-row">
+                    <input type="text" class="text-input" oninput="liveCheck(this, ['Scared', 'Being scared', 'Being afraid', 'Afraid'])" placeholder="Type the corrected phrase...">
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Scared (or: Being afraid / Afraid)</span><span class="ans-note">Participle Clause: для состояния/эмоции человека нужно Past Participle (Scared), а не активное причастие (Scaring).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t3-4">
+            <div class="ru-prompt">4. Он снял резиновые сапоги, чтобы не испачкать пол.</div>
+            <div class="chunk-sentence">
+                <span class="chunk-btn" onclick="clickChunk(this, true)">He took out</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">his rubber boots</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">so as not to</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">dirty the floor.</span>
+            </div>
+            <div class="hunt-feedback">Click the incorrect phrase above.</div>
+            <div class="fix-box">
+                <div class="interactive-row">
+                    <input type="text" class="text-input" oninput="liveCheck(this, ['He took off', 'took off'])" placeholder="Type the corrected phrase...">
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">He took off</span><span class="ans-note">Phrasal verb: «take off» = снимать одежду/обувь (а «take out» = выносить/доставать).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t3-5">
+            <div class="ru-prompt">5. Это интересное решение, вероятно, приведёт к росту продаж.</div>
+            <div class="chunk-sentence">
+                <span class="chunk-btn" onclick="clickChunk(this, false)">This interesting decision</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">is likely</span>
+                <span class="chunk-btn" onclick="clickChunk(this, true)">leading to</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">an increase in sales.</span>
+            </div>
+            <div class="hunt-feedback">Click the incorrect phrase above.</div>
+            <div class="fix-box">
+                <div class="interactive-row">
+                    <input type="text" class="text-input" oninput="liveCheck(this, ['to lead to'])" placeholder="Type the corrected phrase...">
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">to lead to</span><span class="ans-note">Конструкция будущего «be likely + to + Infinitive».</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t3-6">
+            <div class="ru-prompt">6. Отец заставил её бросить эту разрушительную привычку.</div>
+            <div class="chunk-sentence">
+                <span class="chunk-btn" onclick="clickChunk(this, false)">Her father</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">made her</span>
+                <span class="chunk-btn" onclick="clickChunk(this, true)">to give up</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">that destructive habit.</span>
+            </div>
+            <div class="hunt-feedback">Click the incorrect phrase above.</div>
+            <div class="fix-box">
+                <div class="interactive-row">
+                    <input type="text" class="text-input" oninput="liveCheck(this, ['give up'])" placeholder="Type the corrected phrase...">
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">give up</span><span class="ans-note">После «make smb» в активном залоге используется голый инфинитив без частицы to + phrasal verb «give up».</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t3-7">
+            <div class="ru-prompt">7. Говорят, что эта стоматологическая клиника открылась в 2010 году.</div>
+            <div class="chunk-sentence">
+                <span class="chunk-btn" onclick="clickChunk(this, false)">This dental clinic</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">is said</span>
+                <span class="chunk-btn" onclick="clickChunk(this, true)">to open</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">in 2010.</span>
+            </div>
+            <div class="hunt-feedback">Click the incorrect phrase above.</div>
+            <div class="fix-box">
+                <div class="interactive-row">
+                    <input type="text" class="text-input" oninput="liveCheck(this, ['to have opened'])" placeholder="Type the corrected phrase...">
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">to have opened</span><span class="ans-note">Impersonal Passive: событие произошло в прошлом (2010), поэтому нужен Perfect Infinitive (to have + V3).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t3-8">
+            <div class="ru-prompt">8. Редко напряжение между оппонентами было настолько высоким.</div>
+            <div class="chunk-sentence">
+                <span class="chunk-btn" onclick="clickChunk(this, false)">Seldom</span>
+                <span class="chunk-btn" onclick="clickChunk(this, true)">the tension has been</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">so high</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">between the opponents.</span>
+            </div>
+            <div class="hunt-feedback">Click the incorrect phrase above.</div>
+            <div class="fix-box">
+                <div class="interactive-row">
+                    <input type="text" class="text-input" oninput="liveCheck(this, ['has the tension been'])" placeholder="Type the corrected phrase...">
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">has the tension been</span><span class="ans-note">Inversion: после Seldom в начале предложения вспомогательный глагол выносится перед подлежащим.</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t3-9">
+            <div class="ru-prompt">9. Закончив работу по дому, я наконец сел пить чай.</div>
+            <div class="chunk-sentence">
+                <span class="chunk-btn" onclick="clickChunk(this, true)">Finished</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">the housework,</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">I finally</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">sat down to drink tea.</span>
+            </div>
+            <div class="hunt-feedback">Click the incorrect phrase above.</div>
+            <div class="fix-box">
+                <div class="interactive-row">
+                    <input type="text" class="text-input" oninput="liveCheck(this, ['Having finished'])" placeholder="Type the corrected phrase...">
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">Having finished</span><span class="ans-note">Perfect Participle Active (Having + V3): подлежащее «I» само выполнило действие раньше основного.</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t3-10">
+            <div class="ru-prompt">10. Ах, если бы только я не отложил принятие этого решения вчера!</div>
+            <div class="chunk-sentence">
+                <span class="chunk-btn" onclick="clickChunk(this, false)">If only</span>
+                <span class="chunk-btn" onclick="clickChunk(this, true)">I didn't put off</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">making this decision</span>
+                <span class="chunk-btn" onclick="clickChunk(this, false)">yesterday!</span>
+            </div>
+            <div class="hunt-feedback">Click the incorrect phrase above.</div>
+            <div class="fix-box">
+                <div class="interactive-row">
+                    <input type="text" class="text-input" oninput="liveCheck(this, ['I had not put off', 'I hadn\'t put off'])" placeholder="Type the corrected phrase...">
+                </div>
+            </div>
+            <button class="btn-action" style="margin-top: 10px;" onclick="showAns(this)">Answer</button>
+            <div class="ans-block"><span class="ans-main">I hadn't put off (or: I had not put off)</span><span class="ans-note">Сожаление о прошлом (yesterday) после «If only» требует Past Perfect + phrasal verb «put off».</span></div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- EXERCISE 4: NUANCES OF TRANSLATION (RU -> EN CHOICE)      -->
+    <!-- ========================================================= -->
+    <div id="ex4" class="tabcontent">
+        <h2>Format 4: Nuances of Translation (RU → EN Multiple Choice)</h2>
+        <div class="instruction">💡 Read the Russian sentence carefully and choose the ONE English translation that is 100% accurate in grammar, word order, and lexical nuance.</div>
+
+        <div class="exercise-item" data-task-id="t4-1">
+            <div class="ru-prompt">1. Мало того что он отклонил предложение, так он ещё и оставил команду без ответа.</div>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) Not only he turned down the offer, but he also left the team without a response.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">B) Not only did he turn down the offer, but he also left the team without a response.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Not only did he turned off the offer, but he also left the team without a response.</button>
+            </div>
+            <div class="ans-block"><span class="ans-main">Correct: B</span><span class="ans-note">Инверсия «Not only did he turn down» + фразовый глагол «turn down» (отклонить).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t4-2">
+            <div class="ru-prompt">2. Полагают, что эти ежедневные привычки способствовали его выздоровлению.</div>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">A) These daily habits are thought to have contributed to his recovery.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) These daily habits are thinking to contribute to his recovery.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) These daily habits are thought that they contributed to his recovery.</button>
+            </div>
+            <div class="ans-block"><span class="ans-main">Correct: A</span><span class="ans-note">Impersonal Passive с личным подлежащим требует инфинитив (Perfect Infinitive «to have contributed» для прошлого).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t4-3">
+            <div class="ru-prompt">3. Если бы его отношение было иным, мы бы не столкнулись с таким возмутительным исключением.</div>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) Was his attitude different, we wouldn't face such an outrageous exclusion.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) Had his attitude different, we wouldn't face such an outrageous exclusion.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">C) Were his attitude different, we wouldn't face such an outrageous exclusion.</button>
+            </div>
+            <div class="ans-block"><span class="ans-main">Correct: C</span><span class="ans-note">Инверсия в 2nd Conditional всегда использует «Were» (а не Was) для всех лиц.</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t4-4">
+            <div class="ru-prompt">4. Не зная этой идиомы, он испытывал трудности с пониманием отчёта.</div>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) Didn't knowing this idiom, he struggled with the comprehension of the report.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">B) Not knowing this idiom, he struggled with the comprehension of the report.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Not known this idiom, he struggled with the comprehension of the report.</button>
+            </div>
+            <div class="ans-block"><span class="ans-main">Correct: B</span><span class="ans-note">Отрицательный причастный оборот (Negative Participle Clause) строится через «Not + V-ing».</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t4-5">
+            <div class="ru-prompt">5. Он вот-вот разбудит соседей, если продолжит шуметь всё время.</div>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">A) He is about to wake the neighbours up if he keeps making noise all the time.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) He is about waking up the neighbours if he will keep making noise all the time.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) He is on the verge to wake the neighbours up if he keeps making noise all the time.</button>
+            </div>
+            <div class="ans-block"><span class="ans-main">Correct: A</span><span class="ans-note">«be about to + V1» (а «on the verge of + V-ing») + в 1st Conditional после «if» используется Present Simple.</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t4-6">
+            <div class="ru-prompt">6. Тебе следовало обратиться в стоматологическую клинику вместо того, чтобы принимать это лекарство.</div>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) You should go to the dental clinic instead to take this medicine.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) You must have gone to the dental clinic instead of taking this medicine.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">C) You should have gone to the dental clinic instead of taking this medicine.</button>
+            </div>
+            <div class="ans-block"><span class="ans-main">Correct: C</span><span class="ans-note">Past Modal упрёка/совета в прошлом: «should have + V3» + «instead of + V-ing».</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t4-7">
+            <div class="ru-prompt">7. Отремонтированный на прошлой неделе, этот станок больше не нуждается в ежедневном обслуживании.</div>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) Repairing last week, this machine no longer needs daily maintenance.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">B) Repaired last week, this machine no longer needs daily maintenance.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Having repaired last week, this machine no longer needs daily maintenance.</button>
+            </div>
+            <div class="ans-block"><span class="ans-main">Correct: B</span><span class="ans-note">Пассивный причастный оборот (Past Participle Clause): станок отремонтировали (он сам себя не чинил).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t4-8">
+            <div class="ru-prompt">8. Хотя на нём был плотный рукав, он всё равно чувствовал холод.</div>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">A) Although he had a thick sleeve, he still felt cold.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) Despite he had a thick sleeve, he still felt cold.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) Although he had a sick sleeve, he still felt cold.</button>
+            </div>
+            <div class="ans-block"><span class="ans-main">Correct: A</span><span class="ans-note">После «Although» идёт полное предложение (S+V), а «плотный» — это «thick».</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t4-9">
+            <div class="ru-prompt">9. Ожидается, что к концу года произойдёт значительное сокращение расходов.</div>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) There is expecting to be a significant reduction in costs by the end of the year.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">B) There is expected to be a significant reduction in costs by the end of the year.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">C) It is expected to be a significant reduction in costs by the end of the year.</button>
+            </div>
+            <div class="ans-block"><span class="ans-main">Correct: B</span><span class="ans-note">Impersonal Passive с оборотом существования: «There is expected to be...» (не «It is expected to be...»).</span></div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t4-10">
+            <div class="ru-prompt">10. Она слишком устала, чтобы разбираться с этим необъяснимым конфликтом в данный момент.</div>
+            <div class="quiz-options-grid">
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">A) She is too tired for dealing with this inexplicable conflict at the moment.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, false)">B) She is enough tired to deal with this inexplicable conflict at the moment.</button>
+                <button class="quiz-option" onclick="checkQuizOption(this, true)">C) She is too tired to deal with this inexplicable conflict at the moment.</button>
+            </div>
+            <div class="ans-block"><span class="ans-main">Correct: C</span><span class="ans-note">Infinitive Clause «too + adjective + to + V1» + phrasal verb «deal with».</span></div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- EXERCISE 5: FULL TRANSLATION (EN -> RU)                   -->
+    <!-- ========================================================= -->
+    <div id="ex5" class="tabcontent">
+        <h2>Format 5: Full Translation (EN → RU)</h2>
+        <div class="instruction">💡 Translate these advanced English sentences into natural Russian. Pay close attention to inversion, impersonal passives, phrasal verbs, and participle/infinitive clauses.</div>
+
+        <div class="exercise-item" data-task-id="t5-1">
+            <div class="ru-prompt">1. Rarely has a single decision brought about such destructive consequences.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Редко одно решение приводило к таким разрушительным последствиям', 'Редко единственное решение приводило к таким разрушительным последствиям', 'Редко когда одно решение приводило к таким разрушительным последствиям', 'Редко одно решение вызывало такие разрушительные последствия'])" placeholder="Напишите перевод на русском...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Редко одно решение приводило к таким разрушительным последствиям.</span><span class="ans-note">Inversion (Rarely has...) + phrasal verb «bring about» (приводить к / вызывать).</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t5-2">
+            <div class="ru-prompt">2. The robber is believed to have broken into the dental clinic at night.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Считается что грабитель вломился в стоматологическую клинику ночью', 'Полагают что грабитель вломился в стоматологическую клинику ночью', 'Считается что грабитель проник в стоматологическую клинику ночью', 'Полагают что грабитель проник в стоматологическую клинику ночью'])" placeholder="Напишите перевод на русском...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Считается (Полагают), что грабитель вломился в стоматологическую клинику ночью.</span><span class="ans-note">Impersonal Passive + Perfect Infinitive + phrasal verb «break into» (вломиться).</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t5-3">
+            <div class="ru-prompt">3. Having looked into the report, the manager came up with a clear resolution.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Изучив отчет менеджер придумал четкое решение', 'Изучив отчет менеджер предложил четкое решение', 'Разобравшись в отчете менеджер придумал четкое решение', 'Изучив отчет менеджер пришел к четкому решению', 'Изучив отчет менеджер придумал ясное решение'])" placeholder="Напишите перевод на русском...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Изучив отчёт, менеджер придумал чёткое решение.</span><span class="ans-note">Perfect Participle Clause + phrasal verbs «look into» (изучить/расследовать) и «come up with» (придумать).</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t5-4">
+            <div class="ru-prompt">4. She was the last person to find out about her exclusion from the project.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Она была последним человеком который узнал о своем исключении из проекта', 'Она последней узнала о своем исключении из проекта', 'Она была последней кто узнал о своем исключении из проекта'])" placeholder="Напишите перевод на русском...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Она была последним человеком, который узнал (Она последней узнала) о своём исключении из проекта.</span><span class="ans-note">Infinitive Clause «the last person to...» + phrasal verb «find out».</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t5-5">
+            <div class="ru-prompt">5. Not only did the thick rubber boots save his feet, but they also kept him warm.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Плотные резиновые сапоги не только спасли его ноги но и согрели его', 'Толстые резиновые сапоги не только спасли его ноги но и согрели его', 'Плотные резиновые сапоги не только спасли его ноги но и сохранили его в тепле', 'Толстые резиновые сапоги не только спасли его ноги но и сохранили тепло'])" placeholder="Напишите перевод на русском...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Плотные (толстые) резиновые сапоги не только спасли его ноги, но и согрели его.</span><span class="ans-note">Inversion: Not only did + S + V1, but... also...</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t5-6">
+            <div class="ru-prompt">6. It is widely known that poor maintenance leads to a reduction in quality year by year.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Широко известно что плохое обслуживание приводит к снижению качества год за годом', 'Широко известно что плохое техническое обслуживание приводит к снижению качества год за годом', 'Всем известно что плохое обслуживание приводит к снижению качества год за годом'])" placeholder="Напишите перевод на русском...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Широко известно, что плохое (техническое) обслуживание приводит к снижению качества год за годом.</span><span class="ans-note">Impersonal Passive: It is widely known that...</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t5-7">
+            <div class="ru-prompt">7. We are on the verge of reaching a compromise, providing that our opponent backs down.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Мы на грани достижения компромисса при условии что наш оппонент отступит', 'Мы находимся на грани достижения компромисса при условии что наш оппонент отступит', 'Мы на грани достижения компромисса при условии что наш оппонент уступит'])" placeholder="Напишите перевод на русском...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Мы на грани достижения компромисса при условии, что наш оппонент отступит (уступит).</span><span class="ans-note">«be on the verge of + V-ing» + «providing that» + phrasal verb «back down» (отступить/пойти на попятную).</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t5-8">
+            <div class="ru-prompt">8. I would rather do the housework in silence than listen to his complaints all the time.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Я бы предпочел делать работу по дому в тишине чем слушать его жалобы все время', 'Я бы предпочла делать работу по дому в тишине чем слушать его жалобы все время', 'Я бы лучше делал работу по дому в тишине чем слушал его жалобы все время'])" placeholder="Напишите перевод на русском...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Я бы предпочёл делать работу по дому в тишине, чем всё время слушать его жалобы.</span><span class="ans-note">«would rather + V1 + than + V1».</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t5-9">
+            <div class="ru-prompt">9. No sooner had I woken him up than he started feeling sick.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Едва я его разбудил как он почувствовал себя плохо', 'Едва я разбудил его как он почувствовал себя плохо', 'Не успел я его разбудить как он почувствовал себя плохо', 'Едва я его разбудила как он почувствовал себя плохо', 'Едва я его разбудил как его начало тошнить'])" placeholder="Напишите перевод на русском...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Едва я его разбудил (Не успел я его разбудить), как он почувствовал себя плохо / его начало тошнить.</span><span class="ans-note">Inversion: «No sooner had + S + V3 ... than» + «wake smb up».</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t5-10">
+            <div class="ru-prompt">10. Technically, she is due to move to the UK next month, although she is still afraid of flying.</div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Технически она должна переехать в Великобританию в следующем месяце хотя она все еще боится летать', 'Формально она должна переехать в Великобританию в следующем месяце хотя она все еще боится летать', 'Технически она должна переехать в Великобританию в следующем месяце хотя все еще боится летать'])" placeholder="Напишите перевод на русском...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Технически (Формально) она должна переехать в Великобританию в следующем месяце, хотя всё ещё боится летать.</span><span class="ans-note">«be due to + V1» (запланировано по графику) + «although» + «be afraid of + V-ing».</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- EXERCISE 6: FULL TRANSLATION CHALLENGE (RU -> EN)         -->
+    <!-- ========================================================= -->
+    <div id="ex6" class="tabcontent">
+        <h2>Format 6: Full Translation Challenge (RU → EN)</h2>
+        <div class="instruction">💡 Translate the full Russian sentences into English using the target grammar tag and lesson vocabulary. Click <strong>Answer</strong> to verify and see grammar notes.</div>
+
+        <div class="exercise-item" data-task-id="t6-1">
+            <div class="ru-prompt">1. Никогда прежде я не слышал такой интересной идиомы. <span class="grammar-tag">Inversion: Never</span></div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Never before have I heard such an interesting idiom', 'Never have I heard such an interesting idiom'])" placeholder="Type full English translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Never before have I heard such an interesting idiom.</span><span class="ans-note">Inversion with Present Perfect: Never (before) + have + I + V3.</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t6-2">
+            <div class="ru-prompt">2. Говорят, что в Великобритании почти всегда идёт дождь. <span class="grammar-tag">Impersonal Passive</span></div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['It is said that it almost always rains in the UK', 'It is said that in the UK it almost always rains'])" placeholder="Type full English translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">It is said that it almost always rains in the UK.</span><span class="ans-note">Impersonal Passive: It is said that... + Present Simple.</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t6-3">
+            <div class="ru-prompt">3. Будучи больным, он остался дома вместо того, чтобы пойти на распродажу. <span class="grammar-tag">Participle Clause</span></div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Being ill he stayed at home instead of going to the sale', 'Being ill he stayed home instead of going to the sale'])" placeholder="Type full English translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Being ill, he stayed (at) home instead of going to the sale.</span><span class="ans-note">Present Participle Clause причины (Being ill) + «instead of + V-ing».</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t6-4">
+            <div class="ru-prompt">4. Я пришёл пораньше, чтобы разобраться с ответом клиента. <span class="grammar-tag">Infinitive Clause + Phrasal Verb</span></div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['I came early to deal with the clients response', 'I came early in order to deal with the clients response', 'I came early so as to deal with the clients response', 'I came earlier to deal with the clients response'])" placeholder="Type full English translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">I came early (in order) to deal with the client's response.</span><span class="ans-note">Infinitive Clause of Purpose (to / in order to + V1) + phrasal verb «deal with».</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t6-5">
+            <div class="ru-prompt">5. Если бы он лучше относился к коллегам, не было бы такого напряжения. <span class="grammar-tag">Inversion: Were ... to</span></div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['Were he to treat his colleagues better there would not be such tension', 'Were he to treat colleagues better there would not be such tension', 'If he treated his colleagues better there would not be such tension'])" placeholder="Type full English translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">Were he to treat his colleagues better, there wouldn't be such tension.</span><span class="ans-note">2nd Conditional Inversion: «Were + S + to + V1» для гипотетического действия.</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t6-6">
+            <div class="ru-prompt">6. Тебе не следовало будить меня из-за этого отчёта. <span class="grammar-tag">Past Modal + Phrasal Verb</span></div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['You should not have woken me up because of this report', 'You shouldnt have woken me up because of this report'])" placeholder="Type full English translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">You shouldn't have woken me up because of this report.</span><span class="ans-note">Past Modal (should not have + V3) + phrasal verb «wake smb up» + «because of».</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t6-7">
+            <div class="ru-prompt">7. К пятнице мы уже проверим почти всё перед техническим обслуживанием. <span class="grammar-tag">Future Perfect</span></div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['By Friday we will have checked almost everything before the maintenance', 'By Friday we will have checked almost everything before maintenance', 'We will have checked almost everything before the maintenance by Friday'])" placeholder="Type full English translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">By Friday, we will have checked almost everything before the maintenance.</span><span class="ans-note">Future Perfect (will have + V3) с маркером «By Friday».</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t6-8">
+            <div class="ru-prompt">8. Он привык работать в тишине, хотя его новый офис действительно шумный. <span class="grammar-tag">Be used to + Although</span></div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['He is used to working in silence although his new office is indeed noisy', 'Hes used to working in silence although his new office is indeed noisy'])" placeholder="Type full English translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">He is used to working in silence, although his new office is indeed noisy.</span><span class="ans-note">«be used to + V-ing» + «although» + «indeed».</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t6-9">
+            <div class="ru-prompt">9. Я помогу тебе с работой по дому при условии, что ты заставишь его извиниться. <span class="grammar-tag">On condition that + Make smb do</span></div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['I will help you with the housework on condition that you make him apologise', 'I will help you with housework on condition that you make him apologise', 'I will help you with the housework providing that you make him apologise'])" placeholder="Type full English translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">I will help you with the housework on condition that you make him apologise.</span><span class="ans-note">1st Conditional с «on condition that» + «make smb do smth» (без to).</span></div>
+            </div>
+        </div>
+
+        <div class="exercise-item" data-task-id="t6-10">
+            <div class="ru-prompt">10. Он уже три часа ждёт ответа от стоматологической клиники. <span class="grammar-tag">Present Perfect Continuous</span></div>
+            <div class="interactive-row">
+                <input type="text" class="text-input" oninput="liveCheck(this, ['He has been waiting for a response from the dental clinic for three hours', 'Hes been waiting for a response from the dental clinic for three hours', 'He has been waiting for a response from the dental clinic for 3 hours'])" placeholder="Type full English translation...">
+                <button class="btn-action" onclick="showAns(this)">Answer</button>
+                <div class="ans-block"><span class="ans-main">He has been waiting for a response from the dental clinic for three hours.</span><span class="ans-note">Present Perfect Continuous (has been + V-ing) для длительного действия, начавшегося в прошлом и продолжающегося сейчас.</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const solvedTasks = new Set();
+    const TOTAL_TASKS = 60;
+
+    function updateProgress() {
+        const count = solvedTasks.size;
+        document.getElementById('score-text').textContent = count + ' / ' + TOTAL_TASKS + ' solved';
+        document.getElementById('progress-fill').style.width = Math.round((count / TOTAL_TASKS) * 100) + '%';
+    }
+
+    function markItemSolved(el, solved) {
+        const item = el.closest('.exercise-item');
+        if (!item) return;
+        const id = item.getAttribute('data-task-id');
+        if (!id) return;
+        if (solved) {
+            solvedTasks.add(id);
+            item.classList.add('solved-item');
+        } else {
+            solvedTasks.delete(id);
+            item.classList.remove('solved-item');
+        }
+        updateProgress();
+    }
+
+    function openTab(evt, tabName) {
+        const tabcontent = document.getElementsByClassName('tabcontent');
+        for (let i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = 'none';
+        }
+        const tablinks = document.getElementsByClassName('tablinks');
+        for (let i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove('active');
+        }
+        document.getElementById(tabName).style.display = 'block';
+        evt.currentTarget.classList.add('active');
+    }
+
+    function normalizeText(str) {
+        return str
+            .trim()
+            .toLowerCase()
+            .replace(/ё/g, 'е')
+            .replace(/realize/g, 'realise')
+            .replace(/apologize/g, 'apologise')
+            .replace(/neighbors/g, 'neighbours')
+            .replace(/rumored/g, 'rumoured')
+            .replace(/['’`]/g, '')
+            .replace(/would not/g, 'wouldnt')
+            .replace(/had not/g, 'hadnt')
+            .replace(/should not/g, 'shouldnt')
+            .replace(/could not/g, 'couldnt')
+            .replace(/did not/g, 'didnt')
+            .replace(/do not/g, 'dont')
+            .replace(/does not/g, 'doesnt')
+            .replace(/will not/g, 'wont')
+            .replace(/cannot/g, 'cant')
+            .replace(/is not/g, 'isnt')
+            .replace(/are not/g, 'arent')
+            .replace(/have not/g, 'havent')
+            .replace(/has not/g, 'hasnt')
+            .replace(/he is/g, 'hes')
+            .replace(/he has/g, 'hes')
+            .replace(/she is/g, 'shes')
+            .replace(/it is/g, 'its')
+            .replace(/[\.\?!,;:\-—()«»"]/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+    }
+
+    function liveCheck(inputElement, correctAnswersArray) {
+        const userAns = normalizeText(inputElement.value);
+        let isCorrect = false;
+
+        for (let i = 0; i < correctAnswersArray.length; i++) {
+            if (userAns === normalizeText(correctAnswersArray[i])) {
+                isCorrect = true;
+                break;
+            }
+        }
+
+        if (isCorrect) {
+            inputElement.classList.add('correct-input');
+            const item = inputElement.closest('.exercise-item');
+            const foundChunk = item ? item.querySelector('.chunk-btn.chunk-found') : null;
+            if (foundChunk) {
+                foundChunk.classList.remove('chunk-found');
+                foundChunk.classList.add('chunk-fixed');
+                const fb = item.querySelector('.hunt-feedback');
+                if (fb) {
+                    fb.textContent = '✓ Great! Error fixed.';
+                    fb.style.color = '#16a34a';
+                }
+            }
+            markItemSolved(inputElement, true);
+        } else {
+            inputElement.classList.remove('correct-input');
+            markItemSolved(inputElement, false);
+        }
+    }
+
+    function checkSelect(selectEl, correctVal) {
+        if (!selectEl.value) {
+            selectEl.classList.remove('correct-input', 'wrong-select');
+        } else if (selectEl.value === correctVal) {
+            selectEl.classList.add('correct-input');
+            selectEl.classList.remove('wrong-select');
+        } else {
+            selectEl.classList.remove('correct-input');
+            selectEl.classList.add('wrong-select');
+        }
+
+        const item = selectEl.closest('.exercise-item');
+        const allSelects = item.querySelectorAll('.smart-select');
+        const allRight = Array.from(allSelects).every(s => s.classList.contains('correct-input'));
+        markItemSolved(selectEl, allRight);
+    }
+
+    function clickChunk(chunkEl, isFlawed) {
+        const item = chunkEl.closest('.exercise-item');
+        const feedback = item.querySelector('.hunt-feedback');
+        const fixBox = item.querySelector('.fix-box');
+
+        if (item.classList.contains('solved-item')) return;
+
+        if (isFlawed) {
+            chunkEl.classList.add('chunk-found');
+            feedback.textContent = '🎯 Spot on! Now type the corrected phrase below:';
+            feedback.style.color = '#b45309';
+            fixBox.style.display = 'block';
+            const input = fixBox.querySelector('input');
+            if (input) input.focus();
+        } else {
+            chunkEl.classList.add('chunk-ok-flash');
+            feedback.textContent = 'This part is grammatically fine — try another phrase!';
+            feedback.style.color = '#dc2626';
+            setTimeout(() => chunkEl.classList.remove('chunk-ok-flash'), 450);
+        }
+    }
+
+    function checkQuizOption(btn, isCorrect) {
+        const item = btn.closest('.exercise-item');
+        const siblings = btn.parentNode.querySelectorAll('.quiz-option');
+        siblings.forEach(b => b.classList.remove('correct', 'incorrect'));
+        const ansBlock = item.querySelector('.ans-block');
+
+        if (isCorrect) {
+            btn.classList.add('correct');
+            if (ansBlock) ansBlock.style.display = 'block';
+            markItemSolved(btn, true);
+        } else {
+            btn.classList.add('incorrect');
+            markItemSolved(btn, false);
+        }
+    }
+
+    function showAns(btnElement) {
+        const container = btnElement.closest('.exercise-item');
+        if (!container) return;
+        const ansBlock = container.querySelector('.ans-block');
+        if (ansBlock) {
+            ansBlock.style.display = (ansBlock.style.display === 'block') ? 'none' : 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
