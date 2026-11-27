@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sarah · IELTS Academic · 30.11.2026</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Manrope:wght@400;500;700;800&display=swap">
+<style>
+  /* Layout: one column of tabbed panels; each panel = lead line + stacked cards. Neva granite palette. */
+  :root{
+    color-scheme: light;
+    --paper:#F2F4F5; --card:#FFFFFF; --ink:#1B2529; --soft:#566469;
+    --line:#D9E0E2; --chip:#E8EEF0;
+    --neva:#1E5A66; --neva-2:#4F7E88; --brick:#A5482F;
+    --good:#23703E; --good-bg:#E6F3EA; --bad:#B03A2E; --bad-bg:#FBEAE7;
+    --f-disp:"Newsreader", Georgia, "Times New Roman", serif;
+    --f-body:"Manrope", -apple-system, "Segoe UI", sans-serif;
+    --r:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme: dark;
+      --paper:#131A1D; --card:#1B2428; --ink:#E6EDEF; --soft:#A2B1B5;
+      --line:#2E3B40; --chip:#233034;
+      --neva:#8CC7D2; --neva-2:#6FA3AD; --brick:#EE9A80;
+      --good:#7FD49A; --good-bg:#1A2E22; --bad:#F29A8F; --bad-bg:#352120;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --paper:#131A1D; --card:#1B2428; --ink:#E6EDEF; --soft:#A2B1B5;
+    --line:#2E3B40; --chip:#233034;
+    --neva:#8CC7D2; --neva-2:#6FA3AD; --brick:#EE9A80;
+    --good:#7FD49A; --good-bg:#1A2E22; --bad:#F29A8F; --bad-bg:#352120;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.55;}
+  .wrap{max-width:900px; margin:0 auto; padding-inline:16px; padding-block:22px 56px;}
+
+  header.top{display:flex; flex-direction:column; gap:4px; margin-bottom:18px;}
+  .eyebrow{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--neva-2); font-weight:800;}
+  h1{font-family:var(--f-disp); font-weight:600; font-size:clamp(26px,5vw,36px); margin:0; line-height:1.1; text-wrap:balance;}
+  .meta{font-size:13.5px; color:var(--soft);}
+
+  nav.tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px; border-bottom:1px solid var(--line); padding-bottom:12px;}
+  .tab{font-family:inherit; font-size:13.5px; font-weight:700; cursor:pointer; padding:8px 15px; border-radius:999px; border:none; background:var(--chip); color:var(--soft);}
+  .tab[aria-selected="true"]{background:var(--neva); color:var(--paper);}
+  button:focus-visible,input:focus-visible,select:focus-visible,.vc:focus-visible{outline:2px solid var(--brick); outline-offset:2px;}
+
+  .lead{font-size:15.5px; color:var(--soft); margin:0 0 16px;}
+  .ielts{display:inline-block; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--brick); border:1.5px solid var(--brick); border-radius:6px; padding:1px 7px; margin-right:6px; vertical-align:1px;}
+
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px; margin-bottom:16px;}
+  .card h3{font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--neva-2); margin:0 0 12px; font-weight:800; display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .card h3 em{font-style:italic; text-transform:none; letter-spacing:0;}
+  .instr{font-size:14.5px; color:var(--soft); margin:-4px 0 14px;}
+
+  .ru{display:none; font-style:italic; color:var(--neva-2); font-size:14.5px;}
+  .ruopen .ru{display:block;}
+
+  .mini{font-family:inherit; font-size:10.5px; font-weight:800; letter-spacing:.08em; padding:4px 10px; border-radius:999px; cursor:pointer; background:transparent; color:var(--brick); border:1.2px solid var(--brick); white-space:nowrap; vertical-align:middle;}
+  .mini.on{background:var(--brick); color:var(--paper);}
+  .say{color:var(--neva-2); border-color:var(--neva-2); padding:4px 9px;}
+
+  /* warm-up */
+  .qs{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; counter-reset:w;}
+  .qs li{counter-increment:w; display:flex; gap:10px; align-items:flex-start;}
+  .qs li::before{content:counter(w); flex:0 0 auto; width:24px; height:24px; margin-top:3px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--neva); font-size:12px; font-weight:800;}
+  .qs .q{font-family:var(--f-disp); font-size:19px;}
+  .model{display:grid; grid-template-columns:1fr; gap:10px;}
+  .model .row{background:var(--chip); border-radius:10px; padding:11px 14px;}
+  .model .lab{font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;}
+  .model .lab.w{color:var(--bad);} .model .lab.g{color:var(--good);}
+  .model .t{font-family:var(--f-disp); font-size:17px;}
+
+  /* grammar theory */
+  .use{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px;}
+  .use li{background:var(--chip); border-radius:11px; padding:12px 15px;}
+  .use .name{font-weight:800; color:var(--neva);}
+  .use .ind{display:block; font-size:13.5px; color:var(--soft); margin-top:3px;}
+  .use .eg{display:block; font-family:var(--f-disp); font-size:16.5px; margin-top:4px;}
+  .sc{display:flex; flex-direction:column; gap:15px;}
+  .scg{border-left:3px solid var(--neva-2); padding-left:13px;}
+  .scg .sign{font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--neva-2); font-weight:800; margin-bottom:6px;}
+  .scg .row{display:flex; gap:12px; flex-wrap:wrap; align-items:baseline; padding:5px 0; border-bottom:1px dashed var(--line);}
+  .scg .row:last-child{border-bottom:none;}
+  .scg .form{min-width:min(250px,100%); font-weight:800; color:var(--neva); font-size:15.5px;}
+  .scg .eg{font-family:var(--f-disp); font-size:16px;}
+  .note{margin-top:13px; background:var(--chip); border-radius:10px; padding:11px 14px; font-size:14.5px; color:var(--soft);}
+  .note b{color:var(--neva);}
+  .spell{width:100%; border-collapse:collapse; font-size:15px;}
+  .spell td,.spell th{padding:8px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+  .spell th{font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--neva-2);}
+  .spell td:last-child{font-family:var(--f-disp); font-size:16px;}
+  .tscroll{overflow-x:auto;}
+
+  /* exercise items */
+  ol.items{list-style:none; counter-reset:q; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  ol.items > li{counter-increment:q; display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap;}
+  ol.items > li::before{content:counter(q); flex:0 0 auto; width:24px; height:24px; margin-top:4px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--neva); font-size:12px; font-weight:800; font-variant-numeric:tabular-nums;}
+  .qbody{flex:1 1 240px; min-width:0;}
+  .qtext{font-size:16px;}
+  .btns{display:flex; gap:6px; flex:0 0 auto; margin-top:3px; flex-wrap:wrap;}
+  input.gap{font-family:inherit; font-size:15px; width:150px; max-width:100%; padding:4px 9px; border-radius:7px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink);}
+  input.gap.wide{width:100%; margin-top:6px;}
+  .chk{font-family:inherit; font-size:11px; font-weight:800; letter-spacing:.06em; cursor:pointer; padding:5px 12px; border-radius:999px; background:var(--neva); color:var(--paper); border:1.5px solid var(--neva);}
+  .ans{font-family:inherit; font-size:11px; font-weight:800; letter-spacing:.06em; cursor:pointer; padding:5px 12px; border-radius:999px; background:transparent; color:var(--neva); border:1.5px solid var(--neva);}
+  .opts{display:flex; gap:6px; flex-wrap:wrap; margin-top:6px;}
+  .opts button{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:5px 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); text-align:left;}
+  .opts button.pick-ok{background:var(--good); border-color:var(--good); color:var(--paper);}
+  .opts button.pick-no{background:var(--bad); border-color:var(--bad); color:var(--paper);}
+  .fb{display:none; margin-top:7px; border-radius:9px; padding:9px 11px; font-size:14.5px; line-height:1.5;}
+  li.done .fb{display:block;}
+  .fb.ok{background:var(--good-bg);} .fb.no{background:var(--bad-bg);} .fb.show{background:var(--chip);}
+  .fb .right{font-weight:800; display:block; margin-bottom:3px;}
+  .fb.ok .right{color:var(--good);} .fb.no .right{color:var(--bad);} .fb.show .right{color:var(--neva);}
+  .fb .rurow{margin-top:6px; display:flex; gap:8px; align-items:flex-start; flex-wrap:wrap;}
+  li.okrow input.gap{border-color:var(--good);} li.norow input.gap{border-color:var(--bad);}
+  .exfoot{margin-top:14px; padding-top:12px; border-top:1px solid var(--line); display:flex; gap:10px; align-items:center; flex-wrap:wrap;}
+  .copy{font-family:inherit; font-size:12px; font-weight:700; cursor:pointer; padding:7px 14px; border-radius:999px; border:1.5px solid var(--neva); background:transparent; color:var(--neva);}
+  .cmsg{font-size:13px; color:var(--soft);} .cmsg.ok{color:var(--good); font-weight:700;}
+
+  /* listening */
+  .player{display:flex; gap:8px; align-items:center; flex-wrap:wrap; background:var(--chip); border-radius:12px; padding:12px 14px; margin-bottom:14px;}
+  .pbtn{font-family:inherit; font-size:14px; font-weight:800; cursor:pointer; padding:8px 16px; border-radius:999px; border:none; background:var(--neva); color:var(--paper);}
+  .pbtn.sec{background:transparent; color:var(--neva); border:1.5px solid var(--neva);}
+  .player select{font-family:inherit; font-size:14px; padding:6px 8px; border-radius:8px; border:1.5px solid var(--line); background:var(--card); color:var(--ink);}
+  .pstat{font-size:13px; color:var(--soft);}
+  .form{border:1.5px solid var(--line); border-radius:12px; overflow:hidden;}
+  .form .fh{background:var(--neva); color:var(--paper); padding:10px 14px; font-weight:800; letter-spacing:.04em;}
+  .tr-box{display:none; margin-top:12px; background:var(--chip); border-radius:10px; padding:12px 14px; font-size:15px;}
+  .tr-box.open{display:block;}
+  .tr-box p{margin:0 0 6px;}
+  .tr-box b{color:var(--neva);}
+
+  /* vocab cards */
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:11px;}
+  .vc{background:var(--chip); border:1px solid var(--line); border-radius:12px; padding:13px 14px; cursor:pointer; display:flex; flex-direction:column; gap:3px;}
+  .vc .en{font-family:var(--f-disp); font-size:20px; font-weight:600; line-height:1.15; display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+  .vc .tr{font-size:13px; color:var(--neva-2);}
+  .vc .df{font-size:14px; color:var(--ink); line-height:1.4; margin-top:3px;}
+  .vc .ex{font-size:13.5px; color:var(--soft); font-style:italic; line-height:1.4;}
+  .vc .rux{display:none; margin-top:7px; padding-top:7px; border-top:1px solid var(--line); font-size:15px; font-weight:800; color:var(--brick);}
+  .vc.flip .rux{display:block;}
+  .vc .tap{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--neva-2); margin-top:6px;}
+  .vc.flip .tap{display:none;}
+
+  /* translation */
+  .cue{border:2px solid var(--neva); border-radius:12px; padding:14px 18px; background:var(--paper);}
+  .cue p{margin:0 0 6px;} .cue ul{margin:0 0 8px; padding-left:22px;}
+  .cue-t{font-family:var(--f-disp); font-size:20px; font-weight:600;}
+  .cue-s{color:var(--soft);}
+  .timer{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:14px;}
+  .clock{font-family:var(--f-disp); font-size:30px; font-weight:600; min-width:74px; font-variant-numeric:tabular-nums; color:var(--neva);}
+  .clock.end{color:var(--brick);}
+  .phr{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:6px;}
+  .phr b{color:var(--neva);}
+  .story{font-size:17px; line-height:2.1;}
+  .story .enx{display:none; color:var(--neva); background:var(--chip); border-radius:6px; padding:2px 8px; font-family:var(--f-disp); font-size:17px;}
+  .story .sw.open .enx{display:inline;}
+  .story .mini{margin:0 6px;}
+  .tl{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; counter-reset:t;}
+  .tl li{counter-increment:t; display:flex; gap:10px; align-items:flex-start;}
+  .tl li::before{content:counter(t); flex:0 0 auto; width:24px; height:24px; margin-top:3px; display:grid; place-items:center; border-radius:50%; background:var(--chip); color:var(--neva); font-size:12px; font-weight:800;}
+  .tl .r0{font-size:16.5px;}
+  .tl .bar{display:inline-flex; gap:6px; margin-left:8px; vertical-align:middle;}
+  .tl .enx{display:none; margin-top:5px; font-family:var(--f-disp); font-size:17px; color:var(--neva);}
+  .tl li.open .enx{display:block;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+  /* --- extra for 05.10 --- */
+  .wo-ans{min-height:42px; border:2px dashed var(--line); border-radius:10px; padding:6px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; background:var(--paper);}
+  .wo-bank{display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;}
+  .chipw{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:5px 12px; border-radius:999px; border:1.5px solid var(--neva-2); background:var(--card); color:var(--ink);}
+  .wo-ans .chipw{background:var(--neva); color:var(--paper); border-color:var(--neva);}
+  li.okrow .wo-ans{border-color:var(--good);} li.norow .wo-ans{border-color:var(--bad);}
+  .seltext{font-size:16.5px; line-height:2.3;}
+  .seltext select{font-family:inherit; font-size:15px; padding:2px 6px; border-radius:7px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); max-width:100%;}
+  .seltext select.ok{border-color:var(--good); background:var(--good-bg);}
+  .seltext select.no{border-color:var(--bad); background:var(--bad-bg);}
+  .selfb{display:block; margin-top:10px; font-size:14.5px;}
+  .selfb .rowfb{padding:6px 0; border-bottom:1px dashed var(--line);}
+  .match{display:grid; grid-template-columns:1fr 1fr; gap:10px 16px;}
+  .mcol{display:flex; flex-direction:column; gap:8px; min-width:0;}
+  .mi{font-family:inherit; font-size:15px; text-align:left; cursor:pointer; padding:9px 12px; border-radius:10px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); min-height:46px;}
+  .mi.sel{border-color:var(--neva); background:var(--chip);}
+  .mi.done{border-color:var(--good); background:var(--good-bg); cursor:default;}
+  .mi.flash{border-color:var(--bad); background:var(--bad-bg);}
+  .mi .tag{font-weight:800; color:var(--neva); margin-right:6px;}
+  .mrows{margin-top:14px; display:flex; flex-direction:column; gap:6px;}
+  .mrow{display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:14.5px;}
+  .mrow .mans{display:none; color:var(--neva); font-weight:700;}
+  .mrow.open .mans{display:inline;}
+  .first{font-weight:800; color:var(--neva); letter-spacing:.06em; margin-right:4px;}
+  .story .r0{}
+  .read .sent{display:inline;}
+  .read .ru{display:none;}
+  .read .sent.ruopen .ru{display:inline; margin:0 4px;}
+  .read{font-size:17px; line-height:2.05;}
+  .read .mini{margin:0 5px;}
+  @media (max-width:560px){ .match{grid-template-columns:1fr;} }
+  /* --- extra for 16.11 --- */
+  .bubbles{position:relative; min-height:260px; border-radius:16px; background:var(--chip); overflow:hidden;}
+  .bub{position:absolute; border-radius:50%; border:2px solid var(--neva-2); background:var(--card); color:var(--neva); font-family:var(--f-disp); font-weight:600; cursor:pointer; display:grid; place-items:center; transition:transform .35s ease, opacity .35s ease;}
+  .bub.pop{transform:scale(.25); opacity:.25; cursor:default;}
+  .bub.now{border-color:var(--brick); color:var(--brick);}
+  .bubq{font-family:var(--f-disp); font-size:22px; line-height:1.35; min-height:62px; margin-top:16px;}
+  .bubh{font-size:13px; color:var(--soft); margin-top:8px;}
+  .twocol{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px;}
+  .usebox{background:var(--chip); border-radius:12px; padding:14px;}
+  .usebox h4{margin:0 0 10px; font-size:13px; letter-spacing:.09em; text-transform:uppercase; color:var(--neva); display:flex; gap:8px; align-items:center;}
+  .usebox ol{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:8px; font-size:15px;}
+  .usebox .eg{display:block; font-family:var(--f-disp); font-size:15.5px; color:var(--ink); margin-top:2px;}
+  .usebox .mk{display:block; font-size:12.5px; color:var(--soft);}
+  .forms{width:100%; border-collapse:collapse; font-size:15px; min-width:460px;}
+  .forms th,.forms td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top;}
+  .forms th{background:var(--neva); color:var(--paper); font-size:12px; letter-spacing:.06em; text-transform:uppercase;}
+  .forms td b{color:var(--neva);}
+  .forms .eg{font-family:var(--f-disp);}
+  .pool{display:flex; flex-wrap:wrap; gap:6px; min-height:44px; padding:8px; border:2px dashed var(--line); border-radius:10px;}
+  .chipw{font-family:inherit; font-size:14.5px; font-weight:700; cursor:pointer; padding:6px 12px; border-radius:12px; border:1.5px solid var(--neva-2); background:var(--card); color:var(--ink); text-align:left;}
+  .chipw.sel{background:var(--neva); color:var(--paper); border-color:var(--neva);}
+  .chipw.ok{background:var(--good-bg); border-color:var(--good); color:var(--good);}
+  .chipw.no{background:var(--bad-bg); border-color:var(--bad); color:var(--bad);}
+  .buckets{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px; margin-top:12px;}
+  .bucket{border:2px solid var(--line); border-radius:12px; padding:10px; min-height:110px; background:var(--paper); cursor:pointer; display:flex; flex-direction:column; gap:6px;}
+  .bucket .bh{font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--neva-2);}
+  .bucket .bw{display:flex; flex-direction:column; gap:6px;}
+  .seltext{font-size:16.5px; line-height:2.3;}
+  .seltext select{font-family:inherit; font-size:15px; padding:2px 6px; border-radius:7px; border:1.5px solid var(--line); background:var(--paper); color:var(--ink); max-width:100%;}
+  .seltext select.ok, .seltext input.ok{border-color:var(--good); background:var(--good-bg);}
+  .seltext select.no, .seltext input.no{border-color:var(--bad); background:var(--bad-bg);}
+  .seltext input.gap{width:150px;}
+  .seltext .gn{font-size:11px; font-weight:800; color:var(--neva-2); vertical-align:super; margin-right:2px;}
+  .selfb{display:block; margin-top:10px; font-size:14.5px;}
+  .selfb .rowfb{padding:6px 0; border-bottom:1px dashed var(--line);}
+  .email{background:var(--paper); border:1px solid var(--line); border-left:4px solid var(--brick); border-radius:10px; padding:14px 18px;}
+  .tag2{display:inline-block; font-family:var(--f-body); font-weight:800; font-size:13px; color:var(--brick); border:1.5px solid var(--brick); border-radius:6px; width:26px; text-align:center; margin-right:8px;}
+  .prompt{font-size:13.5px; color:var(--soft); display:block; margin-top:2px;}
+  .reply{font-family:var(--f-disp); font-size:16.5px; margin-top:4px;}
+  .twelve{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px;}
+  .twelve div{background:var(--chip); border-radius:10px; padding:12px 14px;}
+  .twelve b{display:block; color:var(--neva); margin-bottom:4px;}
+  .plan{display:flex; flex-direction:column; gap:10px; margin:0; padding:0; list-style:none; counter-reset:pl;}
+  .plan li{counter-increment:pl; display:flex; gap:10px; align-items:flex-start;}
+  .plan li::before{content:counter(pl); flex:0 0 auto; width:24px; height:24px; border-radius:50%; background:var(--brick); color:var(--paper); font-size:12px; font-weight:800; display:grid; place-items:center; margin-top:2px;}
+  .plan .pt{font-weight:800; color:var(--neva); display:block;}
+  .plan .px{font-family:var(--f-disp); font-size:16px;}
+  .phr{margin:0; padding-left:20px; display:flex; flex-direction:column; gap:6px;}
+  .phr b{color:var(--neva);}
+
+/* Only additional controls needed for the new tasks; base design is unchanged. */
+.panel[hidden]{display:none!important}
+.reading-copy{font-size:16px;line-height:1.8}
+.reading-copy p{margin:0 0 14px}
+.reading-copy .para-label{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;margin-right:8px;background:var(--chip);color:var(--neva);font-size:12px;font-weight:800}
+.headbank{padding:12px 16px;background:var(--chip);border-radius:10px;margin:8px 0 16px}
+.headbank ol{margin:5px 0 0;padding-left:20px;font-size:14.5px;line-height:1.9}
+.readline{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.readline label{font-weight:800;color:var(--neva);min-width:112px}
+.readline select{background:var(--paper);color:var(--ink);border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;font-family:inherit;font-size:14px}
+.readline .fb{width:100%}
+.flagitem{padding:13px 0;border-bottom:1px dashed var(--line)}
+.flagitem p{margin:0 0 7px;font-size:15.5px}
+.flagitem .opts{display:flex;flex-wrap:wrap;gap:6px}
+.flagitem .fb{margin-top:8px}
+.seltext.email{white-space:pre-line;line-height:2.4}
+.seltext.email select{margin:0 3px}
+.word-pool{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}
+.wordchip{font-family:inherit;font-size:13.5px;font-weight:700;padding:7px 12px;border-radius:12px;cursor:pointer;border:1.5px solid var(--neva-2);background:var(--card);color:var(--ink)}
+.wordchip.sel{background:var(--neva);color:var(--paper)}
+.wordchip.used{opacity:.38;pointer-events:none}
+.cloze-box{padding:15px 18px;background:var(--chip);border-radius:12px;line-height:2.6;font-size:16px}
+.cloze-slot{font-family:inherit;font-size:13px;min-width:52px;max-width:100%;background:var(--card);border:1.5px dashed var(--neva-2);border-radius:8px;padding:7px 10px;cursor:pointer;color:var(--neva);margin:0 3px}
+.cloze-slot.filled{border-style:solid;background:var(--card);font-weight:800}
+.cloze-slot.correct{border-color:var(--good);color:var(--good);background:var(--good-bg)}
+.cloze-slot.incorrect{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
+.sctext{font-size:12px;color:var(--soft)}
+.footnotes{font-size:12px;color:var(--soft);margin-top:18px}
+@media(max-width:560px){.readline label{min-width:70px}.readline select{flex:1;min-width:0}.reading-copy{font-size:15px}}
+
+  /* Warm-up · topic tickets (18 November): a new visual instead of bubbles. */
+  .warm-intro{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:15px;border-bottom:1px solid var(--line);padding-bottom:13px}
+  .warm-intro .mark{font-size:11px;letter-spacing:.13em;font-weight:800;color:var(--brick)}
+  .warm-intro .tagline{font-size:12px;color:var(--soft)}
+  .warm-tickets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .warm-ticket{font-family:var(--f-body);position:relative;min-height:176px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:15px 15px 13px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:10px;overflow:hidden;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .warm-ticket:nth-child(3n+2){background:var(--chip)}
+  .warm-ticket:hover{transform:translateY(-2px);border-color:var(--neva-2);box-shadow:0 5px 15px rgba(0,0,0,.06)}
+  .warm-ticket[aria-expanded="true"]{border-color:var(--neva-2);background:var(--card)}
+  .warm-ticket .ticket-top{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:var(--neva-2)}
+  .warm-ticket .ticket-num{font-family:var(--f-disp);font-size:37px;line-height:1;color:var(--neva);font-weight:500}
+  .warm-ticket .ticket-topic{font-family:var(--f-disp);font-size:21px;line-height:1.16;font-weight:500;flex:1}
+  .warm-ticket .ticket-divider{border-top:1px dashed var(--neva-2);width:100%;opacity:.7}
+  .warm-ticket .ticket-action{color:var(--brick);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+  .warm-ticket .ticket-question{display:none;font-family:var(--f-disp);font-size:19px;line-height:1.22;flex:1}
+  .warm-ticket[aria-expanded="true"] .ticket-num,.warm-ticket[aria-expanded="true"] .ticket-topic{display:none}
+  .warm-ticket[aria-expanded="true"] .ticket-question{display:block}
+  .warm-bottom{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap}
+  .warm-count{font-weight:800;font-size:13px;color:var(--neva)}
+  .warm-progress{display:flex;gap:5px}
+  .warm-progress span{height:7px;width:25px;border-radius:999px;background:var(--line)}
+  .warm-progress span.done{background:var(--neva-2)}
+  @media(max-width:760px){.warm-tickets{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:480px){.warm-tickets{grid-template-columns:1fr}.warm-ticket{min-height:133px}.warm-ticket .ticket-topic{font-size:20px}}
+
+
+/* 23 November: a wholly different single-prompt Interview Studio (no bubbles or tickets). */
+.interview{display:grid;grid-template-columns:190px minmax(0,1fr);border:1.5px solid var(--line);border-radius:16px;overflow:hidden;background:var(--paper)}
+.interview-rail{background:var(--chip);padding:18px 12px;border-right:1px solid var(--line)}
+.interview-rail .label{color:var(--neva);font-weight:800;font-size:11px;letter-spacing:.15em;margin:0 0 14px 8px}
+.interview-stop{width:100%;display:flex;align-items:center;gap:8px;border:0;border-radius:9px;padding:10px 9px;margin-bottom:5px;cursor:pointer;text-align:left;color:var(--soft);background:transparent;font:700 12px var(--f-body)}
+.interview-stop .stopnum{font-size:12px;color:var(--neva-2);border:1px solid var(--line);border-radius:50%;width:26px;height:26px;display:grid;place-items:center;background:var(--card);flex:none}
+.interview-stop.active{background:var(--card);color:var(--neva);box-shadow:0 2px 6px #00000008}
+.interview-stop.visited .stopnum{background:var(--neva);color:var(--paper)}
+.interview-main{padding:22px 26px;display:flex;flex-direction:column;min-height:300px}
+.interview-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11px;letter-spacing:.1em;font-weight:800;color:var(--brick)}
+.interview-big{font-family:var(--f-disp);font-size:66px;line-height:1;margin:16px 0 10px;color:var(--neva-2)}
+.interview-q{font-family:var(--f-disp);font-size:clamp(23px,3.5vw,30px);line-height:1.25;max-width:540px;min-height:76px}
+.interview-footer{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-top:auto;padding-top:20px}
+.interview-controls{display:flex;gap:8px;flex-wrap:wrap}
+.interview-btn{border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--neva);font:800 12px var(--f-body);padding:9px 12px;cursor:pointer}
+.interview-btn.next{background:var(--neva);border-color:var(--neva);color:var(--paper)}
+.interview-cue{background:var(--chip);border-left:3px solid var(--brick);margin-top:15px;padding:10px 14px;border-radius:7px;color:var(--soft);font-size:13.5px;display:none}
+.interview-cue.open{display:block}
+.interview-count{font-size:12px;color:var(--soft);font-weight:700}
+.exercise-sentence{font-size:16px;line-height:1.65;margin-bottom:8px}
+.tense-picker{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.tense-picker button{border:1.5px solid var(--line);border-radius:999px;background:var(--paper);color:var(--soft);padding:6px 13px;font:800 12px var(--f-body);cursor:pointer}
+.tense-picker button.selected{background:var(--neva);border-color:var(--neva);color:var(--paper)}
+.task-entry{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:9px}
+.task-entry input{width:min(245px,100%)}
+  #g3 .task-entry input{width:min(540px,100%);flex:1 1 320px}
+  input.gap.ok{border-color:var(--good);background:var(--good-bg)}
+  input.gap.no{border-color:var(--bad);background:var(--bad-bg)}
+  .live-result{font-size:12px;font-weight:800;white-space:nowrap;margin-left:4px;vertical-align:middle}
+  .live-result.ok{color:var(--good)}.live-result.no{color:var(--bad)}
+.gap-flow{line-height:2.7;font-size:16.5px;border-left:3px solid var(--neva-2);padding:12px 16px;background:var(--chip);border-radius:0 10px 10px 0}
+.gap-flow input{width:155px;margin:0 4px}
+.gap-flow input.wide{width:200px;margin:0 4px}
+.gap-flow .sup{font-size:11px;color:var(--neva);vertical-align:super;margin-right:3px;font-weight:800}
+.errorline{margin:4px 0 8px;font-size:15.5px;color:var(--ink);text-decoration:line-through;text-decoration-color:var(--bad)}
+.tile-row{border-bottom:1px solid var(--line);padding:14px 0}
+.tile-answer{border:2px dashed var(--neva-2);border-radius:8px;padding:7px;min-height:48px;display:flex;align-items:center;flex-wrap:wrap;gap:5px;background:var(--paper)}
+.tile-bank{margin-top:7px;min-height:40px;display:flex;flex-wrap:wrap;gap:6px}
+.tile-word{border:1.5px solid var(--neva-2);color:var(--ink);background:var(--card);border-radius:9px;padding:6px 10px;font:700 13px var(--f-body);cursor:pointer}
+.tile-answer .tile-word{background:var(--neva);color:var(--paper);border-color:var(--neva)}
+.exam-notes{border:1.5px solid var(--line);border-radius:12px;padding:16px;background:var(--card)}
+.exam-notes h4{margin:0 0 10px;color:var(--neva);font-size:16px}
+.exam-row{border-bottom:1px dashed var(--line);padding:10px 0;display:flex;align-items:baseline;flex-wrap:wrap;gap:7px}
+.exam-row:last-child{border-bottom:none}
+.exam-row input{width:170px;max-width:100%}
+.audio-player{display:flex;gap:9px;flex-wrap:wrap;align-items:center;padding:16px;border-radius:12px;background:var(--chip)}
+.audio-player .pbtn{font-size:12px;padding:8px 13px}
+.audio-player .pstat{font-size:12px;flex:1}
+.audio-player select{background:var(--card);color:var(--ink);font:500 12px var(--f-body);border:1px solid var(--line);padding:7px;border-radius:8px;max-width:160px}
+.audio-transcript{display:none;background:var(--paper);padding:13px 15px;border-radius:9px;margin-top:10px;line-height:1.65;font-size:14px}
+.audio-transcript.show{display:block}
+.audio-transcript p{margin:0 0 10px}
+.qmc{padding:10px 0 16px;border-bottom:1px dashed var(--line)}
+.qmc p{font-weight:700;font-size:15px;margin:0 0 8px}
+.qmc .opts button{display:block;border-radius:9px;margin:4px 0;width:100%}
+.v-context{font-size:15px;line-height:1.8}
+.v-line{border-bottom:1px dashed var(--line);padding:9px 0}
+.v-line input{margin-left:8px;width:min(245px,100%)}
+.v-line .v-cue{font-size:12px;color:var(--soft)}
+@media(max-width:630px){.interview{grid-template-columns:1fr}.interview-rail{display:flex;gap:4px;flex-wrap:wrap;padding:10px;border-right:0;border-bottom:1px solid var(--line)}.interview-rail .label{width:100%;margin:0 0 2px 5px}.interview-stop{width:auto;margin:0;font-size:11px}.interview-stop .stopnum{width:22px;height:22px}.interview-main{padding:16px 17px;min-height:260px}.interview-big{font-size:48px}.interview-q{font-size:24px}.gap-flow input{width:110px}.audio-player .pstat{min-width:130px}.v-line input{width:95%}}
+
+/* 25 November: route-map warm-up rather than interview/tickets/bubbles */
+.route-sheet{border:1.5px solid var(--line);border-radius:16px;background:var(--paper);padding:22px 20px;position:relative;overflow:hidden}
+.route-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:18px}
+.route-name{font-family:var(--f-disp);font-size:25px;color:var(--neva);line-height:1.1}
+.route-meta{font-size:12px;color:var(--soft);font-weight:800;letter-spacing:.07em}
+.route-list{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;column-gap:26px;row-gap:10px;position:relative}
+.route-list:before{content:"";position:absolute;left:50%;top:10px;bottom:10px;border-left:2px dashed var(--neva-2);opacity:.5}
+.route-stop{position:relative;min-width:0}
+.route-stop button{width:100%;display:flex;gap:11px;align-items:center;text-align:left;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--card);color:var(--ink);cursor:pointer;font-family:var(--f-body);transition:box-shadow .16s,border-color .16s}
+.route-stop button:hover{border-color:var(--neva-2);box-shadow:0 2px 8px #00000009}
+.route-stop button[aria-expanded="true"]{border-color:var(--neva-2);box-shadow:inset 3px 0 var(--neva)}
+.route-dot{display:grid;place-items:center;flex:none;width:43px;height:43px;border-radius:50%;background:var(--chip);color:var(--neva);font-family:var(--f-disp);font-size:25px}
+.route-stop.done .route-dot{background:var(--neva);color:var(--paper)}
+.route-topic{font-size:13px;font-weight:800;display:block}
+.route-tease{font-size:11px;color:var(--soft);display:block;margin-top:2px}
+.route-reveal{display:none;border-radius:10px;border-left:3px solid var(--brick);padding:11px 13px;margin-top:7px;background:var(--chip)}
+.route-reveal.on{display:block}
+.route-question{font-family:var(--f-disp);font-size:20px;line-height:1.3}
+.route-cue{font-size:12px;color:var(--soft);margin-top:8px}
+.route-bottom{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:17px}
+.route-progress{font-weight:800;font-size:12px;color:var(--neva)}
+.route-pips{display:flex;gap:5px}.route-pips span{width:22px;height:6px;border-radius:100px;background:var(--line)}.route-pips span.on{background:var(--neva)}
+/* New question/answer practice; all data entered is checked inline. */
+.contrast-row{background:var(--paper);border:1px solid var(--line);border-radius:11px;padding:12px 14px;margin:10px 0}
+.contrast-row .context{font-size:13px;color:var(--soft);margin-bottom:9px}
+.contrast-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.contrast-grid label{font-size:12px;font-weight:800;color:var(--neva);display:block;margin-bottom:4px}
+.contrast-grid input{width:100%}
+.contrast-row .live-result{display:inline-block;margin-top:5px}
+.exercise-note{font-size:12px;color:var(--soft);margin-top:6px}
+.line-full{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:8px 0 0}
+.line-full input{width:min(530px,100%);flex:1 1 260px}
+.situation-row{border-bottom:1px dashed var(--line);padding:11px 0}
+.situation-row:last-child{border-bottom:0}
+.situation-row .prompt{font-size:15px;font-weight:700;margin-bottom:7px}
+.vocab-note{padding:12px 15px;border-left:3px solid var(--neva-2);border-radius:9px;background:var(--chip);line-height:2.5;font-size:15.5px}
+.vocab-note input{width:158px;margin:0 4px}
+.rtext{font-family:var(--f-disp);font-size:17px;line-height:1.85}
+.reading-box{background:var(--paper);border-left:4px solid var(--neva-2);padding:13px 20px;border-radius:0 12px 12px 0}
+.reading-box p{margin:12px 0;line-height:1.75}
+.reading-box b{color:var(--neva)}
+.heading-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap;padding:10px 0;border-bottom:1px dashed var(--line)}
+.heading-row label{font-weight:800;min-width:100px;color:var(--neva)}
+.heading-row select{max-width:100%;padding:8px 11px;border-radius:8px;background:var(--paper);color:var(--ink);border:1.5px solid var(--line);font:500 14px var(--f-body)}
+.heading-row select.ok{border-color:var(--good);background:var(--good-bg)}.heading-row select.no{border-color:var(--bad);background:var(--bad-bg)}
+.tfg-row{margin:12px 0;padding:9px 0;border-bottom:1px dashed var(--line)}.tfg-row .opts{margin-top:8px}
+.tfg-row .opts button{min-width:90px}
+.sticky-score{font-size:12px;color:var(--neva);font-weight:800}
+@media(max-width:620px){.route-list{grid-template-columns:1fr}.route-list:before{left:23px;top:8px;bottom:8px}.route-stop button{position:relative}.route-sheet{padding:15px}.contrast-grid{grid-template-columns:1fr}.heading-row label{min-width:85px}.reading-box{padding:11px 13px}}
+
+/* Homework: original sentences */
+.hw-group{padding:15px 16px;border:1px solid var(--line);border-radius:12px;background:var(--chip);margin-top:13px}
+.hw-group h4{margin:0 0 2px;color:var(--neva);font-size:16px;font-weight:800}
+.hw-group .hw-desc{font-size:13.5px;color:var(--soft);margin:0 0 11px}
+.hw-row{display:grid;grid-template-columns:125px minmax(0,1fr);gap:12px;align-items:center;margin-top:9px}
+.hw-row label{font-weight:700;font-size:13px;color:var(--soft)}
+.hw-row input{width:100%;min-width:0;border:1.5px solid var(--line);border-radius:8px;padding:9px 11px;font:inherit;font-size:14.5px;color:var(--ink);background:var(--card)}
+.hw-row input:focus{border-color:var(--neva-2)}
+@media(max-width:560px){.hw-row{grid-template-columns:1fr;gap:3px}}
+
+
+/* 30 Nov: compact chat-thread warm-up, clearly different from trails, bubbles and tickets */
+.thread{border:1px solid var(--line);border-radius:14px;padding:16px;background:var(--paper)}
+.thread-head{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:13px}
+.thread-title{font-weight:800;color:var(--neva)}
+.chatrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.7fr);gap:12px;align-items:start;margin:13px 0}
+.examiner{background:var(--card);border:1px solid var(--line);padding:12px 14px;border-radius:13px 13px 13px 3px}
+.examiner .name{font-size:10px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--brick)}
+.examiner .question{font-family:var(--f-disp);font-size:19px;line-height:1.27;margin-top:5px}
+.candidate{background:var(--chip);border:1px dashed var(--neva-2);border-radius:13px 13px 3px 13px;padding:10px 13px;display:flex;flex-direction:column;gap:4px;min-height:84px}
+.candidate span{font-size:12px;color:var(--neva);font-weight:800}.candidate small{color:var(--soft);font-size:12px}
+.countcircle{display:inline-grid;place-items:center;width:23px;height:23px;border-radius:50%;background:var(--neva);color:var(--paper);font-weight:800;font-size:12px;margin-right:6px}
+@media(max-width:640px){.chatrow{grid-template-columns:1fr;gap:7px}.candidate{margin-left:11%;min-height:unset}}
+.gr-note{font-size:14px;color:var(--soft);line-height:1.65;margin:10px 0}
+.theory-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:11px}
+.theorybox{background:var(--chip);border-radius:12px;padding:14px}
+.theorybox h4{margin:0 0 8px;color:var(--neva);font-size:13px;letter-spacing:.07em;text-transform:uppercase}
+.theorybox p{margin:7px 0;font-size:14.5px}.theorybox em{color:var(--brick)}
+.twopart{margin:10px 0;padding:12px 14px;border:1px solid var(--line);background:var(--paper);border-radius:11px}
+.twopart .context{font-size:13px;font-weight:800;color:var(--brick);margin-bottom:8px}
+.twopart .sentence{font-size:16px;line-height:2.4}
+.twopart input{width:165px;max-width:100%;border:1.5px solid var(--line);border-radius:7px;background:var(--card);color:var(--ink);font:inherit;padding:5px 9px;margin:0 3px}
+.twopart input.valid,.qa-input.valid{background:var(--good-bg);border-color:var(--good)}
+.twopart input.invalid,.qa-input.invalid{background:var(--bad-bg);border-color:var(--bad)}
+.qa-input{font:inherit;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:8px;padding:8px 10px;width:100%}
+.small-feedback{display:block;margin:4px 0;font-size:12px;font-weight:700;color:var(--soft)}
+.small-feedback.good{color:var(--good)}.small-feedback.bad{color:var(--bad)}
+.exitem{padding:13px 0;border-bottom:1px dashed var(--line)}.exitem:last-child{border:none}
+.exitem .prompt{font-size:15.5px;color:var(--ink);line-height:1.6;margin-bottom:7px}
+.exitem .helper{color:var(--soft);font-size:13px}
+.choice-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.choice-row button{font:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1.5px solid var(--line);border-radius:9px;padding:7px 11px;color:var(--ink);background:var(--paper);text-align:left}
+.choice-row button.is-good{border-color:var(--good);background:var(--good-bg);color:var(--good)}
+.choice-row button.is-bad{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.item-feedback{font-size:13px;margin-top:6px;color:var(--soft);display:none}.item-feedback.show{display:block}
+.item-feedback.good{color:var(--good)}.item-feedback.bad{color:var(--bad)}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.controls .btn{font:inherit;font-size:12px;font-weight:800;border:1px solid var(--neva);background:var(--neva);color:var(--paper);padding:6px 12px;border-radius:999px;cursor:pointer}
+.controls .btn.alt{background:transparent;color:var(--neva)}
+.task-instr{color:var(--soft);font-size:14px;margin:0 0 12px}
+.read-box{border-left:4px solid var(--brick);border-radius:10px;background:var(--paper);padding:14px 17px;line-height:1.65}
+.read-box p{margin:0 0 10px}.read-box p:last-child{margin:0}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:11px}
+.wordcard{border:1px solid var(--line);background:var(--chip);border-radius:12px;padding:13px;cursor:pointer;position:relative;min-height:131px}
+.wordcard .en-title{font:600 21px/1.2 var(--f-disp);padding-right:30px}
+.wordcard .ipa{font-size:12px;color:var(--neva-2)}
+.wordcard .def{font-size:13px;margin-top:8px}.wordcard .example{font-size:13px;color:var(--soft);font-style:italic;margin-top:6px}
+.wordcard .translated{display:none;border-top:1px solid var(--line);margin-top:9px;padding-top:7px;font-weight:800;color:var(--brick);font-size:14px}
+.wordcard.flipped .translated{display:block}
+.wordcard .sound{position:absolute;right:9px;top:10px;background:var(--card);color:var(--neva);border:1px solid var(--line);border-radius:50%;height:30px;width:30px;cursor:pointer}
+.match-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:16px}
+.match-col{display:flex;flex-direction:column;gap:8px}.match-col h4{margin:0 0 3px;color:var(--neva);font-size:13px}
+.match-choice{font:inherit;text-align:left;font-size:13.5px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.match-choice.selected{border-color:var(--neva);background:var(--chip)}.match-choice.matched{border-color:var(--good);background:var(--good-bg);color:var(--good);cursor:default}
+.match-choice.wrong{border-color:var(--bad);background:var(--bad-bg)}
+@media(max-width:580px){.match-grid{grid-template-columns:1fr}.match-col{gap:5px}}
+.hw-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.hwcard{background:var(--chip);border-radius:10px;padding:12px}
+.hwcard h4{font-size:14px;color:var(--neva);margin:0 0 8px}.hwcard p{font-size:13px;margin:7px 0}.hwcard input{font:inherit;width:100%;color:var(--ink);border-radius:7px;border:1px solid var(--line);background:var(--card);padding:7px;font-size:13px;margin-bottom:9px}
+@media(max-width:670px){.hw-columns{grid-template-columns:1fr}}
+.storyline{font-size:16.5px;line-height:2.15}.storyline .enx{display:none;color:var(--neva);font-family:var(--f-disp);font-size:17px;background:var(--chip);border-radius:6px;padding:2px 8px}
+.storyline .on .enx{display:inline}.storyline .sw{margin-right:4px}
+.storyline .mini{margin:0 6px}
+.lisnotes{display:grid;grid-template-columns:1fr 1fr;gap:9px}.lisnotes .exitem{padding:10px;border:1px solid var(--line);border-radius:10px}
+@media(max-width:580px){.lisnotes{grid-template-columns:1fr}}
+.pstat{font-size:13px;color:var(--soft)}
+
+/* Non-action verbs: faithful table from the supplied grammar screenshot. */
+.stative-categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:13px 0 17px}
+.stative-category{border-radius:9px;background:var(--chip);padding:11px 12px;min-width:0}
+.stative-category h4{font-size:12px;font-weight:800;color:var(--neva);margin:0 0 6px}
+.stative-category p{font-size:13px;line-height:1.55;margin:0}
+.stative-table{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.5;min-width:520px}
+.stative-table thead th{font-weight:800;color:var(--neva);font-size:12px;text-align:left;padding:8px 9px;border-bottom:2px solid var(--line)}
+.stative-table tbody td,.stative-table tbody th{padding:9px 9px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+.stative-table tbody th{font-weight:800;color:var(--neva)}
+.stative-table tbody td i{font-size:12px;color:var(--soft)}
+.stative-table.dual-meaning{min-width:615px}
+.stative-table.dual-meaning tbody td{width:43%}
+.theory-subhead{font-size:15px;color:var(--neva);margin:21px 0 3px}
+.exercise-number{display:inline-grid;place-items:center;vertical-align:middle;min-width:24px;height:24px;border-radius:50%;font-size:12px;font-weight:800;background:var(--chip);color:var(--neva);margin-right:9px}
+.translation-number{color:var(--neva);font-size:12px;font-weight:800;margin-right:6px}
+@media(max-width:680px){.stative-categories{grid-template-columns:repeat(2,minmax(0,1fr))}.stative-table{font-size:13px}}
+</style></head><body><div class="wrap">
+<header class="top"><span class="eyebrow">Sarah · 30 November 2026</span><h1>Present Simple or Present Continuous?</h1><div class="meta">Non-action verbs · IELTS Academic practice</div></header>
+<nav class="tabs" role="tablist" aria-label="Lesson sections">
+<button class="tab" type="button" data-p="p1" aria-selected="true">1. Warm-up</button>
+<button class="tab" type="button" data-p="p2" aria-selected="false">2. Homework check</button>
+<button class="tab" type="button" data-p="p3" aria-selected="false">3. Grammar</button>
+<button class="tab" type="button" data-p="p4" aria-selected="false">4. Listening</button>
+<button class="tab" type="button" data-p="p5" aria-selected="false">5. Vocabulary</button>
+<button class="tab" type="button" data-p="p6" aria-selected="false">6. Speaking</button>
+<button class="tab" type="button" data-p="p7" aria-selected="false">7. Translation · homework</button>
+</nav>
+<section class="panel" id="p1" role="tabpanel">
+<p class="lead"><span class="ielts">IELTS Speaking · Part 1</span>Six questions. Give one direct answer and add one detail. New visual: an examiner–candidate conversation thread.</p>
+<div class="card"><h3>Conversation thread · 6 questions</h3><div class="thread"><div class="thread-head"><span class="thread-title">Speaking practice</span><span class="meta">ANSWER + ONE DETAIL</span></div><div id="warmChat"></div></div></div>
+</section>
+<section class="panel" id="p2" role="tabpanel" hidden>
+<p class="lead">Check your homework from <b>25 November</b>: read your 12 sentences aloud and check the tense and word order.</p>
+<div class="card"><h3>Your sentences · 12 sentences</h3><p class="instr">Four affirmative, four negative and four questions. In each group: <b>2 Present Simple + 2 Present Continuous</b>. You can type or paste the sentences below to discuss with your teacher.</p><div class="hw-columns" id="homework"></div><div class="note"><b>Quick check:</b> Present Simple → do / does in questions and negatives; Present Continuous → am / is / are + -ing. We will also check whether stative verbs need Present Simple.</div><div class="controls"><button class="btn alt" type="button" id="copyHW">Copy my 12 sentences</button><span class="pstat" id="hwMessage"></span></div></div>
+</section>
+<section class="panel" id="p3" role="tabpanel" hidden>
+<p class="lead">New focus: <b>non-action (stative) verbs</b>. First review the meaning, then complete four varied practice tasks. Feedback appears for each answer.</p>
+<div class="card"><h3>Reminder · action and non-action verbs</h3>
+<div class="gr-note"><b>Action verbs</b> show actions: <i>work, watch, cook, run</i>. They can be in the <b>Present Continuous</b>: <i>I'm watching a TV series now.</i></div>
+<div class="gr-note"><b>Non-action verbs</b> show feelings, thoughts and states. We usually use them <b>only in the Present Simple</b>, even when we talk about <b>now</b>.</div>
+<div class="stative-categories">
+<div class="stative-category"><h4>Feelings</h4><p>like, love, hate, want, need, prefer</p></div>
+<div class="stative-category"><h4>Thinking</h4><p>know, understand, believe, remember, forget, mean</p></div>
+<div class="stative-category"><h4>Having</h4><p>have (= own), own, belong</p></div>
+<div class="stative-category"><h4>Other</h4><p>seem, cost, depend</p></div>
+</div>
+<div class="tscroll"><table class="stative-table"><thead><tr><th>✓ Correct</th><th>✕ Wrong</th></tr></thead><tbody>
+<tr><td><b>I want</b> a coffee now.</td><td><i>I'm wanting a coffee now.</i></td></tr>
+<tr><td>She <b>doesn't understand</b> the plot.</td><td><i>She isn't understanding the plot.</i></td></tr>
+<tr><td><b>Do you know</b> this number?</td><td><i>Are you knowing this number?</i></td></tr>
+<tr><td>It <b>depends</b> on the weather.</td><td><i>It's depending on the weather.</i></td></tr>
+</tbody></table></div>
+<h4 class="theory-subhead">Verbs with two meanings</h4>
+<p class="gr-note">Some verbs can be action or non-action. It depends on the <b>meaning</b>.</p>
+<div class="tscroll"><table class="stative-table dual-meaning"><thead><tr><th>Verb</th><th>Non-action → only Present Simple</th><th>Action → Present Continuous is OK</th></tr></thead><tbody>
+<tr><th scope="row">have</th><td><i>иметь</i>: I <b>have</b> a car / a headache / a day off.</td><td><i>in phrases</i>: have lunch, a shower, a meeting, fun → <b>I'm having</b> lunch.</td></tr>
+<tr><th scope="row">think</th><td><i>считать, полагать</i>: I <b>think</b> it's a good idea.</td><td><i>думать, размышлять</i>: <b>I'm thinking</b> about my holiday.</td></tr>
+<tr><th scope="row">taste</th><td><i>иметь вкус</i>: This soup <b>tastes</b> great.</td><td><i>пробовать на вкус</i>: The chef <b>is tasting</b> the soup.</td></tr>
+<tr><th scope="row">smell</th><td><i>пахнуть</i>: The flowers <b>smell</b> nice.</td><td><i>нюхать</i>: Why <b>are you smelling</b> the milk?</td></tr>
+<tr><th scope="row">weigh</th><td><i>весить</i>: My bag <b>weighs</b> 5 kilos.</td><td><i>взвешивать</i>: The shop assistant <b>is weighing</b> the apples.</td></tr>
+<tr><th scope="row">look</th><td><i>выглядеть</i>: You <b>look</b> tired.</td><td><i>смотреть</i>: <b>I'm looking</b> at the photos.</td></tr>
+<tr><th scope="row">see</th><td><i>видеть / понимать</i>: I <b>see</b> a bird. I <b>see</b> what you mean.</td><td><i>встречаться с кем-то</i>: She's <b>seeing</b> a client at the moment.</td></tr>
+</tbody></table></div>
+<div class="note"><b>feel</b> (чувствовать себя): both are OK — <b>I feel tired</b> = <b>I'm feeling tired.</b></div>
+</div>
+<div class="card"><h3>Exercise 1 · choose the complete update</h3><p class="task-instr">Choose the only option in which <b>both</b> verb forms fit the situation. Look at state verbs and temporary actions.</p><div id="g1"></div></div>
+<div class="card"><h3>Exercise 2 · notes from the PR office</h3><p class="task-instr">Complete each note with the correct Present Simple or Present Continuous verb form. Each gap shows feedback as you type.</p><div id="g2"></div><div class="controls"><button class="btn" id="checkG2" type="button">CHECK ANSWERS</button><span class="pstat" id="g2Score"></span></div></div>
+<div class="card"><h3>Exercise 3 · grammar detective</h3><p class="task-instr">There is one tense or verb-form error in each sentence. Write <b>the complete corrected sentence</b>, not just a verb. Each answer is checked as you type.</p><div id="g3"></div></div>
+<div class="card"><h3>Exercise 4 · why this tense?</h3><p class="task-instr">Read the sentence and choose the function of the verb in bold: state, habit, action now or temporary activity.</p><div id="g4"></div></div>
+</section>
+<section class="panel" id="p4" role="tabpanel" hidden>
+<p class="lead"><span class="ielts">IELTS Academic · Listening practice</span>A short, original museum briefing. First read the questions, then listen and complete two exam-style tasks.</p>
+<div class="card"><h3>University students at the City Museum</h3><p class="instr">A communication manager gives instructions to a group of student volunteers.</p>
+<div class="player" id="player"><button class="pbtn" id="playAudio" type="button">▶ Play</button><button class="pbtn sec" id="pauseAudio" type="button">❚❚ Pause</button><button class="pbtn sec" id="stopAudio" type="button">■ Stop</button>
+<select id="voiceSelect" aria-label="English voice"><option value="">English voice</option></select><select id="speedSelect" aria-label="Playback speed"><option value="0.84">Slow</option><option value="0.96" selected>Normal</option><option value="1.05">Fast</option></select><span class="pstat" id="audioStatus"></span></div>
+<button class="copy" id="showTranscript" type="button">Show transcript</button><div class="tr-box" id="transcript"></div></div>
+<div class="card"><h3>Task 1 · note completion</h3><p class="instr">Complete the notes. Write <b>NO MORE THAN TWO WORDS AND/OR A NUMBER</b> for each answer.</p><div class="lisnotes" id="listening1"></div><div class="controls"><button class="btn" type="button" id="checkL1">CHECK ANSWERS</button><span class="pstat" id="l1Score"></span></div></div>
+<div class="card"><h3>Task 2 · multiple choice</h3><p class="instr">Choose the correct answer, <b>A, B or C</b>, according to the recording.</p><div id="listening2"></div></div>
+</section>
+<section class="panel" id="p5" role="tabpanel" hidden>
+<p class="lead">Ten words and expressions. Open a card for its translation; tap ▶ to hear the word or phrase. Then complete two different practice tasks.</p>
+<div class="card"><h3>Word cards</h3><div class="vocab-grid" id="cards"></div></div>
+<div class="card"><h3>Exercise 1 · choose the expression in context</h3><p class="task-instr">Read the situation carefully and choose the word or phrase that fits naturally. Each choice is checked immediately.</p><div id="v1"></div></div>
+<div class="card"><h3>Exercise 2 · match situations and expressions</h3><p class="task-instr">Click a situation on the left, then a matching expression on the right. Correct pairs stay green; incorrect pairs can be tried again.</p><div class="match-grid"><div class="match-col"><h4>Situations</h4><div id="matchLeft" class="match-col"></div></div><div class="match-col"><h4>Expressions</h4><div id="matchRight" class="match-col"></div></div></div><p class="pstat" id="matchStatus">0 / 10 matched</p></div>
+</section>
+<section class="panel" id="p6" role="tabpanel" hidden>
+<p class="lead"><span class="ielts">IELTS Speaking · Part 2</span>Prepare for one minute, then speak for 1–2 minutes.</p>
+<div class="card"><h3>Task card</h3><div class="cue"><p class="cue-t">Describe a public event you would like to organise.</p><p class="cue-s">You should say:</p><ul><li>what kind of event it would be</li><li>where it would take place and who you would invite</li><li>how you would tell people about it</li></ul><p class="cue-s">and explain why you would like to organise this event.</p></div>
+<div class="timer"><span class="clock" id="clock">1:00</span><button class="pbtn" id="tPrep" type="button">Preparation 1 min</button><button class="pbtn" id="tTalk" type="button">Speech 2 min</button><button class="pbtn sec" id="tStop" type="button">■ Stop</button><span class="pstat" id="tStat"></span></div>
+<div class="note"><b>Tip:</b> Give concrete details about the audience, location and communication channels. Try <b>would like to</b>, <b>rather than</b> and <b>plan for</b> when they fit naturally.</div></div>
+<div class="card"><h3>Plan your answer</h3><ol class="plan" id="splan"></ol></div>
+<div class="card"><h3>Useful linking phrases</h3><ul class="phr" id="sphr"></ul></div>
+<div class="card"><h3>Optional follow-up questions · Part 3</h3><ol class="qs"><li><span class="q">Why do universities organise events for their students?</span></li><li><span class="q">How do social media platforms help organisers reach an audience?</span></li><li><span class="q">Why do some companies sponsor cultural and educational events?</span></li></ol></div>
+</section>
+<section class="panel" id="p7" role="tabpanel" hidden>
+<p class="lead">Homework. Translate a short, connected story into English. Focus on Present Simple, Present Continuous, non-action verbs and the vocabulary from today's lesson.</p>
+<div class="card"><h3>Translation · homework</h3><div class="storyline" id="translation"></div></div>
+</section></div>
+<script>(function(){
+"use strict";
+const $=id=>document.getElementById(id);
+const E=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
+const norm=s=>String(s||'').toLowerCase().replace(/[‘’`]/g,"'").replace(/[.,!?;:()\"“”]/g,' ').replace(/\s+/g,' ').trim();
+const okAnswer=(s,a)=>a.some(x=>norm(x)===norm(s));
+const tabs=[...document.querySelectorAll('.tab')];
+tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(v=>{const active=v===t;v.setAttribute('aria-selected',active);$(v.dataset.p).hidden=!active;});if(window.speechSynthesis)window.speechSynthesis.cancel();stopPlayback(false);window.scrollTo({top:0,behavior:'smooth'});}));
+function responseLine(host,txt,cls=''){const d=E('div','item-feedback show '+cls,txt);host.append(d);return d;}
+function choiceItem(host,rec){const box=E('div','exitem');const prompt=E('div','prompt');prompt.append(E('span','exercise-number',String(host.children.length+1)),document.createTextNode(rec.q));box.append(prompt);const choices=E('div','choice-row');const feed=E('div','item-feedback');rec.opts.forEach((choice,idx)=>{const b=E('button','',choice);b.type='button';b.addEventListener('click',()=>{[...choices.children].forEach(x=>x.classList.remove('is-good','is-bad'));const right=idx===rec.a;b.classList.add(right?'is-good':'is-bad');feed.className='item-feedback show '+(right?'good':'bad');feed.textContent=right?'✓ Correct. '+(rec.why||''):'Not quite. '+(rec.why||'')+' Correct: '+rec.opts[rec.a];});choices.append(b);});box.append(choices,feed);host.append(box);}
+function textItem(host,rec){const box=E('div','exitem');const prompt=E('div','prompt');prompt.append(E('span','exercise-number',String(host.children.length+1)),document.createTextNode(rec.q));box.append(prompt);const input=E('input','qa-input');input.type='text';input.spellcheck=false;input.autocomplete='off';input.placeholder=rec.ph||'Write the complete sentence…';input.setAttribute('aria-label',rec.q);const fb=E('div','small-feedback','');function check(reveal=false){const val=input.value.trim();if(!val&&!reveal){input.classList.remove('valid','invalid');fb.textContent='';return;}const right=okAnswer(val,rec.a);input.classList.toggle('valid',!reveal&&right);input.classList.toggle('invalid',!reveal&&!right);fb.className='small-feedback '+(right?'good':'bad');fb.textContent=reveal?'Answer: '+rec.a[0]:(right?'✓ Correct!':'✕ Not yet — check the whole sentence.');}input.addEventListener('input',()=>check());const actions=E('div','controls');const checkBtn=E('button','btn','CHECK');checkBtn.type='button';checkBtn.addEventListener('click',()=>check());const ans=E('button','btn alt','SHOW ANSWER');ans.type='button';ans.addEventListener('click',()=>check(true));actions.append(checkBtn,ans);box.append(input,fb,actions);host.append(box);return input;}
+function gapControl(answers,label){const input=E('input');input.type='text';input.spellcheck=false;input.autocomplete='off';input.setAttribute('aria-label',label);const fb=E('small','small-feedback');function validate(){const v=input.value.trim(),right=okAnswer(v,answers);input.classList.toggle('valid',!!v&&right);input.classList.toggle('invalid',!!v&&!right);fb.textContent=!v?'':right?'✓ correct':'✕ try again';fb.className='small-feedback '+(!v?'':right?'good':'bad');return right;}input.addEventListener('input',validate);return{input,fb,validate,answers};}
+// --- Warm-up, messenger-style log ---
+const warm=[
+'Do you often notice advertisements on your way to university?',
+'Would you like to visit a museum in another European country?',
+'Which app do you usually use for university communication?',
+'Are you following any interesting online creators these days?',
+'Do you prefer studying in a library or at home?',
+'What kinds of short videos do you usually watch?'
+];
+warm.forEach((q,i)=>{const row=E('div','chatrow'),left=E('div','examiner'),right=E('div','candidate');const top=E('div','name','Examiner  ·  question '+(i+1));left.append(top,E('div','question',q));right.append(E('span','', 'YOUR TURN'),E('small','', 'Answer the question.'),E('small','', '+ Add a reason, example or detail.'));row.append(left,right);$('warmChat').append(row);});
+// --- Homework check from 25 November: 4+4+4, with two of each tense ---
+const hwCats=[['Affirmative (+)',1],['Negative (−)',5],['Questions (?)',9]];
+hwCats.forEach(([label,first])=>{const card=E('div','hwcard');card.append(E('h4','',label));for(let j=0;j<4;j++){const idx=first+j;card.append(E('p','',idx+'. '+(j<2?'Present Simple':'Present Continuous')));const inp=E('input');inp.type='text';inp.id='hw'+idx;inp.placeholder='Your sentence…';card.append(inp);}$('homework').append(card);});
+$('copyHW').addEventListener('click',()=>{const text=Array.from({length:12},(_,i)=>(i+1)+'. '+($('hw'+(i+1)).value||'—')).join('\n');if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>$('hwMessage').textContent='Copied.').catch(()=>$('hwMessage').textContent='Select and copy the sentences manually.');}else $('hwMessage').textContent='Copy is not supported in this browser.';});
+// --- Grammar Exercise 1: two-form choices ---
+const g1=[
+{q:'I ___ this museum well, but I ___ its new exhibition for the first time this week.',opts:['know / am visiting','am knowing / visit','know / visit'],a:0,why:'Know is a state; this week describes a temporary visit.'},
+{q:'Maya ___ to work at nine most days, but this week she ___ from home.',opts:['is getting / works','gets / is working','gets / works'],a:1,why:'Most days = routine; this week = temporary situation.'},
+{q:'The guide ___ three languages, and right now she ___ with visitors from Spain.',opts:['is speaking / communicates','speaks / is communicating','speaks / communicates'],a:1,why:'An ability/general fact vs an action happening now.'},
+{q:'I ___ short adverts, but this month I ___ longer videos for my PR module.',opts:['am preferring / study','prefer / am studying','prefer / study'],a:1,why:'Prefer is a non-action verb; this month shows a temporary activity.'},
+{q:'Our team ___ the rules, and at the moment we ___ a new event schedule.',opts:['understands / are planning','is understanding / plans','understands / plan'],a:0,why:'Understand is a state; planning happens now.'},
+{q:'The museum ___ at ten, and today a guide ___ a special excursion at noon.',opts:['is opening / leads','opens / is leading','opens / leads'],a:1,why:'Opening hours = timetable; today = arranged activity.'}
+];g1.forEach(x=>choiceItem($('g1'),x));
+// --- Grammar Exercise 2: typed embedded blanks ---
+const g2=[
+{context:'Two different time frames',s:'The company [[1]] (plan) for the conference every spring. This month it [[2]] (prepare) for a European exhibition.',a:[['plans'],['is preparing',"'s preparing"]]},
+{context:'A problem and an ongoing explanation',s:'I [[1]] (not / understand) this advertisement. The designer [[2]] (explain) it right now.',a:[["don't understand","do not understand"],['is explaining',"'s explaining"]]},
+{context:'Preference and a temporary action',s:'She [[1]] (prefer) short excursions, but today she [[2]] (join) a long museum tour.',a:[['prefers'],['is joining',"'s joining"]]},
+{context:'Possession and an activity',s:'Our guide [[1]] (have) a map, and she [[2]] (show) us the route at the moment.',a:[['has'],['is showing',"'s showing"]]},
+{context:'Habit and what is happening now',s:'How often [[1]] (you / exercise) at the gym? At the moment your coach [[2]] (help) a new member.',a:[['do you exercise'],['is helping',"'s helping"]]}
+];const g2fields=[];
+g2.forEach((rec,idx)=>{const box=E('div','twopart');box.append(E('div','context',(idx+1)+'. '+rec.context));const s=E('div','sentence');const parts=rec.s.split(/\[\[[12]\]\]/);parts.forEach((part,k)=>{s.append(document.createTextNode(part));if(k<2){const c=gapControl(rec.a[k],'Grammar Exercise 2, gap '+(idx*2+k+1));g2fields.push(c);const wrapper=E('span');wrapper.append(c.input,c.fb);s.append(wrapper);}});box.append(s);$('g2').append(box);});
+$('checkG2').addEventListener('click',()=>{let correct=0;g2fields.forEach(f=>{if(f.validate())correct++;});$('g2Score').textContent='Score: '+correct+' / '+g2fields.length;});
+// --- Grammar Exercise 3: whole sentence corrections ---
+const g3=[
+{q:'The guide is knowing the schedule very well.',a:['The guide knows the schedule very well.']},
+{q:'We visit the museum right now.',a:['We are visiting the museum right now.',"We're visiting the museum right now."]},
+{q:"My colleague doesn't attends the gym on Mondays.",a:["My colleague doesn't attend the gym on Mondays.",'My colleague does not attend the gym on Mondays.']},
+{q:'I am preferring short advertisements to long ones.',a:['I prefer short advertisements to long ones.']},
+{q:'Look! They catch the last bus!',a:['Look! They are catching the last bus!',"Look! They're catching the last bus!"]},
+{q:'This company is having five European offices.',a:['This company has five European offices.']},
+{q:'Are you understanding the instructions?',a:['Do you understand the instructions?']}
+];g3.forEach(x=>textItem($('g3'),x));
+// --- Grammar Exercise 4: four meanings, not mechanically the same format ---
+const cats=['State / non-action','Routine or habit','Action happening now','Temporary activity'];
+const g4=[
+['I prefer European museums to shopping centres.',0],
+['The agency communicates with clients every day.',1],
+['The students are preparing a PR presentation this week.',3],
+['Look! The guide is showing us a new room.',2],
+['The company owns several office buildings.',0],
+['She attends a training session every Friday.',1],
+["We're planning for the excursion this month.",3],
+['Listen! A visitor is asking for directions.',2],
+['I believe the advertisement is clear.',0]
+];g4.forEach(([q,index])=>choiceItem($('g4'),{q,opts:cats,a:index,why:'The function is: '+cats[index]+'.'}));
+// --- IELTS Listening: original short script, with choices grounded in the recording ---
+const script=[
+'Hello, everyone, and welcome to the City Museum. I am Daniel, the communications manager.',
+'Our museum is running a two-week project with European university students. The project starts on Monday, the thirtieth of November, and finishes on Friday, the eleventh of December.',
+'You will work with our guide, Olivia, and our communication team. The team normally meets at nine thirty in Room twelve, next to the main entrance.',
+'This week, however, we are meeting at ten o’clock because the museum is preparing a new exhibition.',
+'During the first week, you will join two excursions, one on Tuesday and one on Thursday. Your task is to notice questions that visitors often ask.',
+'Please do not take photographs in the archive room. You can use your phones in the main hall.',
+'On Friday, each student will make a short presentation of no more than five minutes.',
+'We are planning for a public event next week, so try to suggest one clear way to improve our communication.'
+];
+$('transcript').textContent=script.join(' ');
+$('showTranscript').addEventListener('click',()=>{const on=$('transcript').classList.toggle('open');$('showTranscript').textContent=on?'Hide transcript':'Show transcript';});
+const l1=[
+{q:'Project length: ____ weeks',a:['two','2']},
+{q:'Name of the guide: ____',a:['Olivia']},
+{q:'Usual meeting location: Room ____',a:['12','twelve']},
+{q:'Meeting time THIS week: ____',a:['10:00','10','10 o clock',"ten o'clock",'ten']},
+{q:'No photographs in the ____',a:['archive room']},
+{q:'Maximum presentation length: ____ minutes',a:['five','5']}
+];const l1Fields=[];l1.forEach((rec,i)=>{const box=E('div','exitem');box.append(E('div','prompt',(i+1)+'. '+rec.q));const c=gapControl(rec.a,'Listening question '+(i+1));l1Fields.push(c);box.append(c.input,c.fb);$('listening1').append(box);});
+$('checkL1').addEventListener('click',()=>{let n=0;l1Fields.forEach(f=>{if(f.validate())n++;});$('l1Score').textContent='Score: '+n+' / '+l1Fields.length;});
+const l2=[
+{q:'Why is the team meeting later than usual this week?',opts:['The museum is preparing a new exhibition.','The guide is arriving from abroad.','The manager is attending a meeting.'],a:0},
+{q:'What should the students pay attention to on the excursions?',opts:['The ticket prices.','Questions that visitors ask.','The length of the bus journey.'],a:1},
+{q:'Where can volunteers use their phones?',opts:['In the archive room.','In the staff office.','In the main hall.'],a:2},
+{q:'What should the students suggest after the first week?',opts:['A change to the museum’s ticket prices.','A way to improve communication.','A new route for the city bus.'],a:1}
+];l2.forEach(x=>choiceItem($('listening2'),x));
+// Speech synthesis with deliberate pause/resume, accessible fallback to transcript.
+let voiceList=[],playToken=0,playing=false,paused=false,index=0,currentUtterance=null;
+function populateVoices(){if(!('speechSynthesis'in window))return;const selected=$('voiceSelect').value;voiceList=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));voiceList.sort((a,b)=>Number(/en[-_]GB/i.test(b.lang))-Number(/en[-_]GB/i.test(a.lang)));$('voiceSelect').replaceChildren(new Option('English voice (automatic)',''));voiceList.forEach((v,i)=>$('voiceSelect').add(new Option(v.name+' · '+v.lang,String(i))));if(selected&&Number(selected)<voiceList.length)$('voiceSelect').value=selected;}
+if('speechSynthesis'in window){populateVoices();speechSynthesis.addEventListener('voiceschanged',populateVoices);}else $('audioStatus').textContent='Audio unavailable here; use Show transcript.';
+function stopPlayback(update=true){playToken++;playing=false;paused=false;index=0;if('speechSynthesis'in window)speechSynthesis.cancel();$('pauseAudio').textContent='❚❚ Pause';if(update)$('audioStatus').textContent='Stopped';}
+function playNext(token){if(token!==playToken||!playing||paused)return;if(index>=script.length){playing=false;$('audioStatus').textContent='Finished';return;}const u=new SpeechSynthesisUtterance(script[index]);currentUtterance=u;u.lang='en-GB';u.rate=Number($('speedSelect').value)||0.96;const v=voiceList[Number($('voiceSelect').value)];if(v)u.voice=v;const section=index;u.onend=()=>{if(token===playToken&&playing){index=section+1;playNext(token);}};u.onerror=()=>{if(token===playToken&&playing){index=section+1;playNext(token);}};$('audioStatus').textContent='Playing · segment '+(index+1)+' / '+script.length;speechSynthesis.speak(u);}
+$('playAudio').addEventListener('click',()=>{if(!('speechSynthesis'in window))return;if(playing&&paused){paused=false;speechSynthesis.resume();$('pauseAudio').textContent='❚❚ Pause';$('audioStatus').textContent='Playing';return;}stopPlayback(false);playing=true;playNext(playToken);});
+$('pauseAudio').addEventListener('click',()=>{if(!playing)return;if(paused){paused=false;speechSynthesis.resume();$('pauseAudio').textContent='❚❚ Pause';$('audioStatus').textContent='Playing';}else{paused=true;speechSynthesis.pause();$('pauseAudio').textContent='▶ Resume';$('audioStatus').textContent='Paused';}});
+$('stopAudio').addEventListener('click',()=>stopPlayback());
+// --- Vocabulary ---
+const vocab=[
+['to notice','/ˈnəʊtɪs/','to become aware of a detail','I often notice advertisements on buses.','замечать'],
+['company','/ˈkʌmpəni/','a business organisation','She works for a European company.','компания, фирма'],
+['to plan for','/plæn fə/','to prepare for a possible event or need','The team is planning for the winter event.','планировать с учётом, готовиться к'],
+['communication','/kəˌmjuːnɪˈkeɪʃn/','the exchange of information and ideas','Clear communication helps museum visitors.','общение, коммуникация'],
+['to communicate','/kəˈmjuːnɪkeɪt/','to share information with another person','We communicate with clients by email.','общаться, передавать информацию'],
+['European','/ˌjʊərəˈpiːən/','connected with Europe','European students are joining the project.','европейский'],
+['rather than','/ˈrɑːðə ðæn/','instead of; in preference to','I take the tram rather than the bus.','вместо, а не'],
+['to catch','/kætʃ/','to get on a train or bus before it leaves','I catch the early train every Monday.','успеть на, поймать'],
+['excursion','/ɪkˈskɜːʃn/','a short organised visit or trip','The guide leads a museum excursion.','экскурсия'],
+['gym','/dʒɪm/','a place where people go to exercise','He goes to the gym after university.','спортзал']
+];
+function speakWord(word){if(!('speechSynthesis'in window))return;stopPlayback(false);const u=new SpeechSynthesisUtterance(word.replace(/^to /,''));u.lang='en-GB';u.rate=0.84;const voices=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));if(voices.length)u.voice=voices[0];speechSynthesis.speak(u);}
+vocab.forEach(w=>{const box=E('div','wordcard');box.tabIndex=0;box.setAttribute('role','button');box.setAttribute('aria-label','Show translation of '+w[0]);const btn=E('button','sound','▶');btn.type='button';btn.setAttribute('aria-label','Listen to '+w[0]);btn.addEventListener('click',e=>{e.stopPropagation();speakWord(w[0]);});box.append(btn,E('div','en-title',w[0]),E('div','ipa',w[1]),E('div','def',w[2]),E('div','example',w[3]),E('div','translated',w[4]));const flip=()=>box.classList.toggle('flipped');box.addEventListener('click',flip);box.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();flip();}});$('cards').append(box);});
+const v1=[
+{q:'The PR manager writes short messages because clear ___ matters when visitors need help.',opts:['excursion','communication','gym'],a:1},
+{q:'The bus leaves in two minutes. We need to ___ it!',opts:['catch','plan for','communicate'],a:0},
+{q:'The museum is welcoming ___ students from several countries in Europe.',opts:['internationally','European','communication'],a:1},
+{q:'At seven in the morning, Mia goes to the ___ to exercise.',opts:['company','excursion','gym'],a:2},
+{q:'I often ___ small mistakes in online advertisements.',opts:['notice','communicate','catch'],a:0},
+{q:'The visitors want to take the tram ___ walk all the way.',opts:['rather than','plan for','notice'],a:0}
+];v1.forEach(x=>choiceItem($('v1'),x));
+const matches=[
+['You see a small error on the museum website.','to notice'],
+['You name the business that employs the PR manager.','company'],
+['You prepare in advance for possible bad weather.','to plan for'],
+['You describe the exchange of information with visitors.','communication'],
+['You send a clear message to a client.','to communicate'],
+['You describe a project involving several countries in Europe.','European'],
+['You choose the train instead of a taxi.','rather than'],
+['You get on the last bus before it leaves.','to catch'],
+['You join an organised visit led by a guide.','excursion'],
+['You go somewhere to exercise on a treadmill.','gym']
+];let selLeft=null,selRight=null,matched=0;
+const rightOrder=[6,1,9,3,0,7,4,2,8,5];
+function evaluatePair(){if(!selLeft||!selRight)return;const correct=selLeft.dataset.key===selRight.dataset.key;if(correct){selLeft.classList.add('matched');selRight.classList.add('matched');selLeft.disabled=true;selRight.disabled=true;matched++;$('matchStatus').textContent=matched+' / 10 matched'+(matched===10?' · Perfect!':'');}else{selLeft.classList.add('wrong');selRight.classList.add('wrong');$('matchStatus').textContent='Not quite — try another pair. '+matched+' / 10 matched';}selLeft.classList.remove('selected');selRight.classList.remove('selected');selLeft=null;selRight=null;}
+matches.forEach(([s,w],i)=>{const b=E('button','match-choice',(i+1)+'. '+s);b.type='button';b.dataset.key=String(i);b.addEventListener('click',()=>{[...$('matchLeft').children].forEach(c=>c.classList.remove('selected','wrong'));b.classList.add('selected');selLeft=b;evaluatePair();});$('matchLeft').append(b);});
+rightOrder.forEach((i,j)=>{const b=E('button','match-choice',String.fromCharCode(65+j)+'. '+matches[i][1]);b.type='button';b.dataset.key=String(i);b.addEventListener('click',()=>{[...$('matchRight').children].forEach(c=>c.classList.remove('selected','wrong'));b.classList.add('selected');selRight=b;evaluatePair();});$('matchRight').append(b);});
+// --- Speaking plan ---
+const plan=[
+['Introduce the event','I’d like to organise a public event for…'],
+['Explain the format','It would be a… and it would take place at…'],
+['Describe the audience','I would invite… because…'],
+['Promotion and communication','To reach the audience, I would use… rather than…'],
+['Explain and finish','I would like to organise it because… It could help people…']
+];plan.forEach(([a,b])=>{const li=E('li'),d=E('div');d.append(E('span','pt',a),E('span','px',b));li.append(d);$('splan').append(li);});
+const phrases=[['Starting','The event I’d like to organise is…'],['Adding','Another important aspect would be…'],['Giving a reason','The main reason is that…'],['Contrasting','Rather than using…, I would…'],['Finishing','That’s why I’d like to organise this event.']];phrases.forEach(([a,b])=>{const li=E('li');li.append(E('b','',a+': '),document.createTextNode(b));$('sphr').append(li);});
+let timer=null;function fmt(n){return Math.floor(n/60)+':'+String(n%60).padStart(2,'0');}function timerStop(){if(timer){clearInterval(timer);timer=null;}}function timerStart(s,label,done){timerStop();let left=s;$('clock').textContent=fmt(left);$('clock').classList.remove('end');$('tStat').textContent=label;timer=setInterval(()=>{left--;$('clock').textContent=fmt(left);if(left<=0){timerStop();$('clock').classList.add('end');$('tStat').textContent=done;}},1000);}
+$('tPrep').addEventListener('click',()=>timerStart(60,'Preparation…','Start speaking!'));$('tTalk').addEventListener('click',()=>timerStart(120,'Speaking…',"Time's up!"));$('tStop').addEventListener('click',()=>{timerStop();$('tStat').textContent='Stopped';});
+// --- Translation: exact familiar inline EN answer reveals ---
+const translations=[
+['Я работаю в компании, которая помогает европейским музеям общаться с посетителями.','I work for a company that helps European museums communicate with visitors.'],
+['Обычно мы готовим короткие объявления, а не длинные тексты.','We usually prepare short announcements rather than long texts.'],
+['На этой неделе мы готовимся к экскурсии для студентов.','This week we are preparing for a student excursion.'],
+['Сейчас гид объясняет маршрут, а я проверяю расписание.','Right now the guide is explaining the route, and I am checking the timetable.'],
+['Я знаю этот музей, но пока не понимаю новую схему.','I know this museum, but I do not understand the new map yet.'],
+['После встреч я обычно иду в спортзал, но сегодня пытаюсь успеть на автобус.','After meetings I usually go to the gym, but today I am trying to catch the bus.']
+];translations.forEach(([ru,en],i)=>{const sw=E('span','sw');sw.append(E('span','',ru));const btn=E('button','mini','EN');btn.type='button';btn.addEventListener('click',()=>{const active=sw.classList.toggle('on');btn.classList.toggle('on',active);});sw.append(btn,E('span','enx',en));$('translation').append(sw,document.createTextNode(' '));});
+})();</script></body></html>
