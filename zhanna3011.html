@@ -1,0 +1,562 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zhanna, 30 November 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F5FA; --sheet:#FFFFFF; --ink:#2D3142; --soft:#667085;
+  --blue:#5B5BD6; --mark:#FFD166; --ok:#2E7D5B; --okbg:#E3F1EA;
+  --bad:#B33A3A; --badbg:#F7E4E4; --line:#E2E5EF;
+  --serif:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans:"Manrope", "Segoe UI", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.6}
+header{max-width:860px;margin:0 auto;padding:28px 20px 8px}
+header h1{color:var(--ink)}
+.card:nth-child(3n+2){border-left-color:#F08A7E}.card:nth-child(3n){border-left-color:#2BB39A}
+header h1{font-weight:700;font-size:2.2rem;line-height:1.15;margin:0}
+header p{margin:6px 0 0;color:var(--soft);font-family:var(--sans);font-size:.95rem}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
+.tabs{max-width:860px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 20px 0}
+.tab{font-family:var(--sans);font-weight:600;font-size:.92rem;border:0;background:none;color:var(--soft);padding:9px 12px 11px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+main{max-width:860px;margin:0 auto;padding:22px 20px 60px}
+section{display:none}
+section.active{display:block}
+h2{font-size:1.55rem;margin:0 0 12px}
+h3{font-size:1.15rem;margin:0 0 6px}
+.task{font-family:var(--sans);font-size:.95rem;color:var(--soft);margin:0 0 14px;max-width:68ch}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-bottom:14px}
+button{font-family:var(--sans)}
+.btn{font-weight:600;font-size:.82rem;border:1px solid var(--line);background:var(--sheet);color:var(--blue);border-radius:4px;padding:4px 10px;cursor:pointer;margin:2px 4px 2px 0}
+.btn:hover{border-color:var(--blue)}
+.btn.solid{background:var(--blue);color:#fff;border-color:var(--blue)}
+.hidden{display:none !important}
+.en{color:var(--blue);font-style:italic}
+.ru{color:var(--soft);font-family:var(--sans);font-size:.9rem}
+.qlist{margin:0;padding-left:1.3em}
+.qlist li{margin:8px 0}
+
+/* parts inside a tab */
+.subnav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub{font-family:var(--sans);font-weight:600;font-size:.85rem;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:999px;padding:5px 14px;cursor:pointer}
+.sub[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.part{display:none}
+.part.active{display:block}
+
+/* quote */
+.quote{font-size:1.6rem;line-height:1.35;font-style:italic;margin:4px 0 6px;max-width:30ch}
+.src{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:0 0 16px}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px}
+.card .w{font-weight:700;font-size:1.08rem;line-height:1.3}
+.card .tr{font-family:var(--sans);font-size:.85rem;color:var(--soft);margin:2px 0 6px}
+.card .def{font-size:.95rem;margin:0 0 6px}
+.card .ex2{font-size:.92rem;color:var(--soft);font-style:italic;margin:0 0 6px}
+
+/* rows */
+.dl{padding:12px 0;border-bottom:1px solid var(--line)}
+.dl:last-of-type{border-bottom:0}
+.dl p{margin:0}
+.fb{font-size:.95rem}
+.fb .ex{margin:4px 0}
+.fb.okc{color:var(--ok)}
+.fb.badc{color:var(--bad)}
+.opts{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.opt{text-align:left;font-family:var(--serif);font-size:1rem;border:1px solid var(--line);background:#F7F8FC;border-radius:4px;padding:5px 12px;cursor:pointer;color:var(--ink)}
+.opts.col{flex-direction:column}
+.opt.okc{background:var(--okbg);border-color:var(--ok)}
+.opt.badc{background:var(--badbg);border-color:var(--bad)}
+input.gap{font-family:var(--serif);font-size:1rem;padding:2px 8px;border:1px solid var(--line);border-bottom:2px solid var(--soft);border-radius:4px;background:#F7F8FC;color:var(--ink);width:11em;max-width:100%}
+input.gap.okc{border-color:var(--ok);background:var(--okbg)}
+input.gap.badc{border-color:var(--bad);background:var(--badbg)}
+.hint{font-family:var(--sans);font-size:.85rem;color:var(--soft)}
+.bank{font-family:var(--sans);font-size:.9rem;background:#F7F8FC;border-radius:4px;padding:8px 12px;margin:0 0 12px}
+.copyrow{margin-top:14px;display:flex;align-items:center;gap:10px}
+.copied{font-family:var(--sans);font-size:.85rem;color:var(--ok)}
+.score{font-family:var(--sans);font-weight:700;font-size:.95rem;margin:10px 0 0}
+
+/* error clinic */
+.item{display:grid;grid-template-columns:28px 1fr;gap:4px 10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.num{font-family:var(--sans);font-weight:700;color:var(--soft);font-size:.9rem;padding-top:4px}
+.chips{margin:0;line-height:2.1}
+.chip{font-family:var(--serif);font-size:1.02rem;color:var(--ink);background:none;border:0;border-bottom:1px dashed #B9BFD6;padding:0 2px;margin:0 2px;cursor:pointer;border-radius:2px}
+.chip:hover{background:#F7F8FC}
+.chip.wrong{background:var(--badbg);border-bottom-color:var(--bad);animation:nudge .25s}
+.chip.hit{background:linear-gradient(transparent 55%, var(--mark) 55%);text-decoration:line-through;text-decoration-color:var(--bad);border-bottom-color:transparent;cursor:default}
+.fix{font-family:var(--sans);font-weight:700;color:var(--ok);margin-left:4px}
+.item .fb,.item .actions{grid-column:2}
+.fixbox{margin-right:6px}
+@keyframes nudge{0%,100%{transform:translateX(0)}30%{transform:translateX(-3px)}70%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.chip.wrong{animation:none}}
+
+/* drill table */
+.tablewrap{overflow-x:auto}
+table.drill{border-collapse:collapse;width:100%;min-width:560px;font-size:.98rem}
+.drill th{font-family:var(--sans);font-size:.82rem;color:var(--soft);text-align:left;font-weight:600;padding:6px 8px;border-bottom:2px solid var(--line)}
+.drill td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.drill td.t{font-weight:600;white-space:nowrap}
+.drill td.m{color:var(--soft);font-style:italic}
+.drill tr.grp td{background:#F7F8FC;font-family:var(--sans);font-size:.8rem;font-weight:700;color:var(--blue);padding:4px 8px}
+.base{font-size:1.35rem;font-weight:600;margin:0 0 4px}
+
+/* listening + speaking */
+.player{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cue{border:2px solid var(--blue);border-radius:6px;padding:16px 20px;background:var(--sheet);margin-bottom:14px}
+.cue .topic{font-size:1.3rem;font-weight:700;line-height:1.3;margin:0 0 8px}
+.cue ul{margin:6px 0 0;padding-left:1.2em}
+.clock{font-family:var(--sans);font-weight:700;font-size:2rem;color:var(--blue);margin:10px 0 2px}
+.phase{font-family:var(--sans);font-size:.9rem;color:var(--soft)}
+.ttext{font-size:1.08rem;line-height:1.9}
+.ttext .enout{display:block;margin:2px 0 8px;padding-left:12px;border-left:3px solid var(--blue)}
+@media (max-width:560px){body{font-size:17px}header h1{font-size:1.8rem}.quote{font-size:1.3rem}}
+
+.stat{border-left:4px solid var(--mark);background:#FFF6DC;padding:10px 14px;margin:0 0 16px;font-size:1rem}
+.stat b{font-size:1.5rem;font-family:var(--sans);color:var(--ink)}
+.new{font-family:var(--sans);font-size:.7rem;font-weight:700;color:#fff;background:var(--ok);border-radius:3px;padding:1px 5px;margin-left:6px;vertical-align:middle}
+select.pick{font-family:var(--serif);font-size:1rem;padding:2px 6px;border:1px solid var(--line);border-radius:4px;background:#F7F8FC;color:var(--ink);max-width:100%}
+select.pick.okc{border-color:var(--ok);background:var(--okbg)}
+select.pick.badc{border-color:var(--bad);background:var(--badbg)}
+.endings{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:4px}
+.endings li{font-size:.98rem}
+.endings b{font-family:var(--sans);color:var(--blue);margin-right:6px}
+.verdict{display:inline-flex;gap:6px;margin:6px 0}
+.fixrow{margin:8px 0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+/* lesson 5 additions */
+.wheelbox{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.wheelwrap{position:relative;width:260px;height:260px}
+.wheel{width:260px;height:260px;border-radius:50%;border:6px solid var(--sheet);box-shadow:0 0 0 1px var(--line),0 6px 18px rgba(45,49,66,.12);
+ background:conic-gradient(#5B5BD6 0.00deg 51.43deg,#F08A7E 51.43deg 102.86deg,#2BB39A 102.86deg 154.29deg,#5B5BD6 154.29deg 205.71deg,#F08A7E 205.71deg 257.14deg,#2BB39A 257.14deg 308.57deg,#F2B84B 308.57deg 360.00deg);
+ transition:transform 3.2s cubic-bezier(.17,.67,.2,1);position:relative}
+.wheel span{position:absolute;left:50%;top:50%;width:0;height:0;font-family:var(--sans);font-weight:700;font-size:1.5rem;color:#fff}
+.wheel span b{position:absolute;transform:translate(-50%,-50%)}
+.pointer{position:absolute;left:50%;top:-12px;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid var(--ink);z-index:2}
+.hub{position:absolute;left:50%;top:50%;width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;background:var(--sheet);border:3px solid var(--line)}
+.wq{font-size:1.35rem;line-height:1.35;font-style:italic;min-height:3em;margin:10px 0 0}
+.wq .n{font-family:var(--sans);font-style:normal;font-weight:700;color:var(--blue);font-size:.9rem;display:block;margin-bottom:4px}
+@media (max-width:640px){.wheelbox{grid-template-columns:1fr;justify-items:center;text-align:center}}
+@media (prefers-reduced-motion:reduce){.wheel{transition:none}}
+.dice{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.die{background:var(--sheet);border:2px solid var(--blue);border-radius:10px;padding:12px 10px;text-align:center;min-height:92px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.die:nth-child(2){border-color:#F08A7E}.die:nth-child(3){border-color:#2BB39A}
+.die .dl2{font-family:var(--sans);font-size:.75rem;font-weight:700;color:var(--soft);text-transform:uppercase;letter-spacing:.05em}
+.die b{font-size:1.1rem;line-height:1.3}
+.die.roll b{animation:shake .5s}
+@keyframes shake{0%,100%{transform:none}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+@media (prefers-reduced-motion:reduce){.die.roll b{animation:none}}
+@media (max-width:560px){.dice{grid-template-columns:1fr}}
+.chipbank{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.chipbank span{font-family:var(--sans);font-size:.9rem;background:#EEF0FB;border-radius:999px;padding:3px 12px}
+.groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin:12px 0}
+.groups div{background:#F7F8FC;border-radius:6px;padding:10px 12px;font-size:.95rem}
+.groups b{font-family:var(--sans);font-size:.8rem;color:var(--blue);display:block;margin-bottom:2px}
+/* lesson 6 additions */
+.mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.mcard{position:relative;min-height:110px;border:0;padding:0;background:none;cursor:pointer;font-family:var(--sans);perspective:800px}
+.mcard .side{position:absolute;inset:0;border-radius:10px;display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;backface-visibility:hidden;transition:transform .45s}
+.mcard .front{background:linear-gradient(135deg,#5B5BD6,#8A7BF0);color:#fff;font-size:2rem;font-weight:700}
+.mcard .back{background:var(--sheet);border:2px solid var(--blue);color:var(--ink);font-family:var(--serif);font-size:1rem;line-height:1.35;transform:rotateY(180deg)}
+.mcard.open .front{transform:rotateY(180deg)}
+.mcard.open .back{transform:rotateY(360deg)}
+.mcard .num{position:absolute;top:6px;left:10px;font-size:.75rem;font-weight:700;color:var(--blue);opacity:.7}
+@media (max-width:560px){.mcards{grid-template-columns:repeat(2,1fr)}.mcard{min-height:130px}}
+@media (prefers-reduced-motion:reduce){.mcard .side{transition:none}}
+.form{border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.form .fr{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid var(--line)}
+.form .fr:last-child{border-bottom:0}
+.form .fl{font-family:var(--sans);font-weight:600;font-size:.88rem;color:var(--soft);background:#F7F8FC;padding:10px 12px;display:flex;align-items:center}
+.form .fv{padding:4px 12px}
+.form .fv .dl{border:0;padding:6px 0}
+@media (max-width:560px){.form .fr{grid-template-columns:1fr}}
+/* lesson 7 additions */
+.emojis{display:flex;flex-wrap:wrap;gap:12px}
+.emoji{font-size:2.2rem;line-height:1;background:var(--sheet);border:2px solid var(--line);border-radius:14px;width:68px;height:68px;cursor:pointer;transition:transform .12s,border-color .12s}
+.emoji:hover{transform:translateY(-3px);border-color:var(--blue)}
+.emoji.on{border-color:var(--blue);background:#EEF0FB}
+.eq{font-family:var(--serif);font-size:1.3rem;line-height:1.35;min-height:2.2em;margin:16px 0 0}
+.eq .n{font-family:var(--sans);font-weight:700;color:var(--blue);font-size:.9rem;display:block;margin-bottom:4px}
+
+
+/* Small interaction-only extensions: Nov 16 palette, typography, scale and geometry retained */
+.tfgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tfcard{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:14px 16px}
+.tfcard:nth-child(3n+2){border-left-color:#F08A7E}.tfcard:nth-child(3n){border-left-color:#2BB39A}
+.tfcard p{font-size:1rem;line-height:1.45;margin:0 0 9px}.tfcard .tficon{font-size:1.55rem;margin-bottom:6px}
+.tfcard .tfresult{font-size:.92rem;line-height:1.45;margin:8px 0 0}
+.tfcard .opt{min-width:72px;text-align:center}.tfcard .opt:disabled{cursor:default}
+.tfcard .opt.selok{background:var(--okbg);border-color:var(--ok)}.tfcard .opt.selbad{background:var(--badbg);border-color:var(--bad)}
+.tfcard .tfresult.correct{color:var(--ok)}.tfcard .tfresult.incorrect{color:var(--bad)}
+.speakingprompts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.speakprompt{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:12px 14px;background:var(--sheet)}
+.speakprompt:nth-child(3n+2){border-left-color:#F08A7E}.speakprompt:nth-child(3n){border-left-color:#2BB39A}
+.speakprompt .mode{font:700 .76rem var(--sans);color:var(--soft);margin:0 0 6px}.speakprompt .prompt{font-size:1.04rem;margin:0 0 10px}
+.optionline{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}.optionline .opt{max-width:100%}
+.order{padding:13px 0;border-bottom:1px solid var(--line)}.order:last-child{border-bottom:0}
+.order-head{margin:0 0 8px}.order-drop{min-height:49px;border:1px dashed #B9BFD6;border-radius:4px;padding:7px 9px;margin:7px 0 11px;display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.order-bank{display:flex;flex-wrap:wrap;gap:6px}.token{font:600 .86rem var(--sans);border:1px solid var(--line);border-radius:4px;background:#EEF0FB;color:var(--ink);padding:6px 10px;cursor:pointer}.token:disabled{opacity:.32;cursor:default}
+.token.selected{background:var(--blue);border-color:var(--blue);color:#fff}.slotword{font:600 .9rem var(--sans);border:1px solid var(--blue);background:#EEF0FB;color:var(--ink);border-radius:4px;padding:5px 8px;cursor:pointer}
+.slotword.empty{color:var(--blue);border-style:dashed;min-width:83px}.slotword.okc{background:var(--okbg);border-color:var(--ok)}.slotword.badc{background:var(--badbg);border-color:var(--bad)}
+.wordstory{font-size:1.02rem;line-height:2.6}.wordstory .slotword{vertical-align:middle}
+.ieltsform{border:1px solid var(--line);border-radius:5px;padding:14px 16px;background:#F7F8FC}.noterow{display:grid;grid-template-columns:minmax(140px,1fr) minmax(170px,1.5fr);gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}.noterow:last-child{border-bottom:0}
+.noterow label{font:600 .86rem/1.45 var(--sans)}.noterow .gap{width:100%}.noterow .notehelp{font:.76rem var(--sans);color:var(--soft)}
+.listencontrols{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:10px 0}.voicepick{font:.8rem var(--sans);border:1px solid var(--line);border-radius:4px;background:#F7F8FC;color:var(--ink);padding:6px;max-width:100%;width:280px}
+.pillnote{border-left:4px solid var(--mark);background:#FFF6DC;padding:11px 13px;font-size:.94rem;margin-bottom:14px}
+.planlist{list-style:none;counter-reset:step;padding:0;margin:0}.planlist li{counter-increment:step;display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}.planlist li:last-child{border-bottom:0}
+.planlist li:before{content:counter(step);background:var(--blue);color:#fff;flex:0 0 25px;height:25px;border-radius:4px;display:grid;place-items:center;font:700 .75rem var(--sans)}.planlist b{display:block;font:.9rem var(--sans);font-weight:700}.planlist em{display:block;font-size:1rem;margin-top:3px;color:var(--soft)}
+.phrasegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.phraseitem{padding:9px 12px;border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:4px}.phraseitem b{font:.82rem var(--sans);color:var(--blue)}.phraseitem p{margin:4px 0 0;font-size:.96rem}
+.sentcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.sentgroup{border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;background:var(--sheet);padding:12px}.sentgroup:nth-child(2){border-left-color:#F08A7E}.sentgroup:nth-child(3){border-left-color:#2BB39A}
+.sentgroup h3{font-size:1.03rem;margin:0 0 3px}.sentgroup label{display:block;font:.8rem var(--sans);color:var(--soft);margin:9px 0 4px}.sentgroup textarea{width:100%;min-height:66px;resize:vertical;padding:8px 10px;border:1px solid var(--line);border-radius:4px;font:1rem var(--serif);background:#F7F8FC;color:var(--ink)}
+.actionrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px}
+@media(max-width:650px){.tfgrid{grid-template-columns:1fr}.speakingprompts{grid-template-columns:repeat(2,minmax(0,1fr))}.sentcols{grid-template-columns:1fr}}
+@media(max-width:450px){.speakingprompts,.phrasegrid{grid-template-columns:1fr}.noterow{grid-template-columns:1fr;gap:4px}}
+
+
+/* Small functional additions; all original lesson colours, fonts and spacing stay unchanged */
+.landmark-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.landmark-card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:14px 16px}
+.landmark-card:nth-child(3n+2){border-left-color:#F08A7E}.landmark-card:nth-child(3n){border-left-color:#2BB39A}
+.landmark-card .numtag{font:700 .76rem var(--sans);color:var(--soft);letter-spacing:.03em;margin-bottom:6px}
+.landmark-card h3{line-height:1.35;font-size:1.04rem;margin:0 0 10px}
+.landmark-card .options{display:grid;gap:7px}
+.landmark-card .options button{width:100%;text-align:left;font:600 .89rem var(--sans);padding:8px 10px;border:1px solid var(--line);background:#F7F8FC;color:var(--ink);border-radius:4px;cursor:pointer}
+.landmark-card .options button:disabled{cursor:default;opacity:.75}
+.landmark-card .options button.correct{background:var(--okbg);border-color:var(--ok);opacity:1}
+.landmark-card .options button.wrong{background:var(--badbg);border-color:var(--bad);opacity:1}
+.landmark-card .fact{margin:9px 0 0;font-size:.95rem;color:var(--soft)}
+.match-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:14px}
+.match-scene{display:flex;align-items:flex-start;gap:8px;text-align:left;width:100%;border:1px solid var(--line);border-radius:4px;background:#F7F8FC;color:var(--ink);padding:10px;margin:0 0 7px;cursor:pointer;font:1rem var(--serif);line-height:1.45}
+.match-scene .match-no{flex:0 0 23px;font:.8rem var(--sans);color:var(--blue);font-weight:700}
+.match-scene.on{border:2px solid var(--blue);padding:9px;background:#EEF0FB}
+.match-scene .picked{font:700 .85rem var(--sans);color:var(--blue);display:block;margin-top:4px}
+.match-scene.okc{background:var(--okbg);border-color:var(--ok)}.match-scene.badc{background:var(--badbg);border-color:var(--bad)}
+.match-bank{display:flex;flex-direction:column;gap:7px}
+.match-bank button{font:600 .89rem var(--sans);border-radius:4px;border:1px solid var(--line);padding:9px 10px;background:var(--sheet);color:var(--blue);text-align:left;cursor:pointer}
+.match-bank button:disabled{opacity:.4;cursor:default}
+.match-bank button.on{background:var(--blue);color:white}
+.mistake{font-size:1.04rem;line-height:1.6;margin:0 0 8px}
+.mistake strong{background:linear-gradient(transparent 50%,var(--mark) 50%)}
+.mistake input{width:17em;max-width:100%}
+.mistake .comment{font: .85rem var(--sans);margin-top:6px;color:var(--soft)}
+.twouse{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.twouse .use{background:#F7F8FC;border:1px solid var(--line);border-radius:4px;padding:14px}
+.twouse h3{color:var(--blue);margin:0 0 8px}
+.twouse p{margin:0 0 9px}
+.twouse p:last-child{margin:0}
+.time-banner{border-left:4px solid var(--mark);background:#FFF6DC;padding:12px 14px;margin:12px 0;font-size:1rem}
+.time-banner b{font-size:1rem;font-family:var(--serif)}
+.formtbl{width:100%;border-collapse:collapse;font-size:.97rem}.formtbl th,.formtbl td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+.formtbl th{font:700 .8rem var(--sans);color:var(--soft)}
+.quizline{padding:12px 0;border-bottom:1px solid var(--line)}.quizline:last-child{border:0}
+.quizline .label{font:700 .8rem var(--sans);color:var(--soft)}
+.quizline p{margin:5px 0 8px}
+.quizline .options{display:flex;flex-wrap:wrap;gap:6px}
+.quizline .options button{font:1rem var(--serif);padding:6px 12px;background:#F7F8FC;color:var(--ink);border-radius:4px;border:1px solid var(--line);cursor:pointer}
+.quizline .options button.correct{background:var(--okbg);border-color:var(--ok)}
+.quizline .options button.wrong{background:var(--badbg);border-color:var(--bad)}
+.quizline .feedback{font-size:.89rem;margin-top:7px;color:var(--soft)}
+.clozetext{font-size:1.09rem;line-height:2.65}.clozetext input{width:11.5em;max-width:90%;font-size:1rem}
+.reading-text p{font-size:1.04rem;line-height:1.75;margin:0 0 14px}.reading-text p:last-child{margin:0}
+.reading-text .para{font:700 .9rem var(--sans);color:var(--blue);margin-right:8px}
+.heading-row{display:grid;grid-template-columns:60px minmax(0,1fr);gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.heading-row:last-child{border-bottom:0}.heading-row label{font:700 .95rem var(--sans);color:var(--blue)}
+.heading-row select{max-width:100%;min-width:0;overflow:hidden;padding:8px;font: .95rem var(--sans);background:#F7F8FC;border:1px solid var(--line);border-radius:4px;color:var(--ink)}
+.heading-row select.okc{background:var(--okbg);border-color:var(--ok)}.heading-row select.badc{background:var(--badbg);border-color:var(--bad)}
+@media(max-width:650px){.landmark-grid,.twouse,.match-layout{grid-template-columns:1fr}.match-bank{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.formtbl{font-size:.88rem}}
+@media(max-width:420px){.match-bank{grid-template-columns:1fr}.heading-row{grid-template-columns:34px minmax(0,1fr)}}
+
+/* Lesson 14: additions use the same palette, type and card components. */
+.dialogue-q{font-size:1.02rem;line-height:1.7;margin:3px 0 10px}
+.dialogue-q b{color:var(--blue)}
+.sentence-bank{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.puzzle-words{display:flex;flex-wrap:wrap;gap:7px;min-height:45px}
+.puzzle-words .word{font-family:var(--serif);font-size:1rem;padding:5px 10px;border-radius:4px;border:1px solid var(--line);color:var(--ink);background:#F7F8FC;cursor:pointer}
+.puzzle-words .word:disabled{opacity:.32;cursor:default}
+.puzzle-answer{min-height:58px;margin:10px 0;padding:8px;border:1.5px dashed #B9BFD6;border-radius:6px;display:flex;align-items:center;flex-wrap:wrap;gap:7px;background:#FCFCFF}
+.puzzle-answer.okc{border-color:var(--ok);background:var(--okbg)}
+.puzzle-answer.badc{border-color:var(--bad);background:var(--badbg)}
+.puzzle-answer .word{background:white;border:1px solid var(--line);border-radius:4px;padding:5px 9px;font-family:var(--serif);font-size:1rem;color:var(--ink);cursor:pointer}
+.puzzle-result{font-family:var(--sans);font-size:.86rem;color:var(--soft);min-height:22px}
+.mini-label{font:.78rem var(--sans);font-weight:700;color:var(--blue);letter-spacing:.04em;text-transform:uppercase}
+.listen-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.listen-actions select{font: .83rem var(--sans);background:#F7F8FC;border:1px solid var(--line);border-radius:4px;padding:6px 8px;color:var(--ink);max-width:100%}
+.listen-status{font:.84rem var(--sans);color:var(--soft);margin:8px 0 0}
+.listen-status.warn{color:var(--bad)}
+.listen-notes{display:grid;grid-template-columns:1fr;gap:8px;margin:12px 0}
+.listen-note{padding:10px 12px;border:1px solid var(--line);border-radius:4px;background:#F9FAFD}
+.listen-note input{width:13em;margin:0 6px}
+.listen-note .fb{font: .82rem var(--sans);margin-top:6px;min-height:18px}
+.listen-note .fb.okc{color:var(--ok)}.listen-note .fb.badc{color:var(--bad)}
+.sentgroup label{font:.82rem var(--sans);color:var(--soft);display:block;margin:8px 0 4px}
+.sentgroup textarea{font:1rem var(--serif);background:#F7F8FC;border:1px solid var(--line);border-radius:4px;padding:8px;width:100%;resize:vertical;min-height:70px;color:var(--ink)}
+.small-feedback{font-family:var(--sans);font-size:.84rem;min-height:18px;margin-top:4px}
+.small-feedback.good{color:var(--ok)}.small-feedback.bad{color:var(--bad)}
+@media(max-width:560px){.listen-actions{align-items:stretch}.listen-actions select{width:100%}.listen-note input{width:10em}.puzzle-words .word{font-size:.93rem}}
+.landmark-card .options button.psych-chosen{background:var(--blue);border-color:var(--blue);color:#fff}
+
+
+/* Lesson 15 widgets — built from the same November 16 visual system. */
+.message-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.message-card{background:var(--sheet);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:4px;padding:14px 16px}
+.message-card:nth-child(3n+2){border-left-color:#F08A7E}.message-card:nth-child(3n){border-left-color:#2BB39A}
+.message-card .eyebrow{font:700 .76rem var(--sans);color:var(--soft);margin-bottom:5px}
+.message-card h3{line-height:1.4;font-size:1.06rem;margin:0 0 8px}
+.message-card .question{font-size:.96rem;margin:0 0 9px}
+.message-card .reveal{border-left:3px solid var(--blue);padding-left:10px;color:var(--soft);font-size:.96rem;margin-top:9px}
+.match-start{display:flex;gap:9px;align-items:flex-start;background:#F7F8FC;border:1px solid var(--line);padding:9px 11px;border-radius:4px;width:100%;margin-bottom:7px;text-align:left;font:1rem var(--serif);color:var(--ink);cursor:pointer}
+.match-start .smallnum{font:700 .76rem var(--sans);color:var(--blue);width:20px;flex-shrink:0;margin-top:3px}
+.match-start.active{background:#EEF0FB;border:2px solid var(--blue);padding:8px 10px}
+.match-start.done{background:var(--okbg);border-color:var(--ok)}
+.match-end{display:block;width:100%;border:1px solid var(--line);border-radius:4px;background:var(--sheet);padding:9px 11px;margin-bottom:7px;text-align:left;cursor:pointer;font:1rem var(--serif);color:var(--ink)}
+.match-end.good{background:var(--okbg);border-color:var(--ok)}.match-end.wrong{background:var(--badbg);border-color:var(--bad)}
+.match-end:disabled{cursor:default}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.match-caption{font:700 .83rem var(--sans);color:var(--soft);margin:2px 0 9px}
+.match-result{font: .85rem var(--sans);color:var(--soft);min-height:21px;margin-top:10px}
+.choice-line{border-bottom:1px solid var(--line);padding:12px 0}.choice-line:last-child{border:0}
+.choice-line .choice-count{font:700 .77rem var(--sans);color:var(--soft)}
+.choice-line p{margin:4px 0 9px}
+.choice-options{display:grid;gap:7px}
+.choice-options button{font:1rem var(--serif);text-align:left;line-height:1.45;color:var(--ink);border:1px solid var(--line);border-radius:4px;background:#F7F8FC;padding:8px 10px;cursor:pointer}
+.choice-options button.good{background:var(--okbg);border-color:var(--ok)}
+.choice-options button.wrong{background:var(--badbg);border-color:var(--bad)}
+.choice-explain{font:.87rem var(--sans);color:var(--soft);margin:6px 0 0;min-height:17px}
+.gram-ex{margin:0 0 8px;font-size:1.04rem}
+.read-para{font-size:1.03rem;line-height:1.74;margin:0 0 13px}.read-para:last-child{margin:0}
+.read-para .para-id{font:700 .9rem var(--sans);color:var(--blue);margin-right:8px}
+@media(max-width:600px){.message-grid,.match-grid{grid-template-columns:1fr}.message-card{padding:12px 14px}}
+</style></head><body>
+<header><h1>Zhanna, lesson 15</h1><p>Lesson of 30 November 2026</p></header>
+<nav><div class="tabs" role="tablist" id="tabs"></div></nav><main>
+
+<section data-title="Warm-up">
+<h2>Five surprising psychology facts</h2>
+<p class="task">Read five short facts about the human mind. Press “Find out more” for a simple explanation. Then answer three questions.</p>
+<div class="message-grid" id="warmCards"></div>
+<div class="sheet" style="margin-top:14px">
+<h3>Let's discuss</h3>
+<p class="task">Give a short answer: two or three sentences are enough.</p>
+<div id="warmDiscussion"></div>
+</div>
+</section>
+<section data-title="Homework check"><h2>Homework check: Translation</h2>
+<p class="task">Translation from 25 November. Translate aloud, sentence by sentence. Press “EN” to compare your version.</p>
+<div class="sheet ttext" id="homeworkText"></div></section>
+<section data-title="Vocabulary"><h2>Vocabulary</h2>
+<div class="subnav" role="tablist"><button class="sub">Words</button><button class="sub">Exercise 1</button><button class="sub">Discussion</button><button class="sub">Exercise 2</button></div>
+<div class="part"><p class="task">Listen to the pronunciation, read the English definition and example, and reveal the Russian translation if you need it.</p><div class="cards" id="wordCards"></div></div>
+<div class="part sheet"><h3>Exercise 1. Match the sentence halves</h3><p class="task">Click a sentence beginning on the left, then choose its ending on the right. You can correct your answer immediately.</p>
+<div class="match-grid"><div><div class="match-caption">Beginnings</div><div id="matchBeginnings"></div></div><div><div class="match-caption">Endings — mixed up</div><div id="matchEndings"></div></div></div><p class="match-result" id="matchFeedback" aria-live="polite"></p><div class="actionrow"><button class="btn" id="matchReset">Try again</button></div></div>
+<div class="part sheet"><h3>Discussion</h3><p class="task">Keep each answer short: two or three sentences at most.</p><div id="discussion"></div></div>
+<div class="part sheet"><h3>Exercise 2. Which sounds natural?</h3><p class="task">Read each mini-situation and choose the correct English sentence. The colour changes immediately.</p><div id="vocabPairs"></div><div class="actionrow"><button class="btn" id="vocabPairsReset">Try again</button></div></div>
+</section>
+<section data-title="Grammar"><h2>Grammar: Past Continuous</h2>
+<div class="subnav" role="tablist"><button class="sub">Reminder</button><button class="sub">Exercise 1 · Speak</button><button class="sub">Exercise 2 · Choose</button><button class="sub">Exercise 3 · Correct</button></div>
+<div class="part sheet"><h3>Past Continuous — quick reminder</h3>
+<div class="twouse">
+<div class="use"><h3>1. Action in progress at a specific moment in the past</h3><p><b>At 7 p.m. yesterday</b>, I <b>was discussing</b> our project.</p><p><b>When the teacher called</b>, we <b>were working</b> on the website.</p><p class="hint">A <b>specific time</b> or another event in <b>Past Simple</b> identifies the moment.</p></div>
+<div class="use"><h3>2. Two actions in progress at the same time</h3><p><b>While</b> Mia <b>was taking</b> photos, Ben <b>was speaking</b> to the guide.</p><p class="hint">Both processes were happening at the same time.</p></div>
+</div><div class="time-banner"><b>Remember:</b> <b>was / were + verb-ing</b>. For an action in progress, <i>at 5 o'clock yesterday</i> is more precise than <i>yesterday</i> alone.</div>
+<div class="chipbank"><span>at 6 p.m. yesterday</span><span>at that moment</span><span>when + Past Simple</span><span>while + Past Continuous</span></div>
+<div class="tablewrap"><table class="formtbl"><thead><tr><th>Type</th><th>Form</th><th>Example</th></tr></thead><tbody>
+<tr><td>+</td><td>was / were + -ing</td><td>She <b>was working</b>.</td></tr><tr><td>−</td><td>wasn't / weren't + -ing</td><td>They <b>weren't talking</b>.</td></tr><tr><td>?</td><td>Was / Were + subject + -ing?</td><td><b>Were</b> you <b>listening</b>?</td></tr>
+</tbody></table></div></div>
+<div class="part sheet"><h3>Exercise 1. What was happening?</h3><p class="task">Read each situation and describe it aloud. Use Past Continuous; add Past Simple when something interrupted the action. Press “Example” after you speak.</p><div id="grammarSpeak"></div></div>
+<div class="part sheet"><h3>Exercise 2. Choose the Past Continuous form</h3><p class="task">Choose the form that correctly shows an action in progress. Each answer is checked as soon as you click.</p><div id="grammarChoices"></div><div class="actionrow"><button class="btn" id="grammarChoicesReset">Try again</button></div></div>
+<div class="part sheet"><h3>Exercise 3. Correct the sentence</h3><p class="task">Every sentence has one mistake. Write the <b>whole sentence</b> correctly. Red means try again; green means correct. Use “Answer” only when needed.</p><div id="grammarFixes"></div><div class="actionrow"><button class="btn" id="grammarFixesReset">Try again</button></div></div>
+</section>
+<section data-title="Reading"><h2>Reading: A website for a palace</h2><p class="task">Read this short story about a student project. Answer two questions and do an IELTS-style matching-information task.</p>
+<div class="sheet" id="readingText"></div>
+<div class="subnav" role="tablist"><button class="sub">Exercise 1</button><button class="sub">Exercise 2 · IELTS</button></div>
+<div class="part sheet"><h3>Exercise 1. Answer the questions</h3><p class="task">Answer each question in a full sentence, then check the sample answer.</p><div id="readingQuestions"></div></div>
+<div class="part sheet"><h3>Exercise 2. IELTS Reading — Matching Information</h3><p class="task">Which paragraph (A, B or C) contains the information? You may use each letter more than once. Choose an answer to get immediate feedback.</p><div id="readingMatch"></div><p class="score" id="readingScore" aria-live="polite"></p><div class="actionrow"><button class="btn" id="readingReset">Try again</button></div></div>
+</section>
+<section data-title="Speaking"><h2>Speaking</h2><p class="task">IELTS Speaking Part 2 · One minute to prepare, then speak for 1–2 minutes. Use Past Simple and Past Continuous.</p>
+<div class="cue"><p class="topic">Describe a project you worked on with another person.</p><p style="margin:0">You should say:</p><ul><li>what the project was about</li><li>who you worked with</li><li>what you were doing together</li></ul><p style="margin:8px 0 0">and explain how you felt about working together.</p></div>
+<div class="sheet"><h3>Plan your answer</h3><p class="task">Follow the five steps to help you build a complete answer.</p><ol class="planlist" id="speakingPlan"></ol></div>
+<div class="sheet"><h3>Linking words and useful phrases</h3><div class="phrasegrid" id="speakingPhrases"></div></div>
+<div class="sheet"><p class="task" style="margin-bottom:6px">Prepare: 1 minute. Speak: 1–2 minutes.</p><button class="btn solid" id="prepareBtn">Preparation · 1 min</button><button class="btn solid" id="speechBtn">Speech · 2 min</button><button class="btn" id="stopTimer">■ Stop</button><div class="clock" id="clock">1:00</div><div class="phase" id="clockPhase"></div></div>
+<div class="sheet"><h3>If we have time</h3><ol class="qlist"><li>Do you prefer working alone or with other people?</li><li>What makes communication in a team easier?</li></ol></div>
+</section>
+<section data-title="Translation"><h2>Translation · Homework</h2><p class="task">Translate this short connected story into English. Use the vocabulary and Past Simple / Past Continuous where they fit. Press “EN” only after you try each sentence.</p><div class="sheet ttext" id="translationText"></div></section>
+</main>
+<script>
+(()=>{
+'use strict';
+const $=(s,root=document)=>root.querySelector(s), $$=(s,root=document)=>Array.from(root.querySelectorAll(s));
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const norm=s=>String(s||'').toLowerCase().replace(/[’‘`]/g,"'").replace(/\s+/g,' ').replace(/[.!?;,]+$/,'').trim();
+const normSentence=s=>norm(s).replace(/[.,?!;:]/g,'').replace(/\s+/g,' ').trim();
+let counter=0;const newId=()=>`zh30_${++counter}`;
+const activeSections=$$('main > section'), nav=$('#tabs');
+activeSections.forEach((section,i)=>{const b=document.createElement('button');b.className='tab';b.textContent=section.dataset.title;b.setAttribute('role','tab');b.setAttribute('aria-selected',String(i===0));if(!i)section.classList.add('active');b.onclick=()=>{activeSections.forEach(s=>s.classList.remove('active'));section.classList.add('active');$$('.tab',nav).forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');if('speechSynthesis' in window)window.speechSynthesis.cancel();window.scrollTo(0,0)};nav.appendChild(b);});
+activeSections.forEach(s=>{const subs=$$('.sub',s),parts=$$('.part',s);if(!subs.length)return;const show=i=>{parts.forEach((p,k)=>p.classList.toggle('active',i===k));subs.forEach((b,k)=>b.setAttribute('aria-selected',String(k===i)));};subs.forEach((b,i)=>b.onclick=()=>show(i));show(0);});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-toggle]');if(!b)return;const t=document.getElementById(b.dataset.toggle);if(!t)return;t.classList.toggle('hidden');if(b.hasAttribute('aria-expanded'))b.setAttribute('aria-expanded',String(!t.classList.contains('hidden')));});
+function renderTrans(box,items){$(box).innerHTML=items.map(([ru,en])=>{const id=newId();return `<span>${esc(ru)}</span> <button class="btn" data-toggle="${id}" aria-expanded="false">EN</button><span class="en enout hidden" id="${id}">${esc(en)}</span> `;}).join('');}
+const warm=[
+{msg:'Sometimes we see faces in clouds, cars or even power sockets.',hint:'Our brains are very good at noticing faces. This is called “face pareidolia”.'},
+{msg:'A familiar smell can bring back a memory from many years ago.',hint:'For example, the smell of a favourite meal might remind you of your childhood.'},
+{msg:'Going for a walk can help you think of new ideas.',hint:'In a study, people often came up with more creative ideas while walking than while sitting.'},
+{msg:'Sleeping after studying can help you remember new information.',hint:'Sleep helps the brain keep some of the things we learn.'},
+{msg:'If you say the same word again and again, it may start to sound strange.',hint:'Sometimes the word briefly seems to lose its meaning. This is called “semantic satiation”.'}
+];
+$('#warmCards').innerHTML=warm.map((x,i)=>{const id=newId();return `<div class="message-card"><div class="eyebrow">FACT ${i+1} / ${warm.length}</div><h3>${esc(x.msg)}</h3><button class="btn" data-toggle="${id}" aria-expanded="false">Find out more</button><div class="reveal hidden" id="${id}">${esc(x.hint)}</div></div>`;}).join('');
+const warmQuestions=[
+'Which fact impressed you the most? Why?',
+'Do smells or songs remind you of special moments?',
+'What helps you get new ideas: walking, talking to someone, or something else?'
+];
+$('#warmDiscussion').innerHTML=warmQuestions.map((q,i)=>`<div class="dl"><p><b>${i+1}.</b> ${esc(q)}</p></div>`).join('');
+const homework=[
+['Вчера в два часа дня мы гуляли возле королевского дворца на острове.','At two o’clock yesterday afternoon, we were walking near a royal palace on an island.'],
+['Наш гид рассказывал интересную легенду о крысе.','Our guide was telling an interesting legend about a rat.'],
+['Много лет назад эта крыса сбежала из клетки.','Many years ago, the rat escaped from a cage.'],
+['Пока я проверяла карту, мой друг фотографировал высокую башню.','While I was checking the map, my friend was taking photos of a tall tower.'],
+['Потом мы обсуждали эту историю, и гид попросил нас идти прямо.','Then we discussed the story, and the guide asked us to go straight.'],
+['Экскурсия была хорошей, и гид очень хорошо говорил по-английски.','The tour was good, and the guide spoke English very well.']
+];renderTrans('#homeworkText',homework);
+// Word card: [term, pronunciation, English definition, contextual example, Russian gloss].
+const vocab=[
+['to last','lɑːst','to continue for a period of time','The guided tour lasted almost two hours.','длиться, продолжаться'],
+['groupmate','ˈɡruːpmeɪt','someone who is in the same group as you','My groupmate helped me with the website.','человек из той же группы, одногруппник'],
+['to discuss','dɪˈskʌs','to talk about something to share ideas or opinions','We discussed the website design yesterday.','обсуждать'],
+['to communicate','kəˈmjuːnɪkeɪt','to share information and ideas with someone','We communicate with our groupmates online.','общаться, обмениваться информацией'],
+['time (once, twice, three times)','taɪm','one occasion when something happens','We visited the palace three times last summer.','раз (один раз, два раза)'],
+['their','ðeə','belonging to or connected with them','The students presented their project.','их, свой (при they)'],
+['topic','ˈtɒpɪk','the subject of a conversation or lesson','The topic of our project was local history.','тема'],
+['both','bəʊθ','the two people or things together','Both students worked on the presentation.','оба, обе'],
+['palace','ˈpælɪs','a large building where a king or queen may live','We visited an old palace on Saturday.','дворец'],
+['straight','streɪt','directly ahead, without turning','Go straight, then turn right at the shop.','прямо'],
+['royal','ˈrɔɪəl','connected with a king or queen','The guide showed us the royal rooms.','королевский'],
+['surrounded','səˈraʊndɪd','having things on every side','The palace was surrounded by a garden.','окружённый'],
+['cage','keɪdʒ','a structure of bars in which an animal may be kept','The bird escaped from its cage.','клетка'],
+['symbol','ˈsɪmbəl','an image or thing that represents an idea','The crown is a symbol of royal power.','символ']
+];
+const synth=('speechSynthesis' in window);
+function speakWord(s){if(!synth)return;window.speechSynthesis.cancel();let v=window.speechSynthesis.getVoices().filter(x=>/^en/i.test(x.lang));let voice=v.find(x=>/natural|online|premium/i.test(x.name))||v.find(x=>x.lang==='en-GB')||v[0]||null;let u=new SpeechSynthesisUtterance(s.replace(' (once, twice, three times)',''));u.lang='en-GB';u.rate=.88;if(voice)u.voice=voice;window.speechSynthesis.speak(u);}
+$('#wordCards').innerHTML=vocab.map(([word,ipa,def,ex,ru],i)=>{const id=newId();return `<div class="card"><div class="w">${esc(word)}</div><div class="tr">/${esc(ipa)}/</div><p class="def">${esc(def)}</p><p class="ex2">${esc(ex)}</p><button class="btn" data-say="${i}">▶ Listen</button><button class="btn" data-toggle="${id}" aria-expanded="false">Tap for Russian</button><span class="ru hidden" id="${id}">${esc(ru)}</span></div>`;}).join('');
+$('#wordCards').addEventListener('click',e=>{let b=e.target.closest('[data-say]');if(b)speakWord(vocab[+b.dataset.say][0].replace(/^to /,''));});
+// Ex 1 match pairs, answers deliberately shuffled.
+const pairs=[
+['Our guided tour','lasted almost two hours.'],
+['Both of my groupmates','communicated well with the teacher.'],
+['The royal palace was','surrounded by a large garden.'],
+['The teacher asked the group','to discuss the new topic.'],
+['Please walk straight','until you reach the main entrance.'],
+['The bird escaped','from its cage.'],
+['A crown is often a symbol of','royal power.'],
+['The students presented','their website design.']
+];
+const pairShuffled=[5,2,7,0,6,3,1,4];let selectedStart=null;let pairsDone=new Set(), lastWrong=null;
+function showPairs(){
+$('#matchBeginnings').innerHTML=pairs.map((p,i)=>`<button class="match-start ${pairsDone.has(i)?'done':selectedStart===i?'active':''}" data-start="${i}" ${pairsDone.has(i)?'disabled':''}><span class="smallnum">${i+1}</span><span>${esc(p[0])}${pairsDone.has(i)?' ✓':''}</span></button>`).join('');
+$('#matchEndings').innerHTML=pairShuffled.map(i=>`<button class="match-end ${pairsDone.has(i)?'good':lastWrong===i?'wrong':''}" data-end="${i}" ${pairsDone.has(i)?'disabled':''}>${esc(pairs[i][1])}</button>`).join('');
+}
+$('#matchBeginnings').addEventListener('click',e=>{let b=e.target.closest('[data-start]');if(!b)return;selectedStart=+b.dataset.start;lastWrong=null;$('#matchFeedback').textContent='Choose the matching ending.';showPairs();});
+$('#matchEndings').addEventListener('click',e=>{let b=e.target.closest('[data-end]');if(!b||selectedStart===null)return;let i=+b.dataset.end;if(i===selectedStart){pairsDone.add(i);selectedStart=null;lastWrong=null;$('#matchFeedback').textContent=`✓ Correct! ${pairsDone.size} of ${pairs.length} matched.`;}else{lastWrong=i;$('#matchFeedback').textContent='Not quite. Choose another ending.';}showPairs();});
+$('#matchReset').onclick=()=>{pairsDone.clear();selectedStart=null;lastWrong=null;$('#matchFeedback').textContent='';showPairs()};showPairs();
+const discussion=[
+'Do you often <b>discuss</b> new ideas with your boyfriend?',
+'Would you like to visit a <b>royal palace</b>? Why?'
+];$('#discussion').innerHTML=discussion.map((q,i)=>`<div class="dl"><p><b>${i+1}.</b> ${q}</p></div>`).join('');
+// Ex 2: contrast correct collocation/grammar in contextual mini-situations.
+const vocabPairs=[
+{q:'After class, the students talked about their project.',o:['We discussed the topic after class.','We discussed about the topic after class.'],c:0,why:'Discuss something — no “about” after discuss.'},
+{q:'The group was working together online.',o:['They communicated their groupmates online.','They communicated with their groupmates online.'],c:1,why:'Communicate with someone.'},
+{q:'The students visited a building for kings and queens.',o:['They visited a royal palace.','They visited a royally palace.'],c:0,why:'Royal is an adjective: royal palace.'},
+{q:'Two people liked the visit.',o:['Both them enjoyed the tour.','Both of them enjoyed the tour.'],c:1,why:'Both of them is a natural phrase.'},
+{q:'The website belongs to the students.',o:['The students finished their website.','The students finished them website.'],c:0,why:'Their shows possession.'},
+{q:'The visit continued for 40 minutes.',o:['The tour was lasted 40 minutes.','The tour lasted 40 minutes.'],c:1,why:'Use lasted in Past Simple.'},
+{q:'Someone gives you directions.',o:['Go straightly, then turn left.','Go straight, then turn left.'],c:1,why:'Go straight — no -ly.'},
+{q:'There were trees on every side of the building.',o:['The palace was surrounded by trees.','The palace was surround by trees.'],c:0,why:'Was surrounded by describes its position.'}
+];let vpSelected=Array(vocabPairs.length).fill(null);
+function drawVp(){$('#vocabPairs').innerHTML=vocabPairs.map((x,i)=>`<div class="choice-line"><div class="choice-count">${i+1} / ${vocabPairs.length}</div><p>${esc(x.q)}</p><div class="choice-options">${x.o.map((opt,k)=>`<button data-vp="${i}" data-opt="${k}" class="${vpSelected[i]===k?(k===x.c?'good':'wrong'):''}">${esc(opt)}</button>`).join('')}</div><div class="choice-explain">${vpSelected[i]===null?'':vpSelected[i]===x.c?'✓ Correct. '+esc(x.why):'Try the other sentence.'}</div></div>`).join('');}
+$('#vocabPairs').addEventListener('click',e=>{let b=e.target.closest('[data-vp]');if(b){vpSelected[+b.dataset.vp]=+b.dataset.opt;drawVp();}});$('#vocabPairsReset').onclick=()=>{vpSelected.fill(null);drawVp()};drawVp();
+// Speaking-focused grammar drill.
+const speak=[
+{q:'At 7 p.m. yesterday, Clara / discuss / the website. Then her phone / ring.',a:'At 7 p.m. yesterday, Clara was discussing the website when her phone rang.'},
+{q:'When you entered the palace, the tourists / take / photos.',a:'When I entered the palace, the tourists were taking photos.'},
+{q:'While the guide / speak, both students / write / notes.',a:'While the guide was speaking, both students were writing notes.'},
+{q:'At 8 p.m. yesterday, the guests / not listen / to music; they / discuss / the topic.',a:'At 8 p.m. yesterday, the guests weren’t listening to music; they were discussing the topic.'}
+];
+$('#grammarSpeak').innerHTML=speak.map((x,i)=>{const id=newId();return `<div class="dl"><p class="gram-ex"><b>${i+1}.</b> ${esc(x.q)}</p><button class="btn" data-toggle="${id}" aria-expanded="false">Example</button><div class="en hidden" id="${id}">${esc(x.a)}</div></div>`;}).join('');
+const grammarChoice=[
+{q:'At 6 p.m. yesterday, the groupmates ___ their project.',o:['was discussing','were discussing','discuss'],c:1,why:'Groupmates is plural: were discussing.'},
+{q:'While I ___ the pictures, Mia was calling the guide.',o:['checked','was checking','were checking'],c:1,why:'I was checking; two actions were happening together.'},
+{q:'What ___ the guide ___ when you arrived?',o:['did / doing','were / doing','was / doing'],c:2,why:'The guide → was doing.'},
+{q:'Both students ___ near the palace at 3 p.m.',o:['were walking','was walking','walk'],c:0,why:'Both students → were walking.'},
+{q:'At that moment, the guide ___ the new symbol.',o:['were explaining','was explaining','explaining'],c:1,why:'The guide is singular: was explaining.'},
+{q:'The teacher called while we ___ with our groupmates.',o:['communicated','were communicating','was communicating'],c:1,why:'We → were communicating.'},
+{q:'At 8 p.m., Ben ___ the photos. He was working on the text.',o:['weren’t checking','wasn’t check','wasn’t checking'],c:2,why:'Ben wasn’t checking (was not + -ing).' }
+];let gcSelected=Array(grammarChoice.length).fill(null);
+function drawGc(){$('#grammarChoices').innerHTML=grammarChoice.map((x,i)=>`<div class="choice-line"><div class="choice-count">${i+1} / ${grammarChoice.length}</div><p>${esc(x.q)}</p><div class="choice-options">${x.o.map((o,k)=>`<button data-gc="${i}" data-opt="${k}" class="${gcSelected[i]===k?(k===x.c?'good':'wrong'):''}">${esc(o)}</button>`).join('')}</div><div class="choice-explain">${gcSelected[i]===null?'':gcSelected[i]===x.c?'✓ Correct. '+esc(x.why):'Try another Past Continuous form.'}</div></div>`).join('');}
+$('#grammarChoices').addEventListener('click',e=>{let b=e.target.closest('[data-gc]');if(b){gcSelected[+b.dataset.gc]=+b.dataset.opt;drawGc();}});$('#grammarChoicesReset').onclick=()=>{gcSelected.fill(null);drawGc()};drawGc();
+const fixes=[
+{wrong:'At five yesterday, they was discussing the topic.',answers:['At five yesterday, they were discussing the topic.']},
+{wrong:'While Mia was looking at the palace, Ben were taking photos.',answers:['While Mia was looking at the palace, Ben was taking photos.']},
+{wrong:'Was you talking to your groupmate when I called?',answers:['Were you talking to your groupmate when I called?']},
+{wrong:'Both students weren’t work at 7 p.m.',answers:['Both students weren’t working at 7 p.m.','Both students were not working at 7 p.m.']},
+{wrong:'At that moment, the guide was explain the symbol.',answers:['At that moment, the guide was explaining the symbol.']},
+{wrong:'What were the groupmates do when the teacher arrived?',answers:['What were the groupmates doing when the teacher arrived?']}
+];
+function checkFix(i){const inp=$('#fix'+i),v=normSentence(inp.value),ok=Boolean(v)&&fixes[i].answers.some(a=>normSentence(a)===v);inp.classList.toggle('okc',ok);inp.classList.toggle('badc',Boolean(v&&!ok));const f=$('#fixFeedback'+i);f.textContent=!v?'':ok?'✓ Correct!':'Check was/were and the -ing form.';f.className='small-feedback '+(v?(ok?'good':'bad'):'');}
+function drawFixes(){$('#grammarFixes').innerHTML=fixes.map((x,i)=>`<div class="dl"><p><b>${i+1}.</b> <span class="gram-ex">${esc(x.wrong)}</span></p><input class="gap" id="fix${i}" autocomplete="off" spellcheck="false" aria-label="Correct sentence ${i+1}" style="width:100%;padding:9px 10px;max-width:100%" /><div class="small-feedback" id="fixFeedback${i}"></div><button class="btn" data-fix-answer="${i}">Answer</button></div>`).join('');}
+$('#grammarFixes').addEventListener('input',e=>{let m=e.target.id.match(/^fix(\d+)$/);if(m)checkFix(+m[1]);});
+$('#grammarFixes').addEventListener('click',e=>{let b=e.target.closest('[data-fix-answer]');if(!b)return;let i=+b.dataset.fixAnswer;$('#fix'+i).value=fixes[i].answers[0];checkFix(i);b.classList.add('hidden');});
+$('#grammarFixesReset').onclick=drawFixes;drawFixes();
+// Short reading, one coherent context; IELTS Matching Information: A/B/C may repeat.
+const reading=[
+'Mia and Ben were working on a university web-design project last Friday. Their topic was “Symbols of the City”. Both students wanted to make a simple online guide to an old royal palace. They asked their groupmates for photographs and discussed which pages the website needed.',
+'At three o’clock, Mia was checking the pictures while Ben was communicating with a museum guide online. The guide explained that the palace was surrounded by gardens. He also said that a crown above one of the doors was a symbol of royal history. Ben asked how long the tour lasted. “About forty-five minutes,” said the guide.',
+'Later, Mia found an old picture of a bird in a cage. She wanted to use it, but Ben preferred a photo of the palace. They talked about their ideas and decided to include both pictures. At six o’clock they were making the final changes when their teacher called. They sent the project later that evening.'
+];$('#readingText').innerHTML=reading.map((p,i)=>`<p class="read-para"><span class="para-id">${'ABC'[i]}.</span>${esc(p)}</p>`).join('');
+const readingQuestions=[
+['What was Mia doing while Ben was speaking to the museum guide?','Mia was checking the pictures for their website.'],
+['Why did Mia and Ben decide to use two different pictures?','They liked different pictures, so they decided to include both of them.']
+];$('#readingQuestions').innerHTML=readingQuestions.map(([q,a],i)=>{const id=newId();return `<div class="dl"><p><b>${i+1}.</b> ${esc(q)}</p><button class="btn" data-toggle="${id}" aria-expanded="false">Answer</button><div class="en hidden" id="${id}">${esc(a)}</div></div>`;}).join('');
+const readingItems=[
+['How long a guided visit takes',1],
+['A decision to use two pictures',2],
+['The students’ chosen project topic',0],
+['An interruption by a teacher',2],
+['A description of the area around the building',1],
+['The students asked other people for pictures',0]
+];
+function readScore(){let done=0,right=0;$$('[data-read]').forEach(s=>{const i=+s.dataset.read, v=s.value;if(!v)return;done++;if(+v===readingItems[i][1])right++;});$('#readingScore').textContent=done?`${right} / ${readingItems.length} correct (${done} answered).`:'';}
+function drawRead(){$('#readingMatch').innerHTML=readingItems.map(([q],i)=>`<div class="heading-row"><label for="read${i}">${i+1}</label><div><p style="margin:0 0 6px;font-size:.99rem">${esc(q)}</p><select id="read${i}" data-read="${i}" aria-label="Paragraph for statement ${i+1}"><option value="">Choose paragraph…</option><option value="0">A</option><option value="1">B</option><option value="2">C</option></select><div class="small-feedback" id="readFeedback${i}"></div></div></div>`).join('');$('#readingScore').textContent='';}
+$('#readingMatch').addEventListener('change',e=>{const s=e.target;if(!s.matches('select[data-read]'))return;const i=+s.dataset.read, ok=s.value!==''&&+s.value===readingItems[i][1];s.classList.toggle('okc',ok);s.classList.toggle('badc',s.value!==''&&!ok);const fb=$('#readFeedback'+i);fb.textContent=s.value===''?'':ok?'✓ Correct!':'Try another paragraph.';fb.className='small-feedback '+(s.value===''?'':ok?'good':'bad');readScore();});$('#readingReset').onclick=drawRead;drawRead();
+const plan=[
+['Start — describe the project','I’d like to talk about a project I did for my course / at work.'],
+['People and topic','I worked with … The main topic was …'],
+['What you did together','We discussed … and communicated online / in person.'],
+['What was happening','At five o’clock we were … When our teacher called, we were …'],
+['Finish — how you felt','In the end, we finished the project. I felt … because …']
+];$('#speakingPlan').innerHTML=plan.map(([t,v])=>`<li><div><b>${esc(t)}</b><em>${esc(v)}</em></div></li>`).join('');
+const phrases=[
+['Starting','I’d like to talk about… · Our project was about…'],
+['Working together','We both worked on… · My groupmate was…'],
+['Describing the moment','At that moment, I was… · While we were…, …'],
+['Sequencing','First… · Then… · After that… · Finally…'],
+['Giving a reason','because… · so… · That’s why…'],
+['Finishing','In the end… · Overall, it was a good experience.']
+];$('#speakingPhrases').innerHTML=phrases.map(([t,v])=>`<div class="phraseitem"><b>${esc(t)}</b><p>${esc(v)}</p></div>`).join('');
+let tick=null;const formatTime=n=>`${Math.floor(n/60)}:${String(n%60).padStart(2,'0')}`;
+const stopTick=()=>{if(tick!==null){clearInterval(tick);tick=null;}};
+function runTimer(seconds,label,done){stopTick();let remaining=seconds;$('#clock').textContent=formatTime(remaining);$('#clockPhase').textContent=label;tick=setInterval(()=>{remaining--;$('#clock').textContent=formatTime(remaining);if(remaining<=0){stopTick();$('#clockPhase').textContent=done;}},1000);}
+$('#prepareBtn').onclick=()=>runTimer(60,'Preparation — write short notes.','Time to speak!');$('#speechBtn').onclick=()=>runTimer(120,'Speaking…','Time is up. Thank you!');$('#stopTimer').onclick=()=>{stopTick();$('#clockPhase').textContent='Stopped';};
+const translation=[
+['Вчера в пять часов мы обсуждали с одногруппниками тему нашего проекта.','At five o’clock yesterday, we were discussing the topic of our project with our groupmates.'],
+['Мы готовили сайт о королевском дворце, окружённом садом.','We were preparing a website about a royal palace surrounded by a garden.'],
+['Пока я проверяла фотографии, остальные общались с гидом.','While I was checking the photographs, the others were communicating with the guide.'],
+['Гид рассказал нам, что корона — символ королевской власти.','The guide told us that a crown was a symbol of royal power.'],
+['Мы узнали, что экскурсия по дворцу длится один час.','We learned that the palace tour lasts one hour.'],
+['Когда преподаватель позвонил, мы всё ещё выбирали фотографии для сайта.','When the teacher called, we were still choosing photographs for the website.']
+];renderTrans('#translationText',translation);
+})();
+</script></body></html>
